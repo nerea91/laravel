@@ -1,0 +1,6 @@
+Restringir acceso a todas las carpetas que no sean public/ usando un .htaccess y cipiando archvios index.htm[l]
+personalizar la vista del modo de mantenimiento en App::down@app/start/global.php
+integrar
+ - assets (zurb foundation,jquery,...)
+ - HTML tidy
+ - firephp

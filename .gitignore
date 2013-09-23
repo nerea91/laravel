@@ -3,3 +3,11 @@
 composer.phar
 composer.lock
 .DS_Store
+
+#Editor backup files
+*~
+.*~
+.nfs00*
+.kate-swp
+.old
+

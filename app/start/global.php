@@ -66,7 +66,7 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503);
+	return Response::make("Be right back!", 503); //to-do personalizar la vista con Zurb FOudnation y cargarla aqui: return Response::view('maintenance', array(), 503);
 });
 
 /*

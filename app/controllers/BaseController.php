@@ -15,4 +15,13 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	 * Common constructor for all our controllers
+	 */
+	public function __construct()
+	{
+		//Enable CSRF for all controllers
+		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
+	}
+
 }

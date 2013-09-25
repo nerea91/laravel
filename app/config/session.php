@@ -94,7 +94,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => 'laravel_session', //to-do if you reuse your webapp set a different value for each one to avoid session stealing
 
 	/*
 	|--------------------------------------------------------------------------

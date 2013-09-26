@@ -5,6 +5,9 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
+		"way/generators": "dev-master"
+	},
+	"require-dev": {
 		"loic-sharma/profiler": "dev-master"
 	},
 	"autoload": {

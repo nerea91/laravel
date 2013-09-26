@@ -114,6 +114,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Profiler\ProfilerServiceProvider', //Profiler https://github.com/loic-sharma/profiler
+		'Way\Generators\GeneratorsServiceProvider', //Jeffrey Way generatos for Artisan https://github.com/JeffreyWay/Laravel-4-Generators
 
 	),
 

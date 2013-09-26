@@ -3,12 +3,10 @@
 composer.phar
 composer.lock
 .DS_Store
-.inotify
 
-#Editor backup files
 *~
 .*~
-.nfs00*
-.kate-swp
-.old
-
+*.nfs00*
+*.kate-swp
+*.old
+.inotify

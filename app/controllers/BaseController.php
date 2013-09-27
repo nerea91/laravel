@@ -3,6 +3,15 @@
 class BaseController extends Controller {
 
 	/**
+	 * Common constructor for all our controllers
+	 */
+	public function __construct()
+	{
+		//Enable CSRF for all controllers
+		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
+	}
+
+	/**
 	 * Setup the layout used by the controller.
 	 *
 	 * @return void
@@ -14,14 +23,4 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
-
-	/**
-	 * Common constructor for all our controllers
-	 */
-	public function __construct()
-	{
-		//Enable CSRF for all controllers
-		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
-	}
-
 }

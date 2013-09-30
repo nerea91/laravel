@@ -25,13 +25,13 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 		<!-- CSS -->
-		@yield('css')
+		{{ Assets::css() }}
 	</head>
 	<body>
 		@yield('body')
 
 		<!-- JavaScript -->
-		@yield('javascript')
+		{{ Assets::js() }}
 
 		<!-- Google Analytics: to-do change UA-XXXXX-X to be your site's ID. -->
 		<script>

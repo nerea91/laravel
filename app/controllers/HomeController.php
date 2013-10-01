@@ -2,7 +2,7 @@
 
 class HomeController extends BaseController {
 
-	protected $layout = 'layout.base';
+	protected $layout = 'layouts.base';
 
 	public function index()
 	{

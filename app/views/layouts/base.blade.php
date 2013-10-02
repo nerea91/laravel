@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ Config::get('app.locale') }}">
+<html class="no-js" lang="{{ Config::get('app.locale', 'en') }}">
 	<head>
 		{{-- Info --}}
 		<title>@section('title')
-		{{{ Config::get('site.name') }}}@show
-		</title>
-		<meta name="description" content="@yield('description')" />
+		{{{ trim(Config::get('site.name')) }}}@show</title>
+		<meta name="" content="@section('description')
+		{{{ trim(Config::get('site.slogan')) }}}@show " />
 
 		{{-- About --}}
 		<meta name="author" content="Javi (twitter: @Stolz)" />{{--to-do set your name --}}

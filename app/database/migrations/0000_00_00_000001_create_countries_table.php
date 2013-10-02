@@ -26,7 +26,7 @@ class CreateCountriesTable extends Migration {
 			$table->string('currency_sub_unit', 32)->nullable();
 			$table->string('region_code', 3)->nullable();
 			$table->string('sub_region_code', 3)->nullable();
-			$table->boolean('eea')->unsigned();
+			$table->boolean('eea')->unsigned(); //European Economic Area
 			$table->softDeletes();
 		});
 	}

@@ -13,4 +13,17 @@ return array(
 
 	'name' => 'My Laravel Project', //to-do
 
+	/*
+	|--------------------------------------------------------------------------
+	| Site slogan
+	|--------------------------------------------------------------------------
+	|
+	| The slogan of your site. It no other descrition is given it will be used in the <meta name="description" tag of all the layouts.
+	|
+	| IMPORTANT: It will shown in search engine result pages (SERPs) so pick it intelligently
+	|
+	*/
+
+	'slogan' => 'Becoming an artisan', //to-do
+
 );

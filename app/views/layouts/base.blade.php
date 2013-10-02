@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html class="no-js" lang="<?= Config::get('app.locale')?>">
+<html class="no-js" lang="{{ Config::get('app.locale') }}">
 	<head>
-		<!--Info-->
-		<title>@yield('title')</title>
+		{{-- Info --}}
+		<title>@section('title')
+		{{{ Config::get('site.name') }}}@show
+		</title>
 		<meta name="description" content="@yield('description')" />
 
-		<!--About-->
-		<meta name="author" content="Javi (twitter: @Stolz)" /><!--to-do set your name-->
+		{{-- About --}}
+		<meta name="author" content="Javi (twitter: @Stolz)" />{{--to-do set your name --}}
 		<link type="text/plain" rel="author" href="humans.txt" />
 
-		<!--Misc-->
+		{{-- Misc --}}
 		<base href="to-do" />
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><!--Force latest IE rendering engine or Chrome Frame if available)-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />{{--Force latest IE rendering engine or Chrome Frame if available) --}}
 
-		<!-- Mobile -->
-		<meta name="viewport" content="width=device-width, initial-scale=1"><!--Webkit-->
-		<meta name="HandheldFriendly" content="True" /><!--BlackBerry-->
-		<meta name="MobileOptimized" content="960" /><!--Windows Mobile-->
-		<meta http-equiv="cleartype" content="on" /><!--Windows Mobile-->
+		{{-- Mobile  --}}
+		<meta name="viewport" content="width=device-width, initial-scale=1">{{--Webkit --}}
+		<meta name="HandheldFriendly" content="True" />{{--BlackBerry --}}
+		<meta name="MobileOptimized" content="960" />{{--Windows Mobile --}}
+		<meta http-equiv="cleartype" content="on" />{{--Windows Mobile --}}
 
-		<!-- Favicon -->
+		{{-- Favicon  --}}
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-		<!-- CSS -->
+		{{-- CSS  --}}
 		{{ Assets::css() }}
+		@yield('css')
+		@yield('style')
 	</head>
 	<body>
 		@yield('body')
 
-		<!-- JavaScript -->
+		{{-- JavaScript  --}}
 		{{ Assets::js() }}
+		@yield('js')
 
-		<!-- Google Analytics: to-do change UA-XXXXX-X to be your site's ID. -->
+		{{-- Google Analytics: to-do change UA-XXXXX-X to be your site's ID.  --}}
 		<script>
 			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

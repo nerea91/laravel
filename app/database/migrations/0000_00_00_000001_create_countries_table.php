@@ -27,7 +27,7 @@ class CreateCountriesTable extends Migration {
 			$table->string('region_code', 3)->nullable();
 			$table->string('sub_region_code', 3)->nullable();
 			$table->boolean('eea')->unsigned();
-			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

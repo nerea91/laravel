@@ -5,10 +5,11 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-		"way/generators": "dev-master",
+		"way/database": "dev-master",
 		"stolz/assets": "dev-master"
 	},
 	"require-dev": {
+		"way/generators": "dev-master",
 		"loic-sharma/profiler": "dev-master"
 	},
 	"autoload": {

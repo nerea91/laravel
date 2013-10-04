@@ -113,9 +113,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
 		'Profiler\ProfilerServiceProvider', //Profiler https://github.com/loic-sharma/profiler
 		'Way\Generators\GeneratorsServiceProvider', //Jeffrey Way generatos for Artisan https://github.com/JeffreyWay/Laravel-4-Generators
-		'Stolz\Assets\AssetsServiceProvider',
+		'Stolz\Assets\AssetsServiceProvider', //Stolz assets manager https://github.com/Stolz/Assets
 
 	),
 
@@ -181,6 +182,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
 		'Profiler'        => 'Profiler\Facades\Profiler' , //Profiler https://github.com/loic-sharma/profiler
 
 	),

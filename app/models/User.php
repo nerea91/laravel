@@ -3,21 +3,14 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Way\Database\Model implements UserInterface, RemindableInterface {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+	protected $softDelete = true;
+	protected $hidden = array('password', 'deleted_at');
+	protected $guarded = array('salt', 'password', 'deleted_at');
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password');
+
+	/* ==== UserInterface implementation for auth */
 
 	/**
 	 * Get the unique identifier for the user.

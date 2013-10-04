@@ -12,3 +12,12 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+
+Route::resource('users', 'UsersController');
+
+Route::resource('posts', 'PostsController');
+
+Route::resource('tags', 'TagsController');
+
+Route::resource('countries', 'CountriesController');

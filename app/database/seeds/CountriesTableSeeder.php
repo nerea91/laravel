@@ -4,7 +4,7 @@ class CountriesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('countries')->truncate();
+		DB::table('countries')->delete();
 
 		$countries = array(
 			array('id' => 10,'capital' => 'Antartica','citizenship' => 'of Antartica','country_code' => '010','currency' => NULL,'currency_code' => NULL,'currency_sub_unit' => NULL,'full_name' => 'Antarctica','iso_3166_2' => 'AQ','iso_3166_3' => 'ATA','name' => 'Antarctica','region_code' => NULL,'sub_region_code' => NULL,'eea' => '0'),

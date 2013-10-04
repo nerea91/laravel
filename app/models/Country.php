@@ -1,7 +1,9 @@
 <?php
 
 class Country extends Eloquent {
-	protected $guarded = array();
+
+	protected $softDelete = true;
+	public $timestamps = false;
 
 	public static $rules = array(
 		'name' => 'required|max:64|unique:countries',

@@ -8,11 +8,11 @@ class TagsTableSeeder extends Seeder {
 // 		DB::table('tags')->truncate();
 
 		$tags = array(
-			['name' => 'foo'],
-			['name' => 'bar'],
-			['name' => 'boogy'],
-			['name' => 'pim'],
-			['name' => 'pam'],
+			['name' => 'tag1'],
+			['name' => 'tag2'],
+			['name' => 'tag3'],
+			['name' => 'tag4'],
+			['name' => 'tag5'],
 		);
 
 		// Uncomment the below to run the seeder

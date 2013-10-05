@@ -21,3 +21,5 @@ Route::resource('posts', 'PostsController');
 Route::resource('tags', 'TagsController');
 
 Route::resource('countries', 'CountriesController');
+
+Route::resource('phones', 'PhonesController');

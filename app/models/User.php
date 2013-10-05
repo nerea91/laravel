@@ -9,6 +9,28 @@ class User extends Way\Database\Model implements UserInterface, RemindableInterf
 	protected $hidden = array('password', 'deleted_at');
 	protected $guarded = array('salt', 'password', 'deleted_at');
 
+	public static $rules = array(
+		'name' => 'required|unique:users',
+		'email' => 'email|unique:users',
+		'age' => 'integer'
+	);
+
+	//Relationships
+	public function posts()
+	{
+		return $this->hasMany('Post');
+	}
+
+	public function phone()
+	{
+		return $this->hasOne('Phone');
+	}
+
+	public function country()
+	{
+		return $this->hasOne('Country');
+	}
+
 
 	/* ==== UserInterface implementation for auth */
 

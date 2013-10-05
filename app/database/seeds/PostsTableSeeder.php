@@ -8,7 +8,7 @@ class PostsTableSeeder extends Seeder {
 // 		DB::table('posts')->truncate();
 
 		$posts = array(
-			['user_id' => 1, 'title' => 'Primer post', 'body' => 'Este es mi primer post']
+			['user_id' => 1, 'title' => 'Primer post', 'body' => 'Este es el primer post']
 		);
 
 		// Uncomment the below to run the seeder

@@ -4,7 +4,7 @@
 		{{-- Info --}}
 		<title>@section('title')
 		{{{ trim(Config::get('site.name')) }}}@show</title>
-		<meta name="" content="@section('description')
+		<meta name="description" content="@section('description')
 		{{{ trim(Config::get('site.slogan')) }}}@show " />
 
 		{{-- About --}}

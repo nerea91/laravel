@@ -10,7 +10,7 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-				<th>Mail</th>
+				<th>Email</th>
 				<th>Age</th>
 		</tr>
 	</thead>
@@ -18,7 +18,7 @@
 	<tbody>
 		<tr>
 			<td>{{{ $user->name }}}</td>
-					<td>{{{ $user->mail }}}</td>
+					<td>{{{ $user->email }}}</td>
 					<td>{{{ $user->age }}}</td>
                     <td>{{ link_to_route('users.edit', 'Edit', array($user->id), array('class' => 'btn btn-info')) }}</td>
                     <td>

@@ -23,7 +23,8 @@ class Country extends Way\Database\Model {
 		'eea' => 'required|integer|min:0|max:1'
 	);
 
-	//Relationships
+	// Relationships ==========================================================
+	
 	public function users()
 	{
 		return $this->hasMany('User');

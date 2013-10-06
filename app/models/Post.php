@@ -3,13 +3,15 @@
 class Post extends Way\Database\Model {
 
 	protected $softDelete = true;
+	protected $guarded = array();
 
 	public static $rules = array(
 		'title' => 'required',
 		'body' => 'required'
 	);
 
-	//Relationships
+	// Relationships ==========================================================
+	
 	public function tags()
 	{
 		return $this->belongsToMany('Tag'); //Semanticamente no es mas correcto decir hasMany?

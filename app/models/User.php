@@ -3,19 +3,21 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Way\Database\Model implements UserInterface, RemindableInterface {
+class User extends Way\Database\Model implements UserInterface {
 
 	protected $softDelete = true;
 	protected $hidden = array('password', 'deleted_at');
 	protected $guarded = array('salt', 'password', 'deleted_at');
 
+	//Validation rules
 	public static $rules = array(
 		'name' => 'required|unique:users',
 		'email' => 'email|unique:users',
 		'age' => 'integer'
 	);
 
-	//Relationships
+	// Relationships ==========================================================
+
 	public function posts()
 	{
 		return $this->hasMany('Post');
@@ -32,7 +34,7 @@ class User extends Way\Database\Model implements UserInterface, RemindableInterf
 	}
 
 
-	/* ==== UserInterface implementation for auth */
+	// UserInterface implementation for auth ==================================
 
 	/**
 	 * Get the unique identifier for the user.

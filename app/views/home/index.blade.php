@@ -7,5 +7,7 @@
 @stop
 
 @section('body')
-home.index
+<p>View: home.index</p>
+<p>Current locale: {{Config::get('app.locale')}}</p>
+<p>Link to home route: {{URL::route('home')}}</p>
 @stop

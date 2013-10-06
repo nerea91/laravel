@@ -3,8 +3,7 @@
 class Country extends Way\Database\Model {
 
 	protected $softDelete = true;
-	protected $hidden = array('deleted_at');
-	protected $guarded = array('deleted_at');
+
 
 	public $timestamps = false;
 	public static $rules = array(

@@ -12,7 +12,6 @@
 			<tr>
 				<th>Title</th>
 				<th>Body</th>
-				<th>Posted</th>
 			</tr>
 		</thead>
 
@@ -21,7 +20,6 @@
 				<tr>
 					<td>{{{ $post->title }}}</td>
 					<td>{{{ $post->body }}}</td>
-					<td>{{{ $post->posted }}}</td>
                     <td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}

@@ -3,8 +3,7 @@
 class Country extends Way\Database\Model {
 
 	protected $softDelete = true;
-	protected $hidden = array('deleted_at');
-	protected $guarded = array('deleted_at');
+
 
 	public $timestamps = false;
 	public static $rules = array(
@@ -22,4 +21,11 @@ class Country extends Way\Database\Model {
 		'sub_region_code' => array('size:3', 'regex:[0-9]+'),
 		'eea' => 'required|integer|min:0|max:1'
 	);
+
+	// Relationships ==========================================================
+	
+	public function users()
+	{
+		return $this->hasMany('User');
+	}
 }

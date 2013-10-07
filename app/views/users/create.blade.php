@@ -12,8 +12,8 @@
         </li>
 
         <li>
-            {{ Form::label('mail', 'Mail:') }}
-            {{ Form::text('mail') }}
+            {{ Form::label('email', 'Email:') }}
+            {{ Form::text('email') }}
         </li>
 
         <li>

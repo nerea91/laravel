@@ -8,7 +8,7 @@ class UsersTableSeeder extends Seeder {
 // 		DB::table('users')->truncate();
 
 		$users = array(
-			['name' => 'Javi', 'email' => 'javi@example.com', 'age' => 33]
+			['name' => 'Javi', 'email' => 'javi@example.com', 'age' => 33, 'country_id' => 724]
 		);
 
 		// Uncomment the below to run the seeder

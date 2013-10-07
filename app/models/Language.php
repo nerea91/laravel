@@ -81,9 +81,6 @@ class Language extends Way\Database\Model {
 		//Language for laravel
 		App::setLocale($this->code);
 
-		dd(app_path());
-
-
 		//Language for gettext
 		bindtextdomain('messages', app_path().'/lang/');
 		textdomain('messages');

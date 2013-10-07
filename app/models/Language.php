@@ -14,92 +14,108 @@ class Language extends Way\Database\Model {
 		'priority' => 'required|integer'
 	);
 
+
 	/**
-	* Detects and sets language according to a route prefix.
-	*
-	* If no prefix is supplied it will try to detect browser language.
-	* If the language is unknown it will fallback to the default language.
-	*
-	* The second parameter determines weather or not the default language will have a prefix
-	*
-	* @param  string $route_prefix current route prefix
-	* @param  bool $default_uses_prefix
-	* @return string prefix used for all routes
-	*/
-	public static function prefix($route_prefix, $default_uses_prefix = FALSE)
+	 * Detects the language from the URL subdomain or the clients browser.
+	 *
+	 * If no language is detected or the detected one does not exist
+	 * on the DB then the default language will be returned.
+	 *
+	 * @param string $url
+	 * @return Language
+	 */
+	public static function detect($url)
 	{
 		//Get all languages from data base
-		$all = self::orderBy('default', 'desc')->orderBy('priority')->get()->toArray();
-		$languages = array_fetch($all, 'code');
-		$locales = array_combine($languages, array_fetch($all, 'locale')); //$lang => $locale
+		$all = self::orderBy('default', 'desc')->orderBy('priority')->get();
+		if( ! $all->count())
+			throw new Exception('No languages found in the data base');
 
 		//Assume first language as the default one
-		$default = head($languages);
+		$default = $all->first();
 
-		//If language is unknown try to detect it from browser
-		if(strlen($route_prefix) != 2 OR ! in_array($route_prefix, $languages))
-			$route_prefix = self::detectBrowserLanguage($languages, $default);
+		//Extract subdomain from url
+		preg_match('/^([a-z][a-z])\./', parse_url($url)['host'], $matches);
 
-		//Set language and locale
-		self::setLocale($route_prefix, $locales[$route_prefix]);
+		//If subdomain found check if it's valid
+		if(isset($matches[1]) AND ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
+		{
+			$lang->detected_from = 'subdomain';
+			return $lang;
+		}
 
-		if( ! $default_uses_prefix AND $route_prefix == $default)
-			return null;
-
-		return $route_prefix;
-	}
-
-	/**
-	 * Returns the first browser language that matches one of the provided ones.
-	 *
-	 * If no language matches returns the default one.
-	 *
-	 * @param array $languages Supported languages
-	 * @param string $default Default language
-	 * @return string
-	 */
-	private static function detectBrowserLanguage($languages, $default)
-	{
-		//Is browser language available?
-		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] != '')
+		//No luck with the subdomain, try now with the browser
+		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
+		{
+			$default->detected_from = 'default (HTTP_ACCEPT_LANGUAGE not available)';
 			return $default;
+		}
 
-		//Get browser languages
 		$browser_languages = explode(',', preg_replace('/(;q=[0-9\.]+)/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_LANGUAGE']))));
-
-		//Normalize names
-		foreach($browser_languages as $key => $value)
-			$browser_languages[$key] = strtolower(substr($value, 0, 2));
-
-		//Check against the available languages
-		foreach(array_unique($browser_languages) as $lang)
-			if(in_array($lang, $languages))
+		foreach($browser_languages as $lang)
+		{
+			$lang = self::findByLocaleOrCode($lang, $all);
+			if( ! is_null($lang))
+			{
+				$lang->detected_from = 'browser';
 				return $lang;
+			}
+		}
 
-		//No luck
+		//Fallback to default
+		$default->detected_from = 'default';
 		return $default;
 	}
 
+
 	/**
-	 * Sets the language for both gettext and Laravel
+	 * Sets the language for both Gettext and Laravel
 	 *
+	 * Reruns TRUE on success of FALSE if the locale functionality is not implemented on your platform
+	 * or the locale does not exist or the category name is invalid.
 	 *
-	 * @param  string $lang Laravel app.locale
-	 * @param  integer $locale gettext setlocale
 	 * @return boolean
 	 */
-	public static function setLocale($lang, $locale)
+	public function setLocale()
 	{
 		//Language for laravel
-		App::setLocale($lang);
+		App::setLocale($this->code);
+
+		dd(app_path());
+
 
 		//Language for gettext
-		$res = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
-		//NOTE: LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when inserting float values to your DB. Consider using LC_MESSAGES instead
+		bindtextdomain('messages', app_path().'/lang/');
+		textdomain('messages');
+		$locale = $this->locale;
 
-// 		if($res === false)
-// 			throw new Exception(sprintf("The locale functionality is not implemented on your platform, the '$locale' locale does not exist or the category name is invalid."));
+		//NOTE: LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when inserting float values to your DB. Consider using LC_MESSAGES instead
+		$res = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		return $res !== false;
+	}
+
+
+	/**
+	 * Returns the first Language from $haystack whose locale or code matches $needle.
+	 *
+	 * Returns null if not found.
+	 *
+	 * @param string $needle
+	 * @param Illuminate\Database\Eloquent\Collection $haystack
+	 * @return mixed
+	 */
+	private static function findByLocaleOrCode($needle, $haystack)
+	{
+		//Normalize
+		$needle = strtolower(str_replace('-', '_', $needle));
+
+		foreach($haystack as $lang)
+		{
+			if(strtolower($lang->locale) == $needle OR $lang->code == $needle)
+				return $lang;
+		}
+
+		return null;
 	}
 }

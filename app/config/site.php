@@ -26,4 +26,15 @@ return array(
 
 	'slogan' => 'Becoming an artisan', //to-do
 
+	/*
+	|--------------------------------------------------------------------------
+	| Google analytics
+	|--------------------------------------------------------------------------
+	|
+	| The you have a Google analytics analytics account uncomment next line and replace UA-XXXXX-X with your web property ID
+	|
+	*/
+
+	//'googleanalytics' => 'UA-XXXXX-X', //to-do
+
 );

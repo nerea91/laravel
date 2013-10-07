@@ -10,6 +10,8 @@
 
 <p>View: home.index</p>
 <p>Current locale: {{Config::get('app.locale')}}</p>
+<p>Testing Gettext: {{_('Hello')}}</p>
+
 
 <hr/>
 <p>Scaffolding</p>

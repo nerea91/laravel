@@ -15,11 +15,6 @@
             {{ Form::textarea('body') }}
         </li>
 
-        <li>
-            {{ Form::label('posted', 'Posted:') }}
-            {{ Form::text('posted') }}
-        </li>
-
 		<li>
 			{{ Form::submit('Update', array('class' => 'btn btn-info')) }}
 			{{ link_to_route('posts.show', 'Cancel', $post->id, array('class' => 'btn')) }}

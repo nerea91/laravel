@@ -1,16 +1,16 @@
 <?php
 
-class Tag extends Way\Database\Model {
+class Tag extends Model {
 
 	protected $guarded = array();
 
 	public $timestamps = false;
 	public static $rules = array(
-		'name' => 'required|unique:tags'
+		'name' => 'required|unique'
 	);
 
 	// Relationships ==========================================================
-	
+
 	public function posts()
 	{
 		return $this->belongsToMany('Post');

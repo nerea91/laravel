@@ -12,6 +12,12 @@
 		"way/generators": "dev-master",
 		"loic-sharma/profiler": "dev-master"
 	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/Stolz/Laravel-Model-Validation"
+		}
+	],
 	"autoload": {
 		"classmap": [
 			"app/commands",

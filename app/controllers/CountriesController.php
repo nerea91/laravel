@@ -43,20 +43,15 @@ class CountriesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Country::$rules);
+		$this->country = new Country(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->country->create($input);
-
+		if ($this->country->save())
 			return Redirect::route('countries.index');
-		}
 
 		return Redirect::route('countries.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($this->country->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -98,21 +93,14 @@ class CountriesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Country::$rules);
-
-		if ($validation->passes())
-		{
-			$country = $this->country->find($id);
-			$country->update($input);
-
+		$country = $this->country->find($id);
+		if ($country->update(array_except(Input::all(), '_method')))
 			return Redirect::route('countries.show', $id);
-		}
 
 		return Redirect::route('countries.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($country->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**

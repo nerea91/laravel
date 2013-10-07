@@ -43,20 +43,15 @@ class LanguagesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Language::$rules);
+		$this->language = new Language(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->language->create($input);
-
+		if ($this->language->save())
 			return Redirect::route('languages.index');
-		}
 
 		return Redirect::route('languages.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($this->language->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -98,21 +93,14 @@ class LanguagesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Language::$rules);
-
-		if ($validation->passes())
-		{
-			$language = $this->language->find($id);
-			$language->update($input);
-
+		$language = $this->language->find($id);
+		if ($language->update(array_except(Input::all(), '_method')))
 			return Redirect::route('languages.show', $id);
-		}
 
 		return Redirect::route('languages.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($language->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**

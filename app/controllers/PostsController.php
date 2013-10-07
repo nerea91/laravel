@@ -43,20 +43,15 @@ class PostsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Post::$rules);
+		$this->post = new Post(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->post->create($input);
-
+		if ($this->post->save())
 			return Redirect::route('posts.index');
-		}
 
 		return Redirect::route('posts.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($this->post->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -98,21 +93,14 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Post::$rules);
-
-		if ($validation->passes())
-		{
-			$post = $this->post->find($id);
-			$post->update($input);
-
+		$post = $this->post->find($id);
+		if ($post->update(array_except(Input::all(), '_method')))
 			return Redirect::route('posts.show', $id);
-		}
 
 		return Redirect::route('posts.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($post->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**

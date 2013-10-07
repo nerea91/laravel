@@ -1,14 +1,15 @@
 <?php
 
-class Language extends Way\Database\Model {
+class Language extends Model {
 
 	protected $softDelete = true;
+	protected $guarded = array();
 
 	public $timestamps = false;
 	public static $rules = array(
-		'code' => 'required|alpha|size:2',
-		'name' => 'required|max:32',
-		'english_name' => 'required|max:32',
+		'code' => 'required|alpha|size:2|unique',
+		'name' => 'required|max:32|unique',
+		'english_name' => 'required|max:32|unique',
 		'locale' => 'required|size:5',
 		'default' => 'required|integer|min:0|max:1',
 		'priority' => 'required|integer'
@@ -29,7 +30,7 @@ class Language extends Way\Database\Model {
 		//Get all languages from data base
 		$all = self::orderBy('default', 'desc')->orderBy('priority')->get();
 		if( ! $all->count())
-			throw new Exception('No languages found in the data base');
+			return new Language;
 
 		//Assume first language as the default one
 		$default = $all->first();
@@ -78,15 +79,19 @@ class Language extends Way\Database\Model {
 	 */
 	public function setLocale()
 	{
-		//Language for laravel
+		if( ! $this->code OR ! $this->locale)
+			return false;
+
+		//Language for Laravel based translations
 		App::setLocale($this->code);
 
-		//Language for gettext
+		//Language for PHP Gettext
 		bindtextdomain('messages', app_path().'/lang/');
 		textdomain('messages');
 		$locale = $this->locale;
 
-		//NOTE: LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when inserting float values to your DB. Consider using LC_MESSAGES instead
+		/*NOTE: LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when
+		 * inserting float values to your DB. Consider using LC_MESSAGES instead */
 		$res = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		return $res !== false;

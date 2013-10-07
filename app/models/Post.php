@@ -1,6 +1,6 @@
 <?php
 
-class Post extends Way\Database\Model {
+class Post extends Model {
 
 	protected $softDelete = true;
 	protected $guarded = array();
@@ -11,7 +11,7 @@ class Post extends Way\Database\Model {
 	);
 
 	// Relationships ==========================================================
-	
+
 	public function tags()
 	{
 		return $this->belongsToMany('Tag'); //Semanticamente no es mas correcto decir hasMany?

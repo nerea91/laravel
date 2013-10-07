@@ -43,20 +43,15 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, User::$rules);
+		$this->user = new User(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->user->create($input);
-
+		if ($this->user->save())
 			return Redirect::route('users.index');
-		}
 
 		return Redirect::route('users.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($this->user->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -98,21 +93,14 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, User::$rules);
-
-		if ($validation->passes())
-		{
-			$user = $this->user->find($id);
-			$user->update($input);
-
+		$user = $this->user->find($id);
+		if ($user->update(array_except(Input::all(), '_method')))
 			return Redirect::route('users.show', $id);
-		}
 
 		return Redirect::route('users.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($user->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**

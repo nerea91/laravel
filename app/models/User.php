@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Way\Database\Model implements UserInterface {
+class User extends Model implements UserInterface {
 
 	protected $softDelete = true;
 	protected $hidden = array('password', 'deleted_at');
@@ -11,8 +10,8 @@ class User extends Way\Database\Model implements UserInterface {
 
 	//Validation rules
 	public static $rules = array(
-		'name' => 'required|unique:users',
-		'email' => 'email|unique:users',
+		'name' => 'required|unique',
+		'email' => 'email|unique',
 		'age' => 'integer'
 	);
 

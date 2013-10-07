@@ -43,19 +43,14 @@ class TagsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Tag::$rules);
+		$this->tag = new Tag(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->tag->create($input);
-
+		if ($this->tag->save())
 			return Redirect::route('tags.index');
-		}
 
 		return Redirect::route('tags.create')
 			->withInput()
-			->withErrors($validation)
+			->withErrors($this->tag->getErrors())
 			->with('message', 'There were validation errors.');
 	}
 
@@ -98,20 +93,13 @@ class TagsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Tag::$rules);
-
-		if ($validation->passes())
-		{
-			$tag = $this->tag->find($id);
-			$tag->update($input);
-
+		$tag = $this->tag->find($id);
+		if ($tag->update(array_except(Input::all(), '_method')))
 			return Redirect::route('tags.show', $id);
-		}
 
 		return Redirect::route('tags.edit', $id)
 			->withInput()
-			->withErrors($validation)
+			->withErrors($tag->getErrors())
 			->with('message', 'There were validation errors.');
 	}
 

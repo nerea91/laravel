@@ -43,20 +43,15 @@ class PhonesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Phone::$rules);
+		$this->phone = new Phone(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->phone->create($input);
-
+		if ($this->phone->save())
 			return Redirect::route('phones.index');
-		}
 
 		return Redirect::route('phones.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($this->phone->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -98,21 +93,14 @@ class PhonesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Phone::$rules);
-
-		if ($validation->passes())
-		{
-			$phone = $this->phone->find($id);
-			$phone->update($input);
-
+		$phone = $this->phone->find($id);
+		if ($phone->update(array_except(Input::all(), '_method')))
 			return Redirect::route('phones.show', $id);
-		}
 
 		return Redirect::route('phones.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		->withInput()
+		->withErrors($phone->getErrors())
+		->with('message', 'There were validation errors.');
 	}
 
 	/**

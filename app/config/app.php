@@ -184,6 +184,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Profiler'        => 'Profiler\Facades\Profiler' , //Profiler https://github.com/loic-sharma/profiler
+		'Model'           => 'Way\Database\Model',  // https://github.com/Stolz/Laravel-Model-Validation
 
 	),
 

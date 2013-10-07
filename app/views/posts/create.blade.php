@@ -16,11 +16,6 @@
             {{ Form::textarea('body') }}
         </li>
 
-        <li>
-            {{ Form::label('posted', 'Posted:') }}
-            {{ Form::text('posted') }}
-        </li>
-
 		<li>
 			{{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
 		</li>

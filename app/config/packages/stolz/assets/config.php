@@ -55,13 +55,13 @@ return array(
 
 		'collections' => array(
 
-			//artisan asset:publish twitter/bootstrap --path=vendor/twitter/bootstrap/dist/
-
-			//Twitter Bootstrap 3 loaded from CDN
+			//Twitter Bootstrap 3 (CDN)
 			'bootstrap-cdn' => ['//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'],
 
-			//Twitter Bootstrap 3 loaded from CDN and including extra theme and fonts
-			'bootstrap-cdn-extra' => ['bootstrap-cdn', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css'],
+			/* Twitter Bootstrap 3 (local). To get Bootstrap:
+			$ composer require twitter/bootstrap:3.0.*
+			$ artisan asset:publish twitter/bootstrap --path=vendor/twitter/bootstrap/dist/)*/
+			'bootstrap' => [url('packages/twitter/bootstrap/css/bootstrap.min.css'), url('packages/twitter/bootstrap/css/bootstrap-theme.min.css'), url('packages/twitter/bootstrap/js/bootstrap.min.js')],
 		),
 
 	/*

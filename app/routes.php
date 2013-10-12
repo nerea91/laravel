@@ -8,7 +8,3 @@ if(Schema::hasTable('languages'))
 }
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
-
-
-
-

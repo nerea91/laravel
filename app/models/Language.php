@@ -10,7 +10,7 @@ class Language extends Model {
 		'code' => 'required|alpha|size:2|unique',
 		'name' => 'required|max:32|unique',
 		'english_name' => 'required|max:32|unique',
-		'locale' => 'required|size:5',
+		'locale' => 'required|size:5|regex:/[a-z]+_[A-Z]+/',
 		'default' => 'required|integer|min:0|max:1',
 		'priority' => 'required|integer'
 	);

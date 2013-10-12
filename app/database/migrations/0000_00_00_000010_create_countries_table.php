@@ -15,7 +15,7 @@ class CreateCountriesTable extends Migration {
 		Schema::create('countries', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name', 64)->unique();
-			$table->string('full_name', 128)->nullable();
+			$table->string('full_name', 128)->nullable()->unique();
 			$table->string('iso_3166_2', 2)->unique();
 			$table->string('iso_3166_3', 3)->unique();
 			$table->string('country_code', 3)->unique();
@@ -26,7 +26,7 @@ class CreateCountriesTable extends Migration {
 			$table->string('currency_sub_unit', 32)->nullable();
 			$table->string('region_code', 3)->nullable();
 			$table->string('sub_region_code', 3)->nullable();
-			$table->boolean('eea')->unsigned(); //European Economic Area
+			$table->boolean('eea')->unsigned()->default(0); //European Economic Area
 			$table->softDeletes();
 		});
 	}

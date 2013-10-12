@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('LanguagesTableSeeder');
 		$this->call('PermissionTypesTableSeeder');
 		$this->call('PermissionsTableSeeder');
+		$this->call('ProfilesTableSeeder');
 	}
 
 }

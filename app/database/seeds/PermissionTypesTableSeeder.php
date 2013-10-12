@@ -4,7 +4,7 @@ class PermissionTypesTableSeeder extends Seeder {
 
 	public function run()
 	{
-// 		DB::table('permissiontypes')->truncate();
+		DB::table('permissiontypes')->delete();
 
 		$permissiontypes = array(
 			['id' => 1, 'name' => _('Users')],

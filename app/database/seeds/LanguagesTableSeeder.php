@@ -4,7 +4,7 @@ class LanguagesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('languages')->truncate();
+		DB::table('languages')->delete();
 
 		$languages = array(
 			array('id' => 7,'code' => 'en','name' => 'English','english_name' => 'English','locale' => 'en_US','default' => 1,'priority' => 1),

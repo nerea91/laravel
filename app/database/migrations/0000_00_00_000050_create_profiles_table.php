@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePermissiontypesTable extends Migration {
+class CreateProfilesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreatePermissiontypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('permissiontypes', function(Blueprint $table) {
+		Schema::create('profiles', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name', 64)->unique();
+			$table->string('name', 64);
 			$table->string('description')->nullable();
+			$table->timestamps();
 		});
 	}
 
@@ -27,7 +28,7 @@ class CreatePermissiontypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('permissiontypes');
+		Schema::dropIfExists('profiles');
 	}
 
 }

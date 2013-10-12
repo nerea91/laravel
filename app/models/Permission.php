@@ -13,7 +13,7 @@ class Permission extends Eloquent {
 
 	public function type()
 	{
-		return $this->belongsTo('PermissionType');
+		return $this->belongsTo('PermissionType', 'type_id');
 	}
 
 	// Logic ==================================================================

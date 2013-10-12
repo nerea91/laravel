@@ -5,8 +5,6 @@ use Illuminate\Auth\UserInterface;
 class User extends Model implements UserInterface {
 
 	protected $softDelete = true;
-	protected $hidden = array('password', 'deleted_at');
-	protected $guarded = array('salt', 'password', 'deleted_at');
 
 	public static $rules = array(
 		'name' => 'required|unique',
@@ -16,21 +14,29 @@ class User extends Model implements UserInterface {
 
 	// Relationships ==========================================================
 
-	public function posts()
+	public function profile()
 	{
-		return $this->hasMany('Post');
-	}
-
-	public function phone()
-	{
-		return $this->hasOne('Phone');
+		return $this->belongsTo('Profile');
 	}
 
 	public function country()
 	{
-		return $this->hasOne('Country');
+		return $this->belongsTo('Country');
 	}
 
+	// Events ==================================================================
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::deleting(function($model)
+		{
+			//Prevent deleting Admin user
+			if($model->id == 1)
+				return false;
+		});
+	}
 
 	// UserInterface implementation for auth ==================================
 

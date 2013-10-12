@@ -9,10 +9,16 @@ class Profile extends Eloquent {
 
 	// Relationships ==========================================================
 
+	public function permissions()
+	{
+		return $this->belongsToMany('Permission')->withTimestamps();
+	}
+
 	public function users()
 	{
 		return $this->hasMany('User');
 	}
+
 
 	// Events ==================================================================
 

@@ -9,6 +9,10 @@ class ProfilesTableSeeder extends Seeder {
 		);
 
 		DB::table('profiles')->insert($profiles);
+
+		//Add all permissions to Superuser profile
+		DB::insert('INSERT INTO permission_profile (permission_id, profile_id) SELECT id, 1 FROM permissions');
 	}
 
 }
+

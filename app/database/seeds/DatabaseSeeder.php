@@ -11,11 +11,22 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
+		$this->command->question('Seeding...');
+
 		$this->call('CountriesTableSeeder');
+		$this->command->comment('Countries table seeded');
+
 		$this->call('LanguagesTableSeeder');
+		$this->command->comment('Languages table seeded');
+
 		$this->call('PermissionTypesTableSeeder');
+		$this->command->comment('PermissionTypes table seeded');
+
 		$this->call('PermissionsTableSeeder');
+		$this->command->comment('Permissions table seeded');
+
 		$this->call('ProfilesTableSeeder');
+		$this->command->comment('Profiles table seeded');
 	}
 
 }

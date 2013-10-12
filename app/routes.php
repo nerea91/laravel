@@ -9,9 +9,6 @@ if(Schema::hasTable('languages'))
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
-Route::resource('users', 'UsersController');
-Route::resource('posts', 'PostsController');
-Route::resource('tags', 'TagsController');
-Route::resource('countries', 'CountriesController');
-Route::resource('phones', 'PhonesController');
+
+
 

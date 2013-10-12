@@ -16,6 +16,8 @@ class CreateProfilesTable extends Migration {
 			$table->increments('id');
 			$table->string('name', 64);
 			$table->string('description')->nullable();
+
+			//Automatic columns
 			$table->timestamps();
 		});
 	}

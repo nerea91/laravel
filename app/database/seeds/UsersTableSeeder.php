@@ -7,7 +7,7 @@ class UsersTableSeeder extends Seeder {
 		DB::table('users')->delete();
 
 		$users = array(
-			['id' => 1, 'name' => 'admin', 'email' => 'admin@example.com', 'age' => 33, 'country_id' => 724]
+			['id' => 1, 'username' => 'admin', 'name' => 'Admin', 'password' => Hash::make('admin'), 'profile_id' => 1]
 		);
 
 		DB::table('users')->insert($users);

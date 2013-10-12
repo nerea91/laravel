@@ -12,5 +12,8 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 Route::group(array('before' => 'auth'), function() {
 
 	Route::resource('profiles', 'ProfilesController');
+	Route::resource('users', 'UsersController');
 
 });
+
+

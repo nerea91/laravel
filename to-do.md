@@ -1,3 +1,4 @@
 # Pending tasks
 
-- Add reserved usernames to prevent users from having conflictive usernames
+- Make usernames in lower case unique.
+- Add reserved usernames to prevent users from having conflictive usernames.

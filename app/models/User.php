@@ -7,9 +7,11 @@ class User extends Model implements UserInterface {
 	protected $softDelete = true;
 
 	public static $rules = array(
-		'name' => 'required|unique',
-		'email' => 'email|unique',
-		'age' => 'integer'
+		'username' => 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique',
+		'name' => 'email|max:64',
+		'password' => 'required|min[5]',
+		'country_id' => 'exists:countries',
+		'profile_id' => 'required|exists:profiles',
 	);
 
 	// Relationships ==========================================================
@@ -41,33 +43,35 @@ class User extends Model implements UserInterface {
 	// UserInterface implementation for auth ==================================
 
 	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
+	* Get the unique identifier for the user.
+	*
+	* @return mixed
+	*/
 	public function getAuthIdentifier()
 	{
 		return $this->getKey();
 	}
 
 	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
+	* Get the password for the user.
+	*
+	* @return string
+	*/
 	public function getAuthPassword()
 	{
 		return $this->password;
 	}
 
 	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
+	* Get the e-mail address where password reminders are sent.
+	*
+	* @return string
+	*/
 	public function getReminderEmail()
 	{
-		return $this->email;
+		//to-do fetch from accounts tables return $this->email;
 	}
+
+	// Logic ==================================================================
 
 }

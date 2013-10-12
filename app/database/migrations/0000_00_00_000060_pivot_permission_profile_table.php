@@ -17,6 +17,8 @@ class PivotPermissionProfileTable extends Migration {
 			$table->integer('permission_id')->unsigned();$table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade')->onDelete('cascade');
 			$table->integer('profile_id')->unsigned();$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
 			$table->unique(array('permission_id', 'profile_id'));
+
+			//Automatic columns
 			$table->timestamps();
 		});
 	}

@@ -6,7 +6,7 @@ class Permission extends Eloquent {
 	public static $rules = array(
 		'name' => 'required|max:64',
 		'description' => 'max:255',
-		'type_id' => 'exists:permissiontypes'
+		'type_id' => 'required|exists:permissiontypes'
 	);
 
 	// Relationships ==========================================================

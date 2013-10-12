@@ -14,12 +14,12 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name')->unique();
-			$table->string('email')->nullable()->unique();
-			$table->integer('age')->nullable();
+			$table->string('username', 64)->unique();
+			$table->string('name', 64)->nullable();
+			$table->string('password', 60);
 
 			//Foreign keys
-			$table->unsignedInteger('country_id')->nullable();$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('restrict');
+			$table->unsignedInteger('country_id')->nullable();$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('set null');
 			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('restrict');
 
 			//Automatic columns
@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration {
 			$table->softDeletes();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.

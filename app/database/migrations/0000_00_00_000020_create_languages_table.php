@@ -20,6 +20,8 @@ class CreateLanguagesTable extends Migration {
 			$table->string('locale', 5);
 			$table->boolean('default')->default(0);
 			$table->integer('priority');
+
+			//Automatic columns
 			$table->softDeletes();
 		});
 	}

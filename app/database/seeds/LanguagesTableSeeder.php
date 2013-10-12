@@ -30,7 +30,7 @@ class LanguagesTableSeeder extends Seeder {
 			array('id' => 30,'code' => 'sl','name' => 'Slovenski','english_name' => 'Slovenian','locale' => 'sl_SI','default' => 0,'priority' => 230),
 			array('id' => 31,'code' => 'hr','name' => 'Hrvatski','english_name' => 'Croatian','locale' => 'hr_HR','default' => 0,'priority' => 220),
 			array('id' => 32,'code' => 'ko','name' => '한국어','english_name' => 'Korean','locale' => 'ko_KR','default' => 0,'priority' => 180)
-			);
+		);
 
 		DB::table('languages')->insert($languages);
 	}

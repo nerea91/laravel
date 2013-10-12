@@ -8,7 +8,6 @@ class User extends Model implements UserInterface {
 	protected $hidden = array('password', 'deleted_at');
 	protected $guarded = array('salt', 'password', 'deleted_at');
 
-	//Validation rules
 	public static $rules = array(
 		'name' => 'required|unique',
 		'email' => 'email|unique',

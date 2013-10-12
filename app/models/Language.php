@@ -15,6 +15,9 @@ class Language extends Model {
 		'priority' => 'required|integer'
 	);
 
+	// Relationships ==========================================================
+
+	// Logic ==================================================================
 
 	/**
 	 * Detects the language from the URL subdomain or the clients browser.

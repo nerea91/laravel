@@ -28,4 +28,6 @@ class Country extends Model {
 	{
 		return $this->hasMany('User');
 	}
+
+	// Logic ==================================================================
 }

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://to-do',
+	'url' => 'http://laravel', //to-do
 
 	/*
 	|--------------------------------------------------------------------------
@@ -117,6 +117,7 @@ return array(
 		'Profiler\ProfilerServiceProvider', //Profiler https://github.com/loic-sharma/profiler
 		'Way\Generators\GeneratorsServiceProvider', //Jeffrey Way generatos for Artisan https://github.com/JeffreyWay/Laravel-4-Generators
 		'Stolz\Assets\AssetsServiceProvider', //Stolz assets manager https://github.com/Stolz/Assets
+		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
 
 	),
 

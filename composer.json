@@ -10,7 +10,8 @@
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
-		"loic-sharma/profiler": "dev-master"
+		"loic-sharma/profiler": "dev-master",
+		"daylerees/container-debug": "4.0.*"
 	},
 	"repositories": [
 		{

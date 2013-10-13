@@ -5,6 +5,8 @@ use Illuminate\Auth\UserInterface;
 class User extends Model implements UserInterface {
 
 	protected $softDelete = true;
+	protected $guarded = array('id', 'password', 'permissions_cache', 'created_at', 'updated_at', 'deleted_at');
+	protected $hidden = array('password', 'permissions_cache');
 
 	public static $rules = array(
 		'username' => 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique',
@@ -79,4 +81,46 @@ class User extends Model implements UserInterface {
 
 	// Logic ==================================================================
 
+	/**
+	 * Checks if user's profile has ALL of the required permissions
+	 *
+	 * To save extra databases queries from subsequent calls
+	 * it stores profile permissions in chache
+	 *
+	 * @param  mixed $required_permissions
+	 * @return  bool
+	 */
+	public function hasPermission($required_permissions)
+	{
+		$required_permissions = is_array($required_permissions) ? $required_permissions : func_get_args();
+
+		if( ! isset($this->permissions_cache))
+			$this->permissions_cache = $this->profile->permissions->lists('id');
+
+		return (0 == count(array_diff($required_permissions, $this->permissions_cache)));
+	}
+
+	/**
+	 * Checks if user's profile has ANY of the required permissions
+	 *
+	 * To save extra databases queries from subsequent calls
+	 * it stores profile permissions in chache
+	 *
+	 * @param  mixed $required_permissions
+	 * @return  bool
+	 */
+	public function hasAnyPermission($required_permissions)
+	{
+		$required_permissions = is_array($required_permissions) ? $required_permissions : func_get_args();
+
+		if( ! isset($this->permissions_cache))
+			$this->permissions_cache = $this->profile->permissions->lists('id');
+
+		foreach($this->permissions_cache as $p)
+		{
+			if(in_array($p, $required_permissions))
+				return true;
+		}
+		return false;
+	}
 }

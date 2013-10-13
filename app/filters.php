@@ -2,6 +2,54 @@
 
 /*
 |--------------------------------------------------------------------------
+| ACL Filter
+|--------------------------------------------------------------------------
+|
+| By default rejects access unless current route is listed and
+| current user's profile has permissions to access it
+|
+*/
+
+Route::filter('acl', function()
+{
+	$permissions_map = array(
+		//Users
+		'users.index' => 100,
+		'users.show ' => 100,
+		'users.create' => 101,
+		'users.store ' => 101,
+		'users.edit' => 102,
+		'users.update' => 102,
+		'users.destroy' => 103,
+
+		//Profiles
+		'profiles.index' => 200,
+		'profiles.show ' => 200,
+		'profiles.create' => 201,
+		'profiles.store ' => 201,
+		'profiles.edit' => 202,
+		'profiles.update' => 202,
+		'profiles.destroy' => 203,
+
+		//Auth providers
+		'authproviders.index' => 300,
+		'authproviders.show ' => 300,
+		'authproviders.create' => 301,
+		'authproviders.store ' => 301,
+		'authproviders.edit' => 302,
+		'authproviders.update' => 302,
+		'authproviders.destroy' => 303,
+	);
+
+	$route_name = Route::currentRouteName();
+
+	if( ! isset($permissions_map[$route_name]) OR ! Auth::user()->hasPermission($permissions_map[$route_name]))
+		App::abort(403);
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | Application & Route Filters
 |--------------------------------------------------------------------------
 |
@@ -78,3 +126,4 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+

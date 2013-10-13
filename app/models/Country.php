@@ -3,7 +3,7 @@
 class Country extends Model {
 
 	protected $softDelete = true;
-	protected $guarded = array();
+	protected $guarded = array('id', 'deleted_at');
 
 	public $timestamps = false;
 	public static $rules = array(

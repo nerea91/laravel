@@ -2,6 +2,8 @@
 
 class Profile extends Eloquent {
 
+	protected $guarded = array('id', 'created_at', 'updated_at');
+
 	public static $rules = array(
 		'name' => 'required|max:64',
 		'description' => 'max:255',

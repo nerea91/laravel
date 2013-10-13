@@ -18,7 +18,7 @@ class CreateAuthprovidersTable extends Migration {
 			$table->string('title', 32)->unique();
 			$table->string('oauth2_id')->nullable();
 			$table->string('oauth2_secret')->nullable();
-			$table->unsignedInteger('logins_count')->default(0);
+			$table->unsignedInteger('login_count')->default(0);
 
 			//Automatic columns
 			$table->timestamps();

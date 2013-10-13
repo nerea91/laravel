@@ -3,7 +3,7 @@
 class Language extends Model {
 
 	protected $softDelete = true;
-	protected $guarded = array();
+	protected $guarded = array('deleted_at');
 
 	public $timestamps = false;
 	public static $rules = array(

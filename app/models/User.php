@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Model implements UserInterface {
+class User extends Model implements UserInterface, RemindableInterface {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'password', 'permissions_cache', 'created_at', 'updated_at', 'deleted_at');
@@ -69,6 +70,8 @@ class User extends Model implements UserInterface {
 		return $this->password;
 	}
 
+	// RemindableInterface implementation for auth ============================
+
 	/**
 	* Get the e-mail address where password reminders are sent.
 	*
@@ -76,7 +79,7 @@ class User extends Model implements UserInterface {
 	*/
 	public function getReminderEmail()
 	{
-		//to-do fetch from accounts tables return $this->email;
+		//to-do fetch email from accounts table
 	}
 
 	// Logic ==================================================================

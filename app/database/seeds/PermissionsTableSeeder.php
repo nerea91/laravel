@@ -18,6 +18,12 @@ class PermissionsTableSeeder extends Seeder {
 			['id' => 201, 'type_id' => 2, 'name' => _('Add')],
 			['id' => 202, 'type_id' => 2, 'name' => _('Edit')],
 			['id' => 203, 'type_id' => 2, 'name' => _('Delete')],
+
+			//Auth providers
+			['id' => 300, 'type_id' => 3, 'name' => _('View')],
+			['id' => 301, 'type_id' => 3, 'name' => _('Add')],
+			['id' => 302, 'type_id' => 3, 'name' => _('Edit')],
+			['id' => 303, 'type_id' => 3, 'name' => _('Delete')],
 		);
 
 		DB::table('permissions')->insert($permissions);

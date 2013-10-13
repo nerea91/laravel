@@ -30,5 +30,8 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UsersTableSeeder');
 		$this->command->comment('Users table seeded');
+
+		$this->call('AuthprovidersTableSeeder');
+		$this->command->comment('Auth Providers table seeded');
 	}
 }

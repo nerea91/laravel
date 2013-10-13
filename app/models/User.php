@@ -26,6 +26,11 @@ class User extends Model implements UserInterface {
 		return $this->belongsTo('Country');
 	}
 
+	public function accounts()
+	{
+		return $this->hasMany('Account');
+	}
+
 	// Events ==================================================================
 
 	public static function boot()

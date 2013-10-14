@@ -34,10 +34,10 @@ class AuthController extends BaseController {
 
 		if($validator->passes())
 		{
-			if(Auth::attempt(['username' => $input['username'], 'password' => $input['password']], Input::has('remember'))) //to-dp se acuerda del login siempre auqnue no se marque el checkbox
-				return Redirect::intended('/'); //Redirect to the page that triggered the login with fallback to /
+			if(Auth::attempt(['username' => $input['username'], 'password' => $input['password']], Input::has('remember'))) //to-do se acuerda del login siempre auqnue no se marque el checkbox
+				return Redirect::intended('/');
 
-			//to-do flash mensaje credenciales incorrectos
+			//to-do flash mensaje informando credenciales incorrectos. hacer que el layout mustre los mensajes flash
 		}
 		return Redirect::back()->withInput(Input::except('password'))->withErrors($validator);
 	}

@@ -29,7 +29,6 @@
 		{{-- CSS  --}}
 		{{ Assets::css() }}
 		@yield('css')
-		@yield('style')
 	</head>
 	<body>
 		@yield('body')

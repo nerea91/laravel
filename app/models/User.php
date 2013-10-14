@@ -12,7 +12,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	public static $rules = array(
 		'username' => 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique',
 		'name' => 'email|max:64',
-		'password' => 'required|min[5]',
+		'password' => 'required|min:5',
 		'country_id' => 'exists:countries',
 		'profile_id' => 'required|exists:profiles',
 	);

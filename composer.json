@@ -7,11 +7,11 @@
 		"laravel/framework": "4.0.*",
 		"way/database": "dev-master",
 		"stolz/assets": "dev-master",
-		"twitter/bootstrap": "3.0.*"
+		"twitter/bootstrap": "3.0.*",
+		"barryvdh/laravel-debugbar": "dev-master"
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
-		"loic-sharma/profiler": "dev-master",
 		"daylerees/container-debug": "4.0.*"
 	},
 	"repositories": [
@@ -38,7 +38,8 @@
 			"php artisan clear-compiled"
 		],
 		"post-update-cmd": [
-			"php artisan optimize"
+			"php artisan optimize",
+			"php artisan debugbar:publish"
 		],
 		"post-create-project-cmd": [
 			"php artisan key:generate"

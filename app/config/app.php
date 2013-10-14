@@ -114,7 +114,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Profiler\ProfilerServiceProvider', //Profiler https://github.com/loic-sharma/profiler
+		'Barryvdh\Debugbar\ServiceProvider', //laravel-debugbar https://github.com/barryvdh/laravel-debugbar
 		'Way\Generators\GeneratorsServiceProvider', //Jeffrey Way generatos for Artisan https://github.com/JeffreyWay/Laravel-4-Generators
 		'Stolz\Assets\AssetsServiceProvider', //Stolz assets manager https://github.com/Stolz/Assets
 		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
@@ -184,7 +184,6 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
-		'Profiler'        => 'Profiler\Facades\Profiler' , //Profiler https://github.com/loic-sharma/profiler
 		'Model'           => 'Way\Database\Model',  // https://github.com/Stolz/Laravel-Model-Validation
 
 	),

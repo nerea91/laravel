@@ -10,3 +10,5 @@ composer.lock
 *.kate-swp
 *.old
 .inotify
+
+/public/packages/barryvdh/

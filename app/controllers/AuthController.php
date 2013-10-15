@@ -19,13 +19,13 @@ class AuthController extends BaseController {
 	}
 
 	/**
-	 * Attempts to log in an user into the native authentication
+	 * Attempts to log in an user using native authentication
 	 *
 	 * @return Response
 	 */
 	public function doLogin()
 	{
-		$input = Input::all();
+		$input = Input::only(['username', 'password', 'remember']);
 
 		$validator = Validator::make($input, [
 			'username' => 'required|max:64|alpha_num',
@@ -34,16 +34,16 @@ class AuthController extends BaseController {
 
 		if($validator->passes())
 		{
-			if(Auth::attempt(['username' => $input['username'], 'password' => $input['password']], Input::has('remember'))) //to-do se acuerda del login siempre auqnue no se marque el checkbox
+			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember'))) //to-do se acuerda del login siempre auqnue no se marque el checkbox
 				return Redirect::intended('/');
 
-			//to-do flash mensaje informando credenciales incorrectos. hacer que el layout mustre los mensajes flash
+			Session::flash('message', _('Wrong credentials'));
 		}
-		return Redirect::back()->withInput(Input::except('password'))->withErrors($validator);
+		return Redirect::back()->withInput(array_except($input, 'password'))->withErrors($validator);
 	}
 
 	/**
-	 * Logs out an user from the native authentication
+	 * Logs out an user
 	 *
 	 * @return Response
 	 */

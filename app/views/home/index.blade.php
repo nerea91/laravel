@@ -13,9 +13,9 @@
 
 <p>
 @if(Auth::check())
-Loged in as {{Auth::user()->username}} {{HTML::linkRoute('logout', '[Log out]')}}
+Loged in as {{Auth::user()->username}} {{link_to_route('logout', '[Log out]')}}
 @else
-{{HTML::linkRoute('login', '[Login]')}}
+{{link_to_route('login', '[Login]')}}
 @endif
 </p>
 

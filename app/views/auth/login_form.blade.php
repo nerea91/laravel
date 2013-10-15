@@ -28,10 +28,13 @@ input[type='checkbox']{display:inline}
 
 
 {{ Form::label('remember', _('Remember me')) }}
-{{ Form::checkbox('remember', '1') }}
+{{ Form::checkbox('remember') }}
 
 {{ Form::submit(_('Login')) }}
-
-
 {{ Form::close() }}
+
+@if(Session::has('message'))
+<div class="error">{{ Session::get('message') }}</div>
+@endif
+
 @stop

@@ -5,14 +5,27 @@
 | ACL Filter
 |--------------------------------------------------------------------------
 |
-| By default rejects access unless current route is listed and
-| current user's profile has permissions to access it
+| To define a map between the named routes and their required permissions:
+|
+| $acl = array(
+|    'route_name' => $permissions,
+|    ...
+| );
+|
+| $permissions should be:
+| - an integer or array of integers.
+| - a closure that returns a boolean.
+|
+| This filter will deny access if any of these happend:
+| - current route is not listed in the $acl keys.
+| - user's profile doesn't have all $permissions for 'route_name'.
+| - $permissions is a closure that returns FALSE.
 |
 */
 
 Route::filter('acl', function()
 {
-	$permissions_map = array(
+	$acl = array(
 		//Users
 		'users.index' => 100,
 		'users.show ' => 100,
@@ -41,10 +54,16 @@ Route::filter('acl', function()
 		'authproviders.destroy' => 303,
 	);
 
-	$route_name = Route::currentRouteName();
+	$route = Route::currentRouteName();
 
-	if( ! isset($permissions_map[$route_name]) OR ! Auth::user()->hasPermission($permissions_map[$route_name]))
-		App::abort(403);
+	if( ! isset($acl[$route]))
+		return App::abort(403);
+
+	$permissions = $acl[$route];
+	$is_closure = ($permissions instanceof Closure);
+
+	if(($is_closure AND ! $permissions) OR ( ! $is_closure AND ! Auth::user()->hasPermission($permissions)))
+		return App::abort(403);
 });
 
 

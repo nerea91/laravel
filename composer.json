@@ -14,10 +14,7 @@
 		"barryvdh/laravel-debugbar": "dev-master"
 	},
 	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/Stolz/Laravel-Model-Validation"
-		}
+		{"type": "vcs","url": "https://github.com/Stolz/Laravel-Model-Validation"}
 	],
 	"autoload": {
 		"classmap": [

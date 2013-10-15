@@ -11,11 +11,8 @@ class AuthController extends BaseController {
 	 */
 	public function showLoginForm()
 	{
-		$data = array(
-			'title' => _('Login'),
-		);
-
-		$this->layout->content = View::make('auth.login_form', $data);
+		$this->layout->title = _('Login');
+		$this->layout->content = View::make('auth.login_form');
 	}
 
 	/**
@@ -43,7 +40,7 @@ class AuthController extends BaseController {
 	}
 
 	/**
-	 * Logs out an user
+	 * Logs out the current user
 	 *
 	 * @return Response
 	 */

@@ -6,11 +6,7 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		$data = array(
-			'title' => 'Laravel 4',
-			'description' => _('Home page')
-		);
-
-		$this->layout->content = View::make('home.index', $data);
+		$this->layout->title = 'Laravel 4';
+		$this->layout->content = View::make('home.index');
 	}
 }

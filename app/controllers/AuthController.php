@@ -11,11 +11,8 @@ class AuthController extends BaseController {
 	 */
 	public function showLoginForm()
 	{
-		$data = array(
-			'title' => _('Login'),
-		);
-
-		$this->layout->content = View::make('auth.login_form', $data);
+		$this->layout->title = _('Login');
+		$this->layout->content = View::make('auth.login_form');
 	}
 
 	/**
@@ -34,7 +31,7 @@ class AuthController extends BaseController {
 
 		if($validator->passes())
 		{
-			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember'))) //to-do se acuerda del login siempre auqnue no se marque el checkbox
+			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 				return Redirect::intended('/');
 
 			Session::flash('message', _('Wrong credentials'));
@@ -43,7 +40,7 @@ class AuthController extends BaseController {
 	}
 
 	/**
-	 * Logs out an user
+	 * Logs out the current user
 	 *
 	 * @return Response
 	 */

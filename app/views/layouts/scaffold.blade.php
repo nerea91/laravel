@@ -1,9 +1,5 @@
 @extends('layouts.base')
 
-@section('title')
-Scaffolding | @parent
-@stop
-
 @section('css')
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 <style>

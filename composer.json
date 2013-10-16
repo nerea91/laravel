@@ -6,16 +6,15 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"way/database": "dev-master",
-		"stolz/assets": "dev-master",
-		"twitter/bootstrap": "3.0.*",
-		"barryvdh/laravel-debugbar": "dev-master"
+		"stolz/assets": "dev-master"
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
-		"daylerees/container-debug": "4.0.*"
+		"daylerees/container-debug": "4.0.*",
+		"barryvdh/laravel-debugbar": "dev-master"
 	},
 	"repositories": [
-		{"type": "vcs", "url": "https://github.com/Stolz/Laravel-Model-Validation"}
+		{"type": "vcs","url": "https://github.com/Stolz/Laravel-Model-Validation"}
 	],
 	"autoload": {
 		"classmap": [

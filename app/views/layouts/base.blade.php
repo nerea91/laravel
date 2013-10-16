@@ -2,26 +2,24 @@
 <html class="no-js" lang="{{ Config::get('app.locale', 'en') }}">
 	<head>
 		{{-- Info --}}
-		<title>@section('title')
-		{{{ trim(Config::get('site.name')) }}}@show</title>
-		<meta name="description" content="@section('description')
-		{{{ trim(Config::get('site.slogan')) }}}@show " />
+		<title>{{{ $title }}} | {{{ trim(Config::get('site.name')) }}}</title>
+		<meta name="description" content="@yield('description')" />
 
 		{{-- About --}}
-		<meta name="author" content="Javi (twitter: @Stolz)" />{{--to-do set your name --}}
+		<meta name="author" content="Javi (twitter: @Stolz)" />{{-- to-do set your name --}}
 		<link type="text/plain" rel="author" href="humans.txt" />
 
 		{{-- Misc --}}
 		<base href="to-do" />
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />{{--Force latest IE rendering engine or Chrome Frame if available) --}}
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />{{-- Force latest IE rendering engine or Chrome Frame if available) --}}
 
 		{{-- Mobile  --}}
-		<meta name="viewport" content="width=device-width, initial-scale=1">{{--Webkit --}}
-		<meta name="HandheldFriendly" content="True" />{{--BlackBerry --}}
-		<meta name="MobileOptimized" content="960" />{{--Windows Mobile --}}
-		<meta http-equiv="cleartype" content="on" />{{--Windows Mobile --}}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">{{-- Webkit. To disable zooming add ", maximum-scale=1.0, user-scalable=no" --}}
+		<meta name="HandheldFriendly" content="True" />{{-- BlackBerry --}}
+		<meta name="MobileOptimized" content="960" />{{-- Windows Mobile --}}
+		<meta http-equiv="cleartype" content="on" />{{-- Windows Mobile --}}
 
 		{{-- Favicon  --}}
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />

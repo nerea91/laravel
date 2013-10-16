@@ -15,10 +15,7 @@
 		"daylerees/container-debug": "4.0.*"
 	},
 	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/Stolz/Laravel-Model-Validation"
-		}
+		{"type": "vcs", "url": "https://github.com/Stolz/Laravel-Model-Validation"}
 	],
 	"autoload": {
 		"classmap": [

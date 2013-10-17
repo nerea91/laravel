@@ -4,6 +4,8 @@ composer.phar
 composer.lock
 .DS_Store
 
+
+# Old files
 *~
 .*~
 *.nfs00*
@@ -11,4 +13,8 @@ composer.lock
 *.old
 .inotify
 
+# Gettext
+/app/storage/gettext/
+
+# Packages
 /public/packages/barryvdh/

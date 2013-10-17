@@ -86,7 +86,7 @@ class Language extends Model {
 			return false;
 
 		//Language for Laravel based translations
-		App::setLocale($this->code);
+		//App::setLocale($this->code);
 
 		//Language for PHP Gettext
 		bindtextdomain('messages', app_path().'/lang/');

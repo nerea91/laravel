@@ -11,6 +11,7 @@ class AuthController extends BaseController {
 	 */
 	public function showLoginForm()
 	{
+		Assets::add('foundation-cdn');
 		$this->layout->title = _('Login');
 		$this->layout->content = View::make('auth.login_form');
 	}
@@ -24,17 +25,20 @@ class AuthController extends BaseController {
 	{
 		$input = Input::only(['username', 'password', 'remember']);
 
-		$validator = Validator::make($input, [
-			'username' => 'required|max:64|alpha_num',
-			'password' => 'required|min:5',
-		]);
+		$validator = Validator::make(
+			$input,
+			[
+				'username' => 'required|max:64|alpha_num',
+				'password' => 'required|min:5',
+			]
+		);
 
 		if($validator->passes())
 		{
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 				return Redirect::intended('/');
 
-			Session::flash('message', _('Wrong credentials'));
+			Session::flash('error', _('Wrong credentials'));
 		}
 		return Redirect::back()->withInput(array_except($input, 'password'))->withErrors($validator);
 	}

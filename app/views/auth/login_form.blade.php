@@ -1,33 +1,57 @@
 @section('body')
-	{{ Form::open(['action' => 'AuthController@doLogin']) }}
+<div class="row">
+	<div class="small-11 small-centered large-5 columns">
 
-	{{ Form::label('username', _('Username')) }}
-	{{ Form::text('username') }}
-	@include('form_field_errors', ['field' => 'username'])
+		<h2>{{{ Config::get('site.name') }}}</h2>
+		<h3 class="subheader">{{ _('Enter your credentials') }}</h3>
+		<hr/>
 
+		@if(Session::has('error'))
+		<div class="alert-box alert">
+			{{ Session::get('error') }}
+			<a class="close">&times;</a>
+		</div>
+		@endif
 
-	{{ Form::label('password', _('Password')) }}
-	{{ Form::password('password') }}
-	@include('form_field_errors', ['field' => 'password'])
+		{{ Form::open(['action' => 'AuthController@doLogin']) }}
 
+		<div class="{{ ($e = $errors->has('username')) ? 'error' : null }}">
+		{{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => _('Username'), 'autofocus']) }}
+		@if($e)<small>{{$errors->first('username');}}</small>@endif
+		</div>
 
-	{{ Form::label('remember', _('Remember me')) }}
-	{{ Form::checkbox('remember') }}
+		<div class="{{ ($e = $errors->has('password')) ? 'error' : null }}">
+		{{ Form::password('password', ['class' => 'form-control', 'placeholder' => _('Password')]) }}
+		@if($e)<small>{{$errors->first('password');}}</small>@endif
+		</div>
 
-	{{ Form::submit(_('Login')) }}
-	{{ Form::close() }}
+		{{ Form::submit(_('Login'), ['class' => 'radius small button expand']) }}
 
-	@if(Session::has('message'))
-	<div class="error">{{ Session::get('message') }}</div>
-	@endif
+		<label class="left">
+			{{ Form::checkbox('remember') }}
+			&nbsp;{{_('Remember me')}}
+		</label>
+
+		<span class="right"><a href="#" data-reveal-id="problems">{{ _('Problems?') }}</a>
+
+		{{ Form::close() }}
+	</div>
+</div>
+
+<div id="problems" class="reveal-modal small">
+	<ul>
+		<li><a>{{ _("I don't know my username") }}</a></li>
+		<li><a>{{ _("I don't know my password") }}</a></li>
+		<li><a>{{ _("I'm having other problems") }}</a></li>
+	</ul>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
 @stop
 
-{{--------------------------------------------------------}}
-
 @section('css')
-	<style>
-	input {display:block}
-	input[type='checkbox']{display:inline}
-	.error {color:red}
-	</style>
+<style>
+span.left *{
+	display:inline;
+}
+</style>
 @stop

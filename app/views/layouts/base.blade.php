@@ -10,7 +10,7 @@
 		<link type="text/plain" rel="author" href="humans.txt" />
 
 		{{-- Misc --}}
-		<base href="to-do" />
+		<base href="/" />
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />{{-- Force latest IE rendering engine or Chrome Frame if available) --}}

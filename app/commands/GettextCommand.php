@@ -43,18 +43,17 @@ class GettextCommand extends Command {
 		$input_path = app_path() . DIRECTORY_SEPARATOR . 'views';
 		$output_path = storage_path() . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR;
 
-		//Create $output_path
-		if ( ! File::isDirectory($output_path))
+		//Create or empty $output_path
+		if (File::isDirectory($output_path))
+			File::cleanDirectory($output_path);
+		else
 			File::makeDirectory($output_path);
 
-		//Emty old files
-		File::cleanDirectory($output_path);
-
-		//Configure BladeCompiler to use our own custom folder
+		//Configure BladeCompiler to use our own custom storage subfolder
 		$compiler = new BladeCompiler(new \Illuminate\Filesystem\Filesystem, $output_path);
 		$compiled = 0;
 
-		//Get al blade template files
+		//Get all view files
 		$all_files = File::allFiles($input_path);
 		foreach($all_files as $f)
 		{

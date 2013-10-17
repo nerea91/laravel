@@ -20,12 +20,12 @@ class Language extends Model {
 	// Logic ==================================================================
 
 	/**
-	 * Detects the language from the URL subdomain or the clients browser.
+	 * Detect the language from the URL subdomain or the clients browser.
 	 *
 	 * If no language is detected or the detected one does not exist
 	 * on the DB then the default language will be returned.
 	 *
-	 * @param string $url
+	 * @param  string $url
 	 * @return Language
 	 */
 	public static function detect($url)
@@ -73,7 +73,7 @@ class Language extends Model {
 
 
 	/**
-	 * Sets the language for both Gettext and Laravel
+	 * Set the language for Gettext
 	 *
 	 * Reruns TRUE on success of FALSE if the locale functionality is not implemented on your platform
 	 * or the locale does not exist or the category name is invalid.
@@ -93,8 +93,9 @@ class Language extends Model {
 		textdomain('messages');
 		$locale = $this->locale;
 
-		/*NOTE: LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when
-		 * inserting float values to your DB. Consider using LC_MESSAGES instead */
+		/* NOTE:
+		LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when
+		inserting float values to your DB. Consider using LC_MESSAGES instead */
 		$res = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		return $res !== false;
@@ -102,12 +103,12 @@ class Language extends Model {
 
 
 	/**
-	 * Returns the first Language from $haystack whose locale or code matches $needle.
+	 * Return the first Language from $haystack whose locale or code matches $needle.
 	 *
 	 * Returns null if not found.
 	 *
-	 * @param string $needle
-	 * @param Illuminate\Database\Eloquent\Collection $haystack
+	 * @param  string $needle
+	 * @param  Illuminate\Database\Eloquent\Collection $haystack
 	 * @return mixed
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)

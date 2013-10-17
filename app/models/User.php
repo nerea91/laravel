@@ -85,13 +85,13 @@ class User extends Model implements UserInterface, RemindableInterface {
 	// Logic ==================================================================
 
 	/**
-	 * Checks if user's profile has ALL of the required permissions
+	 * Check if user's profile has ALL of the required permissions
 	 *
 	 * To save extra databases queries from subsequent calls
-	 * it stores profile permissions in chache
+	 * it stores profile permissions in chache ($this->permissions_cache)
 	 *
 	 * @param  mixed $required_permissions
-	 * @return  bool
+	 * @return bool
 	 */
 	public function hasPermission($required_permissions)
 	{
@@ -104,13 +104,13 @@ class User extends Model implements UserInterface, RemindableInterface {
 	}
 
 	/**
-	 * Checks if user's profile has ANY of the required permissions
+	 * Check if user's profile has ANY of the required permissions
 	 *
 	 * To save extra databases queries from subsequent calls
-	 * it stores profile permissions in chache
+	 * it stores profile permissions in chache ($this->permissions_cache)
 	 *
 	 * @param  mixed $required_permissions
-	 * @return  bool
+	 * @return bool
 	 */
 	public function hasAnyPermission($required_permissions)
 	{

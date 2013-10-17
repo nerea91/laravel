@@ -17,7 +17,7 @@ class AuthController extends BaseController {
 	}
 
 	/**
-	 * Attempts to log in an user using native authentication
+	 * Attempt to log in an user using native authentication
 	 *
 	 * @return Response
 	 */
@@ -44,7 +44,7 @@ class AuthController extends BaseController {
 	}
 
 	/**
-	 * Logs out the current user
+	 * Log out the current user
 	 *
 	 * @return Response
 	 */

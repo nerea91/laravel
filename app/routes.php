@@ -10,7 +10,6 @@ if(Schema::hasTable('languages'))
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
 
-//Auth
 Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogin'));
 Route::get('logout', array('before' => 'auth', 'as' => 'logout', 'uses' => 'AuthController@doLogout'));

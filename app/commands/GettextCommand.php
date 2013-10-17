@@ -20,7 +20,7 @@ class GettextCommand extends Command {
 	*
 	* @var string
 	*/
-	protected $description = 'Compiles Blade templates into PHP for GNU gettext be able to parse them';
+	protected $description = 'Compiles Blade templates into PHP for GNU gettext to be able to parse them';
 
 	/**
 	* Create a new command instance.

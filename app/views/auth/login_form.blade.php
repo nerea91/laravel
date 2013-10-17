@@ -48,10 +48,3 @@
 </div>
 @stop
 
-@section('css')
-<style>
-span.left *{
-	display:inline;
-}
-</style>
-@stop

@@ -21,6 +21,7 @@ return array(
 		//Zurb Foundation (CDN)
 		'foundation-cdn' => [
 			'jquery-cdn',
+			'//cdn.jsdelivr.net/foundation/4.3.2/css/normalize.css',
 			'//cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css',
 			'//cdn.jsdelivr.net/foundation/4.3.2/js/foundation.min.js',
 			'app.js'

@@ -31,7 +31,7 @@ class Language extends Model {
 	public static function detect($url)
 	{
 		//Get all languages from data base
-		$all = self::orderBy('default', 'desc')->orderBy('priority')->get();
+		$all = self::orderBy('default', 'desc')->orderBy('priority')->remember(60*24)->get();
 		if( ! $all->count())
 			return new Language;
 

@@ -25,13 +25,3 @@ Route::group(array('before' => ['auth', 'acl']), function() {
 	Route::resource('users', 'UsersController');
 
 });
-
-
-
-
-
-
-
-
-
-

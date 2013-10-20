@@ -17,20 +17,20 @@ Route::filter('acl', function()
 	try
 	{
 		if( ! isset($acl[$route]))
-			throw new Exception(_('Current route not listed in ACL'));
+			throw new Exception(_('Route permissions missing'));
 
 		$permissions = $acl[$route];
 		$is_closure = ($permissions instanceof Closure);
 
-		if($is_closure AND ! $permissions)
-			throw new Exception(_('Your profile lacks permission to access this section'));
+		if($is_closure AND ! $permissions(Auth::user()))
+			throw new Exception(_('Unauthorized profile'));
 
 		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
-			throw new Exception(_('Your profile lacks permission to access this section'));
+			throw new Exception(_('Unauthorized profile'));
 	}
 	catch(Exception $e)
 	{
-		return Response::make($e->getMessage(), 403);
+		return App::abort(401, $e->getMessage());
 	}
 });
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-20 15:47+0200\n"
+"POT-Creation-Date: 2013-10-20 23:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /controllers/AuthController.php:15
+#: /controllers/AuthController.php:14
 #: /storage/gettext/auth-login_form.blade.php.php:28
+#: /storage/gettext/home-index.blade.php.php:12
 msgid "Login"
 msgstr ""
 
-#: /controllers/AuthController.php:41
+#: /controllers/AuthController.php:40
 msgid "Wrong credentials"
 msgstr ""
 
@@ -87,11 +88,11 @@ msgid "Delete"
 msgstr ""
 
 #: /filters.php:20
-msgid "Current route not listed in ACL"
+msgid "Route permissions missing"
 msgstr ""
 
 #: /filters.php:26 /filters.php:29
-msgid "Your profile lacks permission to access this section"
+msgid "Unauthorized profile"
 msgstr ""
 
 #: /lang/en/pagination.php:16
@@ -290,6 +291,15 @@ msgstr ""
 msgid "The :attribute has already been taken."
 msgstr ""
 
+#: /start/global.php:63
+#: /storage/gettext/layouts-error.blade.php.php:62
+msgid "Error"
+msgstr ""
+
+#: /start/global.php:94
+msgid "Maintenance"
+msgstr ""
+
 #: /storage/gettext/auth-login_form.blade.php.php:6
 msgid "Enter your credentials"
 msgstr ""
@@ -324,4 +334,61 @@ msgstr ""
 
 #: /storage/gettext/emails-auth-reminder.blade.php.php:10
 msgid "To reset your password, complete this form"
+msgstr ""
+
+#: /storage/gettext/errors-401.blade.php.php:4
+msgid "Your user is not authorized to access this secion"
+msgstr ""
+
+#: /storage/gettext/errors-401.blade.php.php:5
+msgid "If you think this may be an error please contact the site admin"
+msgstr ""
+
+#: /storage/gettext/errors-401.blade.php.php:8
+msgid "Go back"
+msgstr ""
+
+#: /storage/gettext/errors-404.blade.php.php:4
+msgid "We're really sorry but we couldn't find the page you requested on our servers"
+msgstr ""
+
+#: /storage/gettext/errors-404.blade.php.php:5
+msgid "It looks like this was the result of either"
+msgstr ""
+
+#: /storage/gettext/errors-404.blade.php.php:9
+msgid "a mistyped address"
+msgstr ""
+
+#: /storage/gettext/errors-404.blade.php.php:10
+msgid "an out-of-date link"
+msgstr ""
+
+#: /storage/gettext/errors-maintenance.blade.php.php:8
+msgid "Site down for maintenance"
+msgstr ""
+
+#: /storage/gettext/errors-maintenance.blade.php.php:9
+msgid "Sorry, our site is currently undergoing scheduled maintenance"
+msgstr ""
+
+#: /storage/gettext/errors-maintenance.blade.php.php:11
+msgid "Please visit us again in a few minutes"
+msgstr ""
+
+#: /storage/gettext/home-index.blade.php.php:9
+msgid "Logout"
+msgstr ""
+
+#: /storage/gettext/layouts-error.blade.php.php:76
+msgid "Something went wrong while we were processing your request"
+msgstr ""
+
+#: /storage/gettext/layouts-error.blade.php.php:77
+msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
+msgstr ""
+
+#: /storage/gettext/layouts-error.blade.php.php:81
+#, php-format
+msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr ""

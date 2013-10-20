@@ -2,7 +2,7 @@
 
 return array(
 
-	//'autoload' => array(),
+	'autoload' => array('foundation-cdn'),
 
 	'collections' => array(
 

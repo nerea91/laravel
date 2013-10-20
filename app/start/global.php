@@ -51,6 +51,31 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+
+	//If debug is enabled keep using the default error view
+	if (Config::get('app.debug')) {
+		return;
+	}
+
+	$message = $exception->getMessage();
+
+	$data = [
+		'title'	=> strlen($message) ? $message : _('Error'),
+		'header'=> $message,
+		'code'	=> $code
+	];
+
+	switch ($code)
+	{
+		case 401:
+			return Response::view('errors/401', $data, $code);
+
+		case 404:
+			return Response::view('errors/404', $data, $code);
+
+		default:
+			return Response::view('layouts/error', $data, $code);
+	}
 });
 
 /*
@@ -66,7 +91,7 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503); //to-do personalizar la vista con Zurb FOudnation y cargarla aqui: return Response::view('maintenance', array(), 503);
+	return Response::view('errors.maintenance', array('title' => _('Maintenance')), 503);
 });
 
 /*

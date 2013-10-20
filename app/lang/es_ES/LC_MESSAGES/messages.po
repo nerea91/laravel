@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-20 15:47+0200\n"
+"POT-Creation-Date: 2013-10-20 23:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /controllers/AuthController.php:15
+#: /controllers/AuthController.php:14
 #: /storage/gettext/auth-login_form.blade.php.php:28
+#: /storage/gettext/home-index.blade.php.php:12
 msgid "Login"
 msgstr "Acceder"
 
-#: /controllers/AuthController.php:41
+#: /controllers/AuthController.php:40
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
@@ -87,12 +88,12 @@ msgid "Delete"
 msgstr "Borrar"
 
 #: /filters.php:20
-msgid "Current route not listed in ACL"
-msgstr "La ruta actual no está incluida en la lista de acceso"
+msgid "Route permissions missing"
+msgstr ""
 
 #: /filters.php:26 /filters.php:29
-msgid "Your profile lacks permission to access this section"
-msgstr "Tu perfil no tiene permiso para acceder a esta sección"
+msgid "Unauthorized profile"
+msgstr "Perfil no autorizado"
 
 #: /lang/en/pagination.php:16
 msgid "Previous"
@@ -288,6 +289,14 @@ msgstr "Debe contener :size ítems."
 msgid "The :attribute has already been taken."
 msgstr "Ya está en uso. Escoge otro."
 
+#: /start/global.php:63 /storage/gettext/layouts-error.blade.php.php:62
+msgid "Error"
+msgstr ""
+
+#: /start/global.php:94
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
 #: /storage/gettext/auth-login_form.blade.php.php:6
 msgid "Enter your credentials"
 msgstr "Introduce datos de acceso"
@@ -323,3 +332,61 @@ msgstr ""
 #: /storage/gettext/emails-auth-reminder.blade.php.php:10
 msgid "To reset your password, complete this form"
 msgstr "Completa este formulario para restablecer tu contraseña"
+
+#: /storage/gettext/errors-401.blade.php.php:4
+msgid "Your user is not authorized to access this secion"
+msgstr "Tu usuario no está autorizado a acceder a esta sección"
+
+#: /storage/gettext/errors-401.blade.php.php:5
+msgid "If you think this may be an error please contact the site admin"
+msgstr "Si crees que se trata de un error por favor contacta con el administrador de la web"
+
+#: /storage/gettext/errors-401.blade.php.php:8
+msgid "Go back"
+msgstr "Volver atrás"
+
+#: /storage/gettext/errors-404.blade.php.php:4
+msgid "We're really sorry but we couldn't find the page you requested on our servers"
+msgstr "Lo sentimos mucho pero no hemos podido encontrar en el servidor la página que has solicitado"
+
+#: /storage/gettext/errors-404.blade.php.php:5
+msgid "It looks like this was the result of either"
+msgstr "Esto suele ser resultado de"
+
+#: /storage/gettext/errors-404.blade.php.php:9
+msgid "a mistyped address"
+msgstr "una dirección escrita mal"
+
+#: /storage/gettext/errors-404.blade.php.php:10
+msgid "an out-of-date link"
+msgstr "un enlace antiguo"
+
+#: /storage/gettext/errors-maintenance.blade.php.php:8
+msgid "Site down for maintenance"
+msgstr "Web parada por mantenimiento"
+
+#: /storage/gettext/errors-maintenance.blade.php.php:9
+msgid "Sorry, our site is currently undergoing scheduled maintenance"
+msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
+
+#: /storage/gettext/errors-maintenance.blade.php.php:11
+msgid "Please visit us again in a few minutes"
+msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
+
+#: /storage/gettext/home-index.blade.php.php:9
+msgid "Logout"
+msgstr "Desconectar"
+
+#: /storage/gettext/layouts-error.blade.php.php:76
+msgid "Something went wrong while we were processing your request"
+msgstr "Algo ha ido mal al procesar tu petición"
+
+#: /storage/gettext/layouts-error.blade.php.php:77
+msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
+msgstr "Lamentamos mucho las molestias, estamos trabajando para solverlo lo antes posible"
+
+#: /storage/gettext/layouts-error.blade.php.php:81
+#, php-format
+msgid "Perhaps you would like to go to our %shome page%s?"
+msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
+

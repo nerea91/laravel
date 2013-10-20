@@ -11,7 +11,6 @@ class AuthController extends BaseController {
 	 */
 	public function showLoginForm()
 	{
-		Assets::add('foundation-cdn');
 		$this->layout->title = _('Login');
 		$this->layout->content = View::make('auth.login_form');
 	}

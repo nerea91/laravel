@@ -5,84 +5,33 @@
 | ACL Filter
 |--------------------------------------------------------------------------
 |
-| To define a map between the named routes and their required permissions:
-|
-| $acl = array(
-|    'route_name' => $permissions,
-|    ...
-| );
-|
-| $permissions should be:
-| - an integer or array of integers.
-| - a closure that returns a boolean.
-|
-| This filter will deny access if any of these happend:
-| - current route is not listed in the $acl keys.
-| - user's profile doesn't have all $permissions for 'route_name'.
-| - $permissions is a closure that returns FALSE.
+| Read app/config/acl.php for more info about this filter.
 |
 */
 
 Route::filter('acl', function()
 {
-	$acl = array(
-		//Countries
-		'countries.index' => 10,
-		'countries.show ' => 10,
-		'countries.create' => 11,
-		'countries.store ' => 11,
-		'countries.edit' => 12,
-		'countries.update' => 12,
-		'countries.destroy' => 13,
-
-		//Users
-		'users.index' => 100,
-		'users.show ' => 100,
-		'users.create' => 101,
-		'users.store ' => 101,
-		'users.edit' => 102,
-		'users.update' => 102,
-		'users.destroy' => 103,
-
-		//Profiles
-		'profiles.index' => 200,
-		'profiles.show ' => 200,
-		'profiles.create' => 201,
-		'profiles.store ' => 201,
-		'profiles.edit' => 202,
-		'profiles.update' => 202,
-		'profiles.destroy' => 203,
-
-		//Auth providers
-		'authproviders.index' => 300,
-		'authproviders.show ' => 300,
-		'authproviders.create' => 301,
-		'authproviders.store ' => 301,
-		'authproviders.edit' => 302,
-		'authproviders.update' => 302,
-		'authproviders.destroy' => 303,
-
-
-		//Accounts
-		'accounts.index' => 400,
-		'accounts.show ' => 400,
-		'accounts.create' => 401,
-		'accounts.store ' => 401,
-		'accounts.edit' => 402,
-		'accounts.update' => 402,
-		'accounts.destroy' => 403,
-	);
-
+	$acl = Config::get('acl.map', []);
 	$route = Route::currentRouteName();
 
-	if( ! isset($acl[$route]))
-		return App::abort(403);
+	try
+	{
+		if( ! isset($acl[$route]))
+			throw new Exception(_('Current route not listed in ACL'));
 
-	$permissions = $acl[$route];
-	$is_closure = ($permissions instanceof Closure);
+		$permissions = $acl[$route];
+		$is_closure = ($permissions instanceof Closure);
 
-	if(($is_closure AND ! $permissions) OR ( ! $is_closure AND ! Auth::user()->hasPermission($permissions)))
-		return App::abort(403);
+		if($is_closure AND ! $permissions)
+			throw new Exception(_('Your profile lacks permission to access this section'));
+
+		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
+			throw new Exception(_('Your profile lacks permission to access this section'));
+	}
+	catch(Exception $e)
+	{
+		return Response::make($e->getMessage(), 403);
+	}
 });
 
 

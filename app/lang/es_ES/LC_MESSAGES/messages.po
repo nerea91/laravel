@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17 19:48+0200\n"
+"POT-Creation-Date: 2013-10-20 15:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,29 +26,73 @@ msgstr "Acceder"
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
-#: /database/seeds/PermissionsTableSeeder.php:11
-#: /database/seeds/PermissionsTableSeeder.php:17
-#: /database/seeds/PermissionsTableSeeder.php:23
-msgid "View"
-msgstr "Ver"
+#: /database/seeds/PermissionTypesTableSeeder.php:10
+msgid "Countries"
+msgstr "Paises"
+
+#: /database/seeds/PermissionTypesTableSeeder.php:11
+msgid "Languages"
+msgstr "Idiomas"
+
+#: /database/seeds/PermissionTypesTableSeeder.php:12
+msgid "Profiles"
+msgstr "Perfiles"
+
+#: /database/seeds/PermissionTypesTableSeeder.php:13
+msgid "Users"
+msgstr "Usuarios"
+
+#: /database/seeds/PermissionTypesTableSeeder.php:14
+msgid "Authentication providers"
+msgstr "Proveedores de autenticación"
+
+#: /database/seeds/PermissionTypesTableSeeder.php:15
+msgid "Accounts"
+msgstr "Cuentas"
 
 #: /database/seeds/PermissionsTableSeeder.php:12
 #: /database/seeds/PermissionsTableSeeder.php:18
 #: /database/seeds/PermissionsTableSeeder.php:24
-msgid "Add"
-msgstr "Añadir"
+#: /database/seeds/PermissionsTableSeeder.php:30
+#: /database/seeds/PermissionsTableSeeder.php:36
+#: /database/seeds/PermissionsTableSeeder.php:42
+msgid "View"
+msgstr "Ver"
 
 #: /database/seeds/PermissionsTableSeeder.php:13
 #: /database/seeds/PermissionsTableSeeder.php:19
 #: /database/seeds/PermissionsTableSeeder.php:25
-msgid "Edit"
-msgstr "Editar"
+#: /database/seeds/PermissionsTableSeeder.php:31
+#: /database/seeds/PermissionsTableSeeder.php:37
+#: /database/seeds/PermissionsTableSeeder.php:43
+msgid "Add"
+msgstr "Añadir"
 
 #: /database/seeds/PermissionsTableSeeder.php:14
 #: /database/seeds/PermissionsTableSeeder.php:20
 #: /database/seeds/PermissionsTableSeeder.php:26
+#: /database/seeds/PermissionsTableSeeder.php:32
+#: /database/seeds/PermissionsTableSeeder.php:38
+#: /database/seeds/PermissionsTableSeeder.php:44
+msgid "Edit"
+msgstr "Editar"
+
+#: /database/seeds/PermissionsTableSeeder.php:15
+#: /database/seeds/PermissionsTableSeeder.php:21
+#: /database/seeds/PermissionsTableSeeder.php:27
+#: /database/seeds/PermissionsTableSeeder.php:33
+#: /database/seeds/PermissionsTableSeeder.php:39
+#: /database/seeds/PermissionsTableSeeder.php:45
 msgid "Delete"
 msgstr "Borrar"
+
+#: /filters.php:20
+msgid "Current route not listed in ACL"
+msgstr "La ruta actual no está incluida en la lista de acceso"
+
+#: /filters.php:26 /filters.php:29
+msgid "Your profile lacks permission to access this section"
+msgstr "Tu perfil no tiene permiso para acceder a esta sección"
 
 #: /lang/en/pagination.php:16
 msgid "Previous"

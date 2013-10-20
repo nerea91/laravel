@@ -61,6 +61,16 @@ Route::filter('acl', function()
 		'authproviders.edit' => 302,
 		'authproviders.update' => 302,
 		'authproviders.destroy' => 303,
+
+
+		//Accounts
+		'accounts.index' => 400,
+		'accounts.show ' => 400,
+		'accounts.create' => 401,
+		'accounts.store ' => 401,
+		'accounts.edit' => 402,
+		'accounts.update' => 402,
+		'accounts.destroy' => 403,
 	);
 
 	$route = Route::currentRouteName();

@@ -19,10 +19,13 @@ Route::group(array('before' => ['auth', 'acl']), function() {
 
 	Route::resource('accounts', 'AccountsController');
 	Route::resource('authproviders', 'AuthProvidersController');
+	Route::resource('countries', 'CountriesController');
 	Route::resource('profiles', 'ProfilesController');
 	Route::resource('users', 'UsersController');
 
 });
+
+
 
 
 

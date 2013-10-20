@@ -26,6 +26,15 @@
 Route::filter('acl', function()
 {
 	$acl = array(
+		//Countries
+		'countries.index' => 10,
+		'countries.show ' => 10,
+		'countries.create' => 11,
+		'countries.store ' => 11,
+		'countries.edit' => 12,
+		'countries.update' => 12,
+		'countries.destroy' => 13,
+
 		//Users
 		'users.index' => 100,
 		'users.show ' => 100,

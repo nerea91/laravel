@@ -7,6 +7,13 @@ class PermissionsTableSeeder extends Seeder {
 		DB::table('permissions')->delete();
 
 		$permissions = array(
+
+			//Countries
+			['id' => 10, 'type_id' => 4, 'name' => _('View')],
+			['id' => 11, 'type_id' => 4, 'name' => _('Add')],
+			['id' => 12, 'type_id' => 4, 'name' => _('Edit')],
+			['id' => 13, 'type_id' => 4, 'name' => _('Delete')],
+
 			//Users
 			['id' => 100, 'type_id' => 1, 'name' => _('View')],
 			['id' => 101, 'type_id' => 1, 'name' => _('Add')],

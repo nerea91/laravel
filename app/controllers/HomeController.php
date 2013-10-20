@@ -7,6 +7,6 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$this->layout->title = 'Laravel 4';
-		$this->layout->content = View::make('home.index');
+		$this->layout->content = View::make('home.index')->withRoutes(App::make('router')->getRoutes());
 	}
 }

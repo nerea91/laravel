@@ -11,4 +11,12 @@
 	@endif
 	</p>
 
+	<ul>
+		@foreach ($routes as $name => $route)
+			@if ( ! strpos($url = $route->getPath(), '{') AND in_array('GET', $route->getMethods()))
+			<li>{{ link_to($url, $name) }}</li>
+			@endif
+		@endforeach
+	</ul>
+
 @stop

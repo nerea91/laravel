@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-20 23:13+0200\n"
+"POT-Creation-Date: 2013-10-22 16:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,19 @@ msgstr ""
 
 #: /controllers/AuthController.php:40
 msgid "Wrong credentials"
+msgstr ""
+
+#: /controllers/HomeController.php:25
+#: /storage/gettext/home-contact_form.blade.php.php:6
+msgid "Contact us"
+msgstr ""
+
+#: /controllers/HomeController.php:52
+msgid "Contact form query"
+msgstr ""
+
+#: /controllers/HomeController.php:55
+msgid "Message sent!"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:10
@@ -374,6 +387,34 @@ msgstr ""
 
 #: /storage/gettext/errors-maintenance.blade.php.php:11
 msgid "Please visit us again in a few minutes"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:14
+msgid "Please enter your contact details and we will try to contact you back as soon as possible"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:19
+msgid "Name"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:23
+msgid "Company"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:30
+msgid "E-mail"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:34
+msgid "Phone"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:40
+msgid "Message"
+msgstr ""
+
+#: /storage/gettext/home-contact_form.blade.php.php:44
+msgid "Send"
 msgstr ""
 
 #: /storage/gettext/home-index.blade.php.php:9

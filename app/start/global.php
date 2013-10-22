@@ -106,3 +106,20 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Set the global language
+|--------------------------------------------------------------------------
+|
+| If you prefer to use GNU Gettetx for your translations instead of the
+| array based native one then uncomment the next lines.
+|
+*/
+
+if(App::environment() != 'testing' AND Schema::hasTable('languages'))
+{
+	$language = Language::detect(Request::url());
+	$language->setLocale();
+	//Log::info("{$language->english_name} ({$language->locale}) detected from {$language->detected_from}");
+}

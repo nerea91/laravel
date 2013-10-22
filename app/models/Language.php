@@ -51,7 +51,7 @@ class Language extends Model {
 		//No luck with the subdomain, try now with the browser
 		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
-			$default->detected_from = 'default (HTTP_ACCEPT_LANGUAGE not available)';
+			$default->detected_from = 'default (browser languages not available)';
 			return $default;
 		}
 
@@ -67,7 +67,7 @@ class Language extends Model {
 		}
 
 		//Fallback to default
-		$default->detected_from = 'default';
+		$default->detected_from = "default (browser doesn't have any known language)";
 		return $default;
 	}
 
@@ -96,9 +96,10 @@ class Language extends Model {
 		/* NOTE:
 		LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when
 		inserting float values to your DB. Consider using LC_MESSAGES instead */
-		$res = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
+		$locale = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
+		$this->locale = $locale;
 
-		return $res !== false;
+		return $locale !== false;
 	}
 
 
@@ -109,7 +110,7 @@ class Language extends Model {
 	 *
 	 * @param  string $needle
 	 * @param  Illuminate\Database\Eloquent\Collection $haystack
-	 * @return mixed
+	 * @return mixed [string|null]
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
 	{

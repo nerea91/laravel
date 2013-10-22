@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-20 23:13+0200\n"
+"POT-Creation-Date: 2013-10-22 16:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,19 @@ msgstr "Acceder"
 #: /controllers/AuthController.php:40
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
+
+#: /controllers/HomeController.php:25
+#: /storage/gettext/home-contact_form.blade.php.php:6
+msgid "Contact us"
+msgstr "Contactar"
+
+#: /controllers/HomeController.php:52
+msgid "Contact form query"
+msgstr "Consulta online"
+
+#: /controllers/HomeController.php:55
+msgid "Message sent!"
+msgstr "¡Mensaje enviado!"
 
 #: /database/seeds/PermissionTypesTableSeeder.php:10
 msgid "Countries"
@@ -89,7 +102,7 @@ msgstr "Borrar"
 
 #: /filters.php:20
 msgid "Route permissions missing"
-msgstr ""
+msgstr "Faltan los permisos de ruta"
 
 #: /filters.php:26 /filters.php:29
 msgid "Unauthorized profile"
@@ -291,7 +304,7 @@ msgstr "Ya está en uso. Escoge otro."
 
 #: /start/global.php:63 /storage/gettext/layouts-error.blade.php.php:62
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: /start/global.php:94
 msgid "Maintenance"
@@ -373,6 +386,34 @@ msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
 msgid "Please visit us again in a few minutes"
 msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
 
+#: /storage/gettext/home-contact_form.blade.php.php:14
+msgid "Please enter your contact details and we will try to contact you back as soon as possible"
+msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos responderte lo antes posible"
+
+#: /storage/gettext/home-contact_form.blade.php.php:19
+msgid "Name"
+msgstr "Nombre"
+
+#: /storage/gettext/home-contact_form.blade.php.php:23
+msgid "Company"
+msgstr "Empresa"
+
+#: /storage/gettext/home-contact_form.blade.php.php:30
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /storage/gettext/home-contact_form.blade.php.php:34
+msgid "Phone"
+msgstr "Teléfono"
+
+#: /storage/gettext/home-contact_form.blade.php.php:40
+msgid "Message"
+msgstr "Mensaje"
+
+#: /storage/gettext/home-contact_form.blade.php.php:44
+msgid "Send"
+msgstr "Enviar"
+
 #: /storage/gettext/home-index.blade.php.php:9
 msgid "Logout"
 msgstr "Desconectar"
@@ -389,4 +430,3 @@ msgstr "Lamentamos mucho las molestias, estamos trabajando para solverlo lo ante
 #, php-format
 msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
-

@@ -16,12 +16,12 @@
 		{{ Form::open(['action' => 'AuthController@doLogin']) }}
 
 		<div class="{{ ($e = $errors->has('username')) ? 'error' : null }}">
-		{{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => _('Username'), 'autofocus']) }}
+		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
 		@if($e)<small>{{$errors->first('username');}}</small>@endif
 		</div>
 
 		<div class="{{ ($e = $errors->has('password')) ? 'error' : null }}">
-		{{ Form::password('password', ['class' => 'form-control', 'placeholder' => _('Password')]) }}
+		{{ Form::password('password', ['placeholder' => _('Password')]) }}
 		@if($e)<small>{{$errors->first('password');}}</small>@endif
 		</div>
 

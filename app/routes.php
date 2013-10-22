@@ -1,20 +1,17 @@
 <?php
 
-if(Schema::hasTable('languages'))
-{
-	$language = Language::detect(Request::url());
-	$language->setLocale();
-	// Log::debug($language->detected_from);
-}
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
-
-
+//Auth area
 Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogin'));
 Route::get('logout', array('before' => 'auth', 'as' => 'logout', 'uses' => 'AuthController@doLogout'));
 
+//Contact us area
+Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
+Route::post('contact', array('as' => 'send.contact.email', 'uses' => 'HomeController@sendContactEmail'));
 
+//Admin area
 Route::group(array('before' => ['auth', 'acl']), function() {
 
 	Route::resource('accounts', 'AccountsController');

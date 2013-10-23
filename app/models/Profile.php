@@ -5,7 +5,7 @@ class Profile extends Way\Database\Model {
 	protected $guarded = array('id', 'created_at', 'updated_at');
 
 	public static $rules = array(
-		'name' => 'required|max:64',
+		'name' => 'required|max:64|unique',
 		'description' => 'max:255',
 	);
 
@@ -20,7 +20,6 @@ class Profile extends Way\Database\Model {
 	{
 		return $this->hasMany('User');
 	}
-
 
 	// Events ==================================================================
 

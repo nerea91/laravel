@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration {
 	public function up()
 	{
 		//--fields="username:string[64]:unique,name:string[64]:nullable,password:string[60],country_id:unsignedInteger:nullable,profile_id:unsignedInteger"
-
 		Schema::create('users', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('username', 64)->unique();

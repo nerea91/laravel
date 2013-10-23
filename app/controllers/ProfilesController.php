@@ -3,13 +3,38 @@
 class ProfilesController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.scaffold';
+
+	/**
+	 * Profile Repository
+	 *
+	 * @var Profile
+	 */
+	protected $profile;
+
+	/**
+	 * Constructor with dependency injection
+	 *
+	 * @param  Profile
+	 * @return void
+	 */
+	public function __construct(Profile $profile)
+	{
+		$this->profile = $profile;
+	}
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('profiles.index');
+		$profiles = $this->profile->all();
+		$this->layout->title = _('Profiles');
+		$this->layout->content = View::make('profiles.index', compact('profiles'));
 	}
 
 	/**
@@ -19,7 +44,8 @@ class ProfilesController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('profiles.create');
+		$this->layout->title = _('Add profile');
+		$this->layout->content = View::make('profiles.create');
 	}
 
 	/**
@@ -29,7 +55,20 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$validation = Validator::make($input, Profile::$rules);
+
+		if ($validation->passes())
+		{
+			$this->profile->create($input);
+
+			return Redirect::route('profiles.index');
+		}
+
+		return Redirect::route('profiles.create')
+		->withInput()
+		->withErrors($validation)
+		->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -40,40 +79,66 @@ class ProfilesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('profiles.show');
+		$profile = $this->profile->findOrFail($id);
+		$this->layout->title = _('View profile');
+		$this->layout->content = View::make('profiles.show', compact('profile'));
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		* Show the form for editing the specified resource.
+		*
+		* @param  int  $id
+		* @return Response
+		*/
 	public function edit($id)
 	{
-        return View::make('profiles.edit');
+		$profile = $this->profile->find($id);
+
+		if (is_null($profile))
+		{
+			return Redirect::route('profiles.index');
+		}
+
+		$this->layout->title = (sprintf(_("Edit profile '%s'"), $profile->name));
+		$this->layout->content = View::make('profiles.edit', compact('profile'));
 	}
 
 	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		* Update the specified resource in storage.
+		*
+		* @param  int  $id
+		* @return Response
+		*/
 	public function update($id)
 	{
-		//
+		$input = array_except(Input::all(), '_method');
+		$validation = Validator::make($input, Profile::$rules);
+
+		if ($validation->passes())
+		{
+			$profile = $this->profile->find($id);
+			$profile->update($input);
+
+			return Redirect::route('profiles.show', $id);
+		}
+
+		return Redirect::route('profiles.edit', $id)
+			->withInput()
+			->withErrors($validation)
+			->with('message', 'There were validation errors.');
 	}
 
 	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		* Remove the specified resource from storage.
+		*
+		* @param  int  $id
+		* @return Response
+		*/
 	public function destroy($id)
 	{
-		//
+		$this->profile->find($id)->delete();
+
+		return Redirect::route('profiles.index');
 	}
 
 }

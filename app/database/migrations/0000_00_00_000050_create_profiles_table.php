@@ -12,9 +12,10 @@ class CreateProfilesTable extends Migration {
 	 */
 	public function up()
 	{
+		//--fields="name:string[64]:unique,description:strin:nullable"
 		Schema::create('profiles', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name', 64);
+			$table->string('name', 64)->unique();
 			$table->string('description')->nullable();
 
 			//Automatic columns

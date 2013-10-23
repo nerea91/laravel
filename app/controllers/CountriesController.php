@@ -30,7 +30,7 @@ class CountriesController extends BaseController {
 	 */
 	public function index()
 	{
-		$resources = Country::all();
+		$resources = Country::paginate(15);
 		$this->layout->title = _('Countries');
 		$this->layout->content = View::make("{$this->prefix}.index", compact('resources'));
 	}

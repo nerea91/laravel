@@ -1,8 +1,13 @@
 @section('main')
 @if ( ! $resources->count())
-	{{ _('There are no countries') }}.
+	<p class="text-center">{{ _('There are no countries') }}.</p>
 @else
 	<table class="hover">
+
+		@if ($resources->getLastPage() > 1)
+		<caption>{{ sprintf(_('From %d to %d out of %d'), $resources->getFrom(), $resources->getTo(), $resources->getTotal()) }}.</caption>
+		@endif
+
 		<thead>
 			<tr>
 				<th>{{ _('Name') }}</th>
@@ -27,7 +32,9 @@
 		</tbody>
 	</table>
 
+	{{ $resources->links() }}
+
 	@include('admin.index')
 @endif
-{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}
+<p class="text-center">{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}</p>
 @stop

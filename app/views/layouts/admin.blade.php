@@ -13,7 +13,7 @@
 	</div>
 	@endif
 
-	<h3>{{ $title }}</h3>
+	<h3 class="text-center">{{ $title }}</h3>
 
 	@yield('main')
 

@@ -3,13 +3,18 @@
 class UsersController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.admin';
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('users.index');
+        return View::make('admin.users.index');
 	}
 
 	/**
@@ -19,7 +24,7 @@ class UsersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('users.create');
+        return View::make('admin.users.create');
 	}
 
 	/**
@@ -40,7 +45,7 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('users.show');
+        return View::make('admin.users.show');
 	}
 
 	/**
@@ -51,7 +56,7 @@ class UsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('users.edit');
+        return View::make('admin.users.edit');
 	}
 
 	/**

@@ -5,7 +5,7 @@ class ProfilesController extends BaseController {
 	/**
 	 * The layout that should be used for responses.
 	 */
-	protected $layout = 'layouts.scaffold';
+	protected $layout = 'layouts.admin';
 
 	/**
 	 * Profile Repository
@@ -34,7 +34,7 @@ class ProfilesController extends BaseController {
 	{
 		$profiles = $this->profile->all();
 		$this->layout->title = _('Profiles');
-		$this->layout->content = View::make('profiles.index', compact('profiles'));
+		$this->layout->content = View::make('admin.profiles.index', compact('profiles'));
 	}
 
 	/**
@@ -45,7 +45,7 @@ class ProfilesController extends BaseController {
 	public function create()
 	{
 		$this->layout->title = _('Add profile');
-		$this->layout->content = View::make('profiles.create');
+		$this->layout->content = View::make('admin.profiles.create');
 	}
 
 	/**
@@ -60,7 +60,7 @@ class ProfilesController extends BaseController {
 		if ($profile->hasErrors())
 			return Redirect::back()->withInput()->withErrors($profile->getErrors());
 
-		return Redirect::route('profiles.index')->withSuccess(sprintf(_("Profile '%s' has been added"), $profile->name));
+		return Redirect::route('admin.profiles.index')->withSuccess(sprintf(_("Profile '%s' has been added"), $profile->name));
 	}
 
 	/**
@@ -73,7 +73,7 @@ class ProfilesController extends BaseController {
 	{
 		$profile = $this->profile->findOrFail($id);
 		$this->layout->title = _('View profile');
-		$this->layout->content = View::make('profiles.show', compact('profile'));
+		$this->layout->content = View::make('admin.profiles.show', compact('profile'));
 	}
 
 	/**
@@ -88,11 +88,11 @@ class ProfilesController extends BaseController {
 
 		if (is_null($profile))
 		{
-			return Redirect::route('profiles.index');
+			return Redirect::route('admin.profiles.index');
 		}
 
 		$this->layout->title = sprintf(_("Edit profile '%s'"), $profile->name);
-		$this->layout->content = View::make('profiles.edit', compact('profile'));
+		$this->layout->content = View::make('admin.profiles.edit', compact('profile'));
 	}
 
 	/**
@@ -111,10 +111,10 @@ class ProfilesController extends BaseController {
 			$profile = $this->profile->find($id);
 			$profile->update($input);
 
-			return Redirect::route('profiles.show', $id);
+			return Redirect::route('admin.profiles.show', $id);
 		}
 
-		return Redirect::route('profiles.edit', $id)
+		return Redirect::route('admin.profiles.edit', $id)
 			->withInput()
 			->withErrors($validation)
 			->with('message', 'There were validation errors.');
@@ -130,7 +130,7 @@ class ProfilesController extends BaseController {
 	{
 		$this->profile->find($id)->delete();
 
-		return Redirect::route('profiles.index');
+		return Redirect::route('admin.profiles.index');
 	}
 
 }

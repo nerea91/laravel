@@ -3,13 +3,18 @@
 class LanguagesController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.admin';
+	
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('languages.index');
+        return View::make('admin.languages.index');
 	}
 
 	/**
@@ -19,7 +24,7 @@ class LanguagesController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('languages.create');
+        return View::make('admin.languages.create');
 	}
 
 	/**
@@ -40,7 +45,7 @@ class LanguagesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('languages.show');
+        return View::make('admin.languages.show');
 	}
 
 	/**
@@ -51,7 +56,7 @@ class LanguagesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('languages.edit');
+        return View::make('admin.languages.edit');
 	}
 
 	/**

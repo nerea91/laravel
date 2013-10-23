@@ -3,13 +3,18 @@
 class AuthProvidersController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.admin';
+	
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('authproviders.index');
+        return View::make('admin.authproviders.index');
 	}
 
 	/**
@@ -19,7 +24,7 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('authproviders.create');
+        return View::make('admin.authproviders.create');
 	}
 
 	/**
@@ -40,7 +45,7 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('authproviders.show');
+        return View::make('admin.authproviders.show');
 	}
 
 	/**
@@ -51,7 +56,7 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('authproviders.edit');
+        return View::make('admin.authproviders.edit');
 	}
 
 	/**

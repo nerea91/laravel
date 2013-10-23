@@ -1,0 +1,1 @@
+admin.languages.index.blade

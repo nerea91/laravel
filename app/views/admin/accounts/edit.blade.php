@@ -1,0 +1,1 @@
+admin.accounts.edit.blade

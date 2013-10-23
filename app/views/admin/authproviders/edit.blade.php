@@ -1,0 +1,1 @@
+admin.authproviders.edit.blade

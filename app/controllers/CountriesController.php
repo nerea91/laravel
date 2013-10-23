@@ -3,13 +3,18 @@
 class CountriesController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.admin';
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('countries.index');
+        return View::make('admin.countries.index');
 	}
 
 	/**
@@ -19,7 +24,7 @@ class CountriesController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('countries.create');
+        return View::make('admin.countries.create');
 	}
 
 	/**
@@ -40,7 +45,7 @@ class CountriesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('countries.show');
+        return View::make('admin.countries.show');
 	}
 
 	/**
@@ -51,7 +56,7 @@ class CountriesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('countries.edit');
+        return View::make('admin.countries.edit');
 	}
 
 	/**

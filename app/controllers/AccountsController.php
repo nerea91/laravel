@@ -3,13 +3,18 @@
 class AccountsController extends BaseController {
 
 	/**
+	 * The layout that should be used for responses.
+	 */
+	protected $layout = 'layouts.admin';
+	
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('accounts.index');
+        return View::make('admin.accounts.index');
 	}
 
 	/**
@@ -19,7 +24,7 @@ class AccountsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('accounts.create');
+        return View::make('admin.accounts.create');
 	}
 
 	/**
@@ -40,7 +45,7 @@ class AccountsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('accounts.show');
+        return View::make('admin.accounts.show');
 	}
 
 	/**
@@ -51,7 +56,7 @@ class AccountsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('accounts.edit');
+        return View::make('admin.accounts.edit');
 	}
 
 	/**

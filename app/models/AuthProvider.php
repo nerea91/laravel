@@ -1,6 +1,6 @@
 <?php
 
-class AuthProvider extends Eloquent {
+class AuthProvider extends Way\Database\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');

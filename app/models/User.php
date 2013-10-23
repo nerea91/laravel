@@ -2,6 +2,7 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Way\Database\Model;
 
 class User extends Model implements UserInterface, RemindableInterface {
 

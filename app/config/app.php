@@ -183,8 +183,6 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
-		'Model'           => 'Way\Database\Model',  // https://github.com/Stolz/Laravel-Model-Validation
-
 	),
 
 );

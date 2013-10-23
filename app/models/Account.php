@@ -1,6 +1,6 @@
 <?php
 
-class Account extends Eloquent {
+class Account extends Way\Database\Model {
 
 	protected $hidden = array('access_token');
 

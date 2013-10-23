@@ -1,6 +1,6 @@
 <?php
 
-class Permission extends Eloquent {
+class Permission extends Way\Database\Model {
 
 	public $timestamps = false;
 	public static $rules = array(

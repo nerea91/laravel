@@ -1,6 +1,6 @@
 <?php
 
-class PermissionType extends Model {
+class PermissionType extends Way\Database\Model {
 
 	public $timestamps = false;
 	public static $rules = array(

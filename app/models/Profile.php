@@ -1,6 +1,6 @@
 <?php
 
-class Profile extends Eloquent {
+class Profile extends Way\Database\Model {
 
 	protected $guarded = array('id', 'created_at', 'updated_at');
 

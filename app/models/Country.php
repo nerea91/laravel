@@ -1,6 +1,6 @@
 <?php
 
-class Country extends Model {
+class Country extends Way\Database\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'deleted_at');

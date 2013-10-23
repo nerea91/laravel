@@ -1,6 +1,6 @@
 <?php
 
-class Language extends Model {
+class Language extends Way\Database\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('deleted_at');

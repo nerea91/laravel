@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+<?php Assets::add('admin') ?>
+
 @section('body')
 
 <div class="row">

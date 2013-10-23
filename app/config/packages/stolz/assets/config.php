@@ -42,6 +42,9 @@ return array(
 			'twitter/bootstrap:bootstrap-theme.min.css',
 			'twitter/bootstrap:bootstrap.min.js'
 		],
+
+		//Assets for admin panel
+		'admin' => ['admin.css','admin.js'],
 	),
 
 );

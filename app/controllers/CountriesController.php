@@ -8,13 +8,31 @@ class CountriesController extends BaseController {
 	protected $layout = 'layouts.admin';
 
 	/**
+	 * The prefix shared by all RESTful routes of this controller.
+	 * Used for extra flexibility when generating route names.
+	 */
+	protected $prefix = 'admin.countries';
+
+	/**
+	 * Class constructor
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		View::share('prefix', $this->prefix);
+	}
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return View::make('admin.countries.index');
+		$resources = Country::all();
+		$this->layout->title = _('Countries');
+		$this->layout->content = View::make("{$this->prefix}.index", compact('resources'));
 	}
 
 	/**
@@ -24,7 +42,7 @@ class CountriesController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('admin.countries.create');
+        return View::make("{$this->prefix}.create");
 	}
 
 	/**
@@ -45,7 +63,7 @@ class CountriesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('admin.countries.show');
+        return View::make("{$this->prefix}.show");
 	}
 
 	/**
@@ -56,7 +74,7 @@ class CountriesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('admin.countries.edit');
+        return View::make("{$this->prefix}.edit");
 	}
 
 	/**

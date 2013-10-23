@@ -5,6 +5,7 @@
 | ACL Filter
 |--------------------------------------------------------------------------
 |
+| Relies on your User model having the hasPermission function on it.
 | Read app/config/acl.php for more info about this filter.
 |
 */

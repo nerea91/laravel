@@ -20,24 +20,24 @@
 				@if($e)<small>{{$errors->first('name');}}</small>@endif
 			</div>
 			<div class="large-5 columns {{ ($e = $errors->has('company')) ? 'error' : null }}">
-				{{ Form::text('company', null, ['placeholder' => _('Company'), 'autofocus']) }}
+				{{ Form::text('company', null, ['placeholder' => _('Company')]) }}
 				@if($e)<small>{{$errors->first('company');}}</small>@endif
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="large-7 columns {{ ($e = $errors->has('email')) ? 'error' : null }}">
-				{{ Form::email('email', null, ['placeholder' => '* ' . _('E-mail'), 'autofocus']) }}
+				{{ Form::email('email', null, ['placeholder' => '* ' . _('E-mail')]) }}
 				@if($e)<small>{{$errors->first('email');}}</small>@endif
 			</div>
 			<div class="large-5 columns {{ ($e = $errors->has('phone')) ? 'error' : null }}">
-				{{ Form::text('phone', null, ['placeholder' => _('Phone'), 'autofocus']) }}
+				{{ Form::text('phone', null, ['placeholder' => _('Phone')]) }}
 				@if($e)<small>{{$errors->first('phone');}}</small>@endif
 			</div>
 		</div>
 
 		<div class="{{ ($e = $errors->has('message')) ? 'error' : null }}">
-			{{ Form::textarea('message', null, ['placeholder' => '* ' . _('Message'), 'autofocus']) }}
+			{{ Form::textarea('message', null, ['placeholder' => '* ' . _('Message')]) }}
 			@if($e)<small>{{$errors->first('message');}}</small>@endif
 		</div>
 

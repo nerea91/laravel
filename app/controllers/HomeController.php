@@ -47,7 +47,9 @@ class HomeController extends BaseController {
 		if($validator->fails())
 			return Redirect::back()->withInput($input)->withErrors($validator);
 
-		Mail::send(array('text' => 'emails.plain-text'), ['body' => $input['message']], function($message) use ($input) {
+		$message = $input['message'] . "\n\n" . $input['name'] . "\n" . $input['company'] . "\n" . $input['phone'];
+
+		Mail::send(array('text' => 'emails.plain-text'), ['text' => $message], function($message) use ($input) {
 			$message->from($input['email'], $input['name'])->to(Config::get('site.contact-email'), Config::get('site.name'))->subject(_('Contact form query'));
 		});
 

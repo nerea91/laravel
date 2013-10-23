@@ -55,20 +55,12 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Profile::$rules);
+		$profile = Profile::create(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->profile->create($input);
+		if ($profile->hasErrors())
+			return Redirect::back()->withInput()->withErrors($profile->getErrors());
 
-			return Redirect::route('profiles.index');
-		}
-
-		return Redirect::route('profiles.create')
-		->withInput()
-		->withErrors($validation)
-		->with('message', 'There were validation errors.');
+		return Redirect::route('profiles.index')->withSuccess(sprintf(_("Profile '%s' has been added"), $profile->name));
 	}
 
 	/**
@@ -99,7 +91,7 @@ class ProfilesController extends BaseController {
 			return Redirect::route('profiles.index');
 		}
 
-		$this->layout->title = (sprintf(_("Edit profile '%s'"), $profile->name));
+		$this->layout->title = sprintf(_("Edit profile '%s'"), $profile->name);
 		$this->layout->content = View::make('profiles.edit', compact('profile'));
 	}
 

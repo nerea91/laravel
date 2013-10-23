@@ -4,13 +4,14 @@
 
 <div class="row">
 
-	<h3>{{ $title }}</h3>
-
-	@if (Session::has('message'))
-	<div class="alert-box alert radius">
-		{{ Session::get('message') }}
+	@if (Session::has('success'))
+	<div class="alert-box success radius">
+		{{ Session::get('success') }}
+		<a class="close">&times;</a>
 	</div>
 	@endif
+
+	<h3>{{ $title }}</h3>
 
 	@yield('main')
 

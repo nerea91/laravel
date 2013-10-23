@@ -18,7 +18,7 @@ Route::filter('acl', function()
 	try
 	{
 		if( ! isset($acl[$route]))
-			throw new Exception(_('Route permissions missing'));
+			throw new Exception('ACL: ' . _('Unknown route') . " $route");
 
 		$permissions = $acl[$route];
 		$is_closure = ($permissions instanceof Closure);

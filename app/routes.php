@@ -5,7 +5,7 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 //Auth area
 Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogin'));
-Route::get('logout', array('before' => 'auth', 'as' => 'logout', 'uses' => 'AuthController@doLogout'));
+Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
 
 //Contact us area
 Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));

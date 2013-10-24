@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	"password" => _("Passwords must be six characters and match the confirmation."),
+	"password" => _("Passwords must be at least six characters long and match the confirmation."),
 
 	"user"     => _("We can't find a user with that e-mail address."),
 

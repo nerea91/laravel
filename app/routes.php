@@ -23,3 +23,5 @@ Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function()
 
 });
 
+//View composers
+View::composer('layouts.base', 'BaseLayoutComposer');

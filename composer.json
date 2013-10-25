@@ -24,7 +24,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"app/views/composers"
 		]
 	},
 	"scripts": {
@@ -36,7 +37,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
-			"php artisan optimize"
+			"php artisan optimize",
 			"php artisan debugbar:publish"
 		],
 		"post-create-project-cmd": [

@@ -22,18 +22,15 @@
 			"app/commands",
 			"app/controllers",
 			"app/models",
+			"app/libraries",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php",
-			"app/views/composers"
+			"app/tests/TestCase.php"
 		]
 	},
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan optimize"
-		],
-		"pre-update-cmd": [
-			"php artisan clear-compiled"
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",

@@ -117,3 +117,16 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Others File
+|--------------------------------------------------------------------------
+|
+| Next we will load the others file for the application. This gives us
+| a nice separate location to store our definitions other than routes and
+| filters (view composers, custom auth drivers, ...).
+|
+*/
+
+require app_path().'/others.php';

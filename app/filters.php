@@ -2,42 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| ACL Filter
-|--------------------------------------------------------------------------
-|
-| Relies on your User model having the hasPermission function on it.
-| Read app/config/acl.php for more info about this filter.
-|
-*/
-
-Route::filter('acl', function()
-{
-	$acl = Config::get('acl.map', []);
-	$route = Route::currentRouteName();
-
-	try
-	{
-		if( ! isset($acl[$route]))
-			throw new Exception('ACL: ' . _('Unknown route') . " $route");
-
-		$permissions = $acl[$route];
-		$is_closure = ($permissions instanceof Closure);
-
-		if($is_closure AND ! $permissions(Auth::user()))
-			throw new Exception(_('Unauthorized profile'));
-
-		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
-			throw new Exception(_('Unauthorized profile'));
-	}
-	catch(Exception $e)
-	{
-		return App::abort(401, $e->getMessage());
-	}
-});
-
-
-/*
-|--------------------------------------------------------------------------
 | Application & Route Filters
 |--------------------------------------------------------------------------
 |
@@ -115,3 +79,37 @@ Route::filter('csrf', function()
 	}
 });
 
+/*
+|--------------------------------------------------------------------------
+| ACL Filter
+|--------------------------------------------------------------------------
+|
+| Relies on your User model having the hasPermission function on it.
+| Read app/config/acl.php for more info about this filter.
+|
+*/
+
+Route::filter('acl', function()
+{
+	$acl = Config::get('acl.map', []);
+	$route = Route::currentRouteName();
+
+	try
+	{
+		if( ! isset($acl[$route]))
+			throw new Exception('ACL: ' . _('Unknown route') . " $route");
+
+		$permissions = $acl[$route];
+		$is_closure = ($permissions instanceof Closure);
+
+		if($is_closure AND ! $permissions(Auth::user()))
+			throw new Exception(_('Unauthorized profile'));
+
+		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
+			throw new Exception(_('Unauthorized profile'));
+	}
+	catch(Exception $e)
+	{
+		return App::abort(401, $e->getMessage());
+	}
+});

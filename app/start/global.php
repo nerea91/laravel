@@ -37,6 +37,17 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 /*
 |--------------------------------------------------------------------------
+| Application Language
+|--------------------------------------------------------------------------
+|
+| Use GNU Gettext translations instead of the native (array based) translations.
+|
+*/
+
+Session::put('language', (object) Language::detect(Request::url())->setLocale()->toArray() );
+
+/*
+|--------------------------------------------------------------------------
 | Application Error Handler
 |--------------------------------------------------------------------------
 |
@@ -109,17 +120,13 @@ require app_path().'/filters.php';
 
 /*
 |--------------------------------------------------------------------------
-| Set the global language
+| Require The Others File
 |--------------------------------------------------------------------------
 |
-| If you prefer to use GNU Gettetx for your translations instead of the
-| array based native one then uncomment the next lines.
+| Next we will load the others file for the application. This gives us
+| a nice separate location to store our definitions other than routes and
+| filters (view composers, custom auth drivers, ...).
 |
 */
 
-if(App::environment() != 'testing' AND Schema::hasTable('languages'))
-{
-	$language = Language::detect(Request::url());
-	$language->setLocale();
-	//Log::info("{$language->english_name} ({$language->locale}) detected from {$language->detected_from}");
-}
+require app_path().'/others.php';

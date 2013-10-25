@@ -17,7 +17,7 @@ class Language extends Way\Database\Model {
 
 	// Relationships ==========================================================
 
-	// Logic ==================================================================
+	// Static Methods =========================================================
 
 	/**
 	 * Detect the language from the URL subdomain or the clients browser.
@@ -31,7 +31,7 @@ class Language extends Way\Database\Model {
 	public static function detect($url)
 	{
 		//Get all languages from data base
-		$all = self::orderBy('default', 'desc')->orderBy('priority')->remember(60*24)->get();
+		$all = self::getAllByPriority();
 		if( ! $all->count())
 			return new Language;
 
@@ -71,38 +71,6 @@ class Language extends Way\Database\Model {
 		return $default;
 	}
 
-
-	/**
-	 * Set the language for Gettext
-	 *
-	 * Reruns TRUE on success of FALSE if the locale functionality is not implemented on your platform
-	 * or the locale does not exist or the category name is invalid.
-	 *
-	 * @return boolean
-	 */
-	public function setLocale()
-	{
-		if( ! $this->code OR ! $this->locale)
-			return false;
-
-		//Language for Laravel based translations
-		//App::setLocale($this->code);
-
-		//Language for PHP Gettext
-		bindtextdomain('messages', app_path().'/lang/');
-		textdomain('messages');
-		$locale = $this->locale;
-
-		/* NOTE:
-		LC_ALL may switch float decimal separator character deppending on locale which could have undesired issues specially when
-		inserting float values to your DB. Consider using LC_MESSAGES instead */
-		$locale = setlocale(LC_ALL, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
-		$this->locale = $locale;
-
-		return $locale !== false;
-	}
-
-
 	/**
 	 * Return the first Language from $haystack whose locale or code matches $needle.
 	 *
@@ -110,7 +78,7 @@ class Language extends Way\Database\Model {
 	 *
 	 * @param  string $needle
 	 * @param  Illuminate\Database\Eloquent\Collection $haystack
-	 * @return mixed [string|null]
+	 * @return mixed string|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
 	{
@@ -125,4 +93,40 @@ class Language extends Way\Database\Model {
 
 		return null;
 	}
+
+	/**
+	 * Get all enabled languages sorted by priority
+	 *
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function getAllByPriority()
+	{
+		return self::orderBy('default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
+	}
+
+	// Logic ==================================================================
+
+	/**
+	 * Set the language for Gettext
+	 *
+	 * NOTE: LC_ALL may switch float decimal separator character deppending on locale. This could cause undesired issues
+	 * specially when inserting float values to your data base. If that is your case consider using LC_MESSAGES instead.
+	 *
+	 * @param  $category see http://php.net/manual/en/function.setlocale.php
+	 * @return Language
+	 */
+	public function setLocale($category = LC_ALL)
+	{
+		bindtextdomain('messages', app_path().'/lang/');
+		textdomain('messages');
+		$locale = $this->locale;
+
+		$current_locale = setlocale($category, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
+
+		//if($current_locale === false)
+		//	App::abort(500, sprintf('Failed to set %s locate: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
+
+		return $this;
+	}
+
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{ Config::get('app.locale', 'en') }}">
+<html class="no-js" lang="{{ $lang->code }}">
 	<head>
-		{{-- Info --}}
+		{{-- Current page info --}}
 		<title>{{{ $title }}} | {{{ trim(Config::get('site.name')) }}}</title>
 		<meta name="description" content="@yield('description')" />
 
-		{{-- About --}}
+		{{-- Authors info --}}
 		<meta name="author" content="Javi (twitter: @Stolz)" />{{-- to-do set your name --}}
 		<link type="text/plain" rel="author" href="humans.txt" />
 
@@ -20,6 +20,11 @@
 		<meta name="HandheldFriendly" content="True" />{{-- BlackBerry --}}
 		<meta name="MobileOptimized" content="960" />{{-- Windows Mobile --}}
 		<meta http-equiv="cleartype" content="on" />{{-- Windows Mobile --}}
+
+		{{-- Multilanguage --}}
+		@foreach ($languages as $l)
+		<link rel="alternate" hreflang="{{ $l->code }}" href="{{ $l->url }}" />
+		@endforeach
 
 		{{-- Favicon  --}}
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -36,7 +41,7 @@
 		@yield('js')
 
 		{{-- Google Analytics --}}
-		<?php if(Config::has('site.googleanalytics')) : ?>
+		@if(Config::has('site.googleanalytics'))
 		<script>
 			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -45,6 +50,6 @@
 			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 			ga('create','{{Config::get("site.googleanalytics")}}');ga('send','pageview');
 		</script>
-		<?php endif ?>
+		@endif
 	</body>
 </html>

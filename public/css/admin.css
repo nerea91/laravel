@@ -6,7 +6,8 @@ table.hover {margin-left: auto;margin-right: auto;}
 table.hover td {vertical-align: middle !important;}
 table.hover .has-tip {font-weight:normal}
 table.hover tbody:hover > tr {/*opacity: 0.5;*/}table.hover tbody:hover > tr:hover {opacity: 1.0;background-color:#DDD !important}
-table.hover ul.button-group .button {margin:0;padding-top:.3em;padding-bottom:.3em;}
+table.hover .actions ul.button-group .button {margin:0;padding-top:.3em;padding-bottom:.3em;}
+table.hover .actions {white-space:nowrap;}
 
 
 #delete-modal-form {padding-bottom:0}

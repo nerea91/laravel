@@ -1,4 +1,4 @@
-<?php namespace Stolz;
+<?php namespace Stolz\Artisan;
 
 use Illuminate\Console\Command;
 use Illuminate\View\Compilers\BladeCompiler;

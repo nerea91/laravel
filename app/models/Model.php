@@ -1,18 +1,29 @@
-<?php namespace Stolz;
+<?php namespace Stolz\Database;
 
-/* Usage example:
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-	public function __construct(array $attributes = array())
+/**
+	This class adds to Eloquent:
+	- Validation in the model.
+	- Labels for database fields.
+	- Compact 'unique' validation rule.
+
+	Usage example:
+
+	class SomeModel extends Stolz\Database\Model
 	{
-		parent::__construct($attributes);
-		$this->setRules(array(
-			'name' => [_('Name'), 'required|max:64|unique'],
-			'description' => [_('Description'), 'max:255'],
-		));
+		public function __construct(array $attributes = array())
+		{
+			parent::__construct($attributes);
+			$this->setRules(array(
+				'name' => [_('Name'), 'required|max:64|unique'],
+				'description' => [_('Description'), 'max:255'],
+			));
+		}
 	}
 */
 
-class Model extends \Illuminate\Database\Eloquent\Model {
+class Model extends Eloquent {
 
 	/**
 	 * Validator instance
@@ -33,14 +44,14 @@ class Model extends \Illuminate\Database\Eloquent\Model {
 	 *
 	 * @var Array
 	 */
-	protected static $rules = array();
+	protected $rules = array();
 
 	/**
-	 * Fields labels
+	 * Field labels
 	 *
 	 * @var Array
 	 */
-	protected static $labels = array();
+	protected $labels = array();
 
 	/**
 	 * Listen for save event
@@ -59,30 +70,32 @@ class Model extends \Illuminate\Database\Eloquent\Model {
 	 * Set validation rules and labels
 	 *
 	 * @param  array
-	 * @return void
+	 * @return Model
 	 */
 	protected function setRules(array $rules)
 	{
 		$table = $this->getTable();
 		$except = ($this->getKey()) ? ','.$this->getKey() : null;
 
-		foreach($rules as $field => $labelAndrules)
+		foreach($rules as $field => $labelAndRules)
 		{
-			list($label, $rules) = $labelAndrules;
+			list($label, $rules) = $labelAndRules;
 			if( ! is_array($rules))
 				$rules = explode('|', $rules);
 
-			//Set label
-			self::$labels[$field] = $label;
+			//Add label
+			$this->labels[$field] = $label;
 
 			//Expand compact "unique" rules
 			foreach($rules as &$rule)
 				if($rule == 'unique')
 					$rule = "unique:$table,$field{$except}";
 
-			//Set rules
-			self::$rules[$field] = $rules;
+			//Add rule
+			$this->rules[$field] = $rules;
 		}
+
+		return $this;
 	}
 
 	/**
@@ -97,7 +110,7 @@ class Model extends \Illuminate\Database\Eloquent\Model {
 			$this->validator = \App::make('validator');
 
 		//Validate
-		$v = $this->validator->make($this->attributes, static::$rules);
+		$v = $this->validator->make($this->attributes, $this->rules);
 
 		if ($v->passes())
 		{
@@ -105,7 +118,6 @@ class Model extends \Illuminate\Database\Eloquent\Model {
 		}
 
 		$this->setErrors($v->messages());
-
 		return false;
 	}
 
@@ -127,6 +139,31 @@ class Model extends \Illuminate\Database\Eloquent\Model {
 	public function getErrors()
 	{
 		return $this->errors;
+	}
+
+	/**
+	 * Retrieve all labels
+	 *
+	 * @return array
+	 */
+	public function getLabels()
+	{
+		return $this->labels;
+	}
+
+	/**
+	 * Retrieve labels of visible fields
+	 *
+	 * @return array
+	 */
+	public function getVisibleLabels()
+	{
+		if (count($this->visible) > 0)
+		{
+			return array_intersect_key($this->labels, array_flip($this->visible));
+		}
+
+		return array_diff_key($this->labels, array_flip($this->hidden));
 	}
 
 	/**

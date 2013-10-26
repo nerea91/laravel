@@ -1,6 +1,6 @@
 <?php
 
-class Account extends Stolz\Model {
+class Account extends Stolz\Database\Model {
 
 	protected $hidden = array('access_token');
 

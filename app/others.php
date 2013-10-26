@@ -13,3 +13,21 @@
 
 //View composers
 View::composer('layouts.base', 'BaseLayoutComposer');
+
+//Helpers
+if ( ! function_exists('d'))
+{
+	/**
+	 * Dump the passed variables and end the script.
+	 *
+	 * @param  dynamic  mixed
+	 * @return void
+	 */
+	function d()
+	{
+		echo '<pre>';
+		array_map(function($x) { print_r($x); }, func_get_args());
+		echo '</pre>';
+		die;
+	}
+}

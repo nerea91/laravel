@@ -1,6 +1,6 @@
 <?php
 
-class Profile extends Stolz\Model {
+class Profile extends Stolz\Database\Model {
 
 	protected $guarded = array('id', 'created_at', 'updated_at');
 

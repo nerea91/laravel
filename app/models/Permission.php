@@ -1,6 +1,6 @@
 <?php
 
-class Permission extends Stolz\Model {
+class Permission extends Stolz\Database\Model {
 
 	public $timestamps = false;
 	// Validation =============================================================

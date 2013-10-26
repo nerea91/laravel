@@ -1,6 +1,6 @@
 <?php
 
-class Country extends Stolz\Model {
+class Country extends Stolz\Database\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'deleted_at');

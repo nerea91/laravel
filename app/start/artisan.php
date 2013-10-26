@@ -11,4 +11,4 @@
 |
 */
 
-Artisan::add(new Stolz\GettextCommand);
+Artisan::add(new Stolz\Artisan\GettextCommand);

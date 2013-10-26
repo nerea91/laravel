@@ -9,9 +9,13 @@ class CountriesController extends BaseController {
 
 	/**
 	 * The prefix shared by all RESTful routes of this controller.
-	 * Used for extra flexibility when generating route names.
 	 */
 	protected $prefix = 'admin.countries';
+
+	/**
+	 * Instance of the resource that this controller is in charge of.
+	 */
+	protected $resource;
 
 	/**
 	 * Class constructor
@@ -20,6 +24,7 @@ class CountriesController extends BaseController {
 	 */
 	public function __construct()
 	{
+		$this->resource = new Country;
 		View::share('prefix', $this->prefix);
 	}
 
@@ -30,9 +35,16 @@ class CountriesController extends BaseController {
 	 */
 	public function index()
 	{
-		$resources = Country::paginate(15);
+		$data = [
+			'results'	=> $this->resource->paginate(15),
+			'labels'	=> $this->resource->getVisibleLabels(),
+			'add'		=> Auth::user()->hasPermission(11),
+			'edit'		=> Auth::user()->hasPermission(12),
+			'delete'	=> Auth::user()->hasPermission(13),
+		];
+
 		$this->layout->title = _('Countries');
-		$this->layout->content = View::make("{$this->prefix}.index", compact('resources'));
+		$this->layout->content = View::make("{$this->prefix}.index", $data);
 	}
 
 	/**

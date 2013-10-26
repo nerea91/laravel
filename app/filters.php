@@ -19,7 +19,36 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	// HTML Tidy
+	if (Config::get('tidy.enabled', false) and $response instanceof Illuminate\Http\Response)
+	{
+		//Parse output
+		$tidy = new tidy;
+		$tidy->parseString($response->getOriginalContent(), Config::get('tidy.options'), Config::get('tidy.encoding', 'utf8'));
+		$tidy->cleanRepair();
+		$output = $tidy;
+
+		//Display errors
+		if ($tidy->getStatus() and Config::get('tidy.display_errors', false))
+		{
+			/*workaround: hide errors related to HTML5*/
+			$errors = $tidy->errorBuffer;
+			foreach(Config::get('tidy.filter', []) as $regex)
+			{
+				$errors = preg_replace($regex, null, $errors);
+			}
+
+			if (strlen($errors))
+				$output .= Config::get('tidy.open', '<div>') . nl2br(htmlentities($errors)) . Config::get('tidy.close', '</div>');
+		}
+
+		//Set doctype
+		$output = Config::get('tidy.doctype', '<!DOCTYPE html>') . preg_replace('_ xmlns="http://www.w3.org/1999/xhtml"_', '', $output, 1);
+
+		//Render $output
+		$response->setContent($output);
+	}
+
 });
 
 /*

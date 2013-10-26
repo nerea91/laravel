@@ -1,13 +1,19 @@
 <?php
 
-class Permission extends Way\Database\Model {
+class Permission extends Stolz\Model {
 
 	public $timestamps = false;
-	public static $rules = array(
-		'name' => 'required|max:64',
-		'description' => 'max:255',
-		'type_id' => 'required|exists:permissiontypes'
-	);
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'name' => [_('Name'), 'required|max:64'],
+			'description' => [_('Description'), 'max:255'],
+			'type_id' => [_('Type'), 'required|exists:permissiontypes'],
+		));
+	}
 
 	// Relationships ==========================================================
 

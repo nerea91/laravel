@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-		"way/database": "dev-master",
 		"stolz/assets": "dev-master",
 		"binarix/foundation-pagination": "dev-master"
 	},
@@ -14,9 +13,6 @@
 		"daylerees/container-debug": "4.0.*",
 		"barryvdh/laravel-debugbar": "dev-master"
 	},
-	"repositories": [
-		{"type": "vcs","url": "https://github.com/Stolz/Laravel-Model-Validation"}
-	],
 	"autoload": {
 		"classmap": [
 			"app/commands",

@@ -1,19 +1,25 @@
 <?php
 
-class Language extends Way\Database\Model {
+class Language extends Stolz\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('deleted_at');
 
 	public $timestamps = false;
-	public static $rules = array(
-		'code' => 'required|alpha|size:2|unique',
-		'name' => 'required|max:32|unique',
-		'english_name' => 'required|max:32|unique',
-		'locale' => 'required|size:5|regex:/[a-z]+_[A-Z]+/',
-		'default' => 'required|integer|min:0|max:1',
-		'priority' => 'required|integer'
-	);
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'code' => [_('Code'), 'required|alpha|size:2|unique'],
+			'name' => [_('Name'), 'required|max:32|unique'],
+			'english_name' => [_('English name'), 'required|max:32|unique'],
+			'locale' => [_('Locale'), 'required|size:5|regex:/[a-z]+_[A-Z]+/'],
+			'default' => [_('Default'), 'required|integer|min:0|max:1'],
+			'priority' => [_('Priority'), 'required|integer'],
+		));
+	}
 
 	// Relationships ==========================================================
 

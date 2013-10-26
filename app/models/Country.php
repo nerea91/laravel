@@ -1,26 +1,32 @@
 <?php
 
-class Country extends Way\Database\Model {
+class Country extends Stolz\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'deleted_at');
-
 	public $timestamps = false;
-	public static $rules = array(
-		'name' => 'required|max:64|unique',
-		'full_name' => 'max:128|unique',
-		'iso_3166_2' => array('required', 'size:2', 'regex:/[A-Z]+/', 'unique'),
-		'iso_3166_3' => array('required', 'size:3', 'regex:/[A-Z]+/', 'unique'),
-		'country_code' => array('required', 'size:3', 'regex:/[0-9]+/','unique'),
-		'capital' => 'max:64',
-		'citizenship' => 'max:64',
-		'currency' => 'max:64',
-		'currency_code' => array('regex:[A-Z \(\)]+', 'max:16'),
-		'currency_sub_unit' => 'max:32',
-		'region_code' => array('size:3', 'regex:/[0-9]+/'),
-		'sub_region_code' => array('size:3', 'regex:/[0-9]+/'),
-		'eea' => 'required|integer|min:0|max:1'
-	);
+
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'name' => [_('Name'), 'required|max:64|unique'],
+			'full_name' => [_('Full name'), 'max:128|unique'],
+			'iso_3166_2' => [_('ISO 3166 (2 digits)'), array('required', 'size:2', 'regex:/[A-Z]+/', 'unique')],
+			'iso_3166_3' => [_('ISO 3166 (3 digits)'), array('required', 'size:3', 'regex:/[A-Z]+/', 'unique')],
+			'country_code' => [_('Country code'), array('required', 'size:3', 'regex:/[0-9]+/','unique')],
+			'capital' => [_('Capital'), 'max:64'],
+			'citizenship' => [_('Citizenship'), 'max:64'],
+			'currency' => [_('Currency'), 'max:64'],
+			'currency_code' => [_('Currency code'), array('regex:[A-Z \(\)]+', 'max:16')],
+			'currency_sub_unit' => [_('Currency sub unit'), 'max:32'],
+			'region_code' => [_('Region code'), array('size:3', 'regex:/[0-9]+/')],
+			'sub_region_code' => [_('Subregion code'), array('size:3', 'regex:/[0-9]+/')],
+			'eea' => [_('European Economic Area'), 'required|integer|min:0|max:1'],
+		));
+	}
 
 	// Relationships ==========================================================
 

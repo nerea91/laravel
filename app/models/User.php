@@ -2,21 +2,26 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Way\Database\Model;
 
-class User extends Model implements UserInterface, RemindableInterface {
+class User extends Stolz\Model implements UserInterface, RemindableInterface {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'password', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('password');
 
-	public static $rules = array(
-		'username' => 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique',
-		'name' => 'email|max:64',
-		'password' => 'required|min:5',
-		'country_id' => 'exists:countries',
-		'profile_id' => 'required|exists:profiles',
-	);
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'username' => [_('Username'), 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique'],
+			'name' => [_('Name'), 'email|max:64'],
+			'password' => [_('Password'), 'required|min:5'],
+			'country_id' => [_('Country'), 'exists:countries'],
+			'profile_id' => [_('Profile'), 'required|exists:profiles'],
+		));
+	}
 
 	// Relationships ==========================================================
 

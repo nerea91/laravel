@@ -1,18 +1,24 @@
 <?php
 
-class AuthProvider extends Way\Database\Model {
+class AuthProvider extends Stolz\Model {
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('oauth2_secret');
 
-	public static $rules = array(
-		'name' => 'required|alpha_num|max:32|unique',
-		'title' => 'required|max:32|unique',
-		'logins_count' => 'integer|min:0',
-		'oauth2_id' => 'max:255',
-		'oauth2_secret' => 'max:255',
-	);
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'name' => [_('Name'), 'required|alpha_num|max:32|unique'],
+			'title' => [_('Name'), 'required|max:32|unique'],
+			'logins_count' => [_('Name'), 'integer|min:0'],
+			'oauth2_id' => [_('Name'), 'max:255'],
+			'oauth2_secret' => [_('Name'), 'max:255'],
+		));
+	}
 
 	// Relationships ==========================================================
 

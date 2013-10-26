@@ -1,13 +1,19 @@
 <?php
 
-class Profile extends Way\Database\Model {
+class Profile extends Stolz\Model {
 
 	protected $guarded = array('id', 'created_at', 'updated_at');
 
-	public static $rules = array(
-		'name' => 'required|max:64|unique',
-		'description' => 'max:255',
-	);
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'name' => [_('Name'), 'required|max:64|unique'],
+			'description' => [_('Description'), 'max:255'],
+		));
+	}
 
 	// Relationships ==========================================================
 

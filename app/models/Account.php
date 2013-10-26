@@ -1,24 +1,29 @@
 <?php
 
-class Account extends Way\Database\Model {
+class Account extends Stolz\Model {
 
 	protected $hidden = array('access_token');
 
-	public static $rules = array(
-		'uid' => 'required|max:128',
-		'access_token' => 'required',
-		'nickname' => 'max:128',
-		'email' => 'email|max:255',
-		'name' => 'max:128',
-		'first_name' => 'max:64',
-		'last_name' => 'max:64',
-		'image' => 'max:255',
-		'locale' => 'max:5',
-		'location' => 'max:128',
+	// Validation =============================================================
 
-		'provider_id' => 'required|exists:authproviders',
-		'user_id' => 'required|exists:users',
-	);
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'uid' => [_('Unique id'), 'required|max:128'],
+			'access_token' => [_('Access token'), 'required'],
+			'nickname' => [_('Nickname'), 'max:128'],
+			'email' => [_('E-mail'), 'email|max:255'],
+			'name' => [_('Name'), 'max:128'],
+			'first_name' => [_('First name'), 'max:64'],
+			'last_name' => [_('Last name'), 'max:64'],
+			'image' => [_('Image'), 'max:255'],
+			'locale' => [_('Locale'), 'max:5'],
+			'location' => [_('Location'), 'max:128'],
+			'provider_id' => [_('Provider'), 'required|exists:authproviders'],
+			'user_id' => [_('User'), 'required|exists:users'],
+		));
+	}
 
 	// Relationships ==========================================================
 

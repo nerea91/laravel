@@ -18,7 +18,7 @@ return array(
 	'encoding' => 'utf8',
 
 	//Doctype used for the output
-	'doctype' => "<!DOCTYPE html>\n",
+	'doctype' => '<!DOCTYPE html>',
 
 	//Append errors to output
 	'display_errors' => true,
@@ -29,7 +29,7 @@ return array(
 	//Errors container close tag
 	'close' => '</div>',
 
-	//Options passed to HTML Tidy parseString() function
+	//Options passed to parseString() function
 	'options' => array(
 		'output-xhtml' => true,
 		'char-encoding' => 'utf8',
@@ -47,15 +47,19 @@ return array(
 
 	//Errors that match these regexs will be filtered out
 	'filter' => array(
+		// workaround to hide errors related to HTML5
 		"/line.*proprietary attribute \"data-.*\n?/",
 		"/line.*proprietary attribute \"placeholder.*\n?/",
 		"/line.*is not approved by W3C\n?/",
-		"/line.*trimming empty <li>\n?/",
-		"/line.*trimming empty <span>\n?/",
 		"/line.*<html> proprietary attribute \"class\"\n?/",
 		"/line.*<meta> proprietary attribute \"charset\"\n?/",
 		"/line.*<meta> lacks \"content\" attribute\n?/",
 		"/line.*<table> lacks \"summary\" attribute\n?/",
+		"/line.*<style> inserting \"type\" attribute\n?/",
+		"/line.*<script> inserting \"type\" attribute\n?/",
+		//CSS frameworks use a lot of empty tags for navigation/pagination
+		"/line.*trimming empty <li>\n?/",
+		"/line.*trimming empty <span>\n?/",
 	),
 
 );

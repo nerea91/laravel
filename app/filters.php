@@ -20,30 +20,31 @@ App::before(function($request)
 App::after(function($request, $response)
 {
 	// HTML Tidy
-	if (Config::get('tidy.enabled', false) and $response instanceof Illuminate\Http\Response)
+	if (Config::get('tidy.enabled', false) and $response instanceof Illuminate\Http\Response and strpos($response->headers->get('content-type'), 'text/html') !== false)
 	{
 		//Parse output
 		$tidy = new tidy;
 		$tidy->parseString($response->getOriginalContent(), Config::get('tidy.options'), Config::get('tidy.encoding', 'utf8'));
 		$tidy->cleanRepair();
-		$output = $tidy;
 
-		//Display errors
+		//Set doctype
+		$output = Config::get('tidy.doctype', '<!DOCTYPE html>') . "\n" . preg_replace('_ xmlns="http://www.w3.org/1999/xhtml"_', null, $tidy, 1);
+
+		//Append errors
 		if ($tidy->getStatus() and Config::get('tidy.display_errors', false))
 		{
-			/*workaround: hide errors related to HTML5*/
 			$errors = $tidy->errorBuffer;
 			foreach(Config::get('tidy.filter', []) as $regex)
 			{
 				$errors = preg_replace($regex, null, $errors);
 			}
 
+			//Wrap errors in a container
 			if (strlen($errors))
-				$output .= Config::get('tidy.open', '<div>') . nl2br(htmlentities($errors)) . Config::get('tidy.close', '</div>');
-		}
+				$errors = Config::get('tidy.open', '<div>') . nl2br(htmlentities($errors)) . Config::get('tidy.close', '</div>');
 
-		//Set doctype
-		$output = Config::get('tidy.doctype', '<!DOCTYPE html>') . preg_replace('_ xmlns="http://www.w3.org/1999/xhtml"_', '', $output, 1);
+			$output = str_replace ('</body>', $errors . '</body>', $output);
+		}
 
 		//Render $output
 		$response->setContent($output);

@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="small-11 small-centered large-5 columns">
 
-		<h2>{{ { Config::get('site.name') }}}</h2>
+		<h2>{{{ Config::get('site.name') }}}</h2>
 		<h3 class="subheader">{{ _('Enter your credentials') }}</h3>
 		<hr/>
 

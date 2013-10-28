@@ -206,16 +206,4 @@ class Model extends Eloquent {
 		return $fillable;
 	}
 
-	/**
-	 * Retrieve fillable fields
-	 *
-	 * Eloquent has the getFillable() method but doesn't obey guarded fields.
-	 *
-	 * @return array
-	 */
-	public function getFillables()
-	{
-		return array_keys($this->getFillableLabels());
-	}
-
 }

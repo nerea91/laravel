@@ -28,6 +28,7 @@
 				@foreach (array_except($labels, [$prompt]) as $field => $label)
 				<td>{{{ $resource->{$field} }}}</td>
 				@endforeach
+
 				@if ($edit or $delete)
 				<td class="actions">
 					@if ($edit)
@@ -53,8 +54,8 @@
 
 <p class="text-center">
 @if ($add)
-	{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}
+	{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}&nbsp;
 @endif
-&nbsp;{{ link_to_route('admin', _('Return'), null, ['class' => 'small secondary radius button']) }}
+{{ link_to_route('admin', _('Return'), null, ['class' => 'small secondary radius button']) }}
 </p>
 @stop

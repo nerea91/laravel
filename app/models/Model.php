@@ -33,13 +33,6 @@ class Model extends Eloquent {
 	protected $validator;
 
 	/**
-	 * Error message bag
-	 *
-	 * @var Illuminate\Support\MessageBag
-	 */
-	protected $errors;
-
-	/**
 	 * Validation rules
 	 *
 	 * @var Array
@@ -52,6 +45,13 @@ class Model extends Eloquent {
 	 * @var Array
 	 */
 	protected $labels = array();
+
+	/**
+	 * Error message bag
+	 *
+	 * @var Illuminate\Support\MessageBag
+	 */
+	protected $errors;
 
 	/**
 	 * Listen for save event
@@ -67,6 +67,42 @@ class Model extends Eloquent {
 	}
 
 	/**
+	 * Validate current attributes against rules
+	 *
+	 * @return boolean
+	 */
+	public function validate()
+	{
+		//Expand compact "unique" rules
+		$table = $this->getTable();
+		$except = ($this->getKey()) ? ','.$this->getKey() : null;
+		$rules = $this->getRules();
+		foreach($rules as $field => &$fieldRules)
+		{
+			foreach($fieldRules as &$rule)
+			{
+				if($rule == 'unique')
+					$rule = "unique:$table,$field{$except}";
+			}
+		}
+
+		//Create validator instance
+		if( ! $this->validator)
+			$this->validator = \App::make('validator');
+
+		//Validate
+		$validation = $this->validator->make($this->attributes, $rules);
+
+		if ($validation->passes())
+		{
+			return true;
+		}
+
+		$this->setErrors($validation->messages());
+		return false;
+	}
+
+	/**
 	 * Set validation rules and labels
 	 *
 	 * @param  array
@@ -74,51 +110,28 @@ class Model extends Eloquent {
 	 */
 	protected function setRules(array $rules)
 	{
-		$table = $this->getTable();
-		$except = ($this->getKey()) ? ','.$this->getKey() : null;
-
 		foreach($rules as $field => $labelAndRules)
 		{
 			list($label, $rules) = $labelAndRules;
-			if( ! is_array($rules))
-				$rules = explode('|', $rules);
 
 			//Add label
 			$this->labels[$field] = $label;
 
-			//Expand compact "unique" rules
-			foreach($rules as &$rule)
-				if($rule == 'unique')
-					$rule = "unique:$table,$field{$except}";
-
-			//Add rule
-			$this->rules[$field] = $rules;
+			//Add rules
+			$this->rules[$field] = (is_array($rules)) ? $rules : explode('|', $rules);
 		}
 
 		return $this;
 	}
 
 	/**
-	 * Validates current attributes against rules
+	 * Retrieve rules
 	 *
-	 * @return boolean
+	 * @return array
 	 */
-	public function validate()
+	public function getRules()
 	{
-		//Create validator instance
-		if( ! $this->validator)
-			$this->validator = \App::make('validator');
-
-		//Validate
-		$v = $this->validator->make($this->attributes, $this->rules);
-
-		if ($v->passes())
-		{
-			return true;
-		}
-
-		$this->setErrors($v->messages());
-		return false;
+		return $this->rules;
 	}
 
 	/**
@@ -139,6 +152,16 @@ class Model extends Eloquent {
 	public function getErrors()
 	{
 		return $this->errors;
+	}
+
+	/**
+	 * Inverse of wasSaved
+	 *
+	 * @return boolean
+	 */
+	public function hasErrors()
+	{
+		return ! empty($this->errors);
 	}
 
 	/**
@@ -167,13 +190,32 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Inverse of wasSaved
+	 * Retrieve labels of fillable fields
 	 *
-	 * @return boolean
+	 * @return array
 	 */
-	public function hasErrors()
+	public function getFillableLabels()
 	{
-		return ! empty($this->errors);
+		$fillable = array();
+		foreach($this->labels as $key => $value)
+		{
+			if($this->isFillable($key))
+				$fillable[$key] = $value;
+		}
+
+		return $fillable;
+	}
+
+	/**
+	 * Retrieve fillable fields
+	 *
+	 * Eloquent has the getFillable() method but doesn't obey guarded fields.
+	 *
+	 * @return array
+	 */
+	public function getFillables()
+	{
+		return array_keys($this->getFillableLabels());
 	}
 
 }

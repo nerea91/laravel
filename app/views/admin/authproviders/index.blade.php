@@ -1,1 +1,0 @@
-admin.authproviders.index.blade

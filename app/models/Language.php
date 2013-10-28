@@ -3,9 +3,8 @@
 class Language extends Stolz\Database\Model {
 
 	protected $softDelete = true;
-	protected $guarded = array('deleted_at');
-
 	public $timestamps = false;
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

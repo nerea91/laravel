@@ -22,15 +22,15 @@ App::after(function($request, $response)
 	// HTML Tidy
 	if (Config::get('tidy.enabled', false) and $response instanceof Illuminate\Http\Response and strpos($response->headers->get('content-type'), 'text/html') !== false)
 	{
-		//Parse output
+		// Parse output
 		$tidy = new tidy;
 		$tidy->parseString($response->getOriginalContent(), Config::get('tidy.options'), Config::get('tidy.encoding', 'utf8'));
 		$tidy->cleanRepair();
 
-		//Set doctype
+		// Set doctype
 		$output = Config::get('tidy.doctype', '<!DOCTYPE html>') . "\n" . preg_replace('_ xmlns="http://www.w3.org/1999/xhtml"_', null, $tidy, 1);
 
-		//Append errors
+		// Append errors
 		if ($tidy->getStatus() and Config::get('tidy.display_errors', false))
 		{
 			$errors = $tidy->errorBuffer;
@@ -39,14 +39,14 @@ App::after(function($request, $response)
 				$errors = preg_replace($regex, null, $errors);
 			}
 
-			//Wrap errors in a container
+			// Wrap errors in a container
 			if (strlen($errors))
 				$errors = Config::get('tidy.open', '<div>') . nl2br(htmlentities($errors)) . Config::get('tidy.close', '</div>');
 
 			$output = str_replace ('</body>', $errors . '</body>', $output);
 		}
 
-		//Render $output
+		// Render $output
 		$response->setContent($output);
 	}
 

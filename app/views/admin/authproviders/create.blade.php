@@ -1,1 +1,0 @@
-admin.authproviders.create.blade

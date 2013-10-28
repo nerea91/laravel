@@ -3,7 +3,6 @@
 class AuthProvider extends Stolz\Database\Model {
 
 	protected $softDelete = true;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('oauth2_secret');
 
 	// Validation =============================================================

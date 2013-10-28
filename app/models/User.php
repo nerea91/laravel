@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Stolz\Database\Model implements UserInterface, RemindableInterface {
 
 	protected $softDelete = true;
-	protected $guarded = array('id', 'password', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = array('password');
 	protected $hidden = array('password');
 
 	// Validation =============================================================

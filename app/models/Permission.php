@@ -3,6 +3,7 @@
 class Permission extends Stolz\Database\Model {
 
 	public $timestamps = false;
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

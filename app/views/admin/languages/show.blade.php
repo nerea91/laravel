@@ -1,1 +1,0 @@
-admin.languages.show.blade

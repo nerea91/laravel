@@ -8,9 +8,10 @@ class CountriesController extends BaseController {
 	protected $layout = 'layouts.admin';
 
 	/**
-	 * The prefix shared by all RESTful routes of this controller.
+	 * The common part of the name shared by all the routes of this controller.
 	 */
 	protected $prefix = 'admin.countries';
+
 
 	/**
 	 * Instance of the resource that this controller is in charge of.
@@ -25,7 +26,16 @@ class CountriesController extends BaseController {
 	public function __construct()
 	{
 		$this->resource = new Country;
-		View::share('prefix', $this->prefix);
+
+		View::share([
+			'prefix'	=> $this->prefix,
+
+			//Permissions
+			'view'		=> Auth::user()->hasPermission(10),
+			'add'		=> Auth::user()->hasPermission(11),
+			'edit'		=> Auth::user()->hasPermission(12),
+			'delete'	=> Auth::user()->hasPermission(13),
+		]);
 	}
 
 	/**
@@ -38,13 +48,12 @@ class CountriesController extends BaseController {
 		$data = [
 			'results'	=> $this->resource->paginate(15),
 			'labels'	=> $this->resource->getVisibleLabels(),
-			'add'		=> Auth::user()->hasPermission(11),
-			'edit'		=> Auth::user()->hasPermission(12),
-			'delete'	=> Auth::user()->hasPermission(13),
+			'show'		=> 'name' //The field that will have a link to the 'show' action
 		];
 
 		$this->layout->title = _('Countries');
-		$this->layout->content = View::make("{$this->prefix}.index", $data);
+		$this->layout->subtitle = _('Index');
+		$this->layout->content = View::make('admin.resource-index', $data);
 	}
 
 	/**
@@ -54,7 +63,7 @@ class CountriesController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make("{$this->prefix}.create");
+		return View::make('resource.create');
 	}
 
 	/**
@@ -75,7 +84,14 @@ class CountriesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make("{$this->prefix}.show");
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getVisibleLabels(),
+		];
+
+		$this->layout->title = _('Country');
+		$this->layout->subtitle = _('Details');
+		$this->layout->content = View::make("{$this->prefix}.show", $data);
 	}
 
 	/**
@@ -86,7 +102,14 @@ class CountriesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make("{$this->prefix}.edit");
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
+
+		$this->layout->title = _('Country');
+		$this->layout->subtitle = _('Edit');
+		$this->layout->content = View::make("{$this->prefix}.edit", $data);
 	}
 
 	/**
@@ -97,7 +120,13 @@ class CountriesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$resource = $this->resource->findOrFail($id);
+
+		if( ! $resource->update(Input::all()))
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+
+		Session::flash('success', sprintf(_('Country %s successfully updated'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
 	/**

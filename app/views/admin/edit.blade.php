@@ -5,10 +5,17 @@
 
 		@include('admin.fields')
 
-		{{ Form::submit(_('Update'), array('class' => 'small radius button left')) }}
-		@if ($view)
-		{{ link_to_route("$prefix.show", _('Cancel'), $resource->id, array('class' => 'small secondary radius button right')) }}
-		@endif
+		<div class="row">
+			<div class="large-{{ $columns = 12/(1 + $view)  }} columns">
+				{{ Form::submit(_('Update'), array('class' => 'small radius button expand')) }}
+			</div>
+
+			@if ($view)
+			<div class="large-{{ $columns }} columns">
+				{{ link_to_route("$prefix.show", _('Cancel'), $resource->id, array('class' => 'small secondary radius button expand')) }}
+			</div>
+			@endif
+		</div>
 
 		{{ Form::close() }}
 	</div>

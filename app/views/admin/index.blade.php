@@ -24,8 +24,8 @@
 		<tbody>
 			@foreach ($results as $resource)
 			<tr>
-			<td>{{ link_to_route("$prefix.show", $resource->{$linked}, array($resource->id)) }}</td>
-				@foreach (array_except($labels, [$linked]) as $field => $label)
+			<td>{{ link_to_route("$prefix.show", $resource->{$prompt}, array($resource->id)) }}</td>
+				@foreach (array_except($labels, [$prompt]) as $field => $label)
 				<td>{{{ $resource->{$field} }}}</td>
 				@endforeach
 				@if ($edit or $delete)
@@ -35,7 +35,7 @@
 					@endif
 
 					@if ($delete)
-					{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->{$linked})))) }}
+					{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->{$prompt})))) }}
 					@endif
 				</td>
 				@endif
@@ -47,20 +47,7 @@
 	{{ $results->links() }}
 
 	@if ($delete)
-	{{ Form::open(['method' => 'DELETE', 'id' => 'delete-modal-form', 'class' => 'reveal-modal small']) }}
-		<h3 id="delete-modal-prompt" class="text-center"></h3>
-		<p class="lead text-center"><?= _('Are you sure?') ?></p>
-		<div class="row">
-			<div class="small-6 columns">
-				<a id="delete-modal-close" class="secondary button radius expand"><?= _('Cancel') ?></a>
-			</div>
-
-			<div class="small-6 columns">
-			{{ Form::submit(_('Confirm'), array('class' => 'alert button radius expand')) }}
-			</div>
-		</div>
-		<a class="close-reveal-modal">&#215;</a>
-	{{ Form::close() }}
+	@include('admin.delete')
 	@endif
 @endif
 @if ($add)

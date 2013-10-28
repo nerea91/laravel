@@ -45,9 +45,9 @@ class CountriesController extends BaseController {
 	public function index()
 	{
 		$data = [
-			'results'	=> $this->resource->paginate(10),
+			'results'	=> $this->resource->paginate(15),
 			'labels'	=> array_slice($this->resource->getVisibleLabels(), 0, 3),
-			'linked'	=> 'name' //The field that will have a link to the 'show' action
+			'prompt'	=> 'name'
 		];
 
 		$this->layout->title = _('Countries');
@@ -99,6 +99,7 @@ class CountriesController extends BaseController {
 		$data = [
 			'resource'	=> $this->resource->findOrFail($id),
 			'labels'	=> $this->resource->getVisibleLabels(),
+			'prompt'	=> 'name'
 		];
 
 		$this->layout->title = _('Country');

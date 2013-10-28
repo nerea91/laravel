@@ -5,7 +5,21 @@
 
 		@include('admin.fields')
 
-		{{ Form::submit(_('Update'), array('class' => 'small radius button left')) }}
+		<div class="row">
+			<div class="large-6 columns">
+				{{ Form::submit(_('Add'), array('class' => 'small radius button expand')) }}
+			</div>
+
+			<div class="large-6 columns">
+			{{-- If the referer page has a 'page' parameter redirect to there --}}
+			@if (false !== strpos(URL::previous(), '?page=') )
+				<a href="{{ URL::previous() }}" class="small radius secondary button expand">{{ _('Return') }}</a>
+			@else
+				{{ link_to_route("$prefix.index", _('Return'), [], array('class' => 'small radius secondary button expand')) }}
+			@endif
+			</div>
+		</div>
+
 		{{ Form::close() }}
 	</div>
 </div>

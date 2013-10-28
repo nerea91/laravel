@@ -27,6 +27,12 @@ return array(
 			'app.js'
 		],
 
+		//Zurb Responsive tables http://zurb.com/playground/responsive-tables
+		'responsive-tables' => [
+			'zurb/responsive-tables:responsive-tables.css',
+			'zurb/responsive-tables:responsive-tables.js',
+		],
+
 		//Twitter Bootstrap (CDN)
 		'bootstrap-cdn' => [
 			'jquery-cdn',

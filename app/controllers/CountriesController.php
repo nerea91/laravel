@@ -46,9 +46,12 @@ class CountriesController extends BaseController {
 	{
 		$data = [
 			'results'	=> $this->resource->paginate(15),
-			'labels'	=> array_slice($this->resource->getVisibleLabels(), 0, 3),
+			'labels'	=> $this->resource->getVisibleLabels(),
 			'prompt'	=> 'name'
 		];
+
+		if($data['results']->getTotal())
+			Assets::add('responsive-tables');
 
 		$this->layout->title = _('Countries');
 		$this->layout->subtitle = _('Index');

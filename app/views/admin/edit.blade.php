@@ -6,7 +6,7 @@
 		@include('admin.fields')
 
 		<div class="row">
-			<div class="large-{{ $columns = 12/(1 + $view)  }} columns">
+			<div class="large-{{ $columns = 12/(1 + $view) }} columns">
 				{{ Form::submit(_('Update'), array('class' => 'small radius button expand')) }}
 			</div>
 

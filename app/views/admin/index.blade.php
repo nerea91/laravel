@@ -2,12 +2,12 @@
 @if ( ! $results->count())
 	<p class="text-center">{{ _('No results found') }}.</p>
 @else
-	<table class="hover">
 
-		@if ($results->getLastPage() > 1)
-		<caption>{{ sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) }}.</caption>
-		@endif
+	@if ($results->getLastPage() > 1)
+	<p class="caption">{{ sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) }}.</p>
+	@endif
 
+	<table class="hover responsive">
 		<thead>
 			<tr>
 				@foreach ($labels as $field => $label)
@@ -31,7 +31,7 @@
 				@if ($edit or $delete)
 				<td class="actions">
 					@if ($edit)
-					{{ link_to_route("$prefix.edit",    _('Edit'),   array($resource->id), array('class' => 'small radius button')) }}
+					{{ link_to_route("$prefix.edit", _('Edit'), array($resource->id), array('class' => 'small radius button')) }}
 					@endif
 
 					@if ($delete)
@@ -50,6 +50,7 @@
 	@include('admin.delete')
 	@endif
 @endif
+
 @if ($add)
 	<p class="text-center">{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}</p>
 @endif

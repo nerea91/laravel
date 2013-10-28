@@ -12,7 +12,6 @@ class CountriesController extends BaseController {
 	 */
 	protected $prefix = 'admin.countries';
 
-
 	/**
 	 * Instance of the resource that this controller is in charge of.
 	 */
@@ -46,14 +45,14 @@ class CountriesController extends BaseController {
 	public function index()
 	{
 		$data = [
-			'results'	=> $this->resource->paginate(15),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'show'		=> 'name' //The field that will have a link to the 'show' action
+			'results'	=> $this->resource->paginate(10),
+			'labels'	=> array_slice($this->resource->getVisibleLabels(), 0, 3),
+			'linked'	=> 'name' //The field that will have a link to the 'show' action
 		];
 
 		$this->layout->title = _('Countries');
 		$this->layout->subtitle = _('Index');
-		$this->layout->content = View::make('admin.resource-index', $data);
+		$this->layout->content = View::make('admin.index', $data);
 	}
 
 	/**
@@ -63,7 +62,14 @@ class CountriesController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('resource.create');
+		$data = [
+			'resource'	=> new Country(Input::all()),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
+
+		$this->layout->title = _('Country');
+		$this->layout->subtitle = _('Add');
+		$this->layout->content = View::make('admin.create', $data);
 	}
 
 	/**
@@ -73,7 +79,13 @@ class CountriesController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$resource =  new Country(Input::all());
+
+		if( ! $resource->save())
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+
+		Session::flash('success', sprintf(_('Country %s successfully created'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $resource->getKey());
 	}
 
 	/**
@@ -91,7 +103,7 @@ class CountriesController extends BaseController {
 
 		$this->layout->title = _('Country');
 		$this->layout->subtitle = _('Details');
-		$this->layout->content = View::make("{$this->prefix}.show", $data);
+		$this->layout->content = View::make('admin.show', $data);
 	}
 
 	/**
@@ -109,7 +121,7 @@ class CountriesController extends BaseController {
 
 		$this->layout->title = _('Country');
 		$this->layout->subtitle = _('Edit');
-		$this->layout->content = View::make("{$this->prefix}.edit", $data);
+		$this->layout->content = View::make('admin.edit', $data);
 	}
 
 	/**
@@ -137,7 +149,10 @@ class CountriesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		if($resource = $this->resource->find($id) and $resource->delete())
+			Session::flash('success', sprintf(_('Country %s successfully deleted'), $resource->name));
+
+		return Redirect::route("{$this->prefix}.index");
 	}
 
 }

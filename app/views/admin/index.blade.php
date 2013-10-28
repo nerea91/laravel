@@ -24,8 +24,8 @@
 		<tbody>
 			@foreach ($results as $resource)
 			<tr>
-			<td>{{ link_to_route("$prefix.show", $resource->{$show}, array($resource->id)) }}</td>
-				@foreach (array_except($labels, [$show]) as $field => $label)
+			<td>{{ link_to_route("$prefix.show", $resource->{$linked}, array($resource->id)) }}</td>
+				@foreach (array_except($labels, [$linked]) as $field => $label)
 				<td>{{{ $resource->{$field} }}}</td>
 				@endforeach
 				@if ($edit or $delete)
@@ -35,7 +35,7 @@
 					@endif
 
 					@if ($delete)
-					{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->{$show})))) }}
+					{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->{$linked})))) }}
 					@endif
 				</td>
 				@endif

@@ -11,3 +11,5 @@
 	</div>
 </div>
 @stop
+
+{{-- to-do añadir botones de vovler al listado editar o borrar que respeten los permisos del usuario --}}

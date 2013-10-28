@@ -7,7 +7,7 @@
 <div class="row">
 
 	@if (Session::has('success'))
-	<div class="alert-box success radius">
+	<div id="success" class="alert-box success radius">
 		{{ Session::get('success') }}
 		<a class="close">&times;</a>
 	</div>

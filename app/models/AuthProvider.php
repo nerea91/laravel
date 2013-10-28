@@ -2,8 +2,10 @@
 
 class AuthProvider extends Stolz\Database\Model {
 
+	protected $table = 'authproviders';
 	protected $softDelete = true;
 	protected $hidden = array('oauth2_secret');
+	protected $guarded = array('oauth2_secret');
 
 	// Validation =============================================================
 
@@ -12,10 +14,10 @@ class AuthProvider extends Stolz\Database\Model {
 		parent::__construct($attributes);
 		$this->setRules(array(
 			'name' => [_('Name'), 'required|alpha_num|max:32|unique'],
-			'title' => [_('Name'), 'required|max:32|unique'],
-			'logins_count' => [_('Name'), 'integer|min:0'],
-			'oauth2_id' => [_('Name'), 'max:255'],
-			'oauth2_secret' => [_('Name'), 'max:255'],
+			'title' => [_('Title'), 'required|max:32|unique'],
+			'logins_count' => [_('Login count'), 'integer|min:0'],
+			'oauth2_id' => [_('App id'), 'max:255'],
+			'oauth2_secret' => [_('App secret'), 'max:255'],
 		));
 	}
 

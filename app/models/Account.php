@@ -2,6 +2,7 @@
 
 class Account extends Stolz\Database\Model {
 
+	protected $guarded = array('access_token');
 	protected $hidden = array('access_token');
 
 	// Validation =============================================================

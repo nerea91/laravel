@@ -8,21 +8,33 @@ class ProfilesController extends BaseController {
 	protected $layout = 'layouts.admin';
 
 	/**
-	 * Profile Repository
-	 *
-	 * @var Profile
+	 * The common part of the name shared by all the routes of this controller.
 	 */
-	protected $profile;
+	protected $prefix = 'admin.profiles';
 
 	/**
-	 * Constructor with dependency injection
+	 * Instance of the resource that this controller is in charge of.
+	 */
+	protected $resource;
+
+	/**
+	 * Class constructor
 	 *
-	 * @param  Profile
 	 * @return void
 	 */
-	public function __construct(Profile $profile)
+	public function __construct()
 	{
-		$this->profile = $profile;
+		$this->resource = new Profile;
+
+		View::share([
+			'prefix'	=> $this->prefix,
+
+			//Permissions
+			'view'		=> Auth::user()->hasPermission(40),
+			'add'		=> Auth::user()->hasPermission(41),
+			'edit'		=> Auth::user()->hasPermission(42),
+			'delete'	=> Auth::user()->hasPermission(43),
+		]);
 	}
 
 	/**
@@ -32,9 +44,18 @@ class ProfilesController extends BaseController {
 	 */
 	public function index()
 	{
-		$profiles = $this->profile->all();
+		$data = [
+			'results'	=> $this->resource->paginate(15),
+			'labels'	=> $this->resource->getVisibleLabels(),
+			'prompt'	=> 'name'
+		];
+
+		if($data['results']->getTotal())
+			Assets::add('responsive-tables');
+
 		$this->layout->title = _('Profiles');
-		$this->layout->content = View::make('admin.profiles.index', compact('profiles'));
+		$this->layout->subtitle = _('Index');
+		$this->layout->content = View::make('admin.index', $data);
 	}
 
 	/**
@@ -44,8 +65,14 @@ class ProfilesController extends BaseController {
 	 */
 	public function create()
 	{
-		$this->layout->title = _('Add profile');
-		$this->layout->content = View::make('admin.profiles.create');
+		$data = [
+			'resource'	=> new Profile(Input::all()),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
+
+		$this->layout->title = _('Profile');
+		$this->layout->subtitle = _('Add');
+		$this->layout->content = View::make('admin.create', $data);
 	}
 
 	/**
@@ -55,12 +82,13 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		$profile = Profile::create(Input::all());
+		$resource =  new Profile(Input::all());
 
-		if ($profile->hasErrors())
-			return Redirect::back()->withInput()->withErrors($profile->getErrors());
+		if( ! $resource->save())
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
 
-		return Redirect::route('admin.profiles.index')->withSuccess(sprintf(_("Profile '%s' has been added"), $profile->name));
+		Session::flash('success', sprintf(_('Profile %s successfully created'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $resource->getKey());
 	}
 
 	/**
@@ -71,66 +99,64 @@ class ProfilesController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$profile = $this->profile->findOrFail($id);
-		$this->layout->title = _('View profile');
-		$this->layout->content = View::make('admin.profiles.show', compact('profile'));
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getVisibleLabels(),
+			'prompt'	=> 'name'
+		];
+
+		$this->layout->title = _('Profile');
+		$this->layout->subtitle = _('Details');
+		$this->layout->content = View::make('admin.show', $data);
 	}
 
 	/**
-		* Show the form for editing the specified resource.
-		*
-		* @param  int  $id
-		* @return Response
-		*/
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function edit($id)
 	{
-		$profile = $this->profile->find($id);
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
 
-		if (is_null($profile))
-		{
-			return Redirect::route('admin.profiles.index');
-		}
-
-		$this->layout->title = sprintf(_("Edit profile '%s'"), $profile->name);
-		$this->layout->content = View::make('admin.profiles.edit', compact('profile'));
+		$this->layout->title = _('Profile');
+		$this->layout->subtitle = _('Edit');
+		$this->layout->content = View::make('admin.edit', $data);
 	}
 
 	/**
-		* Update the specified resource in storage.
-		*
-		* @param  int  $id
-		* @return Response
-		*/
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Profile::$rules);
+		$resource = $this->resource->findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$profile = $this->profile->find($id);
-			$profile->update($input);
+		if( ! $resource->update(Input::all()))
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
 
-			return Redirect::route('admin.profiles.show', $id);
-		}
-
-		return Redirect::route('admin.profiles.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
+		Session::flash('success', sprintf(_('Profile %s successfully updated'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
 	/**
-		* Remove the specified resource from storage.
-		*
-		* @param  int  $id
-		* @return Response
-		*/
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function destroy($id)
 	{
-		$this->profile->find($id)->delete();
+		if($resource = $this->resource->find($id) and $resource->delete())
+			Session::flash('success', sprintf(_('Profile %s successfully deleted'), $resource->name));
 
-		return Redirect::route('admin.profiles.index');
+		return Redirect::route("{$this->prefix}.index");
 	}
 
 }

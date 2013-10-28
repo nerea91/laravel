@@ -6,7 +6,37 @@ class AuthProvidersController extends BaseController {
 	 * The layout that should be used for responses.
 	 */
 	protected $layout = 'layouts.admin';
-	
+
+	/**
+	 * The common part of the name shared by all the routes of this controller.
+	 */
+	protected $prefix = 'admin.authproviders';
+
+	/**
+	 * Instance of the resource that this controller is in charge of.
+	 */
+	protected $resource;
+
+	/**
+	 * Class constructor
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->resource = new AuthProvider;
+
+		View::share([
+			'prefix'	=> $this->prefix,
+
+			//Permissions
+			'view'		=> Auth::user()->hasPermission(80),
+			'add'		=> Auth::user()->hasPermission(81),
+			'edit'		=> Auth::user()->hasPermission(82),
+			'delete'	=> Auth::user()->hasPermission(83),
+		]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -14,7 +44,18 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('admin.authproviders.index');
+		$data = [
+			'results'	=> $this->resource->paginate(15),
+			'labels'	=> $this->resource->getVisibleLabels(),
+			'prompt'	=> 'name'
+		];
+
+		if($data['results']->getTotal())
+			Assets::add('responsive-tables');
+
+		$this->layout->title = _('AuthProviders');
+		$this->layout->subtitle = _('Index');
+		$this->layout->content = View::make('admin.index', $data);
 	}
 
 	/**
@@ -24,7 +65,14 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('admin.authproviders.create');
+		$data = [
+			'resource'	=> new AuthProvider(Input::all()),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
+
+		$this->layout->title = _('Auth. provider');
+		$this->layout->subtitle = _('Add');
+		$this->layout->content = View::make('admin.create', $data);
 	}
 
 	/**
@@ -34,7 +82,13 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$resource =  new AuthProvider(Input::all());
+
+		if( ! $resource->save())
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+
+		Session::flash('success', sprintf(_('Auth. provider %s successfully created'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $resource->getKey());
 	}
 
 	/**
@@ -45,7 +99,15 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('admin.authproviders.show');
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getVisibleLabels(),
+			'prompt'	=> 'name'
+		];
+
+		$this->layout->title = _('Auth. provider');
+		$this->layout->subtitle = _('Details');
+		$this->layout->content = View::make('admin.show', $data);
 	}
 
 	/**
@@ -56,7 +118,14 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('admin.authproviders.edit');
+		$data = [
+			'resource'	=> $this->resource->findOrFail($id),
+			'labels'	=> $this->resource->getFillableLabels(),
+		];
+
+		$this->layout->title = _('Auth. provider');
+		$this->layout->subtitle = _('Edit');
+		$this->layout->content = View::make('admin.edit', $data);
 	}
 
 	/**
@@ -67,7 +136,13 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$resource = $this->resource->findOrFail($id);
+
+		if( ! $resource->update(Input::all()))
+			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+
+		Session::flash('success', sprintf(_('Auth. provider %s successfully updated'), $resource->name));
+		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
 	/**
@@ -78,7 +153,10 @@ class AuthProvidersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		if($resource = $this->resource->find($id) and $resource->delete())
+			Session::flash('success', sprintf(_('Auth. provider %s successfully deleted'), $resource->name));
+
+		return Redirect::route("{$this->prefix}.index");
 	}
 
 }

@@ -2,6 +2,8 @@
 
 class Profile extends Stolz\Database\Model {
 
+	protected $guarded = array();
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

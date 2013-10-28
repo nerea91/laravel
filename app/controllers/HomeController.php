@@ -11,8 +11,44 @@ class HomeController extends BaseController {
 	 */
 	public function showMainPage()
 	{
-		$this->layout->title = 'Laravel 4';
-		$this->layout->content = View::make('home.index')->withRoutes(App::make('router')->getRoutes());
+		$data = [
+			'title' => _('Home'),
+			'routes' => [],
+		];
+
+		// Select all GET routes wihtout parameters excluding admin.*
+		foreach(App::make('router')->getRoutes() as $name => $route)
+		{
+			$url = $route->getPath();
+			if (substr($name, 0, 6) != 'admin.' and false === strpos($url, '{') and in_array('GET', $route->getMethods()))
+				$data['routes'][$name] = $url;
+		}
+
+		$this->layout->title = $data['title'];
+		$this->layout->content = View::make('home.home', $data);
+	}
+
+	/**
+	 * Show main page
+	 *
+	 * @return Response
+	 */
+	public function showAdminPage()
+	{
+		$data = [
+			'title' => _('Admin'),
+			'routes' => [],
+		];
+
+		// Select all admin.*.index routes
+		foreach(App::make('router')->getRoutes() as $name => $route)
+		{
+			if($name == 'home' or preg_match('/^admin\..*\.index$/', $name))
+				$data['routes'][$name] = $route->getPath();
+		}
+
+		$this->layout->title = $data['title'];
+		$this->layout->content = View::make('home.home', $data);
 	}
 
 	/**
@@ -23,7 +59,7 @@ class HomeController extends BaseController {
 	public function showContactForm()
 	{
 		$this->layout->title = _('Contact us');
-		$this->layout->content = View::make('home.contact_form');
+		$this->layout->content = View::make('home.contact');
 	}
 
 	/**

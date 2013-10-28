@@ -23,13 +23,12 @@ Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showCon
 Route::post('contact', array('as' => 'send.contact.email', 'uses' => 'HomeController@sendContactEmail'));
 
 //Admin area
+Route::get('admin', array('as' => 'admin', 'before' => 'auth', 'uses' => 'HomeController@showAdminPage'));//to-do añadirle un permiso en la ACL
 Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function() {
-
 	Route::resource('accounts', 'AccountsController');
 	Route::resource('authproviders', 'AuthProvidersController');
 	Route::resource('countries', 'CountriesController');
 	Route::resource('languages', 'LanguagesController');
 	Route::resource('profiles', 'ProfilesController');
 	Route::resource('users', 'UsersController');
-
 });

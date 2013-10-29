@@ -165,6 +165,20 @@ class Model extends Eloquent {
 	}
 
 	/**
+	 * Retrieve one labels
+	 *
+	 * @param string $field
+	 * @return string
+	 */
+	public function getLabel($field)
+	{
+		if( ! isset($this->labels[$field]))
+			return null;
+
+		return $this->labels[$field];
+	}
+
+	/**
 	 * Retrieve all labels
 	 *
 	 * @return array

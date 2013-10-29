@@ -3,7 +3,7 @@
 	<div class="small-11 small-centered large-6 large-centered columns">
 		{{ Form::model($resource, array('route' => "$prefix.store", 'class' => 'custom')) }}
 
-		@include('admin.fields')
+		@include("$prefix.fields")
 
 		<div class="row">
 			<div class="large-6 columns">

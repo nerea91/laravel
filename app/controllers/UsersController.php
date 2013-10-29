@@ -45,9 +45,8 @@ class UsersController extends BaseController {
 	public function index()
 	{
 		$data = [
-			'results'	=> $this->resource->paginate(15),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'prompt'	=> 'username'
+			'results'	=> $this->resource->with('profile', 'country')->paginate(),
+			'labels'	=> (object) $this->resource->getLabels(),
 		];
 
 		if($data['results']->getTotal())

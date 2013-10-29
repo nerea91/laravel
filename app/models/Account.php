@@ -11,7 +11,7 @@ class Account extends Stolz\Database\Model {
 	{
 		parent::__construct($attributes);
 		$this->setRules(array(
-			'uid' => [_('User id'), 'required|max:128'],
+			'uid' => [_('Remote id'), 'required|max:128'],
 			'access_token' => [_('Access token'), 'required'],
 			'nickname' => [_('Nickname'), 'max:128'],
 			'email' => [_('E-mail'), 'email|max:255'],

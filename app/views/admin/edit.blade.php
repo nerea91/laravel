@@ -3,7 +3,7 @@
 	<div class="small-11 small-centered large-6 large-centered columns">
 		{{ Form::model($resource, array('method' => 'PUT', 'route' => array("$prefix.update", $resource->id), 'class' => 'custom')) }}
 
-		@include('admin.fields')
+		@include("$prefix.fields")
 
 		<div class="row">
 			<div class="large-{{ $columns = 12/(1 + $view) }} columns">

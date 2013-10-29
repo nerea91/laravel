@@ -15,7 +15,7 @@ class AuthProvider extends Stolz\Database\Model {
 		$this->setRules(array(
 			'name' => [_('Name'), 'required|alpha_num|max:32|unique'],
 			'title' => [_('Title'), 'required|max:32|unique'],
-			'logins_count' => [_('Login count'), 'integer|min:0'],
+			'login_count' => [_('Login count'), 'integer|min:0'],
 			'oauth2_id' => [_('App id'), 'max:255'],
 			'oauth2_secret' => [_('App secret'), 'max:255'],
 		));

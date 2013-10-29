@@ -10,7 +10,7 @@ class LanguagesController extends BaseController {
 	/**
 	 * The common part of the name shared by all the routes of this controller.
 	 */
-	protected $prefix = 'admin.countries';
+	protected $prefix = 'admin.languages';
 
 	/**
 	 * Instance of the resource that this controller is in charge of.
@@ -45,9 +45,8 @@ class LanguagesController extends BaseController {
 	public function index()
 	{
 		$data = [
-			'results'	=> $this->resource->paginate(15),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'prompt'	=> 'name'
+			'results'	=> $this->resource->paginate(),
+			'labels'	=> (object) $this->resource->getLabels(),
 		];
 
 		if($data['results']->getTotal())

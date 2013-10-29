@@ -3,6 +3,7 @@
 class Language extends Stolz\Database\Model {
 
 	protected $softDelete = true;
+	protected $guarded = array();
 	public $timestamps = false;
 
 	// Validation =============================================================

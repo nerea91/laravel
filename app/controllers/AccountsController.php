@@ -45,9 +45,8 @@ class AccountsController extends BaseController {
 	public function index()
 	{
 		$data = [
-			'results'	=> $this->resource->paginate(15),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'prompt'	=> 'name'
+			'results'	=> $this->resource->with('user', 'provider')->paginate(),
+			'labels'	=> (object) $this->resource->getLabels(),
 		];
 
 		if($data['results']->getTotal())

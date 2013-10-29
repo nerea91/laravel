@@ -114,12 +114,13 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		//require-dev
-		'Barryvdh\Debugbar\ServiceProvider', //laravel-debugbar https://github.com/barryvdh/laravel-debugbar
+		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
 		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
-		'Way\Generators\GeneratorsServiceProvider', //Jeffrey Way generatos for Artisan https://github.com/JeffreyWay/Laravel-4-Generators
+		'Way\Generators\GeneratorsServiceProvider', //https://github.com/JeffreyWay/Laravel-4-Generators
 
 		//require
-		'Stolz\Assets\ManagerServiceProvider', //Stolz assets manager https://github.com/Stolz/Assets
+		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
+		'Stevenmaguire\Foundation\FoundationServiceProvider', //https://github.com/stevenmaguire/zurb-foundation-laravel
 		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
 
 	),

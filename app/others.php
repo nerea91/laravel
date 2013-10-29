@@ -15,15 +15,15 @@
 View::composer('layouts.base', 'BaseLayoutComposer');
 
 //Helpers
-if ( ! function_exists('d'))
+if ( ! function_exists('p'))
 {
 	/**
-	 * Dump the passed variables and end the script.
+	 * Print the passed variables and end the script.
 	 *
 	 * @param  dynamic  mixed
-	 * @return void
+	 * @return string
 	 */
-	function d()
+	function p()
 	{
 		echo '<pre>';
 		array_map(function($x) { print_r($x); }, func_get_args());
@@ -31,3 +31,19 @@ if ( ! function_exists('d'))
 		die;
 	}
 }
+
+if ( ! function_exists('d'))
+{
+	/**
+	 * Log the passed to FirePHP
+	 *
+	 * @param  dynamic  mixed
+	 * @return voir
+	 */
+	function d()
+	{
+		$firephp = new FirePHP;
+		array_map(function($x) use ($firephp) { $firephp->log($x); }, func_get_args());
+	}
+}
+

@@ -15,31 +15,24 @@
 		@endif
 
 		<div class="row">
-			<div class="large-7 columns {{ ($e = $errors->has('name')) ? 'error' : null }}">
+			<div class="large-7 columns">
 				{{ Form::text('name', null, ['placeholder' => '* ' . _('Name'), 'autofocus']) }}
-				@if($e)<small>{{$errors->first('name');}}</small>@endif
 			</div>
-			<div class="large-5 columns {{ ($e = $errors->has('company')) ? 'error' : null }}">
+			<div class="large-5 columns">
 				{{ Form::text('company', null, ['placeholder' => _('Company')]) }}
-				@if($e)<small>{{$errors->first('company');}}</small>@endif
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="large-7 columns {{ ($e = $errors->has('email')) ? 'error' : null }}">
+			<div class="large-7 columns">
 				{{ Form::email('email', null, ['placeholder' => '* ' . _('E-mail')]) }}
-				@if($e)<small>{{$errors->first('email');}}</small>@endif
 			</div>
-			<div class="large-5 columns {{ ($e = $errors->has('phone')) ? 'error' : null }}">
+			<div class="large-5 columns">
 				{{ Form::text('phone', null, ['placeholder' => _('Phone')]) }}
-				@if($e)<small>{{$errors->first('phone');}}</small>@endif
 			</div>
 		</div>
 
-		<div class="{{ ($e = $errors->has('message')) ? 'error' : null }}">
-			{{ Form::textarea('message', null, ['placeholder' => '* ' . _('Message')]) }}
-			@if($e)<small>{{$errors->first('message');}}</small>@endif
-		</div>
+		{{ Form::textarea('message', null, ['placeholder' => '* ' . _('Message')]) }}
 
 		{{ Form::submit(_('Send'), ['class' => 'radius small button expand']) }}
 

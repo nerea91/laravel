@@ -24,5 +24,3 @@
 	</div>
 </div>
 @stop
-
-{{-- to-do mostrar boton para volver atras --}

@@ -6,6 +6,7 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"stolz/assets": "dev-master",
+		"stevenmaguire/foundation": "dev-master",
 		"binarix/foundation-pagination": "dev-master"
 	},
 	"require-dev": {

@@ -14,24 +14,14 @@
 		@endif
 
 		{{ Form::open(['action' => 'AuthController@doLogin']) }}
-
-		<div class="{{ ($e = $errors->has('username')) ? 'error' : null }}">
 		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
-		@if($e)<small>{{ $errors->first('username') }}</small>@endif
-		</div>
-
-		<div class="{{ ($e = $errors->has('password')) ? 'error' : null }}">
 		{{ Form::password('password', ['placeholder' => _('Password')]) }}
-		@if($e)<small>{{ $errors->first('password') }}</small>@endif
-		</div>
-
 		{{ Form::submit(_('Login'), ['class' => 'radius small button expand']) }}
 
 		<label class="left">
 			{{ Form::checkbox('remember') }}
 			&nbsp;{{ _('Remember me') }}
 		</label>
-
 		<span class="right"><a href="#" data-reveal-id="problems">{{ _('Problems?') }}</a>
 
 		{{ Form::close() }}

@@ -42,18 +42,35 @@ if ( ! function_exists('p'))
 	}
 }
 
-if ( ! function_exists('d'))
+if ( ! function_exists('f'))
 {
 	/**
-	 * Log the passed to FirePHP
+	 * Log the passed variable to FirePHP
 	 *
 	 * @param  mixed $value
 	 * @param  string $label
 	 * @return void
 	 */
-	function d($value, $label = null)
+	function f($value, $label = null)
 	{
 		(new FirePHP)->log($value, $label);
+	}
+}
+
+if ( ! function_exists('d'))
+{
+	/**
+	 * Dump (with colors) the passed variable and end the script.
+	 *
+	 * @param  mixed $value
+	 * @return void
+	 */
+	function d($value)
+	{
+		echo '<pre>';
+		echo TVarDumper::dump($value);
+		echo '</pre>';
+		die;
 	}
 }
 

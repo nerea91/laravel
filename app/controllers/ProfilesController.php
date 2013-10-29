@@ -66,8 +66,16 @@ class ProfilesController extends BaseController {
 	{
 		$data = [
 			'resource'	=> new Profile(Input::all()),
-			'labels'	=> $this->resource->getFillableLabels(),
+			'types'		=> PermissionType::has('permissions')->orderBy('name')->get()->lists('name', 'id'), //to-do parar esto a uns cope para poder reusarlo en este mismo controalador
 		];
+
+		//Split permissions by type
+		$permissions = array();
+		Permission::orderBy('type_id')->orderBy('name')->get()->each(function($p) use (&$permissions)
+		{
+			$permissions[$p->type_id][$p->id] = $p->name;
+		});
+		$data['permissions'] = $permissions;
 
 		$this->layout->title = _('Profile');
 		$this->layout->subtitle = _('Add');

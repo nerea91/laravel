@@ -20,7 +20,7 @@ class PermissionType extends Stolz\Database\Model {
 
 	public function permissions()
 	{
-		return $this->hasMany('Permission');
+		return $this->hasMany('Permission', 'type_id');
 	}
 
 	// Logic ==================================================================

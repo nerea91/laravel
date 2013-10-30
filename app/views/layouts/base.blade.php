@@ -1,4 +1,4 @@
-<?php if ($debugbar = Config::get('laravel-debugbar::config.enabled', false)) Assets::add('debugbar'); ?><!DOCTYPE html>
+<!DOCTYPE html>
 <html class="no-js" lang="{{ $lang->code }}">
 	<head>
 		{{-- Current page info --}}
@@ -52,7 +52,7 @@
 		</script>
 		@endif
 
-		@if ($debugbar){{ $app['debugbar']->getJavascriptRenderer()->render() }}@endif
+		@if ($debugbar){{ $debugbar }}@endif
 
 	</body>
 </html>

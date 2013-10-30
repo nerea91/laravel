@@ -12,7 +12,7 @@ return array(
 	|
 	*/
 
-	'name' => 'My Laravel Project', //to-do
+	'name' => 'Test Project', //to-do
 
 	/*
 	 | -------------------------------------------------------------------------

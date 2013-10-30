@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if ($debugbar = Config::get('laravel-debugbar::config.enabled', false)) Assets::add('debugbar'); ?><!DOCTYPE html>
 <html class="no-js" lang="{{ $lang->code }}">
 	<head>
 		{{-- Current page info --}}
@@ -51,5 +51,8 @@
 			ga('create','{{Config::get("site.googleanalytics")}}');ga('send','pageview');
 		</script>
 		@endif
+
+		@if ($debugbar){{ $app['debugbar']->getJavascriptRenderer()->render() }}@endif
+
 	</body>
 </html>

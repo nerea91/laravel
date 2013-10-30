@@ -24,4 +24,13 @@ class PermissionType extends Stolz\Database\Model {
 	}
 
 	// Logic ==================================================================
+
+	/**
+	 * Get types with at least one permission
+	 */
+	public function scopeGetUsed($query)
+	{
+		return $query->has('permissions')->orderBy('name')->remember(60*24)->get();
+	}
+
 }

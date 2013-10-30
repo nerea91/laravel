@@ -65,17 +65,10 @@ class ProfilesController extends BaseController {
 	public function create()
 	{
 		$data = [
-			'resource'	=> new Profile(Input::all()),
-			'types'		=> PermissionType::has('permissions')->orderBy('name')->get()->lists('name', 'id'), //to-do parar esto a uns cope para poder reusarlo en este mismo controalador
+			'resource'	=> $this->resource->fill(Input::all()),
+			'types'		=> PermissionType::getUsed()->lists('name', 'id'),
+			'permissions'=> (new Permission)->getGroupedByType(),
 		];
-
-		//Split permissions by type
-		$permissions = array();
-		Permission::orderBy('type_id')->orderBy('name')->get()->each(function($p) use (&$permissions)
-		{
-			$permissions[$p->type_id][$p->id] = $p->name;
-		});
-		$data['permissions'] = $permissions;
 
 		$this->layout->title = _('Profile');
 		$this->layout->subtitle = _('Add');
@@ -89,13 +82,20 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		$resource =  new Profile(Input::all());
+		$resource = $this->resource->newInstance(Input::all());
+		$resource->validate();
 
-		if( ! $resource->save())
+		//Make sure at least one permission has been selected
+		if( ! $permissions = Input::get('permissions'))
+			$resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
+
+		if($resource->hasErrors())
 			return Redirect::back()->withInput()->withErrors($resource->getErrors());
 
+		d(':)');
+		/*to-do
 		Session::flash('success', sprintf(_('Profile %s successfully created'), $resource->name));
-		return Redirect::route("{$this->prefix}.show", $resource->getKey());
+		return Redirect::route("{$this->prefix}.show", $resource->getKey());*/
 	}
 
 	/**

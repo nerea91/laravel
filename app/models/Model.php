@@ -53,6 +53,8 @@ class Model extends Eloquent {
 	 */
 	protected $errors;
 
+	// Events ==================================================================
+
 	/**
 	 * Listen for save event
 	 */
@@ -65,6 +67,8 @@ class Model extends Eloquent {
 			return $model->validate();
 		});
 	}
+
+	// Logic ==================================================================
 
 	/**
 	 * Validate current attributes against rules
@@ -137,7 +141,8 @@ class Model extends Eloquent {
 	/**
 	 * Set error message bag
 	 *
-	 * @var Illuminate\Support\MessageBag
+	 * @param Illuminate\Support\MessageBag
+	 * @return void
 	 */
 	protected function setErrors($errors)
 	{

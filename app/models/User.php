@@ -103,7 +103,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 			return false;
 
 		//Store profile permissions in cache to save some queries
-		$profile_permissions = Cache::remember('profile'.$this->profile_id.'permissions', 60, function() {
+		$profile_permissions = Cache::remember("profile{$this->profile_id}permissions", 60, function() {
 			return $this->profile->permissions->lists('id');
 		});
 
@@ -126,7 +126,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 			return false;
 
 		//Store profile permissions in cache to save some queries
-		$profile_permissions = Cache::remember('profile'.$this->profile_id.'permissions', 60, function() {
+		$profile_permissions = Cache::remember("profile{$this->profile_id}permissions", 60, function() {
 			return $this->profile->permissions->lists('id');
 		});
 

@@ -39,6 +39,13 @@ class Profile extends Stolz\Database\Model {
 			if($model->id == 1)
 				return false;
 		});
+
+		static::updated(function($model)
+		{
+			//Purge permissions cache
+			Cache::forget("profile{$this->id}permissions");
+		});
+
 	}
 
 	// Logic ==================================================================

@@ -29,4 +29,17 @@ class Permission extends Stolz\Database\Model {
 	}
 
 	// Logic ==================================================================
+
+	/**
+	 * Gets permissions grouped by type
+	 *
+	 * @return array
+	 */
+	public function getGroupedByType()
+	{
+		$permissions = array();
+		foreach($this->orderBy('name')->remember(60*24)->get() as $p)
+			$permissions[$p->type_id][$p->id] = $p->name;
+		return $permissions;
+	}
 }

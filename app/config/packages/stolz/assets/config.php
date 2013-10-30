@@ -49,8 +49,20 @@ return array(
 			'twitter/bootstrap:bootstrap.min.js'
 		],
 
-		//Assets for admin panel
+		// Assets for admin panel
 		'admin' => ['admin.css','admin.js'],
+
+		// PHP debugbar
+		'debugbar' => [
+			'//laravel/packages/barryvdh/laravel-debugbar/vendor/font-awesome/css/font-awesome.min.css',
+			'//laravel/packages/barryvdh/laravel-debugbar/widgets.css',
+			'//laravel/packages/barryvdh/laravel-debugbar/openhandler.css',
+			'//laravel/packages/barryvdh/laravel-debugbar/debugbar.css',
+			'//laravel/packages/barryvdh/laravel-debugbar/debugbar.js',
+			'//laravel/packages/barryvdh/laravel-debugbar/widgets.js',
+			'//laravel/packages/barryvdh/laravel-debugbar/openhandler.js',
+		],
+
 	),
 
 );

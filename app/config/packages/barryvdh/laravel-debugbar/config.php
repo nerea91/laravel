@@ -11,7 +11,7 @@ return array(
   | Debugbar is enabled by default, when debug is set to true in app.php.
   |
   */
-  'enabled' => \Config::get('app.debug') and ! \Config::get('tidy.enabled', false),
+  'enabled' => \Config::get('app.debug'),
 
   /*
    |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return array(
    | Vendor files are for css: font-awesome (including fonts) en for js: jquery 1.8.3
    |
    */
-  'include_vendors' => 'css',
+  'include_vendors' => false,
 
   /*
    |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return array(
 
  /*
   |--------------------------------------------------------------------------
-  | Event logging
+  | DataCollectors
   |--------------------------------------------------------------------------
   |
   | Enable/disable DataCollectors
@@ -61,9 +61,40 @@ return array(
        'default_request'=> false,   // Regular or special Symfony request logger
        'symfony_request'=> true,    // Only one can be enabled..
        'mail' => true,              // Catch mail messages
-       'mail_log' => false,         // Display full mail log in messages
 
-   )
+   ),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Extra options
+     |--------------------------------------------------------------------------
+     |
+     | Configure some DataCollectors
+     |
+     */
+    'options' => array(
+        'pdo' => array(
+            'with_params'   => true,    // Render SQL with the parameters substituted
+            'extra_connections' => array(   //Add extra connections to the PDO Collector
+                // 'mysql',
+            )
+        ),
+        'mail' => array(
+            'full_log' => false
+        )
+    ),
+
+ /*
+  |--------------------------------------------------------------------------
+  | Inject Debugbar in Response
+  |--------------------------------------------------------------------------
+  |
+  | Usually, the debugbar is added just before <body>, by listening to the
+  | Response after the App is done. If you disable this, you have to add them
+  | in your template yourself. See http://phpdebugbar.com/docs/rendering.html
+  |
+  */
+  'inject' => false,
 
 
 );

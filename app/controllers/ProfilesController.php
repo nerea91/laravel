@@ -89,12 +89,16 @@ class ProfilesController extends BaseController {
 		if( ! $permissions = Input::get('permissions'))
 			$resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
 
+		//Make sure there is no similar profile
+		elseif(false !== ($similar = Profile::existSimilar($permissions)))
+			$resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions. No duplicates allowed.'), $similar));
+
 		if($resource->hasErrors())
 			return Redirect::back()->withInput()->withErrors($resource->getErrors());
 
 		d('to-do');
 		/*to-do
-		 * acordarse de lanzar a mano el evento profile.update para que se borre la cacje de permisos. Hay que hacerlo a amano porque si solo se cambian los permisos pero no el nombre ni la descriopcion entonces el evento no se lanza ya que solo se cambia la tabla pivot
+		 * acordarse de lanzar a mano el evento profile.update para que se borre la cache de permisos. Hay que hacerlo a amano porque si solo se cambian los permisos pero no el nombre ni la descriopcion entonces el evento no se lanza ya que solo se cambia la tabla pivot
 		Session::flash('success', sprintf(_('Profile %s successfully created'), $resource->name));
 		return Redirect::route("{$this->prefix}.show", $resource->getKey());*/
 	}

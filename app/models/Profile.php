@@ -114,4 +114,33 @@ class Profile extends Stolz\Database\Model {
 
 		return false;
 	}
+
+	/**
+	 * Determine if already exists a profile which has exactly
+	 * the provided permissions.
+	 *
+	 * If no profiles are found returns bolean FALSE, otherwise
+	 * returns the profile name.
+	 *
+	 * @param  array   $permissions
+	 * @param  integer $excluded_id
+	 * @return mixed   boolean|string
+	 */
+	public static function existSimilar($permissions, $excluded_id = null)
+	{
+		$profiles = (is_null($excluded_id)) ? Profile::all() : Profile::where('id', '<>', $excluded_id)->get();
+		$permissions = array_map('intval', $permissions);
+		sort($permissions);
+
+		foreach($profiles as $p)
+		{
+			$profile_permissions = $p->getPermissions();
+			sort($profile_permissions);
+
+			if($permissions == $profile_permissions)
+				return $p->name;
+		}
+
+		return false;
+	}
 }

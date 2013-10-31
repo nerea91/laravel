@@ -92,8 +92,9 @@ class ProfilesController extends BaseController {
 		if($resource->hasErrors())
 			return Redirect::back()->withInput()->withErrors($resource->getErrors());
 
-		d(':)');
+		d('to-do');
 		/*to-do
+		 * acordarse de lanzar a mano el evento profile.update para que se borre la cacje de permisos. Hay que hacerlo a amano porque si solo se cambian los permisos pero no el nombre ni la descriopcion entonces el evento no se lanza ya que solo se cambia la tabla pivot
 		Session::flash('success', sprintf(_('Profile %s successfully created'), $resource->name));
 		return Redirect::route("{$this->prefix}.show", $resource->getKey());*/
 	}

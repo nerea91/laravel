@@ -93,51 +93,30 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	/**
 	 * Check if user's profile has ALL of the provided permissions
 	 *
-	 * @param  mixed $permissions
+	 * @param dynamic
 	 * @return bool
 	 */
-	public function hasPermission($permissions)
+	public function hasPermission()
 	{
 		//Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 
-		//Store profile permissions in cache to save some queries
-		$profile_permissions = Cache::remember("profile{$this->profile_id}permissions", 60, function() {
-			return $this->profile->permissions->lists('id');
-		});
-
-		$permissions = is_array($permissions) ? $permissions : func_get_args();
-
-		return (0 == count(array_diff($permissions, $profile_permissions)));
+		return $this->profile->hasPermission(func_get_args());
 	}
 
 	/**
-	 * Check if user's profile has ANY of the required permissions
+	 * Check if user's profile has ANY of the provided permissions
 	 *
-	 *
-	 * @param  mixed $permissions
+	 * @param dynamic
 	 * @return bool
 	 */
-	public function hasAnyPermission($permissions)
+	public function hasAnyPermission()
 	{
 		//Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 
-		//Store profile permissions in cache to save some queries
-		$profile_permissions = Cache::remember("profile{$this->profile_id}permissions", 60, function() {
-			return $this->profile->permissions->lists('id');
-		});
-
-		$permissions = is_array($permissions) ? $permissions : func_get_args();
-
-		foreach($profile_permissions as $p)
-		{
-			if(in_array($p, $permissions))
-				return true;
-		}
-
-		return false;
+		return $this->profile->hasAnyPermission(func_get_args());
 	}
 }

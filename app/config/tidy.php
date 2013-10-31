@@ -50,6 +50,7 @@ return array(
 		// workaround to hide errors related to HTML5
 		"/line.*proprietary attribute \"data-.*\n?/",
 		"/line.*proprietary attribute \"placeholder.*\n?/",
+		"/line.*proprietary attribute \"autofocus.*\n?/",
 		"/line.*is not approved by W3C\n?/",
 		"/line.*<html> proprietary attribute \"class\"\n?/",
 		"/line.*<meta> proprietary attribute \"charset\"\n?/",

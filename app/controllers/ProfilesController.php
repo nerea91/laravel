@@ -67,7 +67,8 @@ class ProfilesController extends BaseController {
 		$data = [
 			'resource'	=> $this->resource->fill(Input::all()),
 			'types'		=> PermissionType::getUsed()->lists('name', 'id'),
-			'permissions'=> (new Permission)->getGroupedByType(),
+			'all'		=> Permission::getGroupedByType(),
+			'checked'	=> [], //Laravel will handle it
 		];
 
 		$this->layout->title = _('Profile');
@@ -82,25 +83,20 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		$resource = $this->resource->newInstance(Input::all());
-		$resource->validate();
+		$this->resource = $this->resource->newInstance(Input::only('name', 'description'));
+		$this->resource->validate();
+		$this->validatePermissions($permissions = Input::get('permissions'));
 
-		//Make sure at least one permission has been selected
-		if( ! $permissions = Input::get('permissions'))
-			$resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
+		if($this->resource->hasErrors())
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
 
-		//Make sure there is no similar profile
-		elseif(false !== ($similar = Profile::existSimilar($permissions)))
-			$resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions. No duplicates allowed.'), $similar));
+		DB::transaction(function() use ($permissions)
+		{
+			$this->resource->save() and $this->resource->permissions()->attach($permissions);
+		});
 
-		if($resource->hasErrors())
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
-
-		d('to-do');
-		/*to-do
-		 * acordarse de lanzar a mano el evento profile.update para que se borre la cache de permisos. Hay que hacerlo a amano porque si solo se cambian los permisos pero no el nombre ni la descriopcion entonces el evento no se lanza ya que solo se cambia la tabla pivot
-		Session::flash('success', sprintf(_('Profile %s successfully created'), $resource->name));
-		return Redirect::route("{$this->prefix}.show", $resource->getKey());*/
+		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));
+		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
 	}
 
 	/**
@@ -131,8 +127,10 @@ class ProfilesController extends BaseController {
 	public function edit($id)
 	{
 		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getFillableLabels(),
+			'resource'	=> $this->resource = $this->resource->findOrFail($id),
+			'types'		=> PermissionType::getUsed()->lists('name', 'id'),
+			'all'		=> Permission::getGroupedByType(),
+			'checked'	=> $this->resource->permissions->lists('id'),
 		];
 
 		$this->layout->title = _('Profile');
@@ -148,13 +146,10 @@ class ProfilesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$resource = $this->resource->findOrFail($id);
 
-		if( ! $resource->update(Input::all()))
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+		/*to-do  Comprobar si en caso de no cambiar el nombre nila descripcion sino solo los permisos
+		 el evento update del model perfil se lanza o no. Si no se lanza lanzarlo a mano para que el listener que borra la cache de permisos se ejecute*/
 
-		Session::flash('success', sprintf(_('Profile %s successfully updated'), $resource->name));
-		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
 	/**
@@ -169,6 +164,27 @@ class ProfilesController extends BaseController {
 			Session::flash('success', sprintf(_('Profile %s successfully deleted'), $resource->name));
 
 		return Redirect::route("{$this->prefix}.index");
+	}
+
+	/**
+	 * Common validation fro store() and update()
+	 *
+	 * @param  array $permissions
+	 * @return void
+	 */
+	protected function validatePermissions(array $permissions)
+	{
+		//Make sure at least one permission has been selected
+		if( ! $count = count($permissions))
+			$this->resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
+
+		//Make sure all the provided permissions actually exist
+		elseif($count != Permission::whereIn('id', $permissions)->get()->count())
+			$this->resource->getErrors()->add('permissions', _('Some of the provided permission were not recognized'));
+
+		//Make sure there is no similar profile
+		elseif(false !== ($similar = Profile::existSimilar($permissions)))
+			$this->resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions'), $similar).'. '._('No duplicates allowed'));
 	}
 
 }

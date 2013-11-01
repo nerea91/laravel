@@ -70,6 +70,12 @@ class Model extends Eloquent {
 
 	// Logic ==================================================================
 
+		public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->errors = new \Illuminate\Support\MessageBag;
+	}
+
 	/**
 	 * Validate current attributes against rules
 	 *
@@ -129,7 +135,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve rules
+	 * Retrieve all rules for this model
 	 *
 	 * @return array
 	 */
@@ -146,7 +152,7 @@ class Model extends Eloquent {
 	 */
 	protected function setErrors($errors)
 	{
-		$this->errors = $errors;
+		$this->errors->merge($errors->toArray());
 	}
 
 	/**
@@ -160,13 +166,13 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Inverse of wasSaved
+	 * Deterine if there are any validation errors
 	 *
 	 * @return boolean
 	 */
 	public function hasErrors()
 	{
-		return ! empty($this->errors);
+		return $this->errors->any();
 	}
 
 	/**
@@ -216,6 +222,7 @@ class Model extends Eloquent {
 	public function getFillableLabels()
 	{
 		$fillable = array();
+
 		foreach($this->labels as $key => $value)
 		{
 			if($this->isFillable($key))

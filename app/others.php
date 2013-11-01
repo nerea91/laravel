@@ -130,7 +130,7 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 	foreach($values as $value => $label)
 	{
 		$options['id'] = $id = $name . $value;
-		$check = (in_array($value, $checked)) ? true : null;
+		$check = in_array($value, $checked);
 
 		$out .= '<li><label for="' . $id . '" style="display:inline">';
 		$out .= ($type == 'radio') ? Form::radio($name.'[]', $value, $check, $options) : Form::checkbox($name.'[]', $value, $check, $options);

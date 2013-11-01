@@ -6,11 +6,12 @@
 	Form::text($f)
 }}
 
-<div class="{{ ($errors->has('permissions')) ? 'error' : null }}">
+<div class="{{ ($e = $errors->has('permissions')) ? 'error' : null }}">
 	{{ Form::label('permissions', _('Permissions'))}}
+	@if($e)<small>{{ $errors->first('permissions') }}</small>@endif
 
 	@foreach ($types as $type_id => $type)
-		{{ Form::checkboxes('permissions', $permissions[$type_id], [], ['legend' => $type]) }}
+	{{ Form::checkboxes('permissions', $all[$type_id], $checked, ['legend' => $type]) }}
 	@endforeach
 </div>
 

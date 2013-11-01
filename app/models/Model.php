@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 	- Validation in the model.
 	- Labels for database fields.
 	- Compact 'unique' validation rule.
+	- Global muttator to replace empty strings with NULL values.
+	- Model event trigger.
 
 	Usage example:
 
@@ -56,7 +58,7 @@ class Model extends Eloquent {
 	// Events ==================================================================
 
 	/**
-	 * Listen for save event
+	 * Event listeners
 	 */
 	protected static function boot()
 	{
@@ -72,6 +74,15 @@ class Model extends Eloquent {
 			//Validate model before saving it
 			return $model->validate();
 		});
+	}
+
+	/**
+	 * Event trigger
+	 */
+	public function fireEvent($event)
+	{
+		$halt = ends_with($event, 'ing');
+		return parent::fireModelEvent($event, $halt);
 	}
 
 	// Logic ==================================================================

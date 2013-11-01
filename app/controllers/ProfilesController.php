@@ -164,7 +164,7 @@ class ProfilesController extends BaseController {
 		{
 			$this->resource->save() and $this->resource->permissions()->sync($permissions);
 			//Changes in pivot tables don't fire events in models so we fire it manually to purge permissions cache
-			$this->resource->fireModelEvent('saved', false);
+			$this->resource->fireEvent('updated');
 		});
 
 		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));

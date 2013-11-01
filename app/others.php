@@ -115,7 +115,7 @@ Form::macro('radios', function ($name, $values, $checked = array(), $options = a
  * @param  string  $name
  * @param  array   $values
  * @param  array   $checked
- * @param  array   $options
+ * @param  array   $options Use $options['legend'] to get a fieldset with legend
  * @return string
  */
 

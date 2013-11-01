@@ -96,7 +96,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 </ul></li>
 <li><a href="#redirect">Redirecciones</a>.</li>
 </ul></li>
-<li><a href="#controllers">Controladores</a>.
+<li><a style="" href="#controllers">Controladores</a>.
 <ul>
 <li><a href="#RESTful_controllers">Controladores RESTful</a>.</li>
 <li><a href="#resource_controllers">Controladores RESTful de recurso</a>.</li>
@@ -114,6 +114,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 <li><a href="#model_delete">Borrar</a>.</li>
 <li><a href="#model_softdel">SoftDelete</a>.</li>
 <li><a href="#model_scope">Consultas con nombre</a>.</li>
+<li><a style="" href="#transactions">Transacciones</a>.</li>
 <li><a href="#model_relationships">Definir relaciones</a> (<a href="#rel1-1">1-1</a>, <a href="#rel1-n">1-n</a>, <a href="#reln-m">n-m</a>).</li>
 <li><a href="#model_eager">Incluir relacionados en los resultados</a>.</li>
 <li><a href="#model_relate">Relacionar modelos</a>.</li>
@@ -1444,6 +1445,29 @@ public function scopeWomen($query)
 <p>Para usarlo</p>
 
 <pre><code>$users = User::ofType('member')-&gt;get();
+</code></pre>
+
+<p><a id="transactions"></a></p>
+
+<h3>Transacciones</h3>
+
+<p>Todo lo que se ejecute dentro de esta <em>closure</em> lo hará en una misma transacción. Si dentro de la función se lanza una excepción la transacción será revertida automáticamente.</p>
+
+<pre><code>DB::transaction(function()
+{
+    // Consultas de BD
+});
+</code></pre>
+
+<p>Para tener control manual de la transacción</p>
+
+<pre><code>try {
+    DB::connection()-&gt;pdo-&gt;beginTransaction();
+    // Consultas de BD
+    DB::connection()-&gt;pdo-&gt;commit();
+} catch (\PDOException $e) {
+    DB::connection()-&gt;pdo-&gt;rollBack();
+}
 </code></pre>
 
 <p><a id="model_relationships"></a></p>

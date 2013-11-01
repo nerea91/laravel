@@ -31,7 +31,7 @@ class Permission extends Stolz\Database\Model {
 	// Logic ==================================================================
 
 	/**
-	 * Gets permissions grouped by type.
+	 * Get ALL permissions grouped by type.
 	 *
 	 * @return array
 	 */

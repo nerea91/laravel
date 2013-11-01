@@ -65,7 +65,7 @@ class ProfilesController extends BaseController {
 	public function create()
 	{
 		$data = [
-			'resource'	=> $this->resource->fill(Input::all()),
+			'resource'	=> $this->resource,
 			'types'		=> PermissionType::getUsed()->lists('name', 'id'),
 			'all'		=> Permission::getGroupedByType(),
 			'checked'	=> [], //Laravel will handle it
@@ -107,10 +107,12 @@ class ProfilesController extends BaseController {
 	 */
 	public function show($id)
 	{
+		$this->resource = $this->resource->findOrFail($id);
 		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'prompt'	=> 'name'
+			'resource'	=> $this->resource,
+			'prompt'	=> 'name',
+			'permissions' => $this->resource->getPermissionsGroupedByType(true),
+			'users'		=> $this->resource->users()->orderBy('username')->lists('username')
 		];
 
 		$this->layout->title = _('Profile');
@@ -126,12 +128,17 @@ class ProfilesController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		$this->resource = $this->resource->findOrFail($id);
+
 		$data = [
-			'resource'	=> $this->resource = $this->resource->findOrFail($id),
+			'resource'	=> $this->resource,
 			'types'		=> PermissionType::getUsed()->lists('name', 'id'),
 			'all'		=> Permission::getGroupedByType(),
 			'checked'	=> $this->resource->permissions->lists('id'),
 		];
+		//to-do por un bug se marcan todos como checked cuando solo deberían marcarse los aui indicados
+		//http://forums.laravel.io/viewtopic.php?pid=54313
+		//https://github.com/laravel/framework/issues/2548
 
 		$this->layout->title = _('Profile');
 		$this->layout->subtitle = _('Edit');
@@ -146,10 +153,22 @@ class ProfilesController extends BaseController {
 	 */
 	public function update($id)
 	{
+		$this->resource = $this->resource->findOrFail($id);
+		$this->resource->validate();
+		$this->validatePermissions($permissions = Input::get('permissions'), $id);
 
-		/*to-do  Comprobar si en caso de no cambiar el nombre nila descripcion sino solo los permisos
-		 el evento update del model perfil se lanza o no. Si no se lanza lanzarlo a mano para que el listener que borra la cache de permisos se ejecute*/
+		if($this->resource->hasErrors())
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
 
+		DB::transaction(function() use ($permissions)
+		{
+			$this->resource->save() and $this->resource->permissions()->sync($permissions);
+			//Changes in pivot tables don't fire events in models so we fire it manually to purge permissions cache
+			$this->resource->fireModelEvent('saved', false);
+		});
+
+		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));
+		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
 	}
 
 	/**
@@ -170,10 +189,12 @@ class ProfilesController extends BaseController {
 	 * Common validation fro store() and update()
 	 *
 	 * @param  array $permissions
+	 * @param  integer $excluded_id
 	 * @return void
 	 */
-	protected function validatePermissions(array $permissions)
+	protected function validatePermissions($permissions, $excluded_id = null)
 	{
+		$permissions = (array) $permissions;
 		//Make sure at least one permission has been selected
 		if( ! $count = count($permissions))
 			$this->resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
@@ -183,7 +204,7 @@ class ProfilesController extends BaseController {
 			$this->resource->getErrors()->add('permissions', _('Some of the provided permission were not recognized'));
 
 		//Make sure there is no similar profile
-		elseif(false !== ($similar = Profile::existSimilar($permissions)))
+		elseif(false !== ($similar = Profile::existSimilar($permissions, $excluded_id)))
 			$this->resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions'), $similar).'. '._('No duplicates allowed'));
 	}
 

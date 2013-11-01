@@ -76,6 +76,26 @@ class Profile extends Stolz\Database\Model {
 	}
 
 	/**
+	 * Get profile permissions grouped by type.
+	 *
+	 * @param  boolean $use_type_name_for_keys
+	 * @return array
+	 */
+	public function getPermissionsGroupedByType($use_type_name_for_keys = false)
+	{
+		//Unsaved profiles have no permissions
+		if( ! $this->id)
+			return array();
+
+		$permissions = array();
+		foreach($this->permissions()->with('type')->orderBy('name')->get() as $p)
+			$permissions[($use_type_name_for_keys) ? $p->type->name : $p->type_id][$p->id] = $p->name;
+
+		ksort($permissions);
+		return $permissions;
+	}
+
+	/**
 	 * Check if profile has ALL of the provided permissions
 	 *
 	 * @param dynamic $permissions

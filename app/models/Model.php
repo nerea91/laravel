@@ -64,6 +64,12 @@ class Model extends Eloquent {
 
 		static::saving(function($model)
 		{
+			//Global muttator to convert empty attributes to null
+			foreach ($model->toArray() as $name => $value)
+				if (empty($value))
+					$model->{$name} = null;
+
+			//Validate model before saving it
 			return $model->validate();
 		});
 	}

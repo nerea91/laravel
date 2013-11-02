@@ -29,7 +29,7 @@ class AccountsController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(100),
 			'add'		=> Auth::user()->hasPermission(101),
 			'edit'		=> Auth::user()->hasPermission(102),

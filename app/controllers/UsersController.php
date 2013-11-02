@@ -29,7 +29,7 @@ class UsersController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(60),
 			'add'		=> Auth::user()->hasPermission(61),
 			'edit'		=> Auth::user()->hasPermission(62),
@@ -58,39 +58,6 @@ class UsersController extends BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$data = [
-			'resource'	=> new User(Input::all()),
-			'labels'	=> $this->resource->getFillableLabels(),
-		];
-
-		$this->layout->title = _('User');
-		$this->layout->subtitle = _('Add');
-		$this->layout->content = View::make('admin.create', $data);
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$resource =  new User(Input::all());
-
-		if( ! $resource->save())
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
-
-		Session::flash('success', sprintf(_('User %s successfully created'), $resource->username));
-		return Redirect::route("{$this->prefix}.show", $resource->getKey());
-	}
-
-	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -98,9 +65,10 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
+		$this->resource = $this->resource->findOrFail($id);
+
 		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getVisibleLabels(),
+			'resource'	=> $this->resource,
 			'prompt'	=> 'username'
 		];
 
@@ -108,6 +76,23 @@ class UsersController extends BaseController {
 		$this->layout->subtitle = _('Details');
 		$this->layout->content = View::make('admin.show', $data);
 	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		$data = [
+			'resource'	=> $this->resource,
+		];
+
+		$this->layout->title = _('User');
+		$this->layout->subtitle = _('Add');
+		$this->layout->content = View::make('admin.create', $data);
+	}
+
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -118,13 +103,29 @@ class UsersController extends BaseController {
 	public function edit($id)
 	{
 		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getFillableLabels(),
+			'resource'	=> $this->resource->findOrFail($id)
 		];
 
 		$this->layout->title = _('User');
 		$this->layout->subtitle = _('Edit');
 		$this->layout->content = View::make('admin.edit', $data);
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$this->resource = $this->resource->newInstance(Input::only('username', 'name', 'description', 'profile_id', 'country_id'));
+
+		// Validate and save
+		if( ! $this->validateCommon() or ! $this->resource->save())
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
+
+		Session::flash('success', sprintf(_('User %s successfully created'), $this->resource->username));
+		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
 	}
 
 	/**
@@ -135,12 +136,13 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$resource = $this->resource->findOrFail($id);
+		$this->resource = $this->resource->findOrFail($id)->fill(Input::only('username', 'name', 'description', 'profile_id', 'country_id'));
 
-		if( ! $resource->update(Input::all()))
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+		// Validate and save
+		if( ! $this->validateCommon(false) or ! $this->resource->save())
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
 
-		Session::flash('success', sprintf(_('User %s successfully updated'), $resource->username));
+		Session::flash('success', sprintf(_('User %s successfully updated'), $this->resource->username));
 		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
@@ -152,10 +154,49 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if($resource = $this->resource->find($id) and $resource->delete())
-			Session::flash('success', sprintf(_('User %s successfully deleted'), $resource->username));
+		$this->resource = $this->resource->findOrFail($id);
+
+		if($this->resource->delete())
+			Session::flash('success', sprintf(_('User %s successfully deleted'), $this->resource->username));
 
 		return Redirect::route("{$this->prefix}.index");
 	}
 
+	/**
+	 * Common validation for $this->store() and $this->update()
+	 *
+	 * @param  boolean $require_password
+	 * @return boolean
+	 */
+	protected function validateCommon($require_password = true)
+	{
+		$require_password = ($require_password or strlen($password)>0);
+
+		// Country is optional
+		if( ! intval($this->resource->country_id))
+			$this->resource->resetRule('country_id', 'exists')->country_id = null;
+
+		// Guarded attributes must be handled manually
+		$password = Input::get('password');
+		if($require_password)
+		{
+			$this->resource->password = $password;
+			$this->resource->password_confirmation = Input::get('password_confirmation');
+		}
+		else
+			$this->resource->resetRule('password', 'required')->resetRule('password', 'confirmed');
+
+		// Validate
+		if( ! $this->resource->validate())
+			return false;
+
+		// We know the passwords are OK, remove the 'confirmed' rule
+		if($require_password)
+		{
+			$this->resource->password = Hash::make($this->resource->password);
+			$this->resource->resetRule('password', 'confirmed');
+		}
+
+		return true;
+	}
 }

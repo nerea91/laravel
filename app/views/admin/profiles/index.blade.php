@@ -24,7 +24,7 @@
 			{{ link_to_route("$prefix.edit", _('Edit'), array($resource->id), array('class' => 'small radius button')) }}
 			@endif
 
-			@if ($delete)
+			@if ($delete and $resource->id != 1)
 			{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->name)))) }}
 			@endif
 		</td>

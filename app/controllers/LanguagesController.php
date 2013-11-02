@@ -29,7 +29,7 @@ class LanguagesController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(20),
 			'add'		=> Auth::user()->hasPermission(21),
 			'edit'		=> Auth::user()->hasPermission(22),

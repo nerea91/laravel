@@ -35,20 +35,20 @@ class Profile extends Stolz\Database\Model {
 
 		static::deleting(function($model)
 		{
-			//Prevent deleting Superuser profiler
+			// Prevent deleting Superuser profiler
 			if($model->id == 1)
 				return false;
 		});
 
 		static::updated(function($model)
 		{
-			//Purge permissions cache
+			// Purge permissions cache
 			Cache::forget("profile{$model->id}permissions");
 		});
 
 		static::deleted(function($model)
 		{
-			//Purge permissions cache
+			// Purge permissions cache
 			Cache::forget("profile{$model->id}permissions");
 		});
 
@@ -63,11 +63,11 @@ class Profile extends Stolz\Database\Model {
 	 */
 	public function getPermissions()
 	{
-		//Unsaved profiles have no permissions
+		// Unsaved profiles have no permissions
 		if( ! $this->id)
 			return array();
 
-		//Store profile permissions in cache to save some queries
+		// Store profile permissions in cache to save some queries
 		$permissions = Cache::remember("profile{$this->id}permissions", 60, function() {
 			return $this->permissions->lists('id');
 		});
@@ -83,7 +83,7 @@ class Profile extends Stolz\Database\Model {
 	 */
 	public function getPermissionsGroupedByType($use_type_name_for_keys = false)
 	{
-		//Unsaved profiles have no permissions
+		// Unsaved profiles have no permissions
 		if( ! $this->id)
 			return array();
 
@@ -103,7 +103,7 @@ class Profile extends Stolz\Database\Model {
 	 */
 	public function hasPermission($permissions)
 	{
-		//Unsaved profiles have no permissions
+		// Unsaved profiles have no permissions
 		if( ! $this->id)
 			return false;
 
@@ -120,7 +120,7 @@ class Profile extends Stolz\Database\Model {
 	 */
 	public function hasAnyPermission($permissions)
 	{
-		//Unsaved profiles have no permissions
+		// Unsaved profiles have no permissions
 		if( ! $this->id)
 			return false;
 
@@ -162,5 +162,15 @@ class Profile extends Stolz\Database\Model {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get usernames of users using this profile
+	 *
+	 * @return array
+	 */
+	public function getUsernamesArray()
+	{
+		return $this->users()->orderBy('username')->lists('username');
 	}
 }

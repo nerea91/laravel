@@ -12,7 +12,7 @@ class Permission extends Stolz\Database\Model {
 		$this->setRules(array(
 			'name' => [_('Name'), 'required|max:64'],
 			'description' => [_('Description'), 'max:255'],
-			'type_id' => [_('Type'), 'required|exists:permissiontypes'],
+			'type_id' => [_('Type'), 'required|exists:permissiontypes,id'],
 		));
 	}
 

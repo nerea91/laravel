@@ -15,8 +15,9 @@ class CreateUsersTable extends Migration {
 		//--fields="username:string[64]:unique,name:string[64]:nullable,password:string[60],country_id:unsignedInteger:nullable,profile_id:unsignedInteger"
 		Schema::create('users', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('username', 64)->unique();
+			$table->string('username', 32)->unique();
 			$table->string('name', 64)->nullable();
+			$table->string('description', 128)->nullable();
 			$table->string('password', 60);
 
 			//Foreign keys

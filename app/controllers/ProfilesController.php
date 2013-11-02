@@ -29,7 +29,7 @@ class ProfilesController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(40),
 			'add'		=> Auth::user()->hasPermission(41),
 			'edit'		=> Auth::user()->hasPermission(42),
@@ -58,6 +58,28 @@ class ProfilesController extends BaseController {
 	}
 
 	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$this->resource = $this->resource->findOrFail($id);
+
+		$data = [
+			'resource'	=> $this->resource,
+			'prompt'	=> 'name',
+			'permissions' => $this->resource->getPermissionsGroupedByType(true),
+			'users'		=> $this->resource->getUsernamesArray()
+		];
+
+		$this->layout->title = _('Profile');
+		$this->layout->subtitle = _('Details');
+		$this->layout->content = View::make('admin.show', $data);
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -77,50 +99,6 @@ class ProfilesController extends BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$this->resource = $this->resource->newInstance(Input::only('name', 'description'));
-		$this->resource->validate();
-		$this->validatePermissions($permissions = Input::get('permissions'));
-
-		if($this->resource->hasErrors())
-			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
-
-		DB::transaction(function() use ($permissions)
-		{
-			$this->resource->save() and $this->resource->permissions()->attach($permissions);
-		});
-
-		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));
-		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$this->resource = $this->resource->findOrFail($id);
-		$data = [
-			'resource'	=> $this->resource,
-			'prompt'	=> 'name',
-			'permissions' => $this->resource->getPermissionsGroupedByType(true),
-			'users'		=> $this->resource->users()->orderBy('username')->lists('username')
-		];
-
-		$this->layout->title = _('Profile');
-		$this->layout->subtitle = _('Details');
-		$this->layout->content = View::make('admin.show', $data);
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
@@ -136,13 +114,37 @@ class ProfilesController extends BaseController {
 			'all'		=> Permission::getGroupedByType(),
 			'checked'	=> $this->resource->permissions->lists('id'),
 		];
-		//to-do por un bug se marcan todos como checked cuando solo deberían marcarse los aui indicados
+		//to-do por un bug se marcan todos como checked cuando solo deberían marcarse los aqui indicados
 		//http://forums.laravel.io/viewtopic.php?pid=54313
 		//https://github.com/laravel/framework/issues/2548
 
 		$this->layout->title = _('Profile');
 		$this->layout->subtitle = _('Edit');
 		$this->layout->content = View::make('admin.edit', $data);
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$this->resource = $this->resource->newInstance(Input::only('name', 'description'));
+
+		// Validate
+		if( ! $this->validateCommon($permissions = Input::get('permissions')))
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
+
+		// Store
+		DB::transaction(function() use ($permissions)
+		{
+			$this->resource->save() and $this->resource->permissions()->attach($permissions);
+		});
+
+		// Success
+		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));
+		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
 	}
 
 	/**
@@ -153,22 +155,23 @@ class ProfilesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$this->resource = $this->resource->findOrFail($id);
-		$this->resource->validate();
-		$this->validatePermissions($permissions = Input::get('permissions'), $id);
+		$this->resource = $this->resource->findOrFail($id)->fill(Input::only('name', 'description'));
 
-		if($this->resource->hasErrors())
+		// Validate
+		if( ! $this->validateCommon($permissions = Input::get('permissions'), $id))
 			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
 
+		// Update
 		DB::transaction(function() use ($permissions)
 		{
 			$this->resource->save() and $this->resource->permissions()->sync($permissions);
-			//Changes in pivot tables don't fire events in models so we fire it manually to purge permissions cache
+			// Changes in pivot tables don't fire events in models so we fire it manually to purge permissions cache
 			$this->resource->fireEvent('updated');
 		});
 
+		// Success
 		Session::flash('success', sprintf(_('Profile %s successfully created with %d permissions'), $this->resource->name, count($permissions)));
-		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
+		return Redirect::route("{$this->prefix}.show", $id);
 	}
 
 	/**
@@ -179,33 +182,45 @@ class ProfilesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if($resource = $this->resource->find($id) and $resource->delete())
-			Session::flash('success', sprintf(_('Profile %s successfully deleted'), $resource->name));
+		$this->resource = $this->resource->findOrFail($id);
+
+		// Check if profile is us use
+		if($users = $this->resource->getUsernamesArray())
+			return Redirect::back()->withInput()->withError(sprintf(_('Profile cannot be deleted because it is still assigned to %s'), implode(', ', $users)));
+
+		if($this->resource->delete())
+			Session::flash('success', sprintf(_('Profile %s successfully deleted'), $this->resource->name));
 
 		return Redirect::route("{$this->prefix}.index");
 	}
 
 	/**
-	 * Common validation fro store() and update()
+	 * Common validation for $this->store() and $this->update()
 	 *
 	 * @param  array $permissions
 	 * @param  integer $excluded_id
-	 * @return void
+	 * @return boolean
 	 */
-	protected function validatePermissions($permissions, $excluded_id = null)
+	protected function validateCommon($permissions, $excluded_id = null)
 	{
+		$this->resource->validate();
+
+		// Make sure we get an array even if no permissions are checked
 		$permissions = (array) $permissions;
-		//Make sure at least one permission has been selected
+
+		// Make sure at least one permission has been selected
 		if( ! $count = count($permissions))
 			$this->resource->getErrors()->add('permissions', _('Profile must have at least one permission'));
 
-		//Make sure all the provided permissions actually exist
+		// Make sure all the provided permissions actually exist in the data base
 		elseif($count != Permission::whereIn('id', $permissions)->get()->count())
 			$this->resource->getErrors()->add('permissions', _('Some of the provided permission were not recognized'));
 
-		//Make sure there is no similar profile
+		// Make sure we are not duplicating profiles
 		elseif(false !== ($similar = Profile::existSimilar($permissions, $excluded_id)))
 			$this->resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions'), $similar).'. '._('No duplicates allowed'));
+
+		return ! $this->resource->hasErrors();
 	}
 
 }

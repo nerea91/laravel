@@ -28,13 +28,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Model extends Eloquent {
 
 	/**
-	 * Validator instance
-	 *
-	 * @var Illuminate\Validation\Validators
-	 */
-	protected $validator;
-
-	/**
 	 * Validation rules
 	 *
 	 * @var Array
@@ -66,13 +59,13 @@ class Model extends Eloquent {
 
 		static::saving(function($model)
 		{
-			//Global muttator to convert empty attributes to null
+			// Global muttator to convert empty attributes to null
 			foreach ($model->toArray() as $name => $value)
 				if (empty($value))
 					$model->{$name} = null;
 
-			//Validate model before saving it
-			return $model->validate();
+			// Validate model before saving it
+			return $model->validate(true);
 		});
 	}
 
@@ -87,46 +80,10 @@ class Model extends Eloquent {
 
 	// Logic ==================================================================
 
-		public function __construct(array $attributes = array())
+	public function __construct(array $attributes = array())
 	{
 		parent::__construct($attributes);
 		$this->errors = new \Illuminate\Support\MessageBag;
-	}
-
-	/**
-	 * Validate current attributes against rules
-	 *
-	 * @return boolean
-	 */
-	public function validate()
-	{
-		//Expand compact "unique" rules
-		$table = $this->getTable();
-		$except = ($this->getKey()) ? ','.$this->getKey() : null;
-		$rules = $this->getRules();
-		foreach($rules as $field => &$fieldRules)
-		{
-			foreach($fieldRules as &$rule)
-			{
-				if($rule == 'unique')
-					$rule = "unique:$table,$field{$except}";
-			}
-		}
-
-		//Create validator instance
-		if( ! $this->validator)
-			$this->validator = \App::make('validator');
-
-		//Validate
-		$validation = $this->validator->make($this->attributes, $rules);
-
-		if ($validation->passes())
-		{
-			return true;
-		}
-
-		$this->setErrors($validation->messages());
-		return false;
 	}
 
 	/**
@@ -141,13 +98,51 @@ class Model extends Eloquent {
 		{
 			list($label, $rules) = $labelAndRules;
 
-			//Add label
+			// Add label
 			$this->labels[$field] = $label;
 
-			//Add rules
-			$this->rules[$field] = (is_array($rules)) ? $rules : explode('|', $rules);
+			// Convert rules to associative array
+			if( ! is_array($rules))
+				$rules = explode('|', $rules);
+
+			foreach($rules as $key => $value)
+			{
+				$new_key = explode(':', $value);
+				$rules[$new_key[0]] = $value;
+				unset($rules[$key]);
+			}
+
+			// Add rules
+			$this->rules[$field] = $rules;
 		}
 
+		return $this;
+	}
+
+	/**
+	 * Add a validation rule a field
+	 *
+	 * @param  string $field
+	 * @param  string $rule
+	 * @return Model
+	 */
+	public function setRule($field, $rule)
+	{
+		$key = explode(':', $rule);
+		$this->rules[$field][$key[0]] = $rule;
+		return $this;
+	}
+
+	/**
+	 * Remove a validation rule a field
+	 *
+	 * @param  string $field
+	 * @param  string $rule
+	 * @return Model
+	 */
+	public function resetRule($field, $rule)
+	{
+		unset($this->rules[$field][$rule]);
 		return $this;
 	}
 
@@ -159,6 +154,47 @@ class Model extends Eloquent {
 	public function getRules()
 	{
 		return $this->rules;
+	}
+
+	/**
+	 * Validate current attributes against rules
+	 *
+	 * @param  boolean $triggered_by_event
+	 * @return boolean
+	 */
+	public function validate($triggered_by_event = false)
+	{
+		// Expand compact "unique" rules
+		$table = $this->getTable();
+		$except = ($this->getKey()) ? ','.$this->getKey() : null;
+		$rules = $this->getRules();
+		foreach($rules as $field => &$fieldRules)
+		{
+			foreach($fieldRules as &$rule)
+			{
+				if($rule == 'unique')
+					$rule = "unique:$table,$field{$except}";
+			}
+		}
+
+		// Validate
+		$validator = \Validator::make($this->attributes, $rules);
+		if ( ! $validator->passes())
+		{
+			$this->setErrors($validator->messages());
+			return false;
+		}
+
+		// Make sure save() wont get the *_confirmation attributes.
+		// They make sense only for validation not for storage
+		if($triggered_by_event)
+		{
+			foreach($this->attributes as $name => $value)
+				if (ends_with($name, '_confirmation'))
+					unset($this->{$name});
+		}
+
+		return true;
 	}
 
 	/**
@@ -247,6 +283,18 @@ class Model extends Eloquent {
 		}
 
 		return $fillable;
+	}
+
+	/**
+	 * Get an array suitable for an input[type=select]
+	 *
+	 * @param  strin $label Column used for labels
+	 * @param  strin $value Column used for values
+	 * @return array
+	 */
+	public static function dropdown($label = 'name', $value = 'id')
+	{
+		return self::orderBy($label)->lists($label, $value);
 	}
 
 }

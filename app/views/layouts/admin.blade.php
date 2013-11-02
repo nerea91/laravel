@@ -7,8 +7,15 @@
 <div class="row">
 
 	@if (Session::has('success'))
-	<div id="success" class="alert-box success radius">
+	<div class="flash-alert alert-box success radius">
 		{{ Session::get('success') }}
+		<a class="close">&times;</a>
+	</div>
+	@endif
+
+	@if (Session::has('error'))
+	<div class="flash-alert alert-box alert radius">
+		{{ Session::get('error') }}
 		<a class="close">&times;</a>
 	</div>
 	@endif

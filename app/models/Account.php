@@ -21,8 +21,8 @@ class Account extends Stolz\Database\Model {
 			'image' => [_('Image'), 'max:255'],
 			'locale' => [_('Locale'), 'max:5'],
 			'location' => [_('Location'), 'max:128'],
-			'provider_id' => [_('Provider'), 'required|exists:authproviders'],
-			'user_id' => [_('User'), 'required|exists:users'],
+			'provider_id' => [_('Provider'), 'required|exists:authproviders,id'],
+			'user_id' => [_('User'), 'required|exists:users,id'],
 		));
 	}
 
@@ -46,7 +46,7 @@ class Account extends Stolz\Database\Model {
 
 		static::deleting(function($model)
 		{
-			//Prevent deleting Superuser admin account
+			// Prevent deleting Superuser admin account
 			if($model->id == 1)
 				return false;
 		});

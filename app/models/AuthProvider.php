@@ -36,7 +36,7 @@ class AuthProvider extends Stolz\Database\Model {
 
 		static::deleting(function($model)
 		{
-			//Prevent deleting Laravel Auth Provider
+			// Prevent deleting Laravel Auth Provider
 			if($model->id == 1)
 				return false;
 		});

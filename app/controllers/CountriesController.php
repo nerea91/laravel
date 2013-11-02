@@ -29,7 +29,7 @@ class CountriesController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(10),
 			'add'		=> Auth::user()->hasPermission(11),
 			'edit'		=> Auth::user()->hasPermission(12),

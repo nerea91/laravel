@@ -19,9 +19,10 @@
 @endif
 
 <p class="text-center">
-@if ($add)
-	{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small radius button']) }}&nbsp;
-@endif
-{{ link_to_route('admin', _('Return'), null, ['class' => 'small secondary radius button']) }}
+	{{ link_to_route('admin', _('Return'), null, ['class' => 'small secondary radius button']) }}
+
+	@if ($add)
+	&nbsp;{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'small success radius button']) }}
+	@endif
 </p>
 @stop

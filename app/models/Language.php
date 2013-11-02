@@ -36,25 +36,25 @@ class Language extends Stolz\Database\Model {
 	 */
 	public static function detect($url)
 	{
-		//Get all languages from data base
+		// Get all languages from data base
 		$all = self::getAllByPriority();
 		if( ! $all->count())
 			return new Language;
 
-		//Assume first language as the default one
+		// Assume first language as the default one
 		$default = $all->first();
 
-		//Extract subdomain from url
+		// Extract subdomain from url
 		preg_match('/^([a-z][a-z])\./', parse_url($url)['host'], $matches);
 
-		//If subdomain found check if it's valid
+		// If subdomain found check if it's valid
 		if(isset($matches[1]) AND ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
 		{
 			$lang->detected_from = 'subdomain';
 			return $lang;
 		}
 
-		//No luck with the subdomain, try now with the browser
+		// No luck with the subdomain, try now with the browser
 		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
 			$default->detected_from = 'default (browser languages not available)';
@@ -72,7 +72,7 @@ class Language extends Stolz\Database\Model {
 			}
 		}
 
-		//Fallback to default
+		// Fallback to default
 		$default->detected_from = "default (browser doesn't have any known language)";
 		return $default;
 	}
@@ -88,7 +88,7 @@ class Language extends Stolz\Database\Model {
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
 	{
-		//Normalize
+		// Normalize
 		$needle = strtolower(str_replace('-', '_', $needle));
 
 		foreach($haystack as $lang)
@@ -129,7 +129,7 @@ class Language extends Stolz\Database\Model {
 
 		$current_locale = setlocale($category, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
-		//if($current_locale === false)
+		// if($current_locale === false)
 		//	App::abort(500, sprintf('Failed to set %s locate: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
 
 		return $this;

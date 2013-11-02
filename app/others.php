@@ -28,16 +28,31 @@ View::composer('layouts.base', 'BaseLayoutComposer');
 if ( ! function_exists('p'))
 {
 	/**
-	 * Print the passed variables and end the script.
+	 * Dump (with colors) the passed variables.
 	 *
-	 * @param  dynamic  mixed
+	 * @param  dynamic mixed
 	 * @return string
 	 */
 	function p()
 	{
 		echo '<pre>';
-		array_map(function($x) { print_r($x); }, func_get_args());
+		foreach(func_get_args() as $x)
+			echo TVarDumper::dump($x);
 		echo '</pre>';
+	}
+}
+
+if ( ! function_exists('d'))
+{
+	/**
+	 * Dump (with colors) the passed variables and end the script.
+	 *
+	 * @param  dynamic mixed
+	 * @return void
+	 */
+	function d()
+	{
+		array_map('p', func_get_args());
 		die;
 	}
 }
@@ -54,23 +69,6 @@ if ( ! function_exists('f'))
 	function f($value, $label = null)
 	{
 		(new FirePHP)->log($value, $label);
-	}
-}
-
-if ( ! function_exists('d'))
-{
-	/**
-	 * Dump (with colors) the passed variable and end the script.
-	 *
-	 * @param  mixed $value
-	 * @return void
-	 */
-	function d($value)
-	{
-		echo '<pre>';
-		echo TVarDumper::dump($value);
-		echo '</pre>';
-		die;
 	}
 }
 

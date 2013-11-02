@@ -6,8 +6,8 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Stolz\Database\Model implements UserInterface, RemindableInterface {
 
 	protected $softDelete = true;
-	protected $guarded = array('password');
-	protected $hidden = array('password');
+	protected $guarded = array('password', 'password_confirmation');
+	protected $hidden = array('password', 'password_confirmation');
 
 	// Validation =============================================================
 
@@ -15,11 +15,12 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	{
 		parent::__construct($attributes);
 		$this->setRules(array(
-			'username' => [_('Username'), 'required|max:64|alpha_num|regex:/^[a-zA-z]/|unique'],
-			'name' => [_('Name'), 'email|max:64'],
-			'password' => [_('Password'), 'required|min:5'],
-			'country_id' => [_('Country'), 'exists:countries'],
-			'profile_id' => [_('Profile'), 'required|exists:profiles'],
+			'username' => [_('Username'), 'required|min:4|max:32|regex:/^[a-zA-z]+[a-zA-z0-9]+$/|unique'],
+			'name' => [_('Name'), 'max:64'],
+			'description' => [_('Description'), 'max:128'],
+			'password' => [_('Password'), 'required|min:5|max:64|confirmed'],
+			'country_id' => [_('Country'), 'exists:countries,id'],
+			'profile_id' => [_('Profile'), 'required|exists:profiles,id'],
 		));
 	}
 
@@ -48,7 +49,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 
 		static::deleting(function($model)
 		{
-			//Prevent deleting Admin user
+			// Prevent deleting Admin user
 			if($model->id == 1)
 				return false;
 		});
@@ -85,7 +86,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	*/
 	public function getReminderEmail()
 	{
-		//to-do fetch email from accounts table
+		// to-do fetch email from accounts table
 	}
 
 	// Logic ==================================================================
@@ -98,7 +99,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	 */
 	public function hasPermission()
 	{
-		//Unsaved users have no permissions
+		// Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 
@@ -113,7 +114,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	 */
 	public function hasAnyPermission()
 	{
-		//Unsaved users have no permissions
+		// Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 

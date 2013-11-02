@@ -29,7 +29,7 @@ class AuthProvidersController extends BaseController {
 		View::share([
 			'prefix'	=> $this->prefix,
 
-			//Permissions
+			// Permissions
 			'view'		=> Auth::user()->hasPermission(80),
 			'add'		=> Auth::user()->hasPermission(81),
 			'edit'		=> Auth::user()->hasPermission(82),

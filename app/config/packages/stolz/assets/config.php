@@ -2,7 +2,9 @@
 
 return array(
 
-	'autoload' => array('foundation-cdn'),
+	'debug'		=> false,
+	'pipeline'	=> false,
+	'autoload'	=> array('foundation-cdn'),
 
 	'collections' => array(
 

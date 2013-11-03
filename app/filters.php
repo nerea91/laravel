@@ -24,7 +24,7 @@ App::after(function($request, $response)
 	{
 		// Parse output
 		$tidy = new tidy;
-		$tidy->parseString($response->getOriginalContent(), Config::get('tidy.options'), Config::get('tidy.encoding', 'utf8'));
+		$tidy->parseString($response->getContent(), Config::get('tidy.options'), Config::get('tidy.encoding', 'utf8'));
 		$tidy->cleanRepair();
 
 		// Set doctype

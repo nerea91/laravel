@@ -6,6 +6,8 @@
 
 <div class="row">
 
+	@include('admin/top-bar', array('user' => Auth::user()))
+
 	@if (Session::has('success'))
 	<div class="flash-alert alert-box success radius">
 		{{ Session::get('success') }}

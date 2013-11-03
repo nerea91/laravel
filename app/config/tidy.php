@@ -29,7 +29,7 @@ return array(
 	// Errors container close tag
 	'close' => '</div>',
 
-	// Options passed to HTML Tidy parseString() function (Doc: http://tidy.sourceforge.net/docs/quickref.html)
+	// Options passed to HTML Tidy parseString() function (Docs: http://tidy.sourceforge.net/docs/quickref.html)
 	'options' => array(
 		'output-xhtml' => true,
 		'char-encoding' => 'utf8',

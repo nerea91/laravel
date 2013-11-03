@@ -133,7 +133,7 @@ Route::filter('acl', function()
 		$is_closure = ($permissions instanceof Closure);
 
 		if($is_closure AND ! $permissions(Auth::user()))
-			throw new Exception(_('Unauthorized profile'));
+			throw new Exception(_('Authorization condition failed'));
 
 		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
 			throw new Exception(_('Unauthorized profile'));

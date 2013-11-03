@@ -29,29 +29,6 @@ class HomeController extends BaseController {
 	}
 
 	/**
-	 * Show main page
-	 *
-	 * @return Response
-	 */
-	public function showAdminPage()
-	{
-		$data = [
-			'title' => _('Admin'),
-			'routes' => [],
-		];
-
-		// Select all admin.*.index routes
-		foreach(App::make('router')->getRoutes() as $name => $route)
-		{
-			if($name == 'home' or preg_match('/^admin\..*\.index$/', $name))
-				$data['routes'][$name] = $route->getPath();
-		}
-
-		$this->layout->title = $data['title'];
-		$this->layout->content = View::make('home.home', $data);
-	}
-
-	/**
 	 * Show contact form
 	 *
 	 * @return Response

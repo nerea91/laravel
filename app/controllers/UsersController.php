@@ -170,6 +170,7 @@ class UsersController extends BaseController {
 	 */
 	protected function validateCommon($require_password = true)
 	{
+		$password = Input::get('password');
 		$require_password = ($require_password or strlen($password)>0);
 
 		// Country is optional
@@ -177,7 +178,6 @@ class UsersController extends BaseController {
 			$this->resource->resetRule('country_id', 'exists')->country_id = null;
 
 		// Guarded attributes must be handled manually
-		$password = Input::get('password');
 		if($require_password)
 		{
 			$this->resource->password = $password;

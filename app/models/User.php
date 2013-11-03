@@ -94,30 +94,34 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	/**
 	 * Check if user's profile has ALL of the provided permissions
 	 *
-	 * @param dynamic
+	 * @param dynamic $permissions
 	 * @return bool
 	 */
-	public function hasPermission()
+	public function hasPermission($permissions)
 	{
 		// Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 
-		return $this->profile->hasPermission(func_get_args());
+		$permissions = is_array($permissions) ? $permissions : func_get_args();
+
+		return $this->profile->hasPermission($permissions);
 	}
 
 	/**
 	 * Check if user's profile has ANY of the provided permissions
 	 *
-	 * @param dynamic
+	 * @param dynamic $permissions
 	 * @return bool
 	 */
-	public function hasAnyPermission()
+	public function hasAnyPermission($permissions)
 	{
 		// Unsaved users have no permissions
 		if( ! $this->id)
 			return false;
 
-		return $this->profile->hasAnyPermission(func_get_args());
+		$permissions = is_array($permissions) ? $permissions : func_get_args();
+
+		return $this->profile->hasAnyPermission($permissions);
 	}
 }

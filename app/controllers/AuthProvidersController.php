@@ -52,7 +52,7 @@ class AuthProvidersController extends BaseController {
 		if($data['results']->getTotal())
 			Assets::add('responsive-tables');
 
-		$this->layout->title = _('AuthProviders');
+		$this->layout->title = _('Auth. providers');
 		$this->layout->subtitle = _('Index');
 		$this->layout->content = View::make('admin.index', $data);
 	}

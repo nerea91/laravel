@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-22 16:58+0200\n"
+"POT-Creation-Date: 2013-11-03 00:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,109 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: /controllers/AccountsController.php:55
+#: /database/seeds/PermissionTypesTableSeeder.php:15
+#: /storage/gettext/admin-top-bar.blade.php.php:37
+msgid "Accounts"
+msgstr "Cuentas"
+
+#: /controllers/AccountsController.php:56
+#: /controllers/AuthProvidersController.php:56
+#: /controllers/CountriesController.php:56
+#: /controllers/LanguagesController.php:56
+#: /controllers/ProfilesController.php:56 /controllers/UsersController.php:56
+#: /storage/gettext/admin-top-bar.blade.php.php:22
+#: /storage/gettext/admin-top-bar.blade.php.php:30
+#: /storage/gettext/admin-top-bar.blade.php.php:38
+msgid "Index"
+msgstr "Listado"
+
+#: /controllers/AccountsController.php:72
+#: /controllers/AccountsController.php:107
+#: /controllers/AccountsController.php:125
+msgid "Account"
+msgstr "Cuenta"
+
+#: /controllers/AccountsController.php:73
+#: /controllers/AuthProvidersController.php:73
+#: /controllers/CountriesController.php:73
+#: /controllers/LanguagesController.php:73
+#: /controllers/ProfilesController.php:97 /controllers/UsersController.php:92
+#: /database/seeds/PermissionsTableSeeder.php:13
+#: /database/seeds/PermissionsTableSeeder.php:19
+#: /database/seeds/PermissionsTableSeeder.php:25
+#: /database/seeds/PermissionsTableSeeder.php:31
+#: /database/seeds/PermissionsTableSeeder.php:37
+#: /database/seeds/PermissionsTableSeeder.php:43
+#: /storage/gettext/admin-create.blade.php.php:10
+#: /storage/gettext/admin-top-bar.blade.php.php:23
+#: /storage/gettext/admin-top-bar.blade.php.php:31
+#: /storage/gettext/admin-top-bar.blade.php.php:39
+msgid "Add"
+msgstr "Añadir"
+
+#: /controllers/AccountsController.php:89
+#, php-format
+msgid "Account %s successfully created"
+msgstr "Cuenta %s creada con éxito"
+
+#: /controllers/AccountsController.php:108
+#: /controllers/AuthProvidersController.php:108
+#: /controllers/CountriesController.php:108
+#: /controllers/LanguagesController.php:108
+#: /controllers/ProfilesController.php:78 /controllers/UsersController.php:76
+#: /storage/gettext/admin-accounts-index.blade.php.php:23
+#: /storage/gettext/admin-authproviders-index.blade.php.php:21
+#: /storage/gettext/admin-countries-index.blade.php.php:21
+#: /storage/gettext/admin-languages-index.blade.php.php:21
+#: /storage/gettext/admin-profiles-index.blade.php.php:21
+#: /storage/gettext/admin-users-index.blade.php.php:23
+msgid "Details"
+msgstr "Detalles"
+
+#: /controllers/AccountsController.php:126
+#: /controllers/AuthProvidersController.php:126
+#: /controllers/CountriesController.php:126
+#: /controllers/LanguagesController.php:126
+#: /controllers/ProfilesController.php:122
+#: /controllers/UsersController.php:110
+#: /database/seeds/PermissionsTableSeeder.php:14
+#: /database/seeds/PermissionsTableSeeder.php:20
+#: /database/seeds/PermissionsTableSeeder.php:26
+#: /database/seeds/PermissionsTableSeeder.php:32
+#: /database/seeds/PermissionsTableSeeder.php:38
+#: /database/seeds/PermissionsTableSeeder.php:44
+#: /storage/gettext/admin-accounts-index.blade.php.php:26
+#: /storage/gettext/admin-authproviders-index.blade.php.php:24
+#: /storage/gettext/admin-countries-index.blade.php.php:24
+#: /storage/gettext/admin-languages-index.blade.php.php:24
+#: /storage/gettext/admin-profiles-index.blade.php.php:24
+#: /storage/gettext/admin-show.blade.php.php:20
+#: /storage/gettext/admin-users-index.blade.php.php:26
+msgid "Edit"
+msgstr "Editar"
+
+#: /controllers/AccountsController.php:143
+#, php-format
+msgid "Account %s successfully updated"
+msgstr "Cuanta %s actualizada con éxito"
+
+#: /controllers/AccountsController.php:156
+#, php-format
+msgid "Account %s successfully deleted"
+msgstr "Cuanta %s borrada con éxito"
+
+#: /controllers/AdminController.php:14
+msgid "Admin"
+msgstr "Administración"
+
+#: /controllers/AdminController.php:15
+msgid "Panel"
+msgstr "Panel"
+
 #: /controllers/AuthController.php:14
-#: /storage/gettext/auth-login_form.blade.php.php:28
-#: /storage/gettext/home-index.blade.php.php:12
+#: /storage/gettext/auth-login_form.blade.php.php:19
+#: /storage/gettext/home-home.blade.php.php:12
 msgid "Login"
 msgstr "Acceder"
 
@@ -27,42 +127,177 @@ msgstr "Acceder"
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
-#: /controllers/HomeController.php:25
-#: /storage/gettext/home-contact_form.blade.php.php:6
-msgid "Contact us"
-msgstr "Contactar"
+#: /controllers/AuthProvidersController.php:55
+#, fuzzy
+msgid "Auth. providers"
+msgstr "Proveedores de acceso"
 
-#: /controllers/HomeController.php:52
-msgid "Contact form query"
-msgstr "Consulta online"
+#: /controllers/AuthProvidersController.php:72
+#: /controllers/AuthProvidersController.php:107
+#: /controllers/AuthProvidersController.php:125
+msgid "Auth. provider"
+msgstr "Proveedores de acceso"
 
-#: /controllers/HomeController.php:55
-msgid "Message sent!"
-msgstr "¡Mensaje enviado!"
+#: /controllers/AuthProvidersController.php:89
+#, php-format
+msgid "Auth. provider %s successfully created"
+msgstr "Proveedor de acceso %s creado con éxito"
 
+#: /controllers/AuthProvidersController.php:143
+#, php-format
+msgid "Auth. provider %s successfully updated"
+msgstr "Proveedor de acceso %s actualizado con éxito"
+
+#: /controllers/AuthProvidersController.php:156
+#, php-format
+msgid "Auth. provider %s successfully deleted"
+msgstr "Proveedor de acceso %s borrado con éxito"
+
+#: /controllers/CountriesController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:10
 msgid "Countries"
 msgstr "Paises"
 
+#: /controllers/CountriesController.php:72
+#: /controllers/CountriesController.php:107
+#: /controllers/CountriesController.php:125 /models/User.php:22
+msgid "Country"
+msgstr "País"
+
+#: /controllers/CountriesController.php:89
+#, php-format
+msgid "Country %s successfully created"
+msgstr "País %s creado con éxito"
+
+#: /controllers/CountriesController.php:143
+#, php-format
+msgid "Country %s successfully updated"
+msgstr "País %s actualizado con éxito"
+
+#: /controllers/CountriesController.php:156
+#, php-format
+msgid "Country %s successfully deleted"
+msgstr "País %s borrado con éxito"
+
+#: /controllers/HomeController.php:15
+msgid "Home"
+msgstr "Inicio"
+
+#: /controllers/HomeController.php:38
+#: /storage/gettext/home-contact.blade.php.php:6
+msgid "Contact us"
+msgstr "Contactar"
+
+#: /controllers/HomeController.php:66
+msgid "Contact form query"
+msgstr "Consulta online"
+
+#: /controllers/HomeController.php:69
+msgid "Message sent!"
+msgstr "¡Mensaje enviado!"
+
+#: /controllers/LanguagesController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:11
 msgid "Languages"
 msgstr "Idiomas"
 
+#: /controllers/LanguagesController.php:72
+#: /controllers/LanguagesController.php:107
+#: /controllers/LanguagesController.php:125
+msgid "Language"
+msgstr "Idioma"
+
+#: /controllers/LanguagesController.php:89
+#, php-format
+msgid "Language %s successfully created"
+msgstr "Idioma %s creado con éxito"
+
+#: /controllers/LanguagesController.php:143
+#, php-format
+msgid "Language %s successfully updated"
+msgstr "Idioma %s actualizado con éxito"
+
+#: /controllers/LanguagesController.php:156
+#, php-format
+msgid "Language %s successfully deleted"
+msgstr "Idioma %s borrado con éxito"
+
+#: /controllers/ProfilesController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:12
+#: /storage/gettext/admin-top-bar.blade.php.php:29
 msgid "Profiles"
 msgstr "Perfiles"
 
+#: /controllers/ProfilesController.php:77
+#: /controllers/ProfilesController.php:96
+#: /controllers/ProfilesController.php:121 /models/User.php:23
+msgid "Profile"
+msgstr "Perfil"
+
+#: /controllers/ProfilesController.php:146
+#: /controllers/ProfilesController.php:173
+#, php-format
+msgid "Profile %s successfully created with %d permissions"
+msgstr "Perfil %s creado con éxito"
+
+#: /controllers/ProfilesController.php:189
+#, php-format
+msgid "Profile cannot be deleted because it is still assigned to %s"
+msgstr "El perfil no puede ser borrado porque está asignado a %s"
+
+#: /controllers/ProfilesController.php:192
+#, php-format
+msgid "Profile %s successfully deleted"
+msgstr "Perfil %s borrado con éxito"
+
+#: /controllers/ProfilesController.php:213
+msgid "Profile must have at least one permission"
+msgstr "El perfil debe tener al menos un permiso"
+
+#: /controllers/ProfilesController.php:217
+msgid "Some of the provided permission were not recognized"
+msgstr "Alguno de los permisos no han sido reconocidos"
+
+#: /controllers/ProfilesController.php:221
+msgid "No duplicates allowed"
+msgstr "No se permiten duplicados"
+
+#: /controllers/ProfilesController.php:221
+#, php-format
+msgid "Profile %s has exactly the same permissions"
+msgstr "El perfil %s tiene exactamente los mismos permisos"
+
+#: /controllers/UsersController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:13
+#: /storage/gettext/admin-profiles-show.blade.php.php:12
+#: /storage/gettext/admin-top-bar.blade.php.php:16
+#: /storage/gettext/admin-top-bar.blade.php.php:21
 msgid "Users"
 msgstr "Usuarios"
 
+#: /controllers/UsersController.php:75 /controllers/UsersController.php:91
+#: /controllers/UsersController.php:109 /models/Account.php:25
+msgid "User"
+msgstr "Usuario"
+
+#: /controllers/UsersController.php:127
+#, php-format
+msgid "User %s successfully created"
+msgstr "Usuario %s creado con éxito"
+
+#: /controllers/UsersController.php:145
+#, php-format
+msgid "User %s successfully updated"
+msgstr "Usuario %s actualizado con éxito"
+
+#: /controllers/UsersController.php:160
+#, php-format
+msgid "User %s successfully deleted"
+msgstr "Usuario %s borrado con éxito"
+
 #: /database/seeds/PermissionTypesTableSeeder.php:14
 msgid "Authentication providers"
-msgstr "Proveedores de autenticación"
-
-#: /database/seeds/PermissionTypesTableSeeder.php:15
-msgid "Accounts"
-msgstr "Cuentas"
+msgstr "Proveedores de acceso"
 
 #: /database/seeds/PermissionsTableSeeder.php:12
 #: /database/seeds/PermissionsTableSeeder.php:18
@@ -73,38 +308,31 @@ msgstr "Cuentas"
 msgid "View"
 msgstr "Ver"
 
-#: /database/seeds/PermissionsTableSeeder.php:13
-#: /database/seeds/PermissionsTableSeeder.php:19
-#: /database/seeds/PermissionsTableSeeder.php:25
-#: /database/seeds/PermissionsTableSeeder.php:31
-#: /database/seeds/PermissionsTableSeeder.php:37
-#: /database/seeds/PermissionsTableSeeder.php:43
-msgid "Add"
-msgstr "Añadir"
-
-#: /database/seeds/PermissionsTableSeeder.php:14
-#: /database/seeds/PermissionsTableSeeder.php:20
-#: /database/seeds/PermissionsTableSeeder.php:26
-#: /database/seeds/PermissionsTableSeeder.php:32
-#: /database/seeds/PermissionsTableSeeder.php:38
-#: /database/seeds/PermissionsTableSeeder.php:44
-msgid "Edit"
-msgstr "Editar"
-
 #: /database/seeds/PermissionsTableSeeder.php:15
 #: /database/seeds/PermissionsTableSeeder.php:21
 #: /database/seeds/PermissionsTableSeeder.php:27
 #: /database/seeds/PermissionsTableSeeder.php:33
 #: /database/seeds/PermissionsTableSeeder.php:39
 #: /database/seeds/PermissionsTableSeeder.php:45
+#: /storage/gettext/admin-accounts-index.blade.php.php:30
+#: /storage/gettext/admin-authproviders-index.blade.php.php:28
+#: /storage/gettext/admin-countries-index.blade.php.php:28
+#: /storage/gettext/admin-languages-index.blade.php.php:28
+#: /storage/gettext/admin-profiles-index.blade.php.php:28
+#: /storage/gettext/admin-show.blade.php.php:27
+#: /storage/gettext/admin-users-index.blade.php.php:30
 msgid "Delete"
 msgstr "Borrar"
 
-#: /filters.php:20
-msgid "Route permissions missing"
-msgstr "Faltan los permisos de ruta"
+#: /filters.php:130
+msgid "Unknown route"
+msgstr "Ruta desconocida"
 
-#: /filters.php:26 /filters.php:29
+#: /filters.php:136
+msgid "Authorization condition failed"
+msgstr "Ha fallado la condición de autorización"
+
+#: /filters.php:139
 msgid "Unauthorized profile"
 msgstr "Perfil no autorizado"
 
@@ -117,8 +345,8 @@ msgid "Next"
 msgstr "Siguiente"
 
 #: /lang/en/reminders.php:16
-msgid "Passwords must be six characters and match the confirmation."
-msgstr "La contraseña de tener 6 caracteres y concidir con la confirmación."
+msgid "Passwords must be at least six characters long and match the confirmation."
+msgstr "La contraseña de tener al menos 6 caracteres y concidir con la confirmación."
 
 #: /lang/en/reminders.php:18
 msgid "We can't find a user with that e-mail address."
@@ -302,43 +530,256 @@ msgstr "Debe contener :size ítems."
 msgid "The :attribute has already been taken."
 msgstr "Ya está en uso. Escoge otro."
 
-#: /start/global.php:63 /storage/gettext/layouts-error.blade.php.php:62
+#: /models/Account.php:14
+msgid "Remote id"
+msgstr "Identificado remoto"
+
+#: /models/Account.php:15
+msgid "Access token"
+msgstr "Token de acceso"
+
+#: /models/Account.php:16
+msgid "Nickname"
+msgstr "Apodo"
+
+#: /models/Account.php:17 /storage/gettext/home-contact.blade.php.php:28
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /models/Account.php:18 /models/AuthProvider.php:16 /models/Country.php:15
+#: /models/Language.php:16 /models/Permission.php:13
+#: /models/PermissionType.php:14 /models/Profile.php:13 /models/User.php:19
+#: /storage/gettext/home-contact.blade.php.php:19
+msgid "Name"
+msgstr "Nombre"
+
+#: /models/Account.php:19
+msgid "First name"
+msgstr "Nombre"
+
+#: /models/Account.php:20
+msgid "Last name"
+msgstr "Apellidos"
+
+#: /models/Account.php:21
+msgid "Image"
+msgstr "Imagen"
+
+#: /models/Account.php:22 /models/Language.php:18
+msgid "Locale"
+msgstr "Idioma"
+
+#: /models/Account.php:23
+msgid "Location"
+msgstr "Lugar"
+
+#: /models/Account.php:24
+msgid "Provider"
+msgstr "Proveedor"
+
+#: /models/AuthProvider.php:17
+msgid "Title"
+msgstr "Título"
+
+#: /models/AuthProvider.php:18
+msgid "Login count"
+msgstr "Nº accesos"
+
+#: /models/AuthProvider.php:19
+msgid "App id"
+msgstr ""
+
+#: /models/AuthProvider.php:20
+msgid "App secret"
+msgstr ""
+
+#: /models/Country.php:16
+msgid "Full name"
+msgstr "Nombre completo"
+
+#: /models/Country.php:17
+msgid "2 letters code"
+msgstr "Código de 2 letras"
+
+#: /models/Country.php:18
+msgid "3 letters code"
+msgstr "Código de 3 letras"
+
+#: /models/Country.php:19
+msgid "Numeric code"
+msgstr "Código numético"
+
+#: /models/Country.php:20
+msgid "Capital"
+msgstr "Capital"
+
+#: /models/Country.php:21
+msgid "Citizenship"
+msgstr "Ciudadanía"
+
+#: /models/Country.php:22
+msgid "Currency"
+msgstr "Moneda"
+
+#: /models/Country.php:23
+msgid "Currency code"
+msgstr "Código de moneda"
+
+#: /models/Country.php:24
+msgid "Currency sub unit"
+msgstr "Subunidad de moneda"
+
+#: /models/Country.php:25
+msgid "Region code"
+msgstr "Código de región"
+
+#: /models/Country.php:26
+msgid "Subregion code"
+msgstr "Código de subregión"
+
+#: /models/Country.php:27
+msgid "European Economic Area"
+msgstr "Espacio Económico Europeo"
+
+#: /models/Language.php:15
+msgid "Code"
+msgstr "Código"
+
+#: /models/Language.php:17
+msgid "English name"
+msgstr "Nombre en Inglés"
+
+#: /models/Language.php:19
+msgid "Default"
+msgstr "Predeterminado"
+
+#: /models/Language.php:20
+msgid "Priority"
+msgstr "Prioridad"
+
+#: /models/Permission.php:14 /models/PermissionType.php:15
+#: /models/Profile.php:14 /models/User.php:20
+msgid "Description"
+msgstr "Descripción"
+
+#: /models/Permission.php:15
+msgid "Type"
+msgstr "Tipo"
+
+#: /models/User.php:18 /storage/gettext/auth-login_form.blade.php.php:17
+msgid "Username"
+msgstr "Usuario"
+
+#: /models/User.php:21 /storage/gettext/auth-login_form.blade.php.php:18
+msgid "Password"
+msgstr "Contraseña"
+
+#: /start/global.php:75 /storage/gettext/layouts-error.blade.php.php:62
 msgid "Error"
 msgstr "Error"
 
-#: /start/global.php:94
+#: /start/global.php:106
 msgid "Maintenance"
 msgstr "Mantenimiento"
+
+#: /storage/gettext/admin-accounts-index.blade.php.php:8
+#: /storage/gettext/admin-authproviders-index.blade.php.php:7
+#: /storage/gettext/admin-countries-index.blade.php.php:7
+#: /storage/gettext/admin-languages-index.blade.php.php:7
+#: /storage/gettext/admin-profiles-index.blade.php.php:7
+#: /storage/gettext/admin-users-index.blade.php.php:8
+msgid "Actions"
+msgstr "Acciones"
+
+#: /storage/gettext/admin-accounts-index.blade.php.php:30
+#: /storage/gettext/admin-authproviders-index.blade.php.php:28
+#: /storage/gettext/admin-countries-index.blade.php.php:28
+#: /storage/gettext/admin-languages-index.blade.php.php:28
+#: /storage/gettext/admin-profiles-index.blade.php.php:28
+#: /storage/gettext/admin-show.blade.php.php:27
+#: /storage/gettext/admin-users-index.blade.php.php:30
+#, php-format
+msgid "Delete %s"
+msgstr "Borrar %s"
+
+#: /storage/gettext/admin-create.blade.php.php:16
+#: /storage/gettext/admin-create.blade.php.php:18
+#: /storage/gettext/admin-index.blade.php.php:22
+#: /storage/gettext/admin-show.blade.php.php:12
+#: /storage/gettext/admin-show.blade.php.php:14
+msgid "Return"
+msgstr "Volver"
+
+#: /storage/gettext/admin-delete.blade.php.php:4
+#: /views/admin/delete.blade.php:4
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
+
+#: /storage/gettext/admin-delete.blade.php.php:7
+#: /storage/gettext/admin-edit.blade.php.php:15
+#: /views/admin/delete.blade.php:7
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: /storage/gettext/admin-delete.blade.php.php:11
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: /storage/gettext/admin-edit.blade.php.php:10
+msgid "Update"
+msgstr "Actualizar"
+
+#: /storage/gettext/admin-index.blade.php.php:3
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: /storage/gettext/admin-index.blade.php.php:7
+#, php-format
+msgid "From %d to %d out of %d"
+msgstr "Del %d al %d de un total de %d"
+
+#: /storage/gettext/admin-index.blade.php.php:25
+msgid "Add new"
+msgstr "Añadir nuevo"
+
+#: /storage/gettext/admin-profiles-fields.blade.php.php:8
+#: /storage/gettext/admin-profiles-show.blade.php.php:16
+msgid "Permissions"
+msgstr "Permisos"
+
+#: /storage/gettext/admin-users-fields.blade.php.php:10
+msgid "Repeat password"
+msgstr "Repite contraseña"
+
+#: /storage/gettext/admin-users-fields.blade.php.php:14
+msgid "Optional"
+msgstr "Opcional"
+
+#: /storage/gettext/admin-users-fields.blade.php.php:22
+msgid "Unknown"
+msgstr "Desconocido"
 
 #: /storage/gettext/auth-login_form.blade.php.php:6
 msgid "Enter your credentials"
 msgstr "Introduce datos de acceso"
 
-#: /storage/gettext/auth-login_form.blade.php.php:19
-msgid "Username"
-msgstr "Usuario"
-
-#: /storage/gettext/auth-login_form.blade.php.php:24
-msgid "Password"
-msgstr "Contraseña"
-
-#: /storage/gettext/auth-login_form.blade.php.php:32
+#: /storage/gettext/auth-login_form.blade.php.php:23
 msgid "Remember me"
 msgstr "Recordar"
 
-#: /storage/gettext/auth-login_form.blade.php.php:35
+#: /storage/gettext/auth-login_form.blade.php.php:25
 msgid "Problems?"
 msgstr "¿Problemas?"
 
-#: /storage/gettext/auth-login_form.blade.php.php:43
+#: /storage/gettext/auth-login_form.blade.php.php:33
 msgid "I don't know my username"
 msgstr ""
 
-#: /storage/gettext/auth-login_form.blade.php.php:44
+#: /storage/gettext/auth-login_form.blade.php.php:34
 msgid "I don't know my password"
 msgstr ""
 
-#: /storage/gettext/auth-login_form.blade.php.php:45
+#: /storage/gettext/auth-login_form.blade.php.php:35
 msgid "I'm having other problems"
 msgstr ""
 
@@ -386,35 +827,27 @@ msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
 msgid "Please visit us again in a few minutes"
 msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
 
-#: /storage/gettext/home-contact_form.blade.php.php:14
+#: /storage/gettext/home-contact.blade.php.php:14
 msgid "Please enter your contact details and we will try to contact you back as soon as possible"
 msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos responderte lo antes posible"
 
-#: /storage/gettext/home-contact_form.blade.php.php:19
-msgid "Name"
-msgstr "Nombre"
-
-#: /storage/gettext/home-contact_form.blade.php.php:23
+#: /storage/gettext/home-contact.blade.php.php:22
 msgid "Company"
 msgstr "Empresa"
 
-#: /storage/gettext/home-contact_form.blade.php.php:30
-msgid "E-mail"
-msgstr "E-mail"
-
-#: /storage/gettext/home-contact_form.blade.php.php:34
+#: /storage/gettext/home-contact.blade.php.php:31
 msgid "Phone"
 msgstr "Teléfono"
 
-#: /storage/gettext/home-contact_form.blade.php.php:40
+#: /storage/gettext/home-contact.blade.php.php:35
 msgid "Message"
 msgstr "Mensaje"
 
-#: /storage/gettext/home-contact_form.blade.php.php:44
+#: /storage/gettext/home-contact.blade.php.php:37
 msgid "Send"
 msgstr "Enviar"
 
-#: /storage/gettext/home-index.blade.php.php:9
+#: /storage/gettext/home-home.blade.php.php:9
 msgid "Logout"
 msgstr "Desconectar"
 
@@ -430,3 +863,6 @@ msgstr "Lamentamos mucho las molestias, estamos trabajando para solverlo lo ante
 #, php-format
 msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
+
+#~ msgid "Route permissions missing"
+#~ msgstr "Faltan los permisos de ruta"

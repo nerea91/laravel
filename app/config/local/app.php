@@ -14,4 +14,19 @@ return array(
 	*/
 
 	'debug' => true,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Encryption Key
+	|--------------------------------------------------------------------------
+	|
+	| It's considered a good practice to have separate keys for local and
+	| production environment.
+	|
+	| Use a random, 32 character string, otherwise these encrypted strings
+	| will not be safe. Please do this before deploying an application!
+	|
+	*/
+	'key' => 'to-do generate a key for local environment', //to-do
+
 );

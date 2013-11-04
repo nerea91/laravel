@@ -64,7 +64,7 @@ return array(
 	| will not be safe. Please do this before deploying an application!
 	|
 	*/
-	'key' => 'to-do generate a key', // Use command: php artisan key:generate
+	'key' => 'to-do generate a key for production environment', // Use command: php artisan key:generate. 
 
 	/*
 	|--------------------------------------------------------------------------

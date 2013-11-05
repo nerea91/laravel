@@ -52,7 +52,7 @@
 		</script>
 		@endif
 
-		@if ($debugbar){{ $debugbar }}@endif
+		@if (isset($debugbar)){{ $debugbar }}@endif
 
 	</body>
 </html>

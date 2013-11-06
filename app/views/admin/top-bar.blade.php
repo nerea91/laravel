@@ -9,7 +9,7 @@
 
 			<ul class="left">
 
-				@if($user->hasAnyPermission(60, 61, 40, 41, 100, 101))
+				@if($user->hasAnyPermission(60, 61, 40, 41))
 				<li class="divider"></li>
 				<li class="has-dropdown">
 
@@ -27,21 +27,66 @@
 						{{-- Profiles --}}
 						@if($user->hasAnyPermission(40 ,41))
 						<li><label>{{ _('Profiles') }}</label></li>
-						@if($user->hasPermission(60))<li>{{ link_to_route('admin.profiles.index', _('Index')) }}@endif
-						@if($user->hasPermission(61))<li>{{ link_to_route('admin.profiles.create', _('Add')) }}@endif
-						@if($user->hasAnyPermission(100, 101))<li class="divider"></li>@endif
-						@endif
-
-						{{-- Accounts --}}
-						@if($user->hasAnyPermission(100, 101))
-						<li><label>{{ _('Accounts') }}</label></li>
-						@if($user->hasPermission(100))<li>{{ link_to_route('admin.accounts.index', _('Index')) }}@endif
-						@if($user->hasPermission(101))<li>{{ link_to_route('admin.accounts.create', _('Add')) }}@endif
+						@if($user->hasPermission(40))<li>{{ link_to_route('admin.profiles.index', _('Index')) }}@endif
+						@if($user->hasPermission(41))<li>{{ link_to_route('admin.profiles.create', _('Add')) }}@endif
 						@endif
 
 					</ul>
 				</li>
 				@endif
+
+				@if($user->hasAnyPermission(100, 101, 80 ,81))
+				<li class="divider"></li>
+				<li class="has-dropdown">
+
+					<a>{{ _('Access') }}</a>
+					<ul class="dropdown">
+
+						{{-- Accounts --}}
+						@if($user->hasAnyPermission(100 ,101))
+						<li><label>{{ _('Accounts') }}</label></li>
+						@if($user->hasPermission(100))<li>{{ link_to_route('admin.accounts.index', _('Index')) }}@endif
+						@if($user->hasPermission(101))<li>{{ link_to_route('admin.accounts.create', _('Add')) }}@endif
+						@if($user->hasAnyPermission(80, 81))<li class="divider"></li>@endif
+						@endif
+
+						{{-- Auth providers --}}
+						@if($user->hasAnyPermission(80 ,81))
+						<li><label>{{ _('Providers') }}</label></li>
+						@if($user->hasPermission(80))<li>{{ link_to_route('admin.authproviders.index', _('Index')) }}@endif
+						@if($user->hasPermission(81))<li>{{ link_to_route('admin.authproviders.create', _('Add')) }}@endif
+						@endif
+
+					</ul>
+				</li>
+				@endif
+
+				@if($user->hasAnyPermission(20, 21, 10, 11))
+				<li class="divider"></li>
+				<li class="has-dropdown">
+
+					<a>{{ _('Localization') }}</a>
+					<ul class="dropdown">
+
+					{{-- Languages --}}
+						@if($user->hasAnyPermission(20 ,21))
+						<li><label>{{ _('Languages') }}</label></li>
+						@if($user->hasPermission(20))<li>{{ link_to_route('admin.languages.index', _('Index')) }}@endif
+						@if($user->hasPermission(21))<li>{{ link_to_route('admin.languages.create', _('Add')) }}@endif
+						@if($user->hasAnyPermission(10, 11))<li class="divider"></li>@endif
+						@endif
+
+						{{-- Auth providers --}}
+						@if($user->hasAnyPermission(10 ,11))
+						<li><label>{{ _('Countries') }}</label></li>
+						@if($user->hasPermission(10))<li>{{ link_to_route('admin.countries.index', _('Index')) }}@endif
+						@if($user->hasPermission(11))<li>{{ link_to_route('admin.countries.create', _('Add')) }}@endif
+						@endif
+
+					</ul>
+				</li>
+				@endif
+
 			</ul> {{-- ul.left --}}
 
 			<!--<ul class="right">

@@ -27,6 +27,6 @@ return array(
 	| will not be safe. Please do this before deploying an application!
 	|
 	*/
-	'key' => 'to-do generate a key for local environment', //to-do
+	'key' => 'to-do key for local environment.', //to-do
 
 );

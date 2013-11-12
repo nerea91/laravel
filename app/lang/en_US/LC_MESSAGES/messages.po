@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 14:02+0100\n"
+"POT-Creation-Date: 2013-11-12 14:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,8 +26,7 @@ msgstr ""
 #: /controllers/AuthProvidersController.php:56
 #: /controllers/CountriesController.php:56
 #: /controllers/LanguagesController.php:56
-#: /controllers/ProfilesController.php:56
-#: /controllers/UsersController.php:56
+#: /controllers/ProfilesController.php:56 /controllers/UsersController.php:56
 msgid "Index"
 msgstr ""
 
@@ -41,8 +40,7 @@ msgstr ""
 #: /controllers/AuthProvidersController.php:73
 #: /controllers/CountriesController.php:73
 #: /controllers/LanguagesController.php:73
-#: /controllers/ProfilesController.php:97
-#: /controllers/UsersController.php:92
+#: /controllers/ProfilesController.php:97 /controllers/UsersController.php:92
 #: /database/seeds/PermissionsTableSeeder.php:13
 #: /database/seeds/PermissionsTableSeeder.php:19
 #: /database/seeds/PermissionsTableSeeder.php:25
@@ -61,8 +59,7 @@ msgstr ""
 #: /controllers/AuthProvidersController.php:108
 #: /controllers/CountriesController.php:108
 #: /controllers/LanguagesController.php:108
-#: /controllers/ProfilesController.php:78
-#: /controllers/UsersController.php:76
+#: /controllers/ProfilesController.php:78 /controllers/UsersController.php:76
 msgid "Details"
 msgstr ""
 
@@ -141,8 +138,7 @@ msgstr ""
 
 #: /controllers/CountriesController.php:72
 #: /controllers/CountriesController.php:107
-#: /controllers/CountriesController.php:125
-#: /models/User.php:22
+#: /controllers/CountriesController.php:125 /models/User.php:22
 msgid "Country"
 msgstr ""
 
@@ -211,8 +207,7 @@ msgstr ""
 
 #: /controllers/ProfilesController.php:77
 #: /controllers/ProfilesController.php:96
-#: /controllers/ProfilesController.php:121
-#: /models/User.php:23
+#: /controllers/ProfilesController.php:121 /models/User.php:23
 msgid "Profile"
 msgstr ""
 
@@ -254,10 +249,8 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: /controllers/UsersController.php:75
-#: /controllers/UsersController.php:91
-#: /controllers/UsersController.php:109
-#: /models/Account.php:25
+#: /controllers/UsersController.php:75 /controllers/UsersController.php:91
+#: /controllers/UsersController.php:109 /models/Account.php:25
 msgid "User"
 msgstr ""
 
@@ -402,14 +395,12 @@ msgstr ""
 msgid "The :attribute must be between :min and :max digits."
 msgstr ""
 
-#: /lang/en/validation.php:36
-#: /lang/en/validation.php:57
+#: /lang/en/validation.php:36 /lang/en/validation.php:57
 #: /lang/en/validation.php:70
 msgid "The :attribute format is invalid."
 msgstr ""
 
-#: /lang/en/validation.php:37
-#: /lang/en/validation.php:39
+#: /lang/en/validation.php:37 /lang/en/validation.php:39
 #: /lang/en/validation.php:55
 msgid "The selected :attribute is invalid."
 msgstr ""
@@ -518,6 +509,10 @@ msgstr ""
 msgid "The :attribute may only contain letters, numbers and spaces."
 msgstr ""
 
+#: /lang/en/validation.php:75
+msgid "The :attribute must be a positive number."
+msgstr ""
+
 #: /models/Account.php:14
 msgid "Remote id"
 msgstr ""
@@ -530,19 +525,13 @@ msgstr ""
 msgid "Nickname"
 msgstr ""
 
-#: /models/Account.php:17
-#: /storage/gettext/home-contact_form.blade.php.php:30
+#: /models/Account.php:17 /storage/gettext/home-contact_form.blade.php.php:30
 msgid "E-mail"
 msgstr ""
 
-#: /models/Account.php:18
-#: /models/AuthProvider.php:16
-#: /models/Country.php:15
-#: /models/Language.php:16
-#: /models/Permission.php:13
-#: /models/PermissionType.php:14
-#: /models/Profile.php:13
-#: /models/User.php:19
+#: /models/Account.php:18 /models/AuthProvider.php:16 /models/Country.php:15
+#: /models/Language.php:16 /models/Permission.php:13
+#: /models/PermissionType.php:14 /models/Profile.php:13 /models/User.php:19
 #: /storage/gettext/home-contact_form.blade.php.php:19
 msgid "Name"
 msgstr ""
@@ -559,8 +548,7 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: /models/Account.php:22
-#: /models/Language.php:18
+#: /models/Account.php:22 /models/Language.php:18
 msgid "Locale"
 msgstr ""
 
@@ -652,10 +640,8 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: /models/Permission.php:14
-#: /models/PermissionType.php:15
-#: /models/Profile.php:14
-#: /models/User.php:20
+#: /models/Permission.php:14 /models/PermissionType.php:15
+#: /models/Profile.php:14 /models/User.php:20
 msgid "Description"
 msgstr ""
 
@@ -663,13 +649,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: /models/User.php:18
-#: /storage/gettext/auth-login_form.blade.php.php:19
+#: /models/User.php:18 /storage/gettext/auth-login_form.blade.php.php:19
 msgid "Username"
 msgstr ""
 
-#: /models/User.php:21
-#: /storage/gettext/auth-login_form.blade.php.php:24
+#: /models/User.php:21 /storage/gettext/auth-login_form.blade.php.php:24
 msgid "Password"
 msgstr ""
 

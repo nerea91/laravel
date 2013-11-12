@@ -73,6 +73,9 @@ return array(
 	"alpha_dash_space" => _("The :attribute may only contain letters, numbers, dashes and spaces."),
 	"alpha_num_space"  => _("The :attribute may only contain letters, numbers and spaces."),
 	"numeric"          => _("The :attribute must be a positive number."),
+	"length"           => _("The :attribute must be :length characters."),
+	"max_length"       => _("The :attribute must be less than :length characters."),
+	"min_length"       => _("The :attribute must be at least :length characters."),
 
 
 	/*

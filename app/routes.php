@@ -11,6 +11,15 @@
 |
 */
 
+Route::get('test', function() {
+
+	$validator = Validator::make(array('xxxx' => 'aaaa'),array('xxxx' => 'required|max_length:3'));
+	if ($validator->fails())
+		return $validator->messages()->all();
+
+	return 'ok';
+});
+
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
 // Contact us area

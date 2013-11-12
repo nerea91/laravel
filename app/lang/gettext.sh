@@ -6,6 +6,8 @@
 # Where to look for files ...
 BASE_DIR="$( cd "$( dirname "$0" )" && cd .. && pwd )"
 
+php $BASE_DIR/../artisan gettext
+
 # What files to look for ...
 EXT="*.php"
 

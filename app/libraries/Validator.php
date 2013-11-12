@@ -2,7 +2,6 @@
 
 class Validator extends \Illuminate\Validation\Validator {
 
-
 	/**
 	 * Create a new Validator instance.
 	 *
@@ -12,7 +11,7 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array  $messages
 	 * @return void
 	 */
-	public function __construct(TranslatorInterface $translator, $data, $rules, $messages = array())
+	public function __construct($translator, $data, $rules, $messages = array())
 	{
 		parent::__construct($translator, $data, $rules, $messages);
 
@@ -65,5 +64,60 @@ class Validator extends \Illuminate\Validation\Validator {
 	protected function validatePositive($attribute, $value)
 	{
 		return is_numeric($value) and $value > 0;
+	}
+
+	/**
+	 * Validate that an attribute has no more than the given length.
+	 * Intended for numeric values. For string valures use the native size() function.
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @param  array   $parameters
+	 * @return bool
+	 */
+	protected static function validateMaxLength($attribute, $value, $parameters) {
+		return (strlen($value) <= $parameters[0]);
+	}
+
+	/**
+	 * Validate that an attribute has at least the given length.
+	 * Intended for numeric values. For string valures use the native size() function.
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @param  array   $parameters
+	 * @return bool
+	 */
+	protected static function validateMinLength($attribute, $value, $parameters) {
+		return (strlen($value) >= $parameters[0]);
+	}
+
+	/**
+	 * Validate that an attribute has the given length.
+	 * Intended for numeric values. For string valures use the native size() function.
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @param  array   $parameters
+	 * @return bool
+	 */
+	protected static function validateLength($attribute, $value, $parameters) {
+		return (strlen($value) == $parameters[0]);
+	}
+
+	/**
+	 * Replace all place-holders for the between rule.
+	 *
+	 * @param  string  $message
+	 * @param  string  $attribute
+	 * @param  string  $rule
+	 * @param  array   $parameters
+	 * @return string
+	 */
+	protected function replaceMaxLength($message, $attribute, $rule, $parameters) { return $this->replaceLength($message, $attribute, $rule, $parameters);}
+	protected function replaceMinLength($message, $attribute, $rule, $parameters) { return $this->replaceLength($message, $attribute, $rule, $parameters);}
+	protected function replaceLength($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(array(':length'), $parameters, $message);
 	}
 }

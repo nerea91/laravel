@@ -72,10 +72,7 @@ class GettextCommand extends Command {
 		}
 
 		if($compiled)
-		{
-			$this->info("$compiled files compiled. Now you should run:");
-			$this->comment(app_path().'/lang/gettext.sh');
-		}
+			$this->info("$compiled files compiled.");
 		else
 			$this->error('No .blade.php files found in '.$input_path);
 	}

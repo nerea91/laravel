@@ -21,6 +21,18 @@ View::composer('layouts.base', 'BaseLayoutComposer');
 
 /*
 |--------------------------------------------------------------------------
+| Validation
+|--------------------------------------------------------------------------
+*/
+
+Validator::resolver(function($translator, $data, $rules, $messages)
+{
+	return new \Stolz\Validation\Validator($translator, $data, $rules, $messages);
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | Helpers
 |--------------------------------------------------------------------------
 */

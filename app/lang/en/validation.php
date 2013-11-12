@@ -69,6 +69,11 @@ return array(
 	"unique"           => _("The :attribute has already been taken."),
 	"url"              => _("The :attribute format is invalid."),
 
+	"alpha_space"      => _("The :attribute may only contain letters and spaces."),
+	"alpha_dash_space" => _("The :attribute may only contain letters, numbers, dashes and spaces."),
+	"alpha_num_space"  => _("The :attribute may only contain letters, numbers and spaces."),
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines

@@ -44,8 +44,8 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 |
 */
 
-if ( ! $app->runningInConsole())
-	Session::put('language', (object) Language::detect(Request::url())->setLocale()->toArray() );
+//if ( ! $app->runningInConsole())
+Session::put('language', (object) Language::detect(Request::url())->setLocale()->toArray() );
 
 /*
 |--------------------------------------------------------------------------

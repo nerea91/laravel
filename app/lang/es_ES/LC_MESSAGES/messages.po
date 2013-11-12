@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-03 00:56+0100\n"
+"POT-Creation-Date: 2013-11-12 14:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 
 #: /controllers/AccountsController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:15
-#: /storage/gettext/admin-top-bar.blade.php.php:37
 msgid "Accounts"
 msgstr "Cuentas"
 
@@ -28,9 +27,6 @@ msgstr "Cuentas"
 #: /controllers/CountriesController.php:56
 #: /controllers/LanguagesController.php:56
 #: /controllers/ProfilesController.php:56 /controllers/UsersController.php:56
-#: /storage/gettext/admin-top-bar.blade.php.php:22
-#: /storage/gettext/admin-top-bar.blade.php.php:30
-#: /storage/gettext/admin-top-bar.blade.php.php:38
 msgid "Index"
 msgstr "Listado"
 
@@ -51,10 +47,6 @@ msgstr "Cuenta"
 #: /database/seeds/PermissionsTableSeeder.php:31
 #: /database/seeds/PermissionsTableSeeder.php:37
 #: /database/seeds/PermissionsTableSeeder.php:43
-#: /storage/gettext/admin-create.blade.php.php:10
-#: /storage/gettext/admin-top-bar.blade.php.php:23
-#: /storage/gettext/admin-top-bar.blade.php.php:31
-#: /storage/gettext/admin-top-bar.blade.php.php:39
 msgid "Add"
 msgstr "Añadir"
 
@@ -68,12 +60,6 @@ msgstr "Cuenta %s creada con éxito"
 #: /controllers/CountriesController.php:108
 #: /controllers/LanguagesController.php:108
 #: /controllers/ProfilesController.php:78 /controllers/UsersController.php:76
-#: /storage/gettext/admin-accounts-index.blade.php.php:23
-#: /storage/gettext/admin-authproviders-index.blade.php.php:21
-#: /storage/gettext/admin-countries-index.blade.php.php:21
-#: /storage/gettext/admin-languages-index.blade.php.php:21
-#: /storage/gettext/admin-profiles-index.blade.php.php:21
-#: /storage/gettext/admin-users-index.blade.php.php:23
 msgid "Details"
 msgstr "Detalles"
 
@@ -89,13 +75,6 @@ msgstr "Detalles"
 #: /database/seeds/PermissionsTableSeeder.php:32
 #: /database/seeds/PermissionsTableSeeder.php:38
 #: /database/seeds/PermissionsTableSeeder.php:44
-#: /storage/gettext/admin-accounts-index.blade.php.php:26
-#: /storage/gettext/admin-authproviders-index.blade.php.php:24
-#: /storage/gettext/admin-countries-index.blade.php.php:24
-#: /storage/gettext/admin-languages-index.blade.php.php:24
-#: /storage/gettext/admin-profiles-index.blade.php.php:24
-#: /storage/gettext/admin-show.blade.php.php:20
-#: /storage/gettext/admin-users-index.blade.php.php:26
 msgid "Edit"
 msgstr "Editar"
 
@@ -118,8 +97,8 @@ msgid "Panel"
 msgstr "Panel"
 
 #: /controllers/AuthController.php:14
-#: /storage/gettext/auth-login_form.blade.php.php:19
-#: /storage/gettext/home-home.blade.php.php:12
+#: /storage/gettext/auth-login_form.blade.php.php:28
+#: /storage/gettext/home-index.blade.php.php:12
 msgid "Login"
 msgstr "Acceder"
 
@@ -128,7 +107,6 @@ msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
 #: /controllers/AuthProvidersController.php:55
-#, fuzzy
 msgid "Auth. providers"
 msgstr "Proveedores de acceso"
 
@@ -184,7 +162,7 @@ msgid "Home"
 msgstr "Inicio"
 
 #: /controllers/HomeController.php:38
-#: /storage/gettext/home-contact.blade.php.php:6
+#: /storage/gettext/home-contact_form.blade.php.php:6
 msgid "Contact us"
 msgstr "Contactar"
 
@@ -224,7 +202,6 @@ msgstr "Idioma %s borrado con éxito"
 
 #: /controllers/ProfilesController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:12
-#: /storage/gettext/admin-top-bar.blade.php.php:29
 msgid "Profiles"
 msgstr "Perfiles"
 
@@ -269,9 +246,6 @@ msgstr "El perfil %s tiene exactamente los mismos permisos"
 
 #: /controllers/UsersController.php:55
 #: /database/seeds/PermissionTypesTableSeeder.php:13
-#: /storage/gettext/admin-profiles-show.blade.php.php:12
-#: /storage/gettext/admin-top-bar.blade.php.php:16
-#: /storage/gettext/admin-top-bar.blade.php.php:21
 msgid "Users"
 msgstr "Usuarios"
 
@@ -314,13 +288,6 @@ msgstr "Ver"
 #: /database/seeds/PermissionsTableSeeder.php:33
 #: /database/seeds/PermissionsTableSeeder.php:39
 #: /database/seeds/PermissionsTableSeeder.php:45
-#: /storage/gettext/admin-accounts-index.blade.php.php:30
-#: /storage/gettext/admin-authproviders-index.blade.php.php:28
-#: /storage/gettext/admin-countries-index.blade.php.php:28
-#: /storage/gettext/admin-languages-index.blade.php.php:28
-#: /storage/gettext/admin-profiles-index.blade.php.php:28
-#: /storage/gettext/admin-show.blade.php.php:27
-#: /storage/gettext/admin-users-index.blade.php.php:30
 msgid "Delete"
 msgstr "Borrar"
 
@@ -431,7 +398,7 @@ msgstr "Debe tener entre :min y :max dígitos."
 #: /lang/en/validation.php:36 /lang/en/validation.php:57
 #: /lang/en/validation.php:70
 msgid "The :attribute format is invalid."
-msgstr "El formato no es válida."
+msgstr "El formato no es válido."
 
 #: /lang/en/validation.php:37 /lang/en/validation.php:39
 #: /lang/en/validation.php:55
@@ -530,6 +497,18 @@ msgstr "Debe contener :size ítems."
 msgid "The :attribute has already been taken."
 msgstr "Ya está en uso. Escoge otro."
 
+#: /lang/en/validation.php:72
+msgid "The :attribute may only contain letters and spaces."
+msgstr "Solo puede contener letras, espacios."
+
+#: /lang/en/validation.php:73
+msgid "The :attribute may only contain letters, numbers, dashes and spaces."
+msgstr "Solo puede contener lettras, números, guiones y espacios."
+
+#: /lang/en/validation.php:74
+msgid "The :attribute may only contain letters, numbers and spaces."
+msgstr "Solo puede contener lettras, números y espacios."
+
 #: /models/Account.php:14
 msgid "Remote id"
 msgstr "Identificado remoto"
@@ -542,14 +521,14 @@ msgstr "Token de acceso"
 msgid "Nickname"
 msgstr "Apodo"
 
-#: /models/Account.php:17 /storage/gettext/home-contact.blade.php.php:28
+#: /models/Account.php:17 /storage/gettext/home-contact_form.blade.php.php:30
 msgid "E-mail"
 msgstr "E-mail"
 
 #: /models/Account.php:18 /models/AuthProvider.php:16 /models/Country.php:15
 #: /models/Language.php:16 /models/Permission.php:13
 #: /models/PermissionType.php:14 /models/Profile.php:13 /models/User.php:19
-#: /storage/gettext/home-contact.blade.php.php:19
+#: /storage/gettext/home-contact_form.blade.php.php:19
 msgid "Name"
 msgstr "Nombre"
 
@@ -666,15 +645,15 @@ msgstr "Descripción"
 msgid "Type"
 msgstr "Tipo"
 
-#: /models/User.php:18 /storage/gettext/auth-login_form.blade.php.php:17
+#: /models/User.php:18 /storage/gettext/auth-login_form.blade.php.php:19
 msgid "Username"
 msgstr "Usuario"
 
-#: /models/User.php:21 /storage/gettext/auth-login_form.blade.php.php:18
+#: /models/User.php:21 /storage/gettext/auth-login_form.blade.php.php:24
 msgid "Password"
 msgstr "Contraseña"
 
-#: /start/global.php:75 /storage/gettext/layouts-error.blade.php.php:62
+#: /start/global.php:75
 msgid "Error"
 msgstr "Error"
 
@@ -682,104 +661,27 @@ msgstr "Error"
 msgid "Maintenance"
 msgstr "Mantenimiento"
 
-#: /storage/gettext/admin-accounts-index.blade.php.php:8
-#: /storage/gettext/admin-authproviders-index.blade.php.php:7
-#: /storage/gettext/admin-countries-index.blade.php.php:7
-#: /storage/gettext/admin-languages-index.blade.php.php:7
-#: /storage/gettext/admin-profiles-index.blade.php.php:7
-#: /storage/gettext/admin-users-index.blade.php.php:8
-msgid "Actions"
-msgstr "Acciones"
-
-#: /storage/gettext/admin-accounts-index.blade.php.php:30
-#: /storage/gettext/admin-authproviders-index.blade.php.php:28
-#: /storage/gettext/admin-countries-index.blade.php.php:28
-#: /storage/gettext/admin-languages-index.blade.php.php:28
-#: /storage/gettext/admin-profiles-index.blade.php.php:28
-#: /storage/gettext/admin-show.blade.php.php:27
-#: /storage/gettext/admin-users-index.blade.php.php:30
-#, php-format
-msgid "Delete %s"
-msgstr "Borrar %s"
-
-#: /storage/gettext/admin-create.blade.php.php:16
-#: /storage/gettext/admin-create.blade.php.php:18
-#: /storage/gettext/admin-index.blade.php.php:22
-#: /storage/gettext/admin-show.blade.php.php:12
-#: /storage/gettext/admin-show.blade.php.php:14
-msgid "Return"
-msgstr "Volver"
-
-#: /storage/gettext/admin-delete.blade.php.php:4
-#: /views/admin/delete.blade.php:4
-msgid "Are you sure?"
-msgstr "¿Estás seguro?"
-
-#: /storage/gettext/admin-delete.blade.php.php:7
-#: /storage/gettext/admin-edit.blade.php.php:15
-#: /views/admin/delete.blade.php:7
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: /storage/gettext/admin-delete.blade.php.php:11
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: /storage/gettext/admin-edit.blade.php.php:10
-msgid "Update"
-msgstr "Actualizar"
-
-#: /storage/gettext/admin-index.blade.php.php:3
-msgid "No results found"
-msgstr "No se han encontrado resultados"
-
-#: /storage/gettext/admin-index.blade.php.php:7
-#, php-format
-msgid "From %d to %d out of %d"
-msgstr "Del %d al %d de un total de %d"
-
-#: /storage/gettext/admin-index.blade.php.php:25
-msgid "Add new"
-msgstr "Añadir nuevo"
-
-#: /storage/gettext/admin-profiles-fields.blade.php.php:8
-#: /storage/gettext/admin-profiles-show.blade.php.php:16
-msgid "Permissions"
-msgstr "Permisos"
-
-#: /storage/gettext/admin-users-fields.blade.php.php:10
-msgid "Repeat password"
-msgstr "Repite contraseña"
-
-#: /storage/gettext/admin-users-fields.blade.php.php:14
-msgid "Optional"
-msgstr "Opcional"
-
-#: /storage/gettext/admin-users-fields.blade.php.php:22
-msgid "Unknown"
-msgstr "Desconocido"
-
 #: /storage/gettext/auth-login_form.blade.php.php:6
 msgid "Enter your credentials"
 msgstr "Introduce datos de acceso"
 
-#: /storage/gettext/auth-login_form.blade.php.php:23
+#: /storage/gettext/auth-login_form.blade.php.php:32
 msgid "Remember me"
 msgstr "Recordar"
 
-#: /storage/gettext/auth-login_form.blade.php.php:25
+#: /storage/gettext/auth-login_form.blade.php.php:35
 msgid "Problems?"
 msgstr "¿Problemas?"
 
-#: /storage/gettext/auth-login_form.blade.php.php:33
+#: /storage/gettext/auth-login_form.blade.php.php:43
 msgid "I don't know my username"
 msgstr ""
 
-#: /storage/gettext/auth-login_form.blade.php.php:34
+#: /storage/gettext/auth-login_form.blade.php.php:44
 msgid "I don't know my password"
 msgstr ""
 
-#: /storage/gettext/auth-login_form.blade.php.php:35
+#: /storage/gettext/auth-login_form.blade.php.php:45
 msgid "I'm having other problems"
 msgstr ""
 
@@ -787,82 +689,112 @@ msgstr ""
 msgid "To reset your password, complete this form"
 msgstr "Completa este formulario para restablecer tu contraseña"
 
-#: /storage/gettext/errors-401.blade.php.php:4
-msgid "Your user is not authorized to access this secion"
-msgstr "Tu usuario no está autorizado a acceder a esta sección"
-
-#: /storage/gettext/errors-401.blade.php.php:5
-msgid "If you think this may be an error please contact the site admin"
-msgstr "Si crees que se trata de un error por favor contacta con el administrador de la web"
-
-#: /storage/gettext/errors-401.blade.php.php:8
-msgid "Go back"
-msgstr "Volver atrás"
-
-#: /storage/gettext/errors-404.blade.php.php:4
-msgid "We're really sorry but we couldn't find the page you requested on our servers"
-msgstr "Lo sentimos mucho pero no hemos podido encontrar en el servidor la página que has solicitado"
-
-#: /storage/gettext/errors-404.blade.php.php:5
-msgid "It looks like this was the result of either"
-msgstr "Esto suele ser resultado de"
-
-#: /storage/gettext/errors-404.blade.php.php:9
-msgid "a mistyped address"
-msgstr "una dirección escrita mal"
-
-#: /storage/gettext/errors-404.blade.php.php:10
-msgid "an out-of-date link"
-msgstr "un enlace antiguo"
-
-#: /storage/gettext/errors-maintenance.blade.php.php:8
-msgid "Site down for maintenance"
-msgstr "Web parada por mantenimiento"
-
-#: /storage/gettext/errors-maintenance.blade.php.php:9
-msgid "Sorry, our site is currently undergoing scheduled maintenance"
-msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
-
-#: /storage/gettext/errors-maintenance.blade.php.php:11
-msgid "Please visit us again in a few minutes"
-msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
-
-#: /storage/gettext/home-contact.blade.php.php:14
+#: /storage/gettext/home-contact_form.blade.php.php:14
 msgid "Please enter your contact details and we will try to contact you back as soon as possible"
 msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos responderte lo antes posible"
 
-#: /storage/gettext/home-contact.blade.php.php:22
+#: /storage/gettext/home-contact_form.blade.php.php:23
 msgid "Company"
 msgstr "Empresa"
 
-#: /storage/gettext/home-contact.blade.php.php:31
+#: /storage/gettext/home-contact_form.blade.php.php:34
 msgid "Phone"
 msgstr "Teléfono"
 
-#: /storage/gettext/home-contact.blade.php.php:35
+#: /storage/gettext/home-contact_form.blade.php.php:40
 msgid "Message"
 msgstr "Mensaje"
 
-#: /storage/gettext/home-contact.blade.php.php:37
+#: /storage/gettext/home-contact_form.blade.php.php:44
 msgid "Send"
 msgstr "Enviar"
 
-#: /storage/gettext/home-home.blade.php.php:9
+#: /storage/gettext/home-index.blade.php.php:9
 msgid "Logout"
 msgstr "Desconectar"
 
-#: /storage/gettext/layouts-error.blade.php.php:76
-msgid "Something went wrong while we were processing your request"
-msgstr "Algo ha ido mal al procesar tu petición"
+#: /views/admin/delete.blade.php:4
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
 
-#: /storage/gettext/layouts-error.blade.php.php:77
-msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
-msgstr "Lamentamos mucho las molestias, estamos trabajando para solverlo lo antes posible"
+#: /views/admin/delete.blade.php:7
+msgid "Cancel"
+msgstr "Cancelar"
 
-#: /storage/gettext/layouts-error.blade.php.php:81
-#, php-format
-msgid "Perhaps you would like to go to our %shome page%s?"
-msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
+#~ msgid "Actions"
+#~ msgstr "Acciones"
+
+#~ msgid "Delete %s"
+#~ msgstr "Borrar %s"
+
+#~ msgid "Return"
+#~ msgstr "Volver"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
+
+#~ msgid "Update"
+#~ msgstr "Actualizar"
+
+#~ msgid "No results found"
+#~ msgstr "No se han encontrado resultados"
+
+#~ msgid "From %d to %d out of %d"
+#~ msgstr "Del %d al %d de un total de %d"
+
+#~ msgid "Add new"
+#~ msgstr "Añadir nuevo"
+
+#~ msgid "Permissions"
+#~ msgstr "Permisos"
+
+#~ msgid "Repeat password"
+#~ msgstr "Repite contraseña"
+
+#~ msgid "Optional"
+#~ msgstr "Opcional"
+
+#~ msgid "Unknown"
+#~ msgstr "Desconocido"
+
+#~ msgid "Your user is not authorized to access this secion"
+#~ msgstr "Tu usuario no está autorizado a acceder a esta sección"
+
+#~ msgid "If you think this may be an error please contact the site admin"
+#~ msgstr "Si crees que se trata de un error por favor contacta con el administrador de la web"
+
+#~ msgid "Go back"
+#~ msgstr "Volver atrás"
+
+#~ msgid "We're really sorry but we couldn't find the page you requested on our servers"
+#~ msgstr "Lo sentimos mucho pero no hemos podido encontrar en el servidor la página que has solicitado"
+
+#~ msgid "It looks like this was the result of either"
+#~ msgstr "Esto suele ser resultado de"
+
+#~ msgid "a mistyped address"
+#~ msgstr "una dirección escrita mal"
+
+#~ msgid "an out-of-date link"
+#~ msgstr "un enlace antiguo"
+
+#~ msgid "Site down for maintenance"
+#~ msgstr "Web parada por mantenimiento"
+
+#~ msgid "Sorry, our site is currently undergoing scheduled maintenance"
+#~ msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
+
+#~ msgid "Please visit us again in a few minutes"
+#~ msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
+
+#~ msgid "Something went wrong while we were processing your request"
+#~ msgstr "Algo ha ido mal al procesar tu petición"
+
+#~ msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
+#~ msgstr "Lamentamos mucho las molestias, estamos trabajando para solverlo lo antes posible"
+
+#~ msgid "Perhaps you would like to go to our %shome page%s?"
+#~ msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
 
 #~ msgid "Route permissions missing"
 #~ msgstr "Faltan los permisos de ruta"

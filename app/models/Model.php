@@ -5,7 +5,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 /**
 	This class adds to Eloquent:
 	- Validation in the model.
-	- Labels for database fields.
+	- Custom labels for database fields.
+	- Validation uses custom labels instead of field names.
 	- Compact 'unique' validation rule.
 	- Global muttator to replace empty strings with NULL values.
 	- Model event trigger.
@@ -61,8 +62,11 @@ class Model extends Eloquent {
 		{
 			// Global muttator to convert empty attributes to null
 			foreach ($model->toArray() as $name => $value)
+			{
+				$value = trim($value);
 				if (empty($value))
 					$model->{$name} = null;
+			}
 
 			// Validate model before saving it
 			return $model->validate(true);
@@ -179,6 +183,8 @@ class Model extends Eloquent {
 
 		// Validate
 		$validator = \Validator::make($this->attributes, $rules);
+		$validator->setAttributeNames($this->getLabels());
+
 		if ( ! $validator->passes())
 		{
 			$this->setErrors($validator->messages());

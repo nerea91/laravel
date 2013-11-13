@@ -66,7 +66,7 @@ class HomeController extends BaseController {
 			$message->from($input['email'], $input['name'])->to(Config::get('site.contact-email'), Config::get('site.name'))->subject(_('Contact form query'));
 		});
 
-		View::share('success', _('Message sent!'));
-		$this->showContactForm();
+		// Post/Redirect/Get Pattern (http://en.wikipedia.org/wiki/Post/Redirect/Get)
+		return Redirect::back()->withSuccess(_('Message sent!'));
 	}
 }

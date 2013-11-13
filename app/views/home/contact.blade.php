@@ -8,8 +8,8 @@
 
 		{{ Form::open(['route' => 'send.contact.email']) }}
 
-		@if (isset($success))
-		<div class="alert-box success radius">{{ $success }}<a class="close">&times;</a></div>
+		@if (Session::has('success'))
+		<div class="alert-box success radius">{{ Session::get('success') }}<a class="close">&times;</a></div>
 		@else
 		<p>{{ _('Please enter your contact details and we will try to contact you back as soon as possible') }}.</p>
 		@endif

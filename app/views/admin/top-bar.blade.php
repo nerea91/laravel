@@ -87,11 +87,22 @@
 				</li>
 				@endif
 
-			</ul> {{-- ul.left --}}
+			</ul>{{-- ul.left --}}
 
-			<!--<ul class="right">
-				<li>aaaaaaa</li>
-			</ul> {{-- ul.right --}}-->
+			<ul class="right">
+				<li class="divider"></li>
+				<li class="has-dropdown">
+
+					<a>{{ _('Me') }}</a>
+					<ul class="dropdown">
+						<li><label>{{ _('User') }}</label></li>
+						<li><a>{{ $user->name() }}</a></li>
+						<li><label>{{ _('Profile') }}</label></li>
+						<li><a>{{ $user->profile->name }}</a></li>
+						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert']) }}</li>
+					</ul>
+				</li>
+			</ul>{{-- ul.right --}}
 
 		</section>
 	</nav>

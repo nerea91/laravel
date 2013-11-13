@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('test', function() {
-
-	$validator = Validator::make(array('xxxx' => 'aaaa'),array('xxxx' => 'required|max_length:3'));
-	if ($validator->fails())
-		return $validator->messages()->all();
-
-	return 'ok';
-});
-
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
 // Contact us area
@@ -36,6 +27,7 @@ Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function()
 
 	Route::get('/', array('as' => 'admin', 'uses' => 'AdminController@showAdminPage'));
 
+	// Resource controllers
 	Route::resource('accounts', 'AccountsController');
 	Route::resource('authproviders', 'AuthProvidersController');
 	Route::resource('countries', 'CountriesController');

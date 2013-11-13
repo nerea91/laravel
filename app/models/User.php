@@ -103,7 +103,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 		if( ! $this->id)
 			return false;
 
-		$permissions = is_array($permissions) ? $permissions : func_get_args();
+		$permissions = (is_array($permissions)) ? $permissions : func_get_args();
 
 		return $this->profile->hasPermission($permissions);
 	}
@@ -120,8 +120,21 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 		if( ! $this->id)
 			return false;
 
-		$permissions = is_array($permissions) ? $permissions : func_get_args();
+		$permissions = (is_array($permissions)) ? $permissions : func_get_args();
 
 		return $this->profile->hasAnyPermission($permissions);
+	}
+
+	/**
+	 * If user name is not null return it. Otherwise return username
+	 *
+	 * @return string
+	 */
+	public function name()
+	{
+		if(is_null($this->name))
+			return $this->username;
+
+		return $this->name;
 	}
 }

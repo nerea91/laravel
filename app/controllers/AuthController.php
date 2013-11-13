@@ -28,7 +28,7 @@ class AuthController extends BaseController {
 			$input,
 			[
 				'username' => 'required|max:64|alpha_num',
-				'password' => 'required|min:5',
+				'password' => 'required|min:5|max:80',
 			]
 		);
 

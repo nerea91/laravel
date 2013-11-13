@@ -16,9 +16,9 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 		parent::__construct($attributes);
 		$this->setRules(array(
 			'username' => [_('Username'), 'required|min:4|max:32|regex:/^[a-zA-z]+[a-zA-z0-9]+$/|unique'],
-			'name' => [_('Name'), 'max:64'],
+			'name' => [_('Name'), 'alpha_dash_space|max:64'],
 			'description' => [_('Description'), 'max:128'],
-			'password' => [_('Password'), 'required|min:5|max:64|confirmed'],
+			'password' => [_('Password'), 'required|min:5|max:60|confirmed'],
 			'country_id' => [_('Country'), 'exists:countries,id'],
 			'profile_id' => [_('Profile'), 'required|exists:profiles,id'],
 		));

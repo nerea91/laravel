@@ -54,8 +54,17 @@ class HomeController extends BaseController {
 			'message' => 'required|min:10|max:1000',
 		];
 
+		$labels = [
+			'name' => _('Name'),
+			'company' => _('Company'),
+			'email' => _('E-mail'),
+			'phone' => _('Phone'),
+			'message' => _('Message'),
+		];
+
 		$input = Input::only(array_keys($rules));
 		$validator = Validator::make($input, $rules);
+		$validator->setAttributeNames($labels);
 
 		if($validator->fails())
 			return Redirect::back()->withInput($input)->withErrors($validator);

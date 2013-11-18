@@ -63,9 +63,12 @@ class Model extends Eloquent {
 			// Global muttator to convert empty attributes to null
 			foreach ($model->toArray() as $name => $value)
 			{
-				$value = trim($value);
-				if (empty($value))
-					$model->{$name} = null;
+				if( ! is_null($value))
+				{
+					$value = trim($value);
+					if ( ! strlen($value))
+						$model->{$name} = null;
+				}
 			}
 
 			// Validate model before saving it

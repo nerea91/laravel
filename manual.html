@@ -96,7 +96,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 </ul></li>
 <li><a href="#redirect">Redirecciones</a>.</li>
 </ul></li>
-<li><a style="" href="#controllers">Controladores</a>.
+<li><a href="#controllers">Controladores</a>.
 <ul>
 <li><a href="#RESTful_controllers">Controladores RESTful</a>.</li>
 <li><a href="#resource_controllers">Controladores RESTful de recurso</a>.</li>
@@ -114,7 +114,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 <li><a href="#model_delete">Borrar</a>.</li>
 <li><a href="#model_softdel">SoftDelete</a>.</li>
 <li><a href="#model_scope">Consultas con nombre</a>.</li>
-<li><a style="" href="#transactions">Transacciones</a>.</li>
+<li><a href="#transactions">Transacciones</a>.</li>
 <li><a href="#model_relationships">Definir relaciones</a> (<a href="#rel1-1">1-1</a>, <a href="#rel1-n">1-n</a>, <a href="#reln-m">n-m</a>).</li>
 <li><a href="#model_eager">Incluir relacionados en los resultados</a>.</li>
 <li><a href="#model_relate">Relacionar modelos</a>.</li>
@@ -1395,7 +1395,7 @@ User::destroy(array(1, 2, 3));//Más de una indicando con array
 
 <h3>SoftDelete</h3>
 
-<p>Si se activa el <em>softDelete</em> en un modelo, cuando <a href="#model_delete">borrarmos</a> datos de una tabla en realidad los datos no se eliminan sino que se marcan como borrados asignando a la columna <code>deleted_at</code> la fecha de borrado.</p>
+<p>Si se activa el <em>softDelete</em> en un modelo, cuando <a href="#model_delete">borramos</a> datos de una tabla en realidad los datos no se eliminan sino que se marcan como borrados asignando a la columna <code>deleted_at</code> la fecha de borrado.</p>
 
 <p>Comprobar si un dato ha sido borrado con <em>softDelete</em></p>
 
@@ -1462,11 +1462,17 @@ public function scopeWomen($query)
 <p>Para tener control manual de la transacción</p>
 
 <pre><code>try {
-    DB::connection()-&gt;pdo-&gt;beginTransaction();
+    DB::beginTransaction();
+
     // Consultas de BD
-    DB::connection()-&gt;pdo-&gt;commit();
+
+    // Todo fue bien
+    DB::commit();
+
 } catch (\PDOException $e) {
-    DB::connection()-&gt;pdo-&gt;rollBack();
+
+    // Algo fue mal
+    DB::rollBack();
 }
 </code></pre>
 

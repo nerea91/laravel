@@ -68,7 +68,7 @@
 					<a>{{ _('Localization') }}</a>
 					<ul class="dropdown">
 
-					{{-- Languages --}}
+						{{-- Languages --}}
 						@if($user->hasAnyPermission(20 ,21))
 						<li><label>{{ _('Languages') }}</label></li>
 						@if($user->hasPermission(20))<li>{{ link_to_route('admin.languages.index', _('Index')) }}@endif
@@ -95,11 +95,12 @@
 
 					<a>{{ _('Me') }}</a>
 					<ul class="dropdown">
-						<li><label>{{ _('User') }}</label></li>
-						<li><a>{{ $user->name() }}</a></li>
-						<li><label>{{ _('Profile') }}</label></li>
-						<li><a>{{ $user->profile->name }}</a></li>
+						<li><label>{{ $user->name() }}</label></li>
+						<li><label>{{ $user->profile->name }}</label></li>
+						<li><a>{{ _('Preferences') }}</a></li>
+						<li class="divider"></li>
 						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
+						<li class="divider"></li>
 					</ul>
 				</li>
 			</ul>{{-- ul.right --}}

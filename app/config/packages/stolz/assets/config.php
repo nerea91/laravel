@@ -2,10 +2,8 @@
 
 return array(
 
-	'debug'		=> false,
-	'pipeline'	=> false,
+	'pipeline'	=> true,
 	'autoload'	=> array('foundation-cdn'),
-
 	'collections' => array(
 
 		//jQuery (CDN)

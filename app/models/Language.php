@@ -23,28 +23,46 @@ class Language extends Stolz\Database\Model {
 
 	// Relationships ==========================================================
 
+	public function users()
+	{
+		return $this->hasMany('User');
+	}
+
 	// Static Methods =========================================================
 
 	/**
-	 * Detect the language from the URL subdomain or the clients browser.
+	 * Determine the language of the application.
+	 *
+	 * - First try with previous value from session.
+	 * - Sencond try with the URL subdomain.
+	 * - Third try with the clients browser.
 	 *
 	 * If no language is detected or the detected one does not exist
 	 * on the DB then the default language will be returned.
 	 *
-	 * @param  string $url
 	 * @return Language
 	 */
-	public static function detect($url)
+	public static function detect()
 	{
 		// Get all languages from data base
 		$all = self::getAllByPriority();
 		if( ! $all->count())
 			return new Language;
 
-		// Assume first language as the default one
-		$default = $all->first();
+		// Try with previous value from session
+		if(Session::has('language'))
+		{
+			$lang = Session::get('language');
+			if(isset($lang->id) and $all->contains($lang->id))
+			{
+				$lang = $all->find($lang->id);
+				$lang->detected_from = 'session';
+				return $lang;
+			}
+		}
 
 		// Extract subdomain from url
+		$url = Request::url();
 		preg_match('/^([a-z][a-z])\./', parse_url($url)['host'], $matches);
 
 		// If subdomain found check if it's valid
@@ -54,7 +72,10 @@ class Language extends Stolz\Database\Model {
 			return $lang;
 		}
 
-		// No luck with the subdomain, try now with the browser
+		// No luck so far, prepare a default to fallback.
+		$default = $all->first();
+
+		// Try with the browser
 		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
 			$default->detected_from = 'default (browser languages not available)';
@@ -84,7 +105,7 @@ class Language extends Stolz\Database\Model {
 	 *
 	 * @param  string $needle
 	 * @param  Illuminate\Database\Eloquent\Collection $haystack
-	 * @return mixed string|null
+	 * @return Language|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
 	{
@@ -135,4 +156,13 @@ class Language extends Stolz\Database\Model {
 		return $this;
 	}
 
+	/**
+	 * Convert to stdClass object
+	 *
+	 * @return stdClass
+	 */
+	public function toObject()
+	{
+		return (object) $this->toArray();
+	}
 }

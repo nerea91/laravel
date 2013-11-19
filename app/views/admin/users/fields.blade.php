@@ -24,7 +24,10 @@
 	Form::text($f, null, ['autocomplete' => 'off']),
 
 	Form::label($f = 'country_id', $resource->getLabel($f)),
-	Form::select($f, [0 => _('Unknown')] + Country::dropdown())
+	Form::select($f, [0 => _('Unknown')] + Country::dropdown()),
+
+	Form::label($f = 'language_id', $resource->getLabel($f)),
+	Form::select($f, [0 => _('Unknown')] + Language::dropdown())
 
 }}
 </fieldset>

@@ -118,7 +118,7 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$this->resource = $this->resource->newInstance(Input::only('username', 'name', 'description', 'profile_id', 'country_id'));
+		$this->resource = $this->resource->newInstance(Input::only('username', 'name', 'description', 'profile_id', 'country_id', 'language_id'));
 
 		// Validate and save
 		if( ! $this->validateCommon() or ! $this->resource->save())
@@ -136,7 +136,7 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$this->resource = $this->resource->findOrFail($id)->fill(Input::only('username', 'name', 'description', 'profile_id', 'country_id'));
+		$this->resource = $this->resource->findOrFail($id)->fill(Input::only('username', 'name', 'description', 'profile_id', 'country_id', 'language_id'));
 
 		// Validate and save
 		if( ! $this->validateCommon(false) or ! $this->resource->save())
@@ -176,6 +176,10 @@ class UsersController extends BaseController {
 		// Country is optional
 		if( ! intval($this->resource->country_id))
 			$this->resource->resetRule('country_id', 'exists')->country_id = null;
+
+		// Language is optional
+		if( ! intval($this->resource->language_id))
+			$this->resource->resetRule('language_id', 'exists')->language_id = null;
 
 		// Guarded attributes must be handled manually
 		if($require_password)

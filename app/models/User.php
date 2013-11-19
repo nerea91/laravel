@@ -20,20 +20,26 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 			'description' => [_('Description'), 'max:128'],
 			'password' => [_('Password'), 'required|min:5|max:60|confirmed'],
 			'country_id' => [_('Country'), 'exists:countries,id'],
+			'language_id' => [_('Language'), 'exists:languages,id'],
 			'profile_id' => [_('Profile'), 'required|exists:profiles,id'],
 		));
 	}
 
 	// Relationships ==========================================================
 
-	public function profile()
-	{
-		return $this->belongsTo('Profile');
-	}
-
 	public function country()
 	{
 		return $this->belongsTo('Country');
+	}
+
+	public function language()
+	{
+		return $this->belongsTo('Language');
+	}
+
+	public function profile()
+	{
+		return $this->belongsTo('Profile');
 	}
 
 	public function accounts()

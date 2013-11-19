@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
 
 			//Foreign keys
 			$table->unsignedInteger('country_id')->nullable();$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('set null');
+			$table->unsignedInteger('language_id')->nullable();$table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('set null');
 			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('restrict');
 
 			//Automatic columns

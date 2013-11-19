@@ -50,6 +50,7 @@ class AuthController extends BaseController {
 	public function doLogout()
 	{
 		Auth::logout();
+		Session::flush();
 		return Redirect::to('/');
 	}
 

@@ -99,7 +99,7 @@
 						<li><a>{{ $user->name() }}</a></li>
 						<li><label>{{ _('Profile') }}</label></li>
 						<li><a>{{ $user->profile->name }}</a></li>
-						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert']) }}</li>
+						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
 					</ul>
 				</li>
 			</ul>{{-- ul.right --}}

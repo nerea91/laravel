@@ -21,4 +21,9 @@
 	<dd>{{{ $resource->country->name }}}</dd>
 	@endif
 
+	@if ($resource->language_id)
+	<dt>{{ $resource->getLabel('language_id') }}</dt>
+	<dd>{{{ $resource->language->name }}}</dd>
+	@endif
+
 </dl>

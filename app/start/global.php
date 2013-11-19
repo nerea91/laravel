@@ -43,9 +43,8 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 | Use GNU Gettext translations instead of the native (array based) translations.
 |
 */
-
-//if ( ! $app->runningInConsole())
-Session::put('language', (object) Language::detect(Request::url())->setLocale()->toArray() );
+if ( ! $app->runningInConsole())
+	Session::put('language', Language::detect()->setLocale()->toObject());
 
 /*
 |--------------------------------------------------------------------------

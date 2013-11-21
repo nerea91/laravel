@@ -6,7 +6,7 @@ class PermissionTypesTableSeeder extends Seeder {
 	{
 		DB::table('permissiontypes')->delete();
 
-		$permissiontypes = array(
+		$types = array(
 			['id' => 1, 'name' => _('Countries')],
 			['id' => 2, 'name' => _('Languages')],
 			['id' => 3, 'name' => _('Profiles')],
@@ -15,7 +15,7 @@ class PermissionTypesTableSeeder extends Seeder {
 			['id' => 6, 'name' => _('Accounts')],
 		);
 
-		DB::table('permissiontypes')->insert($permissiontypes);
+		DB::table('permissiontypes')->insert($types);
 	}
 
 }

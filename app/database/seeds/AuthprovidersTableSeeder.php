@@ -6,11 +6,11 @@ class AuthprovidersTableSeeder extends Seeder {
 	{
 		DB::table('authproviders')->delete();
 
-		$authproviders = array(
+		$providers = array(
 			['id' => 1, 'name' => 'laravel', 'title' => 'Laravel']
 		);
 
-		DB::table('authproviders')->insert($authproviders);
+		DB::table('authproviders')->insert($providers);
 	}
 
 }

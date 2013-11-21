@@ -4,8 +4,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
 	This class adds to Eloquent:
-	- Validation in the model.
 	- Custom labels for database fields.
+	- Validation in the model.
 	- Validation uses custom labels instead of field names.
 	- Compact 'unique' validation rule.
 	- Global muttator to replace empty strings with NULL values.
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 	Usage example:
 
-	class SomeModel extends Stolz\Database\Model
+	class SomeModel extends \Stolz\Database\Model
 	{
 		public function __construct(array $attributes = array())
 		{
@@ -304,6 +304,42 @@ class Model extends Eloquent {
 	public static function dropdown($label = 'name', $value = 'id')
 	{
 		return self::orderBy($label)->lists($label, $value);
+	}
+
+
+	/**
+	 * Convert to array using labels as keys.
+	 *
+	 * @return array
+	 */
+	public function toHumanArray()
+	{
+		$data = $this->toArray();
+		foreach($data as $key => $value)
+		{
+			if($key == 'created_at')
+			{
+				unset($data[$key]);
+				$data[_('Created at')] = $value;
+			}
+			elseif($key == 'updated_at')
+			{
+				unset($data[$key]);
+				$data[_('Updated at')] = $value;
+			}
+			elseif($key == 'deleted_at')
+			{
+				unset($data[$key]);
+				$data[_('Deleted at')] = $value;
+			}
+			elseif( ! is_null($label = $this->getLabel($key)))
+			{
+				unset($data[$key]);
+				$data[$label] = $value;
+			}
+		}
+
+		return $data;
 	}
 
 }

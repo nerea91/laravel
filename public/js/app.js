@@ -7,7 +7,15 @@ if(typeof $ != 'undefined') {
 
 		// Zurb Foundation
 		if($.fn.foundation)
+		{
 			$doc.foundation();
+
+			$('form').submit(function() {
+				$('*', this).css('visibility', 'hidden');
+				$(this).append('<div class="preloader"></div>');
+				return true;
+			});
+		}
 	});
 
 	// This event is a standard event in the DOM. Occurs later, after all content (e.g. images, frames,...) are fully loaded.

@@ -17,8 +17,11 @@ Thumbs.db
 # Gettext
 /app/storage/gettext/
 
+
 # Ctags
 tags
 
 # Packages
 /public/packages/barryvdh/
+/public/css/min/
+/public/js/min/

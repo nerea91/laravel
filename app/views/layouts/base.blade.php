@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="{{ $lang->code }}" ><![endif]-->
 <html class="no-js" lang="{{ $lang->code }}">
 	<head>
 		{{-- Current page info --}}

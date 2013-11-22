@@ -1,5 +1,5 @@
 <div class="fixed contain-to-grid">
-	<nav class="top-bar">
+	<nav class="top-bar" data-topbar>
 		<ul class="title-area">
 			<li class="name"><h1>{{ link_to_route('admin', Config::get('site.name')) }}</h1></li>
 			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>

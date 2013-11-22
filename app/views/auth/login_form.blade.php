@@ -28,7 +28,7 @@
 	</div>
 </div>
 
-<div id="problems" class="reveal-modal small">
+<div id="problems" class="reveal-modal small" data-reveal>
 	<ul>
 		<li><a>{{ _("I don't know my username") }}</a></li>
 		<li><a>{{ _("I don't know my password") }}</a></li>

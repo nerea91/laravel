@@ -1,5 +1,5 @@
 {{-- Modal form to confirm deletion of resource --}}
-{{ Form::open(['method' => 'DELETE', 'id' => 'delete-modal-form', 'class' => 'reveal-modal small']) }}
+{{ Form::open(['method' => 'DELETE', 'id' => 'delete-modal-form', 'class' => 'reveal-modal small', 'data-reveal']) }}
 	<h3 id="delete-modal-prompt" class="text-center"></h3>
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">

@@ -1,7 +1,7 @@
 @section('main')
 <div class="row">
 	<div class="small-11 small-centered large-6 large-centered columns">
-		{{ Form::model($resource, array('method' => 'PUT', 'route' => array("$prefix.update", $resource->id), 'class' => 'custom')) }}
+		{{ Form::model($resource, array('method' => 'PUT', 'route' => array("$prefix.update", $resource->id))) }}
 
 		@include("$prefix.fields")
 

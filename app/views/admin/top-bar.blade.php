@@ -61,7 +61,7 @@
 				</li>
 				@endif
 
-				@if($user->hasAnyPermission(20, 21, 10, 11))
+				@if($user->hasAnyPermission(20, 21, 10, 11, 120, 121))
 				<li class="divider"></li>
 				<li class="has-dropdown">
 
@@ -76,11 +76,19 @@
 						@if($user->hasAnyPermission(10, 11))<li class="divider"></li>@endif
 						@endif
 
-						{{-- Auth providers --}}
+						{{-- Countries --}}
 						@if($user->hasAnyPermission(10 ,11))
 						<li><label>{{ _('Countries') }}</label></li>
 						@if($user->hasPermission(10))<li>{{ link_to_route('admin.countries.index', _('Index')) }}@endif
 						@if($user->hasPermission(11))<li>{{ link_to_route('admin.countries.create', _('Add')) }}@endif
+						@if($user->hasAnyPermission(120, 121))<li class="divider"></li>@endif
+						@endif
+
+						{{-- Currencies --}}
+						@if($user->hasAnyPermission(120 ,121))
+						<li><label>{{ _('Currencies') }}</label></li>
+						@if($user->hasPermission(120))<li>{{ link_to_route('admin.currencies.index', _('Index')) }}@endif
+						@if($user->hasPermission(121))<li>{{ link_to_route('admin.currencies.create', _('Add')) }}@endif
 						@endif
 
 					</ul>
@@ -97,7 +105,7 @@
 					<ul class="dropdown">
 						<li><label>{{ $user->name() }}</label></li>
 						<li><label>{{ $user->profile->name }}</label></li>
-						<li><a>{{ _('Preferences') }}</a></li>
+						<li><a>{{ _('Settings') }}</a></li>
 						<li class="divider"></li>
 						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
 						<li class="divider"></li>

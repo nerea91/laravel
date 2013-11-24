@@ -18,7 +18,7 @@ class CreateLanguagesTable extends Migration {
 			$table->string('name', 32)->unique();
 			$table->string('english_name', 32)->unique();
 			$table->string('locale', 5);
-			$table->boolean('default')->default(0);
+			$table->boolean('is_default')->unsigned()->default(0);
 			$table->integer('priority');
 
 			//Automatic columns

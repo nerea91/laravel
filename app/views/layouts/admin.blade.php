@@ -9,14 +9,14 @@
 	@include('admin/top-bar', array('user' => Auth::user()))
 
 	@if (Session::has('success'))
-	<div class="flash-alert alert-box success radius">
+	<div class="flash-alert alert-box success radius" data-alert>
 		{{ Session::get('success') }}
 		<a class="close">&times;</a>
 	</div>
 	@endif
 
 	@if (Session::has('error'))
-	<div class="flash-alert alert-box alert radius">
+	<div class="flash-alert alert-box alert radius" data-alert>
 		{{ Session::get('error') }}
 		<a class="close">&times;</a>
 	</div>

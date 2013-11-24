@@ -12,14 +12,14 @@ Thumbs.db
 *.nfs00*
 *.kate-swp
 *.old
-.inotify
+/.inotify
 
 # Gettext
 /app/storage/gettext/
 
 
 # Ctags
-tags
+/tags
 
 # Packages
 /public/packages/barryvdh/

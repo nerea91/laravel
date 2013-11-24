@@ -1,0 +1,55 @@
+<?php
+
+class Currency extends Stolz\Database\Model {
+
+	protected $softDelete = true;
+	protected $guarded = array();
+	public $timestamps = false;
+
+	// Validation =============================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->setRules(array(
+			'code' => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], //ISO 4217
+			'name' => [_('Name'), 'required|max:64'],
+			'name2' => [_('Alt. name'), 'max:64'],
+			'symbol' => [_('Symbol'), 'max:8'],
+			'symbol2' => [_('Alt. symbol'), 'max:8'],
+			'symbol_position' => [_('Symbol position'), 'required|integer'],
+			'decimal_separator' => [_('Decimal separator'), 'size:1'],
+			'thousands_separator' => [_('Thousands separator'), 'size:1'],
+			'subunit' => [_('Subunit'), 'max:16'],
+			'subunit2' => [_('Alt. subunit'), 'max:16'],
+			'unicode_decimal' => [_('Unicode decimal'), 'max:32'],
+			'unicode_hexadecimal' => [_('Unicode hexadecimal'), 'max:16'],
+		));
+	}
+
+	// Relationships ==========================================================
+
+	public function countries()
+	{
+		return $this->hasMany('Country');
+	}
+
+	// Logic ==================================================================
+
+	/**
+	 * Adds digit separators and currency sybol.
+	 *
+	 * @param  float
+	 * @param  integer
+	 * @return void
+	 */
+	public function format($number, $precision = 2)
+	{
+		$formated = number_format($number, $precision, (string) $this->decimal_separator, (string) $this->thousands_separator);
+
+		if( ! strlen($this->symbol))
+			return $formated;
+
+		return ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
+	}
+}

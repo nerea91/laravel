@@ -4,8 +4,6 @@ class LanguagesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('languages')->delete();
-
 		$languages = array(
 			array('id' => 7,  'code' => 'en', 'name' => 'English',	 	'english_name' => 'English', 	'locale' => 'en_US',	'priority' => 1),
 			array('id' => 8,  'code' => 'sv', 'name' => 'Svenska', 		'english_name' => 'Swedish', 	'locale' => 'sv_SE', 	'priority' => 70),
@@ -39,7 +37,7 @@ class LanguagesTableSeeder extends Seeder {
 		DB::table('languages')->whereNotIn('code', array('en', 'es'))->update(array('deleted_at' => '0000-00-00'));
 
 		// Set default
-		DB::table('languages')->where('code', 'en')->update(array('default' => 1));
+		DB::table('languages')->where('code', 'en')->update(array('is_default' => 1));
 	}
 
 }

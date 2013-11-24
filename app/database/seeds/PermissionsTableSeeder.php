@@ -4,8 +4,6 @@ class PermissionsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('permissions')->delete();
-
 		$permissions = array(
 
 			//Countries (Reserved range: 0-19)
@@ -43,6 +41,12 @@ class PermissionsTableSeeder extends Seeder {
 			['id' => 101, 'type_id' => 6, 'name' => _('Add')],
 			['id' => 102, 'type_id' => 6, 'name' => _('Edit')],
 			['id' => 103, 'type_id' => 6, 'name' => _('Delete')],
+
+			//Currencies (Reserved range: 120-139)
+			['id' => 120, 'type_id' => 7, 'name' => _('View')],
+			['id' => 121, 'type_id' => 7, 'name' => _('Add')],
+			['id' => 122, 'type_id' => 7, 'name' => _('Edit')],
+			['id' => 123, 'type_id' => 7, 'name' => _('Delete')],
 
 		);
 

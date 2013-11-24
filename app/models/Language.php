@@ -16,7 +16,7 @@ class Language extends Stolz\Database\Model {
 			'name' => [_('Name'), 'required|alpha|max:32|unique'],
 			'english_name' => [_('English name'), 'required|alpha|max:32|unique'],
 			'locale' => [_('Locale'), 'required|size:5|regex:/^[a-z]+_[A-Z]+$/'],
-			'default' => [_('Default'), 'required|integer|min:0|max:1'],
+			'is_default' => [_('Default'), 'required|integer|min:0|max:1'],
 			'priority' => [_('Priority'), 'required|integer'],
 		));
 	}
@@ -128,7 +128,7 @@ class Language extends Stolz\Database\Model {
 	 */
 	public static function getAllByPriority()
 	{
-		return self::orderBy('default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
+		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
 	}
 
 	// Logic ==================================================================

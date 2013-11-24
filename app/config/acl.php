@@ -27,10 +27,10 @@ return array(
 
 	'map' => array(
 
-		//Admin panel main page
+		// Admin panel main page
 		'admin' => function ($user) {return $user->hasAnyPermission(range(10,103));},
 
-		//Countries
+		// Countries
 		'admin.countries.index' => 10,
 		'admin.countries.show' => 10,
 		'admin.countries.create' => 11,
@@ -39,7 +39,7 @@ return array(
 		'admin.countries.update' => 12,
 		'admin.countries.destroy' => 13,
 
-		//Languages
+		// Languages
 		'admin.languages.index' => 20,
 		'admin.languages.show' => 20,
 		'admin.languages.create' => 21,
@@ -48,7 +48,7 @@ return array(
 		'admin.languages.update' => 22,
 		'admin.languages.destroy' => 23,
 
-		//Profiles
+		// Profiles
 		'admin.profiles.index' => 40,
 		'admin.profiles.show' => 40,
 		'admin.profiles.create' => 41,
@@ -57,7 +57,7 @@ return array(
 		'admin.profiles.update' => 42,
 		'admin.profiles.destroy' => 43,
 
-		//Users
+		// Users
 		'admin.users.index' => 60,
 		'admin.users.show' => 60,
 		'admin.users.create' => 61,
@@ -66,7 +66,7 @@ return array(
 		'admin.users.update' => 62,
 		'admin.users.destroy' => 63,
 
-		//Auth providers
+		// Auth providers
 		'admin.authproviders.index' => 80,
 		'admin.authproviders.show' => 80,
 		'admin.authproviders.create' => 81,
@@ -75,7 +75,7 @@ return array(
 		'admin.authproviders.update' => 82,
 		'admin.authproviders.destroy' => 83,
 
-		//Accounts
+		// Accounts
 		'admin.accounts.index' => 100,
 		'admin.accounts.show' => 100,
 		'admin.accounts.create' => 101,
@@ -83,6 +83,15 @@ return array(
 		'admin.accounts.edit' => 102,
 		'admin.accounts.update' => 102,
 		'admin.accounts.destroy' => 103,
+
+		// Currencies
+		'admin.currencies.index' => 120,
+		'admin.currencies.show' => 120,
+		'admin.currencies.create' => 121,
+		'admin.currencies.store' => 121,
+		'admin.currencies.edit' => 122,
+		'admin.currencies.update' => 122,
+		'admin.currencies.destroy' => 123,
 	),
 
 );

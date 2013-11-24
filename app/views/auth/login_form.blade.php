@@ -7,7 +7,7 @@
 		<hr/>
 
 		@if(Session::has('error'))
-		<div class="alert-box alert">
+		<div class="alert-box alert" data-alert>
 			{{ Session::get('error') }}
 			<a class="close">&times;</a>
 		</div>

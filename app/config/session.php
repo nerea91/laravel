@@ -120,6 +120,6 @@ return array(
 	|
 	*/
 
-	'domain' => null,
+	'domain' => null, //to-do set to .example.com to keep the session between subdomains
 
 );

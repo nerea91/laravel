@@ -1,118 +1,117 @@
-<div class="fixed contain-to-grid">
-	<nav class="top-bar" data-topbar>
-		<ul class="title-area">
-			<li class="name"><h1>{{ link_to_route('admin', Config::get('site.name')) }}</h1></li>
-			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-		</ul>
 
-		<section class="top-bar-section">
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name"><h1>{{ link_to_route('admin', Config::get('site.name')) }}</h1></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+	</ul>
 
-			<ul class="left">
+	<section class="top-bar-section">
 
-				@if($user->hasAnyPermission(60, 61, 40, 41))
-				<li class="divider"></li>
-				<li class="has-dropdown">
+		<ul class="left">
 
-					<a>{{ _('Users') }}</a>
-					<ul class="dropdown">
+			@if($user->hasAnyPermission(60, 61, 40, 41))
+			<li class="divider"></li>
+			<li class="has-dropdown">
 
-						{{-- Users --}}
-						@if($user->hasAnyPermission(60 ,61))
-						<li><label>{{ _('Users') }}</label></li>
-						@if($user->hasPermission(60))<li>{{ link_to_route('admin.users.index', _('Index')) }}@endif
-						@if($user->hasPermission(61))<li>{{ link_to_route('admin.users.create', _('Add')) }}@endif
-						@if($user->hasAnyPermission(40, 41))<li class="divider"></li>@endif
-						@endif
+				<a>{{ _('Users') }}</a>
+				<ul class="dropdown">
 
-						{{-- Profiles --}}
-						@if($user->hasAnyPermission(40 ,41))
-						<li><label>{{ _('Profiles') }}</label></li>
-						@if($user->hasPermission(40))<li>{{ link_to_route('admin.profiles.index', _('Index')) }}@endif
-						@if($user->hasPermission(41))<li>{{ link_to_route('admin.profiles.create', _('Add')) }}@endif
-						@endif
+					{{-- Users --}}
+					@if($user->hasAnyPermission(60 ,61))
+					<li><label>{{ _('Users') }}</label></li>
+					@if($user->hasPermission(60))<li>{{ link_to_route('admin.users.index', _('Index')) }}@endif
+					@if($user->hasPermission(61))<li>{{ link_to_route('admin.users.create', _('Add')) }}@endif
+					@if($user->hasAnyPermission(40, 41))<li class="divider"></li>@endif
+					@endif
 
-					</ul>
-				</li>
-				@endif
+					{{-- Profiles --}}
+					@if($user->hasAnyPermission(40 ,41))
+					<li><label>{{ _('Profiles') }}</label></li>
+					@if($user->hasPermission(40))<li>{{ link_to_route('admin.profiles.index', _('Index')) }}@endif
+					@if($user->hasPermission(41))<li>{{ link_to_route('admin.profiles.create', _('Add')) }}@endif
+					@endif
 
-				@if($user->hasAnyPermission(100, 101, 80 ,81))
-				<li class="divider"></li>
-				<li class="has-dropdown">
+				</ul>
+			</li>
+			@endif
 
-					<a>{{ _('Access') }}</a>
-					<ul class="dropdown">
+			@if($user->hasAnyPermission(100, 101, 80 ,81))
+			<li class="divider"></li>
+			<li class="has-dropdown">
 
-						{{-- Accounts --}}
-						@if($user->hasAnyPermission(100 ,101))
-						<li><label>{{ _('Accounts') }}</label></li>
-						@if($user->hasPermission(100))<li>{{ link_to_route('admin.accounts.index', _('Index')) }}@endif
-						@if($user->hasPermission(101))<li>{{ link_to_route('admin.accounts.create', _('Add')) }}@endif
-						@if($user->hasAnyPermission(80, 81))<li class="divider"></li>@endif
-						@endif
+				<a>{{ _('Access') }}</a>
+				<ul class="dropdown">
 
-						{{-- Auth providers --}}
-						@if($user->hasAnyPermission(80 ,81))
-						<li><label>{{ _('Providers') }}</label></li>
-						@if($user->hasPermission(80))<li>{{ link_to_route('admin.authproviders.index', _('Index')) }}@endif
-						@if($user->hasPermission(81))<li>{{ link_to_route('admin.authproviders.create', _('Add')) }}@endif
-						@endif
+					{{-- Accounts --}}
+					@if($user->hasAnyPermission(100 ,101))
+					<li><label>{{ _('Accounts') }}</label></li>
+					@if($user->hasPermission(100))<li>{{ link_to_route('admin.accounts.index', _('Index')) }}@endif
+					@if($user->hasPermission(101))<li>{{ link_to_route('admin.accounts.create', _('Add')) }}@endif
+					@if($user->hasAnyPermission(80, 81))<li class="divider"></li>@endif
+					@endif
 
-					</ul>
-				</li>
-				@endif
+					{{-- Auth providers --}}
+					@if($user->hasAnyPermission(80 ,81))
+					<li><label>{{ _('Providers') }}</label></li>
+					@if($user->hasPermission(80))<li>{{ link_to_route('admin.authproviders.index', _('Index')) }}@endif
+					@if($user->hasPermission(81))<li>{{ link_to_route('admin.authproviders.create', _('Add')) }}@endif
+					@endif
 
-				@if($user->hasAnyPermission(20, 21, 10, 11, 120, 121))
-				<li class="divider"></li>
-				<li class="has-dropdown">
+				</ul>
+			</li>
+			@endif
 
-					<a>{{ _('Localization') }}</a>
-					<ul class="dropdown">
+			@if($user->hasAnyPermission(20, 21, 10, 11, 120, 121))
+			<li class="divider"></li>
+			<li class="has-dropdown">
 
-						{{-- Languages --}}
-						@if($user->hasAnyPermission(20 ,21))
-						<li><label>{{ _('Languages') }}</label></li>
-						@if($user->hasPermission(20))<li>{{ link_to_route('admin.languages.index', _('Index')) }}@endif
-						@if($user->hasPermission(21))<li>{{ link_to_route('admin.languages.create', _('Add')) }}@endif
-						@if($user->hasAnyPermission(10, 11))<li class="divider"></li>@endif
-						@endif
+				<a>{{ _('Localization') }}</a>
+				<ul class="dropdown">
 
-						{{-- Countries --}}
-						@if($user->hasAnyPermission(10 ,11))
-						<li><label>{{ _('Countries') }}</label></li>
-						@if($user->hasPermission(10))<li>{{ link_to_route('admin.countries.index', _('Index')) }}@endif
-						@if($user->hasPermission(11))<li>{{ link_to_route('admin.countries.create', _('Add')) }}@endif
-						@if($user->hasAnyPermission(120, 121))<li class="divider"></li>@endif
-						@endif
+					{{-- Languages --}}
+					@if($user->hasAnyPermission(20 ,21))
+					<li><label>{{ _('Languages') }}</label></li>
+					@if($user->hasPermission(20))<li>{{ link_to_route('admin.languages.index', _('Index')) }}@endif
+					@if($user->hasPermission(21))<li>{{ link_to_route('admin.languages.create', _('Add')) }}@endif
+					@if($user->hasAnyPermission(10, 11))<li class="divider"></li>@endif
+					@endif
 
-						{{-- Currencies --}}
-						@if($user->hasAnyPermission(120 ,121))
-						<li><label>{{ _('Currencies') }}</label></li>
-						@if($user->hasPermission(120))<li>{{ link_to_route('admin.currencies.index', _('Index')) }}@endif
-						@if($user->hasPermission(121))<li>{{ link_to_route('admin.currencies.create', _('Add')) }}@endif
-						@endif
+					{{-- Countries --}}
+					@if($user->hasAnyPermission(10 ,11))
+					<li><label>{{ _('Countries') }}</label></li>
+					@if($user->hasPermission(10))<li>{{ link_to_route('admin.countries.index', _('Index')) }}@endif
+					@if($user->hasPermission(11))<li>{{ link_to_route('admin.countries.create', _('Add')) }}@endif
+					@if($user->hasAnyPermission(120, 121))<li class="divider"></li>@endif
+					@endif
 
-					</ul>
-				</li>
-				@endif
+					{{-- Currencies --}}
+					@if($user->hasAnyPermission(120 ,121))
+					<li><label>{{ _('Currencies') }}</label></li>
+					@if($user->hasPermission(120))<li>{{ link_to_route('admin.currencies.index', _('Index')) }}@endif
+					@if($user->hasPermission(121))<li>{{ link_to_route('admin.currencies.create', _('Add')) }}@endif
+					@endif
 
-			</ul>{{-- ul.left --}}
+				</ul>
+			</li>
+			@endif
 
-			<ul class="right">
-				<li class="divider"></li>
-				<li class="has-dropdown">
+		</ul>{{-- ul.left --}}
 
-					<a>{{ _('Me') }}</a>
-					<ul class="dropdown">
-						<li><label>{{ $user->name() }}</label></li>
-						<li><label>{{ $user->profile->name }}</label></li>
-						<li><a>{{ _('Settings') }}</a></li>
-						<li class="divider"></li>
-						<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
-						<li class="divider"></li>
-					</ul>
-				</li>
-			</ul>{{-- ul.right --}}
+		<ul class="right">
+			<li class="divider"></li>
+			<li class="has-dropdown">
 
-		</section>
-	</nav>
-</div>
+				<a>{{ _('Me') }}</a>
+				<ul class="dropdown">
+					<li><label>{{ $user->name() }}</label></li>
+					<li><label>{{ $user->profile->name }}</label></li>
+					<li><a>{{ _('Settings') }}</a></li>
+					<li class="divider"></li>
+					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
+					<li class="divider"></li>
+				</ul>
+			</li>
+		</ul>{{-- ul.right --}}
+
+	</section>
+</nav>

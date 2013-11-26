@@ -4,9 +4,11 @@
 
 @section('body')
 
-<div class="row">
-
+<div class="fixed contain-to-grid">
 	@include('admin/top-bar', array('user' => Auth::user()))
+</div>
+
+<div class="row">
 
 	@if (Session::has('success'))
 	<div class="flash-alert alert-box success radius" data-alert>

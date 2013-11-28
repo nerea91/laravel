@@ -15,12 +15,21 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
 // Contact us area
 Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
-Route::post('contact', array('as' => 'contact', 'uses' => 'HomeController@sendContactEmail'));
+Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));
 
 // Auth area
 Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogin'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
+
+// User control panel
+Route::group(array('prefix' => 'user', 'before' => ['auth']), function() {
+	Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
+	Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
+
+	Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
+	Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
+});
 
 // Admin area
 Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function() {

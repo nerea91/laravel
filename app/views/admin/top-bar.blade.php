@@ -105,7 +105,7 @@
 				<ul class="dropdown">
 					<li><label>{{ $user->name() }}</label></li>
 					<li><label>{{ $user->profile->name }}</label></li>
-					<li><a>{{ _('Settings') }}</a></li>
+					<li>{{ link_to_route('user.options', _('Options')) }}</li>
 					<li class="divider"></li>
 					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
 					<li class="divider"></li>

@@ -7,7 +7,7 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 
 	protected $softDelete = true;
 	protected $guarded = array('password', 'password_confirmation');
-	protected $hidden = array('password', 'password_confirmation');
+	protected $hidden = array('password', 'password_confirmation', 'current_password');
 
 	// Validation =============================================================
 

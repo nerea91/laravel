@@ -10,12 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+// Home page
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
 // Contact us area
 Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
-Route::post('contact', array('as' => 'send.contact.email', 'uses' => 'HomeController@sendContactEmail'));
+Route::post('contact', array('as' => 'contact', 'uses' => 'HomeController@sendContactEmail'));
 
 // Auth area
 Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
@@ -25,6 +25,7 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'
 // Admin area
 Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function() {
 
+	// Admin panel home page
 	Route::get('/', array('as' => 'admin', 'uses' => 'AdminController@showAdminPage'));
 
 	// Resource controllers

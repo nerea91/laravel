@@ -6,7 +6,7 @@
 		<h3 class="subheader">{{ _('Contact us') }}</h3>
 		<hr/>
 
-		{{ Form::open(['route' => 'send.contact.email']) }}
+		{{ Form::open(['route' => 'contact']) }}
 
 		@if (Session::has('success'))
 		<div class="alert-box success radius" data-alert>{{ Session::get('success') }}<a class="close">&times;</a></div>

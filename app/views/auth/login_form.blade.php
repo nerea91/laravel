@@ -32,7 +32,7 @@
 	<ul>
 		<li><a>{{ _("I don't know my username") }}</a></li>
 		<li><a>{{ _("I don't know my password") }}</a></li>
-		<li><a>{{ _("I'm having other problems") }}</a></li>
+		<li>{{ link_to_route('contact', _("I'm having other problems")) }}</li>
 	</ul>
 	<a class="close-reveal-modal">&#215;</a>
 </div>

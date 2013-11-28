@@ -16,7 +16,7 @@
 		{{ Form::open(['action' => 'AuthController@doLogin']) }}
 		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
 		{{ Form::password('password', ['placeholder' => _('Password')]) }}
-		{{ Form::submit(_('Login'), ['class' => 'radius small button expand']) }}
+		{{ Form::submit(_('Login'), ['class' => 'button expand']) }}
 
 		<label class="left">
 			{{ Form::checkbox('remember') }}

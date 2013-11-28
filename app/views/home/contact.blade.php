@@ -6,7 +6,7 @@
 		<h3 class="subheader">{{ _('Contact us') }}</h3>
 		<hr/>
 
-		{{ Form::open(['route' => 'contact']) }}
+		{{ Form::open(['route' => 'contact.send']) }}
 
 		@if (Session::has('success'))
 		<div class="alert-box success radius" data-alert>{{ Session::get('success') }}<a class="close">&times;</a></div>
@@ -34,7 +34,7 @@
 
 		{{ Form::textarea('message', null, ['placeholder' => '* ' . _('Message')]) }}
 
-		{{ Form::submit(_('Send'), ['class' => 'radius small button expand']) }}
+		{{ Form::submit(_('Send'), ['class' => 'button expand']) }}
 
 		{{ Form::close() }}
 	</div>
@@ -43,6 +43,6 @@
 
 @section('css')
 <style>
-textarea{min-height:5em}
+textarea{min-height:6em}
 </style>
 @stop

@@ -4,11 +4,11 @@
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">
 		<div class="small-6 columns">
-			<a id="delete-modal-close" class="secondary button radius expand"><?= _('Cancel') ?></a>
+			<a id="delete-modal-close" class="secondary button expand"><?= _('Cancel') ?></a>
 		</div>
 
 		<div class="small-6 columns">
-		{{ Form::submit(_('Confirm'), array('class' => 'alert button radius expand')) }}
+		{{ Form::submit(_('Confirm'), array('class' => 'alert button expand')) }}
 		</div>
 	</div>
 	<a class="close-reveal-modal">&#215;</a>

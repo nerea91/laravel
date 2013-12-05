@@ -5,6 +5,12 @@ class Account extends Stolz\Database\Model {
 	protected $guarded = array('access_token');
 	protected $hidden = array('access_token');
 
+	// Meta ===================================================================
+
+	public function singular() { return _('Account');}	// Singular form of this model's name
+	public function plural() { return _('Accounts');}	// Singular name of this model's name
+	public function __toString() { return $this->user . ' (' . $this->provider . ')';}
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

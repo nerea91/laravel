@@ -6,6 +6,12 @@ class Language extends Stolz\Database\Model {
 	protected $guarded = array();
 	public $timestamps = false;
 
+	// Meta ===================================================================
+
+	public function singular() { return _('Language');}	// Singular form of this model's name
+	public function plural() { return _('Languages');}	// Singular name of this model's name
+	public function __toString() { return $this->english_name;}
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())
@@ -19,6 +25,20 @@ class Language extends Stolz\Database\Model {
 			'is_default' => [_('Default'), 'required|integer|min:0|max:1'],
 			'priority' => [_('Priority'), 'required|integer'],
 		));
+	}
+
+	// Events ==================================================================
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::deleting(function($model)
+		{
+			// Prevent deleting default language
+			if($model->is_default)
+				return false;
+		});
 	}
 
 	// Relationships ==========================================================

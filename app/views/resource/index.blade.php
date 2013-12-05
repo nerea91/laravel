@@ -14,15 +14,15 @@
 	{{ $results->links() }}
 
 	@if ($delete)
-	@include('admin.delete')
+	@include('resource.delete')
 	@endif
 @endif
 
 <p class="text-center">
-	{{ link_to_route('admin', _('Return'), null, ['class' => 'secondary button']) }}
+	{{ link_to_route($return, _('Return'), null, ['class' => 'secondary button']) }}
 
 	@if ($add)
-	&nbsp;{{ link_to_route("$prefix.create", _('Add new'), null, ['class' => 'success button']) }}
+	&nbsp;{{ link_to_route("$prefix.create", _('Create'), null, ['class' => 'success button']) }}
 	@endif
 </p>
 @stop

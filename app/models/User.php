@@ -9,6 +9,12 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	protected $guarded = array('password', 'password_confirmation');
 	protected $hidden = array('password', 'password_confirmation', 'current_password');
 
+	// Meta ===================================================================
+
+	public function singular() { return _('User');}	// Singular form of this model's name
+	public function plural() { return _('Users');}	// Singular name of this model's name
+	public function __toString() { return $this->username;}
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

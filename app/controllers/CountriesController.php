@@ -4,6 +4,7 @@ class CountriesController extends BaseResourceController {
 
 	/**
 	 * The layout that should be used for responses.
+	 * @var string
 	 */
 	protected $layout = 'layouts.admin';
 
@@ -15,12 +16,12 @@ class CountriesController extends BaseResourceController {
 	 */
 	public function __construct(Country $resource)
 	{
-		$user = Auth::user();
 		parent::__construct($resource, $permissions = [
-			'view'		=> $user->hasPermission(10),
-			'add'		=> $user->hasPermission(11),
-			'edit'		=> $user->hasPermission(12),
-			'delete'	=> $user->hasPermission(13),
+			'view'	=> Auth::user()->hasPermission(10),
+			'add'	=> Auth::user()->hasPermission(11),
+			'edit'	=> Auth::user()->hasPermission(12),
+			'delete'=> Auth::user()->hasPermission(13),
 		]);
 	}
+
 }

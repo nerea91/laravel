@@ -1,29 +1,39 @@
 <dl>
 
-	<dt>{{ $resource->getLabel('username') }}</dt>
+	<dt>{{ $labels->username }}</dt>
 	<dd>{{{ $resource->username }}}</dd>
 
 	@if ($resource->name)
-	<dt>{{ $resource->getLabel('name') }}</dt>
+	<dt>{{ $labels->name }}</dt>
 	<dd>{{{ $resource->name }}}</dd>
 	@endif
 
 	@if ($resource->description)
-	<dt>{{ $resource->getLabel('description') }}</dt>
+	<dt>{{ $labels->description }}</dt>
 	<dd>{{{ $resource->description }}}</dd>
 	@endif
 
-	<dt>{{ $resource->getLabel('profile_id') }}</dt>
+	<dt>{{ $labels->profile_id }}</dt>
 	<dd>{{{ $resource->profile->name }}}</dd>
 
 	@if ($resource->country_id)
-	<dt>{{ $resource->getLabel('country_id') }}</dt>
+	<dt>{{ $labels->country_id }}</dt>
 	<dd>{{{ $resource->country->name }}}</dd>
 	@endif
 
 	@if ($resource->language_id)
-	<dt>{{ $resource->getLabel('language_id') }}</dt>
+	<dt>{{ $labels->language_id }}</dt>
 	<dd>{{{ $resource->language->name }}}</dd>
 	@endif
+
+	@if ($resource->language_id)
+	<dt>{{ $labels->language_id }}</dt>
+	<dd>{{{ $resource->language->name }}}</dd>
+	@endif
+
+	<dt>{{ _('Accounts') }}</dt>
+	@foreach ($resource->accounts()->with('provider')->get() as $a)
+	<dd>{{{ $a->provider }}}</dd>
+	@endforeach
 
 </dl>

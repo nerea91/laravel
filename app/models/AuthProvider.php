@@ -4,8 +4,14 @@ class AuthProvider extends Stolz\Database\Model {
 
 	protected $table = 'authproviders';
 	protected $softDelete = true;
-	protected $hidden = array('oauth2_secret');
-	protected $guarded = array('oauth2_secret');
+	protected $hidden = array('oauth2_id', 'oauth2_secret');
+	protected $guarded = array('oauth2_id', 'oauth2_secret');
+
+	// Meta ===================================================================
+
+	public function singular() { return _('Auth. rovider');}	// Singular form of this model's name
+	public function plural() { return _('Auth. roviders');}		// Singular name of this model's name
+	public function __toString() { return $this->title;}
 
 	// Validation =============================================================
 
@@ -25,7 +31,7 @@ class AuthProvider extends Stolz\Database\Model {
 
 	public function accounts()
 	{
-		return $this->hasMany('Account');
+		return $this->hasMany('Account', 'provider_id');
 	}
 
 	// Events ==================================================================

@@ -1,21 +1,21 @@
 <dl>
 
-	<dt>{{ $resource->getLabel('name') }}</dt>
+	<dt>{{ $labels->name }}</dt>
 	<dd>{{{ $resource->name }}}</dd>
 
 	@if ($resource->description)
-	<dt>{{ $resource->getLabel('description') }}</dt>
+	<dt>{{ $labels->description }}</dt>
 	<dd>{{{ $resource->description }}}</dd>
 	@endif
 
-	@if ($users)
-	<dt>{{ _('Users') }}</dt>
-	<dd>{{ implode(', ', $users)}}</dd>
-	@endif
-
 	<dt>{{ _('Permissions') }}</dt>
-	@foreach ($permissions as $type => $array)
+	@foreach ($resource->getPermissionsGroupedByType(true) as $type => $array)
 	<dd>{{$type}}: <i>{{ implode(', ', $array)}}.</i></dd>
 	@endforeach
+
+	@if ($resource->users)
+	<dt>{{ _('Users') }}</dt>
+	<dd>{{ implode(', ', $resource->getUsernamesArray())}}</dd>
+	@endif
 
 </dl>

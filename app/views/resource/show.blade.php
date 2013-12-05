@@ -22,7 +22,7 @@
 			@endif
 
 			@if ($delete)
-			@include('admin.delete')
+			@include('resource.delete')
 			<div class="large-{{ $columns }} columns">
 				{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'alert button expand toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource)))) }}
 			</div>

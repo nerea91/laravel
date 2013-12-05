@@ -6,13 +6,19 @@ class Currency extends Stolz\Database\Model {
 	protected $guarded = array();
 	public $timestamps = false;
 
+	// Meta ===================================================================
+
+	public function singular() { return _('Currency');}	// Singular form of this model's name
+	public function plural() { return _('Currencies');}	// Singular name of this model's name
+	public function __toString() { return $this->code;}
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())
 	{
 		parent::__construct($attributes);
 		$this->setRules(array(
-			'code' => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], //ISO 4217
+			'code' => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], // ISO 4217
 			'name' => [_('Name'), 'required|max:64'],
 			'name2' => [_('Alt. name'), 'max:64'],
 			'symbol' => [_('Symbol'), 'max:8'],

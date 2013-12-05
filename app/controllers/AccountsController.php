@@ -1,39 +1,26 @@
 <?php
 
-class AccountsController extends BaseController {
+class AccountsController extends BaseResourceController {
 
 	/**
 	 * The layout that should be used for responses.
+	 * @var string
 	 */
 	protected $layout = 'layouts.admin';
 
 	/**
-	 * The common part of the name shared by all the routes of this controller.
-	 */
-	protected $prefix = 'admin.accounts';
-
-	/**
-	 * Instance of the resource that this controller is in charge of.
-	 */
-	protected $resource;
-
-	/**
-	 * Class constructor
+	 * Class constructor.
 	 *
+	 * @param  Model $resource Instance of the resource this controller is in charge of.
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(Account $resource)
 	{
-		$this->resource = new Account;
-
-		View::share([
-			'prefix'	=> $this->prefix,
-
-			// Permissions
-			'view'		=> Auth::user()->hasPermission(100),
-			'add'		=> Auth::user()->hasPermission(101),
-			'edit'		=> Auth::user()->hasPermission(102),
-			'delete'	=> Auth::user()->hasPermission(103),
+		parent::__construct($resource, $permissions = [
+			'view'	=> Auth::user()->hasPermission(100),
+			'add'	=> Auth::user()->hasPermission(101),
+			'edit'	=> Auth::user()->hasPermission(102),
+			'delete'=> Auth::user()->hasPermission(103),
 		]);
 	}
 
@@ -44,118 +31,95 @@ class AccountsController extends BaseController {
 	 */
 	public function index()
 	{
-		$data = [
-			'results'	=> $this->resource->with('user', 'provider')->paginate(),
-			'labels'	=> (object) $this->resource->getLabels(),
-		];
-
-		if($data['results']->getTotal())
-			Assets::add('responsive-tables');
-
-		$this->layout->title = _('Accounts');
-		$this->layout->subtitle = _('Index');
-		$this->layout->content = View::make('admin.index', $data);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$data = [
-			'resource'	=> new Account(Input::all()),
-			'labels'	=> $this->resource->getFillableLabels(),
-		];
-
-		$this->layout->title = _('Account');
-		$this->layout->subtitle = _('Add');
-		$this->layout->content = View::make('admin.create', $data);
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$resource =  new Account(Input::all());
-
-		if( ! $resource->save())
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
-
-		Session::flash('success', sprintf(_('Account %s successfully created'), $resource->name));
-		return Redirect::route("{$this->prefix}.show", $resource->getKey());
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getVisibleLabels(),
-			'prompt'	=> 'name'
-		];
-
-		$this->layout->title = _('Account');
-		$this->layout->subtitle = _('Details');
-		$this->layout->content = View::make('admin.show', $data);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getFillableLabels(),
-		];
-
-		$this->layout->title = _('Account');
-		$this->layout->subtitle = _('Edit');
-		$this->layout->content = View::make('admin.edit', $data);
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$resource = $this->resource->findOrFail($id);
-
-		if( ! $resource->update(Input::all()))
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
-
-		Session::flash('success', sprintf(_('Account %s successfully updated'), $resource->name));
-		return Redirect::route("{$this->prefix}.show", $id);
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		if($resource = $this->resource->find($id) and $resource->delete())
-			Session::flash('success', sprintf(_('Account %s successfully deleted'), $resource->name));
-
-		return Redirect::route("{$this->prefix}.index");
+		return parent::_index($this->resource->with('user', 'provider')->paginate());
 	}
 
 }
+
+
+
+//
+//	/**
+//	 * Store a newly created resource in storage.
+//	 *
+//	 * @return Response
+//	 */
+//	public function store()
+//	{
+//		$resource =  new Account(Input::all());
+//
+//		if( ! $resource->save())
+//			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+//
+//		Session::flash('success', sprintf(_('Account %s successfully created'), $resource->name));
+//		return Redirect::route("{$this->prefix}.show", $resource->getKey());
+//	}
+//
+//	/**
+//	 * Display the specified resource.
+//	 *
+//	 * @param  int  $id
+//	 * @return Response
+//	 */
+//	public function show($id)
+//	{
+//		$data = [
+//			'resource'	=> $this->resource->findOrFail($id),
+//			'labels'	=> $this->resource->getVisibleLabels(),
+//			'prompt'	=> 'name'
+//		];
+//
+//		$this->layout->title = _('Account');
+//		$this->layout->subtitle = _('Details');
+//		$this->layout->content = View::make('admin.show', $data);
+//	}
+//
+//	/**
+//	 * Show the form for editing the specified resource.
+//	 *
+//	 * @param  int  $id
+//	 * @return Response
+//	 */
+//	public function edit($id)
+//	{
+//		$data = [
+//			'resource'	=> $this->resource->findOrFail($id),
+//			'labels'	=> $this->resource->getFillableLabels(),
+//		];
+//
+//		$this->layout->title = _('Account');
+//		$this->layout->subtitle = _('Edit');
+//		$this->layout->content = View::make('admin.edit', $data);
+//	}
+//
+//	/**
+//	 * Update the specified resource in storage.
+//	 *
+//	 * @param  int  $id
+//	 * @return Response
+//	 */
+//	public function update($id)
+//	{
+//		$resource = $this->resource->findOrFail($id);
+//
+//		if( ! $resource->update(Input::all()))
+//			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+//
+//		Session::flash('success', sprintf(_('Account %s successfully updated'), $resource->name));
+//		return Redirect::route("{$this->prefix}.show", $id);
+//	}
+//
+//	/**
+//	 * Remove the specified resource from storage.
+//	 *
+//	 * @param  int  $id
+//	 * @return Response
+//	 */
+//	public function destroy($id)
+//	{
+//		if($resource = $this->resource->find($id) and $resource->delete())
+//			Session::flash('success', sprintf(_('Account %s successfully deleted'), $resource->name));
+//
+//		return Redirect::route("{$this->prefix}.index");
+//	}
+

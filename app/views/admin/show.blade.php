@@ -24,7 +24,7 @@
 			@if ($delete)
 			@include('admin.delete')
 			<div class="large-{{ $columns }} columns">
-				{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'alert button expand toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource->{$prompt})))) }}
+				{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'alert button expand toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource)))) }}
 			</div>
 			@endif
 		</div>

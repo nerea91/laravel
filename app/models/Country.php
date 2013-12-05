@@ -6,6 +6,12 @@ class Country extends Stolz\Database\Model {
 	protected $guarded = array();
 	public $timestamps = false;
 
+	// Meta ===================================================================
+
+	public function singular() { return _('Country');} // Singular form of this model's name
+	public function plural() { return _('Countries');} // Singular name of this model's name
+	public function __toString() { return $this->name;}
+
 	// Validation =============================================================
 
 	public function __construct(array $attributes = array())

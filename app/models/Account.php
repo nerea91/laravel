@@ -2,7 +2,7 @@
 
 class Account extends Stolz\Database\Model {
 
-	protected $guarded = array('access_token');
+	protected $guarded = array('access_token', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token');
 
 	// Meta ===================================================================

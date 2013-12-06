@@ -40,11 +40,16 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 | Application Language
 |--------------------------------------------------------------------------
 |
-| Use GNU Gettext translations instead of the native (array based) translations.
+| Set application language and bind it to the IoC container.
 |
 */
 if ( ! $app->runningInConsole())
-	Session::put('language', Language::detect()->setLocale()->toObject());
+{
+	$app->singleton('language', function()
+	{
+		return Language::detect()->setLocale();
+	});
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -107,26 +112,14 @@ App::down(function()
 
 /*
 |--------------------------------------------------------------------------
-| Require The Filters File
+| Require our definitions files
 |--------------------------------------------------------------------------
 |
-| Next we will load the filters file for the application. This gives us
-| a nice separate location to store our route and application filter
+| This gives us a nice separate location to store our functions and
 | definitions instead of putting them all in the main routes file.
 |
 */
 
+require app_path().'/helpers.php';
 require app_path().'/filters.php';
-
-/*
-|--------------------------------------------------------------------------
-| Require The Others File
-|--------------------------------------------------------------------------
-|
-| Next we will load the others file for the application. This gives us
-| a nice separate location to store our definitions other than routes and
-| filters (view composers, custom auth drivers, ...).
-|
-*/
-
 require app_path().'/others.php';

@@ -2,7 +2,7 @@
 
 class Profile extends Stolz\Database\Model {
 
-	protected $guarded = array();
+	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
 	// Meta ===================================================================
 

@@ -6,8 +6,8 @@
 |--------------------------------------------------------------------------
 |
 | Here is where you can add all the snippets that your application needs
-| other than routes or filters (i.e: view composers, auth drivers, custom
-| validation rules, etc ...).
+| other than routes, filters or helpers  (i.e: view composers, auth drivers,
+| custom validation rules, etc ...).
 |
 */
 
@@ -29,60 +29,6 @@ Validator::resolver(function($translator, $data, $rules, $messages)
 {
 	return new \Stolz\Validation\Validator($translator, $data, $rules, $messages);
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| Helpers
-|--------------------------------------------------------------------------
-*/
-
-if ( ! function_exists('p'))
-{
-	/**
-	 * Dump (with colors) the passed variables.
-	 *
-	 * @param  dynamic mixed
-	 * @return string
-	 */
-	function p()
-	{
-		echo '<pre>';
-		foreach(func_get_args() as $x)
-			echo TVarDumper::dump($x);
-		echo '</pre>';
-	}
-}
-
-if ( ! function_exists('d'))
-{
-	/**
-	 * Dump (with colors) the passed variables and end the script.
-	 *
-	 * @param  dynamic mixed
-	 * @return void
-	 */
-	function d()
-	{
-		array_map('p', func_get_args());
-		die;
-	}
-}
-
-if ( ! function_exists('f'))
-{
-	/**
-	 * Log the passed variable to FirePHP
-	 *
-	 * @param  mixed $value
-	 * @param  string $label
-	 * @return void
-	 */
-	function f($value, $label = null)
-	{
-		(new FirePHP)->log($value, $label);
-	}
-}
 
 /*
 |--------------------------------------------------------------------------

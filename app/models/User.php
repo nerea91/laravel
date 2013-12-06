@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Stolz\Database\Model implements UserInterface, RemindableInterface {
 
 	protected $softDelete = true;
-	protected $guarded = array('password', 'password_confirmation');
+	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('password', 'password_confirmation', 'current_password');
 
 	// Meta ===================================================================
@@ -59,46 +59,27 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	{
 		parent::boot();
 
+		// BUG To hash the password instead of 2 calls to creating and updating it should be only 1 call to the
+		// saving event but it doesn't work http://forums.laravel.io/viewtopic.php?id=15463
+		static::creating(function($model)
+		{
+			// Hash password if not hashed
+			if (Hash::needsRehash($model->password))
+				$model->password = Hash::make($model->password);
+		});
+		static::updating(function($model)
+		{
+			// Hash password if not hashed
+			if (Hash::needsRehash($model->password))
+				$model->password = Hash::make($model->password);
+		});
+
 		static::deleting(function($model)
 		{
 			// Prevent deleting Admin user
 			if($model->id == 1)
 				return false;
 		});
-	}
-
-	// UserInterface implementation for auth ==================================
-
-	/**
-	* Get the unique identifier for the user.
-	*
-	* @return mixed
-	*/
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
-
-	/**
-	* Get the password for the user.
-	*
-	* @return string
-	*/
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
-
-	// RemindableInterface implementation for auth ============================
-
-	/**
-	* Get the e-mail address where password reminders are sent.
-	*
-	* @return string
-	*/
-	public function getReminderEmail()
-	{
-		// to-do fetch email from accounts table
 	}
 
 	// Logic ==================================================================
@@ -148,5 +129,39 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 			return $this->username;
 
 		return $this->name;
+	}
+
+	// UserInterface implementation for auth ==================================
+
+	/**
+	 * Get the unique identifier for the user.
+	 *
+	 * @return mixed
+	 */
+	public function getAuthIdentifier()
+	{
+		return $this->getKey();
+	}
+
+	/**
+	 * Get the password for the user.
+	 *
+	 * @return string
+	 */
+	public function getAuthPassword()
+	{
+		return $this->password;
+	}
+
+	// RemindableInterface implementation for auth ============================
+
+	/**
+	 * Get the e-mail address where password reminders are sent.
+	 *
+	 * @return string
+	 */
+	public function getReminderEmail()
+	{
+		// to-do fetch email from accounts table
 	}
 }

@@ -34,7 +34,7 @@ class BaseResourceController extends BaseController {
 	public function __construct($resource, array $permissions = array())
 	{
 		$this->resource = $resource;
-		$this->prefix = $this->extractResourcePrefix(Route::currentRouteName());
+		$this->prefix = replace_last_segment(Route::currentRouteName());
 
 		// Views require prefix to generate URLs and permissions to render buttons
 		View::share(['prefix' => $this->prefix] + $permissions);
@@ -69,7 +69,7 @@ class BaseResourceController extends BaseController {
 		$labels = ($labels) ? (object) $labels : (object) $this->resource->getLabels();
 
 		// Set the route for the return button
-		$return = $this->extractResourcePrefix($this->prefix);
+		$return = replace_last_segment($this->prefix);
 
 		$this->layout->title = $this->resource->plural();
 		$this->layout->subtitle = _('Index');
@@ -84,14 +84,9 @@ class BaseResourceController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> (object) $this->resource->getVisibleLabels(),
-		];
-
-		$this->layout->title = $this->resource->singular();
+		$this->resource = $this->resource->findOrFail($id);
 		$this->layout->subtitle = _('Details');
-		$this->layout->content = View::make('resource.show', $data);
+		return $this->load_view(__FUNCTION__, $this->resource->getVisibleLabels());
 	}
 
 	/**
@@ -101,14 +96,8 @@ class BaseResourceController extends BaseController {
 	 */
 	public function create()
 	{
-		$data = [
-			'resource'	=> $this->resource,
-			'labels'	=> (object) $this->resource->getFillableLabels(),
-		];
-
-		$this->layout->title = $this->resource->singular();
 		$this->layout->subtitle = _('Add');
-		$this->layout->content = View::make('resource.create', $data);
+		return $this->load_view(__FUNCTION__, $this->resource->getFillableLabels());
 	}
 
 	/**
@@ -119,14 +108,27 @@ class BaseResourceController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		$this->resource = $this->resource->findOrFail($id);
+		$this->layout->subtitle = _('Edit');
+		return $this->load_view(__FUNCTION__, $this->resource->getFillableLabels());
+	}
+
+	/**
+	 * Set layout title and load view.
+	 *
+	 * @param  string   $view
+	 * @param  array    $labels
+	 * @return Response
+	 */
+	protected function load_view($view, array $labels = null)
+	{
 		$data = [
-			'resource'	=> $this->resource->findOrFail($id),
-			'labels'	=> $this->resource->getFillableLabels(),
+			'resource'	=> $this->resource,
+			'labels'	=> ($labels) ? (object) $labels : (object) $this->resource->getLabels(),
 		];
 
 		$this->layout->title = $this->resource->singular();
-		$this->layout->subtitle = _('Edit');
-		$this->layout->content = View::make('resource.edit', $data);
+		$this->layout->content = View::make('resource.' . $view, $data);
 	}
 
 	/**
@@ -136,13 +138,9 @@ class BaseResourceController extends BaseController {
 	 */
 	public function store()
 	{
-		$resource =  $this->resource->fill(Input::all()); //to-do revisar si es buena idea usar input all
+		$this->resource = $this->resource->fill(Input::all());
 
-		if( ! $resource->save())
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
-
-		Session::flash('success', sprintf(_('%s successfully created'), $resource));
-		return Redirect::route("{$this->prefix}.show", $resource->getKey());
+		return $this->persist(_('%s successfully created'));
 	}
 
 	/**
@@ -153,13 +151,25 @@ class BaseResourceController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$resource = $this->resource->findOrFail($id);
+		$this->resource = $this->resource->findOrFail($id)->fill(Input::all());
 
-		if( ! $resource->update(Input::all())) //to-do revisar si es buena idea usar input all
-			return Redirect::back()->withInput()->withErrors($resource->getErrors());
+		return $this->persist(_('%s successfully updated'));
+	}
 
-		Session::flash('success', sprintf(_('%s successfully updated'), $resource));
-		return Redirect::route("{$this->prefix}.show", $id);
+	/**
+	 * Persist resource to the data base.
+	 *
+	 * @param  string
+	 * @return Response
+	 */
+	protected function persist($successMesssage)
+	{
+		if( ! $this->resource->save())
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
+
+		Session::flash('success', sprintf($successMesssage, $this->resource));
+
+		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
 	}
 
 	/**
@@ -176,23 +186,4 @@ class BaseResourceController extends BaseController {
 		return Redirect::route("{$this->prefix}.index");
 	}
 
-	/**
-	 * Extract the prefix from a resource controller route name.
-	 *
-	 * Trim the last segment from a route name.
-	 * Optionally, append new segment $new_sufix.
-	 *
-	 * @param  string $route_name
-	 * @param  string $new_sufix
-	 * @return string
-	 */
-	protected function extractResourcePrefix($route_name, $new_sufix = null)
-	{
-		$segments = explode('.', $route_name);
-		$segments = array_slice($segments, 0, count($segments) - 1);
-		if( ! is_null($new_sufix))
-			$segments[] = $new_sufix;
-
-		return implode('.', $segments);
-	}
 }

@@ -2,9 +2,9 @@
 
 class Language extends Stolz\Database\Model {
 
-	protected $softDelete = true;
-	protected $guarded = array();
 	public $timestamps = false;
+	protected $softDelete = true;
+	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
 	// Meta ===================================================================
 

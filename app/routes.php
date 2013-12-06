@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 // Home page
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 

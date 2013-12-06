@@ -58,6 +58,9 @@ class Model extends Eloquent {
 	{
 		parent::boot();
 
+		//NOTE Create events sequence: saving -> creating -> created -> saved
+		//NOTE Update events sequence: saving -> updating -> updated -> saved
+
 		static::saving(function($model)
 		{
 			// Global muttator to convert empty attributes to null
@@ -72,7 +75,8 @@ class Model extends Eloquent {
 			}
 
 			// Validate model before saving it
-			return $model->validate(true);
+			if( ! $model->validate(true))
+				return false;
 		});
 	}
 
@@ -127,7 +131,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Add a validation rule a field
+	 * Add a validation rule to a field
 	 *
 	 * @param  string $field
 	 * @param  string $rule
@@ -141,13 +145,13 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Remove a validation rule a field
+	 * Remove a validation rule from a field
 	 *
 	 * @param  string $field
 	 * @param  string $rule
 	 * @return Model
 	 */
-	public function resetRule($field, $rule)
+	public function removeRule($field, $rule)
 	{
 		unset($this->rules[$field][$rule]);
 		return $this;
@@ -228,13 +232,23 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Deterine if there are any validation errors
+	 * Determine whether or not the model has any validation errors
 	 *
 	 * @return boolean
 	 */
 	public function hasErrors()
 	{
 		return $this->errors->any();
+	}
+
+	/**
+	 * Determine whether or not the model has any validation errors
+	 *
+	 * @return boolean
+	 */
+	public function isValid()
+	{
+		return ! $this->hasErrors();
 	}
 
 	/**
@@ -305,7 +319,6 @@ class Model extends Eloquent {
 	{
 		return self::orderBy($label)->lists($label, $value);
 	}
-
 
 	/**
 	 * Convert to array using labels as keys.

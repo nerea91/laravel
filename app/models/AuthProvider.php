@@ -4,7 +4,7 @@ class AuthProvider extends Stolz\Database\Model {
 
 	protected $table = 'authproviders';
 	protected $softDelete = true;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = array('login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('oauth2_id', 'oauth2_secret');
 
 	// Meta ===================================================================

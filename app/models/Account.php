@@ -2,8 +2,8 @@
 
 class Account extends Stolz\Database\Model {
 
-	protected $guarded = array('access_token', 'id', 'created_at', 'updated_at', 'deleted_at');
-	protected $hidden = array('access_token');
+	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
+	protected $hidden = array('access_token', 'last_ip');
 
 	// Meta ===================================================================
 
@@ -28,6 +28,7 @@ class Account extends Stolz\Database\Model {
 			'locale' => [_('Locale'), 'max:5'],
 			'location' => [_('Location'), 'max:128'],
 			'login_count' => [_('Login count'), 'integer|min:0'],
+			'last_ip' => [_('Last IP address'), null], // Could be 'ip' but as it's encrypt it will not validate
 			'provider_id' => [_('Provider'), 'required|exists:authproviders,id'],
 			'user_id' => [_('User'), 'required|exists:users,id'],
 		));
@@ -63,4 +64,22 @@ class Account extends Stolz\Database\Model {
 	}
 
 	// Logic ==================================================================
+
+	/**
+	 * IP Accessor
+	 */
+	public function getLastIpAttribute($value)
+	{
+		return ($value) ? Crypt::decrypt($value) : null;
+	}
+
+	/**
+	 * IP Mutator
+	 */
+	public function setLastIpAttribute($value)
+	{
+		$value = trim($value);
+		if(strlen($value))
+			$this->attributes['last_ip'] = Crypt::encrypt($value);
+	}
 }

@@ -27,7 +27,11 @@ View::composer('layouts.base', 'BaseLayoutComposer');
 
 Event::listen('account.login', function($account)
 {
-	// Update login count for the account ...
+	// Update IP address
+	$account->last_ip = Request::getClientIp();
+	$account->save();
+
+	// Increment login count for the account ...
 	$account->increment('login_count');
 
 	// ... and for its auth provider

@@ -25,6 +25,7 @@ class CreateAccountsTable extends Migration {
 			$table->string('locale', 5)->nullable();
 			$table->string('location', 128)->nullable();
 			$table->unsignedInteger('login_count')->default(0);
+			$table->text('last_ip')->nullable();
 
 			//Foreign keys
 			$table->unsignedInteger('provider_id');$table->foreign('provider_id')->references('id')->on('authproviders')->onUpdate('cascade')->onDelete('cascade');

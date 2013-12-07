@@ -378,4 +378,15 @@ class Model extends Eloquent {
 		//to-do si el usuario esta logeado y tiene una zona horaria usar dicha zona horaria
 	}
 
+	/**
+	 * Return las update date diff from now in human format
+	 *
+	 * @return string
+	 */
+	public function lastUpdateDiff()
+	{
+		return $this->updated_at->diffForHumans();
+		//to-do si el usuario esta logeado y tiene una zona horaria usar dicha zona horaria
+	}
+
 }

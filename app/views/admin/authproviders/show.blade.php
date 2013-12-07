@@ -11,4 +11,5 @@
 
 	<dt>{{ _('Last update') }}</dt>
 	<dd>{{{ $resource->lastUpdate() }}}</dd>
+	<dd>{{{ $resource->lastUpdateDiff() }}}</dd>
 </dl>

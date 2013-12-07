@@ -1,4 +1,5 @@
 <dl>
+
 	<dt>{{ $labels->provider_id }}</dt>
 	<dd>{{{ $resource->provider }}}</dd>
 
@@ -14,4 +15,6 @@
 
 	<dt>{{ _('Last update') }}</dt>
 	<dd>{{{ $resource->lastUpdate() }}}</dd>
+	<dd>{{{ $resource->lastUpdateDiff() }}}</dd>
+
 </dl>

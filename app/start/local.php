@@ -7,5 +7,11 @@ if ( ! $app->runningInConsole())
 
 	// Add FirePHP Handler to Monolog
 	Log::getMonolog()->pushHandler(new \Monolog\Handler\FirePHPHandler());
+
+	// Log the detected language
+	Log::info(value(function (){
+		$lang = App::make('language');
+		return $lang .' detected from ' . $lang->detected_from;
+	}));
 }
 

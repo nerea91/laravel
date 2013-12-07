@@ -86,6 +86,7 @@ class Model extends Eloquent {
 	public function fireEvent($event)
 	{
 		$halt = ends_with($event, 'ing');
+
 		return parent::fireModelEvent($event, $halt);
 	}
 
@@ -111,6 +112,10 @@ class Model extends Eloquent {
 
 			// Add label
 			$this->labels[$field] = $label;
+
+			// Sometimes a column has no rules
+			if(is_null($rules))
+				continue;
 
 			// Convert rules to associative array
 			if( ! is_array($rules))
@@ -141,19 +146,25 @@ class Model extends Eloquent {
 	{
 		$key = explode(':', $rule);
 		$this->rules[$field][$key[0]] = $rule;
+
 		return $this;
 	}
 
 	/**
-	 * Remove a validation rule from a field
+	 * Remove validation rules from a field
 	 *
-	 * @param  string $field
-	 * @param  string $rule
+	 * @param  string       $field
+	 * @param  string|array $rules
 	 * @return Model
 	 */
-	public function removeRule($field, $rule)
+	public function removeRule($field, $rules)
 	{
-		unset($this->rules[$field][$rule]);
+		if( ! is_array($rules))
+			$rules = explode('|', $rules);
+
+		foreach($rules as $rule)
+			unset($this->rules[$field][$rule]);
+
 		return $this;
 	}
 
@@ -353,6 +364,18 @@ class Model extends Eloquent {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Return las update date in localized format
+	 *
+	 * @param  string $format
+	 * @return string
+	 */
+	public function lastUpdate($format = '%A %d %B %Y @ %T (%Z)')
+	{
+		return $this->updated_at->formatLocalized($format);
+		//to-do si el usuario esta logeado y tiene una zona horaria usar dicha zona horaria
 	}
 
 }

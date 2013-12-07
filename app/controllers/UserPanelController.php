@@ -35,23 +35,23 @@ class UserPanelController extends BaseController {
 	 */
 	public function updatePassword()
 	{
-		$labels = array(
-			'current_password'	=> _('Current password'),
-			'password'	=> _('New password'),
-			'password_confirmation' => _('Repeat password'),
-		);
-
-		$input = Input::only(array_keys($labels));
 		$user = Auth::user();
-
-		$rules = $user->resetRule('password', 'different')->getRules();
+		$user_rules = $user->getRules();
 		$rules = array(
 			'current_password'		=> 'required',
-			'password'				=> $rules['password'],
+			'password'				=> $user_rules['password'],
 			'password_confirmation'	=> 'required',
 		);
 
-		$validator = Validator::make($input, $rules)->setAttributeNames($labels);
+		$input = Input::only(array_keys($rules));
+		$input['username'] = $user->username;
+
+		$validator = Validator::make($input, $rules)->setAttributeNames([
+			'username' => $user->getLabel('username'), //used in case username and password match
+			'current_password'	=> _('Current password'),
+			'password'	=> _('New password'),
+			'password_confirmation' => _('Repeat password'),
+		]);
 
 		// Validate form
 		if($validator->fails())
@@ -64,11 +64,11 @@ class UserPanelController extends BaseController {
 			return Redirect::back()->withInput($input)->withErrors($validator);
 		}
 
-		$user->resetRule('password', 'confirmed');
-		$user->password = Hash::make($input['password']);
-		$user->save();
+		$user->password = $input['password'];
+		if ( ! $user->removeRule('password', 'confirmed')->save())
+			return Redirect::back()->withInput($input)->withErrors($user->getErrors());
 
 		return Redirect::back()->withSuccess(_('Password updated'));
-
 	}
+
 }

@@ -59,26 +59,44 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	{
 		parent::boot();
 
+		//NOTE Create events sequence: saving -> creating -> created -> saved
+		//NOTE Update events sequence: saving -> updating -> updated -> saved
+
 		// BUG To hash the password instead of 2 calls to creating and updating it should be only 1 call to the
 		// saving event but it doesn't work http://forums.laravel.io/viewtopic.php?id=15463
-		static::creating(function($model)
+		static::creating(function($user)
 		{
 			// Hash password if not hashed
-			if (Hash::needsRehash($model->password))
-				$model->password = Hash::make($model->password);
+			if (Hash::needsRehash($user->password))
+				$user->password = Hash::make($user->password);
 		});
-		static::updating(function($model)
+		static::updating(function($user)
 		{
 			// Hash password if not hashed
-			if (Hash::needsRehash($model->password))
-				$model->password = Hash::make($model->password);
+			if (Hash::needsRehash($user->password))
+				$user->password = Hash::make($user->password);
 		});
 
-		static::deleting(function($model)
+		static::deleting(function($user)
 		{
 			// Prevent deleting Admin user
-			if($model->id == 1)
+			if($user->id == 1)
 				return false;
+		});
+
+		static::created(function($user)
+		{
+			// If the user has no Laravel account, create it
+			if( ! $user->accounts()->where('provider_id', 1)->first())
+			{
+				Account::create([
+					'uid' => $user->id,
+					'nickname' => $user->username,
+					'name' => $user->name,
+					'provider_id' => 1,
+					'user_id' => $user->id,
+				]);
+			}
 		});
 	}
 
@@ -162,6 +180,13 @@ class User extends Stolz\Database\Model implements UserInterface, RemindableInte
 	 */
 	public function getReminderEmail()
 	{
-		// to-do fetch email from accounts table
+		// Get the email from the most recently updated account
+		foreach($this->accounts()->orderBy('updated_at', 'desc')->get() as $account)
+		{
+			if( ! is_null($account->email))
+				return $account->email;
+		}
+
+		throw new Exception(_('No e-mail address found'));
 	}
 }

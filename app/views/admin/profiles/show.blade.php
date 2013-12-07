@@ -18,4 +18,7 @@
 	<dd>{{ implode(', ', $resource->getUsernamesArray())}}</dd>
 	@endif
 
+	<dt>{{ _('Last update') }}</dt>
+	<dd>{{{ $resource->lastUpdate() }}}</dd>
+
 </dl>

@@ -25,7 +25,7 @@ class AuthController extends BaseController {
 		$validator = Validator::make(
 			$input = Input::only(['username', 'password', 'remember']),
 			[
-				'username' => 'required|max:64|alpha_num',
+				'username' => 'required|min:4|max:32|alpha_num',
 				'password' => 'required|min:5|max:80',
 			]
 		);
@@ -35,7 +35,10 @@ class AuthController extends BaseController {
 		if($validator->passes())
 		{
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
+			{
+				Event::fire('account.login', array(Auth::user()->accounts()->where('provider_id', 1)->first()));
 				return Redirect::intended('/');
+			}
 
 			Session::flash('error', _('Wrong credentials'));
 		}

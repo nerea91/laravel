@@ -1,8 +1,8 @@
 <dl>
-	<dt>{{ $labels->provider_id}}</dt>
+	<dt>{{ $labels->provider_id }}</dt>
 	<dd>{{{ $resource->provider }}}</dd>
 
-	<dt>{{ $labels->user_id}}</dt>
+	<dt>{{ $labels->user_id }}</dt>
 	<dd>{{{ $resource->user }}}</dd>
 
 	@foreach ($labels as $field => $label)
@@ -11,4 +11,7 @@
 			<dd>{{{ $resource->{$field} }}}</dd>
 		@endif
 	@endforeach
+
+	<dt>{{ _('Last update') }}</dt>
+	<dd>{{{ $resource->lastUpdate() }}}</dd>
 </dl>

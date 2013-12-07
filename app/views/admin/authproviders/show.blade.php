@@ -8,4 +8,7 @@
 
 	<dt>{{ _('Accounts') }}</dt>
 	<dd>{{{ $resource->accounts->count() }}}</dd>
+
+	<dt>{{ _('Last update') }}</dt>
+	<dd>{{{ $resource->lastUpdate() }}}</dd>
 </dl>

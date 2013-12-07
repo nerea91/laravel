@@ -40,6 +40,9 @@ class AuthProvider extends Stolz\Database\Model {
 	{
 		parent::boot();
 
+		//NOTE Create events sequence: saving -> creating -> created -> saved
+		//NOTE Update events sequence: saving -> updating -> updated -> saved
+
 		static::deleting(function($model)
 		{
 			// Prevent deleting Laravel Auth Provider

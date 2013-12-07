@@ -21,6 +21,21 @@ View::composer('layouts.base', 'BaseLayoutComposer');
 
 /*
 |--------------------------------------------------------------------------
+| Event listentener
+|--------------------------------------------------------------------------
+*/
+
+Event::listen('account.login', function($account)
+{
+	// Update login count for the account ...
+	$account->increment('login_count');
+
+	// ... and for its auth provider
+	$account->provider()->increment('login_count');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Validation
 |--------------------------------------------------------------------------
 */

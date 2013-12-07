@@ -18,7 +18,7 @@ class Account extends Stolz\Database\Model {
 		parent::__construct($attributes);
 		$this->setRules(array(
 			'uid' => [_('Remote id'), 'required|max:128'],
-			'access_token' => [_('Access token'), 'required'],
+			'access_token' => [_('Access token'), null],
 			'nickname' => [_('Nickname'), 'max:128'],
 			'email' => [_('E-mail'), 'email|max:255'],
 			'name' => [_('Name'), 'max:128'],
@@ -27,6 +27,7 @@ class Account extends Stolz\Database\Model {
 			'image' => [_('Image'), 'max:255'],
 			'locale' => [_('Locale'), 'max:5'],
 			'location' => [_('Location'), 'max:128'],
+			'login_count' => [_('Login count'), 'integer|min:0'],
 			'provider_id' => [_('Provider'), 'required|exists:authproviders,id'],
 			'user_id' => [_('User'), 'required|exists:users,id'],
 		));
@@ -49,6 +50,9 @@ class Account extends Stolz\Database\Model {
 	public static function boot()
 	{
 		parent::boot();
+
+		//NOTE Create events sequence: saving -> creating -> created -> saved
+		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
 		static::deleting(function($model)
 		{

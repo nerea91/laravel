@@ -36,4 +36,7 @@
 	<dd>{{{ $a->provider }}}</dd>
 	@endforeach
 
+	<dt>{{ _('Last update') }}</dt>
+	<dd>{{{ $resource->lastUpdate() }}}</dd>
+
 </dl>

@@ -15,7 +15,7 @@ class CreateAccountsTable extends Migration {
 		Schema::create('accounts', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('uid', 128); //user unique id in the remote provider
-			$table->text('access_token');
+			$table->text('access_token')->nullable();
 			$table->string('nickname', 128)->nullable();
 			$table->string('email')->nullable();
 			$table->string('name', 128)->nullable();
@@ -24,6 +24,7 @@ class CreateAccountsTable extends Migration {
 			$table->string('image')->nullable();
 			$table->string('locale', 5)->nullable();
 			$table->string('location', 128)->nullable();
+			$table->unsignedInteger('login_count')->default(0);
 
 			//Foreign keys
 			$table->unsignedInteger('provider_id');$table->foreign('provider_id')->references('id')->on('authproviders')->onUpdate('cascade')->onDelete('cascade');

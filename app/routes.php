@@ -36,7 +36,8 @@ Route::group(array('prefix' => 'user', 'before' => ['auth']), function() {
 Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function() {
 
 	// Admin panel home page
-	Route::get('/', array('as' => 'admin', 'uses' => 'AdminController@showAdminPage'));
+	Route::get('/', array('as' => 'admin', 			'uses' => 'AdminController@showAdminPage'));
+	Route::post('/', array('as' => 'admin.search',	'uses' => 'AdminController@search'));
 
 	// Resource controllers
 	Route::resource('accounts', 'AccountsController');

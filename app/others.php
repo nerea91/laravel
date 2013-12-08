@@ -105,6 +105,12 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 	foreach($values as $value => $label)
 	{
 		$options['id'] = $id = $name . $value;
+
+		/*
+		 * to-do por un BUG se marcan todos como checked a pesar de que $check=false!
+		 * http://forums.laravel.io/viewtopic.php?pid=54313
+		 * https://github.com/laravel/framework/issues/2548
+		 */
 		$check = in_array($value, $checked);
 
 		$out .= '<li><label for="' . $id . '" style="display:inline">';

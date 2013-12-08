@@ -44,7 +44,7 @@ class UsersController extends BaseResourceController {
 	{
 		$this->resource = $this->resource->findOrFail($id)->fill(Input::all())->removeRule('password', 'required');
 
-		return $this->persist(_('%s successfully updated'));
+		return $this->persist(__FUNCTION__, _('%s successfully updated'));
 	}
 
 }

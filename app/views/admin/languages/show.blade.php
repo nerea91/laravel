@@ -10,8 +10,4 @@
 	<dt>{{ _('Users') }}</dt>
 	<dd>{{{ $resource->users->count() }}}</dd>
 
-	<dt>{{ _('Last update') }}</dt>
-	<dd>{{{ $resource->lastUpdate() }}}</dd>
-	<dd>{{{ $resource->lastUpdateDiff() }}}</dd>
-
 </dl>

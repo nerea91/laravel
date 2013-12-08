@@ -29,6 +29,7 @@ return array(
 
 		// Admin panel main page
 		'admin' => function ($user) {return $user->hasAnyPermission(range(10,103));},
+		'admin.search' => function ($user) {return $user->hasAnyPermission(range(10,103));},
 
 		// Countries
 		'admin.countries.index' => 10,

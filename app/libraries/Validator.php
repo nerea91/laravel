@@ -120,4 +120,64 @@ class Validator extends \Illuminate\Validation\Validator {
 	{
 		return str_replace(array(':length'), $parameters, $message);
 	}
+
+	/**
+	 * Parse validation rules in compact format.
+	 *
+	 * Converts:
+	 *
+	 		[
+	 			'field1' => ['Label1', 'rule1|rule11'],
+	 			'field2' => ['Label2', ['rule2','rule22']],
+	 		];
+
+	 * To:
+
+	 		[
+	 			'labels' => [
+	 				'field1' => 'Label1',
+					'field2' => 'Label2',
+				],
+				'rules' => [
+					'field1' => ['rule1', 'rule11'],
+					'field2' => ['rule2', 'rule22'],
+				]
+			];
+	 *
+	 * @param  array
+	 * @return array
+	 */
+	public static function parseRules(array $originalRules)
+	{
+		$parsed = ['labels' => [], 'rules' => []];
+
+		foreach($originalRules as $field => $labelAndRules)
+		{
+			list($label, $rules) = $labelAndRules;
+
+			// Add label
+			$parsed['labels'][$field] = $label;
+
+			// Sometimes a column has no rules
+			if(is_null($rules))
+				continue;
+
+			// Convert rules to array
+			if( ! is_array($rules))
+				$rules = explode('|', $rules);
+
+			// Convert rules to associative array
+			foreach($rules as $key => $value)
+			{
+				$new_key = explode(':', $value);
+				$rules[$new_key[0]] = $value;
+				unset($rules[$key]);
+			}
+
+			// Add rules
+			$parsed['rules'][$field] = $rules;
+		}
+
+		return array_values($parsed);
+	}
 }

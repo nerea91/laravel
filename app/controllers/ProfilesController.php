@@ -24,6 +24,34 @@ class ProfilesController extends BaseResourceController {
 		]);
 	}
 
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$this->relationships = [
+			'permissions' => [_('Permissions'), 'required|array|min:1'],
+		];
+
+		return parent::store();
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$this->relationships = [
+			'permissions' => [_('Permissions'), 'required|array|min:1'],
+		];
+		
+		return parent::update($id);
+	}
 }
 
 

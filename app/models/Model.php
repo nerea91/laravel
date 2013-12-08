@@ -52,7 +52,7 @@ class Model extends Eloquent {
 	// Events ==================================================================
 
 	/**
-	 * Event listeners
+	 * Event listeners.
 	 */
 	protected static function boot()
 	{
@@ -66,7 +66,7 @@ class Model extends Eloquent {
 			// Global muttator to convert empty attributes to null
 			foreach ($model->toArray() as $name => $value)
 			{
-				if( ! is_null($value))
+				if( ! is_null($value) and ! is_array($value))
 				{
 					$value = trim($value);
 					if ( ! strlen($value))
@@ -81,7 +81,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Event trigger
+	 * Event trigger.
 	 */
 	public function fireEvent($event)
 	{
@@ -99,44 +99,20 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Set validation rules and labels
+	 * Set validation rules and labels.
 	 *
 	 * @param  array
 	 * @return Model
 	 */
 	protected function setRules(array $rules)
 	{
-		foreach($rules as $field => $labelAndRules)
-		{
-			list($label, $rules) = $labelAndRules;
-
-			// Add label
-			$this->labels[$field] = $label;
-
-			// Sometimes a column has no rules
-			if(is_null($rules))
-				continue;
-
-			// Convert rules to associative array
-			if( ! is_array($rules))
-				$rules = explode('|', $rules);
-
-			foreach($rules as $key => $value)
-			{
-				$new_key = explode(':', $value);
-				$rules[$new_key[0]] = $value;
-				unset($rules[$key]);
-			}
-
-			// Add rules
-			$this->rules[$field] = $rules;
-		}
+		list($this->labels, $this->rules) = \Stolz\Validation\Validator::parseRules($rules);
 
 		return $this;
 	}
 
 	/**
-	 * Add a validation rule to a field
+	 * Add a validation rule to a field.
 	 *
 	 * @param  string $field
 	 * @param  string $rule
@@ -151,7 +127,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Remove validation rules from a field
+	 * Remove validation rules from a field.
 	 *
 	 * @param  string       $field
 	 * @param  string|array $rules
@@ -169,7 +145,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve all rules for this model
+	 * Retrieve all rules for this model.
 	 *
 	 * @return array
 	 */
@@ -179,7 +155,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Validate current attributes against rules
+	 * Validate current attributes against rules.
 	 *
 	 * @param  boolean $triggered_by_event
 	 * @return boolean
@@ -222,7 +198,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Set error message bag
+	 * Set error message bag.
 	 *
 	 * @param Illuminate\Support\MessageBag
 	 * @return void
@@ -233,7 +209,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve error message bag
+	 * Retrieve error message bag.
 	 *
 	 * @return Illuminate\Support\MessageBag
 	 */
@@ -243,7 +219,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Determine whether or not the model has any validation errors
+	 * Determine if the model has any validation errors.
 	 *
 	 * @return boolean
 	 */
@@ -253,7 +229,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Determine whether or not the model has any validation errors
+	 * Determine if the model does not have any validation errors.
 	 *
 	 * @return boolean
 	 */
@@ -263,7 +239,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve one labels
+	 * Retrieve one the label for a $field.
 	 *
 	 * @param string $field
 	 * @return string
@@ -277,7 +253,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve all labels
+	 * Retrieve all labels.
 	 *
 	 * @return array
 	 */
@@ -287,7 +263,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve labels of visible fields
+	 * Retrieve labels of visible fields.
 	 *
 	 * @return array
 	 */
@@ -302,7 +278,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Retrieve labels of fillable fields
+	 * Retrieve labels of fillable fields.
 	 *
 	 * @return array
 	 */
@@ -367,7 +343,7 @@ class Model extends Eloquent {
 	}
 
 	/**
-	 * Return las update date in localized format
+	 * Return las update date in localized format.
 	 *
 	 * @param  string $format
 	 * @return string
@@ -375,18 +351,18 @@ class Model extends Eloquent {
 	public function lastUpdate($format = '%A %d %B %Y @ %T (%Z)')
 	{
 		return $this->updated_at->formatLocalized($format);
-		//to-do si el usuario esta logeado y tiene una zona horaria usar dicha zona horaria
+		//to-do use Auth::user() timezone
 	}
 
 	/**
-	 * Return las update date diff from now in human format
+	 * Return las update date diff from now in human format.
 	 *
 	 * @return string
 	 */
 	public function lastUpdateDiff()
 	{
 		return $this->updated_at->diffForHumans();
-		//to-do si el usuario esta logeado y tiene una zona horaria usar dicha zona horaria
+		//to-do use Auth::user() timezone
 	}
 
 }

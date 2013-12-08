@@ -11,9 +11,9 @@ class AdminController extends BaseController {
 	 */
 	public function showAdminPage()
 	{
-		$this->layout->title = _('Admin');
-		$this->layout->subtitle = _('Panel');
-		$this->layout->content = Response::make();
+		$this->layout->title = _('Admin panel');
+		$this->layout->subtitle = _('Search');
+		$this->layout->content = View::make('admin.search');
 	}
 
 }

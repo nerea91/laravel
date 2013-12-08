@@ -18,17 +18,12 @@
 
 	@if ($resource->country_id)
 	<dt>{{ $labels->country_id }}</dt>
-	<dd>{{{ $resource->country->name }}}</dd>
+	<dd>{{{ $resource->country }}}</dd>
 	@endif
 
 	@if ($resource->language_id)
 	<dt>{{ $labels->language_id }}</dt>
-	<dd>{{{ $resource->language->name }}}</dd>
-	@endif
-
-	@if ($resource->language_id)
-	<dt>{{ $labels->language_id }}</dt>
-	<dd>{{{ $resource->language->name }}}</dd>
+	<dd>{{{ $resource->language }}}</dd>
 	@endif
 
 	<dt>{{ _('Accounts') }}</dt>

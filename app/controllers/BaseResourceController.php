@@ -25,6 +25,12 @@ class BaseResourceController extends BaseController {
 	protected $resource;
 
 	/**
+	 * Relationships of the resource.
+	 * @var array
+	 */
+	protected $relationships = [];
+
+	/**
 	 * Class constructor
 	 *
 	 * @param  Model $resource An instance of the resource this controller is in charge of.
@@ -138,9 +144,11 @@ class BaseResourceController extends BaseController {
 	 */
 	public function store()
 	{
-		$this->resource = $this->resource->fill(Input::all());
+		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
+		//$input = Input::only(array_keys($this->resource->getFillableLabels())); //More safe, less convenient
+		$this->resource = $this->resource->fill($input);
 
-		return $this->persist(_('%s successfully created'));
+		return $this->persist(__FUNCTION__, _('%s successfully created'));
 	}
 
 	/**
@@ -151,25 +159,68 @@ class BaseResourceController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$this->resource = $this->resource->findOrFail($id)->fill(Input::all());
+		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
+		//$input = Input::only(array_keys($this->resource->getFillableLabels())); //More safe, less convenient
+		$this->resource = $this->resource->findOrFail($id)->fill($input);
 
-		return $this->persist(_('%s successfully updated'));
+		return $this->persist(__FUNCTION__, _('%s successfully updated'));
 	}
 
 	/**
-	 * Persist resource to the data base.
+	 * Save resource to the data base using transactions.
 	 *
+	 * @param  string
 	 * @param  string
 	 * @return Response
 	 */
-	protected function persist($successMesssage)
+	protected function persist($action, $successMesssage)
 	{
-		if( ! $this->resource->save())
-			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
+		try
+		{
+			DB::beginTransaction();
 
-		Session::flash('success', sprintf($successMesssage, $this->resource));
+			// Validate relationships
+			$errors = [];
+			if($this->relationships)
+			{
+				list($labels, $rules) = \Stolz\Validation\Validator::parseRules($this->relationships);
+				$validator = Validator::make(Input::only(array_keys($rules)), $rules)->setAttributeNames($labels);
+				if($validator->fails())
+				{
+					$errors = $validator->messages()->toArray();
+					throw new Exception;
+				}
+			}
 
-		return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
+			// Save resource
+			if( ! $this->resource->save())
+				throw new Exception;
+
+			// Save relationships
+			if($this->relationships)
+			{
+				$this->fireEvent($action, false);
+
+				foreach($this->relationships as $relationship => $notUsed)
+				{
+					$this->resource->$relationship()->sync(Input::get($relationship));
+				}
+
+				$this->fireEvent($action, true);
+			}
+
+			// Success :)
+			DB::commit();
+			Session::flash('success', sprintf($successMesssage, $this->resource));
+
+			return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
+		}
+		catch(Exception $e)
+		{
+			DB::rollBack();
+			Session::flash('error', _('Changes were not saved'));
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors()->merge($errors));
+		}
 	}
 
 	/**
@@ -184,6 +235,25 @@ class BaseResourceController extends BaseController {
 			Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
 
 		return Redirect::route("{$this->prefix}.index");
+	}
+
+	/**
+	 * Changes in pivot tables don't fire events in the related models.
+	 * This methos helps to manually fire events in the related models when
+	 * altering pivot tables.
+	 *
+	 * @param  string
+	 * @param  boolean
+	 */
+	protected function fireEvent($action, $finished)
+	{
+		if($action == 'store')
+			return $this->resource->fireEvent(($finished) ? 'created' : 'creating');
+
+		if($action == 'update')
+			return $this->resource->fireEvent(($finished) ? 'updated' : 'updating');
+
+		throw new Exception('Unknown event action: ' . $action);
 	}
 
 }

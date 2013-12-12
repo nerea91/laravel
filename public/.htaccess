@@ -1,5 +1,8 @@
 <IfModule mod_rewrite.c>
-    Options -MultiViews
+	<IfModule mod_negotiation.c>
+    	Options -MultiViews
+    </IfModule>
+
     RewriteEngine On
 
 	#### Remove www from host
@@ -11,8 +14,11 @@
 	#RewriteCond %{HTTPS} =off
 	#RewriteRule ^(index\.php\/)?(login|logout|auth|api).*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-	#### Route to index.php all non existing files
-	RewriteCond %{REQUEST_FILENAME} !-d
+    # Redirect Trailing Slashes...
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+	# Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>

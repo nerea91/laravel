@@ -24,7 +24,7 @@ Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogi
 Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
 
 // User control panel
-Route::group(array('prefix' => 'user', 'before' => ['auth']), function() {
+Route::group(array('prefix' => 'user', 'before' => 'auth'), function() {
 	Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
 	Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
 

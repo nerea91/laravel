@@ -147,7 +147,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 <p>Crear alias para dos comandos que usaremos frecuentemente en Laravel</p>
 
 <pre><code>alias composer='/usr/local/bin/composer.phar --ansi'
-alias artisan='php ./artisan --ansi'
+alias artisan='php artisan --ansi'
 </code></pre>
 
 <p>Instalar Framework</p>
@@ -1500,7 +1500,7 @@ Post::find(1)-&gt;comments;
 
 <h4>Relaciones uno a uno</h4>
 
-<p>En un lado de la relación</p>
+<p>En un lado de la relación (el que no tiene clave ajena)</p>
 
 <pre><code>class User extends Eloquent
 {
@@ -1511,9 +1511,7 @@ Post::find(1)-&gt;comments;
 }
 </code></pre>
 
-<p>En el otro lado de la relación (El nombre de la función debe 
-corresponder con el nombre de la clave ajena pero sin la terminación 
-_id)</p>
+<p>En el otro lado de la relación (el que tiene la clave ajena))</p>
 
 <pre><code>class Phone extends Eloquent
 {
@@ -1718,22 +1716,22 @@ Post::find(1)-&gt;tags()-&gt;sync(array(1 =&gt; array('expires' =&gt; 1), 5 =&gt
 
 <p>Laravel facilita la creación de paquetes propios que podemos publicar luego para que puedan ser instalados mediante <em>composer</em>.</p>
 
-<p>Supongamos que queremos crear una librería para manejo de assets.</p>
+<p>Supongamos que queremos crear una librería para saludar.</p>
 
 <p>Editar <code>app/config/workbench.php</code> y establecer nuestro nombre y dirección de correo.</p>
 
 <p>Para generar el esqueleto de nuesto paquete ejecutar</p>
 
-<pre><code>artisan workbench stolz/assets --resources
+<pre><code>artisan workbench stolz/greeting --resources
 </code></pre>
 
-<p>El esqueleto del nuevo proyecto se encuentra en <code>workbench/stolz/assets/</code>. Esta es la ruta que se subirá al <a href="https://packagist.org/">repositorio de composer</a> si decidimos publicar nuestro proyecto. En tal caso editar <code>workbench/stolz/assets/composer.json</code> y completar los datos de nuestro paquete. Al acabar ejecutar <code>composer validate</code> para ver si todo está bien.</p>
+<p>El esqueleto del nuevo proyecto se encuentra en <code>workbench/stolz/greeting/</code>. Esta es la ruta que se subirá al <a href="https://packagist.org/">repositorio de composer</a> si decidimos publicar nuestro proyecto. En tal caso editar <code>workbench/stolz/greeting/composer.json</code> y completar los datos de nuestro paquete. Al acabar ejecutar <code>composer validate</code> para ver si todo está bien.</p>
 
-<p>Todas nuestras clases deben estar en <code>workbench/stolz/assets/src/Stolz/Assets/</code>. Crear el fichero <code>workbench/stolz/assets/src/Stolz/Assets/Assets.php</code> que contendrá la clase principal del paquete:</p>
+<p>Todas nuestras clases deben estar en <code>workbench/stolz/greeting/src/Stolz/Greeting/</code>. Crear el fichero <code>workbench/stolz/greeting/src/Stolz/Greeting/Greeting.php</code> que contendrá la clase principal del paquete:</p>
 
-<pre><code>&lt;?php namespace Stolz\Assets;
+<pre><code>&lt;?php namespace Stolz\Greeting;
 
-class Assets {
+class Greeting {
 
     public static function say_hello(){
         return "Hello";
@@ -1741,36 +1739,35 @@ class Assets {
 }
 </code></pre>
 
-<p>Crear una <em>facade</em> para poder usar nuestra clase con la sintaxis <code>Assets::say_hello();</code>. Para ello crear el directorio <code>workbench/stolz/assets/src/Stolz/Assets/Facades/</code> y dentro de él crear el archivo <code>Assets.php</code></p>
+<p>Crear una <em>facade</em> para poder usar nuestra clase con la sintaxis <code>Greeting::say_hello();</code>. Para ello crear el directorio <code>workbench/stolz/greeting/src/Stolz/Greeting/Facades/</code> y dentro de él crear el archivo <code>Greeting.php</code></p>
 
-<pre><code>&lt;?php namespace Stolz\Assets\Facades;
+<pre><code>&lt;?php namespace Stolz\Greeting\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Foundation\AliasLoader;
 
-class Assets extends Facade {
+class Greeting extends Facade {
 
     /**
     * Get the registered name of the component.
     *
     * @return string
     */
-    protected static function getFacadeAccessor() { return 'assets'; }
+    protected static function getFacadeAccessor() { return 'greeting'; }
 }
 </code></pre>
 
-<p>Registrar el <em>ServiceProvider</em> y la <em>facade</em> añadiendo a la functión <code>register</code> del archivo <code>workbench/stolz/assets/src/Stolz/Assets/AssetsServiceProvider.php</code> lo siguiente:</p>
+<p>Registrar el <em>ServiceProvider</em> añadiendo a la functión <code>register</code> del archivo <code>workbench/stolz/greeting/src/Stolz/Greeting/GreetingServiceProvider.php</code> lo siguiente:</p>
 
-<pre><code>$this-&gt;app['assets'] = $this-&gt;app-&gt;share(function($app)
+<pre><code>$this-&gt;app['greeting'] = $this-&gt;app-&gt;share(function($app)
 {
-    return new Assets;
+    return new Greeting;
 });
+</code></pre>
 
-//Esto sirve para que no haga falta añadir la Facade en el archivo app/config/app.php
-$this-&gt;app-&gt;booting(function()
-{
-    $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-    $loader-&gt;alias('Assets', 'Stolz\Assets\Facades\Assets');
-});
+<p>Para evitar que el usuario tenga que añadir a mano la <em>facade</em> en el archivo <code>app/config/app.php</code> podemos usar la functión <code>boot</code> del archivo <code>workbench/stolz/greeting/src/Stolz/Greeting/GreetingServiceProvider.php</code> para incluir automáticamente el alias:</p>
+
+<pre><code>AliasLoader::getInstance()-&gt;alias('Greeting', 'Stolz\Greeting\Facades\Greeting');
 </code></pre>
 
 <p>Actualizar las listas de clases autocargables para que incluyan nuestra nueva clase</p>
@@ -1781,14 +1778,14 @@ $this-&gt;app-&gt;booting(function()
 <p>En <code>app/config/app.php</code> añadir el <em>ServiceProvider</em></p>
 
 <pre><code>'providers' =&gt; array(
-    'Stolz\Assets\AssetsServiceProvider',
+    'Stolz\Greeting\GreetingServiceProvider',
 ),
 </code></pre>
 
 <p>Probar nuestar clase con una ruta</p>
 
 <pre><code>Route::get('test', function() {
-    echo Assets::say_hello();
+    echo Greeting::say_hello();
 });
 </code></pre>
 
@@ -1832,8 +1829,8 @@ artisan up
 
 <p>Para generar un paquete</p>
 
-<pre><code>artisan workbench stolz/assets
-artisan workbench stolz/assets --resources
+<pre><code>artisan workbench stolz/greeting
+artisan workbench stolz/greeting --resources
 </code></pre>
 
 <p>Copiar los assets de un paquete a <code>public/</code></p>

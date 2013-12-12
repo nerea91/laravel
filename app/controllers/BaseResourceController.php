@@ -40,7 +40,7 @@ class BaseResourceController extends BaseController {
 	public function __construct($resource, array $permissions = array())
 	{
 		$this->resource = $resource;
-		$this->prefix = replace_last_segment(Route::currentRouteName());
+		$this->prefix = replace_last_segment(Route::current()->getName());
 
 		// Views require prefix to generate URLs and permissions to render buttons
 		View::share(['prefix' => $this->prefix] + $permissions);

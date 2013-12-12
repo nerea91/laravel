@@ -17,11 +17,11 @@ class HomeController extends BaseController {
 		];
 
 		// Select all GET routes wihtout parameters excluding admin.*
-		foreach(App::make('router')->getRoutes() as $name => $route)
+		foreach(App::make('router')->getRoutes() as $route)
 		{
-			$url = $route->getPath();
-			if (substr($name, 0, 6) != 'admin.' and false === strpos($url, '{') and in_array('GET', $route->getMethods()))
-				$data['routes'][$name] = $url;
+			$name = $route->getName();
+			if (substr($name, 0, 6) != 'admin.' and in_array('GET', $route->methods()))
+				$data['routes'][$name] = $route->uri();
 		}
 
 		$this->layout->title = $data['title'];

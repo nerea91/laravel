@@ -122,7 +122,7 @@ Route::filter('csrf', function()
 Route::filter('acl', function()
 {
 	$acl = Config::get('acl.map', []);
-	$route = Route::currentRouteName();
+	$route = Route::current()->getName();
 
 	try
 	{

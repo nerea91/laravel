@@ -10,7 +10,7 @@
 <tbody>
 	@foreach ($results as $resource)
 	<tr>
-		<td>{{ $resource->username }}</td>
+		<td><span data-tooltip class="has-tip" title="{{ $resource->name }}">{{ $resource->username }}</span></td>
 		<td>{{ $resource->profile->name }}</td>
 		<td>{{ (isset($resource->country->name)) ? $resource->country->name : null }}</td>
 		@include('resource.actions')

@@ -99,8 +99,16 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 	$legend = (isset($options['legend'])) ? $options['legend'] : false;
 	unset($options['legend']);
 
-	$out = ($legend) ? "<fieldset><legend>$legend</legend>" : null;
-	$out .= '<ul class="small-block-grid-2 large-block-grid-4">';
+	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>'  : null;
+	if($legend and $type == 'checkbox')
+		$out .= '
+		<div class="right checkbox_togglers">
+			<a href="all">'._('all').'</a> |
+			<a href="none">'._('none').'</a> |
+			<a href="invert">'._('invert').'</a>
+		</div>';
+
+	$out .= '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">';
 
 	foreach($values as $value => $label)
 	{
@@ -114,7 +122,7 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 		$check = in_array($value, $checked);
 
 		$out .= '<li><label for="' . $id . '" style="display:inline">';
-		$out .= ($type == 'radio') ? Form::radio($name.'[]', $value, $check, $options) : Form::checkbox($name.'[]', $value, $check, $options);
+		$out .= ($type == 'radio') ? Form::radio($name, $value, $check, $options) : Form::checkbox($name.'[]', $value, $check, $options);
 		$out .= '&nbsp;'.$label;
 		$out .= '</label></li>';
 	}

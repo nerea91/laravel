@@ -9,8 +9,8 @@ class AuthProvider extends Stolz\Database\Model {
 
 	// Meta ===================================================================
 
-	public function singular() { return _('Auth. rovider');}	// Singular form of this model's name
-	public function plural() { return _('Auth. roviders');}		// Singular name of this model's name
+	public function singular() { return _('Auth. provider');}	// Singular form of this model's name
+	public function plural() { return _('Auth. providers');}	// Singular name of this model's name
 	public function __toString() { return $this->title;}
 
 	// Validation =============================================================

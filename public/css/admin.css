@@ -11,3 +11,10 @@ table.hover .actions {white-space:nowrap;}
 
 .flash-alert {margin:1em 20% 0}
 #delete-modal-form {padding-bottom:0}
+
+fieldset.checkables{padding-bottom:0;}
+/* fieldset.checkables li{padding-bottom:0;} */
+fieldset.checkables .checkbox_togglers {
+	margin-top: -1.5em;
+	margin-right: -1em;
+}

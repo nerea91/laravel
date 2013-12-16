@@ -218,6 +218,7 @@ class BaseResourceController extends BaseController {
 		catch(Exception $e)
 		{
 			DB::rollBack();
+// 			d($e);
 			Session::flash('error', _('Changes were not saved'));
 			return Redirect::back()->withInput()->withErrors($this->resource->getErrors()->merge($errors));
 		}

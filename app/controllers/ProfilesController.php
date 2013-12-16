@@ -25,6 +25,16 @@ class ProfilesController extends BaseResourceController {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		return parent::_index($this->resource->with('users')->paginate());
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -49,9 +59,10 @@ class ProfilesController extends BaseResourceController {
 		$this->relationships = [
 			'permissions' => [_('Permissions'), 'required|array|min:1'],
 		];
-		
+
 		return parent::update($id);
 	}
+	
 }
 
 

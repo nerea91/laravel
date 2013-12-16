@@ -12,9 +12,15 @@
 	"require-dev": {
 		"firephp/firephp-core": "dev-master",
 		"way/generators": "dev-master",
-		"daylerees/container-debug": "4.0.*",
+		"daylerees/container-debug": "dev-master",
 		"barryvdh/laravel-debugbar": "dev-master"
 	},
+	"repositories": [
+		{
+		"type": "vcs",
+		"url": "https://github.com/stolz/zurb-foundation-laravel"
+		}
+	],
 	"autoload": {
 		"classmap": [
 			"app/commands",

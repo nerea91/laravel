@@ -10,7 +10,7 @@
 <tbody>
 	@foreach ($results as $resource)
 	<tr>
-		<td>{{ $resource->user->name }}</td>
+		<td>{{ $resource->user->username }}</td>
 		<td>{{ $resource->provider->title }}</td>
 		<td>{{ $resource->email }}</td>
 		@include('resource.actions')

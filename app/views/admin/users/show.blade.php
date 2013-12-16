@@ -28,7 +28,7 @@
 
 	<dt>{{ _('Accounts') }}</dt>
 	@foreach ($resource->accounts()->with('provider')->get() as $a)
-	<dd>{{{ $a->provider }}}</dd>
+	<dd>{{{ $a->provider }}} ({{ sprintf(ngettext('%d login', '%d logins', $a->login_count), $a->login_count)}})</dd>
 	@endforeach
 
 	<dt>{{ _('Last update') }}</dt>

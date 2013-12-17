@@ -188,13 +188,13 @@ class BaseResourceController extends \BaseController {
 				{
 					$this->resource->validate();
 					$this->resource->getErrors()->merge($validator->messages()->toArray());
-					throw new Stolz\Validation\Exception;
+					throw new ModelValidationException;
 				}
 			}
 
 			// Validate and save resource
 			if( ! $this->resource->save())
-				throw new Stolz\Validation\Exception;
+				throw new ModelValidationException;
 
 			// Save resource relationships
 			if($this->relationships)
@@ -217,7 +217,7 @@ class BaseResourceController extends \BaseController {
 		{
 			DB::rollBack();
 
-			if($e instanceof Stolz\Validation\Exception)
+			if($e instanceof ModelValidationException)
 				Session::flash('error', _('Changes were not saved'));
 			else
 				throw $e; // Unexpected exception, re-throw it to be able to debug it.

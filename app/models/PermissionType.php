@@ -1,6 +1,6 @@
 <?php
 
-class PermissionType extends Stolz\Database\Model {
+class PermissionType extends BaseModel {
 
 	public $table = 'permissiontypes';
 	public $timestamps = false;

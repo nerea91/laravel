@@ -1,6 +1,6 @@
 <?php
 
-class Currency extends Stolz\Database\Model {
+class Currency extends BaseModel {
 
 	public $timestamps = false;
 	protected $softDelete = true;

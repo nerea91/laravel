@@ -1,4 +1,4 @@
-<?php namespace Stolz\Database;
+<?php
 
 /**
 	This class adds to Eloquent:
@@ -11,7 +11,7 @@
 
 	Usage example:
 
-	class SomeModel extends \Stolz\Database\Model
+	class SomeModel extends BaseModel
 	{
 		public function __construct(array $attributes = array())
 		{
@@ -24,7 +24,7 @@
 	}
 */
 
-class Model extends \Illuminate\Database\Eloquent\Model {
+class BaseModel extends \Illuminate\Database\Eloquent\Model {
 
 	/**
 	 * Validation rules

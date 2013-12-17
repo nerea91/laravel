@@ -1,11 +1,4 @@
-<?php namespace Stolz;
-
-/*
- * NOTE: I'm not the author of this class. I just incluided it in my namespace because
- * I use it all the time and I want to autolaod it with psr-0.
- *
- * All credits go to Qiang Xue <qiang.xue@gmail.com> and/or PradoSoft http://www.pradosoft.com
- */
+<?php
 
 /**
 * TVarDumper class file

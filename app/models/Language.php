@@ -1,6 +1,6 @@
 <?php
 
-class Language extends Stolz\Database\Model {
+class Language extends BaseModel {
 
 	public $timestamps = false;
 	protected $softDelete = true;

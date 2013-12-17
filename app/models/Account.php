@@ -1,6 +1,6 @@
 <?php
 
-class Account extends Stolz\Database\Model {
+class Account extends BaseModel {
 
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token', 'last_ip');

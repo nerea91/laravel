@@ -23,16 +23,14 @@
 	],
 	"autoload": {
 		"classmap": [
+			"app/libraries",
 			"app/commands",
 			"app/controllers",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		],
-		"psr-0": {
-			"Stolz": "app/"
-		}
+		]
 	},
 	"scripts": {
 		"post-install-cmd": [

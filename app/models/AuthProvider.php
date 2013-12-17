@@ -1,6 +1,6 @@
 <?php
 
-class AuthProvider extends Stolz\Database\Model {
+class AuthProvider extends BaseModel {
 
 	protected $table = 'authproviders';
 	protected $softDelete = true;

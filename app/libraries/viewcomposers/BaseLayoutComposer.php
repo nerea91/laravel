@@ -1,4 +1,4 @@
-<?php namespace Stolz\View;
+<?php
 
 class BaseLayoutComposer {
 
@@ -8,11 +8,11 @@ class BaseLayoutComposer {
 		 * Populate languages for implementing https://support.google.com/webmasters/answer/189077
 		 */
 
-		$view->with('lang', \App::make('language'));
+		$view->with('lang', App::make('language'));
 
-		$url = parse_url(\Request::url());
+		$url = parse_url(Request::url());
 		$domain = preg_replace('/^[a-z][a-z]\./', '', $url['host']);
-		$languages = \Language::getAllByPriority();
+		$languages = Language::getAllByPriority();
 		foreach($languages as &$l)
 		{
 			//Regenerate URL
@@ -24,10 +24,10 @@ class BaseLayoutComposer {
 		/*
 		 * Add PHP debugbar
 		 */
-		if ($debugbar = \Config::get('laravel-debugbar::config.enabled', false))
+		if ($debugbar = Config::get('laravel-debugbar::config.enabled', false))
 		{
-			\Assets::add('debugbar');
-			$view->with('debugbar', \App::make('debugbar')->getJavascriptRenderer()->render());
+			Assets::add('debugbar');
+			$view->with('debugbar', App::make('debugbar')->getJavascriptRenderer()->render());
 		}
 	}
 

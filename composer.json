@@ -23,12 +23,13 @@
 	],
 	"autoload": {
 		"classmap": [
-			"app/libraries",
 			"app/commands",
 			"app/controllers",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
+			"app/libraries",
+			"app/views/composers",
 			"app/tests/TestCase.php"
 		]
 	},

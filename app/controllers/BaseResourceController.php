@@ -42,7 +42,7 @@ class BaseResourceController extends \BaseController {
 		$this->resource = $resource;
 		$this->prefix = replace_last_segment(Route::current()->getName());
 
-		// Views require prefix to generate URLs and permissions to render buttons
+// 		// Views require prefix to generate URLs and permissions to render buttons
 		View::share(['prefix' => $this->prefix] + $permissions);
 	}
 
@@ -234,6 +234,7 @@ class BaseResourceController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		//to-do comprobar si se puede borrar y en caso negativo campturar ModelDeletionException
 		if($resource = $this->resource->find($id) and $resource->delete())
 			Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
 

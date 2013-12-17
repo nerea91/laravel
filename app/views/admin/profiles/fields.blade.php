@@ -10,9 +10,10 @@
 
 	{{ Form::label($f, _('Permissions'))}}
 	@if($e)<small>{{ $errors->first($f) }}</small>@endif
-	<span class="checkbox_togglers">
-		<a rel="#permissions" href="all">{{ _('all') }}</a> |
-		<a rel="#permissions" href="none">{{ _('none') }}</a> |
+	<span class="right checkbox_togglers" style="margin-top:-1.5em">
+		{{ _('Select') }}:
+		<a rel="#permissions" href="all">{{ _('all') }}</a> &#8226;
+		<a rel="#permissions" href="none">{{ _('none') }}</a> &#8226;
 		<a rel="#permissions" href="invert">{{ _('invert') }}</a>
 	</span>
 
@@ -23,5 +24,7 @@
 	@endforeach
 
 </div>
+
+
 
 

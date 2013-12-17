@@ -13,9 +13,9 @@
 		<td>{{ $resource->name }}</td>
 		<td>{{ $resource->description }}</td>
 		<td class="text-center">
-			@if ($resource->users->count())
-			<span data-tooltip class="has-tip" title="{{ implode(', ', $resource->users->lists('username')) }}">
-			{{ $resource->users->count() }}
+			@if ($users = $resource->getUsernamesArray())
+			<span class="has-tip" title="{{ implode(', ', $users) }}" data-tooltip>
+			{{ count($users) }}
 			</span>
 			@endif
 		</td>

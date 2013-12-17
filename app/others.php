@@ -102,9 +102,9 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>'  : null;
 	if($legend and $type == 'checkbox')
 		$out .= '
-		<div class="right checkbox_togglers">
-			<a href="all">'._('all').'</a> |
-			<a href="none">'._('none').'</a> |
+		<div class="checkbox_togglers">
+			<a href="all">'._('all').'</a> &#8226;
+			<a href="none">'._('none').'</a> &#8226;
 			<a href="invert">'._('invert').'</a>
 		</div>';
 

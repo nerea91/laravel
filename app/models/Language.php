@@ -36,6 +36,13 @@ class Language extends Stolz\Database\Model {
 		//NOTE Create events sequence: saving -> creating -> created -> saved
 		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
+		static::saved(function($model)
+		{
+			// Only one Language can be the default
+			if($model->is_default)
+				Language::where('id', '<>', $model->id)->update(array('is_default' => 0));
+		});
+
 		static::deleting(function($model)
 		{
 			// Prevent deleting default language

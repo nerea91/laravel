@@ -108,7 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		//require-dev
-// 		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
+		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
 		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
 		'Way\Generators\GeneratorsServiceProvider', //https://github.com/JeffreyWay/Laravel-4-Generators
 

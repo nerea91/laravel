@@ -4,6 +4,8 @@
  * Common part for all resource controllers.
  */
 
+class ResourceControllerException extends Exception {}
+
 class BaseResourceController extends BaseController {
 
 	/**
@@ -179,32 +181,30 @@ class BaseResourceController extends BaseController {
 		{
 			DB::beginTransaction();
 
-			// Validate relationships
-			$errors = [];
+			// Validate resource relationships
 			if($this->relationships)
 			{
 				list($labels, $rules) = \Stolz\Validation\Validator::parseRules($this->relationships);
 				$validator = Validator::make(Input::only(array_keys($rules)), $rules)->setAttributeNames($labels);
 				if($validator->fails())
 				{
-					$errors = $validator->messages()->toArray();
-					throw new Exception;
+					$this->resource->validate();
+					$this->resource->getErrors()->merge($validator->messages()->toArray());
+					throw new ResourceControllerException;
 				}
 			}
 
-			// Save resource
+			// Validate and save resource
 			if( ! $this->resource->save())
-				throw new Exception;
+				throw new ResourceControllerException;
 
-			// Save relationships
+			// Save resource relationships
 			if($this->relationships)
 			{
 				$this->fireEvent($action, false);
 
 				foreach($this->relationships as $relationship => $notUsed)
-				{
 					$this->resource->$relationship()->sync(Input::get($relationship));
-				}
 
 				$this->fireEvent($action, true);
 			}
@@ -218,9 +218,13 @@ class BaseResourceController extends BaseController {
 		catch(Exception $e)
 		{
 			DB::rollBack();
-// 			d($e);
-			Session::flash('error', _('Changes were not saved'));
-			return Redirect::back()->withInput()->withErrors($this->resource->getErrors()->merge($errors));
+
+			if($e instanceof ResourceControllerException)
+				Session::flash('error', _('Changes were not saved'));
+			else
+				throw $e; // Unexpected exception, re-throw it to be able to debug it.
+
+			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
 		}
 	}
 

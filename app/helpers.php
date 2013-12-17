@@ -22,7 +22,7 @@ if ( ! function_exists('p'))
 	{
 		echo '<pre>';
 		foreach(func_get_args() as $x)
-			echo TVarDumper::dump($x);
+			echo Stolz\TVarDumper::dump($x);
 		echo '</pre>';
 	}
 }

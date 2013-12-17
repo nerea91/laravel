@@ -1,7 +1,5 @@
 <?php namespace Stolz\Database;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
-
 /**
 	This class adds to Eloquent:
 	- Custom labels for database fields.
@@ -26,7 +24,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 	}
 */
 
-class Model extends Eloquent {
+class Model extends \Illuminate\Database\Eloquent\Model {
 
 	/**
 	 * Validation rules

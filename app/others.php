@@ -17,7 +17,7 @@
 |--------------------------------------------------------------------------
 */
 
-View::composer('layouts.base', 'BaseLayoutComposer');
+View::composer('layouts.base', 'Stolz\View\BaseLayoutComposer');
 
 /*
 |--------------------------------------------------------------------------

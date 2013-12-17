@@ -4,9 +4,7 @@
  * Common part for all resource controllers.
  */
 
-class ResourceControllerException extends Exception {}
-
-class BaseResourceController extends BaseController {
+class BaseResourceController extends \BaseController {
 
 	/**
 	 * The layout that should be used for responses.
@@ -190,13 +188,13 @@ class BaseResourceController extends BaseController {
 				{
 					$this->resource->validate();
 					$this->resource->getErrors()->merge($validator->messages()->toArray());
-					throw new ResourceControllerException;
+					throw new Stolz\Validation\Exception;
 				}
 			}
 
 			// Validate and save resource
 			if( ! $this->resource->save())
-				throw new ResourceControllerException;
+				throw new Stolz\Validation\Exception;
 
 			// Save resource relationships
 			if($this->relationships)
@@ -219,7 +217,7 @@ class BaseResourceController extends BaseController {
 		{
 			DB::rollBack();
 
-			if($e instanceof ResourceControllerException)
+			if($e instanceof Stolz\Validation\Exception)
 				Session::flash('error', _('Changes were not saved'));
 			else
 				throw $e; // Unexpected exception, re-throw it to be able to debug it.

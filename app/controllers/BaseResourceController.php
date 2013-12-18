@@ -148,7 +148,7 @@ class BaseResourceController extends \BaseController {
 		//$input = Input::only(array_keys($this->resource->getFillableLabels())); //More safe, less convenient
 		$this->resource = $this->resource->fill($input);
 
-		return $this->persist(__FUNCTION__, _('%s successfully created'));
+		return $this->persist(__FUNCTION__);
 	}
 
 	/**
@@ -163,17 +163,16 @@ class BaseResourceController extends \BaseController {
 		//$input = Input::only(array_keys($this->resource->getFillableLabels())); //More safe, less convenient
 		$this->resource = $this->resource->findOrFail($id)->fill($input);
 
-		return $this->persist(__FUNCTION__, _('%s successfully updated'));
+		return $this->persist(__FUNCTION__);
 	}
 
 	/**
 	 * Save resource to the data base using transactions.
 	 *
-	 * @param  string
-	 * @param  string
+	 * @param  string   $action
 	 * @return Response
 	 */
-	protected function persist($action, $successMesssage)
+	protected function persist($action)
 	{
 		try
 		{
@@ -208,7 +207,16 @@ class BaseResourceController extends \BaseController {
 			}
 
 			// Success :)
+
 			DB::commit();
+
+			if($action == 'update')
+				$successMesssage = _('%s successfully updated');
+			elseif($action == 'store')
+				$successMesssage = _('%s successfully created');
+			else
+				$successMesssage = _('%s successfully saved');
+			
 			Session::flash('success', sprintf($successMesssage, $this->resource));
 
 			return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
@@ -234,7 +242,7 @@ class BaseResourceController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//to-do comprobar si se puede borrar y en caso negativo campturar ModelDeletionException
+		//to-do comprobar si se puede borrar y en caso negativo camturar ModelDeletionException
 		if($resource = $this->resource->find($id) and $resource->delete())
 			Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
 

@@ -42,12 +42,12 @@ class BaseResourceController extends \BaseController {
 		$this->resource = $resource;
 		$this->prefix = replace_last_segment(Route::current()->getName());
 
-// 		// Views require prefix to generate URLs and permissions to render buttons
+		// Views require prefix to generate URLs and permissions to render buttons
 		View::share(['prefix' => $this->prefix] + $permissions);
 	}
 
 	/**
-	 * Same as $this->_index() but without type hinting.
+	 * Wrapper for $this->_index() to skip parameters type hinting.
 	 *
 	 * @return Response
 	 */
@@ -216,7 +216,7 @@ class BaseResourceController extends \BaseController {
 				$successMesssage = _('%s successfully created');
 			else
 				$successMesssage = _('%s successfully saved');
-			
+
 			Session::flash('success', sprintf($successMesssage, $this->resource));
 
 			return Redirect::route("{$this->prefix}.show", $this->resource->getKey());

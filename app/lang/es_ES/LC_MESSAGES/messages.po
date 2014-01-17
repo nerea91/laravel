@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 14:06+0100\n"
+"POT-Creation-Date: 2014-01-17 16:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgstr "Usuario"
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
-#: /controllers/BaseResourceController.php:83
+#: /controllers/BaseResourceController.php:81
 #: /storage/gettext/admin-top-bar.blade.php.php:22
 #: /storage/gettext/admin-top-bar.blade.php.php:30
 #: /storage/gettext/admin-top-bar.blade.php.php:48
@@ -58,12 +58,12 @@ msgstr "Nombre de usuario o contraseña incorrectos"
 msgid "Index"
 msgstr "Listado"
 
-#: /controllers/BaseResourceController.php:96
+#: /controllers/BaseResourceController.php:94
 #: /storage/gettext/resource-actions.blade.php.php:2
 msgid "Details"
 msgstr "Detalles"
 
-#: /controllers/BaseResourceController.php:107
+#: /controllers/BaseResourceController.php:105
 #: /database/seeds/PermissionsTableSeeder.php:11
 #: /database/seeds/PermissionsTableSeeder.php:17
 #: /database/seeds/PermissionsTableSeeder.php:23
@@ -82,7 +82,7 @@ msgstr "Detalles"
 msgid "Add"
 msgstr "Añadir"
 
-#: /controllers/BaseResourceController.php:120
+#: /controllers/BaseResourceController.php:118
 #: /database/seeds/PermissionsTableSeeder.php:12
 #: /database/seeds/PermissionsTableSeeder.php:18
 #: /database/seeds/PermissionsTableSeeder.php:24
@@ -95,20 +95,26 @@ msgstr "Añadir"
 msgid "Edit"
 msgstr "Editar"
 
-#: /controllers/BaseResourceController.php:153
-msgid "%s successfully created"
-msgstr "%s creado con éxito"
-
-#: /controllers/BaseResourceController.php:168
-#: /controllers/UsersController.php:47
+#: /controllers/BaseResourceController.php:214
+#, php-format
 msgid "%s successfully updated"
 msgstr "%s actualizado con éxito"
 
-#: /controllers/BaseResourceController.php:223
+#: /controllers/BaseResourceController.php:216
+#, php-format
+msgid "%s successfully created"
+msgstr "%s creado con éxito"
+
+#: /controllers/BaseResourceController.php:218
+msgid "%s successfully saved"
+msgstr "%s guardado con éxito"
+
+#: /controllers/BaseResourceController.php:229
 msgid "Changes were not saved"
 msgstr "No se han guardado los cambios"
 
-#: /controllers/BaseResourceController.php:240
+#: /controllers/BaseResourceController.php:247
+#, php-format
 msgid "%s successfully deleted"
 msgstr "%s borrado con éxito"
 
@@ -574,6 +580,18 @@ msgstr "App id"
 msgid "App secret"
 msgstr "App secret"
 
+#: /models/BaseModel.php:321
+msgid "Created at"
+msgstr "Creado el"
+
+#: /models/BaseModel.php:326
+msgid "Updated at"
+msgstr "Actualizado el"
+
+#: /models/BaseModel.php:331
+msgid "Deleted at"
+msgstr "Borrado el"
+
 #: /models/Country.php:11 /models/User.php:28
 msgid "Country"
 msgstr "País"
@@ -679,18 +697,6 @@ msgstr "Predeterminado"
 msgid "Priority"
 msgstr "Prioridad"
 
-#: /models/Model.php:323
-msgid "Created at"
-msgstr "Creado el"
-
-#: /models/Model.php:328
-msgid "Updated at"
-msgstr "Actualizado el"
-
-#: /models/Model.php:333
-msgid "Deleted at"
-msgstr "Borrado el"
-
 #: /models/Permission.php:15 /models/PermissionType.php:16
 #: /models/Profile.php:20 /models/User.php:26
 msgid "Description"
@@ -708,15 +714,15 @@ msgstr "Perfil"
 msgid "No e-mail address found"
 msgstr "No se han encontrado dirección de e-mail"
 
-#: /others.php:106 /storage/gettext/admin-profiles-fields.blade.php.php:13
+#: /others.php:106 /storage/gettext/admin-profiles-fields.blade.php.php:12
 msgid "all"
 msgstr "todos"
 
-#: /others.php:107 /storage/gettext/admin-profiles-fields.blade.php.php:14
+#: /others.php:107 /storage/gettext/admin-profiles-fields.blade.php.php:13
 msgid "none"
 msgstr "ninguno"
 
-#: /others.php:108 /storage/gettext/admin-profiles-fields.blade.php.php:15
+#: /others.php:108 /storage/gettext/admin-profiles-fields.blade.php.php:14
 msgid "invert"
 msgstr "invertir"
 
@@ -782,7 +788,7 @@ msgstr "Derecha"
 msgid "Sample"
 msgstr "Ejemplo"
 
-#: /storage/gettext/admin-profiles-fields.blade.php.php:12
+#: /storage/gettext/admin-profiles-fields.blade.php.php:11
 msgid "Select"
 msgstr "Seleccionar"
 
@@ -812,6 +818,7 @@ msgid "Optional"
 msgstr "Opcional"
 
 #: /storage/gettext/admin-users-show.blade.php.php:31
+#, php-format
 msgid "%d login"
 msgid_plural "%d logins"
 msgstr[0] "%d acceso"
@@ -893,15 +900,15 @@ msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos
 msgid "Send"
 msgstr "Enviar"
 
-#: /storage/gettext/layouts-error.blade.php.php:76
+#: /storage/gettext/layouts-error.blade.php.php:74
 msgid "Something went wrong while we were processing your request"
 msgstr "Algo ha ido mal al procesar tu petición"
 
-#: /storage/gettext/layouts-error.blade.php.php:77
+#: /storage/gettext/layouts-error.blade.php.php:75
 msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
 msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo antes posible"
 
-#: /storage/gettext/layouts-error.blade.php.php:81
+#: /storage/gettext/layouts-error.blade.php.php:79
 #, php-format
 msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
@@ -965,89 +972,3 @@ msgstr "Repite nueva contraseña"
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#~ msgid "Account %s successfully created"
-#~ msgstr "Cuenta %s creada con éxito"
-
-#~ msgid "Account %s successfully updated"
-#~ msgstr "Cuenta %s actualizada con éxito"
-
-#~ msgid "Account %s successfully deleted"
-#~ msgstr "Cuenta %s borrada con éxito"
-
-#~ msgid "Panel"
-#~ msgstr "Panel"
-
-#~ msgid "Auth. provider %s successfully created"
-#~ msgstr "Proveedor de acceso %s creado con éxito"
-
-#~ msgid "Auth. provider %s successfully updated"
-#~ msgstr "Proveedor de acceso %s actualizado con éxito"
-
-#~ msgid "Auth. provider %s successfully deleted"
-#~ msgstr "Proveedor de acceso %s borrado con éxito"
-
-#~ msgid "Country %s successfully created"
-#~ msgstr "País %s creado con éxito"
-
-#~ msgid "Country %s successfully updated"
-#~ msgstr "País %s actualizado con éxito"
-
-#~ msgid "Country %s successfully deleted"
-#~ msgstr "País %s borrado con éxito"
-
-#~ msgid "Currency %s successfully created"
-#~ msgstr "Moneda %s creada con éxito"
-
-#~ msgid "Currency %s successfully updated"
-#~ msgstr "Moneda %s actualizada con éxito"
-
-#~ msgid "Currency %s successfully deleted"
-#~ msgstr "Moneda %s borrada con éxito"
-
-#~ msgid "Language %s successfully created"
-#~ msgstr "Idioma %s creado con éxito"
-
-#~ msgid "Language %s successfully updated"
-#~ msgstr "Idioma %s actualizado con éxito"
-
-#~ msgid "Language %s successfully deleted"
-#~ msgstr "Idioma %s borrado con éxito"
-
-#~ msgid "Profile %s successfully created with %d permissions"
-#~ msgstr "Perfil %s creado con éxito con %d permisos"
-
-#~ msgid "Profile cannot be deleted because it is still assigned to %s"
-#~ msgstr "El perfil no puede ser borrado porque está asignado a %s"
-
-#~ msgid "Profile %s successfully deleted"
-#~ msgstr "Perfil %s borrado con éxito"
-
-#~ msgid "Profile must have at least one permission"
-#~ msgstr "El perfil debe tener al menos un permiso"
-
-#~ msgid "Some of the provided permission were not recognized"
-#~ msgstr "Alguno de los permisos indicados no han sido reconocidos"
-
-#~ msgid "No duplicates allowed"
-#~ msgstr "No se permiten duplicados"
-
-#~ msgid "Profile %s has exactly the same permissions"
-#~ msgstr "El perfil %s tiene exactamente los mismos permisos"
-
-#~ msgid "Add new"
-#~ msgstr "Añadir nuevo"
-
-#~ msgid "Settings"
-#~ msgstr "Ajustes"
-
-#~ msgid "Currency code"
-#~ msgstr "Código de moneda"
-
-#~ msgid "Currency sub unit"
-#~ msgstr "Subunidad de moneda"
-
-#~ msgid "The :attribute must be at least :size characters."
-#~ msgstr ":attribute debe tener una longitud de al menos :size."
-
-#~ msgid "Route permissions missing"
-#~ msgstr "Faltan los permisos de ruta"

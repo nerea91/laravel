@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 14:06+0100\n"
+"POT-Creation-Date: 2014-01-17 16:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Wrong credentials"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:83
+#: /controllers/BaseResourceController.php:81
 #: /storage/gettext/admin-top-bar.blade.php.php:22
 #: /storage/gettext/admin-top-bar.blade.php.php:30
 #: /storage/gettext/admin-top-bar.blade.php.php:48
@@ -62,12 +62,12 @@ msgstr ""
 msgid "Index"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:96
+#: /controllers/BaseResourceController.php:94
 #: /storage/gettext/resource-actions.blade.php.php:2
 msgid "Details"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:107
+#: /controllers/BaseResourceController.php:105
 #: /database/seeds/PermissionsTableSeeder.php:11
 #: /database/seeds/PermissionsTableSeeder.php:17
 #: /database/seeds/PermissionsTableSeeder.php:23
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:120
+#: /controllers/BaseResourceController.php:118
 #: /database/seeds/PermissionsTableSeeder.php:12
 #: /database/seeds/PermissionsTableSeeder.php:18
 #: /database/seeds/PermissionsTableSeeder.php:24
@@ -99,22 +99,26 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:153
-#, php-format
-msgid "%s successfully created"
-msgstr ""
-
-#: /controllers/BaseResourceController.php:168
-#: /controllers/UsersController.php:47
+#: /controllers/BaseResourceController.php:214
 #, php-format
 msgid "%s successfully updated"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:223
+#: /controllers/BaseResourceController.php:216
+#, php-format
+msgid "%s successfully created"
+msgstr ""
+
+#: /controllers/BaseResourceController.php:218
+#, php-format
+msgid "%s successfully saved"
+msgstr ""
+
+#: /controllers/BaseResourceController.php:229
 msgid "Changes were not saved"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:240
+#: /controllers/BaseResourceController.php:247
 #, php-format
 msgid "%s successfully deleted"
 msgstr ""
@@ -599,6 +603,18 @@ msgstr ""
 msgid "App secret"
 msgstr ""
 
+#: /models/BaseModel.php:321
+msgid "Created at"
+msgstr ""
+
+#: /models/BaseModel.php:326
+msgid "Updated at"
+msgstr ""
+
+#: /models/BaseModel.php:331
+msgid "Deleted at"
+msgstr ""
+
 #: /models/Country.php:11
 #: /models/User.php:28
 msgid "Country"
@@ -708,18 +724,6 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: /models/Model.php:323
-msgid "Created at"
-msgstr ""
-
-#: /models/Model.php:328
-msgid "Updated at"
-msgstr ""
-
-#: /models/Model.php:333
-msgid "Deleted at"
-msgstr ""
-
 #: /models/Permission.php:15
 #: /models/PermissionType.php:16
 #: /models/Profile.php:20
@@ -741,17 +745,17 @@ msgid "No e-mail address found"
 msgstr ""
 
 #: /others.php:106
-#: /storage/gettext/admin-profiles-fields.blade.php.php:13
+#: /storage/gettext/admin-profiles-fields.blade.php.php:12
 msgid "all"
 msgstr ""
 
 #: /others.php:107
-#: /storage/gettext/admin-profiles-fields.blade.php.php:14
+#: /storage/gettext/admin-profiles-fields.blade.php.php:13
 msgid "none"
 msgstr ""
 
 #: /others.php:108
-#: /storage/gettext/admin-profiles-fields.blade.php.php:15
+#: /storage/gettext/admin-profiles-fields.blade.php.php:14
 msgid "invert"
 msgstr ""
 
@@ -818,7 +822,7 @@ msgstr ""
 msgid "Sample"
 msgstr ""
 
-#: /storage/gettext/admin-profiles-fields.blade.php.php:12
+#: /storage/gettext/admin-profiles-fields.blade.php.php:11
 msgid "Select"
 msgstr ""
 
@@ -930,15 +934,15 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:76
+#: /storage/gettext/layouts-error.blade.php.php:74
 msgid "Something went wrong while we were processing your request"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:77
+#: /storage/gettext/layouts-error.blade.php.php:75
 msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:81
+#: /storage/gettext/layouts-error.blade.php.php:79
 #, php-format
 msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr ""

@@ -61,9 +61,7 @@ $codes = array(
 			<div class="row collapse">
 				<div class="small-10 columns">
 					<h5>{{ _('Error') }} <span class="color">{{ $code }}</span></h5>
-					@if (strlen($header))
-					<h4>{{ $header }}</h4>
-					@elseif (isset($codes[$code]))
+					@if (isset($codes[$code]))
 					<h4>{{ $codes[$code] }}</h4>
 					@endif
 				</div>

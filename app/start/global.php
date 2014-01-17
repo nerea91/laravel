@@ -74,7 +74,7 @@ App::error(function(Exception $exception, $code)
 	$message = $exception->getMessage();
 
 	$data = [
-		'title'	=> strlen($message) ? $message : _('Error'),
+	'title'	=> _('Error')." $code",
 		'header'=> $message,
 		'code'	=> $code
 	];

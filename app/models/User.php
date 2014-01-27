@@ -62,15 +62,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		//NOTE Create events sequence: saving -> creating -> created -> saved
 		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
-		// BUG To hash the password instead of 2 calls to creating and updating it should be only 1 call to the
-		// saving event but it doesn't work http://forums.laravel.io/viewtopic.php?id=15463
 		static::creating(function($user)
-		{
-			// Hash password if not hashed
-			if (Hash::needsRehash($user->password))
-				$user->password = Hash::make($user->password);
-		});
-		static::updating(function($user)
 		{
 			// Hash password if not hashed
 			if (Hash::needsRehash($user->password))

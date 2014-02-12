@@ -16,8 +16,9 @@ Thumbs.db
 *.old
 /.inotify
 
-# Gettext
+# Storage
 /app/storage/gettext/
+/app/storage/debugbar/
 
 
 # Ctags

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-17 16:12+0100\n"
+"POT-Creation-Date: 2014-02-12 09:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,6 +106,7 @@ msgid "%s successfully created"
 msgstr "%s creado con éxito"
 
 #: /controllers/BaseResourceController.php:218
+#, php-format
 msgid "%s successfully saved"
 msgstr "%s guardado con éxito"
 
@@ -379,7 +380,7 @@ msgid "The :attribute must be between :min and :max digits."
 msgstr ":attribute debe tener entre :min y :max dígitos."
 
 #: /lang/en/validation.php:36 /lang/en/validation.php:57
-#: /lang/en/validation.php:70
+#: /lang/en/validation.php:71
 msgid "The :attribute format is invalid."
 msgstr "El formato de :attribute no es válido."
 
@@ -457,54 +458,58 @@ msgid "The :attribute field is required when :values is not present."
 msgstr ":attribute es obligatorio cuando no se indica :values."
 
 #: /lang/en/validation.php:62
+msgid "The :attribute field is required when none of :values are present."
+msgstr ":attribute es obligatorio cuando no se indica ninguno de los valores :values."
+
+#: /lang/en/validation.php:63
 msgid "The :attribute and :other must match."
 msgstr "Los campos :attribute y :other deben coincidir."
 
-#: /lang/en/validation.php:64
+#: /lang/en/validation.php:65
 msgid "The :attribute must be :size."
 msgstr ":attribute debe ser de tamaño :size."
 
-#: /lang/en/validation.php:65
+#: /lang/en/validation.php:66
 msgid "The :attribute must be :size kilobytes."
 msgstr ":attribute debe ser de :size kilobytes."
 
-#: /lang/en/validation.php:66
+#: /lang/en/validation.php:67
 msgid "The :attribute must be :size characters."
 msgstr ":attribute debe tener :size caracteres."
 
-#: /lang/en/validation.php:67
+#: /lang/en/validation.php:68
 msgid "The :attribute must contain :size items."
 msgstr ":attribute debe contener :size ítems."
 
-#: /lang/en/validation.php:69
+#: /lang/en/validation.php:70
 msgid "The :attribute has already been taken."
 msgstr "El valor de :attribute ya está en uso."
 
-#: /lang/en/validation.php:72
+#: /lang/en/validation.php:73
 msgid "The :attribute may only contain letters and spaces."
 msgstr ":attribute solo puede contener letras y espacios."
 
-#: /lang/en/validation.php:73
+#: /lang/en/validation.php:74
 msgid "The :attribute may only contain letters, numbers, dashes and spaces."
 msgstr ":attribute solo puede contener letras, números, guiones y espacios."
 
-#: /lang/en/validation.php:74
+#: /lang/en/validation.php:75
 msgid "The :attribute may only contain letters, numbers and spaces."
 msgstr ":attribute solo puede contener letras, números y espacios."
 
-#: /lang/en/validation.php:75
+#: /lang/en/validation.php:76
 msgid "The :attribute must be a positive number."
 msgstr ":attribute debe ser un número positivo."
 
-#: /lang/en/validation.php:76
+#: /lang/en/validation.php:77
 msgid "The :attribute must be :length characters."
 msgstr ":attribute debe tener :length caracteres."
 
-#: /lang/en/validation.php:77
+#: /lang/en/validation.php:78
 msgid "The :attribute must be less than :length characters."
 msgstr ":attribute debe tener menos de :length caracteres."
 
-#: /lang/en/validation.php:78
+#: /lang/en/validation.php:79
 msgid "The :attribute must be at least :length characters."
 msgstr ":attribute debe tener al menos :length caracteres."
 
@@ -710,7 +715,7 @@ msgstr "Tipo"
 msgid "Profile"
 msgstr "Perfil"
 
-#: /models/User.php:190
+#: /models/User.php:182
 msgid "No e-mail address found"
 msgstr "No se han encontrado dirección de e-mail"
 
@@ -971,4 +976,3 @@ msgstr "Repite nueva contraseña"
 #: /storage/gettext/userpanel-password.blade.php.php:18
 msgid "Change password"
 msgstr "Cambiar contraseña"
-

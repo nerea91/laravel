@@ -242,11 +242,20 @@ class BaseResourceController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//to-do comprobar si se puede borrar y en caso negativo camturar ModelDeletionException
-		if($resource = $this->resource->find($id) and $resource->delete())
-			Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
+		try
+		{
+			if($resource = $this->resource->find($id) and $resource->deletable(true) and $resource->delete())
+				Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
 
-		return Redirect::route("{$this->prefix}.index");
+			$response = Redirect::route("{$this->prefix}.index");
+		}
+		catch(ModelDeletionException $e)
+		{
+			Session::flash('error', $e->getMessage());
+			$response = Redirect::back();
+		}
+
+		return $response;
 	}
 
 	/**

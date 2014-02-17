@@ -76,10 +76,16 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 			if( ! $model->validate(true))
 				return false;
 		});
+
+		static::deleting(function($model)
+		{
+			return $model->deletable(true);
+		});
+
 	}
 
 	/**
-	 * Event trigger.
+	 * Event trigger. For manually triggering model events.
 	 */
 	public function fireEvent($event)
 	{
@@ -338,6 +344,18 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Determine whether or not the model can be deleted.
+	 *
+	 * @param  boolean $throwExceptions
+	 * @throws ModelDeletionException
+	 * @return boolean
+	 */
+	public function deletable($throwExceptions = false)
+	{
+		return true;
 	}
 
 	/**

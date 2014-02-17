@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-12 09:43+0100\n"
+"POT-Creation-Date: 2014-02-17 17:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr "%s guardado con éxito"
 msgid "Changes were not saved"
 msgstr "No se han guardado los cambios"
 
-#: /controllers/BaseResourceController.php:247
+#: /controllers/BaseResourceController.php:246
 #, php-format
 msgid "%s successfully deleted"
 msgstr "%s borrado con éxito"
@@ -565,6 +565,12 @@ msgstr "Proveedor"
 msgid "User"
 msgstr "Usuario"
 
+#: /models/Account.php:82 /models/AuthProvider.php:53 /models/Profile.php:74
+#: /models/User.php:103
+#, php-format
+msgid "Deleting %s is not allowed"
+msgstr "No está permitido borrar %s"
+
 #: /models/AuthProvider.php:12
 msgid "Auth. provider"
 msgstr "Prov. de acceso"
@@ -585,15 +591,15 @@ msgstr "App id"
 msgid "App secret"
 msgstr "App secret"
 
-#: /models/BaseModel.php:321
+#: /models/BaseModel.php:327
 msgid "Created at"
 msgstr "Creado el"
 
-#: /models/BaseModel.php:326
+#: /models/BaseModel.php:332
 msgid "Updated at"
 msgstr "Actualizado el"
 
-#: /models/BaseModel.php:331
+#: /models/BaseModel.php:337
 msgid "Deleted at"
 msgstr "Borrado el"
 
@@ -702,6 +708,10 @@ msgstr "Predeterminado"
 msgid "Priority"
 msgstr "Prioridad"
 
+#: /models/Language.php:173
+msgid "Deleting default language is not allowed"
+msgstr "No está permitido borrar el idioma predeterminado"
+
 #: /models/Permission.php:15 /models/PermissionType.php:16
 #: /models/Profile.php:20 /models/User.php:26
 msgid "Description"
@@ -715,7 +725,7 @@ msgstr "Tipo"
 msgid "Profile"
 msgstr "Perfil"
 
-#: /models/User.php:182
+#: /models/User.php:195
 msgid "No e-mail address found"
 msgstr "No se han encontrado dirección de e-mail"
 

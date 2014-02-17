@@ -43,12 +43,6 @@ class Language extends BaseModel {
 				Language::where('id', '<>', $model->id)->update(array('is_default' => 0));
 		});
 
-		static::deleting(function($model)
-		{
-			// Prevent deleting default language
-			if($model->is_default)
-				return false;
-		});
 	}
 
 	// Relationships ==========================================================
@@ -162,6 +156,26 @@ class Language extends BaseModel {
 	}
 
 	// Logic ==================================================================
+
+	/**
+	 * Determine whether or not the model can be deleted.
+	 *
+	 * @param  boolean $throwExceptions
+	 * @throws ModelDeletionException
+	 * @return boolean
+	 */
+	public function deletable($throwExceptions = false)
+	{
+		// Prevent deleting default language
+		if($this->is_default)
+		{
+			if($throwExceptions)
+				throw new ModelDeletionException(_('Deleting default language is not allowed'));
+			return false;
+		}
+
+		return true;
+	}
 
 	/**
 	 * Set the language for Gettext

@@ -46,23 +46,6 @@ class Account extends BaseModel {
 		return $this->belongsTo('User');
 	}
 
-	// Events ==================================================================
-
-	public static function boot()
-	{
-		parent::boot();
-
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
-
-		static::deleting(function($model)
-		{
-			// Prevent deleting Superuser admin account
-			if($model->id == 1)
-				return false;
-		});
-	}
-
 	// Logic ==================================================================
 
 	/**
@@ -82,4 +65,25 @@ class Account extends BaseModel {
 		if(strlen($value))
 			$this->attributes['last_ip'] = Crypt::encrypt($value);
 	}
+
+	/**
+	 * Determine whether or not the model can be deleted.
+	 *
+	 * @param  boolean $throwExceptions
+	 * @throws ModelDeletionException
+	 * @return boolean
+	 */
+	public function deletable($throwExceptions = false)
+	{
+		// Prevent deleting Admin native account
+		if($this->id == 1)
+		{
+			if($throwExceptions)
+				throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
+			return false;
+		}
+
+		return true;
+	}
+
 }

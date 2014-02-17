@@ -23,7 +23,7 @@ return array(
 
 		//Zurb Foundation (CDN)
 		'foundation-cdn' => [
-			//'//cdn.jsdelivr.net/foundation/5.1.1/js/vendor/modernizr.js',
+			'//cdn.jsdelivr.net/foundation/5.1.1/js/vendor/modernizr.js',
 			'jquery2-cdn',
 			'//cdn.jsdelivr.net/foundation/5.1.1/js/foundation.min.js',
 			'app.js',

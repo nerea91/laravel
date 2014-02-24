@@ -18,34 +18,41 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
 Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));
 
-// Auth area
-Route::get('login', array('before' => 'guest', 'as' => 'login', 'uses' => 'AuthController@showLoginForm'));
-Route::post('login', array('before' => 'guest', 'uses' => 'AuthController@doLogin'));
-Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
-
-// User control panel
-Route::group(array('prefix' => 'user', 'before' => 'auth'), function() {
-	Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
-	Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
-
-	Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
-	Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
+// Guest user area
+Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function() {
+	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
+	Route::post('/', array('uses' => 'AuthController@doLogin'));
 });
 
-// Admin area
-Route::group(array('prefix' => 'admin', 'before' => ['auth', 'acl']), function() {
+// Authenticated user area
+Route::group(array('https', 'before' => 'auth'), function() {
 
-	// Admin panel home page
-	Route::get('/', array('as' => 'admin', 			'uses' => 'AdminController@showAdminPage'));
-	Route::post('/', array('as' => 'admin.search',	'uses' => 'AdminController@search'));
+	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
 
-	// Resource controllers
-	Route::resource('accounts', 'AccountsController');
-	Route::resource('authproviders', 'AuthProvidersController');
-	Route::resource('countries', 'CountriesController');
-	Route::resource('currencies', 'CurrenciesController');
-	Route::resource('languages', 'LanguagesController');
-	Route::resource('profiles', 'ProfilesController');
-	Route::resource('users', 'UsersController');
+	// Current user control panel
+	Route::group(array('prefix' => 'user'), function() {
+		Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
+		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
+		Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
+		Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
+	});
+
+	// Admin area
+	Route::group(array('prefix' => 'admin'), function() {
+		Route::get('/', array('as' => 'admin',  'uses' => 'AdminController@showAdminPage'));
+		Route::post('/', array('as' => 'admin.search', 'uses' => 'AdminController@search'));
+
+		// Resource controllers require ACL
+		Route::group(array('before' => 'acl'), function() {
+			Route::resource('accounts', 'AccountsController');
+			Route::resource('authproviders', 'AuthProvidersController');
+			Route::resource('countries', 'CountriesController');
+			Route::resource('currencies', 'CurrenciesController');
+			Route::resource('languages', 'LanguagesController');
+			Route::resource('profiles', 'ProfilesController');
+			Route::resource('users', 'UsersController');
+		});
+
+	});
 
 });

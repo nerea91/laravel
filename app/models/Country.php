@@ -45,4 +45,15 @@ class Country extends BaseModel {
 	}
 
 	// Logic ==================================================================
+
+	/**
+	 * Search countries
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		return Self::all(); //to-do do a real search
+	}
 }

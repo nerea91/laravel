@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-17 17:54+0100\n"
+"POT-Creation-Date: 2014-02-24 22:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Changes were not saved"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:246
+#: /controllers/BaseResourceController.php:248
 #, php-format
 msgid "%s successfully deleted"
 msgstr ""
@@ -379,9 +379,8 @@ msgstr ""
 msgid "The :attribute must be between :min and :max digits."
 msgstr ""
 
-#: /lang/en/validation.php:36 /lang/en/validation.php:57
-#: /lang/en/validation.php:71
-msgid "The :attribute format is invalid."
+#: /lang/en/validation.php:36
+msgid "The :attribute must be a valid email address."
 msgstr ""
 
 #: /lang/en/validation.php:37 /lang/en/validation.php:39
@@ -439,6 +438,10 @@ msgstr ""
 
 #: /lang/en/validation.php:56
 msgid "The :attribute must be a number."
+msgstr ""
+
+#: /lang/en/validation.php:57 /lang/en/validation.php:71
+msgid "The :attribute format is invalid."
 msgstr ""
 
 #: /lang/en/validation.php:58

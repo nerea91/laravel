@@ -33,7 +33,7 @@ return array(
 	"different"            => _("The :attribute and :other must be different."),
 	"digits"               => _("The :attribute must be :digits digits."),
 	"digits_between"       => _("The :attribute must be between :min and :max digits."),
-	"email"                => _("The :attribute format is invalid."),
+	"email"                => _("The :attribute must be a valid email address."),
 	"exists"               => _("The selected :attribute is invalid."),
 	"image"                => _("The :attribute must be an image."),
 	"in"                   => _("The selected :attribute is invalid."),

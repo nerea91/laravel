@@ -108,6 +108,17 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		return Self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->get();
+	}
+
+	/**
 	 * Check if user's profile has ALL of the provided permissions
 	 *
 	 * @param dynamic $permissions
@@ -153,6 +164,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 		return $this->name;
 	}
+
 
 	// UserInterface implementation for auth ==================================
 

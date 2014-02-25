@@ -47,13 +47,24 @@ class Country extends BaseModel {
 	// Logic ==================================================================
 
 	/**
-	 * Search countries
+	 * Search this model
 	 *
 	 * @param  string $query
 	 * @return Illuminate\Database\Eloquent\Collection
 	 */
 	public function search($query)
 	{
-		return Self::all(); //to-do do a real search
+		if(is_numeric($query))
+			$search = Self::where('code', $query);
+		else
+		{
+			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('full_name', 'LIKE', "%$query%");
+			if(strlen($query) == 2)
+				$search->orWhere('iso_3166_2', $query);
+			if(strlen($query) == 3)
+				$search->orWhere('iso_3166_3', $query);
+		}
+
+		return $search->get();
 	}
 }

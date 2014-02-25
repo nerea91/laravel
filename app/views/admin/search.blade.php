@@ -18,13 +18,15 @@
 
 	{{-- Show search results --}}
 	@if (isset($searchResults) and $searchResults)
-		@foreach ($searchResults as $model => $collection)
-			<h3>{{ $model }}</h3>
+		@foreach ($searchResults as $model => $results)
+		<div class="panel">
 			<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-				@foreach ($collection as $model)
-				<li>{{$model}}</li>
+				<li><h4>{{ $results->label }}</h4></li>
+				@foreach ($results->collection as $model)
+				<li>{{ link_to_route($results->route, $model, array($model->id)) }}</li>
 				@endforeach
 			</ul>
+		</div>
 		@endforeach
 	@endif
 

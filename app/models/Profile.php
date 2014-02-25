@@ -79,6 +79,17 @@ class Profile extends BaseModel {
 	}
 
 	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		return Self::where('name', 'LIKE', "%$query%")->orWhere('description', 'LIKE', "%$query%")->get();
+	}
+
+	/**
 	 * Get profile permissions
 	 *
 	 * @return array

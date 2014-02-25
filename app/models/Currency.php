@@ -43,6 +43,26 @@ class Currency extends BaseModel {
 	// Logic ==================================================================
 
 	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		if(is_numeric($query))
+			$search = new Illuminate\Database\Eloquent\Collection;
+		else
+		{
+			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
+			if(strlen($query) == 3)
+				$search->orWhere('code',$query);
+		}
+
+		return $search->get();
+	}
+
+	/**
 	 * Adds digit separators and currency sybol.
 	 *
 	 * @param  float

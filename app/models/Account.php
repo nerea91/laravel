@@ -46,7 +46,7 @@ class Account extends BaseModel {
 		return $this->belongsTo('User');
 	}
 
-	// Logic ==================================================================
+	// Accessor / Mutators ===============================================
 
 	/**
 	 * IP Accessor
@@ -66,6 +66,8 @@ class Account extends BaseModel {
 			$this->attributes['last_ip'] = Crypt::encrypt($value);
 	}
 
+	// Logic ==================================================================
+
 	/**
 	 * Determine whether or not the model can be deleted.
 	 *
@@ -84,6 +86,24 @@ class Account extends BaseModel {
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		return Self::where('uid', 'LIKE', "%$query%")
+		->orWhere('nickname', 'LIKE', "%$query%")
+		->orWhere('email', 'LIKE', "%$query%")
+		->orWhere('name', 'LIKE', "%$query%")
+		->orWhere('first_name', 'LIKE', "%$query%")
+		->orWhere('last_name', 'LIKE', "%$query%")
+		->get();
 	}
 
 }

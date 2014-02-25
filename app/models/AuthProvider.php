@@ -36,7 +36,6 @@ class AuthProvider extends BaseModel {
 
 	// Logic ==================================================================
 
-
 	/**
 	 * Determine whether or not the model can be deleted.
 	 *
@@ -55,5 +54,16 @@ class AuthProvider extends BaseModel {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		return Self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->get();
 	}
 }

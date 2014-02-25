@@ -178,6 +178,28 @@ class Language extends BaseModel {
 	}
 
 	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function search($query)
+	{
+		if(is_numeric($query))
+			$search = new Illuminate\Database\Eloquent\Collection;
+		else
+		{
+			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
+			if(strlen($query) == 2)
+				$search->orWhere('code', $query);
+			if(strlen($query) <= 5)
+				$search->orWhere('locale', $query);
+		}
+
+		return $search->get();
+	}
+
+	/**
 	 * Set the language for Gettext
 	 *
 	 * NOTE: LC_ALL may switch float decimal separator character deppending on locale. This could cause undesired issues
@@ -209,4 +231,5 @@ class Language extends BaseModel {
 	{
 		return (object) $this->toArray();
 	}
+
 }

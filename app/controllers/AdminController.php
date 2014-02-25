@@ -38,10 +38,10 @@ class AdminController extends BaseController {
 				60 => 'User',
 				100 => 'Account',
 				40 => 'Profile',
-				20 => 'Language',
-				10 => 'Country',
 				60 => 'AuthProvider',
 				120 => 'Currency',
+				20 => 'Language',
+				10 => 'Country',
 			];
 
 			// Perform search for all searchable models
@@ -67,12 +67,12 @@ class AdminController extends BaseController {
 			if($results)
 			{
 				Cache::put('adminSsearchResults', $results, 5);
-				Session::flash('success', sprintf(_('%d results found'), $total_results));
+				//Session::flash('success', sprintf(_('%d results found'), $total_results));
 			}
 			else
 			{
-				Session::flash('error', _('No results'));
 				Cache::forget('adminSsearchResults');
+				Session::flash('error', _('No results found'));
 			}
 		}
 		else

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-24 22:41+0100\n"
+"POT-Creation-Date: 2014-02-25 23:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/AdminController.php:14
+#: /controllers/AdminController.php:17
 msgid "Admin panel"
 msgstr ""
 
-#: /controllers/AdminController.php:15
+#: /controllers/AdminController.php:18
 #: /storage/gettext/admin-search.blade.php.php:12
 msgid "Search"
+msgstr ""
+
+#: /controllers/AdminController.php:70
+#, php-format
+msgid "%d results found"
+msgstr ""
+
+#: /controllers/AdminController.php:74
+#: /storage/gettext/resource-index.blade.php.php:3
+msgid "No results found"
 msgstr ""
 
 #: /controllers/AuthController.php:14
@@ -590,8 +600,8 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: /models/Account.php:82
-#: /models/AuthProvider.php:53
+#: /models/Account.php:84
+#: /models/AuthProvider.php:52
 #: /models/Profile.php:74
 #: /models/User.php:103
 #, php-format
@@ -759,7 +769,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: /models/User.php:195
+#: /models/User.php:207
 msgid "No e-mail address found"
 msgstr ""
 
@@ -998,10 +1008,6 @@ msgstr ""
 #: /storage/gettext/resource-edit.blade.php.php:10
 #: /storage/gettext/userpanel-options.blade.php.php:9
 msgid "Update"
-msgstr ""
-
-#: /storage/gettext/resource-index.blade.php.php:3
-msgid "No results found"
 msgstr ""
 
 #: /storage/gettext/resource-index.blade.php.php:7

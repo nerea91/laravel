@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-24 22:42+0100\n"
+"POT-Creation-Date: 2014-02-25 23:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /controllers/AdminController.php:14
+#: /controllers/AdminController.php:17
 msgid "Admin panel"
 msgstr "Panel de administración"
 
-#: /controllers/AdminController.php:15
+#: /controllers/AdminController.php:18
 #: /storage/gettext/admin-search.blade.php.php:12
 msgid "Search"
 msgstr "Buscar"
+
+#: /controllers/AdminController.php:70
+msgid "%d results found"
+msgstr "Se han encontrado %d resultados"
+
+#: /controllers/AdminController.php:74
+#: /storage/gettext/resource-index.blade.php.php:3
+msgid "No results found"
+msgstr "No se han encontrado resultados"
 
 #: /controllers/AuthController.php:14
 #: /storage/gettext/auth-login_form.blade.php.php:19
@@ -568,7 +577,7 @@ msgstr "Proveedor"
 msgid "User"
 msgstr "Usuario"
 
-#: /models/Account.php:82 /models/AuthProvider.php:53 /models/Profile.php:74
+#: /models/Account.php:84 /models/AuthProvider.php:52 /models/Profile.php:74
 #: /models/User.php:103
 #, php-format
 msgid "Deleting %s is not allowed"
@@ -728,7 +737,7 @@ msgstr "Tipo"
 msgid "Profile"
 msgstr "Perfil"
 
-#: /models/User.php:195
+#: /models/User.php:207
 msgid "No e-mail address found"
 msgstr "No se han encontrado dirección de e-mail"
 
@@ -965,10 +974,6 @@ msgstr "Confirmar"
 msgid "Update"
 msgstr "Actualizar"
 
-#: /storage/gettext/resource-index.blade.php.php:3
-msgid "No results found"
-msgstr "No se han encontrado resultados"
-
 #: /storage/gettext/resource-index.blade.php.php:7
 #, php-format
 msgid "From %d to %d out of %d"
@@ -989,3 +994,4 @@ msgstr "Repite nueva contraseña"
 #: /storage/gettext/userpanel-password.blade.php.php:18
 msgid "Change password"
 msgstr "Cambiar contraseña"
+

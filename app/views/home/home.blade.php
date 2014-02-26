@@ -12,8 +12,8 @@
 			<li class="cta-button">{{ link_to_route('login', _('Login'), null, ['class' => 'button']) }}</li>
 			@endif
 			<li class="description">Routes</li>
-			@foreach ($routes as $name => $url)
-			<li class="bullet-item">{{ link_to($url, $name) }}</li>
+			@foreach ($routes as $name => $link)
+			<li class="bullet-item">{{ $link }}</li>
 			@endforeach
 		</ul>
 

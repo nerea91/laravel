@@ -21,7 +21,7 @@ class HomeController extends BaseController {
 		{
 			$name = $route->getName();
 			if (substr($name, 0, 6) != 'admin.' and in_array('GET', $route->methods()))
-				$data['routes'][$name] = $route->uri();
+				$data['routes'][$name] = link_to($route->uri(), $name, [], $route->secure());
 		}
 
 		$this->layout->title = $data['title'];
@@ -78,5 +78,5 @@ class HomeController extends BaseController {
 		// Post/Redirect/Get Pattern (http://en.wikipedia.org/wiki/Post/Redirect/Get)
 		return Redirect::back()->withSuccess(_('Message sent!'));
 	}
-	
+
 }

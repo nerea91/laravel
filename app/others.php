@@ -38,6 +38,13 @@ Event::listen('account.login', function($account)
 	$account->provider()->increment('login_count');
 });
 
+Event::listen('auth.logout', function($user)
+{
+	// Purge admin panel search results cache
+	Cache::forget('admin-search-results' . $user->getKey());
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Validation

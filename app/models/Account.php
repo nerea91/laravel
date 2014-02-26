@@ -103,6 +103,9 @@ class Account extends BaseModel {
 		->orWhere('name', 'LIKE', "%$query%")
 		->orWhere('first_name', 'LIKE', "%$query%")
 		->orWhere('last_name', 'LIKE', "%$query%")
+		->orderBy('name')
+		->orderBy('first_name')
+		->orderBy('last_name')
 		->get();
 	}
 

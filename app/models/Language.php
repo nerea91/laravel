@@ -196,7 +196,7 @@ class Language extends BaseModel {
 				$search->orWhere('locale', $query);
 		}
 
-		return $search->get();
+		return $search->orderBy('english_name')->get();
 	}
 
 	/**

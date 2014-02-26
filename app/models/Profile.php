@@ -86,7 +86,7 @@ class Profile extends BaseModel {
 	 */
 	public function search($query)
 	{
-		return Self::where('name', 'LIKE', "%$query%")->orWhere('description', 'LIKE', "%$query%")->get();
+		return Self::where('name', 'LIKE', "%$query%")->orWhere('description', 'LIKE', "%$query%")->orderBy('name')->get();
 	}
 
 	/**

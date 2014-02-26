@@ -64,6 +64,6 @@ class AuthProvider extends BaseModel {
 	 */
 	public function search($query)
 	{
-		return Self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->get();
+		return Self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->orderBy('title')->get();
 	}
 }

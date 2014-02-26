@@ -59,7 +59,7 @@ class Currency extends BaseModel {
 				$search->orWhere('code',$query);
 		}
 
-		return $search->get();
+		return $search->orderBy('name')->get();
 	}
 
 	/**

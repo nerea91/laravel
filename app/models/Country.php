@@ -65,6 +65,6 @@ class Country extends BaseModel {
 				$search->orWhere('iso_3166_3', $query);
 		}
 
-		return $search->get();
+		return $search->orderBy('name')->get();
 	}
 }

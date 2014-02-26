@@ -1,7 +1,7 @@
 <thead>
 	<tr>
-		<th>{{ $labels->name }}</th>
-		<th class="text-center">{{ $labels->iso_3166_2 }}</th>
+		<th>{{ $links->name }}</th>
+		<th class="text-center">{{ $links->iso_3166_2 }}</th>
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>

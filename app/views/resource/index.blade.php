@@ -11,7 +11,7 @@
 	@include("$prefix.index")
 	</table>
 
-	{{ $results->links() }}
+	{{ $results->appends(Input::only('sortby', 'sortdir'))->links() }}
 
 	@if ($delete)
 	@include('resource.delete')

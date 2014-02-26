@@ -62,6 +62,9 @@ return array(
 		// CSS frameworks use a lot of empty tags for navigation/pagination
 		"/line.*trimming empty <li>\n?/",
 		"/line.*trimming empty <span>\n?/",
+		// Laravel pagination links dont scape ampersands
+		"/line.*or unknown entity \"&sortby\"\n?/",
+		"/line.*or unknown entity \"&sortdir\"\n?/",
 	),
 
 );

@@ -1,8 +1,8 @@
 <thead>
 	<tr>
-		<th>{{ $labels->username }}</th>
-		<th>{{ $labels->profile_id }}</th>
-		<th>{{ $labels->country_id }}</th>
+		<th>{{ $links->username }}</th>
+		<th>{{ $links->profile_id }}</th>
+		<th>{{ $links->country_id }}</th>
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>

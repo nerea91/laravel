@@ -1,7 +1,7 @@
 <thead>
 	<tr>
-		<th>{{ $labels->name }}</th>
-		<th>{{ $labels->description }}</th>
+		<th>{{ $links->name }}</th>
+		<th>{{ $links->description }}</th>
 		<th class="text-center">{{ _('Users') }}</th>
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>

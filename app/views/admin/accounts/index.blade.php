@@ -1,9 +1,9 @@
 <thead>
 	<tr>
-		<th>{{ $labels->user_id }}</th>
-		<th>{{ $labels->provider_id }}</th>
-		<th>{{ $labels->email }}</th>
-		<th class="text-center">{{ $labels->login_count }}</th>
+		<th>{{ $links->user_id }}</th>
+		<th>{{ $links->provider_id }}</th>
+		<th>{{ $links->email }}</th>
+		<th class="text-center">{{ $links->login_count }}</th>
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>

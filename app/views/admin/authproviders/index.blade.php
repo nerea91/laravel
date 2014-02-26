@@ -1,8 +1,8 @@
 <thead>
 	<tr>
-		<th>{{ $labels->name }}</th>
+		<th>{{ $links->name }}</th>
 		<th class="text-center">{{ _('Accounts') }}</th>
-		<th class="text-center">{{ $labels->login_count }}</th>
+		<th class="text-center">{{ $links->login_count }}</th>
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>

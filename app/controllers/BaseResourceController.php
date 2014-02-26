@@ -71,18 +71,15 @@ class BaseResourceController extends \BaseController {
 		// If results found add asset to make tables responsive
 		//$results->getTotal() and Assets::add('responsive-tables');
 
-		// If no labels are provided use default
-		$labels = (object) (($labels) ?: $this->resource->getVisibleLabels());
-
-		// Create header links for sorting
-		$links = $this->make_links_from_labels($labels);
+		// Create header links for sorting by column
+		$links = (object) link_to_sort_by(($labels) ?: $this->resource->getVisibleLabels());
 
 		// Set the route for the return button
-		$return = replace_last_segment($this->prefix); //to-do estudiar si esto realmente hace falta ya que $prefix ya esta disponible en todas las vistas!
+		$return = replace_last_segment($this->prefix);
 
 		$this->layout->title = $this->resource->plural();
 		$this->layout->subtitle = _('Index');
-		$this->layout->content = View::make('resource.index', compact('results', 'labels', 'links', 'return'));
+		$this->layout->content = View::make('resource.index', compact('results', 'links', 'return'));
 	}
 
 	/**
@@ -278,31 +275,6 @@ class BaseResourceController extends \BaseController {
 			return $this->resource->fireEvent(($finished) ? 'updated' : 'updating');
 
 		throw new Exception('Unknown event action: ' . $action);
-	}
-
-	/**
-	 * Build up links for sorting resource by column (?sortby=column)
-	 *
-	 * @param  stdClass
-	 * @return stdClass
-	 */
-	protected function make_links_from_labels($labels)
-	{
-		$links = new stdClass();
-		$route = Route::current()->getName();
-		$column = Input::get('sortby');
-		$direction = Input::get('sortdir');
-
-		foreach($labels as $key => $label)
-		{
-			$sortby = ['sortby' => $key];
-			if($key == $column and $direction != 'desc')
-				$sortby['sortdir'] = 'desc';
-
-			$links->$key = link_to_route($route, $label, $sortby);
-		}
-
-		return $links;
 	}
 
 }

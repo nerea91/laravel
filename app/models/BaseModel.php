@@ -243,6 +243,18 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	}
 
 	/**
+	 * Determine whether or not the model can be deleted.
+	 *
+	 * @param  boolean $throwExceptions
+	 * @throws ModelDeletionException
+	 * @return boolean
+	 */
+	public function deletable($throwExceptions = false)
+	{
+		return true;
+	}
+
+	/**
 	 * Retrieve one the label for a $field.
 	 *
 	 * @param string $field
@@ -300,6 +312,26 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	}
 
 	/**
+	 * Sort model by parameters given in the URL
+	 * i.e: ?sortby=name&sortdir=desc
+	 *
+	 * @return Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOrderByUrl($query)
+	{
+		$column = Input::get('sortby');
+		if(in_array($column, array_keys($this->getVisibleLabels())))
+		{
+			//to-do if column ends with "_id" sort by related model instead
+			$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+			return $query->orderBy($column, $direction);
+		}
+
+		return $query;
+	}
+
+	/**
 	 * Get an array suitable for an input[type=select]
 	 *
 	 * @param  strin $label Column used for labels
@@ -344,18 +376,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Determine whether or not the model can be deleted.
-	 *
-	 * @param  boolean $throwExceptions
-	 * @throws ModelDeletionException
-	 * @return boolean
-	 */
-	public function deletable($throwExceptions = false)
-	{
-		return true;
 	}
 
 	/**

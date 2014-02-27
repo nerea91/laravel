@@ -55,7 +55,7 @@ class BaseResourceController extends \BaseController {
 	protected function index()
 	{
 		// Paginate resource resutls
-		$results = $this->resource->with(func_get_args())->paginate();
+		$results = $this->resource->OrderByUrl()->with(func_get_args())->paginate();
 
 		// If results found add asset to make tables responsive
 		//$results->getTotal() and Assets::add('responsive-tables');

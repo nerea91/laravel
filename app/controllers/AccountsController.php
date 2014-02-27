@@ -31,7 +31,8 @@ class AccountsController extends BaseResourceController {
 	 */
 	public function index()
 	{
-		return parent::_index($this->resource->with('user', 'provider')->paginate());
+		// Eager load model with these relations
+		return parent::index('user', 'provider');
 	}
 
 }

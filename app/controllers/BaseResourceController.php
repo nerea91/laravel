@@ -47,32 +47,21 @@ class BaseResourceController extends \BaseController {
 	}
 
 	/**
-	 * Wrapper for $this->_index() to skip parameters type hinting.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return call_user_func_array([$this, '_index'], func_get_args());
-	}
-
-	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  Illuminate\Pagination\Paginator
-	 * @param  array
+	 * @param  array|string eager load model with these relations
 	 * @return Response
 	 */
-	protected function _index(Illuminate\Pagination\Paginator $results = null, array $labels = null)
+	protected function index()
 	{
-		// If no results are provided use default resource pagination
-		$results = ($results)?: $this->resource->paginate();
+		// Paginate resource resutls
+		$results = $this->resource->with(func_get_args())->paginate();
 
 		// If results found add asset to make tables responsive
 		//$results->getTotal() and Assets::add('responsive-tables');
 
 		// Create header links for sorting by column
-		$links = (object) link_to_sort_by(($labels) ?: $this->resource->getVisibleLabels());
+		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());
 
 		// Set the route for the return button
 		$return = replace_last_segment($this->prefix);

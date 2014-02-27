@@ -31,7 +31,8 @@ class UsersController extends BaseResourceController {
 	 */
 	public function index()
 	{
-		return parent::_index($this->resource->with('profile', 'country')->paginate());
+		// Eager load model with these relations
+		return parent::index('profile', 'country');
 	}
 
 	/**

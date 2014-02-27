@@ -31,7 +31,8 @@ class AuthProvidersController extends BaseResourceController {
 	 */
 	public function index()
 	{
-		return parent::_index($this->resource->with('accounts')->paginate());
+		// Eager load model with this relation
+		return parent::index('accounts');
 	}
 
 }

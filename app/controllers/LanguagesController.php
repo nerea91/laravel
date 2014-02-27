@@ -31,7 +31,8 @@ class LanguagesController extends BaseResourceController {
 	 */
 	public function index()
 	{
-		return parent::_index($this->resource->with('users')->paginate());
+		// Eager load model with this relation
+		return parent::index('users');
 	}
 
 }

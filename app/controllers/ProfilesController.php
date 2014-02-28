@@ -22,6 +22,10 @@ class ProfilesController extends BaseResourceController {
 			'edit'	=> Auth::user()->hasPermission(42),
 			'delete'=> Auth::user()->hasPermission(43),
 		]);
+
+		$this->relationships = [
+			'permissions' => [_('Permissions'), 'required|array|min:1'],
+		];
 	}
 
 	/**
@@ -33,35 +37,6 @@ class ProfilesController extends BaseResourceController {
 	{
 		// Eager load model with this relation
 		return parent::index('users');
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$this->relationships = [
-			'permissions' => [_('Permissions'), 'required|array|min:1'],
-		];
-
-		return parent::store();
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$this->relationships = [
-			'permissions' => [_('Permissions'), 'required|array|min:1'],
-		];
-
-		return parent::update($id);
 	}
 
 }

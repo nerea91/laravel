@@ -20,7 +20,7 @@ App::before(function($request)
 App::after(function($request, $response)
 {
 	// HTML Tidy
-	if (Config::get('tidy.enabled', false) and $response instanceof Illuminate\Http\Response and strpos($response->headers->get('content-type'), 'text/html') !== false)
+	if (Config::get('tidy.enabled', false) and ! $request->ajax() and $response instanceof Illuminate\Http\Response and strpos($response->headers->get('content-type'), 'text/html') !== false)
 	{
 		// Parse output
 		$tidy = new tidy;

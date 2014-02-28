@@ -39,6 +39,9 @@ class BaseResourceController extends \BaseController {
 	 */
 	public function __construct($resource, array $permissions = array())
 	{
+		// Enable CSRF filter
+		parent::__construct();
+
 		$this->resource = $resource;
 		$this->prefix = replace_last_segment(Route::current()->getName());
 

@@ -248,9 +248,9 @@ class BaseResourceController extends \BaseController {
 	}
 
 	/**
-	 * Changes in pivot tables don't fire events in the related models. This
-	 * method helps to manually fire events in the related models when altering
-	 * pivot tables.
+	 * Changes in pivot tables don't fire events in the related models.
+	 * This method helps to manually fire events in the related models
+	 * when altering pivot tables.
 	 *
 	 * @param  string
 	 * @param  boolean

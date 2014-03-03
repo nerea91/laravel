@@ -109,8 +109,10 @@ return array(
 
 		//require-dev
 		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
-		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
+		'Stolz\Filter\HtmlTidyServiceProvider',//https://github.com/Stolz/laravel-html-tidy
 		'Way\Generators\GeneratorsServiceProvider', //https://github.com/JeffreyWay/Laravel-4-Generators
+		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
+
 
 		//require
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets

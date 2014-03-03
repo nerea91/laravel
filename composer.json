@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"stolz/assets": "dev-master",
 		"stevenmaguire/zurb-foundation-laravel": "dev-master",
-		"binarix/foundation-pagination": "dev-master"
+		"binarix/foundation-pagination": "dev-master",
+		"stolz/laravel-html-tidy": "dev-develop"
 	},
 	"require-dev": {
 		"firephp/firephp-core": "dev-master",

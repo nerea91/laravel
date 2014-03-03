@@ -109,7 +109,7 @@ return array(
 
 		//require-dev
 		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
-		'Stolz\Filter\HtmlTidyServiceProvider',//https://github.com/Stolz/laravel-html-tidy
+		'Stolz\Filters\HtmlTidy\ServiceProvider',//https://github.com/Stolz/laravel-html-tidy
 		'Way\Generators\GeneratorsServiceProvider', //https://github.com/JeffreyWay/Laravel-4-Generators
 		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
 

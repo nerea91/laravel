@@ -7,14 +7,14 @@
 		"laravel/framework": "4.1.*",
 		"stolz/assets": "dev-master",
 		"stevenmaguire/zurb-foundation-laravel": "dev-master",
-		"binarix/foundation-pagination": "dev-master",
-		"stolz/laravel-html-tidy": "dev-develop"
+		"binarix/foundation-pagination": "dev-master"
 	},
 	"require-dev": {
+		"stolz/laravel-html-tidy": "dev-develop",
+		"barryvdh/laravel-debugbar": "dev-master",
 		"firephp/firephp-core": "dev-master",
 		"way/generators": "dev-master",
-		"daylerees/container-debug": "dev-master",
-		"barryvdh/laravel-debugbar": "dev-master"
+		"daylerees/container-debug": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

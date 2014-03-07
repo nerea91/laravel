@@ -5,7 +5,9 @@ class Permission extends BaseModel {
 	public $timestamps = false;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
-	// Validation =============================================================
+	// Meta ========================================================================
+
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -17,7 +19,7 @@ class Permission extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function type()
 	{
@@ -29,7 +31,13 @@ class Permission extends BaseModel {
 		return $this->belongsToMany('Profile')->withTimestamps();
 	}
 
-	// Logic ==================================================================
+	// Events ======================================================================
+
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Get ALL permissions grouped by type.

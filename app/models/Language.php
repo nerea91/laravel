@@ -6,13 +6,13 @@ class Language extends BaseModel {
 	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('Language');}	// Singular form of this model's name
 	public function plural() { return _('Languages');}	// Singular name of this model's name
 	public function __toString() { return $this->english_name;}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -27,7 +27,14 @@ class Language extends BaseModel {
 		));
 	}
 
-	// Events ==================================================================
+	// Relationships ===============================================================
+
+	public function users()
+	{
+		return $this->hasMany('User');
+	}
+
+	// Events ======================================================================
 
 	public static function boot()
 	{
@@ -45,14 +52,9 @@ class Language extends BaseModel {
 
 	}
 
-	// Relationships ==========================================================
+	// Accessors / Mutators ========================================================
 
-	public function users()
-	{
-		return $this->hasMany('User');
-	}
-
-	// Static Methods =========================================================
+	// Static Methods ==============================================================
 
 	/**
 	 * Determine the language of the application.
@@ -123,6 +125,16 @@ class Language extends BaseModel {
 	}
 
 	/**
+	 * Get all enabled languages sorted by priority
+	 *
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function getAllByPriority()
+	{
+		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
+	}
+
+	/**
 	 * Return the first Language from $haystack whose locale or code matches $needle.
 	 *
 	 * Returns null if not found.
@@ -145,17 +157,7 @@ class Language extends BaseModel {
 		return null;
 	}
 
-	/**
-	 * Get all enabled languages sorted by priority
-	 *
-	 * @return Illuminate\Database\Eloquent\Collection
-	 */
-	public static function getAllByPriority()
-	{
-		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
-	}
-
-	// Logic ==================================================================
+	// Logic =======================================================================
 
 	/**
 	 * Determine whether or not the model can be deleted.

@@ -9,13 +9,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('password', 'password_confirmation', 'current_password');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('User');}	// Singular form of this model's name
 	public function plural() { return _('Users');}	// Singular name of this model's name
 	public function __toString() { return $this->username;}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -31,7 +31,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function country()
 	{
@@ -53,7 +53,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->hasMany('Account');
 	}
 
-	// Events ==================================================================
+	// Events ======================================================================
 
 	public static function boot()
 	{
@@ -85,7 +85,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		});
 	}
 
-	// Logic ==================================================================
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Determine whether or not the model can be deleted.
@@ -166,7 +170,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	}
 
 
-	// UserInterface implementation for auth ==================================
+	// UserInterface implementation for auth =======================================
 
 	/**
 	 * Get the unique identifier for the user.
@@ -188,7 +192,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->password;
 	}
 
-	// RemindableInterface implementation for auth ============================
+	// RemindableInterface implementation for auth =================================
 
 	/**
 	 * Get the e-mail address where password reminders are sent.

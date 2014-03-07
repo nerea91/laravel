@@ -5,13 +5,13 @@ class Account extends BaseModel {
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token', 'last_ip');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('Account');}	// Singular form of this model's name
 	public function plural() { return _('Accounts');}	// Singular name of this model's name
 	public function __toString() { return $this->user . ' (' . $this->provider . ')';}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -34,7 +34,7 @@ class Account extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function provider()
 	{
@@ -46,7 +46,9 @@ class Account extends BaseModel {
 		return $this->belongsTo('User');
 	}
 
-	// Accessor / Mutators ===============================================
+	// Events ======================================================================
+
+	// Accessors / Mutators ========================================================
 
 	/**
 	 * IP Accessor
@@ -66,7 +68,9 @@ class Account extends BaseModel {
 			$this->attributes['last_ip'] = Crypt::encrypt($value);
 	}
 
-	// Logic ==================================================================
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Determine whether or not the model can be deleted.

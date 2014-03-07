@@ -47,60 +47,9 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 */
 	protected $errors;
 
-	// Events ==================================================================
+	// Meta ========================================================================
 
-	/**
-	 * Event listeners.
-	 */
-	protected static function boot()
-	{
-		parent::boot();
-
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
-
-		static::saving(function($model)
-		{
-			// Global muttator to convert empty attributes to null
-			foreach ($model->toArray() as $name => $value)
-			{
-				if( ! is_null($value) and ! is_array($value))
-				{
-					$value = trim($value);
-					if ( ! strlen($value))
-						$model->{$name} = null;
-				}
-			}
-
-			// Validate model before saving it
-			if( ! $model->validate(true))
-				return false;
-		});
-
-		static::deleting(function($model)
-		{
-			return $model->deletable(true);
-		});
-
-	}
-
-	/**
-	 * Event trigger. For manually triggering model events.
-	 */
-	public function fireEvent($event)
-	{
-		$halt = ends_with($event, 'ing');
-
-		return parent::fireModelEvent($event, $halt);
-	}
-
-	// Logic ==================================================================
-
-	public function __construct(array $attributes = array())
-	{
-		parent::__construct($attributes);
-		$this->errors = new \Illuminate\Support\MessageBag;
-	}
+	// Validation ==================================================================
 
 	/**
 	 * Set validation rules and labels.
@@ -131,6 +80,16 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	}
 
 	/**
+	 * Retrieve all rules for this model.
+	 *
+	 * @return array
+	 */
+	public function getRules()
+	{
+		return $this->rules;
+	}
+
+		/**
 	 * Remove validation rules from a field.
 	 *
 	 * @param  string       $field
@@ -146,16 +105,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 			unset($this->rules[$field][$rule]);
 
 		return $this;
-	}
-
-	/**
-	 * Retrieve all rules for this model.
-	 *
-	 * @return array
-	 */
-	public function getRules()
-	{
-		return $this->rules;
 	}
 
 	/**
@@ -202,6 +151,26 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	}
 
 	/**
+	 * Determine if the model does not have any validation errors.
+	 *
+	 * @return boolean
+	 */
+	public function isValid()
+	{
+		return ! $this->hasErrors();
+	}
+
+	/**
+	 * Determine if the model has any validation errors.
+	 *
+	 * @return boolean
+	 */
+	public function hasErrors()
+	{
+		return $this->errors->any();
+	}
+
+	/**
 	 * Set error message bag.
 	 *
 	 * @param Illuminate\Support\MessageBag
@@ -222,40 +191,75 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		return $this->errors;
 	}
 
+	// Relationships ===============================================================
+
+	// Events ======================================================================
+
 	/**
-	 * Determine if the model has any validation errors.
-	 *
-	 * @return boolean
+	 * Event listeners.
 	 */
-	public function hasErrors()
+	protected static function boot()
 	{
-		return $this->errors->any();
+		parent::boot();
+
+		//NOTE Create events sequence: saving -> creating -> created -> saved
+		//NOTE Update events sequence: saving -> updating -> updated -> saved
+
+		static::saving(function($model)
+		{
+			// Global muttator to convert empty attributes to null
+			foreach ($model->toArray() as $name => $value)
+			{
+				if( ! is_null($value) and ! is_array($value))
+				{
+					$value = trim($value);
+					if ( ! strlen($value))
+						$model->{$name} = null;
+				}
+			}
+
+			// Validate model before saving it
+			if( ! $model->validate(true))
+				return false;
+		});
+
+		static::deleting(function($model)
+		{
+			return $model->deletable(true);
+		});
+
 	}
 
 	/**
-	 * Determine if the model does not have any validation errors.
-	 *
-	 * @return boolean
+	 * Event trigger. For manually triggering model events.
 	 */
-	public function isValid()
+	public function fireEvent($event)
 	{
-		return ! $this->hasErrors();
+		$halt = ends_with($event, 'ing');
+
+		return parent::fireModelEvent($event, $halt);
 	}
 
-	/**
-	 * Determine whether or not the model can be deleted.
-	 *
-	 * @param  boolean $throwExceptions
-	 * @throws ModelDeletionException
-	 * @return boolean
-	 */
-	public function deletable($throwExceptions = false)
-	{
-		return true;
-	}
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
 
 	/**
-	 * Retrieve one the label for a $field.
+	 * Get an array suitable for an input[type=select]
+	 *
+	 * @param  strin $label Column used for labels
+	 * @param  strin $value Column used for values
+	 * @return array
+	 */
+	public static function dropdown($label = 'name', $value = 'id')
+	{
+		return self::orderBy($label)->lists($label, $value);
+	}
+
+	// Labels ======================================================================
+
+	/**
+	 * Retrieve the label for a $field.
 	 *
 	 * @param string $field
 	 * @return string
@@ -311,6 +315,26 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		return $fillable;
 	}
 
+	// Logic =======================================================================
+
+	public function __construct(array $attributes = array())
+	{
+		parent::__construct($attributes);
+		$this->errors = new \Illuminate\Support\MessageBag;
+	}
+
+	/**
+	 * Determine whether or not the model can be deleted.
+	 *
+	 * @param  boolean $throwExceptions
+	 * @throws ModelDeletionException
+	 * @return boolean
+	 */
+	public function deletable($throwExceptions = false)
+	{
+		return true;
+	}
+
 	/**
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
@@ -329,18 +353,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Get an array suitable for an input[type=select]
-	 *
-	 * @param  strin $label Column used for labels
-	 * @param  strin $value Column used for values
-	 * @return array
-	 */
-	public static function dropdown($label = 'name', $value = 'id')
-	{
-		return self::orderBy($label)->lists($label, $value);
 	}
 
 	/**
@@ -387,7 +399,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	public function lastUpdate($format = '%A %d %B %Y @ %T (%Z)')
 	{
 		return $this->updated_at->formatLocalized($format);
-		//to-do use Auth::user() timezone
 	}
 
 	/**
@@ -398,7 +409,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	public function lastUpdateDiff()
 	{
 		return $this->updated_at->diffForHumans();
-		//to-do use Auth::user() timezone
 	}
 
 }

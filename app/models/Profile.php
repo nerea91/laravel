@@ -4,13 +4,13 @@ class Profile extends BaseModel {
 
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('Profile');}	// Singular form of this model's name
 	public function plural() { return _('Profiles');}	// Singular name of this model's name
 	public function __toString() { return $this->name;}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -21,7 +21,7 @@ class Profile extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function permissions()
 	{
@@ -33,7 +33,7 @@ class Profile extends BaseModel {
 		return $this->hasMany('User');
 	}
 
-	// Events ==================================================================
+	// Events ======================================================================
 
 	public static function boot()
 	{
@@ -56,7 +56,40 @@ class Profile extends BaseModel {
 
 	}
 
-	// Logic ==================================================================
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	/**
+	 * Determine if already exists a profile which has exactly
+	 * the provided permissions.
+	 *
+	 * If no profiles are found returns bolean FALSE, otherwise
+	 * returns the profile name.
+	 *
+	 * @param  array   $permissions
+	 * @param  integer $excluded_id
+	 * @return mixed   boolean|string
+	 */
+	public static function existSimilar($permissions, $excluded_id = null)
+	{
+		$profiles = (is_null($excluded_id)) ? Profile::all() : Profile::where('id', '<>', $excluded_id)->get();
+		$permissions = array_map('intval', $permissions);
+		sort($permissions);
+
+		foreach($profiles as $p)
+		{
+			$profile_permissions = $p->getPermissions();
+			sort($profile_permissions);
+
+			if($permissions == $profile_permissions)
+				return $p->name;
+		}
+
+		return false;
+	}
+
+	// Logic =======================================================================
 
 	/**
 	 * Determine whether or not the model can be deleted.
@@ -163,35 +196,6 @@ class Profile extends BaseModel {
 		{
 			if(in_array($p, $permissions))
 				return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Determine if already exists a profile which has exactly
-	 * the provided permissions.
-	 *
-	 * If no profiles are found returns bolean FALSE, otherwise
-	 * returns the profile name.
-	 *
-	 * @param  array   $permissions
-	 * @param  integer $excluded_id
-	 * @return mixed   boolean|string
-	 */
-	public static function existSimilar($permissions, $excluded_id = null)
-	{
-		$profiles = (is_null($excluded_id)) ? Profile::all() : Profile::where('id', '<>', $excluded_id)->get();
-		$permissions = array_map('intval', $permissions);
-		sort($permissions);
-
-		foreach($profiles as $p)
-		{
-			$profile_permissions = $p->getPermissions();
-			sort($profile_permissions);
-
-			if($permissions == $profile_permissions)
-				return $p->name;
 		}
 
 		return false;

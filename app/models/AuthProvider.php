@@ -7,13 +7,13 @@ class AuthProvider extends BaseModel {
 	protected $guarded = array('login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('oauth2_id', 'oauth2_secret');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('Auth. provider');}	// Singular form of this model's name
 	public function plural() { return _('Auth. providers');}	// Singular name of this model's name
 	public function __toString() { return $this->title;}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -27,14 +27,20 @@ class AuthProvider extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function accounts()
 	{
 		return $this->hasMany('Account', 'provider_id');
 	}
 
-	// Logic ==================================================================
+	// Events ======================================================================
+
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Determine whether or not the model can be deleted.

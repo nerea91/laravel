@@ -6,13 +6,13 @@ class Currency extends BaseModel {
 	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
-	// Meta ===================================================================
+	// Meta ========================================================================
 
 	public function singular() { return _('Currency');}	// Singular form of this model's name
 	public function plural() { return _('Currencies');}	// Singular name of this model's name
 	public function __toString() { return $this->code;}
 
-	// Validation =============================================================
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -33,14 +33,20 @@ class Currency extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function countries()
 	{
 		return $this->hasMany('Country');
 	}
 
-	// Logic ==================================================================
+	// Events ======================================================================
+
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Search this model

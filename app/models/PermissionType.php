@@ -6,7 +6,9 @@ class PermissionType extends BaseModel {
 	public $timestamps = false;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
-	// Validation =============================================================
+	// Meta ========================================================================
+
+	// Validation ==================================================================
 
 	public function __construct(array $attributes = array())
 	{
@@ -17,14 +19,20 @@ class PermissionType extends BaseModel {
 		));
 	}
 
-	// Relationships ==========================================================
+	// Relationships ===============================================================
 
 	public function permissions()
 	{
 		return $this->hasMany('Permission', 'type_id');
 	}
 
-	// Logic ==================================================================
+	// Events ======================================================================
+
+	// Accessors / Mutators ========================================================
+
+	// Static Methods ==============================================================
+
+	// Logic =======================================================================
 
 	/**
 	 * Get types with at least one permission

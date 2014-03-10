@@ -13,7 +13,12 @@ class CreateAccountsTable extends Migration {
 	public function up()
 	{
 		Schema::create('accounts', function(Blueprint $table) {
+			
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('uid', 128); //user unique id in the remote provider
 			$table->text('access_token')->nullable();
 			$table->string('nickname', 128)->nullable();
@@ -27,15 +32,15 @@ class CreateAccountsTable extends Migration {
 			$table->unsignedInteger('login_count')->default(0);
 			$table->text('last_ip')->nullable();
 
-			//Foreign keys
+			// Foreign keys
 			$table->unsignedInteger('provider_id');$table->foreign('provider_id')->references('id')->on('authproviders')->onUpdate('cascade')->onDelete('cascade');
 			$table->unsignedInteger('user_id');$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
-			//Extra keys
+			// Extra keys
 			$table->unique(array('provider_id', 'uid'));
 			$table->unique(array('provider_id', 'user_id'));
 
-			//Automatic columns
+			// Automatic columns
 			$table->timestamps();
 		});
 	}

@@ -13,11 +13,16 @@ class CreatePermissionsTable extends Migration {
 	public function up()
 	{
 		Schema::create('permissions', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('name', 64);
 			$table->string('description')->nullable();
 
-			//Foreign keys
+			// Foreign keys
 			$table->unsignedInteger('type_id');$table->foreign('type_id')->references('id')->on('permissiontypes')->onUpdate('cascade')->onDelete('restrict');
 		});
 	}

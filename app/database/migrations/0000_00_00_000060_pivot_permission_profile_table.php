@@ -13,16 +13,21 @@ class PivotPermissionProfileTable extends Migration {
 	public function up()
 	{
 		Schema::create('permission_profile', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
 
-			//Foreign keys
+			// Ordinary columns
+
+			// Foreign keys
 			$table->unsignedInteger('permission_id');$table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade')->onDelete('cascade');
 			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
 
-			//Extra keys
+			// Extra keys
 			$table->unique(array('permission_id', 'profile_id'));
 
-			//Automatic columns
+			// Automatic columns
 			$table->timestamps();
 		});
 	}

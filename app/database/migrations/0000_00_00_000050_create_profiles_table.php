@@ -12,13 +12,17 @@ class CreateProfilesTable extends Migration {
 	 */
 	public function up()
 	{
-		//--fields="name:string[64]:unique,description:strin:nullable"
 		Schema::create('profiles', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('name', 64)->unique();
 			$table->string('description')->nullable();
 
-			//Automatic columns
+			// Automatic columns
 			$table->timestamps();
 		});
 	}

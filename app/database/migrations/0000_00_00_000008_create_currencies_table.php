@@ -13,7 +13,12 @@ class CreateCurrenciesTable extends Migration {
 	public function up()
 	{
 		Schema::create('currencies', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('code', 3)->unique();
 			$table->string('name', 64);
 			$table->string('name2', 64)->nullable();
@@ -27,7 +32,7 @@ class CreateCurrenciesTable extends Migration {
 			$table->string('unicode_decimal', 32)->nullable();
 			$table->string('unicode_hexadecimal', 16)->nullable();
 
-			//Automatic columns
+			// Automatic columns
 			$table->softDeletes();
 		});
 	}

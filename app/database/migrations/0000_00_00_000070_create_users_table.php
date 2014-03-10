@@ -12,20 +12,24 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		//--fields="username:string[64]:unique,name:string[64]:nullable,password:string[60],country_id:unsignedInteger:nullable,profile_id:unsignedInteger"
 		Schema::create('users', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('username', 32)->unique();
 			$table->string('name', 64)->nullable();
 			$table->string('description', 128)->nullable();
 			$table->string('password', 60);
 
-			//Foreign keys
+			// Foreign keys
 			$table->unsignedInteger('country_id')->nullable();$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('set null');
 			$table->unsignedInteger('language_id')->nullable();$table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('set null');
 			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('restrict');
 
-			//Automatic columns
+			// Automatic columns
 			$table->timestamps();
 			$table->softDeletes();
 		});

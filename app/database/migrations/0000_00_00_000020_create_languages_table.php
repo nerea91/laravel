@@ -13,7 +13,12 @@ class CreateLanguagesTable extends Migration {
 	public function up()
 	{
 		Schema::create('languages', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('code', 2)->unique();
 			$table->string('name', 32)->unique();
 			$table->string('english_name', 32)->unique();
@@ -21,7 +26,7 @@ class CreateLanguagesTable extends Migration {
 			$table->boolean('is_default')->unsigned()->default(0);
 			$table->integer('priority');
 
-			//Automatic columns
+			// Automatic columns
 			$table->softDeletes();
 		});
 	}

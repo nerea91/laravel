@@ -13,7 +13,12 @@ class CreateCountriesTable extends Migration {
 	public function up()
 	{
 		Schema::create('countries', function(Blueprint $table) {
+
+			// Set the storage engine and primary key
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+
+			// Ordinary columns
 			$table->string('name', 64)->unique();
 			$table->string('full_name', 128)->nullable()->unique();
 			$table->string('iso_3166_2', 2)->unique();
@@ -25,10 +30,10 @@ class CreateCountriesTable extends Migration {
 			$table->string('subregion', 3)->nullable();
 			$table->boolean('eea')->unsigned()->default(0); //European Economic Area
 
-			//Foreign keys
+			// Foreign keys
 			$table->unsignedInteger('currency_id')->nullable();$table->foreign('currency_id')->references('id')->on('currencies')->onUpdate('cascade')->onDelete('set null');
 
-			//Automatic columns
+			// Automatic columns
 			$table->softDeletes();
 		});
 	}

@@ -34,16 +34,16 @@ class Country extends BaseModel {
 
 	// Relationships ===============================================================
 
-	public function users()
-	{
-		return $this->hasMany('User');
-	}
-
 	public function currency()
 	{
 		return $this->belongsTo('Currency');
 	}
 
+	public function users()
+	{
+		return $this->hasMany('User');
+	}
+	
 	// Events ======================================================================
 
 	// Accessors / Mutators ========================================================

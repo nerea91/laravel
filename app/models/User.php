@@ -33,6 +33,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	// Relationships ===============================================================
 
+	public function accounts()
+	{
+		return $this->hasMany('Account');
+	}
+
 	public function country()
 	{
 		return $this->belongsTo('Country');
@@ -48,10 +53,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Profile');
 	}
 
-	public function accounts()
-	{
-		return $this->hasMany('Account');
-	}
 
 	// Events ======================================================================
 

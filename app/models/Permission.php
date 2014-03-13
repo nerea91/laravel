@@ -21,14 +21,14 @@ class Permission extends BaseModel {
 
 	// Relationships ===============================================================
 
-	public function type()
-	{
-		return $this->belongsTo('PermissionType', 'type_id');
-	}
-
 	public function profiles()
 	{
 		return $this->belongsToMany('Profile')->withTimestamps();
+	}
+
+	public function type()
+	{
+		return $this->belongsTo('PermissionType', 'type_id');
 	}
 
 	// Events ======================================================================

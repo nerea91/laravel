@@ -270,6 +270,20 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	// Labels ======================================================================
 
 	/**
+	 * Add/replace $label for $field.
+	 *
+	 * @param string $field
+	 * @param string $label
+	 * @return Model
+	 */
+	public function addLabel($field, $label)
+	{
+		$this->labels[$field] = $label;
+
+		return $this;
+	}
+
+	/**
 	 * Retrieve the label for a $field.
 	 *
 	 * @param string $field

@@ -218,17 +218,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 				}
 			}
 
-		});
-
-		static::creating(function($model)
-		{
-			// Validate the model
-			if( ! $model->validate(true))
-				return false;
-		});
-
-		static::updating(function($model)
-		{
 			// Validate the model
 			if( ! $model->validate(true))
 				return false;
@@ -236,7 +225,9 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 
 		static::deleting(function($model)
 		{
-			return $model->deletable(true);
+			// Check delete restrictions for the model
+			if( ! $model->deletable(true))
+				return false;
 		});
 
 	}

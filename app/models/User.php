@@ -101,6 +101,47 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
 	}
 
+	// UserInterface implementation for auth =======================================
+
+	/**
+	 * Get the unique identifier for the user.
+	 *
+	 * @return mixed
+	 */
+	public function getAuthIdentifier()
+	{
+		return $this->getKey();
+	}
+
+	/**
+	 * Get the password for the user.
+	 *
+	 * @return string
+	 */
+	public function getAuthPassword()
+	{
+		return $this->password;
+	}
+
+	// RemindableInterface implementation for auth =================================
+
+	/**
+	 * Get the e-mail address where password reminders are sent.
+	 *
+	 * @return string
+	 */
+	public function getReminderEmail()
+	{
+		// Get the email from the most recently updated account
+		foreach($this->accounts()->orderBy('updated_at', 'desc')->get() as $account)
+		{
+			if( ! is_null($account->email))
+				return $account->email;
+		}
+
+		throw new Exception(_('No e-mail address found'));
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -170,45 +211,4 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->name;
 	}
 
-
-	// UserInterface implementation for auth =======================================
-
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
-
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
-
-	// RemindableInterface implementation for auth =================================
-
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		// Get the email from the most recently updated account
-		foreach($this->accounts()->orderBy('updated_at', 'desc')->get() as $account)
-		{
-			if( ! is_null($account->email))
-				return $account->email;
-		}
-
-		throw new Exception(_('No e-mail address found'));
-	}
 }

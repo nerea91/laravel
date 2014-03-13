@@ -120,7 +120,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public function search($query)
 	{
-		return Self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
+		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
 	}
 
 	/**

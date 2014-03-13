@@ -60,12 +60,14 @@ class Currency extends BaseModel {
 			$search = new Illuminate\Database\Eloquent\Collection;
 		else
 		{
-			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
+			$search = self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
 			if(strlen($query) == 3)
 				$search->orWhere('code',$query);
+
+			$search->orderBy('name');
 		}
 
-		return $search->orderBy('name')->get();
+		return $search->get();
 	}
 
 	/**

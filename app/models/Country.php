@@ -43,7 +43,7 @@ class Country extends BaseModel {
 	{
 		return $this->hasMany('User');
 	}
-	
+
 	// Events ======================================================================
 
 	// Accessors / Mutators ========================================================
@@ -61,10 +61,10 @@ class Country extends BaseModel {
 	public function search($query)
 	{
 		if(is_numeric($query))
-			$search = Self::where('code', $query);
+			$search = self::where('code', $query);
 		else
 		{
-			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('full_name', 'LIKE', "%$query%");
+			$search = self::where('name', 'LIKE', "%$query%")->orWhere('full_name', 'LIKE', "%$query%");
 			if(strlen($query) == 2)
 				$search->orWhere('iso_3166_2', $query);
 			if(strlen($query) == 3)

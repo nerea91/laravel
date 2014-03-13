@@ -101,7 +101,7 @@ class Account extends BaseModel {
 	 */
 	public function search($query)
 	{
-		return Self::where('uid', 'LIKE', "%$query%")
+		return self::where('uid', 'LIKE', "%$query%")
 		->orWhere('nickname', 'LIKE', "%$query%")
 		->orWhere('email', 'LIKE', "%$query%")
 		->orWhere('name', 'LIKE', "%$query%")

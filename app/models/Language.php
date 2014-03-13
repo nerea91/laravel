@@ -191,7 +191,7 @@ class Language extends BaseModel {
 			$search = new Illuminate\Database\Eloquent\Collection;
 		else
 		{
-			$search = Self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
+			$search = self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
 			if(strlen($query) == 2)
 				$search->orWhere('code', $query);
 			if(strlen($query) <= 5)

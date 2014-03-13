@@ -179,13 +179,13 @@ class BaseResourceController extends \BaseController {
 				{
 					$this->resource->validate();
 					$this->resource->getErrors()->merge($validator->messages()->toArray());
-					throw new ModelValidationException;
+					throw new ModelValidationException(_('Wrong relationships data'));
 				}
 			}
 
 			// Validate and save resource
 			if( ! $this->resource->save())
-				throw new ModelValidationException;
+				throw new ModelValidationException(_('Wrong data'));
 
 			// Save resource relationships
 			if($this->relationships)
@@ -218,7 +218,7 @@ class BaseResourceController extends \BaseController {
 			DB::rollBack();
 
 			if($e instanceof ModelValidationException)
-				Session::flash('error', _('Changes were not saved'));
+				Session::flash('error', $e->getMessage());
 			else
 				throw $e; // Unexpected exception, re-throw it to be able to debug it.
 

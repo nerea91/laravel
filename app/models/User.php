@@ -22,7 +22,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		parent::__construct($attributes);
 		$this->setRules(array(
 			'username' => [_('Username'), 'required|min:4|max:32|regex:/^[a-zA-z]+[a-zA-z0-9]+$/|unique'],
-			'name' => [_('Name'), 'alpha_dash_space|max:64'],
+			'name' => [_('Real name'), 'alpha_dash_space|max:64'],
 			'description' => [_('Description'), 'max:128'],
 			'password' => [_('Password'), 'required|min:5|max:60|different:username|confirmed'],
 			'country_id' => [_('Country'), 'exists:countries,id'],

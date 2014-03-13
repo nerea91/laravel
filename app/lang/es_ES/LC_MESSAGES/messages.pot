@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-25 23:50+0100\n"
+"POT-Creation-Date: 2014-03-13 18:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,12 +27,12 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: /controllers/AdminController.php:70
+#: /controllers/AdminController.php:77
 #, php-format
 msgid "%d results found"
 msgstr ""
 
-#: /controllers/AdminController.php:74
+#: /controllers/AdminController.php:82
 #: /storage/gettext/resource-index.blade.php.php:3
 msgid "No results found"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Wrong credentials"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:81
+#: /controllers/BaseResourceController.php:73
 #: /storage/gettext/admin-top-bar.blade.php.php:22
 #: /storage/gettext/admin-top-bar.blade.php.php:30
 #: /storage/gettext/admin-top-bar.blade.php.php:48
@@ -72,12 +72,12 @@ msgstr ""
 msgid "Index"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:94
+#: /controllers/BaseResourceController.php:86
 #: /storage/gettext/resource-actions.blade.php.php:2
 msgid "Details"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:105
+#: /controllers/BaseResourceController.php:97
 #: /database/seeds/PermissionsTableSeeder.php:11
 #: /database/seeds/PermissionsTableSeeder.php:17
 #: /database/seeds/PermissionsTableSeeder.php:23
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:118
+#: /controllers/BaseResourceController.php:110
 #: /database/seeds/PermissionsTableSeeder.php:12
 #: /database/seeds/PermissionsTableSeeder.php:18
 #: /database/seeds/PermissionsTableSeeder.php:24
@@ -109,26 +109,30 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:214
+#: /controllers/BaseResourceController.php:182
+msgid "Wrong relationships data"
+msgstr ""
+
+#: /controllers/BaseResourceController.php:188
+msgid "Wrong data"
+msgstr ""
+
+#: /controllers/BaseResourceController.php:206
 #, php-format
 msgid "%s successfully updated"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:216
+#: /controllers/BaseResourceController.php:208
 #, php-format
 msgid "%s successfully created"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:218
+#: /controllers/BaseResourceController.php:210
 #, php-format
 msgid "%s successfully saved"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:229
-msgid "Changes were not saved"
-msgstr ""
-
-#: /controllers/BaseResourceController.php:248
+#: /controllers/BaseResourceController.php:240
 #, php-format
 msgid "%s successfully deleted"
 msgstr ""
@@ -148,10 +152,9 @@ msgstr ""
 #: /models/Country.php:21
 #: /models/Currency.php:22
 #: /models/Language.php:22
-#: /models/Permission.php:14
-#: /models/PermissionType.php:15
+#: /models/Permission.php:16
+#: /models/PermissionType.php:17
 #: /models/Profile.php:19
-#: /models/User.php:25
 #: /storage/gettext/home-contact.blade.php.php:19
 msgid "Name"
 msgstr ""
@@ -185,8 +188,7 @@ msgstr ""
 msgid "Message sent!"
 msgstr ""
 
-#: /controllers/ProfilesController.php:45
-#: /controllers/ProfilesController.php:60
+#: /controllers/ProfilesController.php:27
 #: /storage/gettext/admin-profiles-fields.blade.php.php:9
 #: /storage/gettext/admin-profiles-show.blade.php.php:11
 msgid "Permissions"
@@ -298,15 +300,15 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: /filters.php:130
+#: /filters.php:100
 msgid "Unknown route"
 msgstr ""
 
-#: /filters.php:136
+#: /filters.php:106
 msgid "Authorization condition failed"
 msgstr ""
 
-#: /filters.php:139
+#: /filters.php:109
 msgid "Unauthorized profile"
 msgstr ""
 
@@ -600,10 +602,10 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: /models/Account.php:84
-#: /models/AuthProvider.php:52
-#: /models/Profile.php:74
-#: /models/User.php:103
+#: /models/Account.php:88
+#: /models/AuthProvider.php:58
+#: /models/Profile.php:107
+#: /models/User.php:108
 #, php-format
 msgid "Deleting %s is not allowed"
 msgstr ""
@@ -628,15 +630,15 @@ msgstr ""
 msgid "App secret"
 msgstr ""
 
-#: /models/BaseModel.php:327
+#: /models/BaseModel.php:396
 msgid "Created at"
 msgstr ""
 
-#: /models/BaseModel.php:332
+#: /models/BaseModel.php:401
 msgid "Updated at"
 msgstr ""
 
-#: /models/BaseModel.php:337
+#: /models/BaseModel.php:406
 msgid "Deleted at"
 msgstr ""
 
@@ -749,18 +751,18 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: /models/Language.php:173
+#: /models/Language.php:175
 msgid "Deleting default language is not allowed"
 msgstr ""
 
-#: /models/Permission.php:15
-#: /models/PermissionType.php:16
+#: /models/Permission.php:17
+#: /models/PermissionType.php:18
 #: /models/Profile.php:20
 #: /models/User.php:26
 msgid "Description"
 msgstr ""
 
-#: /models/Permission.php:16
+#: /models/Permission.php:18
 msgid "Type"
 msgstr ""
 
@@ -769,21 +771,25 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: /models/User.php:207
+#: /models/User.php:25
+msgid "Real name"
+msgstr ""
+
+#: /models/User.php:212
 msgid "No e-mail address found"
 msgstr ""
 
-#: /others.php:106
+#: /others.php:113
 #: /storage/gettext/admin-profiles-fields.blade.php.php:12
 msgid "all"
 msgstr ""
 
-#: /others.php:107
+#: /others.php:114
 #: /storage/gettext/admin-profiles-fields.blade.php.php:13
 msgid "none"
 msgstr ""
 
-#: /others.php:108
+#: /others.php:115
 #: /storage/gettext/admin-profiles-fields.blade.php.php:14
 msgid "invert"
 msgstr ""

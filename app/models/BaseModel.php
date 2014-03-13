@@ -218,7 +218,18 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 				}
 			}
 
-			// Validate model before saving it
+		});
+
+		static::creating(function($model)
+		{
+			// Validate the model
+			if( ! $model->validate(true))
+				return false;
+		});
+
+		static::updating(function($model)
+		{
+			// Validate the model
 			if( ! $model->validate(true))
 				return false;
 		});

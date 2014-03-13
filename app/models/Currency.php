@@ -46,15 +46,13 @@ class Currency extends BaseModel {
 
 	// Static Methods ==============================================================
 
-	// Logic =======================================================================
-
 	/**
 	 * Search this model
 	 *
 	 * @param  string $query
 	 * @return Illuminate\Database\Eloquent\Collection
 	 */
-	public function search($query)
+	public static function search($query)
 	{
 		if(is_numeric($query))
 			$search = new Illuminate\Database\Eloquent\Collection;
@@ -69,6 +67,8 @@ class Currency extends BaseModel {
 
 		return $search->get();
 	}
+
+	// Logic =======================================================================
 
 	/**
 	 * Adds digit separators and currency sybol.

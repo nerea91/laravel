@@ -70,6 +70,26 @@ class Account extends BaseModel {
 
 	// Static Methods ==============================================================
 
+	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function search($query)
+	{
+		return self::where('uid', 'LIKE', "%$query%")
+		->orWhere('nickname', 'LIKE', "%$query%")
+		->orWhere('email', 'LIKE', "%$query%")
+		->orWhere('name', 'LIKE', "%$query%")
+		->orWhere('first_name', 'LIKE', "%$query%")
+		->orWhere('last_name', 'LIKE', "%$query%")
+		->orderBy('name')
+		->orderBy('first_name')
+		->orderBy('last_name')
+		->get();
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -90,27 +110,6 @@ class Account extends BaseModel {
 		}
 
 		return true;
-	}
-
-
-	/**
-	 * Search this model
-	 *
-	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
-	 */
-	public function search($query)
-	{
-		return self::where('uid', 'LIKE', "%$query%")
-		->orWhere('nickname', 'LIKE', "%$query%")
-		->orWhere('email', 'LIKE', "%$query%")
-		->orWhere('name', 'LIKE', "%$query%")
-		->orWhere('first_name', 'LIKE', "%$query%")
-		->orWhere('last_name', 'LIKE', "%$query%")
-		->orderBy('name')
-		->orderBy('first_name')
-		->orderBy('last_name')
-		->get();
 	}
 
 }

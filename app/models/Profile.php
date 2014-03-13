@@ -61,6 +61,17 @@ class Profile extends BaseModel {
 	// Static Methods ==============================================================
 
 	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function search($query)
+	{
+		return self::where('name', 'LIKE', "%$query%")->orWhere('description', 'LIKE', "%$query%")->orderBy('name')->get();
+	}
+
+	/**
 	 * Determine if already exists a profile which has exactly
 	 * the provided permissions.
 	 *
@@ -109,17 +120,6 @@ class Profile extends BaseModel {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Search this model
-	 *
-	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
-	 */
-	public function search($query)
-	{
-		return self::where('name', 'LIKE', "%$query%")->orWhere('description', 'LIKE', "%$query%")->orderBy('name')->get();
 	}
 
 	/**

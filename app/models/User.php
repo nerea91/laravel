@@ -90,6 +90,17 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	// Static Methods ==============================================================
 
+	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function search($query)
+	{
+		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -110,17 +121,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Search this model
-	 *
-	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
-	 */
-	public function search($query)
-	{
-		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
 	}
 
 	/**

@@ -50,15 +50,13 @@ class Country extends BaseModel {
 
 	// Static Methods ==============================================================
 
-	// Logic =======================================================================
-
 	/**
 	 * Search this model
 	 *
 	 * @param  string $query
 	 * @return Illuminate\Database\Eloquent\Collection
 	 */
-	public function search($query)
+	public static function search($query)
 	{
 		if(is_numeric($query))
 			$search = self::where('code', $query);
@@ -73,4 +71,7 @@ class Country extends BaseModel {
 
 		return $search->orderBy('name')->get();
 	}
+
+	// Logic =======================================================================
+
 }

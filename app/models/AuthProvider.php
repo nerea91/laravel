@@ -40,6 +40,17 @@ class AuthProvider extends BaseModel {
 
 	// Static Methods ==============================================================
 
+	/**
+	 * Search this model
+	 *
+	 * @param  string $query
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public static function search($query)
+	{
+		return self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->orderBy('title')->get();
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -62,14 +73,4 @@ class AuthProvider extends BaseModel {
 		return true;
 	}
 
-	/**
-	 * Search this model
-	 *
-	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
-	 */
-	public function search($query)
-	{
-		return self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->orderBy('title')->get();
-	}
 }

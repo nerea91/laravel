@@ -210,4 +210,28 @@ class Profile extends BaseModel {
 	{
 		return $this->users()->orderBy('username')->lists('username');
 	}
+
+	/**
+	 * Get all profiles whose permissions are same as (or a subset of) $this profile permissions.
+	 *
+	 * @return Illuminate\Database\Eloquent\Collection
+	 */
+	public function getSimilarOrInferior()
+	{
+		// Unsaved profiles have no permissions therefore cannot be compared
+		if( ! $this->id)
+			throw new Exception(_('Unsaved profiles cannot be compared'));
+
+		// Profiles with more permissions than current one
+		$excludedProfiles = DB::table('permission_profile')
+		->select(DB::raw('profile_id, COUNT(permission_id) AS permission_count'))
+		->whereRaw('permission_id NOT IN (SELECT DISTINCT(permission_id) FROM permission_profile WHERE profile_id=?)', [$this->id])
+		->groupBy('profile_id')
+		->having('permission_count', '>', 0)
+		->get();
+
+		// Invert condition
+		return ($excludedProfiles) ? self::whereNotIn('id', array_fetch($excludedProfiles, 'profile_id'))->get() : self::all();
+	}
+	
 }

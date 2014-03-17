@@ -27,7 +27,7 @@ if ( ! function_exists('p'))
 	}
 }
 
-if ( ! function_exists('d'))
+if ( ! function_exists('ñ'))
 {
 	/**
 	 * Dump (with colors) the passed variables and end the script.
@@ -35,7 +35,7 @@ if ( ! function_exists('d'))
 	 * @param  dynamic mixed
 	 * @return void
 	 */
-	function d()
+	function ñ()
 	{
 		array_map('p', func_get_args());
 		die;

@@ -15,7 +15,8 @@
 | $permissions should one of these:
 | - an integer.
 | - an array of integers.
-| - a closure that returns a boolean. Example: function ($user) {return $user->hasAnyPermission(1,2,3);}
+| - a closure that returns a boolean. The closue will get an instance of Auth::user() as first argument.
+|    Example: function ($user) {return $user->hasAnyPermission(1,2,3);}
 |
 | This filter will deny access if any of these happend:
 | - current route is not listed in the map array keys.

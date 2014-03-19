@@ -363,7 +363,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		$column = Input::get('sortby');
 		if(in_array($column, array_keys($this->getVisibleLabels())))
 		{
-			//to-do if column ends with "_id" sort by related model instead
 			$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
 			return $query->orderBy($column, $direction);
 		}

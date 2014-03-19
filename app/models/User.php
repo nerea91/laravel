@@ -165,6 +165,39 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Sort model by parameters given in the URL
+	 * i.e: ?sortby=name&sortdir=desc
+	 *
+	 * @return Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOrderByUrl($query)
+	{
+		$column = Input::get('sortby');
+
+		switch($column)
+		{
+			default:
+				return parent::scopeOrderByUrl($query);
+
+			case 'profile_id':
+				$table = 'profiles';
+				$relatedColumn = 'name';
+			break;
+
+
+			case 'country_id':
+				$table = 'countries';
+				$relatedColumn = 'name';
+			break;
+		}
+
+		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+
+		return $query->leftJoin($table, $column, '=', "$table.id")->orderBy("$table.$relatedColumn", $direction);
+	}
+
+	/**
 	 * Check if user's profile has ALL of the provided permissions
 	 *
 	 * @param dynamic $permissions

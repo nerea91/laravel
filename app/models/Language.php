@@ -202,6 +202,24 @@ class Language extends BaseModel {
 	}
 
 	/**
+	 * Sort model by parameters given in the URL
+	 * i.e: ?sortby=name&sortdir=desc
+	 *
+	 * @return Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOrderByUrl($query)
+	{
+		$column = Input::get('sortby');
+		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+
+		if($column == 'name')
+			return $query->orderBy('english_name', $direction);
+
+		return parent::scopeOrderByUrl($query);
+	}
+
+	/**
 	 * Set the language for Gettext
 	 *
 	 * NOTE: LC_ALL may switch float decimal separator character deppending on locale. This could cause undesired issues

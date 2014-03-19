@@ -112,4 +112,37 @@ class Account extends BaseModel {
 		return true;
 	}
 
+	/**
+	 * Sort model by parameters given in the URL
+	 * i.e: ?sortby=name&sortdir=desc
+	 *
+	 * @return Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOrderByUrl($query)
+	{
+		$column = Input::get('sortby');
+
+		switch($column)
+		{
+			default:
+				return parent::scopeOrderByUrl($query);
+
+			case 'user_id':
+				$table = 'users';
+				$relatedColumn = 'username';
+				break;
+
+
+			case 'provider_id':
+				$table = 'authproviders';
+				$relatedColumn = 'title';
+				break;
+		}
+
+		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+
+		return $query->leftJoin($table, $column, '=', "$table.id")->orderBy("$table.$relatedColumn", $direction);
+	}
+
 }

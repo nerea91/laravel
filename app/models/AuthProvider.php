@@ -73,4 +73,22 @@ class AuthProvider extends BaseModel {
 		return true;
 	}
 
+	/**
+	 * Sort model by parameters given in the URL
+	 * i.e: ?sortby=name&sortdir=desc
+	 *
+	 * @return Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOrderByUrl($query)
+	{
+		$column = Input::get('sortby');
+		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+
+		if($column == 'name')
+			return $query->orderBy('title', $direction);
+
+		return parent::scopeOrderByUrl($query);
+	}
+
 }

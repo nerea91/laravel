@@ -188,15 +188,8 @@ class BaseResourceController extends \BaseController {
 				throw new ModelValidationException(_('Wrong data'));
 
 			// Save resource relationships
-			if($this->relationships)
-			{
-				$this->fireEvent($action, false);
-
-				foreach($this->relationships as $relationship => $notUsed)
-					$this->resource->$relationship()->sync(Input::get($relationship));
-
-				$this->fireEvent($action, true);
-			}
+			foreach($this->relationships as $relationship => $notUsed)
+				$this->resource->$relationship()->sync(Input::get($relationship));
 
 			// Success :)
 
@@ -248,25 +241,6 @@ class BaseResourceController extends \BaseController {
 		}
 
 		return $response;
-	}
-
-	/**
-	 * Changes in pivot tables don't fire events in the related models.
-	 * This method helps to manually fire events in the related models
-	 * when altering pivot tables.
-	 *
-	 * @param  string
-	 * @param  boolean
-	 */
-	protected function fireEvent($action, $finished)
-	{
-		if($action == 'store')
-			return $this->resource->fireEvent(($finished) ? 'created' : 'creating');
-
-		if($action == 'update')
-			return $this->resource->fireEvent(($finished) ? 'updated' : 'updating');
-
-		throw new Exception('Unknown event action: ' . $action);
 	}
 
 }

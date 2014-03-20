@@ -42,7 +42,10 @@ class Profile extends BaseModel {
 		//NOTE Create events sequence: saving -> creating -> created -> saved
 		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
-		static::updated(function($model)
+		// If we change the permissions without changing the profile itself only the join table is
+		// updated and no 'updated' even is triggered, leaving wrong data in the cache.
+		// Therefore we listen for 'updating' event instead.
+		static::updating(function($model)
 		{
 			// Purge permissions cache
 			Cache::forget("profile{$model->id}permissions");
@@ -233,5 +236,5 @@ class Profile extends BaseModel {
 		// Invert condition
 		return ($excludedProfiles) ? self::whereNotIn('id', array_fetch($excludedProfiles, 'profile_id'))->get() : self::all();
 	}
-	
+
 }

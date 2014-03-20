@@ -11,8 +11,8 @@
 <tbody>
 	@foreach ($results as $resource)
 	<tr>
-		<td>{{ $resource->user->username }}</td>
-		<td>{{ $resource->provider->title }}</td>
+		<td>{{ $resource->user }}</td>
+		<td>{{ $resource->provider }}</td>
 		<td>{{ $resource->email }}</td>
 		<td class="text-center">{{ $resource->login_count }}</td>
 		@include('resource.actions')

@@ -194,7 +194,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
 
-		return $query->leftJoin($table, $column, '=', "$table.id")->orderBy("$table.$relatedColumn", $direction);
+		return $query
+		->select($this->getTable().'.*') // Avoid 'ambiguous column name' for paginate() method
+		->leftJoin($table, $column, '=', "$table.id") // Include related table
+		->orderBy("$table.$relatedColumn", $direction); // Sort by related column
 	}
 
 	/**

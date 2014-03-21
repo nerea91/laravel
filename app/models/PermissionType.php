@@ -36,6 +36,9 @@ class PermissionType extends BaseModel {
 
 	/**
 	 * Get types with at least one permission
+	 *
+	 * @param Illuminate\Database\Eloquent\Builder
+	 * @return Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeGetUsed($query)
 	{

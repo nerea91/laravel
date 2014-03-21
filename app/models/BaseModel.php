@@ -115,16 +115,19 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 */
 	public function validate($triggered_by_event = false)
 	{
-		// Expand compact "unique" rules
+		// If $this has 'id' use it as excluded key for "unique" and "unique_with" rules
 		$table = $this->getTable();
 		$except = ($this->getKey()) ? ','.$this->getKey() : null;
-		$rules = $this->getRules();
+		$rules = $this->getRules();$rules2 = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
-			foreach($fieldRules as &$rule)
+			foreach($fieldRules as $ruleName => &$ruleData)
 			{
-				if($rule == 'unique')
-					$rule = "unique:$table,$field{$except}";
+				if($ruleData == 'unique')
+					$ruleData = "unique:$table,$field{$except}";
+
+				if($ruleName == 'unique_with')
+					$ruleData = "{$ruleData}{$except}";
 			}
 		}
 

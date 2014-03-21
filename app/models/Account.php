@@ -17,7 +17,7 @@ class Account extends BaseModel {
 	{
 		parent::__construct($attributes);
 		$this->setRules(array(
-			'uid' => [_('Remote id'), 'required|max:128'],
+			'uid' => [_('Remote id'), 'required|max:128|unique_with:accounts,provider_id'],
 			'access_token' => [_('Access token'), null],
 			'nickname' => [_('Nickname'), 'max:128'],
 			'email' => [_('E-mail'), 'email|max:255'],
@@ -28,9 +28,9 @@ class Account extends BaseModel {
 			'locale' => [_('Locale'), 'max:5'],
 			'location' => [_('Location'), 'max:128'],
 			'login_count' => [_('Login count'), 'integer|min:0'],
-			'last_ip' => [_('Last IP address'), null], // Could be 'ip' but as it's encrypt it will not validate
+			'last_ip' => [_('Last IP address'), null], // Could be 'ip' but as it's encrypt it would not validate
 			'provider_id' => [_('Provider'), 'required|exists:authproviders,id'],
-			'user_id' => [_('User'), 'required|exists:users,id'],
+			'user_id' => [_('User'), 'required|exists:users,id|unique_with:accounts,provider_id'],
 		));
 	}
 

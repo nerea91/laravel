@@ -44,7 +44,7 @@ class Profile extends BaseModel {
 
 		// If we change the permissions without changing the profile itself only the join table is
 		// updated and no 'updated' even is triggered, leaving wrong data in the cache.
-		// Therefore we listen for 'updating' event instead.
+		// Therefore we listen for 'updating' event instead of 'updated'.
 		static::updating(function($model)
 		{
 			// Purge permissions cache

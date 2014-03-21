@@ -15,7 +15,7 @@
 		<a rel="#permissions" href="none">{{ _('none') }}</a> &#8226;
 		<a rel="#permissions" href="invert">{{ _('invert') }}</a>
 	</span>
-	@if($e)<small>{{ $errors->first($f) }}</small>@endif
+	@if($e)<small class="error">{{ $errors->first($f) }}</small>@endif
 
 	<?php $all = Permission::getGroupedByType(); ?>
 

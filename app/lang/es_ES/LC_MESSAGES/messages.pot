@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 18:44+0100\n"
+"POT-Creation-Date: 2014-03-21 17:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,22 +117,22 @@ msgstr ""
 msgid "Wrong data"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:206
+#: /controllers/BaseResourceController.php:199
 #, php-format
 msgid "%s successfully updated"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:208
+#: /controllers/BaseResourceController.php:201
 #, php-format
 msgid "%s successfully created"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:210
+#: /controllers/BaseResourceController.php:203
 #, php-format
 msgid "%s successfully saved"
 msgstr ""
 
-#: /controllers/BaseResourceController.php:240
+#: /controllers/BaseResourceController.php:233
 #, php-format
 msgid "%s successfully deleted"
 msgstr ""
@@ -230,7 +230,7 @@ msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:8
 #: /models/Country.php:12
-#: /storage/gettext/admin-currencies-show.blade.php.php:18
+#: /storage/gettext/admin-currencies-show.blade.php.php:19
 #: /storage/gettext/admin-top-bar.blade.php.php:81
 msgid "Countries"
 msgstr ""
@@ -547,6 +547,10 @@ msgstr ""
 msgid "The :attribute must be at least :length characters."
 msgstr ""
 
+#: /lang/en/validation.php:80
+msgid "This combination of :fields already exists."
+msgstr ""
+
 #: /models/Account.php:10
 msgid "Account"
 msgstr ""
@@ -602,10 +606,10 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: /models/Account.php:88
-#: /models/AuthProvider.php:58
-#: /models/Profile.php:107
-#: /models/User.php:108
+#: /models/Account.php:108
+#: /models/AuthProvider.php:69
+#: /models/Profile.php:121
+#: /models/User.php:160
 #, php-format
 msgid "Deleting %s is not allowed"
 msgstr ""
@@ -751,7 +755,7 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: /models/Language.php:175
+#: /models/Language.php:197
 msgid "Deleting default language is not allowed"
 msgstr ""
 
@@ -771,11 +775,15 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
+#: /models/Profile.php:226
+msgid "Unsaved profiles cannot be compared"
+msgstr ""
+
 #: /models/User.php:25
 msgid "Real name"
 msgstr ""
 
-#: /models/User.php:212
+#: /models/User.php:142
 msgid "No e-mail address found"
 msgstr ""
 

@@ -77,6 +77,7 @@ return array(
 	"length"               => _("The :attribute must be :length characters."),
 	"max_length"           => _("The :attribute must be less than :length characters."),
 	"min_length"           => _("The :attribute must be at least :length characters."),
+	'unique_with'          => _("This combination of :fields already exists."),
 
 
 	/*

@@ -1,5 +1,6 @@
 # Pending tasks
 
+- Find a way to purge cache after seeding DB
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
 - Make usernames in lower case unique.
 - Add reserved usernames to prevent users from having conflictive usernames.

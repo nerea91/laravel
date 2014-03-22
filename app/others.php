@@ -41,8 +41,7 @@ Event::listen('account.login', function($account)
 Event::listen('auth.logout', function($user)
 {
 	// Purge admin panel search results cache
-	Cache::forget('admin-search-results' . $user->getKey());
-
+	Cache::forget('adminSearchResults' . $user->getKey());
 });
 
 /*

@@ -203,10 +203,11 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 */
 	protected static function boot()
 	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+		
 		parent::boot();
-
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
 		static::saving(function($model)
 		{

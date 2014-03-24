@@ -77,7 +77,7 @@ class AuthProvider extends BaseModel {
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param Illuminate\Database\Eloquent\Builder
 	 * @return Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)

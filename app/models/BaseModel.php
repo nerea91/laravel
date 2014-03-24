@@ -115,16 +115,19 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 */
 	public function validate($triggered_by_event = false)
 	{
-		// Expand compact "unique" rules
+		// If $this has 'id' use it as excluded key for "unique" and "unique_with" rules
 		$table = $this->getTable();
 		$except = ($this->getKey()) ? ','.$this->getKey() : null;
-		$rules = $this->getRules();
+		$rules = $this->getRules();$rules2 = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
-			foreach($fieldRules as &$rule)
+			foreach($fieldRules as $ruleName => &$ruleData)
 			{
-				if($rule == 'unique')
-					$rule = "unique:$table,$field{$except}";
+				if($ruleData == 'unique')
+					$ruleData = "unique:$table,$field{$except}";
+
+				if($ruleName == 'unique_with')
+					$ruleData = "{$ruleData}{$except}";
 			}
 		}
 
@@ -200,10 +203,11 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 */
 	protected static function boot()
 	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+		
 		parent::boot();
-
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
 		static::saving(function($model)
 		{
@@ -365,7 +369,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param Illuminate\Database\Eloquent\Builder
 	 * @return Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)

@@ -38,16 +38,26 @@ class Language extends BaseModel {
 
 	public static function boot()
 	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+
 		parent::boot();
 
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
-
-		static::saved(function($model)
+		static::saved(function($language)
 		{
 			// Only one Language can be the default
-			if($model->is_default)
-				Language::where('id', '<>', $model->id)->update(array('is_default' => 0));
+			if($language->is_default)
+				Language::where('id', '<>', $language->id)->update(array('is_default' => 0));
+
+			// Purge cache
+			Cache::forget('allLanguagesOrderedByPriority');
+		});
+
+		static::deleted(function($language)
+		{
+			// Purge cache
+			Cache::forget('allLanguagesOrderedByPriority');
 		});
 
 	}
@@ -153,7 +163,7 @@ class Language extends BaseModel {
 	 */
 	public static function getAllByPriority()
 	{
-		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/)->get();
+		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/, 'allLanguagesOrderedByPriority')->get();
 	}
 
 	/**
@@ -205,7 +215,7 @@ class Language extends BaseModel {
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param Illuminate\Database\Eloquent\Builder
 	 * @return Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)

@@ -58,10 +58,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public static function boot()
 	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+		
 		parent::boot();
-
-		//NOTE Create events sequence: saving -> creating -> created -> saved
-		//NOTE Update events sequence: saving -> updating -> updated -> saved
 
 		static::creating(function($user)
 		{
@@ -84,6 +85,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 				]);
 			}
 		});
+
+		static::deleted(function($user)
+		{
+			// Purge cache
+			Cache::forget("adminSearchResults{$user->id}");
+		});
+
 	}
 
 	// Accessors / Mutators ========================================================
@@ -168,7 +176,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param Illuminate\Database\Eloquent\Builder
 	 * @return Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)

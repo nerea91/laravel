@@ -12,7 +12,7 @@ class AdminController extends BaseController {
 	public function showAdminPage()
 	{
 		// Get results from previous search
-		View::share('search_results', Cache::get('admin-search-results' . Auth::user()->getKey(), false));
+		View::share('search_results', Cache::get('adminSearchResults' . Auth::user()->getKey(), false));
 
 		$this->layout->title = _('Admin panel');
 		$this->layout->subtitle = _('Search');
@@ -34,7 +34,7 @@ class AdminController extends BaseController {
 	{
 		$query = Input::get('search');
 		$user = Auth::user();
-		$cache_id = 'admin-search-results' . $user->getKey();
+		$cache_id = 'adminSearchResults' . $user->getKey();
 
 		if(strlen($query) > 0)
 		{

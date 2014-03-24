@@ -19,6 +19,19 @@ class Validator extends \Illuminate\Validation\Validator {
 	}
 
 	/**
+	 * Similar to parent::validateIn() but allowing $value to be an array
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @param  array   $parameters
+	 * @return bool
+	 */
+	protected function validateIn($attribute, $value, $parameters)
+	{
+		return (is_array($value)) ? count(array_diff($value, $parameters)) == 0 : in_array($value, $parameters);
+	}
+
+	/**
 	 * Validate that an attribute contains only alphabetic characters and spaces.
 	 *
 	 * @param  string  $attribute
@@ -51,7 +64,7 @@ class Validator extends \Illuminate\Validation\Validator {
 	 */
 	protected function validateAlphaDashSpace($attribute, $value)
 	{
-		return preg_match('/^[\pL\pN_-\s]+$/u', $value);
+		return preg_match('/^[\pL\pN_\-\s]+$/u', $value);
 	}
 
 	/**

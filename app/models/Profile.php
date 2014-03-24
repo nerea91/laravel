@@ -107,8 +107,9 @@ class Profile extends BaseModel {
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
-	 * @throws ModelDeletionException
 	 * @return boolean
+	 *
+	 * @throws ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

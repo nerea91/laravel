@@ -206,7 +206,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		// NOTE saving   -> creating -> created   -> saved
 		// NOTE saving   -> updating -> updated   -> saved
 		// NOTE deleting -> deleted  -> restoring -> restored
-		
+
 		parent::boot();
 
 		static::saving(function($model)
@@ -357,8 +357,9 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
-	 * @throws ModelDeletionException
 	 * @return boolean
+	 *
+	 * @throws ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

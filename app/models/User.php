@@ -61,7 +61,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		// NOTE saving   -> creating -> created   -> saved
 		// NOTE saving   -> updating -> updated   -> saved
 		// NOTE deleting -> deleted  -> restoring -> restored
-		
+
 		parent::boot();
 
 		static::creating(function($user)
@@ -156,8 +156,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
-	 * @throws ModelDeletionException
 	 * @return boolean
+	 *
+	 * @throws ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

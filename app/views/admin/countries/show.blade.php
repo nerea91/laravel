@@ -9,8 +9,10 @@
 	<dt>{{ $labels->eea }}</dt>
 	<dd>{{{ ($resource->eea) ? _('Yes') : _('No') }}}</dd>
 
+	@if ($resource->currency)
 	<dt>{{ $resource->currency->singular() }}</dt>
 	<dd>{{{ $resource->currency }}}</dd>
+	@endif
 
 	<dt>{{ _('Users') }}</dt>
 	<dd>{{{ $resource->users->count() }}}</dd>

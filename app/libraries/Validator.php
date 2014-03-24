@@ -51,7 +51,7 @@ class Validator extends \Illuminate\Validation\Validator {
 	 */
 	protected function validateAlphaDashSpace($attribute, $value)
 	{
-		return preg_match('/^[\pL\pN_-\s]+$/u', $value);
+		return preg_match('/^[\pL\pN_\-\s]+$/u', $value);
 	}
 
 	/**

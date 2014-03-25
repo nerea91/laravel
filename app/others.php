@@ -41,7 +41,7 @@ Event::listen('account.login', function($account)
 Event::listen('auth.login', function($user)
 {
 	// Set user language
-	if($user->language instanceof Language);
+	if($user->language instanceof Language)
 		Session::put('language', (object) $user->language->toArray());
 });
 

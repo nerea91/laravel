@@ -75,15 +75,15 @@ class Language extends BaseModel {
 	public static function search($query)
 	{
 		if(is_numeric($query))
-			$search = new Illuminate\Database\Eloquent\Collection;
-		else
-		{
-			$search = self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
-			if(strlen($query) == 2)
-				$search->orWhere('code', $query);
-			if(strlen($query) <= 5)
-				$search->orWhere('locale', $query);
-		}
+			return new Illuminate\Database\Eloquent\Collection;
+
+		$search = self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
+
+		if(strlen($query) == 2)
+			$search->orWhere('code', $query);
+
+		if(strlen($query) <= 5)
+			$search->orWhere('locale', $query);
 
 		return $search->orderBy('english_name')->get();
 	}

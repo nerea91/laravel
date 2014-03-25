@@ -4,6 +4,7 @@ class BaseLayoutComposer {
 
 	public function compose($view)
 	{
+		// Application language
 		$view->with('lang', App::make('language'));
 
 		// Populate languages for implementing https://support.google.com/webmasters/answer/189077

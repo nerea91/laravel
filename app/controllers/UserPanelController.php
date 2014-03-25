@@ -24,7 +24,7 @@ class UserPanelController extends BaseController {
 	public function showChangePasswordForm()
 	{
 		$this->layout->title = _('User panel');
-		$this->layout->subtitle = _('Password');
+		$this->layout->subtitle = _('Change password');
 		$this->layout->content = View::make('userpanel.password')->with('user', Auth::user());
 	}
 
@@ -64,6 +64,7 @@ class UserPanelController extends BaseController {
 			return Redirect::back()->withInput($input)->withErrors($validator);
 		}
 
+		// Update password
 		$user->password = $input['password'];
 		if ( ! $user->removeRule('password', 'confirmed')->save())
 			return Redirect::back()->withInput($input)->withErrors($user->getErrors());

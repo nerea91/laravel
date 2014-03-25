@@ -124,7 +124,7 @@ class Language extends BaseModel {
 		preg_match('/^([a-z][a-z])\./', parse_url($url)['host'], $matches);
 
 		// If subdomain found check if it's valid
-		if(isset($matches[1]) AND ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
+		if(isset($matches[1]) and ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
 		{
 			$lang->detected_from = 'subdomain';
 			return $lang;
@@ -134,7 +134,7 @@ class Language extends BaseModel {
 		$default = $all->first();
 
 		// Try with the browser
-		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) OR $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
+		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) or $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
 			$default->detected_from = 'default (browser languages not available)';
 			return $default;

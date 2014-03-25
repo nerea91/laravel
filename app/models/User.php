@@ -66,8 +66,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		static::updating(function($user)
 		{
 			// When updating, password is not required.
-			$user->convertEmptyAttributesToNull();
-			if( ! strlen($user->password))
+			if( ! strlen($user->convertEmptyAttributesToNull()->password))
 			{
 				$user->removeRule('password', 'required|confirmed');
 				$user->restoreOriginalAttributes('password');
@@ -87,6 +86,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		{
 			// Hash password if not hashed
 			$user->hashPassword();
+		});
+
+		static::updated(function($user)
+		{
+			// If we have updated current user then change application language accordingly
+			if(Auth::check() and Auth::user()->id == $user->id)
+				$user->applyLanguage();
 		});
 
 		static::created(function($user)
@@ -283,6 +289,19 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		if(Hash::needsRehash($this->password))
 			$this->password = Hash::make($this->password);
+
+		return $this;
+	}
+
+	/**
+	 * Change application's language to $this user's language
+	 *
+	 * @return User
+	 */
+	public function applyLanguage()
+	{
+		if($this->language instanceof Language and $this->language->getKey())
+			Session::put('language', (object) $this->language->toArray());
 
 		return $this;
 	}

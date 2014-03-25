@@ -38,8 +38,18 @@ Event::listen('account.login', function($account)
 	$account->provider()->increment('login_count');
 });
 
+Event::listen('auth.login', function($user)
+{
+	// Set user language
+	if($user->language instanceof Language);
+		Session::put('language', (object) $user->language->toArray());
+});
+
 Event::listen('auth.logout', function($user)
 {
+	// Unset user language
+	Session::forget('language');
+
 	// Purge admin panel search results cache
 	Cache::forget('adminSearchResults' . $user->getKey());
 });

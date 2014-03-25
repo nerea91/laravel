@@ -212,15 +212,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		static::saving(function($model)
 		{
 			// Global muttator to convert empty attributes to null
-			foreach ($model->toArray() as $name => $value)
-			{
-				if( ! is_null($value) and ! is_array($value))
-				{
-					$value = trim($value);
-					if ( ! strlen($value))
-						$model->{$name} = null;
-				}
-			}
+			$model->convertEmptyAttributesToNull();
 		});
 
 		static::creating(function($model)
@@ -441,4 +433,38 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		return $this->updated_at->diffForHumans();
 	}
 
+	/**
+	 * Restore provided model attributes to their original state.
+	 *
+	 * @param  mixed
+	 * @return Model
+	 */
+	public function restoreOriginalAttributes($attributes)
+	{
+		$attributes = is_array($attributes) ? $attributes : (array) func_get_args();
+		foreach($attributes as $attribute)
+			$this->$attribute = $this->getOriginal($attribute);
+
+		return $this;
+	}
+
+	/**
+	 * Convert empty attributes to null
+	 *
+	 * @return Model
+	 */
+	public function convertEmptyAttributesToNull()
+	{
+		foreach ($this->toArray() as $attribute => $value)
+		{
+			if( ! is_null($value) and ! is_array($value))
+			{
+				$value = trim($value);
+				if ( ! strlen($value))
+					$this->{$attribute} = null;
+			}
+		}
+
+		return $this;
+	}
 }

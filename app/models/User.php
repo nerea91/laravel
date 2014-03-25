@@ -62,13 +62,31 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		// NOTE saving   -> updating -> updated   -> saved
 		// NOTE deleting -> deleted  -> restoring -> restored
 
+		// updating BEFORE validation
+		static::updating(function($user)
+		{
+			// When updating, password is not required.
+			$user->convertEmptyAttributesToNull();
+			if( ! strlen($user->password))
+			{
+				$user->removeRule('password', 'required|confirmed');
+				$user->restoreOriginalAttributes('password');
+			}
+		});
+
 		parent::boot();
 
 		static::creating(function($user)
 		{
 			// Hash password if not hashed
-			if (Hash::needsRehash($user->password))
-				$user->password = Hash::make($user->password);
+			$user->hashPassword();
+		});
+
+		// updating AFTER validation
+		static::updating(function($user)
+		{
+			// Hash password if not hashed
+			$user->hashPassword();
 		});
 
 		static::created(function($user)
@@ -254,6 +272,19 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			return $this->username;
 
 		return $this->name;
+	}
+
+	/**
+	 * Hash password if it's not hashed already
+	 *
+	 * @return User
+	 */
+	public function hashPassword()
+	{
+		if(Hash::needsRehash($this->password))
+			$this->password = Hash::make($this->password);
+
+		return $this;
 	}
 
 }

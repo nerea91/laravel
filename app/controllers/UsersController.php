@@ -35,17 +35,4 @@ class UsersController extends BaseResourceController {
 		return parent::index('profile', 'country');
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$this->resource = $this->resource->findOrFail($id)->fill(Input::all())->removeRule('password', 'required');
-
-		return $this->persist(__FUNCTION__);
-	}
-
 }

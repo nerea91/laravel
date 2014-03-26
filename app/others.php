@@ -101,18 +101,29 @@ Form::macro('radios', function ($name, $values, $checked = array(), $options = a
 /**
  * Create a group of checkable input fields.
  *
+ * $options[
+ * 	'legend' => 'txt', // to get a fieldset with legend
+ * 	'small'  => 1,     // Number of grid columns for small screens
+ * 	'medium' => 2,     // Number of grid columns for medium screens
+ * 	'large'  => 3,     // Number of grid columns for large screens
+ * ]
+ *
  * @param  string  $type
  * @param  string  $name
  * @param  array   $values
  * @param  array   $checked
- * @param  array   $options Use $options['legend'] to get a fieldset with legend
+ * @param  array   $options
  * @return string
  */
 
 Form::macro('checkables', function($type, $name, $values, $checked, $options)
 {
+	// Unset options that should not to be passed to Form::*
 	$legend = (isset($options['legend'])) ? $options['legend'] : false;
-	unset($options['legend']);
+	$small = (isset($options['small'])) ? $options['small'] : 2;
+	$medium = (isset($options['medium'])) ? $options['medium'] : 3;
+	$large = (isset($options['large'])) ? $options['large'] : 4;
+	unset($options['legend'], $options['small'], $options['medium'], $options['large']);
 
 	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>'  : null;
 	if($legend and $type == 'checkbox')
@@ -123,15 +134,16 @@ Form::macro('checkables', function($type, $name, $values, $checked, $options)
 			<a href="invert">'._('invert').'</a>
 		</div>';
 
-	$out .= '<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">';
+	$out .= "<ul class=\"small-block-grid-$small medium-block-grid-$medium large-block-grid-$large\">";
 
 	foreach($values as $value => $label)
 	{
 		$options['id'] = $id = $name . $value;
 
-		/*
-		 * to-do por un BUG se marcan todos como checked a pesar de que $check=false!
-		 * http://forums.laravel.io/viewtopic.php?pid=54313
+		/* BUG FormBuilder. to-do
+		 * No matter what value you pass as the 3th argument of Form::checkbox() or Form::radio(),
+		 * the input field will be ALWAYS checked if has the same name as a relationship.
+		 * http://forumsarchive.laravel.io/viewtopic.php?pid=54313
 		 * https://github.com/laravel/framework/issues/2548
 		 */
 		$check = in_array($value, $checked);

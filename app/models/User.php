@@ -81,6 +81,21 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			$user->hashPassword();
 		});
 
+		static::created(function($user)
+		{
+			// If the user has no Laravel account, create it
+			if( ! $user->accounts()->where('provider_id', 1)->first())
+			{
+				Account::create([
+				'uid' => $user->id,
+				'nickname' => $user->username,
+				'name' => $user->name,
+				'provider_id' => 1,
+				'user_id' => $user->id,
+				]);
+			}
+		});
+
 		// updating AFTER validation
 		static::updating(function($user)
 		{
@@ -93,21 +108,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			// If we have updated current user then change application language accordingly
 			if(Auth::check() and Auth::user()->id == $user->id)
 				$user->applyLanguage();
-		});
-
-		static::created(function($user)
-		{
-			// If the user has no Laravel account, create it
-			if( ! $user->accounts()->where('provider_id', 1)->first())
-			{
-				Account::create([
-					'uid' => $user->id,
-					'nickname' => $user->username,
-					'name' => $user->name,
-					'provider_id' => 1,
-					'user_id' => $user->id,
-				]);
-			}
 		});
 
 		static::deleted(function($user)

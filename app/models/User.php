@@ -173,6 +173,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public function setRememberToken($value)
 	{
+		// Avoid validation error when Illuminate\Auth\Guard tries to store remember_token
+		$this->removeRule('password', 'required|confirmed');
+
 		$this->remember_token = $value;
 	}
 

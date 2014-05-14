@@ -74,7 +74,7 @@ class Account extends BaseModel {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Account)
 	 */
 	public static function search($query)
 	{

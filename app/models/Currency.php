@@ -50,7 +50,7 @@ class Currency extends BaseModel {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($query)
 	{
@@ -58,7 +58,7 @@ class Currency extends BaseModel {
 			return new Illuminate\Database\Eloquent\Collection;
 
 		$search = self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
-		
+
 		if(strlen($query) == 3)
 			$search->orWhere('code',$query);
 

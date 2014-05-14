@@ -44,7 +44,7 @@ class AuthProvider extends BaseModel {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function search($query)
 	{

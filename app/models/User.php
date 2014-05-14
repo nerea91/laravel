@@ -126,7 +126,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of User)
 	 */
 	public static function search($query)
 	{
@@ -195,6 +195,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * Get the e-mail address where password reminders are sent.
 	 *
 	 * @return string
+	 * @throws Exception
 	 */
 	public function getReminderEmail()
 	{

@@ -54,7 +54,7 @@ class Country extends BaseModel {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($query)
 	{

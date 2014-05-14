@@ -70,7 +70,7 @@ class Language extends BaseModel {
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	public static function search($query)
 	{
@@ -159,7 +159,7 @@ class Language extends BaseModel {
 	/**
 	 * Get all enabled languages sorted by priority
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	public static function getAllByPriority()
 	{
@@ -172,7 +172,7 @@ class Language extends BaseModel {
 	 * Returns null if not found.
 	 *
 	 * @param  string $needle
-	 * @param  Illuminate\Database\Eloquent\Collection $haystack
+	 * @param  Illuminate\Database\Eloquent\Collection (of Language) $haystack
 	 * @return Language|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)

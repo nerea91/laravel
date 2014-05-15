@@ -7,28 +7,28 @@ return array(
 	'collections' => array(
 
 		//jQuery 1.x (CDN)
-		'jquery-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'],
+		'jquery-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'],
 
 		//jQuery 2.x (CDN)
-		'jquery2-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'],
+		'jquery2-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'],
 
 		//jQuery UI (CDN)
 		'jquery-ui-cdn' => [
 			'jquery-cdn',
-			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js',
-			//Uncomment to load i18n for all languages other than English '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/i18n/jquery-ui-i18n.min.js',
-			//Uncomment to load i18n for only one language (i.e: Spanish) '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/i18n/jquery.ui.datepicker-es.min.js',
-			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css',
+			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
+			//Uncomment to load i18n for all languages other than English '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery-ui-i18n.min.js',
+			//Uncomment to load i18n for only one language (i.e: Spanish) '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/i18n/jquery.ui.datepicker-es.min.js',
+			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css',
 		],
 
 		//Zurb Foundation (CDN)
 		'foundation-cdn' => [
-			'//cdn.jsdelivr.net/foundation/5.1.1/js/vendor/modernizr.js',
+			'//cdn.jsdelivr.net/foundation/5.2.2/js/vendor/modernizr.js',
 			'jquery2-cdn',
-			'//cdn.jsdelivr.net/foundation/5.1.1/js/foundation.min.js',
+			'//cdn.jsdelivr.net/foundation/5.2.2/js/foundation.min.js',
 			'app.js',
-			'//cdn.jsdelivr.net/foundation/5.1.1/css/normalize.css',
-			'//cdn.jsdelivr.net/foundation/5.1.1/css/foundation.min.css',
+			'//cdn.jsdelivr.net/foundation/5.2.2/css/normalize.css',
+			'//cdn.jsdelivr.net/foundation/5.2.2/css/foundation.min.css',
 		],
 
 		//Zurb Responsive tables http://zurb.com/playground/responsive-tables
@@ -40,9 +40,9 @@ return array(
 		//Twitter Bootstrap (CDN)
 		'bootstrap-cdn' => [
 			'jquery-cdn',
-			'//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js',
-			'//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css',
-			'//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css',
+			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css',
 		],
 
 		// Twitter Bootstrap. To install it run: composer require twitter/bootstrap:3.0.*; artisan asset:publish twitter/bootstrap --path=vendor/twitter/bootstrap/dist/

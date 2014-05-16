@@ -8,7 +8,7 @@ class BaseController extends Controller {
 	public function __construct()
 	{
 		// Enable CSRF for all controllers
-		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
+		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'patch', 'delete'));
 	}
 
 	/**

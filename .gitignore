@@ -24,7 +24,10 @@ Thumbs.db
 # Ctags
 /tags
 
-# Packages
+# PHP Debugbar assets
 /public/packages/barryvdh/
+/public/packages/maximebf/
+
+# Pipelined assets
 /public/css/min/
 /public/js/min/

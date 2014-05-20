@@ -31,7 +31,6 @@ class CreateLanguagesTable extends Migration {
 		});
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *

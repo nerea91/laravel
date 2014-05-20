@@ -27,7 +27,6 @@ class CreateProfilesTable extends Migration {
 		});
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *

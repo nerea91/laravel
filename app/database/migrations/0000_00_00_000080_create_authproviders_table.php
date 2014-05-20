@@ -31,7 +31,6 @@ class CreateAuthprovidersTable extends Migration {
 		});
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *

@@ -13,7 +13,7 @@ class CreateAccountsTable extends Migration {
 	public function up()
 	{
 		Schema::create('accounts', function(Blueprint $table) {
-			
+
 			// Set the storage engine and primary key
 			$table->engine = 'InnoDB';
 			$table->increments('id');
@@ -44,7 +44,6 @@ class CreateAccountsTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.

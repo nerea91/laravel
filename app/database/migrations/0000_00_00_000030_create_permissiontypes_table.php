@@ -24,7 +24,6 @@ class CreatePermissiontypesTable extends Migration {
 		});
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *

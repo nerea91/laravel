@@ -14,7 +14,8 @@
 		"barryvdh/laravel-debugbar": "dev-master",
 		"firephp/firephp-core": "dev-master",
 		"way/generators": "dev-master",
-		"daylerees/container-debug": "dev-master"
+		"daylerees/container-debug": "dev-master",
+		"stolz/laravel-schema-spy": "dev-develop"
 	},
 	"autoload": {
 		"classmap": [

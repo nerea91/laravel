@@ -7,7 +7,6 @@ composer.lock
 .DS_Store
 Thumbs.db
 
-
 # Old files
 *~
 .*~
@@ -20,7 +19,6 @@ Thumbs.db
 /app/storage/gettext/
 /app/storage/debugbar/
 
-
 # Ctags
 /tags
 
@@ -31,3 +29,6 @@ Thumbs.db
 # Pipelined assets
 /public/css/min/
 /public/js/min/
+
+# SchemaSpy output
+/app/database/schema/

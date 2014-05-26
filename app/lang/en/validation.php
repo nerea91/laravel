@@ -58,6 +58,7 @@ return array(
 	"required"             => _("The :attribute field is required."),
 	"required_if"          => _("The :attribute field is required when :other is :value."),
 	"required_with"        => _("The :attribute field is required when :values is present."),
+	"required_with_all"    => _("The :attribute field is required when :values is present."),
 	"required_without"     => _("The :attribute field is required when :values is not present."),
 	"required_without_all" => _("The :attribute field is required when none of :values are present."),
 	"same"                 => _("The :attribute and :other must match."),
@@ -91,7 +92,11 @@ return array(
 	|
 	*/
 
-	'custom' => array(),
+	'custom' => array(
+		'attribute-name' => array(
+			'rule-name' => 'custom-message',
+		),
+	),
 
 	/*
 	|--------------------------------------------------------------------------

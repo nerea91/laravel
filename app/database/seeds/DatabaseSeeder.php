@@ -21,4 +21,5 @@ class DatabaseSeeder extends Seeder {
 		$this->call('AuthprovidersTableSeeder');
 		$this->call('AccountsTableSeeder');
 	}
+
 }

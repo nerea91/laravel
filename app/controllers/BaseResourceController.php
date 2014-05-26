@@ -151,8 +151,9 @@ class BaseResourceController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		// NOTE: If you override this method remember to exclude $this->relationships from input!!
 		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
-		//$input = Input::only(array_keys($this->resource->getFillableLabels())); //More safe, less convenient
+
 		$this->resource = $this->resource->findOrFail($id)->fill($input);
 
 		return $this->persist(__FUNCTION__);

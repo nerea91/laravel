@@ -11,45 +11,24 @@ According to https://github.com/laravel/framework/blob/master/CONTRIBUTING.md#co
  - Function and control structure opening { should be on a separate line.
  - Interface and Trait names are suffixed with Interface (FooInterface) and Trait (FooTrait) respectively.
 
+For a list examples of which code snippet would trigger a sniffs: https://forge.typo3.org/projects/team-php_codesniffer/wiki/TYPO3v4_Sniffs_with_code_examples
+
 For manually running phpcs without artisan:
 
-run ./vendor/bin/phpcs app \-\-standard=app/phpcs.xml \-\-report-full \-\-report=source \-\-report-width=100  \-\-tab-width=4 -s
+	./vendor/bin/phpcs app/ \-\-standard=app/phpcs.xml \-\-report-full \-\-report=source \-\-report-width=100 \-\-tab-width=4 -s
+
+For manually running php-cs-fixer without artisan:
+
+	php-cs-fixer fix app/ \-\-fixers=-indentation,-braces,-psr0
 
 -->
 
 <ruleset name="Stolz">
 
-	<description>Custom phpcs rules for Stolz's Laravel projects.</description>
+	<description>Stolz's custom phpcs rules for Laravel</description>
 
-	<!-- Ignore laravel storage directory -->
+	<!-- EXCLUDES -->
 	<exclude-pattern>/storage/</exclude-pattern>
-
-	<!-- Hard-code some command line arguments -->
-	<!-- to-do Nor working! -->
-	<arg name="tab-width" value="4"/>
-	<arg name="report-width" value="200"/>
-	<arg value="s"/>
-
-	<!-- ================================ GENERAL SCOPE ============================================================ -->
-
-	<!-- Force tabs identation -->
-	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
-
-	<!-- Include PSR-1 standard -->
-	<rule ref="PSR1">
-		<!-- Allow classes without namespace -->
-		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-	</rule>
-
-	<!-- Include PSR-2 standard -->
-	<rule ref="PSR2">
-		<!-- Allow tabs identation -->
-		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
-		<!-- Do not limit line length -->
-		<exclude name="Generic.Files.LineLength.TooLong"/>
-	</rule>
-
-	<!-- ================================ PARTICULAR SCOPE ========================================================= -->
 
 	<rule ref="Internal.NoCodeFound">
 		<!-- Suppress warning for view files without PHP code -->
@@ -57,299 +36,229 @@ run ./vendor/bin/phpcs app \-\-standard=app/phpcs.xml \-\-report-full \-\-report
 	</rule>
 
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps">
-		<!-- Helpers function names are not in camel case -->
+		<!-- Laravel's helpers function names are not in camel case -->
 		<exclude-pattern>helpers.php</exclude-pattern>
 	</rule>
 
+	<rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+		<!-- Allow declaring multiple exeptions classes in the same file -->
+		<exclude-pattern>libraries/exceptions.php</exclude-pattern>
+	</rule>
+
+	<!-- RULES NOT INCLUDED IN STANDARDS -->
+
+	<!-- Force tabs identation -->
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<!-- Force lowercase constant (false / true / null) -->
+	<rule ref="Generic.PHP.LowerCaseConstant"/>
+
+	<!--STANDARDS-->
+
+	<rule ref="Generic">
+		<!-- <exclude name="Generic.Commenting.Todo"/> -->
+		<!-- <exclude name="Generic.ControlStructures.InlineControlStructure"/> -->
+		<!-- <exclude name="Generic.Debug.ClosureLinter"/> -->
+		<!-- <exclude name="Generic.Files.ByteOrderMark"/> -->
+		<!-- <exclude name="Generic.Files.LineEndings"/> -->
+		<!-- <exclude name="Generic.Files.LineLength"/> -->
+		<!-- <exclude name="Generic.Formatting.DisallowMultipleStatements"/> -->
+		<!-- <exclude name="Generic.Formatting.MultipleStatementAlignment"/> -->
+		<!-- <exclude name="Generic.Formatting.SpaceAfterCast"/> -->
+		<!-- <exclude name="Generic.Functions.FunctionCallArgumentSpacing"/> -->
+		<!-- <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
+		<!-- <exclude name="Generic.NamingConventions.ConstructorName"/> -->
+		<!-- <exclude name="Generic.NamingConventions.UpperCaseConstantName"/> -->
+		<!-- <exclude name="Generic.PHP.DeprecatedFunctions"/> -->
+		<!-- <exclude name="Generic.PHP.DisallowShortOpenTag"/> -->
+		<!-- <exclude name="Generic.PHP.LowerCaseConstant"/> -->
+		<!-- <exclude name="Generic.PHP.LowerCaseKeyword"/> -->
+		<!-- <exclude name="Generic.Strings.UnnecessaryStringConcat"/> -->
+
+		<!-- Allow tabs identation -->
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+
+		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent"/> -->
+	</rule>
+
+	<!-- <rule ref="MySource"> -->
+		<!-- <exclude name="MySource.Channels.ChannelException"/> -->
+		<!-- <exclude name="MySource.Channels.DisallowSelfActions"/> -->
+		<!-- <exclude name="MySource.Channels.IncludeOwnSystem"/> -->
+		<!-- <exclude name="MySource.Channels.IncludeSystem"/> -->
+		<!-- <exclude name="MySource.Channels.UnusedSystem"/> -->
+		<!-- <exclude name="MySource.Commenting.FunctionComment"/> -->
+		<!-- <exclude name="MySource.CSS.BrowserSpecificStyles"/> -->
+		<!-- <exclude name="MySource.Debug.DebugCode"/> -->
+		<!-- <exclude name="MySource.Debug.FirebugConsole"/> -->
+		<!-- <exclude name="MySource.Objects.AssignThis"/> -->
+		<!-- <exclude name="MySource.Objects.CreateWidgetTypeCallback"/> -->
+		<!-- <exclude name="MySource.Objects.DisallowNewWidget"/> -->
+		<!-- <exclude name="MySource.PHP.AjaxNullComparison"/> -->
+		<!-- <exclude name="MySource.PHP.EvalObjectFactory"/> -->
+		<!-- <exclude name="MySource.PHP.GetRequestData"/> -->
+		<!-- <exclude name="MySource.PHP.ReturnFunctionValue"/> -->
+		<!-- <exclude name="MySource.Strings.JoinStrings"/> -->
+	<!-- </rule> -->
+
+	<!-- <rule ref="PEAR"> -->
+		<!-- <exclude name="PEAR.Classes.ClassDeclaration"/> -->
+		<!-- <exclude name="PEAR.Commenting.ClassComment"/> -->
+		<!-- <exclude name="PEAR.Commenting.FileComment"/> -->
+		<!-- <exclude name="PEAR.Commenting.FunctionComment"/> -->
+		<!-- <exclude name="PEAR.Commenting.InlineComment"/> -->
+		<!-- <exclude name="PEAR.ControlStructures.ControlSignature"/> -->
+		<!-- <exclude name="PEAR.ControlStructures.MultiLineCondition"/> -->
+		<!-- <exclude name="PEAR.Files.IncludingFile"/> -->
+		<!-- <exclude name="PEAR.Formatting.MultiLineAssignment"/> -->
+		<!-- <exclude name="PEAR.Functions.FunctionCallSignature"/> -->
+		<!-- <exclude name="PEAR.Functions.FunctionDeclaration"/> -->
+		<!-- <exclude name="PEAR.Functions.ValidDefaultValue"/> -->
+		<!-- <exclude name="PEAR.NamingConventions.ValidClassName"/> -->
+		<!-- <exclude name="PEAR.NamingConventions.ValidFunctionName"/> -->
+		<!-- <exclude name="PEAR.NamingConventions.ValidVariableName"/> -->
+		<!-- <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent"/> -->
+		<!-- <exclude name="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
+		<!-- <exclude name="PEAR.WhiteSpace.ScopeIndent"/> -->
+	<!-- </rule> -->
+
+	<rule ref="PSR1">
+
+		<!-- Allow classes without a namespace -->
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+
+	</rule>
+
+	<!-- <rule ref="PSR2"> -->
+
+		<!-- Disable class opening brace on new line -->
+		<!-- <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/> -->
+
+		<!-- <exclude name="PSR2.Classes.PropertyDeclaration"/> -->
+		<!-- <exclude name="PSR2.ControlStructures.ControlStructureSpacing"/> -->
+		<!-- <exclude name="PSR2.ControlStructures.ElseIfDeclaration"/> -->
+		<!-- <exclude name="PSR2.ControlStructures.SwitchDeclaration"/> -->
+		<!-- <exclude name="PSR2.Files.EndFileNewline"/> -->
+		<!-- <exclude name="PSR2.Methods.FunctionCallSignature"/> -->
+		<!-- <exclude name="PSR2.Methods.MethodDeclaration"/> -->
+		<!-- <exclude name="PSR2.Namespaces.NamespaceDeclaration"/> -->
+		<!-- <exclude name="PSR2.Namespaces.UseDeclaration"/> -->
+	<!-- </rule> -->
+
+	<!-- <rule ref="Squiz"> -->
+
+		<!-- Do not uses before of after array brakets -->
+		<!-- <exclude name="Squiz.Arrays.ArrayBracketSpacing"/> -->
+		<!-- <exclude name="Squiz.Arrays.ArrayDeclaration"/> -->
+		<!-- <exclude name="Squiz.Classes.ClassDeclaration"/> -->
+		<!-- <exclude name="Squiz.Classes.ClassFileName"/> -->
+		<!-- <exclude name="Squiz.Classes.DuplicateProperty"/> -->
+		<!-- <exclude name="Squiz.Classes.LowercaseClassKeywords"/> -->
+		<!-- <exclude name="Squiz.Classes.SelfMemberReference"/> -->
+		<!-- <exclude name="Squiz.Classes.ValidClassName"/> -->
+		<!-- <exclude name="Squiz.CodeAnalysis.EmptyStatement"/> -->
+		<!-- <exclude name="Squiz.Commenting.BlockComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.ClassComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.ClosingDeclarationComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.DocCommentAlignment"/> -->
+		<!-- <exclude name="Squiz.Commenting.EmptyCatchComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.FileComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.FunctionComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag"/> -->
+		<!-- <exclude name="Squiz.Commenting.InlineComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.LongConditionClosingComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.PostStatementComment"/> -->
+		<!-- <exclude name="Squiz.Commenting.VariableComment"/> -->
+
+		<!-- Do not force control structures opening brace to be in the same line -->
+		<!-- <exclude name="Squiz.ControlStructures.ControlSignature"/> -->
+
+		<!-- <exclude name="Squiz.ControlStructures.ElseIfDeclaration"/> -->
+		<!-- <exclude name="Squiz.ControlStructures.ForEachLoopDeclaration"/> -->
+		<!-- <exclude name="Squiz.ControlStructures.ForLoopDeclaration"/> -->
+		<!-- <exclude name="Squiz.ControlStructures.InlineIfDeclaration"/> -->
+		<!-- <exclude name="Squiz.ControlStructures.LowercaseDeclaration"/> -->
+		<!-- <exclude name="Squiz.ControlStructures.SwitchDeclaration"/> -->
+		<!-- <exclude name="Squiz.CSS.ClassDefinitionClosingBraceSpace"/> -->
+		<!-- <exclude name="Squiz.CSS.ClassDefinitionNameSpacing"/> -->
+		<!-- <exclude name="Squiz.CSS.ClassDefinitionOpeningBraceSpace"/> -->
+		<!-- <exclude name="Squiz.CSS.ColonSpacing"/> -->
+		<!-- <exclude name="Squiz.CSS.ColourDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.DisallowMultipleStyleDefinitions"/> -->
+		<!-- <exclude name="Squiz.CSS.DuplicateClassDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.DuplicateStyleDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.EmptyClassDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.EmptyStyleDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.ForbiddenStyles"/> -->
+		<!-- <exclude name="Squiz.CSS.Indentation"/> -->
+		<!-- <exclude name="Squiz.CSS.LowercaseStyleDefinition"/> -->
+		<!-- <exclude name="Squiz.CSS.MissingColon"/> -->
+		<!-- <exclude name="Squiz.CSS.NamedColours"/> -->
+		<!-- <exclude name="Squiz.CSS.Opacity"/> -->
+		<!-- <exclude name="Squiz.CSS.SemicolonSpacing"/> -->
+		<!-- <exclude name="Squiz.CSS.ShorthandSize"/> -->
+		<!-- <exclude name="Squiz.Debug.JavaScriptLint"/> -->
+		<!-- <exclude name="Squiz.Debug.JSLint"/> -->
+		<!-- <exclude name="Squiz.Files.FileExtension"/> -->
+		<!-- <exclude name="Squiz.Formatting.OperatorBracket"/> -->
+		<!-- <exclude name="Squiz.Functions.FunctionDeclaration"/> -->
+		<!-- <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/> -->
+		<!-- <exclude name="Squiz.Functions.FunctionDuplicateArgument"/> -->
+		<!-- <exclude name="Squiz.Functions.GlobalFunction"/> -->
+		<!-- <exclude name="Squiz.Functions.LowercaseFunctionKeywords"/> -->
+		<!-- <exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/> -->
+		<!-- <exclude name="Squiz.NamingConventions.ConstantCase"/> -->
+		<!-- <exclude name="Squiz.NamingConventions.ValidFunctionName"/> -->
+		<!-- <exclude name="Squiz.NamingConventions.ValidVariableName"/> -->
+		<!-- <exclude name="Squiz.Objects.DisallowObjectStringIndex"/> -->
+		<!-- <exclude name="Squiz.Objects.ObjectInstantiation"/> -->
+		<!-- <exclude name="Squiz.Objects.ObjectMemberComma"/> -->
+		<!-- <exclude name="Squiz.Operators.ComparisonOperatorUsage"/> -->
+		<!-- <exclude name="Squiz.Operators.IncrementDecrementUsage"/> -->
+		<!-- <exclude name="Squiz.Operators.ValidLogicalOperators"/> -->
+		<!-- <exclude name="Squiz.PHP.CommentedOutCode"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowBooleanStatement"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowComparisonAssignment"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowInlineIf"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowMultipleAssignments"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowObEndFlush"/> -->
+		<!-- <exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops"/> -->
+		<!-- <exclude name="Squiz.PHP.DiscouragedFunctions"/> -->
+		<!-- <exclude name="Squiz.PHP.EmbeddedPhp"/> -->
+		<!-- <exclude name="Squiz.PHP.Eval"/> -->
+		<!-- <exclude name="Squiz.PHP.ForbiddenFunctions"/> -->
+		<!-- <exclude name="Squiz.PHP.GlobalKeyword"/> -->
+		<!-- <exclude name="Squiz.PHP.Heredoc"/> -->
+		<!-- <exclude name="Squiz.PHP.InnerFunctions"/> -->
+		<!-- <exclude name="Squiz.PHP.LowercasePHPFunctions"/> -->
+		<!-- <exclude name="Squiz.PHP.NonExecutableCode"/> -->
+		<!-- <exclude name="Squiz.Scope.MemberVarScope"/> -->
+		<!-- <exclude name="Squiz.Scope.MethodScope"/> -->
+		<!-- <exclude name="Squiz.Scope.StaticThisUsage"/> -->
+		<!-- <exclude name="Squiz.Strings.ConcatenationSpacing"/> -->
+		<!-- <exclude name="Squiz.Strings.DoubleQuoteUsage"/> -->
+		<!-- <exclude name="Squiz.Strings.EchoedStrings"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.CastSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.ControlStructureSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.FunctionSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.LogicalOperatorSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.MemberVarSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.OperatorSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.PropertyLabelSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.ScopeClosingBrace"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.ScopeKeywordSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.SemicolonSpacing"/> -->
+		<!-- <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace"/> -->
+	<!-- </rule> -->
+
+	<!-- <rule ref="Zend"> -->
+		<!-- <exclude name="Zend.Debug.CodeAnalyzer"/> -->
+		<!-- <exclude name="Zend.Files.ClosingTag"/> -->
+		<!-- <exclude name="Zend.NamingConventions.ValidVariableName"/> -->
+	<!-- </rule> -->
+
 </ruleset>
-
-
-<!--
-
-Full list of sniff for default standards
-
-PEAR/Docs/Functions/FunctionDeclarationStandard.xml: Valid: Correct spacing around function and use keywords
-PEAR/Docs/Functions/FunctionDeclarationStandard.xml: Invalid: No spacing around function and use keywords
-PEAR/Docs/Functions/FunctionDeclarationStandard.xml: Valid: Multiline function declaration formatted properly
-PEAR/Docs/Functions/FunctionDeclarationStandard.xml: Invalid: Invalid indentation and formatting of closing parenthesis
-PEAR/Docs/Functions/FunctionCallSignatureStandard.xml: Valid: spaces between parameters
-PEAR/Docs/Functions/FunctionCallSignatureStandard.xml: Invalid: additional spaces used
-PEAR/Docs/Functions/ValidDefaultValueStandard.xml: Valid: argument with default value at end of declaration
-PEAR/Docs/Functions/ValidDefaultValueStandard.xml: Invalid: argument with default value at start of declaration
-PEAR/Docs/Files/IncludingFileStandard.xml: Valid: used as statement
-PEAR/Docs/Files/IncludingFileStandard.xml: Invalid: used as function
-PEAR/Docs/WhiteSpace/ObjectOperatorIndentStandard.xml: Valid: Object operator at the start of a new line
-PEAR/Docs/WhiteSpace/ObjectOperatorIndentStandard.xml: Invalid: Object operator at the end of the line
-PEAR/Docs/WhiteSpace/ObjectOperatorIndentStandard.xml: Valid: Object operator indented correctly
-PEAR/Docs/WhiteSpace/ObjectOperatorIndentStandard.xml: Invalid: Object operator not indented correctly
-PEAR/Docs/WhiteSpace/ScopeIndentStandard.xml: Valid: Consistent indentation level for scope
-PEAR/Docs/WhiteSpace/ScopeIndentStandard.xml: Invalid: Indentation is not used for scope
-PEAR/Docs/WhiteSpace/ScopeClosingBraceStandard.xml: Valid: Consistent indentation level for scope
-PEAR/Docs/WhiteSpace/ScopeClosingBraceStandard.xml: Invalid: The ending brace is indented further than the if statement
-PEAR/Docs/Classes/ClassDeclarationStandard.xml: Valid: Opening brace on the correct line
-PEAR/Docs/Classes/ClassDeclarationStandard.xml: Invalid: Opening brace on same line as declaration
-PEAR/Docs/NamingConventions/ValidClassNameStandard.xml: Examples of valid class names
-PEAR/Docs/NamingConventions/ValidClassNameStandard.xml: Examples of invalid class names
-PEAR/Docs/NamingConventions/ValidFunctionNameStandard.xml: Examples of valid function names
-PEAR/Docs/NamingConventions/ValidFunctionNameStandard.xml: Examples of invalid function names
-PEAR/Docs/NamingConventions/ValidVariableNameStandard.xml: Valid: Proper member variable names
-PEAR/Docs/NamingConventions/ValidVariableNameStandard.xml: Invalid: underscores used on public/protected variables and not used on private variables
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: A doc comment for the class
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: No doc comment for the class
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: A doc comment for the class
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: Invalid comment type for the class
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: A doc comment for the class
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: The blank line after the comment makes it appear as a file comment, not a class comment
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: Short description is the second line of the comment
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: An extra blank line before the short description
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: Exactly one blank line around descriptions
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: Extra blank lines around the descriptions
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: Exactly one blank line before the tags
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: Extra blank lines before the tags
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Valid: Version tag is in the correct format
-PEAR/Docs/Commenting/ClassCommentStandard.xml: Invalid: No Release: text
-PEAR/Docs/Commenting/InlineCommentStandard.xml: Valid: A // style comment
-PEAR/Docs/Commenting/InlineCommentStandard.xml: Invalid: A # style comment
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: A function doc comment is used
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: No doc comment for the function
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Short description is the second line of the comment
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: An extra blank line before the short description
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Exactly one blank line around descriptions
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: Extra blank lines around the descriptions
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Exactly one blank line before the tags
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: Extra blank lines before the tags
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Throws tag has an exception class
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: No exception class given for throws tag
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Return tag present
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: No return tag
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Param names are correct
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: Wrong parameter name doesn't match function signature
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Valid: Param names are ordered correctly
-PEAR/Docs/Commenting/FunctionCommentStandard.xml: Invalid: Wrong parameter order
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: A file comment is used
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: No doc comment for the class
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: Short description is the second line of the comment
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: An extra blank line before the short description
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: Exactly one blank line around descriptions
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: Extra blank lines around the descriptions
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: Exactly one blank line before the tags
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: Extra blank lines before the tags
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: All required tags are used
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: Missing an author tag
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: Tags that should only be used once are only used once
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: Multiple category tags
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: PHP version specified
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: Category and package tags are swapped in order
-PEAR/Docs/Commenting/FileCommentStandard.xml: Valid: Tags are in the correct order
-PEAR/Docs/Commenting/FileCommentStandard.xml: Invalid: No php version specified
-PEAR/Docs/Formatting/MultiLineAssignmentStandard.xml: Valid: Assignment operator at the start of the second line
-PEAR/Docs/Formatting/MultiLineAssignmentStandard.xml: Invalid: Assignment operator at end of first line
-PEAR/Docs/Formatting/MultiLineAssignmentStandard.xml: Valid: Assignment operator indented one level
-PEAR/Docs/Formatting/MultiLineAssignmentStandard.xml: Invalid: Assignment operator not indented
-PEAR/Docs/ControlStructures/ControlSignatureStandard.xml: Valid: Correct spacing around the condition
-PEAR/Docs/ControlStructures/ControlSignatureStandard.xml: Invalid: Incorrect spacing around the condition
-PEAR/Docs/ControlStructures/ControlSignatureStandard.xml: Valid: Correct placement of the opening brace
-PEAR/Docs/ControlStructures/ControlSignatureStandard.xml: Invalid: Incorrect placement of the opening brace on a new line
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Valid: Correct indentation
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Invalid: No indentation used on the condition lines
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Valid: Boolean operator at the start of the line
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Invalid: Boolean operator at the end of the line
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Valid: End parenthesis on a new line
-PEAR/Docs/ControlStructures/MultiLineConditionStandard.xml: Invalid: End parenthesis not moved to a new line
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Valid: array keyword lowercase
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Invalid: first letter capitalised
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Valid: first key on second line
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Invalid: first key on same line
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Valid: aligned correctly
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Invalid: keys and parenthesis aligned incorrectly
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Valid: keys and values aligned
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Invalid: alignment incorrect
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Valid: comma after each value
-Squiz/Docs/Arrays/ArrayDeclarationStandard.xml: Invalid: no comma after last value
-Squiz/Docs/Arrays/ArrayBracketSpacingStandard.xml: Valid: No spaces around the brackets
-Squiz/Docs/Arrays/ArrayBracketSpacingStandard.xml: Invalid: Spaces around the brackets
-Squiz/Docs/Functions/FunctionDuplicateArgumentStandard.xml: Valid: Lowercase function call
-Squiz/Docs/Functions/FunctionDuplicateArgumentStandard.xml: Invalid: isset not called as lowercase
-Squiz/Docs/Functions/LowercaseFunctionKeywordsStandard.xml: Valid: Lowercase function keyword
-Squiz/Docs/Functions/LowercaseFunctionKeywordsStandard.xml: Invalid: Uppercase function keyword
-Squiz/Docs/Scope/StaticThisUsageStandard.xml: Valid: Using self:: to access static variables
-Squiz/Docs/Scope/StaticThisUsageStandard.xml: Invalid: Using $this-> to access static variables
-Squiz/Docs/WhiteSpace/ObjectOperatorSpacingStandard.xml: Valid: No spaces around the object operator
-Squiz/Docs/WhiteSpace/ObjectOperatorSpacingStandard.xml: Invalid: Whitespace surrounding the object operator
-Squiz/Docs/WhiteSpace/SemicolonSpacingStandard.xml: Valid: No space before the semicolon
-Squiz/Docs/WhiteSpace/SemicolonSpacingStandard.xml: Invalid: Space before the semicolon
-Squiz/Docs/WhiteSpace/ScopeKeywordSpacingStandard.xml: Valid: A single space following the keywords
-Squiz/Docs/WhiteSpace/ScopeKeywordSpacingStandard.xml: Invalid: Multiple spaces following the keywords
-Squiz/Docs/WhiteSpace/FunctionOpeningBraceStandard.xml: Valid: Opening brace is on a new line
-Squiz/Docs/WhiteSpace/FunctionOpeningBraceStandard.xml: Invalid: Opening brace is on the same line as the function declaration
-Squiz/Docs/WhiteSpace/FunctionOpeningBraceStandard.xml: Valid: No blank lines after the opening brace
-Squiz/Docs/WhiteSpace/FunctionOpeningBraceStandard.xml: Invalid: A blank line after the opening brace
-Squiz/Docs/WhiteSpace/CastSpacingStandard.xml: Valid: No spaces
-Squiz/Docs/WhiteSpace/CastSpacingStandard.xml: Invalid: Whitespace used inside parentheses
-Squiz/Docs/WhiteSpace/LanguageConstructSpacingStandard.xml: Valid: echo statement with a single space after it
-Squiz/Docs/WhiteSpace/LanguageConstructSpacingStandard.xml: Invalid: echo statement with no space after it
-Squiz/Docs/Classes/LowercaseClassKeywordsStandard.xml: Valid: Lowercase class keywords
-Squiz/Docs/Classes/LowercaseClassKeywordsStandard.xml: Invalid: Initial capitalization of class keywords
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Valid: Lowercase self used
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Invalid: Uppercase self used
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Valid: Correct spacing used
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Invalid: Incorrect spacing used
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Valid: Self used as reference
-Squiz/Docs/Classes/SelfMemberReferenceStandard.xml: Invalid: Local class name used as reference
-Squiz/Docs/Strings/EchoedStringsStandard.xml: Valid: Using echo without parentheses
-Squiz/Docs/Strings/EchoedStringsStandard.xml: Invalid: Using echo with parentheses
-Squiz/Docs/Commenting/FunctionCommentThrowTagStandard.xml: Valid: @throws tag used
-Squiz/Docs/Commenting/FunctionCommentThrowTagStandard.xml: Invalid: No @throws tag used for throwing function
-Squiz/Docs/Commenting/DocCommentAlignmentStandard.xml: Valid: Asterisks are aligned
-Squiz/Docs/Commenting/DocCommentAlignmentStandard.xml: Invalid: Asterisks are not aligned
-Squiz/Docs/Commenting/DocCommentAlignmentStandard.xml: Valid: One space between asterisk and tag
-Squiz/Docs/Commenting/DocCommentAlignmentStandard.xml: Invalid: Incorrect spacing used
-Squiz/Docs/ControlStructures/LowercaseDeclarationStandard.xml: Valid: Lowercase if keyword
-Squiz/Docs/ControlStructures/LowercaseDeclarationStandard.xml: Invalid: Uppercase if keyword
-Squiz/Docs/ControlStructures/ForEachLoopDeclarationStandard.xml: Valid: Correct spacing used
-Squiz/Docs/ControlStructures/ForEachLoopDeclarationStandard.xml: Invalid: Invalid spacing used
-Squiz/Docs/ControlStructures/ForEachLoopDeclarationStandard.xml: Valid: Lowercase as keyword
-Squiz/Docs/ControlStructures/ForEachLoopDeclarationStandard.xml: Invalid: Uppercase as keyword
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Valid: Correct spacing used
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Invalid: Invalid spacing used inside brackets
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Valid: Correct spacing used
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Invalid: Invalid spacing used before semicolons
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Valid: Correct spacing used
-Squiz/Docs/ControlStructures/ForLoopDeclarationStandard.xml: Invalid: Invalid spacing used after semicolons
-Generic/Docs/Functions/FunctionCallArgumentSpacingStandard.xml: Valid: Single spaces after a comma
-Generic/Docs/Functions/FunctionCallArgumentSpacingStandard.xml: Invalid: No spaces after a comma
-Generic/Docs/Functions/FunctionCallArgumentSpacingStandard.xml: Valid: Single spaces around an equals sign in function declaration
-Generic/Docs/Functions/FunctionCallArgumentSpacingStandard.xml: Invalid: No spaces around an equals sign in function declaration
-Generic/Docs/Functions/OpeningFunctionBraceKernighanRitchieStandard.xml: Valid: brace on same line
-Generic/Docs/Functions/OpeningFunctionBraceKernighanRitchieStandard.xml: Invalid: brace on next line
-Generic/Docs/Functions/OpeningFunctionBraceBsdAllmanStandard.xml: Valid: brace on next line
-Generic/Docs/Functions/OpeningFunctionBraceBsdAllmanStandard.xml: Invalid: brace on same line
-Generic/Docs/Functions/CallTimePassByReferenceStandard.xml: Valid: Pass-by-reference is specified in the function definition
-Generic/Docs/Functions/CallTimePassByReferenceStandard.xml: Invalid: Pass-by-reference is done in the call to a function
-Generic/Docs/Files/OneClassPerFileStandard.xml: Valid: Only one class in the file
-Generic/Docs/Files/OneClassPerFileStandard.xml: Invalid: Multiple classes defined in one file
-Generic/Docs/Files/OneInterfacePerFileStandard.xml: Valid: Only one interface in the file
-Generic/Docs/Files/OneInterfacePerFileStandard.xml: Invalid: Multiple interfaces defined in one file
-Generic/Docs/Files/InlineHTMLStandard.xml: Valid: A php file with only php code in it
-Generic/Docs/Files/InlineHTMLStandard.xml: Invalid: A php file with html in it outside of the php tags
-Generic/Docs/WhiteSpace/ScopeIndentStandard.xml: Valid: 4 spaces are used to indent a control structure
-Generic/Docs/WhiteSpace/ScopeIndentStandard.xml: Invalid: 8 spaces are used to indent a control structure
-Generic/Docs/Classes/DuplicateClassNameStandard.xml: Valid: A unique class name
-Generic/Docs/Classes/DuplicateClassNameStandard.xml: Invalid: A class duplicated (including across multiple files)
-Generic/Docs/CodeAnalysis/ForLoopWithTestFunctionCallStandard.xml: Valid: A for loop that determines its end condition before the loop starts
-Generic/Docs/CodeAnalysis/ForLoopWithTestFunctionCallStandard.xml: Invalid: A for loop that unnecessarily computes the same value on every iteration
-Generic/Docs/CodeAnalysis/EmptyStatementStandard.xml: Valid: There is a statement inside the control structure
-Generic/Docs/CodeAnalysis/EmptyStatementStandard.xml: Invalid: The control structure has no statements
-Generic/Docs/CodeAnalysis/UnusedFunctionParameterStandard.xml: Valid: All the parameters are used
-Generic/Docs/CodeAnalysis/UnusedFunctionParameterStandard.xml: Invalid: One of the parameters is not being used
-Generic/Docs/CodeAnalysis/UnconditionalIfStatementStandard.xml: Valid: An if statement that only executes conditionally
-Generic/Docs/CodeAnalysis/UnconditionalIfStatementStandard.xml: Invalid: An if statement that is always performed
-Generic/Docs/CodeAnalysis/UnconditionalIfStatementStandard.xml: Valid: An if statement that only executes conditionally
-Generic/Docs/CodeAnalysis/UnconditionalIfStatementStandard.xml: Invalid: An if statement that is never performed
-Generic/Docs/CodeAnalysis/UselessOverridingMethodStandard.xml: Valid: A method that extends functionality on a parent method
-Generic/Docs/CodeAnalysis/UselessOverridingMethodStandard.xml: Invalid: An overriding method that only calls the parent
-Generic/Docs/CodeAnalysis/UnnecessaryFinalModifierStandard.xml: Valid: A method in a final class is not marked final
-Generic/Docs/CodeAnalysis/UnnecessaryFinalModifierStandard.xml: Invalid: A method in a final class is also marked final
-Generic/Docs/CodeAnalysis/ForLoopShouldBeWhileLoopStandard.xml: Valid: A for loop is used with all three expressions
-Generic/Docs/CodeAnalysis/ForLoopShouldBeWhileLoopStandard.xml: Invalid: A for loop is used without a first or third expression
-Generic/Docs/CodeAnalysis/JumbledIncrementerStandard.xml: Valid: Two different variables being used to increment
-Generic/Docs/CodeAnalysis/JumbledIncrementerStandard.xml: Invalid: Inner incrementer is the same variable name as the outer one
-Generic/Docs/Strings/UnnecessaryStringConcatStandard.xml: Valid: A string can be concatenated with an expression
-Generic/Docs/Strings/UnnecessaryStringConcatStandard.xml: Invalid: Strings should not be concatenated together
-Generic/Docs/NamingConventions/CamelCapsFunctionNameStandard.xml: Valid: A function in camelCaps format
-Generic/Docs/NamingConventions/CamelCapsFunctionNameStandard.xml: Invalid: A function in snake_case format
-Generic/Docs/NamingConventions/ConstructorNameStandard.xml: Valid: The constructor is named __construct
-Generic/Docs/NamingConventions/ConstructorNameStandard.xml: Invalid: The old style class name constructor is used
-Generic/Docs/NamingConventions/UpperCaseConstantNameStandard.xml: Valid: all uppercase
-Generic/Docs/NamingConventions/UpperCaseConstantNameStandard.xml: Invalid: mixed case
-Generic/Docs/Commenting/TodoStandard.xml: Valid: A comment without a todo
-Generic/Docs/Commenting/TodoStandard.xml: Invalid: A todo comment
-Generic/Docs/Commenting/FixmeStandard.xml: Valid: A comment without a fixme
-Generic/Docs/Commenting/FixmeStandard.xml: Invalid: A fixme comment
-Generic/Docs/Formatting/SpaceAfterCastStandard.xml: Valid: A cast operator is followed by one space
-Generic/Docs/Formatting/SpaceAfterCastStandard.xml: Invalid: A cast operator is not followed by whitespace
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Equals signs aligned
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Not aligned; harder to read
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Equals signs aligned; only one space after longest var name
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Two spaces after longest var name
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Equals signs aligned
-Generic/Docs/Formatting/MultipleStatementAlignmentStandard.xml: Equals signs not aligned
-Generic/Docs/Formatting/DisallowMultipleStatementsStandard.xml: Valid: Two statements are spread out on two separate lines
-Generic/Docs/Formatting/DisallowMultipleStatementsStandard.xml: Invalid: Two statements are combined onto one line
-Generic/Docs/Formatting/NoSpaceAfterCastStandard.xml: Valid: A cast operator is immediately before its value
-Generic/Docs/Formatting/NoSpaceAfterCastStandard.xml: Invalid: A cast operator is followed by whitespace
-Generic/Docs/Debug/ClosureLinterStandard.xml: Valid: Valid JS Syntax is used
-Generic/Docs/Debug/ClosureLinterStandard.xml: Invalid: Trailing comma in a javascript array
-Generic/Docs/Debug/JSHintStandard.xml: Valid: Valid JS Syntax is used
-Generic/Docs/Debug/JSHintStandard.xml: Invalid: The Javascript is using an undefined variable
-Generic/Docs/Debug/CSSLintStandard.xml: Valid: Valid CSS Syntax is used
-Generic/Docs/Debug/CSSLintStandard.xml: Invalid: The CSS has a typo in it
-Generic/Docs/PHP/CharacterBeforePHPOpeningTagStandard.xml: Valid: A file starting with an opening php tag
-Generic/Docs/PHP/CharacterBeforePHPOpeningTagStandard.xml: Invalid: A file with content before the opening php tag
-Generic/Docs/PHP/SAPIUsageStandard.xml: Valid: PHP_SAPI is used
-Generic/Docs/PHP/SAPIUsageStandard.xml: Invalid: php_sapi_name() is used
-Generic/Docs/PHP/ForbiddenFunctionsStandard.xml: Valid: count is used in place of sizeof
-Generic/Docs/PHP/ForbiddenFunctionsStandard.xml: Invalid: sizeof is used
-Generic/Docs/PHP/LowerCaseKeywordStandard.xml: Valid: Lowercase array keyword used
-Generic/Docs/PHP/LowerCaseKeywordStandard.xml: Invalid: Non-lowercase array keyword used
-Generic/Docs/PHP/ClosingPHPTagStandard.xml: Valid: A closing tag paired with it's opening tag
-Generic/Docs/PHP/ClosingPHPTagStandard.xml: Invalid: No closing tag paired with the opening tag
-Generic/Docs/PHP/LowerCaseConstantStandard.xml: Valid: lowercase constants
-Generic/Docs/PHP/LowerCaseConstantStandard.xml: Invalid: uppercase constants
-Generic/Docs/PHP/DeprecatedFunctionsStandard.xml: Valid: A non-deprecated function is used
-Generic/Docs/PHP/DeprecatedFunctionsStandard.xml: Invalid: A deprecated function is used
-Generic/Docs/PHP/NoSilencedErrorsStandard.xml: Valid: isset is used to verify that a variable exists before trying to use it
-Generic/Docs/PHP/NoSilencedErrorsStandard.xml: Invalid: Errors are suppressed
-Generic/Docs/PHP/UpperCaseConstantStandard.xml: Valid: uppercase constants
-Generic/Docs/PHP/UpperCaseConstantStandard.xml: Invalid: lowercase constants
-Generic/Docs/ControlStructures/InlineControlStructureStandard.xml: Valid: Braces are used around the control structure
-Generic/Docs/ControlStructures/InlineControlStructureStandard.xml: Invalid: No braces are used for the control structure.
-Zend/Docs/Files/ClosingTagStandard.xml: Valid: No closing tag at the end of the file
-Zend/Docs/Files/ClosingTagStandard.xml: Invalid: A closing php tag is included at the end of the file
-Zend/Docs/NamingConventions/ValidVariableNameStandard.xml: Valid: A multi-word variable uses camel casing
-Zend/Docs/NamingConventions/ValidVariableNameStandard.xml: Invalid: A multi-word variable uses underscores and initial capitalization
-Zend/Docs/NamingConventions/ValidVariableNameStandard.xml: Valid: A private member variable begins with an underscore
-Zend/Docs/NamingConventions/ValidVariableNameStandard.xml: Invalid: A private member variable does not begin with an underscore
-Zend/Docs/Debug/CodeAnalyzerStandard.xml: Valid: Valid PHP Code
-Zend/Docs/Debug/CodeAnalyzerStandard.xml: Invalid: There is an unused function parameter
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Valid: Correct property naming
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Invalid: An underscore prefix used to indicate visibility
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Valid: Visibility of property declared
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Invalid: Var keyword used to declare property
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Valid: One property declared per statement
-PSR2/Docs/Classes/PropertyDeclarationStandard.xml: Invalid: Multiple properties declared in one statement
-PSR2/Docs/Classes/ClassDeclarationStandard.xml: Valid: Correct spacing around class keyword
-PSR2/Docs/Classes/ClassDeclarationStandard.xml: Invalid: 2 spaces used around class keyword
-PSR2/Docs/Namespaces/NamespaceDeclarationStandard.xml: Valid: One blank line after the namespace declaration
-PSR2/Docs/Namespaces/NamespaceDeclarationStandard.xml: Invalid: No blank line after the namespace declaration
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Valid: One use declaration per namespace
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Invalid: Multiple namespaces in a use declaration
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Valid: Use statements come after first namespace
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Invalid: Namespace declared after use
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Valid: A single blank line after the final use statement
-PSR2/Docs/Namespaces/UseDeclarationStandard.xml: Invalid: No blank line after the final use statement
-PSR2/Docs/Methods/MethodDeclarationStandard.xml: Valid: Correct method naming
-PSR2/Docs/Methods/MethodDeclarationStandard.xml: Invalid: An underscore prefix used to indicate visibility
-PSR2/Docs/Methods/MethodDeclarationStandard.xml: Valid: Correct ordering of method prefixes
-PSR2/Docs/Methods/MethodDeclarationStandard.xml: Invalid: static keyword used before visibility and final used after
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Valid: Case statement indented correctly
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Invalid: Case statement not indented 4 spaces
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Valid: Case statement followed by 1 space
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Invalid: Case statement not followed by 1 space
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Valid: Colons not prefixed by whitespace
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Invalid: Colons prefixed by whitespace
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Valid: Break statement indented correctly
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Invalid: Break statement not indented 4 spaces
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Valid: Comment marking intentional fall-through
-PSR2/Docs/ControlStructures/SwitchDeclarationStandard.xml: Invalid: No comment marking intentional fall-through
-PSR2/Docs/ControlStructures/ControlStructureSpacingStandard.xml: Valid: Correct spacing
-PSR2/Docs/ControlStructures/ControlStructureSpacingStandard.xml: Invalid: Whitespace used inside the parentheses
-PSR2/Docs/ControlStructures/ElseIfDeclarationStandard.xml: Valid: Single word elseif keyword used
-PSR2/Docs/ControlStructures/ElseIfDeclarationStandard.xml: Invalid: Separate else and if keywords used
-PSR1/Docs/Files/SideEffectsStandard.xml: Valid: A class defined in a file by itself
-PSR1/Docs/Files/SideEffectsStandard.xml: Invalid: A class defined in a file with other code
-PSR1/Docs/Classes/ClassDeclarationStandard.xml: Valid: One class in a file
-PSR1/Docs/Classes/ClassDeclarationStandard.xml: Invalid: Multiple classes in a single file
-PSR1/Docs/Classes/ClassDeclarationStandard.xml: Valid: A vendor-level namespace is used
-PSR1/Docs/Classes/ClassDeclarationStandard.xml: Invalid: No namespace used in file
--->

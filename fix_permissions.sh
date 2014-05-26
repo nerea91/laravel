@@ -11,5 +11,6 @@ find $DIR -type d -exec chmod 770 {} \;
 find $DIR -type f -exec chmod 660 {} \;
 
 #Exec permission for scripts
-chmod 760 $DIR/artisan
+chmod 760 $DIR/artisan $DIR/vendor/bin/*
 find $DIR -type f -name "*.sh" -exec chmod 760 {} \;
+

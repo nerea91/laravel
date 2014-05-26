@@ -19,6 +19,6 @@ return array(
 
 	"token" => _("This password reset token is invalid."),
 
-	"sent" => _("Password reminder sent!",
+	"sent" => _("Password reminder sent!"),
 
 );

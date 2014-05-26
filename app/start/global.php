@@ -43,7 +43,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 */
 if ( ! $app->runningInConsole())
 {
-	$app->singleton('language', function()
+	$app->singleton('language', function ()
 	{
 		return Language::detect()->setLocale();
 	});
@@ -62,7 +62,7 @@ if ( ! $app->runningInConsole())
 |
 */
 
-App::error(function(Exception $exception, $code)
+App::error(function (Exception $exception, $code)
 {
 	Log::error($exception);
 
@@ -103,7 +103,7 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
+App::down(function ()
 {
 	return Response::view('errors.maintenance', array('title' => _('Maintenance')), 503);
 });

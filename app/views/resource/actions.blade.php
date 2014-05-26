@@ -9,4 +9,3 @@
 	{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'small alert radius button toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource)))) }}
 	@endif
 </td>
-

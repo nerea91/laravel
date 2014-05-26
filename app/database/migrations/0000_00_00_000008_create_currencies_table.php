@@ -12,7 +12,7 @@ class CreateCurrenciesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('currencies', function(Blueprint $table) {
+		Schema::create('currencies', function (Blueprint $table) {
 
 			// Set the storage engine and primary key
 			$table->engine = 'InnoDB';
@@ -48,4 +48,3 @@ class CreateCurrenciesTable extends Migration {
 	}
 
 }
-

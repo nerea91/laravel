@@ -2,8 +2,6 @@
 
 use Illuminate\Console\Command;
 use Illuminate\View\Compilers\BladeCompiler;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use File;
 
 class GettextCommand extends Command {
@@ -27,7 +25,7 @@ class GettextCommand extends Command {
 	*
 	* @return void
 	*/
-	public function __construct ()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -37,7 +35,7 @@ class GettextCommand extends Command {
 	*
 	* @return void
 	*/
-	public function fire ()
+	public function fire()
 	{
 		//Set directories
 		$input_path = app_path() . DIRECTORY_SEPARATOR . 'views';
@@ -82,7 +80,7 @@ class GettextCommand extends Command {
 	*
 	* @return array
 	*/
-	protected function getArguments ()
+	protected function getArguments()
 	{
 		return array();
 	}
@@ -92,7 +90,7 @@ class GettextCommand extends Command {
 	*
 	* @return array
 	*/
-	protected function getOptions ()
+	protected function getOptions()
 	{
 		/**
 		* return the options array

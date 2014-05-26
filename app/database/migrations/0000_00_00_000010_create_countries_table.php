@@ -12,7 +12,7 @@ class CreateCountriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('countries', function(Blueprint $table) {
+		Schema::create('countries', function (Blueprint $table) {
 
 			// Set the storage engine and primary key
 			$table->engine = 'InnoDB';
@@ -49,4 +49,3 @@ class CreateCountriesTable extends Migration {
 	}
 
 }
-

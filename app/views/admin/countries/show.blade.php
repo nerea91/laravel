@@ -1,5 +1,5 @@
 <dl>
-	@foreach (array_except((array)$labels, ['currency_id', 'eea']) as $field => $label)
+	@foreach (array_except((array) $labels, ['currency_id', 'eea']) as $field => $label)
 		@if ( ! is_null($resource->{$field}))
 			<dt>{{ $label }}</dt>
 			<dd>{{{ $resource->{$field} }}}</dd>

@@ -1,6 +1,6 @@
 <dl>
 
-	@foreach (array_except((array)$labels, ['is_default']) as $field => $label)
+	@foreach (array_except((array) $labels, ['is_default']) as $field => $label)
 		@if ( ! is_null($resource->{$field}))
 			<dt>{{ $label }}</dt>
 			<dd>{{{ $resource->{$field} }}}</dd>

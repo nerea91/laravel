@@ -15,4 +15,3 @@ class ProfilesTableSeeder extends Seeder {
 	}
 
 }
-

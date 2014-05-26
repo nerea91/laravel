@@ -79,7 +79,6 @@ return array(
 	*/
 	'key' => 'to-do key for production enviro.', // Use command: php artisan key:generate.
 
-
 	/*
 	|--------------------------------------------------------------------------
 	| Autoloaded Service Providers

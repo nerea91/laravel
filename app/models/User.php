@@ -53,7 +53,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Profile');
 	}
 
-
 	// Events ======================================================================
 
 	public static function boot()
@@ -63,7 +62,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		// NOTE deleting -> deleted  -> restoring -> restored
 
 		// updating BEFORE validation
-		static::updating(function($user)
+		static::updating(function ($user)
 		{
 			// When updating, password is not required.
 			if( ! strlen($user->convertEmptyAttributesToNull()->password))
@@ -75,13 +74,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 		parent::boot();
 
-		static::creating(function($user)
+		static::creating(function ($user)
 		{
 			// Hash password if not hashed
 			$user->hashPassword();
 		});
 
-		static::created(function($user)
+		static::created(function ($user)
 		{
 			// If the user has no Laravel account, create it
 			if( ! $user->accounts()->where('provider_id', 1)->first())
@@ -97,20 +96,20 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		});
 
 		// updating AFTER validation
-		static::updating(function($user)
+		static::updating(function ($user)
 		{
 			// Hash password if not hashed
 			$user->hashPassword();
 		});
 
-		static::updated(function($user)
+		static::updated(function ($user)
 		{
 			// If we have updated current user then change application language accordingly
 			if(Auth::check() and Auth::user()->id == $user->id)
 				$user->applyLanguage();
 		});
 
-		static::deleted(function($user)
+		static::deleted(function ($user)
 		{
 			// Purge cache
 			Cache::forget("adminSearchResults{$user->id}");
@@ -252,7 +251,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 				$table = 'profiles';
 				$relatedColumn = 'name';
 			break;
-
 
 			case 'country_id':
 				$table = 'countries';

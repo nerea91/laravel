@@ -12,7 +12,7 @@ class CreatePermissionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('permissions', function(Blueprint $table) {
+		Schema::create('permissions', function (Blueprint $table) {
 
 			// Set the storage engine and primary key
 			$table->engine = 'InnoDB';

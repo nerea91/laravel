@@ -1,4 +1,4 @@
-@foreach (array_except((array)$labels, ['eea', 'currency_id']) as $field => $label)
+@foreach (array_except((array) $labels, ['eea', 'currency_id']) as $field => $label)
 	{{ Form::label($field, $label) }}
 	{{ Form::text($field) }}
 @endforeach

@@ -80,7 +80,6 @@ return array(
 	"min_length"           => _("The :attribute must be at least :length characters."),
 	'unique_with'          => _("This combination of :fields already exists."),
 
-
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines

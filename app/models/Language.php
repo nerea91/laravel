@@ -44,7 +44,7 @@ class Language extends BaseModel {
 
 		parent::boot();
 
-		static::saved(function($language)
+		static::saved(function ($language)
 		{
 			// Only one Language can be the default
 			if($language->is_default)
@@ -54,7 +54,7 @@ class Language extends BaseModel {
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
 
-		static::deleted(function($language)
+		static::deleted(function ($language)
 		{
 			// Purge cache
 			Cache::forget('allLanguagesOrderedByPriority');

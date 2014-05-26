@@ -12,7 +12,7 @@ class CreateAccountsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('accounts', function(Blueprint $table) {
+		Schema::create('accounts', function (Blueprint $table) {
 
 			// Set the storage engine and primary key
 			$table->engine = 'InnoDB';

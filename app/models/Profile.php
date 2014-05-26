@@ -43,13 +43,13 @@ class Profile extends BaseModel {
 
 		parent::boot();
 
-		static::saved(function($profile)
+		static::saved(function ($profile)
 		{
 			// Purge permissions cache
 			Cache::forget("profile{$profile->id}permissions");
 		});
 
-		static::deleted(function($profile)
+		static::deleted(function ($profile)
 		{
 			// Purge permissions cache
 			Cache::forget("profile{$profile->id}permissions");
@@ -136,7 +136,7 @@ class Profile extends BaseModel {
 			return array();
 
 		// Store profile permissions in cache to save some queries
-		$permissions = Cache::remember("profile{$this->id}permissions", 60, function() {
+		$permissions = Cache::remember("profile{$this->id}permissions", 60, function () {
 			return $this->permissions->lists('id');
 		});
 

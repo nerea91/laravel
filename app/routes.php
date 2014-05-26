@@ -19,18 +19,18 @@ Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showCon
 Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));
 
 // Guest user area
-Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function() {
+Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 	Route::post('/', array('uses' => 'AuthController@doLogin'));
 });
 
 // Authenticated user area
-Route::group(array('https', 'before' => 'auth'), function() {
+Route::group(array('https', 'before' => 'auth'), function () {
 
 	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
 
 	// Current user control panel
-	Route::group(array('prefix' => 'user'), function() {
+	Route::group(array('prefix' => 'user'), function () {
 		Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
 		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
 		Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
@@ -38,12 +38,12 @@ Route::group(array('https', 'before' => 'auth'), function() {
 	});
 
 	// Admin area
-	Route::group(array('prefix' => 'admin'), function() {
+	Route::group(array('prefix' => 'admin'), function () {
 		Route::get('/', array('as' => 'admin',  'uses' => 'AdminController@showAdminPage'));
 		Route::post('/', array('as' => 'admin.search', 'uses' => 'AdminController@search'));
 
 		// Resource controllers require ACL
-		Route::group(array('before' => 'acl'), function() {
+		Route::group(array('before' => 'acl'), function () {
 			Route::resource('accounts', 'AccountsController');
 			Route::resource('authproviders', 'AuthProvidersController');
 			Route::resource('countries', 'CountriesController');

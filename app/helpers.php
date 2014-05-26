@@ -207,7 +207,7 @@ if( ! function_exists('http_build_url'))
 					if(false !== strpos($url['path'], './'))
 					{
 						// Remove any '../' and their directories
-						while(preg_match('/\w+\/\.\.\//', $url['path'])){
+						while (preg_match('/\w+\/\.\.\//', $url['path'])) {
 							$url['path']    = preg_replace('/\w+\/\.\.\//', '', $url['path']);
 						}
 
@@ -252,4 +252,3 @@ if( ! function_exists('http_build_url'))
 		;
 	}
 }
-

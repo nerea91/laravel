@@ -107,14 +107,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		// require-dev
-		'Barryvdh\Debugbar\ServiceProvider', //https://github.com/barryvdh/laravel-debugbar
-		'Stolz\Filters\HtmlTidy\ServiceProvider', //https://github.com/Stolz/laravel-html-tidy
-		'Stolz\SchemaSpy\ServiceProvider', //https://github.com/Stolz/laravel-schema-spy
-		'Way\Generators\GeneratorsServiceProvider', //https://github.com/JeffreyWay/Laravel-4-Generators
-		'DayleRees\ContainerDebug\ServiceProvider', //https://github.com/daylerees/container-debug
-
-		// require
+		// NOTE: Make sure you also add new service providers to config/local/app.php
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
 		'Stevenmaguire\Foundation\FoundationServiceProvider', //https://github.com/stevenmaguire/zurb-foundation-laravel
 		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination

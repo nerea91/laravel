@@ -100,12 +100,12 @@ Route::filter('acl', function()
 			throw new Exception('ACL: ' . _('Unknown route') . " $route");
 
 		$permissions = $acl[$route];
-		$is_closure = ($permissions instanceof Closure);
+		$isClosure = ($permissions instanceof Closure);
 
-		if($is_closure AND ! $permissions(Auth::user()))
+		if($isClosure and ! $permissions(Auth::user()))
 			throw new Exception(_('Authorization condition failed'));
 
-		if( ! $is_closure AND ! Auth::user()->hasPermission($permissions))
+		if( ! $isClosure and ! Auth::user()->hasPermission($permissions))
 			throw new Exception(_('Unauthorized profile'));
 	}
 	catch(Exception $e)

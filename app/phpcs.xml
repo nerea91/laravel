@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<!--
+
+Config file for PHP_CodeSniffer used by the "inspect:sniff" artisan command povided with the brodkinca/BCA-Laravel-Inspect package.
+
+According to https://github.com/laravel/framework/blob/master/CONTRIBUTING.md#coding-guidelines Laravel follows PSR-1 coding standards with the following additions:
+
+ - Namespace declarations should be on the same line as <?php.
+ - Class opening { should be on the same line as the class name.
+ - Function and control structure opening { should be on a separate line.
+ - Interface and Trait names are suffixed with Interface (FooInterface) and Trait (FooTrait) respectively.
+
+-->
+
+<ruleset name="Stolz">
+
+	<description>Custom phpcs rules for Stolz's Laravel projects.</description>
+
+	<!-- Ignore laravel storage directory -->
+	<exclude-pattern>/storage/</exclude-pattern>
+
+	<!-- Hard-code some command line arguments -->
+	<!--to-do: they seem not to be working-->
+	<arg name="tab-width" value="4"/>
+	<arg name="report-width" value="200"/>
+	<arg value="s"/>
+
+	<!-- ================================ GLOBAL SCOPE ============================================================ -->
+
+	<!-- Include PSR-1 standard -->
+	<rule ref="PSR1">
+		<!-- Allow classes without namespace -->
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+	</rule>
+
+	<!-- ================================ LOCAL SCOPE ============================================================= -->
+
+	<rule ref="Internal.NoCodeFound">
+		<!-- Suppress warning for view files without PHP code -->
+		<exclude-pattern>/views/</exclude-pattern>
+	</rule>
+
+	<rule ref="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps">
+		<!-- Helpers are not in camel case -->
+		<exclude-pattern>helpers.php</exclude-pattern>
+	</rule>
+
+</ruleset>

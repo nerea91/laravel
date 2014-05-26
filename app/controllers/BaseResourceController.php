@@ -84,7 +84,7 @@ class BaseResourceController extends \BaseController {
 	{
 		$this->resource = $this->resource->findOrFail($id);
 		$this->layout->subtitle = _('Details');
-		return $this->load_view(__FUNCTION__, $this->resource->getVisibleLabels());
+		return $this->loadView(__FUNCTION__, $this->resource->getVisibleLabels());
 	}
 
 	/**
@@ -95,7 +95,7 @@ class BaseResourceController extends \BaseController {
 	public function create()
 	{
 		$this->layout->subtitle = _('Add');
-		return $this->load_view(__FUNCTION__, $this->resource->getFillableLabels());
+		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
 	}
 
 	/**
@@ -108,7 +108,7 @@ class BaseResourceController extends \BaseController {
 	{
 		$this->resource = $this->resource->findOrFail($id);
 		$this->layout->subtitle = _('Edit');
-		return $this->load_view(__FUNCTION__, $this->resource->getFillableLabels());
+		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
 	}
 
 	/**
@@ -118,7 +118,7 @@ class BaseResourceController extends \BaseController {
 	 * @param  array    $labels
 	 * @return Response
 	 */
-	protected function load_view($view, array $labels = null)
+	protected function loadView($view, array $labels = null)
 	{
 		$data = [
 			'resource'	=> $this->resource,

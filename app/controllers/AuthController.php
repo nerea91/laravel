@@ -22,13 +22,14 @@ class AuthController extends BaseController {
 	 */
 	public function doLogin()
 	{
-		$validator = Validator::make(
-			$input = Input::only(['username', 'password', 'remember']),
-			[
-				'username' => 'required|min:4|max:32|alpha_num',
-				'password' => 'required|min:5|max:80',
-			]
-		);
+		$input = Input::only(['username', 'password', 'remember']);
+
+		$rules = [
+			'username' => 'required|min:4|max:32|alpha_num',
+			'password' => 'required|min:5|max:80',
+		];
+
+		$validator = Validator::make($input, $rules);
 
 		$validator->setAttributeNames(['username' => _('Username'), 'password' => _('Password')]);
 

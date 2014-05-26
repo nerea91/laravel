@@ -27,238 +27,256 @@ For manually running php-cs-fixer without artisan:
 
 	<description>Stolz's custom phpcs rules for Laravel</description>
 
-	<!-- EXCLUDES -->
+	<exclude-pattern>/libraries/TVarDumper.php</exclude-pattern>
 	<exclude-pattern>/storage/</exclude-pattern>
+
+	<!-- ========== Internal ======================================== -->
 
 	<rule ref="Internal.NoCodeFound">
 		<!-- Suppress warning for view files without PHP code -->
 		<exclude-pattern>/views/</exclude-pattern>
 	</rule>
 
+	<!-- ========== Generic ======================================== -->
+
+	<!--
+	<rule ref="Generic.Commenting.Todo"/>
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+	<rule ref="Generic.Debug.ClosureLinter"/>
+	<rule ref="Generic.Debug.ClosureLinter.ExternalToolError"/>
+	<rule ref="Generic.Files.ByteOrderMark"/>
+	<rule ref="Generic.Files.LineEndings"/>
+	<rule ref="Generic.Files.LineLength"/>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+	<rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+	<rule ref="Generic.Formatting.SpaceAfterCast"/>
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma"/>
+	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
+	-->
+
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps">
 		<!-- Laravel's helpers function names are not in camel case -->
 		<exclude-pattern>helpers.php</exclude-pattern>
 	</rule>
 
+	<!--
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+	<rule ref="Generic.PHP.DeprecatedFunctions"/>
+	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound"/>
+	-->
+
+	<!-- Force lowercase constant (false / true / null) -->
+	<rule ref="Generic.PHP.LowerCaseConstant"/>
+
+	<!--
+	<rule ref="Generic.PHP.LowerCaseKeyword"/>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+	-->
+
+	<!-- Force tabs identation -->
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<!--
+	<rule ref="Generic.WhiteSpace.ScopeIndent"/>
+	-->
+
+	<!-- ========== MySource ======================================== -->
+
+	<!--
+	<rule ref="MySource.Channels.ChannelException"/>
+	<rule ref="MySource.Channels.DisallowSelfActions"/>
+	<rule ref="MySource.Channels.IncludeOwnSystem"/>
+	<rule ref="MySource.Channels.IncludeSystem"/>
+	<rule ref="MySource.Channels.UnusedSystem"/>
+	<rule ref="MySource.Commenting.FunctionComment"/>
+	<rule ref="MySource.CSS.BrowserSpecificStyles"/>
+	<rule ref="MySource.Debug.DebugCode"/>
+	<rule ref="MySource.Debug.FirebugConsole"/>
+	<rule ref="MySource.Objects.AssignThis"/>
+	<rule ref="MySource.Objects.CreateWidgetTypeCallback"/>
+	<rule ref="MySource.Objects.DisallowNewWidget"/>
+	<rule ref="MySource.PHP.AjaxNullComparison"/>
+	<rule ref="MySource.PHP.EvalObjectFactory"/>
+	<rule ref="MySource.PHP.GetRequestData"/>
+	<rule ref="MySource.PHP.ReturnFunctionValue"/>
+	<rule ref="MySource.Strings.JoinStrings"/>-->
+
+	<!-- ========== PEAR ======================================== -->
+
+	<!--
+	<rule ref="PEAR.Classes.ClassDeclaration"/>
+	<rule ref="PEAR.Commenting.ClassComment"/>
+	<rule ref="PEAR.Commenting.FileComment"/>
+	<rule ref="PEAR.Commenting.FunctionComment"/>
+	<rule ref="PEAR.Commenting.InlineComment"/>
+	<rule ref="PEAR.ControlStructures.ControlSignature"/>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition"/>
+	<rule ref="PEAR.Files.IncludingFile"/>
+	<rule ref="PEAR.Formatting.MultiLineAssignment"/>
+	<rule ref="PEAR.Functions.FunctionCallSignature"/>
+	<rule ref="PEAR.Functions.FunctionDeclaration"/>
+	<rule ref="PEAR.Functions.ValidDefaultValue"/>
+	<rule ref="PEAR.NamingConventions.ValidClassName"/>
+	<rule ref="PEAR.NamingConventions.ValidFunctionName"/>
+	<rule ref="PEAR.NamingConventions.ValidVariableName"/>
+	<rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
+	<rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/>
+	<rule ref="PEAR.WhiteSpace.ScopeIndent"/>
+	-->
+
+	<!-- ========== PSR1 ======================================== -->
+
+	<rule ref="PSR1">
+		<!-- Allow classes without a namespace -->
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+
+	</rule>
 	<rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
 		<!-- Allow declaring multiple exeptions classes in the same file -->
 		<exclude-pattern>libraries/exceptions.php</exclude-pattern>
 	</rule>
 
-	<!-- RULES NOT INCLUDED IN STANDARDS -->
+	<!-- ========== PSR2 ======================================== -->
 
-	<!-- Force tabs identation -->
-	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+	<rule ref="PSR2">
 
-	<!-- Force lowercase constant (false / true / null) -->
-	<rule ref="Generic.PHP.LowerCaseConstant"/>
-
-	<!--STANDARDS-->
-
-	<rule ref="Generic">
-		<!-- <exclude name="Generic.Commenting.Todo"/> -->
-		<!-- <exclude name="Generic.ControlStructures.InlineControlStructure"/> -->
-		<!-- <exclude name="Generic.Debug.ClosureLinter"/> -->
-		<!-- <exclude name="Generic.Files.ByteOrderMark"/> -->
-		<!-- <exclude name="Generic.Files.LineEndings"/> -->
-		<!-- <exclude name="Generic.Files.LineLength"/> -->
-		<!-- <exclude name="Generic.Formatting.DisallowMultipleStatements"/> -->
-		<!-- <exclude name="Generic.Formatting.MultipleStatementAlignment"/> -->
-		<!-- <exclude name="Generic.Formatting.SpaceAfterCast"/> -->
-		<!-- <exclude name="Generic.Functions.FunctionCallArgumentSpacing"/> -->
-		<!-- <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
-		<!-- <exclude name="Generic.NamingConventions.ConstructorName"/> -->
-		<!-- <exclude name="Generic.NamingConventions.UpperCaseConstantName"/> -->
-		<!-- <exclude name="Generic.PHP.DeprecatedFunctions"/> -->
-		<!-- <exclude name="Generic.PHP.DisallowShortOpenTag"/> -->
-		<!-- <exclude name="Generic.PHP.LowerCaseConstant"/> -->
-		<!-- <exclude name="Generic.PHP.LowerCaseKeyword"/> -->
-		<!-- <exclude name="Generic.Strings.UnnecessaryStringConcat"/> -->
+		<!-- Allow long lines identation -->
+		<exclude name="Generic.Files.LineLength.TooLong"/>
 
 		<!-- Allow tabs identation -->
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
 
-		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent"/> -->
-	</rule>
-
-	<!-- <rule ref="MySource"> -->
-		<!-- <exclude name="MySource.Channels.ChannelException"/> -->
-		<!-- <exclude name="MySource.Channels.DisallowSelfActions"/> -->
-		<!-- <exclude name="MySource.Channels.IncludeOwnSystem"/> -->
-		<!-- <exclude name="MySource.Channels.IncludeSystem"/> -->
-		<!-- <exclude name="MySource.Channels.UnusedSystem"/> -->
-		<!-- <exclude name="MySource.Commenting.FunctionComment"/> -->
-		<!-- <exclude name="MySource.CSS.BrowserSpecificStyles"/> -->
-		<!-- <exclude name="MySource.Debug.DebugCode"/> -->
-		<!-- <exclude name="MySource.Debug.FirebugConsole"/> -->
-		<!-- <exclude name="MySource.Objects.AssignThis"/> -->
-		<!-- <exclude name="MySource.Objects.CreateWidgetTypeCallback"/> -->
-		<!-- <exclude name="MySource.Objects.DisallowNewWidget"/> -->
-		<!-- <exclude name="MySource.PHP.AjaxNullComparison"/> -->
-		<!-- <exclude name="MySource.PHP.EvalObjectFactory"/> -->
-		<!-- <exclude name="MySource.PHP.GetRequestData"/> -->
-		<!-- <exclude name="MySource.PHP.ReturnFunctionValue"/> -->
-		<!-- <exclude name="MySource.Strings.JoinStrings"/> -->
-	<!-- </rule> -->
-
-	<!-- <rule ref="PEAR"> -->
-		<!-- <exclude name="PEAR.Classes.ClassDeclaration"/> -->
-		<!-- <exclude name="PEAR.Commenting.ClassComment"/> -->
-		<!-- <exclude name="PEAR.Commenting.FileComment"/> -->
-		<!-- <exclude name="PEAR.Commenting.FunctionComment"/> -->
-		<!-- <exclude name="PEAR.Commenting.InlineComment"/> -->
-		<!-- <exclude name="PEAR.ControlStructures.ControlSignature"/> -->
-		<!-- <exclude name="PEAR.ControlStructures.MultiLineCondition"/> -->
-		<!-- <exclude name="PEAR.Files.IncludingFile"/> -->
-		<!-- <exclude name="PEAR.Formatting.MultiLineAssignment"/> -->
-		<!-- <exclude name="PEAR.Functions.FunctionCallSignature"/> -->
-		<!-- <exclude name="PEAR.Functions.FunctionDeclaration"/> -->
-		<!-- <exclude name="PEAR.Functions.ValidDefaultValue"/> -->
-		<!-- <exclude name="PEAR.NamingConventions.ValidClassName"/> -->
-		<!-- <exclude name="PEAR.NamingConventions.ValidFunctionName"/> -->
-		<!-- <exclude name="PEAR.NamingConventions.ValidVariableName"/> -->
-		<!-- <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent"/> -->
-		<!-- <exclude name="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
-		<!-- <exclude name="PEAR.WhiteSpace.ScopeIndent"/> -->
-	<!-- </rule> -->
-
-	<rule ref="PSR1">
-
-		<!-- Allow classes without a namespace -->
-		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-
-	</rule>
-
-	<!-- <rule ref="PSR2"> -->
-
 		<!-- Disable class opening brace on new line -->
-		<!-- <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/> -->
-
-		<!-- <exclude name="PSR2.Classes.PropertyDeclaration"/> -->
-		<!-- <exclude name="PSR2.ControlStructures.ControlStructureSpacing"/> -->
-		<!-- <exclude name="PSR2.ControlStructures.ElseIfDeclaration"/> -->
-		<!-- <exclude name="PSR2.ControlStructures.SwitchDeclaration"/> -->
-		<!-- <exclude name="PSR2.Files.EndFileNewline"/> -->
-		<!-- <exclude name="PSR2.Methods.FunctionCallSignature"/> -->
-		<!-- <exclude name="PSR2.Methods.MethodDeclaration"/> -->
-		<!-- <exclude name="PSR2.Namespaces.NamespaceDeclaration"/> -->
-		<!-- <exclude name="PSR2.Namespaces.UseDeclaration"/> -->
-	<!-- </rule> -->
-
-	<!-- <rule ref="Squiz"> -->
-
-		<!-- Do not uses before of after array brakets -->
-		<!-- <exclude name="Squiz.Arrays.ArrayBracketSpacing"/> -->
-		<!-- <exclude name="Squiz.Arrays.ArrayDeclaration"/> -->
-		<!-- <exclude name="Squiz.Classes.ClassDeclaration"/> -->
-		<!-- <exclude name="Squiz.Classes.ClassFileName"/> -->
-		<!-- <exclude name="Squiz.Classes.DuplicateProperty"/> -->
-		<!-- <exclude name="Squiz.Classes.LowercaseClassKeywords"/> -->
-		<!-- <exclude name="Squiz.Classes.SelfMemberReference"/> -->
-		<!-- <exclude name="Squiz.Classes.ValidClassName"/> -->
-		<!-- <exclude name="Squiz.CodeAnalysis.EmptyStatement"/> -->
-		<!-- <exclude name="Squiz.Commenting.BlockComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.ClassComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.ClosingDeclarationComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.DocCommentAlignment"/> -->
-		<!-- <exclude name="Squiz.Commenting.EmptyCatchComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.FileComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.FunctionComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.FunctionCommentThrowTag"/> -->
-		<!-- <exclude name="Squiz.Commenting.InlineComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.LongConditionClosingComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.PostStatementComment"/> -->
-		<!-- <exclude name="Squiz.Commenting.VariableComment"/> -->
+		<exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
 
 		<!-- Do not force control structures opening brace to be in the same line -->
-		<!-- <exclude name="Squiz.ControlStructures.ControlSignature"/> -->
+		<exclude name="Squiz.ControlStructures.ControlSignature"/>
+	</rule>
 
-		<!-- <exclude name="Squiz.ControlStructures.ElseIfDeclaration"/> -->
-		<!-- <exclude name="Squiz.ControlStructures.ForEachLoopDeclaration"/> -->
-		<!-- <exclude name="Squiz.ControlStructures.ForLoopDeclaration"/> -->
-		<!-- <exclude name="Squiz.ControlStructures.InlineIfDeclaration"/> -->
-		<!-- <exclude name="Squiz.ControlStructures.LowercaseDeclaration"/> -->
-		<!-- <exclude name="Squiz.ControlStructures.SwitchDeclaration"/> -->
-		<!-- <exclude name="Squiz.CSS.ClassDefinitionClosingBraceSpace"/> -->
-		<!-- <exclude name="Squiz.CSS.ClassDefinitionNameSpacing"/> -->
-		<!-- <exclude name="Squiz.CSS.ClassDefinitionOpeningBraceSpace"/> -->
-		<!-- <exclude name="Squiz.CSS.ColonSpacing"/> -->
-		<!-- <exclude name="Squiz.CSS.ColourDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.DisallowMultipleStyleDefinitions"/> -->
-		<!-- <exclude name="Squiz.CSS.DuplicateClassDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.DuplicateStyleDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.EmptyClassDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.EmptyStyleDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.ForbiddenStyles"/> -->
-		<!-- <exclude name="Squiz.CSS.Indentation"/> -->
-		<!-- <exclude name="Squiz.CSS.LowercaseStyleDefinition"/> -->
-		<!-- <exclude name="Squiz.CSS.MissingColon"/> -->
-		<!-- <exclude name="Squiz.CSS.NamedColours"/> -->
-		<!-- <exclude name="Squiz.CSS.Opacity"/> -->
-		<!-- <exclude name="Squiz.CSS.SemicolonSpacing"/> -->
-		<!-- <exclude name="Squiz.CSS.ShorthandSize"/> -->
-		<!-- <exclude name="Squiz.Debug.JavaScriptLint"/> -->
-		<!-- <exclude name="Squiz.Debug.JSLint"/> -->
-		<!-- <exclude name="Squiz.Files.FileExtension"/> -->
-		<!-- <exclude name="Squiz.Formatting.OperatorBracket"/> -->
-		<!-- <exclude name="Squiz.Functions.FunctionDeclaration"/> -->
-		<!-- <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/> -->
-		<!-- <exclude name="Squiz.Functions.FunctionDuplicateArgument"/> -->
-		<!-- <exclude name="Squiz.Functions.GlobalFunction"/> -->
-		<!-- <exclude name="Squiz.Functions.LowercaseFunctionKeywords"/> -->
-		<!-- <exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/> -->
-		<!-- <exclude name="Squiz.NamingConventions.ConstantCase"/> -->
-		<!-- <exclude name="Squiz.NamingConventions.ValidFunctionName"/> -->
-		<!-- <exclude name="Squiz.NamingConventions.ValidVariableName"/> -->
-		<!-- <exclude name="Squiz.Objects.DisallowObjectStringIndex"/> -->
-		<!-- <exclude name="Squiz.Objects.ObjectInstantiation"/> -->
-		<!-- <exclude name="Squiz.Objects.ObjectMemberComma"/> -->
-		<!-- <exclude name="Squiz.Operators.ComparisonOperatorUsage"/> -->
-		<!-- <exclude name="Squiz.Operators.IncrementDecrementUsage"/> -->
-		<!-- <exclude name="Squiz.Operators.ValidLogicalOperators"/> -->
-		<!-- <exclude name="Squiz.PHP.CommentedOutCode"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowBooleanStatement"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowComparisonAssignment"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowInlineIf"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowMultipleAssignments"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowObEndFlush"/> -->
-		<!-- <exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops"/> -->
-		<!-- <exclude name="Squiz.PHP.DiscouragedFunctions"/> -->
-		<!-- <exclude name="Squiz.PHP.EmbeddedPhp"/> -->
-		<!-- <exclude name="Squiz.PHP.Eval"/> -->
-		<!-- <exclude name="Squiz.PHP.ForbiddenFunctions"/> -->
-		<!-- <exclude name="Squiz.PHP.GlobalKeyword"/> -->
-		<!-- <exclude name="Squiz.PHP.Heredoc"/> -->
-		<!-- <exclude name="Squiz.PHP.InnerFunctions"/> -->
-		<!-- <exclude name="Squiz.PHP.LowercasePHPFunctions"/> -->
-		<!-- <exclude name="Squiz.PHP.NonExecutableCode"/> -->
-		<!-- <exclude name="Squiz.Scope.MemberVarScope"/> -->
-		<!-- <exclude name="Squiz.Scope.MethodScope"/> -->
-		<!-- <exclude name="Squiz.Scope.StaticThisUsage"/> -->
-		<!-- <exclude name="Squiz.Strings.ConcatenationSpacing"/> -->
-		<!-- <exclude name="Squiz.Strings.DoubleQuoteUsage"/> -->
-		<!-- <exclude name="Squiz.Strings.EchoedStrings"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.CastSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.ControlStructureSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.FunctionSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.LogicalOperatorSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.MemberVarSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.OperatorSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.PropertyLabelSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.ScopeClosingBrace"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.ScopeKeywordSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.SemicolonSpacing"/> -->
-		<!-- <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace"/> -->
-	<!-- </rule> -->
+	<!-- ========== Squiz ======================================== -->
 
-	<!-- <rule ref="Zend"> -->
-		<!-- <exclude name="Zend.Debug.CodeAnalyzer"/> -->
-		<!-- <exclude name="Zend.Files.ClosingTag"/> -->
-		<!-- <exclude name="Zend.NamingConventions.ValidVariableName"/> -->
-	<!-- </rule> -->
+	<!-- Do not use spaces before or after array brakets -->
+	<rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+
+	<!--
+	<rule ref="Squiz.Arrays.ArrayDeclaration"/>
+	<rule ref="Squiz.Classes.ClassDeclaration"/>
+	<rule ref="Squiz.Classes.ClassFileName"/>
+	<rule ref="Squiz.Classes.DuplicateProperty"/>
+	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+	<rule ref="Squiz.Classes.SelfMemberReference"/>
+	<rule ref="Squiz.Classes.ValidClassName"/>
+	<rule ref="Squiz.CodeAnalysis.EmptyStatement"/>
+	<rule ref="Squiz.Commenting.BlockComment"/>
+	<rule ref="Squiz.Commenting.ClassComment"/>
+	<rule ref="Squiz.Commenting.ClosingDeclarationComment"/>
+	<rule ref="Squiz.Commenting.DocCommentAlignment"/>
+	<rule ref="Squiz.Commenting.EmptyCatchComment"/>
+	<rule ref="Squiz.Commenting.FileComment"/>
+	<rule ref="Squiz.Commenting.FunctionComment"/>
+	<rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
+	<rule ref="Squiz.Commenting.InlineComment"/>
+	<rule ref="Squiz.Commenting.LongConditionClosingComment"/>
+	<rule ref="Squiz.Commenting.PostStatementComment"/>
+	<rule ref="Squiz.Commenting.VariableComment"/>
+	<rule ref="Squiz.ControlStructures.ControlSignature"/>
+	<rule ref="Squiz.ControlStructures.ElseIfDeclaration"/>
+	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+	<rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
+	<rule ref="Squiz.ControlStructures.InlineIfDeclaration"/>
+	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+	<rule ref="Squiz.ControlStructures.SwitchDeclaration"/>
+	<rule ref="Squiz.CSS.ClassDefinitionClosingBraceSpace"/>
+	<rule ref="Squiz.CSS.ClassDefinitionNameSpacing"/>
+	<rule ref="Squiz.CSS.ClassDefinitionOpeningBraceSpace"/>
+	<rule ref="Squiz.CSS.ColonSpacing"/>
+	<rule ref="Squiz.CSS.ColourDefinition"/>
+	<rule ref="Squiz.CSS.DisallowMultipleStyleDefinitions"/>
+	<rule ref="Squiz.CSS.DuplicateClassDefinition"/>
+	<rule ref="Squiz.CSS.DuplicateStyleDefinition"/>
+	<rule ref="Squiz.CSS.EmptyClassDefinition"/>
+	<rule ref="Squiz.CSS.EmptyStyleDefinition"/>
+	<rule ref="Squiz.CSS.ForbiddenStyles"/>
+	<rule ref="Squiz.CSS.Indentation"/>
+	<rule ref="Squiz.CSS.LowercaseStyleDefinition"/>
+	<rule ref="Squiz.CSS.MissingColon"/>
+	<rule ref="Squiz.CSS.NamedColours"/>
+	<rule ref="Squiz.CSS.Opacity"/>
+	<rule ref="Squiz.CSS.SemicolonSpacing"/>
+	<rule ref="Squiz.CSS.ShorthandSize"/>
+	<rule ref="Squiz.Debug.JavaScriptLint"/>
+	<rule ref="Squiz.Debug.JSLint"/>
+	<rule ref="Squiz.Files.FileExtension"/>
+	<rule ref="Squiz.Formatting.OperatorBracket"/>
+	<rule ref="Squiz.Functions.FunctionDeclaration"/>
+	<rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+	<rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterHint"/>
+	<rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
+	<rule ref="Squiz.Functions.GlobalFunction"/>
+	<rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
+	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration"/>
+	<rule ref="Squiz.NamingConventions.ConstantCase"/>
+	<rule ref="Squiz.NamingConventions.ValidFunctionName"/>
+	<rule ref="Squiz.NamingConventions.ValidVariableName"/>
+	<rule ref="Squiz.Objects.DisallowObjectStringIndex"/>
+	<rule ref="Squiz.Objects.ObjectInstantiation"/>
+	<rule ref="Squiz.Objects.ObjectMemberComma"/>
+	<rule ref="Squiz.Operators.ComparisonOperatorUsage"/>
+	<rule ref="Squiz.Operators.IncrementDecrementUsage"/>
+	<rule ref="Squiz.Operators.ValidLogicalOperators"/>
+	<rule ref="Squiz.PHP.CommentedOutCode"/>
+	<rule ref="Squiz.PHP.DisallowBooleanStatement"/>
+	<rule ref="Squiz.PHP.DisallowComparisonAssignment"/>
+	<rule ref="Squiz.PHP.DisallowInlineIf"/>
+	<rule ref="Squiz.PHP.DisallowMultipleAssignments"/>
+	<rule ref="Squiz.PHP.DisallowObEndFlush"/>
+	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+	<rule ref="Squiz.PHP.DiscouragedFunctions"/>
+	<rule ref="Squiz.PHP.EmbeddedPhp"/>
+	<rule ref="Squiz.PHP.Eval"/>
+	<rule ref="Squiz.PHP.ForbiddenFunctions"/>
+	<rule ref="Squiz.PHP.GlobalKeyword"/>
+	<rule ref="Squiz.PHP.Heredoc"/>
+	<rule ref="Squiz.PHP.InnerFunctions"/>
+	<rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+	<rule ref="Squiz.PHP.NonExecutableCode"/>
+	<rule ref="Squiz.Scope.MemberVarScope"/>
+	<rule ref="Squiz.Scope.MethodScope"/>
+	<rule ref="Squiz.Scope.StaticThisUsage"/>
+	<rule ref="Squiz.Strings.ConcatenationSpacing"/>
+	<rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+	<rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
+	<rule ref="Squiz.Strings.EchoedStrings"/>
+	<rule ref="Squiz.WhiteSpace.CastSpacing"/>
+	<rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+	<rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/>
+	<rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
+	<rule ref="Squiz.WhiteSpace.FunctionSpacing"/>
+	<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+	<rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>
+	<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing"/>
+	<rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
+	<rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/>
+	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
+	<rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
+	<rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile"/>
+	-->
+
+	<!-- ========== Zend ======================================== -->
+
+	<!--
+	<rule ref="Zend.Debug.CodeAnalyzer"/>
+	<rule ref="Zend.Files.ClosingTag"/>
+	<rule ref="Zend.NamingConventions.ValidVariableName"/>
+	-->
 
 </ruleset>
+

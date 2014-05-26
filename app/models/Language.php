@@ -182,7 +182,7 @@ class Language extends BaseModel {
 
 		foreach($haystack as $lang)
 		{
-			if(strtolower($lang->locale) == $needle OR $lang->code == $needle)
+			if(strtolower($lang->locale) == $needle or $lang->code == $needle)
 				return $lang;
 		}
 

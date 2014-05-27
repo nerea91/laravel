@@ -38,22 +38,22 @@ class GettextCommand extends Command {
 	public function fire()
 	{
 		//Set directories
-		$input_path = app_path() . DIRECTORY_SEPARATOR . 'views';
-		$output_path = storage_path() . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR;
+		$inputPath = app_path() . DIRECTORY_SEPARATOR . 'views';
+		$outputPath = storage_path() . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR;
 
-		//Create or empty $output_path
-		if (File::isDirectory($output_path))
-			File::cleanDirectory($output_path);
+		//Create or empty $outputPath
+		if (File::isDirectory($outputPath))
+			File::cleanDirectory($outputPath);
 		else
-			File::makeDirectory($output_path);
+			File::makeDirectory($outputPath);
 
 		//Configure BladeCompiler to use our own custom storage subfolder
-		$compiler = new BladeCompiler(new \Illuminate\Filesystem\Filesystem, $output_path);
+		$compiler = new BladeCompiler(new \Illuminate\Filesystem\Filesystem, $outputPath);
 		$compiled = 0;
 
 		//Get all view files
-		$all_files = File::allFiles($input_path);
-		foreach($all_files as $f)
+		$allFiles = File::allFiles($inputPath);
+		foreach($allFiles as $f)
 		{
 			//Skip not blade templates
 			$file = $f->getPathName();
@@ -66,13 +66,13 @@ class GettextCommand extends Command {
 
 			//Rename to human friendly
 			$human =  str_replace(DIRECTORY_SEPARATOR, '-', ltrim($f->getRelativePathname(), DIRECTORY_SEPARATOR));
-			File::move($output_path . md5($file), $output_path . $human . '.php');
+			File::move($outputPath . md5($file), $outputPath . $human . '.php');
 		}
 
 		if($compiled)
 			$this->info("$compiled files compiled.");
 		else
-			$this->error('No .blade.php files found in '.$input_path);
+			$this->error('No .blade.php files found in '.$inputPath);
 	}
 
 	/**

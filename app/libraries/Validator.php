@@ -88,7 +88,8 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array   $parameters
 	 * @return bool
 	 */
-	protected static function validateMaxLength($attribute, $value, $parameters) {
+	protected static function validateMaxLength($attribute, $value, $parameters)
+	{
 		return (strlen($value) <= $parameters[0]);
 	}
 
@@ -101,7 +102,8 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array   $parameters
 	 * @return bool
 	 */
-	protected static function validateMinLength($attribute, $value, $parameters) {
+	protected static function validateMinLength($attribute, $value, $parameters)
+	{
 		return (strlen($value) >= $parameters[0]);
 	}
 
@@ -114,7 +116,8 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array   $parameters
 	 * @return bool
 	 */
-	protected static function validateLength($attribute, $value, $parameters) {
+	protected static function validateLength($attribute, $value, $parameters)
+	{
 		return (strlen($value) == $parameters[0]);
 	}
 
@@ -128,7 +131,8 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array   $parameters
 	 * @return bool
 	 */
-	public function validateUniqueWith($attribute, $value, $parameters) {
+	public function validateUniqueWith($attribute, $value, $parameters)
+	{
 		$table = $parameters[0];
 
 		// The second parameter position holds the name of the column that needs to
@@ -203,14 +207,25 @@ class Validator extends \Illuminate\Validation\Validator {
 	 * @param  array   $parameters
 	 * @return string
 	 */
-	protected function replaceMaxLength($message, $attribute, $rule, $parameters) { return $this->replaceLength($message, $attribute, $rule, $parameters);}
-	protected function replaceMinLength($message, $attribute, $rule, $parameters) { return $this->replaceLength($message, $attribute, $rule, $parameters);}
-	protected function replaceLength($message, $attribute, $rule, $parameters) { return str_replace(array(':length'), $parameters, $message);}
-	protected function replaceUniqueWith($message, $attribute, $rule, $parameters) {
+	protected function replaceMaxLength($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceLength($message, $attribute, $rule, $parameters);
+	}
+	protected function replaceMinLength($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceLength($message, $attribute, $rule, $parameters);
+	}
+	protected function replaceLength($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(array(':length'), $parameters, $message);
+	}
+	protected function replaceUniqueWith($message, $attribute, $rule, $parameters)
+	{
 		$fields = array($attribute);
 		for($i = 1; $i < sizeof($parameters); $i++)
 			$fields[] = $parameters[$i];
 		$fields = implode(', ', $fields);
+
 		return str_replace(':fields', $fields, $message);
 	}
 

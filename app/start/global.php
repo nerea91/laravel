@@ -43,8 +43,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 */
 if ( ! $app->runningInConsole())
 {
-	$app->singleton('language', function ()
-	{
+	$app->singleton('language', function () {
 		return Language::detect()->setLocale();
 	});
 }
@@ -62,14 +61,14 @@ if ( ! $app->runningInConsole())
 |
 */
 
-App::error(function (Exception $exception, $code)
-{
+App::error(function (Exception $exception, $code) {
+
+	// Add exception to log file
 	Log::error($exception);
 
 	//If debug is enabled keep using the default error view
-	if (Config::get('app.debug')) {
+	if (Config::get('app.debug'))
 		return;
-	}
 
 	$message = $exception->getMessage();
 
@@ -103,8 +102,7 @@ App::error(function (Exception $exception, $code)
 |
 */
 
-App::down(function ()
-{
+App::down(function () {
 	return Response::view('errors.maintenance', array('title' => _('Maintenance')), 503);
 });
 

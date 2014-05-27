@@ -107,6 +107,7 @@ if ( ! function_exists('link_to_sort_by'))
 	}
 }
 
+// @codingStandardsIgnoreStart
 /**
  * http_build_url
  * Stand alone version of http_build_url (http://php.net/manual/en/function.http-build-url.php)
@@ -248,7 +249,7 @@ if( ! function_exists('http_build_url'))
 		.((isset($url['port'])) ? ':' . $url['port'] : '')
 		.((isset($url['path'])) ? $url['path'] : '')
 		.((isset($url['query'])) ? '?' . $url['query'] : '')
-		.((isset($url['fragment'])) ? '#' . $url['fragment'] : '')
-		;
+		.((isset($url['fragment'])) ? '#' . $url['fragment'] : '');
 	}
 }
+// @codingStandardsIgnoreEnd

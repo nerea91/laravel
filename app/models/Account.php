@@ -7,9 +7,35 @@ class Account extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Account');}	// Singular form of this model's name
-	public function plural() { return _('Accounts');}	// Singular name of this model's name
-	public function __toString() { return $this->user . ' (' . $this->provider . ')';}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Account');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Accounts');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->user . ' (' . $this->provider . ')';
+	}
 
 	// Validation ==================================================================
 
@@ -133,7 +159,6 @@ class Account extends BaseModel {
 				$table = 'users';
 				$relatedColumn = 'username';
 				break;
-
 
 			case 'provider_id':
 				$table = 'authproviders';

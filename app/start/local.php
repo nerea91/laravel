@@ -11,6 +11,6 @@ if ( ! $app->runningInConsole())
 	// Log the detected language
 	Log::info(value(function () {
 		$lang = App::make('language');
-		return $lang .' detected from ' . $lang->detected_from;
+		return $lang .' detected from ' . $lang->detectedFrom;
 	}));
 }

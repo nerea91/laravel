@@ -8,9 +8,35 @@ class Country extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Country');}	// Singular form of this model's name
-	public function plural() { return _('Countries');}	// Singular name of this model's name
-	public function __toString() { return $this->name;}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Country');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Countries');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->name;
+	}
 
 	// Validation ==================================================================
 

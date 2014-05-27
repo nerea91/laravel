@@ -8,9 +8,35 @@ class Currency extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Currency');}	// Singular form of this model's name
-	public function plural() { return _('Currencies');}	// Singular name of this model's name
-	public function __toString() { return $this->code;}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Currency');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Currencies');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->code;
+	}
 
 	// Validation ==================================================================
 
@@ -60,9 +86,9 @@ class Currency extends BaseModel {
 		$search = self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
 
 		if(strlen($query) == 3)
-			$search->orWhere('code',$query);
+			$search->orWhere('code', $query);
 
-		return $search->orderBy('name')->get();;
+		return $search->orderBy('name')->get();
 	}
 
 	// Logic =======================================================================

@@ -6,9 +6,35 @@ class Profile extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Profile');}	// Singular form of this model's name
-	public function plural() { return _('Profiles');}	// Singular name of this model's name
-	public function __toString() { return $this->name;}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Profile');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Profiles');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->name;
+	}
 
 	// Validation ==================================================================
 
@@ -43,14 +69,12 @@ class Profile extends BaseModel {
 
 		parent::boot();
 
-		static::saved(function ($profile)
-		{
+		static::saved(function ($profile) {
 			// Purge permissions cache
 			Cache::forget("profile{$profile->id}permissions");
 		});
 
-		static::deleted(function ($profile)
-		{
+		static::deleted(function ($profile) {
 			// Purge permissions cache
 			Cache::forget("profile{$profile->id}permissions");
 		});

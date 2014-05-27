@@ -9,9 +9,35 @@ class AuthProvider extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Auth. provider');}	// Singular form of this model's name
-	public function plural() { return _('Auth. providers');}	// Singular name of this model's name
-	public function __toString() { return $this->title;}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Auth. provider');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Auth. providers');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->title;
+	}
 
 	// Validation ==================================================================
 

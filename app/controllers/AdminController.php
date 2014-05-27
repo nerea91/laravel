@@ -85,7 +85,7 @@ class AdminController extends BaseController {
 		else
 			Cache::forget($cache_id);
 
-		return Redirect::route('admin')->withInput();;
+		return Redirect::route('admin')->withInput();
 	}
 
 }

@@ -8,9 +8,35 @@ class Language extends BaseModel {
 
 	// Meta ========================================================================
 
-	public function singular() { return _('Language');}	// Singular form of this model's name
-	public function plural() { return _('Languages');}	// Singular name of this model's name
-	public function __toString() { return $this->english_name;}
+	/**
+	 * Singular form of this model's name
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return _('Language');
+	}
+
+	/**
+	 * Plural form of this model's name
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return _('Languages');
+	}
+
+	/**
+	 * What should be returned when this model is casted to string
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->english_name;
+	}
 
 	// Validation ==================================================================
 
@@ -44,8 +70,8 @@ class Language extends BaseModel {
 
 		parent::boot();
 
-		static::saved(function ($language)
-		{
+		static::saved(function ($language) {
+
 			// Only one Language can be the default
 			if($language->is_default)
 				Language::where('id', '<>', $language->id)->update(array('is_default' => 0));
@@ -54,8 +80,8 @@ class Language extends BaseModel {
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
 
-		static::deleted(function ($language)
-		{
+		static::deleted(function ($language) {
+
 			// Purge cache
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
@@ -114,7 +140,7 @@ class Language extends BaseModel {
 			if(isset($lang->id) and $all->contains($lang->id))
 			{
 				$lang = $all->find($lang->id);
-				$lang->detected_from = 'session';
+				$lang->detectedFrom = 'session';
 				return $lang;
 			}
 		}
@@ -126,7 +152,7 @@ class Language extends BaseModel {
 		// If subdomain found check if it's valid
 		if(isset($matches[1]) and ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
 		{
-			$lang->detected_from = 'subdomain';
+			$lang->detectedFrom = 'subdomain';
 			return $lang;
 		}
 
@@ -136,7 +162,7 @@ class Language extends BaseModel {
 		// Try with the browser
 		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) or $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
-			$default->detected_from = 'default (browser languages not available)';
+			$default->detectedFrom = 'default (browser languages not available)';
 			return $default;
 		}
 
@@ -146,13 +172,13 @@ class Language extends BaseModel {
 			$lang = self::findByLocaleOrCode($lang, $all);
 			if( ! is_null($lang))
 			{
-				$lang->detected_from = 'browser';
+				$lang->detectedFrom = 'browser';
 				return $lang;
 			}
 		}
 
 		// Fallback to default
-		$default->detected_from = "default (browser doesn't have any known language)";
+		$default->detectedFrom = "default (browser doesn't have any known language)";
 		return $default;
 	}
 

@@ -118,7 +118,8 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 		// If $this has 'id' use it as excluded key for "unique" and "unique_with" rules
 		$table = $this->getTable();
 		$except = ($this->getKey()) ? ','.$this->getKey() : null;
-		$rules = $this->getRules();$rules2 = $this->getRules();
+		$rules = $this->getRules();
+		$rules2 = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
 			foreach($fieldRules as $ruleName => &$ruleData)
@@ -209,28 +210,28 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model {
 
 		parent::boot();
 
-		static::saving(function ($model)
-		{
+		static::saving(function ($model) {
+
 			// Global muttator to convert empty attributes to null
 			$model->convertEmptyAttributesToNull();
 		});
 
-		static::creating(function ($model)
-		{
+		static::creating(function ($model) {
+
 			// Validate the model
 			if( ! $model->validate(true))
 				return false;
 		});
 
-		static::updating(function ($model)
-		{
+		static::updating(function ($model) {
+
 			// Validate the model
 			if( ! $model->validate(true))
 				return false;
 		});
 
-		static::deleting(function ($model)
-		{
+		static::deleting(function ($model) {
+
 			// Check delete restrictions for the model
 			if( ! $model->deletable(true))
 				return false;

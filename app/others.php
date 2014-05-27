@@ -25,8 +25,7 @@ View::composer('layouts.base', 'BaseLayoutComposer');
 |--------------------------------------------------------------------------
 */
 
-Event::listen('account.login', function ($account)
-{
+Event::listen('account.login', function ($account) {
 	// Update IP address
 	$account->last_ip = Request::getClientIp();
 	$account->save();
@@ -38,14 +37,12 @@ Event::listen('account.login', function ($account)
 	$account->provider()->increment('login_count');
 });
 
-Event::listen('auth.login', function ($user)
-{
+Event::listen('auth.login', function ($user) {
 	// Change application language to current user's language
 	$user->applyLanguage();
 });
 
-Event::listen('auth.logout', function ($user)
-{
+Event::listen('auth.logout', function ($user) {
 	// Reset default application language
 	Session::forget('language');
 
@@ -59,8 +56,7 @@ Event::listen('auth.logout', function ($user)
 |--------------------------------------------------------------------------
 */
 
-Validator::resolver(function ($translator, $data, $rules, $messages)
-{
+Validator::resolver(function ($translator, $data, $rules, $messages) {
 	return new \Stolz\Validation\Validator($translator, $data, $rules, $messages);
 });
 
@@ -79,8 +75,7 @@ Validator::resolver(function ($translator, $data, $rules, $messages)
  * @param  array   $options
  * @return string
  */
-Form::macro('checkboxes', function ($name, $values, $checked = array(), $options = array())
-{
+Form::macro('checkboxes', function ($name, $values, $checked = array(), $options = array()) {
 	return Form::checkables('checkbox', $name, $values, $checked, $options);
 });
 
@@ -93,8 +88,7 @@ Form::macro('checkboxes', function ($name, $values, $checked = array(), $options
  * @param  array   $options
  * @return string
  */
-Form::macro('radios', function ($name, $values, $checked = array(), $options = array())
-{
+Form::macro('radios', function ($name, $values, $checked = array(), $options = array()) {
 	return Form::checkables('radio', $name, $values, $checked, $options);
 });
 
@@ -116,8 +110,7 @@ Form::macro('radios', function ($name, $values, $checked = array(), $options = a
  * @return string
  */
 
-Form::macro('checkables', function ($type, $name, $values, $checked, $options)
-{
+Form::macro('checkables', function ($type, $name, $values, $checked, $options) {
 	// Unset options that should not to be passed to Form::*
 	$legend = (isset($options['legend'])) ? $options['legend'] : false;
 	$small = (isset($options['small'])) ? $options['small'] : 2;

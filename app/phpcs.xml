@@ -45,6 +45,7 @@ For manually running php-cs-fixer without artisan:
 
 	<!--<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>-->
 	<!--<rule ref="Generic.Commenting.Todo"/>-->
+	<!--Control structures musy use brakets-->
 	<!--<rule ref="Generic.ControlStructures.InlineControlStructure"/>-->
 	<!--<rule ref="Generic.Debug.ClosureLinter"/>-->
 	<!--<rule ref="Generic.Debug.ClosureLinter.ExternalToolError"/>-->
@@ -80,13 +81,21 @@ For manually running php-cs-fixer without artisan:
 	<!--<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>-->
 	<!--<rule ref="Generic.Metrics.CyclomaticComplexity"/>-->
 	<!--<rule ref="Generic.Metrics.NestingLevel"/>-->
-	<!--<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>-->
-	<!--<rule ref="Generic.NamingConventions.ConstructorName"/>-->
+
+	<!--Function name in camelCase-->
+	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+		<!--Allow helpers with snake_case-->
+		<exclude-pattern>helpers.php</exclude-pattern>
+	</rule>
+
+	<!--PHP5 constructor syntax "function __construct()"-->
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
 
 	<!--Class constants all upper case with underscore separators-->
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
 
-	<!--<rule ref="Generic.PHP.DeprecatedFunctions"/>-->
+	<!--Check for deprecated functions-->
+	<rule ref="Generic.PHP.DeprecatedFunctions"/>
 	<!--<rule ref="Generic.PHP.DisallowShortOpenTag"/>-->
 	<!--<rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound"/>-->
 
@@ -136,7 +145,10 @@ For manually running php-cs-fixer without artisan:
 	<!--<rule ref="PEAR.Classes.ClassDeclaration"/>-->
 	<!--<rule ref="PEAR.Commenting.ClassComment"/>-->
 	<!--<rule ref="PEAR.Commenting.FileComment"/>-->
+
+	<!--Ensure functions have comment with proper format-->
 	<!--<rule ref="PEAR.Commenting.FunctionComment"/>-->
+
 	<!--<rule ref="PEAR.Commenting.InlineComment"/>-->
 	<!--<rule ref="PEAR.ControlStructures.ControlSignature"/>-->
 	<!--<rule ref="PEAR.ControlStructures.MultiLineCondition"/>-->
@@ -199,7 +211,9 @@ For manually running php-cs-fixer without artisan:
 	<!--<rule ref="Squiz.Classes.ClassFileName"/>-->
 	<!--<rule ref="Squiz.Classes.DuplicateProperty"/>-->
 	<!--<rule ref="Squiz.Classes.LowercaseClassKeywords"/>-->
-	<!--<rule ref="Squiz.Classes.SelfMemberReference"/>-->
+
+	<!--Proper use of "self"-->
+	<rule ref="Squiz.Classes.SelfMemberReference"/>
 
 	<!--Class names in StudlyCaps-->
 	<rule ref="Squiz.Classes.ValidClassName"/>

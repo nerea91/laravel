@@ -109,7 +109,7 @@ class Profile extends BaseModel {
 	 */
 	public static function existSimilar($permissions, $excluded_id = null)
 	{
-		$profiles = (is_null($excluded_id)) ? Profile::all() : Profile::where('id', '<>', $excluded_id)->get();
+		$profiles = (is_null($excluded_id)) ? self::all() : self::where('id', '<>', $excluded_id)->get();
 		$permissions = array_map('intval', $permissions);
 		sort($permissions);
 

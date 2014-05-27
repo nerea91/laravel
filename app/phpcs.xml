@@ -96,6 +96,7 @@ For manually running php-cs-fixer without artisan:
 
 	<!--Check for deprecated functions-->
 	<rule ref="Generic.PHP.DeprecatedFunctions"/>
+
 	<!--<rule ref="Generic.PHP.DisallowShortOpenTag"/>-->
 	<!--<rule ref="Generic.PHP.DisallowShortOpenTag.EchoFound"/>-->
 

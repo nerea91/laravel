@@ -277,12 +277,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 			case 'profile_id':
 				$table = 'profiles';
 				$relatedColumn = 'name';
-			break;
+				break;
 
 			case 'country_id':
 				$table = 'countries';
 				$relatedColumn = 'name';
-			break;
+				break;
 		}
 
 		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';

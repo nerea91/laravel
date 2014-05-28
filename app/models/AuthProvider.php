@@ -1,6 +1,7 @@
 <?php
 
-class AuthProvider extends BaseModel {
+class AuthProvider extends BaseModel
+{
 
 	protected $table = 'authproviders';
 	protected $softDelete = true;
@@ -117,5 +118,4 @@ class AuthProvider extends BaseModel {
 
 		return parent::scopeOrderByUrl($query);
 	}
-
 }

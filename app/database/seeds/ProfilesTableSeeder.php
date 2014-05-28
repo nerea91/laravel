@@ -1,6 +1,7 @@
 <?php
 
-class ProfilesTableSeeder extends Seeder {
+class ProfilesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -13,5 +14,4 @@ class ProfilesTableSeeder extends Seeder {
 		//Add all permissions to Superuser profile
 		DB::insert('INSERT INTO permission_profile (permission_id, profile_id) SELECT id, 1 FROM permissions');
 	}
-
 }

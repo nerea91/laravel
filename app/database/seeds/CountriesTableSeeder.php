@@ -1,6 +1,7 @@
 <?php
 
-class CountriesTableSeeder extends Seeder {
+class CountriesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -258,5 +259,4 @@ class CountriesTableSeeder extends Seeder {
 
 		DB::table('countries')->insert($countries);
 	}
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class AdminController extends BaseController {
+class AdminController extends BaseController
+{
 
 	protected $layout = 'layouts.admin';
 
@@ -87,5 +88,4 @@ class AdminController extends BaseController {
 
 		return Redirect::route('admin')->withInput();
 	}
-
 }

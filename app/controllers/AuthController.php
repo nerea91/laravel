@@ -1,6 +1,7 @@
 <?php
 
-class AuthController extends BaseController {
+class AuthController extends BaseController
+{
 
 	protected $layout = 'layouts.base';
 
@@ -57,5 +58,4 @@ class AuthController extends BaseController {
 		Session::flush();
 		return Redirect::to('/');
 	}
-
 }

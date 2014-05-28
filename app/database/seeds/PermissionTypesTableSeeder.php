@@ -1,6 +1,7 @@
 <?php
 
-class PermissionTypesTableSeeder extends Seeder {
+class PermissionTypesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -16,5 +17,4 @@ class PermissionTypesTableSeeder extends Seeder {
 
 		DB::table('permissiontypes')->insert($types);
 	}
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class HomeController extends BaseController {
+class HomeController extends BaseController
+{
 
 	protected $layout = 'layouts.base';
 
@@ -78,5 +79,4 @@ class HomeController extends BaseController {
 		// Post/Redirect/Get Pattern (http://en.wikipedia.org/wiki/Post/Redirect/Get)
 		return Redirect::back()->withSuccess(_('Message sent!'));
 	}
-
 }

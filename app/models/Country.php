@@ -1,6 +1,7 @@
 <?php
 
-class Country extends BaseModel {
+class Country extends BaseModel
+{
 
 	public $timestamps = false;
 	protected $softDelete = true;
@@ -99,5 +100,4 @@ class Country extends BaseModel {
 	}
 
 	// Logic =======================================================================
-
 }

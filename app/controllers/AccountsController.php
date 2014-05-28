@@ -1,6 +1,7 @@
 <?php
 
-class AccountsController extends BaseResourceController {
+class AccountsController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -34,5 +35,4 @@ class AccountsController extends BaseResourceController {
 		// Eager load model with these relations
 		return parent::index('user', 'provider');
 	}
-
 }

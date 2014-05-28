@@ -1,6 +1,7 @@
 <?php
 
-class PermissionType extends BaseModel {
+class PermissionType extends BaseModel
+{
 
 	public $table = 'permissiontypes';
 	public $timestamps = false;
@@ -44,5 +45,4 @@ class PermissionType extends BaseModel {
 	{
 		return $query->has('permissions')->orderBy('name')->remember(60*24, 'usedPermissionTypes')->get();
 	}
-
 }

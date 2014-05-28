@@ -1,6 +1,7 @@
 <?php
 
-class LanguagesTableSeeder extends Seeder {
+class LanguagesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -39,5 +40,4 @@ class LanguagesTableSeeder extends Seeder {
 		// Set default
 		DB::table('languages')->where('code', 'en')->update(array('is_default' => 1));
 	}
-
 }

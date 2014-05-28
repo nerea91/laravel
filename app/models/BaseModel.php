@@ -24,7 +24,8 @@
 	}
 */
 
-class BaseModel extends \Illuminate\Database\Eloquent\Model {
+class BaseModel extends \Illuminate\Database\Eloquent\Model
+{
 
 	/**
 	 * Validation rules

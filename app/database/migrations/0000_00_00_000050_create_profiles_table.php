@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProfilesTable extends Migration {
+class CreateProfilesTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -36,5 +37,4 @@ class CreateProfilesTable extends Migration {
 	{
 		Schema::dropIfExists('profiles');
 	}
-
 }

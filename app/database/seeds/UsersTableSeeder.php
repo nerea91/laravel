@@ -1,6 +1,7 @@
 <?php
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -10,5 +11,4 @@ class UsersTableSeeder extends Seeder {
 
 		DB::table('users')->insert($users);
 	}
-
 }

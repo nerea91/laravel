@@ -1,6 +1,7 @@
 <?php
 
-class CurrenciesController extends BaseResourceController {
+class CurrenciesController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -23,5 +24,4 @@ class CurrenciesController extends BaseResourceController {
 			'delete'=> Auth::user()->hasPermission(123),
 		]);
 	}
-
 }

@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePermissionsTable extends Migration {
+class CreatePermissionsTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -36,5 +37,4 @@ class CreatePermissionsTable extends Migration {
 	{
 		Schema::dropIfExists('permissions');
 	}
-
 }

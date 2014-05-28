@@ -1,6 +1,7 @@
 <?php
 
-class CurrenciesTableSeeder extends Seeder {
+class CurrenciesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -200,5 +201,4 @@ class CurrenciesTableSeeder extends Seeder {
 
 		DB::table('currencies')->insert($currencies);
 	}
-
 }

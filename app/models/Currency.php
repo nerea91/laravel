@@ -1,6 +1,7 @@
 <?php
 
-class Currency extends BaseModel {
+class Currency extends BaseModel
+{
 
 	public $timestamps = false;
 	protected $softDelete = true;

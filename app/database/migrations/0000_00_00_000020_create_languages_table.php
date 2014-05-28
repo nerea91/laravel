@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLanguagesTable extends Migration {
+class CreateLanguagesTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -40,5 +41,4 @@ class CreateLanguagesTable extends Migration {
 	{
 		Schema::dropIfExists('languages');
 	}
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class UserPanelController extends BaseController {
+class UserPanelController extends BaseController
+{
 
 	protected $layout = 'layouts.admin';
 
@@ -71,5 +72,4 @@ class UserPanelController extends BaseController {
 
 		return Redirect::back()->withSuccess(_('Password updated'));
 	}
-
 }

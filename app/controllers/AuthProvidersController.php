@@ -1,6 +1,7 @@
 <?php
 
-class AuthProvidersController extends BaseResourceController {
+class AuthProvidersController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -34,5 +35,4 @@ class AuthProvidersController extends BaseResourceController {
 		// Eager load model with this relation
 		return parent::index('accounts');
 	}
-
 }

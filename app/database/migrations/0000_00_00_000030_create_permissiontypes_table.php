@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePermissiontypesTable extends Migration {
+class CreatePermissiontypesTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -33,5 +34,4 @@ class CreatePermissiontypesTable extends Migration {
 	{
 		Schema::dropIfExists('permissiontypes');
 	}
-
 }

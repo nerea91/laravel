@@ -3,7 +3,8 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends BaseModel implements UserInterface, RemindableInterface {
+class User extends BaseModel implements UserInterface, RemindableInterface
+{
 
 	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
@@ -364,5 +365,4 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 		return $this;
 	}
-
 }

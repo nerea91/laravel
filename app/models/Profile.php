@@ -1,6 +1,7 @@
 <?php
 
-class Profile extends BaseModel {
+class Profile extends BaseModel
+{
 
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
@@ -260,5 +261,4 @@ class Profile extends BaseModel {
 		// Invert condition
 		return ($excludedProfiles) ? self::whereNotIn('id', array_fetch($excludedProfiles, 'profile_id'))->get() : self::all();
 	}
-
 }

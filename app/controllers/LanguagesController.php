@@ -1,6 +1,7 @@
 <?php
 
-class LanguagesController extends BaseResourceController {
+class LanguagesController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -34,5 +35,4 @@ class LanguagesController extends BaseResourceController {
 		// Eager load model with this relation
 		return parent::index('users');
 	}
-
 }

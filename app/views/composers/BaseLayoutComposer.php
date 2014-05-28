@@ -1,6 +1,7 @@
 <?php
 
-class BaseLayoutComposer {
+class BaseLayoutComposer
+{
 
 	public function compose($view)
 	{
@@ -26,5 +27,4 @@ class BaseLayoutComposer {
 			$view->with('debugbar', App::make('debugbar')->getJavascriptRenderer()->render());
 		}
 	}
-
 }

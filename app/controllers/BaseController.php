@@ -1,6 +1,7 @@
 <?php
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
 
 	/**
 	 * Common constructor for all our controllers
@@ -23,5 +24,4 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
-
 }

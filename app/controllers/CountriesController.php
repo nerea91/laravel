@@ -1,6 +1,7 @@
 <?php
 
-class CountriesController extends BaseResourceController {
+class CountriesController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -23,5 +24,4 @@ class CountriesController extends BaseResourceController {
 			'delete'=> Auth::user()->hasPermission(13),
 		]);
 	}
-
 }

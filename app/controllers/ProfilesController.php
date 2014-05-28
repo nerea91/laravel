@@ -1,6 +1,7 @@
 <?php
 
-class ProfilesController extends BaseResourceController {
+class ProfilesController extends BaseResourceController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -38,7 +39,6 @@ class ProfilesController extends BaseResourceController {
 		// Eager load model with this relation
 		return parent::index('users');
 	}
-
 }
 
 //	// Make sure we are not duplicating profiles

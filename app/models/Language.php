@@ -1,6 +1,7 @@
 <?php
 
-class Language extends BaseModel {
+class Language extends BaseModel
+{
 
 	public $timestamps = false;
 	protected $softDelete = true;
@@ -288,5 +289,4 @@ class Language extends BaseModel {
 	{
 		return (object) $this->toArray();
 	}
-
 }

@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAuthprovidersTable extends Migration {
+class CreateAuthprovidersTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -40,5 +41,4 @@ class CreateAuthprovidersTable extends Migration {
 	{
 		Schema::dropIfExists('authproviders');
 	}
-
 }

@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCurrenciesTable extends Migration {
+class CreateCurrenciesTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -46,5 +47,4 @@ class CreateCurrenciesTable extends Migration {
 	{
 		Schema::dropIfExists('currencies');
 	}
-
 }

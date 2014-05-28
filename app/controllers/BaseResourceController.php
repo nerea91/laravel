@@ -4,7 +4,8 @@
  * Common part for all resource controllers.
  */
 
-class BaseResourceController extends \BaseController {
+class BaseResourceController extends \BaseController
+{
 
 	/**
 	 * The layout that should be used for responses.
@@ -243,5 +244,4 @@ class BaseResourceController extends \BaseController {
 
 		return $response;
 	}
-
 }

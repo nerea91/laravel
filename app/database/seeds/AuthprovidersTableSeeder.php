@@ -1,6 +1,7 @@
 <?php
 
-class AuthprovidersTableSeeder extends Seeder {
+class AuthprovidersTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -10,5 +11,4 @@ class AuthprovidersTableSeeder extends Seeder {
 
 		DB::table('authproviders')->insert($providers);
 	}
-
 }

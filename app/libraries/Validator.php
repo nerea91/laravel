@@ -1,6 +1,7 @@
 <?php namespace Stolz\Validation;
 
-class Validator extends \Illuminate\Validation\Validator {
+class Validator extends \Illuminate\Validation\Validator
+{
 
 	/**
 	 * Create a new Validator instance.

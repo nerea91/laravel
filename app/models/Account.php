@@ -1,6 +1,7 @@
 <?php
 
-class Account extends BaseModel {
+class Account extends BaseModel
+{
 
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token', 'last_ip');
@@ -173,5 +174,4 @@ class Account extends BaseModel {
 		->leftJoin($table, $column, '=', "$table.id") // Include related table
 		->orderBy("$table.$relatedColumn", $direction); // Sort by related column
 	}
-
 }

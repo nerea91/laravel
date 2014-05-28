@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePermissionProfileTable extends Migration {
+class CreatePermissionProfileTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -41,5 +42,4 @@ class CreatePermissionProfileTable extends Migration {
 	{
 		Schema::dropIfExists('permission_profile');
 	}
-
 }

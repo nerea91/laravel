@@ -1,31 +1,31 @@
-#!/bin/bash
-# Script to translate using GNU Gettext
+#!/bin/sh
+
+# Script to translate using GNU Gettext.
+
+source "$( cd "$( dirname "$0" )" && pwd )/common"
 
 ####### CONFIG #################################################################
 
-# Where to look for files ...
-BASE_DIR="$( cd "$( dirname "$0" )" && cd .. && pwd )"
+LARAVEL_DIR="`laravel_dir`"
 
-php $BASE_DIR/../artisan gettext
+# Where to look for files ...
+APP_DIR="$LARAVEL_DIR/app"
 
 # What files to look for ...
 EXT="*.php"
 
-# Directory (relative to $BASE_DIR) where translations will be stored
+# Directory (relative to $APP_DIR) where translations will be stored
 LOCALE_DIR="lang"
 
 ####### DO NOT MODIFY BELOW HERE ###############################################
 
-function exit_error
-{
-	echo "ERROR: $1"
-	exit 1
-}
+color "Compiling Blade view files"
+php $LARAVEL_DIR/artisan gettext
 
 # Choose locale
-echo "Choose language you are going to transtale into:
+color "Choose language you are going to transtale into:
 	1.- English
-	2.- Spanish"
+	2.- Spanish" "yellow"
 read LOCALE
 case "$LOCALE" in
 	"1" )LOCALE="en_US";;
@@ -34,12 +34,12 @@ case "$LOCALE" in
 esac
 
 # Create destination dir
-DIR="$BASE_DIR/$LOCALE_DIR/$LOCALE/LC_MESSAGES"
+DIR="$APP_DIR/$LOCALE_DIR/$LOCALE/LC_MESSAGES"
 mkdir -p "$DIR" || exit_error "Unable to create $DIR"
 
 # Generate .pot template
 TEMPLATE_FILE="$DIR/messages.pot"
-find "$BASE_DIR" -type f -iname "$EXT" | xgettext --no-wrap --sort-by-file --from-code=UTF-8 -o- -f- | sed "s,$BASE_DIR,,g" | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
+find "$APP_DIR" -type f -iname "$EXT" | xgettext --no-wrap --sort-by-file --from-code=UTF-8 -o- -f- | sed "s,$APP_DIR,,g" | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
 
 # If an old translation exists, make a copy and merge it with the new template
 TRANSLATED_FILE="$DIR/messages.po"
@@ -58,4 +58,4 @@ fi
 # Generate binary catalog file
 msgfmt --verbose --output-file "$DIR/messages.mo" "$TRANSLATED_FILE" || exit_error "Unable to generae binary catalog"
 
-exit 0
+exit $?

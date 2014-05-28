@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Delete old files
+
+source "$( cd "$( dirname "$0" )" && pwd )/common"
+
+go_to_laravel_dir
+
+color "Deleting obsolete files in `pwd`" red
+color "Press ENTER to continue or CONTROL+C to cancel" yellow
+read
+
+find . -type f \( -name ".*~" -o -name "*~" -o -name "*.php.orig" \) -exec rm {} \;
+
+exit $?

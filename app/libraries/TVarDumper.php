@@ -1,5 +1,7 @@
 <?php
 
+// @codingStandardsIgnoreStart
+
 /**
 * TVarDumper class file
 *
@@ -126,3 +128,5 @@ class TVarDumper
 		}
 	}
 }
+
+// @codingStandardsIgnoreEnd

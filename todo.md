@@ -1,5 +1,6 @@
 # Pending tasks
 
+- Create a Git hook for checking code quiality (PHP_Sniffer?) before each commit or push
 - Find a way to purge cache after seeding DB
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
 - Make usernames in lower case unique.

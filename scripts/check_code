@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Check code for quality assurance using:
+# - PHP's Native Linter
+# - PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
+
+source "$( cd "$( dirname "$0" )" && pwd )/common"
+go_to_laravel_dir
+
+# PHP Linter ###################################################################
+
+# color "Running PHP lint" cyan
+# find . -type f -iname "*.php" -not -path "./vendor/*" -print0 | while IFS= read -r -d $'\0' file; do
+# 	php -lf $file > /dev/null
+# 	[[ $? -eq 0 ]] || exit_error "`pwd`/$file needs to be fixed to continue"
+# done
+# color OK
+
+
+# PHP_CodeSniffer ##############################################################
+
+# Check for PHP_CodeSniffer composer installation
+if [[ ! -x ./vendor/bin/phpcs ]]; then
+	exit_error "PHP_CodeSniffer script not found. Install it with : composer require 'squizlabs/php_codesniffer=2.*' --dev"
+fi
+
+# Run PHP_CodeSniffer
+
+color "Running PHP_CodeSniffer" cyan
+./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --report-source -p
+if [[ $? -ne 0 ]]; then
+	# If violations found run interactively
+	color "Standard coding violations found" red
+	# to-do probar ./vendor/bin/phpcbf para autocorregir el codigo. https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically
+	color "Running PHP_CodeSniffer in interactive mode" cyan
+	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 -s -a
+fi

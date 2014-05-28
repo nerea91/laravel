@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Fix file and directory permissions for webserver
+
+# Default user and group if none is provided as argument
+USER=${1:-javi}
+GROUP=${2:-nginx}
+
+source "$( cd "$( dirname "$0" )" && pwd )/common"
+
+go_to_laravel_dir
+
+color "Changing permissions for `pwd`"
+color "Owner will be set to $USER:$GROUP. Use $0 [user] [group] to customize this" "yellow"
+
+# Default safe permissions
+find . -type d -exec chmod 770 {} \;
+find . -type f -exec chmod 660 {} \;
+
+# Exec permission for scripts
+chmod 760 artisan scripts/* vendor/bin/*
+find . -type f -name "*.sh" -exec chmod 760 {} \;
+
+# Owner
+chown $USER:$GROUP . -R
+
+exit $?

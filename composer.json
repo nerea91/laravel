@@ -16,7 +16,7 @@
 		"way/generators": "dev-master",
 		"daylerees/container-debug": "dev-master",
 		"stolz/laravel-schema-spy": "dev-develop",
-		"bca/laravel-inspect": "dev-master"
+		"squizlabs/php_codesniffer": "2.*"
 	},
 	"autoload": {
 		"classmap": [

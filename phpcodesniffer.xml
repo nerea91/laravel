@@ -4,8 +4,10 @@
 
 	<description>Stolz's custom PSR-2 rules for Laravel</description>
 
+	<exclude-pattern>/database/schema/</exclude-pattern>
+	<exclude-pattern>/exceptions.php</exclude-pattern>
 	<exclude-pattern>/storage/</exclude-pattern>
-	<exclude-pattern>*/database/schema/*</exclude-pattern>
+	<exclude-pattern>/tests/</exclude-pattern>
 
 	<!--RULES ARE IN ALPHABETICAL ORDER-->
 
@@ -35,11 +37,6 @@
 	<!--Suppress warning for some files without PHP code-->
 	<rule ref="Internal.NoCodeFound">
 		<exclude-pattern>/views/</exclude-pattern>
-	</rule>
-
-	<!--Allow declaring multiple clases in some files-->
-	<rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
-		<exclude-pattern>libraries/exceptions.php</exclude-pattern>
 	</rule>
 
 	<rule ref="PSR2">

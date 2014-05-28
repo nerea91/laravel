@@ -116,6 +116,7 @@ App::down(function () {
 |
 */
 
-require app_path().'/helpers.php';
-require app_path().'/filters.php';
-require app_path().'/others.php';
+require app_path('helpers.php');
+require app_path('filters.php');
+require app_path('others.php');
+require app_path('exceptions.php');

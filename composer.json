@@ -11,12 +11,11 @@
 	},
 	"require-dev": {
 		"stolz/laravel-html-tidy": "dev-develop",
-		"barryvdh/laravel-debugbar": "dev-master",
-		"firephp/firephp-core": "dev-master",
-		"way/generators": "dev-master",
-		"daylerees/container-debug": "dev-master",
 		"stolz/laravel-schema-spy": "dev-develop",
-		"squizlabs/php_codesniffer": "2.*"
+		"way/generators": "dev-master",
+		"barryvdh/laravel-debugbar": "dev-master",
+		"squizlabs/php_codesniffer": "2.*",
+		"daylerees/container-debug": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -25,9 +24,9 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
+			"app/tests/TestCase.php",
 			"app/libraries",
-			"app/views/composers",
-			"app/tests/TestCase.php"
+			"app/views/composers"
 		]
 	},
 	"scripts": {

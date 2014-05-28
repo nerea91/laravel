@@ -27,7 +27,8 @@ fi
 # Run PHP_CodeSniffer
 
 color "Running PHP_CodeSniffer" cyan
-./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --report-source -p
+./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s
+
 if [[ $? -ne 0 ]]; then
 	# If violations found run interactively
 	color "Standard coding violations found" red
@@ -35,5 +36,5 @@ if [[ $? -ne 0 ]]; then
 	read
 	# to-do probar ./vendor/bin/phpcbf para autocorregir el codigo. https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically
 	color "Running PHP_CodeSniffer in interactive mode" cyan
-	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 -s -a
+	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --tab-width=4 -s -a
 fi

@@ -13,14 +13,18 @@ function usage
 {
 	color "Usage:" "yellow"
 	echo
-	color "    $0 -l | -s | -i" "yellow"
+	color "    $0 -l | -s [sniffs] | -i [sniffs]" "yellow"
 	echo
 	color "where:" "yellow"
 	echo
 	color "    -l Run PHP linter (Search for syntax errors)" "yellow"
 	color "    -s Run PHP_CodeSniffer (Search for coding standard violations)" "yellow"
-	color "    -i Run PHP_CodeSniffer interactive mode (file by file)" "yellow"
+	color "    -i Run PHP_CodeSniffer in interactive mode (file by file)" "yellow"
 	color "    -h Show this help menu" "yellow"
+	echo
+	color "and:" "yellow"
+	echo
+	color "    [sniffs] A comma separated lists of sniffs to filter by" "yellow"
 }
 
 # Rund PHP Linter ##############################################################
@@ -56,8 +60,11 @@ function check_sniffer_is_installed
 function isniffer
 {
 	check_sniffer_is_installed
+
+	[[ -z $1 ]] && sniffs="" || sniffs="--sniffs=$1"
+
 	color "Running PHP_CodeSniffer in interactive mode" cyan
-	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --tab-width=4 -s -a
+	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --tab-width=4 -s -a $sniffs
 	color OK
 	exit 0
 }
@@ -68,14 +75,21 @@ function sniffer
 {
 	check_sniffer_is_installed
 
+	[[ -z $1 ]] && sniffs="" || sniffs="--sniffs=$1"
+
 	color "Running PHP_CodeSniffer" cyan
-	./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s
+	./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s $sniffs
 
 	if [[ $? -ne 0 ]]; then
 		color "Standard coding violations found" red
 		color "Press ENTER to run sniffer in interactive mode or CONTROL+C to cancel" yellow
-		read
-		isniffer
+		color "Provide a comma separated list of rules (sniffs) if you want to limit results" yellow
+		read newsniffs
+
+		# If no new sniffs provided use original ones
+		[[ -z $newsniffs ]] && sniffs="$1" || sniffs="$newsniffs"
+
+		isniffer $sniffs
 	else
 		color OK
 		exit 0
@@ -91,7 +105,7 @@ function wrong_parameters
 	exit 1;
 }
 
-# Read parameters ##############################################################
+# Read command line parameters #################################################
 
 while getopts "lsih" opt; do
 case $opt in
@@ -100,11 +114,11 @@ case $opt in
 	;;
 
 	s)
-	sniffer
+	sniffer $2
 	;;
 
 	i)
-	isniffer
+	isniffer $2
 	;;
 
 	h)

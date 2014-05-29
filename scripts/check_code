@@ -40,7 +40,7 @@ function linter
 
 function check_sniffer_is_installed
 {
-	if [[ ! -x ./vendor/bin/phpcsa ]]; then
+	if [[ ! -x ./vendor/bin/phpcs ]]; then
 		color "PHP_CodeSniffer script not found" "red"
 		echo
 		color "Install it with composer:" "yellow"

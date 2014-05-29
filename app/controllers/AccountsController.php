@@ -18,10 +18,10 @@ class AccountsController extends BaseResourceController
 	public function __construct(Account $resource)
 	{
 		parent::__construct($resource, $permissions = [
-			'view'	=> Auth::user()->hasPermission(100),
-			'add'	=> Auth::user()->hasPermission(101),
-			'edit'	=> Auth::user()->hasPermission(102),
-			'delete'=> Auth::user()->hasPermission(103),
+			'view'	 => Auth::user()->hasPermission(100),
+			'add'	 => Auth::user()->hasPermission(101),
+			'edit'	 => Auth::user()->hasPermission(102),
+			'delete' => Auth::user()->hasPermission(103),
 		]);
 	}
 

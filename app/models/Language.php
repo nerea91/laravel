@@ -190,7 +190,7 @@ class Language extends BaseModel
 	 */
 	public static function getAllByPriority()
 	{
-		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60*12 /*12 hours*/, 'allLanguagesOrderedByPriority')->get();
+		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60 * 12 /*12 hours*/, 'allLanguagesOrderedByPriority')->get();
 	}
 
 	/**

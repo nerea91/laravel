@@ -67,7 +67,7 @@ class UserPanelController extends BaseController
 
 		// Update password
 		$user->password = $input['password'];
-		if ( ! $user->removeRule('password', 'confirmed')->save())
+		if( ! $user->removeRule('password', 'confirmed')->save())
 			return Redirect::back()->withInput($input)->withErrors($user->getErrors());
 
 		return Redirect::back()->withSuccess(_('Password updated'));

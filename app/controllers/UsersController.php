@@ -18,10 +18,10 @@ class UsersController extends BaseResourceController
 	public function __construct(User $resource)
 	{
 		parent::__construct($resource, $permissions = [
-			'view'	=> Auth::user()->hasPermission(60),
-			'add'	=> Auth::user()->hasPermission(61),
-			'edit'	=> Auth::user()->hasPermission(62),
-			'delete'=> Auth::user()->hasPermission(63),
+			'view'	 => Auth::user()->hasPermission(60),
+			'add'	 => Auth::user()->hasPermission(61),
+			'edit'	 => Auth::user()->hasPermission(62),
+			'delete' => Auth::user()->hasPermission(63),
 		]);
 	}
 

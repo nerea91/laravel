@@ -18,10 +18,10 @@ class ProfilesController extends BaseResourceController
 	public function __construct(Profile $resource)
 	{
 		parent::__construct($resource, $permissions = [
-			'view'	=> Auth::user()->hasPermission(40),
-			'add'	=> Auth::user()->hasPermission(41),
-			'edit'	=> Auth::user()->hasPermission(42),
-			'delete'=> Auth::user()->hasPermission(43),
+			'view'	 => Auth::user()->hasPermission(40),
+			'add'	 => Auth::user()->hasPermission(41),
+			'edit'	 => Auth::user()->hasPermission(42),
+			'delete' => Auth::user()->hasPermission(43),
 		]);
 
 		$this->relationships = [

@@ -21,7 +21,7 @@ class HomeController extends BaseController
 		foreach(App::make('router')->getRoutes() as $route)
 		{
 			$name = $route->getName();
-			if (substr($name, 0, 6) != 'admin.' and in_array('GET', $route->methods()))
+			if(substr($name, 0, 6) != 'admin.' and in_array('GET', $route->methods()))
 				$data['routes'][$name] = link_to($route->uri(), $name, [], $route->secure());
 		}
 

@@ -43,7 +43,7 @@ class GettextCommand extends Command
 		$outputPath = storage_path() . DIRECTORY_SEPARATOR . 'gettext' . DIRECTORY_SEPARATOR;
 
 		//Create or empty $outputPath
-		if (File::isDirectory($outputPath))
+		if(File::isDirectory($outputPath))
 			File::cleanDirectory($outputPath);
 		else
 			File::makeDirectory($outputPath);
@@ -66,7 +66,7 @@ class GettextCommand extends Command
 			$compiled++;
 
 			//Rename to human friendly
-			$human =  str_replace(DIRECTORY_SEPARATOR, '-', ltrim($f->getRelativePathname(), DIRECTORY_SEPARATOR));
+			$human = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($f->getRelativePathname(), DIRECTORY_SEPARATOR));
 			File::move($outputPath . md5($file), $outputPath . $human . '.php');
 		}
 

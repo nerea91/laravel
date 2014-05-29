@@ -18,10 +18,10 @@ class AuthProvidersController extends BaseResourceController
 	public function __construct(AuthProvider $resource)
 	{
 		parent::__construct($resource, $permissions = [
-			'view'	=> Auth::user()->hasPermission(80),
-			'add'	=> Auth::user()->hasPermission(81),
-			'edit'	=> Auth::user()->hasPermission(82),
-			'delete'=> Auth::user()->hasPermission(83),
+			'view'	 => Auth::user()->hasPermission(80),
+			'add'	 => Auth::user()->hasPermission(81),
+			'edit'	 => Auth::user()->hasPermission(82),
+			'delete' => Auth::user()->hasPermission(83),
 		]);
 	}
 

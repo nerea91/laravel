@@ -16,7 +16,7 @@
 		<exclude-pattern>database/migrations/</exclude-pattern>
 	</rule>
 
-	<!--Use spaces after cast-->
+	<!--Use space after cast-->
 	<rule ref="Generic.Formatting.SpaceAfterCast"/>
 
 	<!--Function name in camelCase-->
@@ -40,6 +40,9 @@
 	</rule>
 
 	<rule ref="PSR2">
+		<!--Allow one line control structures to have no curly braces-->
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+
 		<!--Allow long lines-->
 		<exclude name="Generic.Files.LineLength.TooLong"/>
 
@@ -48,18 +51,42 @@
 
 		<!--Allow declaring classes without namespace-->
 		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+
+		<!--Allow spaces after open brace for spacing the "!" logical operator if ( ! $foo)-->
+		<exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+
+		<!--Do not enforce control structures curly braces on the same line-->
+		<exclude name="Squiz.ControlStructures.ControlSignature"/>
 	</rule>
+
+	<!--Do not use spaces gaps for array brakets-->
+	<rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+
+	<!--Use "self" instead of class name when possible-->
+	<rule ref="Squiz.Classes.SelfMemberReference"/>
+
+	<!--No duplicated class properties-->
+	<rule ref="Squiz.Classes.DuplicateProperty"/>
+
+	<!--Disallow size functions in loops"/>-->
+	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+
+	<!--PHP functions in lowecase-->
+	<rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+
+	<!--Force only one space at both sides of logical operators-->
+	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+
+	<!--Force space at both sides of operatos-->
+	<rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
 
 	<!--No whitespace before a semicolon-->
 	<rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-
 
 	<!--Blade files need close tags-->
 	<rule ref="Zend.Files.ClosingTag.NotAllowed">
 		<exclude-pattern>/views/*.blade.php</exclude-pattern>
 	</rule>
-
-</ruleset>
 
 	<!--UNUSED RULES-->
 
@@ -119,18 +146,10 @@
 
 	<!--========== Squiz ========================================-->
 
-	<!--Do not use spaces gaps for array brakets-->
-<!-- 	<rule ref="Squiz.Arrays.ArrayBracketSpacing"/> -->
-
 	<!--<rule ref="Squiz.Arrays.ArrayDeclaration"/>-->
 	<!--<rule ref="Squiz.Classes.ClassDeclaration"/>-->
 	<!--<rule ref="Squiz.Classes.ClassFileName"/>-->
-	<!--<rule ref="Squiz.Classes.DuplicateProperty"/>-->
 	<!--<rule ref="Squiz.Classes.LowercaseClassKeywords"/>-->
-
-	<!--Proper use of "self"-->
-<!-- 	<rule ref="Squiz.Classes.SelfMemberReference"/> -->
-
 	<!--<rule ref="Squiz.CodeAnalysis.EmptyStatement"/>-->
 	<!--<rule ref="Squiz.Commenting.BlockComment"/>-->
 	<!--<rule ref="Squiz.Commenting.ClassComment"/>-->
@@ -185,7 +204,6 @@
 	<!--<rule ref="Squiz.PHP.DisallowInlineIf"/>-->
 	<!--<rule ref="Squiz.PHP.DisallowMultipleAssignments"/>-->
 	<!--<rule ref="Squiz.PHP.DisallowObEndFlush"/>-->
-	<!--<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>-->
 	<!--<rule ref="Squiz.PHP.DiscouragedFunctions"/>-->
 	<!--<rule ref="Squiz.PHP.EmbeddedPhp"/>-->
 	<!--<rule ref="Squiz.PHP.Eval"/>-->
@@ -193,7 +211,6 @@
 	<!--<rule ref="Squiz.PHP.GlobalKeyword"/>-->
 	<!--<rule ref="Squiz.PHP.Heredoc"/>-->
 	<!--<rule ref="Squiz.PHP.InnerFunctions"/>-->
-	<!--<rule ref="Squiz.PHP.LowercasePHPFunctions"/>-->
 	<!--<rule ref="Squiz.PHP.NonExecutableCode"/>-->
 	<!--<rule ref="Squiz.Scope.MemberVarScope"/>-->
 	<!--<rule ref="Squiz.Scope.StaticThisUsage"/>-->
@@ -207,10 +224,8 @@
 	<!--<rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>-->
 	<!--<rule ref="Squiz.WhiteSpace.FunctionSpacing"/>-->
 	<!--<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>-->
-	<!--<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>-->
 	<!--<rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>-->
 	<!--<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing"/>-->
-	<!--<rule ref="Squiz.WhiteSpace.OperatorSpacing"/>-->
 	<!--<rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/>-->
 
 	<!--========== Zend ========================================-->
@@ -221,3 +236,7 @@
 		<!--Protected variable don't need an underscore prefix-->
 <!-- 		<exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore"/> -->
 <!-- 	</rule> -->
+
+</ruleset>
+
+

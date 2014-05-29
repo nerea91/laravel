@@ -137,7 +137,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		$validator = \Validator::make($this->attributes, $rules);
 		$validator->setAttributeNames($this->getLabels());
 
-		if ( ! $validator->passes())
+		if( ! $validator->passes())
 		{
 			$this->setErrors($validator->messages());
 			return false;
@@ -148,7 +148,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		if($triggered_by_event)
 		{
 			foreach($this->attributes as $name => $value)
-				if (ends_with($name, '_confirmation'))
+				if(ends_with($name, '_confirmation'))
 					unset($this->{$name});
 		}
 
@@ -313,7 +313,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 	 */
 	public function getVisibleLabels()
 	{
-		if (count($this->visible) > 0)
+		if(count($this->visible) > 0)
 		{
 			return array_intersect_key($this->labels, array_flip($this->visible));
 		}
@@ -457,12 +457,12 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 	 */
 	public function convertEmptyAttributesToNull()
 	{
-		foreach ($this->toArray() as $attribute => $value)
+		foreach($this->toArray() as $attribute => $value)
 		{
 			if( ! is_null($value) and ! is_array($value))
 			{
 				$value = trim($value);
-				if ( ! strlen($value))
+				if( ! strlen($value))
 					$this->{$attribute} = null;
 			}
 		}

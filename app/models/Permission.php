@@ -48,7 +48,7 @@ class Permission extends BaseModel
 	public static function getGroupedByType()
 	{
 		$permissions = array();
-		foreach(self::orderBy('name')->remember(60*24, 'allPermissionsGroupedByType')->get() as $p)
+		foreach(self::orderBy('name')->remember(60 * 24, 'allPermissionsGroupedByType')->get() as $p)
 			$permissions[$p->type_id][$p->id] = $p->name;
 		return $permissions;
 	}

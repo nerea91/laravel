@@ -41,7 +41,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | Set application language and bind it to the IoC container.
 |
 */
-if ( ! $app->runningInConsole())
+if( ! $app->runningInConsole())
 {
 	$app->singleton('language', function () {
 		return Language::detect()->setLocale();
@@ -67,18 +67,18 @@ App::error(function (Exception $exception, $code) {
 	Log::error($exception);
 
 	//If debug is enabled keep using the default error view
-	if (Config::get('app.debug'))
+	if(Config::get('app.debug'))
 		return;
 
 	$message = $exception->getMessage();
 
 	$data = [
 	'title'	=> _('Error')." $code",
-		'header'=> $message,
-		'code'	=> $code
+		'header' => $message,
+		'code'	 => $code
 	];
 
-	switch ($code)
+	switch($code)
 	{
 		case 401:
 			return Response::view('errors/401', $data, $code);

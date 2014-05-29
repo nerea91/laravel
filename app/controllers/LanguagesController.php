@@ -18,10 +18,10 @@ class LanguagesController extends BaseResourceController
 	public function __construct(Language $resource)
 	{
 		parent::__construct($resource, $permissions = [
-			'view'	=> Auth::user()->hasPermission(20),
-			'add'	=> Auth::user()->hasPermission(21),
-			'edit'	=> Auth::user()->hasPermission(22),
-			'delete'=> Auth::user()->hasPermission(23),
+			'view'	 => Auth::user()->hasPermission(20),
+			'add'	 => Auth::user()->hasPermission(21),
+			'edit'	 => Auth::user()->hasPermission(22),
+			'delete' => Auth::user()->hasPermission(23),
 		]);
 	}
 

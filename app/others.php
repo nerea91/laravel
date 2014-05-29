@@ -118,7 +118,7 @@ Form::macro('checkables', function ($type, $name, $values, $checked, $options) {
 	$large = (isset($options['large'])) ? $options['large'] : 4;
 	unset($options['legend'], $options['small'], $options['medium'], $options['large']);
 
-	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>'  : null;
+	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>' : null;
 	if($legend and $type == 'checkbox')
 		$out .= '
 		<div class="checkbox_togglers">

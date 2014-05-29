@@ -10,7 +10,7 @@
 |
 */
 
-if ( ! function_exists('p'))
+if( ! function_exists('p'))
 {
 	/**
 	 * Dump (with colors) the passed variables.
@@ -27,7 +27,7 @@ if ( ! function_exists('p'))
 	}
 }
 
-if ( ! function_exists('ñ'))
+if( ! function_exists('ñ'))
 {
 	/**
 	 * Dump (with colors) the passed variables and end the script.
@@ -42,7 +42,7 @@ if ( ! function_exists('ñ'))
 	}
 }
 
-if ( ! function_exists('f'))
+if( ! function_exists('f'))
 {
 	/**
 	 * Log the passed variable to FirePHP
@@ -57,7 +57,7 @@ if ( ! function_exists('f'))
 	}
 }
 
-if ( ! function_exists('replace_last_segment'))
+if( ! function_exists('replace_last_segment'))
 {
 	/**
 	 * Replace the last segment from a route name.
@@ -79,7 +79,7 @@ if ( ! function_exists('replace_last_segment'))
 	}
 }
 
-if ( ! function_exists('link_to_sort_by'))
+if( ! function_exists('link_to_sort_by'))
 {
 	/**
 	 * Build up links for sorting resource by column (?sortby=column)
@@ -208,7 +208,7 @@ if( ! function_exists('http_build_url'))
 					if(false !== strpos($url['path'], './'))
 					{
 						// Remove any '../' and their directories
-						while (preg_match('/\w+\/\.\.\//', $url['path'])) {
+						while(preg_match('/\w+\/\.\.\//', $url['path'])) {
 							$url['path']    = preg_replace('/\w+\/\.\.\//', '', $url['path']);
 						}
 
@@ -225,7 +225,7 @@ if( ! function_exists('http_build_url'))
 			// Join the original query string with the new query string
 			if(isset($parts['query']) && (HTTP_URL_JOIN_QUERY & $flags))
 			{
-				if (isset($url['query']))    $url['query']    .= '&' . $parts['query'];
+				if(isset($url['query']))    $url['query']    .= '&' . $parts['query'];
 				else                        $url['query']    = $parts['query'];
 			}
 		}

@@ -7,34 +7,115 @@
 source "$( cd "$( dirname "$0" )" && pwd )/common"
 go_to_laravel_dir
 
-# PHP Linter ###################################################################
+# Show script help #############################################################
 
-# color "Running PHP lint" cyan
-# find . -type f -iname "*.php" -not -path "./vendor/*" -print0 | while IFS= read -r -d $'\0' file; do
-# 	php -lf $file > /dev/null
-# 	[[ $? -eq 0 ]] || exit_error "`pwd`/$file needs to be fixed to continue"
-# done
-# color OK
+function usage
+{
+	color "Usage:" "yellow"
+	echo
+	color "    $0 -l | -s | -i" "yellow"
+	echo
+	color "where:" "yellow"
+	echo
+	color "    -l Run PHP linter (Search for syntax errors)" "yellow"
+	color "    -s Run PHP_CodeSniffer (Search for coding standard violations)" "yellow"
+	color "    -i Run PHP_CodeSniffer interactive mode (file by file)" "yellow"
+	color "    -h Show this help menu" "yellow"
+}
 
+# Rund PHP Linter ##############################################################
 
-# PHP_CodeSniffer ##############################################################
+function linter
+{
+	color "Running PHP lint" cyan
+	find . -type f -iname "*.php" -not -path "./vendor/*" -print0 | while IFS= read -r -d $'\0' file; do
+		php -lf $file > /dev/null
+		[[ $? -eq 0 ]] || exit_error "`pwd`/$file needs to be fixed to continue"
+	done
+	color OK
+	exit 0
+}
 
-# Check for PHP_CodeSniffer composer installation
-if [[ ! -x ./vendor/bin/phpcs ]]; then
-	exit_error "PHP_CodeSniffer script not found. Install it with : composer require 'squizlabs/php_codesniffer=2.*' --dev"
-fi
+# Check PHP_CodeSniffer is installed ###########################################
 
-# Run PHP_CodeSniffer
+function check_sniffer_is_installed
+{
+	if [[ ! -x ./vendor/bin/phpcsa ]]; then
+		color "PHP_CodeSniffer script not found" "red"
+		echo
+		color "Install it with composer:" "yellow"
+		echo
+		color "    require 'squizlabs/php_codesniffer=2.*' --dev" "yellow"
+		color "    composer update" "yellow"
+		exit 1
+	fi
+}
 
-color "Running PHP_CodeSniffer" cyan
-./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s
+# Run PHP_CodeSniffer inteactive mode ##########################################
 
-if [[ $? -ne 0 ]]; then
-	# If violations found run interactively
-	color "Standard coding violations found" red
-	color "Press ENTER to run sniffer in interactive mode" yellow
-	read
-	# to-do probar ./vendor/bin/phpcbf para autocorregir el codigo. https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically
+function isniffer
+{
+	check_sniffer_is_installed
 	color "Running PHP_CodeSniffer in interactive mode" cyan
 	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --tab-width=4 -s -a
-fi
+	color OK
+	exit 0
+}
+
+# Run PHP_CodeSniffer ##########################################################
+
+function sniffer
+{
+	check_sniffer_is_installed
+
+	color "Running PHP_CodeSniffer" cyan
+	./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s
+
+	if [[ $? -ne 0 ]]; then
+		color "Standard coding violations found" red
+		color "Press ENTER to run sniffer in interactive mode or CONTROL+C to cancel" yellow
+		read
+		isniffer
+	else
+		color OK
+		exit 0
+	fi
+}
+
+# Show wrong parameters message ################################################
+
+function wrong_parameters
+{
+	color "Wrong parameters" "red"
+	usage
+	exit 1;
+}
+
+# Read parameters ##############################################################
+
+while getopts "lsih" opt; do
+case $opt in
+	l)
+	linter
+	;;
+
+	s)
+	sniffer
+	;;
+
+	i)
+	isniffer
+	;;
+
+	h)
+	usage
+	exit 0
+	;;
+
+	\?)
+	wrong_parameters
+	;;
+esac
+done
+
+[[ $OPTIND -eq 0 ]] || wrong_parameters

@@ -16,7 +16,9 @@ App::before(function ($request) {
 });
 
 App::after(function ($request, $response) {
-	return App::make('stolz.filter.tidy')->filter(null, $request, $response);
+
+	if(App::bound('stolz.filter.tidy'))
+		return App::make('stolz.filter.tidy')->filter(null, $request, $response);
 });
 
 /*

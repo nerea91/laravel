@@ -10,6 +10,11 @@ color "Deleting obsolete files in `pwd`" red
 color "Press ENTER to continue or CONTROL+C to cancel" yellow
 read
 
-find . -type f \( -name ".*~" -o -name "*~" -o -name "*.php.orig" \) -exec rm {} \;
+# Editor backps
+find . -type f \( -name ".*~" -o -name "*~" \) -exec rm {} \;
 
-exit $?
+# Git conflicts remains
+find . -type f \( -name "*.php.orig" -o -name "*.php.BACKUP.*.php" -o -name "*.php.BASE.*.php" -o  -name "*.php.LOCAL.*.php" -o -name "*.php.REMOTE.*.php" \) -exec rm -i {} \;
+
+exit 0
+

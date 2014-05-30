@@ -58,6 +58,6 @@ function go_to_laravel_dir
 # Exit script with error message
 function exit_error
 {
-	color "ERROR: $1" "red"
+	color >&2 "ERROR: $@" "red"
 	exit 1
 }

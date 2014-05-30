@@ -21,7 +21,7 @@ class BaseLayoutComposer
 		$view->with('languages', $languages);
 
 		// Add PHP debugbar
-		if($debugbar = Config::get('laravel-debugbar::config.enabled', false))
+		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))
 		{
 			Assets::add('debugbar');
 			$view->with('debugbar', App::make('debugbar')->getJavascriptRenderer()->render());

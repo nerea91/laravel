@@ -2,10 +2,9 @@
 
 class PermissionsTableSeeder extends Seeder
 {
-
 	public function run()
 	{
-		$permissions = array(
+		$permissions = [
 
 			//Countries (Reserved range: 0-19)
 			['id' => 10, 'type_id' => 1, 'name' => _('View')],
@@ -49,7 +48,7 @@ class PermissionsTableSeeder extends Seeder
 			['id' => 122, 'type_id' => 7, 'name' => _('Edit')],
 			['id' => 123, 'type_id' => 7, 'name' => _('Delete')],
 
-		);
+		];
 
 		DB::table('permissions')->insert($permissions);
 	}

@@ -2,12 +2,11 @@
 
 class ProfilesTableSeeder extends Seeder
 {
-
 	public function run()
 	{
-		$profiles = array(
+		$profiles = [
 			['id' => 1, 'name' => 'Superuser', 'description' => 'Holds all the permissions'],
-		);
+		];
 
 		DB::table('profiles')->insert($profiles);
 

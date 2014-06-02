@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
 	{
 		Eloquent::unguard();
 
+		// Seeds
 		$this->call('CurrenciesTableSeeder');
 		$this->call('CountriesTableSeeder');
 		$this->call('LanguagesTableSeeder');
@@ -21,5 +22,8 @@ class DatabaseSeeder extends Seeder
 		$this->call('UsersTableSeeder');
 		$this->call('AuthprovidersTableSeeder');
 		$this->call('AccountsTableSeeder');
+
+		// Clear cache
+		Artisan::call('cache:clear');
 	}
 }

@@ -8,34 +8,34 @@ class GettextCommand extends Command
 {
 
 	/**
-	* The console command name.
-	*
-	* @var string
-	*/
+	 * The console command name.
+	 *
+	 * @var string
+	 */
 	protected $name = 'gettext';
 
 	/**
-	* The console command description.
-	*
-	* @var string
-	*/
+	 * The console command description.
+	 *
+	 * @var string
+	 */
 	protected $description = 'Compiles Blade templates into PHP for GNU gettext to be able to parse them';
 
 	/**
-	* Create a new command instance.
-	*
-	* @return void
-	*/
+	 * Create a new command instance.
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
 	/**
-	* Execute the console command.
-	*
-	* @return void
-	*/
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
 	public function fire()
 	{
 		//Set directories
@@ -77,25 +77,22 @@ class GettextCommand extends Command
 	}
 
 	/**
-	* Get the console command arguments.
-	*
-	* @return array
-	*/
+	 * Get the console command arguments.
+	 *
+	 * @return array
+	 */
 	protected function getArguments()
 	{
 		return array();
 	}
 
 	/**
-	* Get the console command options.
-	*
-	* @return array
-	*/
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
 	protected function getOptions()
 	{
-		/**
-		* return the options array
-		*/
 		return array();
 	}
 }

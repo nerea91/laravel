@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class AuthProvider extends BaseModel
 {
-
+	use SoftDeletingTrait;
 	protected $table = 'authproviders';
-	protected $softDelete = true;
 	protected $guarded = array('login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('oauth2_id', 'oauth2_secret');
 

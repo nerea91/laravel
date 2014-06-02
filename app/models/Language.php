@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Language extends BaseModel
 {
-
+	use SoftDeletingTrait;
 	public $timestamps = false;
-	protected $softDelete = true;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
 	// Meta ========================================================================

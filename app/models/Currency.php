@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Currency extends BaseModel
@@ -78,12 +79,12 @@ class Currency extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
+	 * @return Collection (of Currency)
 	 */
 	public static function search($query)
 	{
 		if(is_numeric($query))
-			return new Illuminate\Database\Eloquent\Collection;
+			return new Collection;
 
 		$search = self::where('name', 'LIKE', "%$query%")->orWhere('name2', 'LIKE', "%$query%");
 

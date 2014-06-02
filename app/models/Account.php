@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
+
 class Account extends BaseModel
 {
-
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token', 'last_ip');
 
@@ -101,7 +102,7 @@ class Account extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection (of Account)
+	 * @return Collection (of Account)
 	 */
 	public static function search($query)
 	{

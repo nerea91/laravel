@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Language extends BaseModel
@@ -98,12 +99,12 @@ class Language extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection (of Language)
+	 * @return Collection (of Language)
 	 */
 	public static function search($query)
 	{
 		if(is_numeric($query))
-			return new Illuminate\Database\Eloquent\Collection;
+			return new Collection;
 
 		$search = self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
 
@@ -187,7 +188,7 @@ class Language extends BaseModel
 	/**
 	 * Get all enabled languages sorted by priority
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of Language)
+	 * @return Collection (of Language)
 	 */
 	public static function getAllByPriority()
 	{
@@ -200,7 +201,7 @@ class Language extends BaseModel
 	 * Returns null if not found.
 	 *
 	 * @param  string $needle
-	 * @param  Illuminate\Database\Eloquent\Collection (of Language) $haystack
+	 * @param  Collection (of Language) $haystack
 	 * @return Language|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)

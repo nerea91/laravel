@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
+
 class Profile extends BaseModel
 {
-
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
 	// Meta ========================================================================
@@ -90,7 +91,7 @@ class Profile extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection (of Profile)
+	 * @return Collection (of Profile)
 	 */
 	public static function search($query)
 	{
@@ -241,7 +242,7 @@ class Profile extends BaseModel
 	/**
 	 * Get all profiles whose permissions are same as (or a subset of) $this profile permissions.
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of Profile)
+	 * @return Collection (of Profile)
 	 * @throws Exception
 	 */
 	public function getSimilarOrInferior()

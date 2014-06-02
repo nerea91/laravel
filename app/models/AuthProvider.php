@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class AuthProvider extends BaseModel
@@ -72,7 +73,7 @@ class AuthProvider extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
+	 * @return Collection (of AuthProvider)
 	 */
 	public static function search($query)
 	{

@@ -2,7 +2,6 @@
 
 class DatabaseSeeder extends Seeder
 {
-
 	/**
 	 * Run the database seeds.
 	 *
@@ -12,7 +11,10 @@ class DatabaseSeeder extends Seeder
 	{
 		Eloquent::unguard();
 
-		// Seeds
+		// Clear cache
+		Artisan::call('cache:clear');
+
+		// Seed
 		$this->call('CurrenciesTableSeeder');
 		$this->call('CountriesTableSeeder');
 		$this->call('LanguagesTableSeeder');
@@ -23,7 +25,11 @@ class DatabaseSeeder extends Seeder
 		$this->call('AuthprovidersTableSeeder');
 		$this->call('AccountsTableSeeder');
 
-		// Clear cache
-		Artisan::call('cache:clear');
+		// Setup initial configuration
+		Artisan::call('setup', [
+			'currencies' => ['EUR'],
+			//'countries' => [],
+			'languages' => ['en', 'es'], // First in the list will be the default
+		]);
 	}
 }

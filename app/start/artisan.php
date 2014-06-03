@@ -13,4 +13,5 @@
 
 Artisan::add(new Stolz\Artisan\GettextCommand);
 Artisan::add(new SetupCountriesCommand);
+Artisan::add(new SetupLanguagesCommand);
 Artisan::add(new SetupCommand);

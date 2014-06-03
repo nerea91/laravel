@@ -27,9 +27,10 @@ class DatabaseSeeder extends Seeder
 
 		// Setup initial configuration
 		Artisan::call('setup', [
-			'currencies' => ['EUR'],
-			//'countries' => [],
-			'languages' => ['en', 'es'], // First in the list will be the default
+			'--no-superuser'=> null,
+			'--currencies'	=> 'USD,EUR',
+			'--countries'	=> 'USA,ESP',
+			'--languages'	=> 'en,es', // First in the list will be the default one
 		]);
 	}
 }

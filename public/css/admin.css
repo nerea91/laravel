@@ -12,6 +12,8 @@ table.hover .actions {white-space:nowrap;}
 .flash-alert {margin:1em 20% 0}
 #delete-modal-form {padding-bottom:0}
 
+span.currency {white-space:nowrap}
+
 fieldset.checkables{padding-bottom:0;}
 /* fieldset.checkables li{padding-bottom:0;} */
 fieldset.checkables .checkbox_togglers {

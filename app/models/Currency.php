@@ -101,7 +101,7 @@ class Currency extends BaseModel
 	 *
 	 * @param  float
 	 * @param  integer
-	 * @return void
+	 * @return string
 	 */
 	public function format($number, $precision = 2)
 	{
@@ -110,6 +110,8 @@ class Currency extends BaseModel
 		if( ! strlen($this->symbol))
 			return $formated;
 
-		return ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
+		$formated = ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
+
+		return '<span class="currency">' . $formated . '</span>';
 	}
 }

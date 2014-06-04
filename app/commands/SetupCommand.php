@@ -17,7 +17,7 @@ class SetupCommand extends Command
 	 *
 	 * @var string
 	 */
-	protected $description = 'Setup default values for several database tables.';
+	protected $description = 'Setup default values for several database tables';
 
 	/**
 	 * Create a new command instance.

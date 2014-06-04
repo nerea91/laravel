@@ -12,7 +12,7 @@
 	<tr>
 		<td class="text-center">{{ $resource->code }}</td>
 		<td>{{ $resource->name }}</td>
-		<td class="text-right">{{ $resource->format(1234.56) }}</td>
+		<td class="text-right"><span class="currency">{{{ $resource->format(1234.56) }}}</span></td>
 		@include('resource.actions')
 	</tr>
 	@endforeach

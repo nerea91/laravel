@@ -110,8 +110,6 @@ class Currency extends BaseModel
 		if( ! strlen($this->symbol))
 			return $formated;
 
-		$formated = ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
-
-		return '<span class="currency">' . $formated . '</span>';
+		return ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
 	}
 }

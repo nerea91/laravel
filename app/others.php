@@ -132,13 +132,6 @@ Form::macro('checkables', function ($type, $name, $values, $checked, $options) {
 	foreach($values as $value => $label)
 	{
 		$options['id'] = $id = $name . $value;
-
-		/* BUG FormBuilder. to-do
-		 * No matter what value you pass as the 3th argument of Form::checkbox() or Form::radio(),
-		 * the input field will be ALWAYS checked if has the same name as a relationship.
-		 * http://forumsarchive.laravel.io/viewtopic.php?pid=54313
-		 * https://github.com/laravel/framework/issues/2548
-		 */
 		$check = in_array($value, $checked);
 
 		$out .= '<li><label for="' . $id . '" style="display:inline">';

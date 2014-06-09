@@ -6,7 +6,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"stolz/assets": "dev-master",
-		"stevenmaguire/zurb-foundation-laravel": "dev-master",
+		"stolz/zurb-foundation-laravel": "dev-master",
 		"binarix/foundation-pagination": "dev-master"
 	},
 	"require-dev": {

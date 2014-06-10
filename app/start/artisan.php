@@ -11,9 +11,10 @@
 |
 */
 
-Artisan::add(new Stolz\Artisan\GettextCommand);
-Artisan::add(new SetupCountriesCommand);
-Artisan::add(new SetupLanguagesCommand);
-Artisan::add(new SetupCurrenciesCommand);
-Artisan::add(new SetupSuperUserCommand);
 Artisan::add(new SetupCommand);
+Artisan::add(new SetupCountriesCommand);
+Artisan::add(new SetupCurrenciesCommand);
+Artisan::add(new SetupLanguagesCommand);
+Artisan::add(new SetupSuperUserCommand);
+Artisan::add(new Stolz\Artisan\DeployCommand);
+Artisan::add(new Stolz\Artisan\GettextCommand);

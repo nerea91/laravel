@@ -37,7 +37,9 @@ class DeployCommand extends Command
 	public function __construct()
 	{
 		parent::__construct();
-		$this->defaultConnection = Config::get('remote.default');
+
+		// Get default connection
+		$this->defaultConnection = SSH::getDefaultConnection();
 	}
 
 	/**
@@ -48,7 +50,7 @@ class DeployCommand extends Command
 	public function fire()
 	{
 		// Connection (Server) that will be used
-		$connection = $this->argument('connection') ?: Config::get('remote.default');
+		$connection = $this->argument('connection') ?: $this->defaultConnection;
 
 		// If --list option is provided stop the process
 		if ($this->option('list'))

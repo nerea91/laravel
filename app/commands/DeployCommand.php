@@ -57,7 +57,9 @@ class DeployCommand extends Command
 		// Commands that will be executed on remote server
 		$commands = [
 			//to-do set the necessary commands for deployment
-			'pwd'
+			//'cd /var/www/myproject',
+			//'git pull origin mybranch',
+			'pwd',
 		];
 
 		// Run the commands and show their output
@@ -111,7 +113,7 @@ class DeployCommand extends Command
 	protected function getOptions()
 	{
 		return [
-			['list', 'l', InputOption::VALUE_NONE, 'List all available connections and exit'],
+			['list', 'l', InputOption::VALUE_NONE, 'List all available connections'],
 		];
 	}
 }

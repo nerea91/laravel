@@ -28,4 +28,17 @@ return array(
 		'secret' => '',
 	),
 
+	/*
+	|--------------------------------------------------------------------------
+	| Google analytics
+	|--------------------------------------------------------------------------
+	|
+	| If you have a Google analytics account uncomment next line and replace
+	| UA-XXXXX-X with your web property ID. The Google analytics javascript
+	| will be automatically added to the bottom of the base layout.
+	|
+	*/
+
+	//'googleanalytics' => 'UA-XXXXX-X', //to-do
+
 );

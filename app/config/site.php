@@ -15,7 +15,7 @@ return array(
 	'name' => 'Test Project', //to-do
 
 	/*
-	 | -------------------------------------------------------------------------
+	 |--------------------------------------------------------------------------
 	 | Contact email
 	 |--------------------------------------------------------------------------
 	 |
@@ -24,18 +24,5 @@ return array(
 	 */
 
 	'contact-email' => 'contact@example.com', //to-do
-
-	/*
-	|--------------------------------------------------------------------------
-	| Google analytics
-	|--------------------------------------------------------------------------
-	|
-	| If you have a Google analytics account uncomment next line and replace
-	| UA-XXXXX-X with your web property ID. The Google analytics javascript
-	| will be automatically added to the bottom of the base the layout.
-	|
-	*/
-
-	//'googleanalytics' => 'UA-XXXXX-X', //to-do
 
 );

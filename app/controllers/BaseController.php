@@ -2,7 +2,6 @@
 
 class BaseController extends Controller
 {
-
 	/**
 	 * Common constructor for all our controllers
 	 */

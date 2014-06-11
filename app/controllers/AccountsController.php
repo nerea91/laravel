@@ -2,7 +2,6 @@
 
 class AccountsController extends BaseResourceController
 {
-
 	/**
 	 * The layout that should be used for responses.
 	 * @var string

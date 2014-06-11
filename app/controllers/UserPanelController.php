@@ -2,7 +2,6 @@
 
 class UserPanelController extends BaseController
 {
-
 	protected $layout = 'layouts.admin';
 
 	/**

@@ -6,7 +6,6 @@
 
 class BaseResourceController extends \BaseController
 {
-
 	/**
 	 * The layout that should be used for responses.
 	 * @var string

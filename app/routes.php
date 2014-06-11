@@ -31,8 +31,8 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 	// Current user control panel
 	Route::group(array('prefix' => 'user'), function () {
-		Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showSettingsForm'));
-		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@showSettingsForm'));
+		Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showOptionsForm'));
+		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions'));
 		Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
 		Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
 	});

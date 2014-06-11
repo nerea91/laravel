@@ -6,6 +6,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class User extends BaseModel implements UserInterface, RemindableInterface
 {
@@ -76,6 +77,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	public function language()
 	{
 		return $this->belongsTo('Language');
+	}
+
+	public function options()
+	{
+		return $this->belongsToMany('Option')->withPivot('value');
 	}
 
 	public function profile()
@@ -367,5 +373,76 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 			Session::put('language', (object) $this->language->toArray());
 
 		return $this;
+	}
+
+	/**
+	 * Get an user option by 'id' or 'name',
+	 * Fallback to default if user does not have such option.
+	 *
+	 * @param  string
+	 * @return string
+	 *
+	 * @thows Illuminate\Database\Eloquent\ModelNotFoundException
+	*/
+	public function getOption($option)
+	{
+		if($userOtion = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->first())
+			return $userOtion->pivot->value;
+
+		return Option::where('id', $option)->orWhere('name', $option)->firstOrFail()->value;
+	}
+
+	/**
+	 * Get all user options.
+	 * The missing user options are merged with the default ones
+	 *
+	 * @param  bool
+	 * @return Illuminate\Database\Eloquent\Collection
+	*/
+	public function getOptions($onlyAssignable = false)
+	{
+		// Get default generic options
+		$options = Option::all();
+
+		// Get user options
+		$userOptions = $this->options->each(function (&$o) {
+			$o->value = $o->pivot->value;
+			unset($o->pivot);
+		});
+
+		// Merge both (user options have priority)
+		$options = $options->merge($userOptions);
+
+		// Remove assignable?
+		if($onlyAssignable)
+		{
+			$options = $options->filter(function ($o) {
+				return $o->assignable;
+			});
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Get all the assignable user options.
+	 * The missing user options are merged with the default ones
+	 *
+	 * @return Illuminate\Database\Eloquent\Collection
+	*/
+	public function getAssignableOptions()
+	{
+		return $this->getOptions(true);
+	}
+
+	/**
+	 * Change $this user options.
+	 *
+	 * @param  array
+	 * @return Illuminate\Support\MessageBag
+	 */
+	public function setOptions(array $options)
+	{
+		return Option::massAssignToUser($this, array_except($options, ['_method', '_token']));
 	}
 }

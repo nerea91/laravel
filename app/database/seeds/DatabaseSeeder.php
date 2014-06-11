@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 		$this->call('UsersTableSeeder');
 		$this->call('AuthprovidersTableSeeder');
 		$this->call('AccountsTableSeeder');
+		$this->call('OptionsTableSeeder');
 
 		// Setup initial configuration
 		Artisan::call('setup', [

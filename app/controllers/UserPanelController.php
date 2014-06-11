@@ -9,11 +9,29 @@ class UserPanelController extends BaseController
 	 *
 	 * @return Response
 	 */
-	public function showSettingsForm()
+	public function showOptionsForm()
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Options');
-		$this->layout->content = View::make('userpanel.options')->with('user', Auth::user());
+		$this->layout->content = View::make('userpanel.options', [
+			'user' => Auth::user(),
+			'options' => Auth::user()->getAssignableOptions(),
+		]);
+	}
+
+	/**
+	 * Change current user options.
+	 *
+	 * @return Response
+	 */
+	public function updateOptions()
+	{
+		$errors = Auth::user()->setOptions(Input::all());
+
+		if($errors->any())
+			return Redirect::back()->withInput()->withErrors($errors);
+
+		return Redirect::back()->withSuccess(_('Options have been saved'));
 	}
 
 	/**

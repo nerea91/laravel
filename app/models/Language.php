@@ -89,6 +89,12 @@ class Language extends BaseModel
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
 
+		static::restored(function ($language) {
+
+			// Purge cache
+			Cache::forget('allLanguagesOrderedByPriority');
+		});
+
 	}
 
 	// Accessors / Mutators ========================================================
@@ -121,8 +127,8 @@ class Language extends BaseModel
 	 * Determine the language of the application.
 	 *
 	 * - First try with previous value from session.
-	 * - Sencond try with the URL subdomain.
-	 * - Third try with the clients browser.
+	 * - Then try with the URL subdomain.
+	 * - Finally try with the clients browser.
 	 *
 	 * If no language is detected or the detected one does not exist
 	 * on the DB then the default language will be returned.
@@ -283,12 +289,15 @@ class Language extends BaseModel
 	}
 
 	/**
-	 * Convert to stdClass object
+	 * Remeber $this language for self::detect() not having to poll.
 	 *
-	 * @return stdClass
+	 * @return Language
 	 */
-	public function toObject()
+	public function remember()
 	{
-		return (object) $this->toArray();
+		if($this->getKey())
+			Session::put('language', (object) $this->toArray());
+
+		return $this;
 	}
 }

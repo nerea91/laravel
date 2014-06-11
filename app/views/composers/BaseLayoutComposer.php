@@ -2,7 +2,6 @@
 
 class BaseLayoutComposer
 {
-
 	public function compose($view)
 	{
 		// Application language

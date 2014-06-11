@@ -369,8 +369,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	 */
 	public function applyLanguage()
 	{
-		if($this->language instanceof Language and $this->language->getKey())
-			Session::put('language', (object) $this->language->toArray());
+		if($this->language instanceof Language)
+			$this->language->remember();
 
 		return $this;
 	}

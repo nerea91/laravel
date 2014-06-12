@@ -5,7 +5,7 @@
 @section('body')
 
 <div class="fixed contain-to-grid">
-	@include('admin/top-bar', array('user' => Auth::user()))
+@include('admin/top-bar')
 </div>
 
 <div class="row">

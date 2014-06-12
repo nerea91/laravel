@@ -19,6 +19,9 @@ class BaseLayoutComposer
 		}
 		$view->with('languages', $languages);
 
+		// Authenticated user
+		$view->with('currentUser', Auth::user());
+
 		// Add PHP debugbar
 		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))
 		{

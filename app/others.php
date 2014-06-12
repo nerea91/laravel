@@ -17,7 +17,7 @@
 |--------------------------------------------------------------------------
 */
 
-View::composer('layouts.base', 'BaseLayoutComposer');
+View::composer(['layouts.base', 'layouts.admin'], 'BaseLayoutComposer');
 
 /*
 |--------------------------------------------------------------------------

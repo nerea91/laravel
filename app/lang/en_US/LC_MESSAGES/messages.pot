@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 15:17+0200\n"
+"POT-Creation-Date: 2014-06-12 01:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,14 +44,14 @@ msgid "Login"
 msgstr ""
 
 #: /controllers/AuthController.php:34
-#: /models/User.php:53
+#: /models/User.php:58
 #: /storage/gettext/auth-login_form.blade.php.php:18
 #: /storage/gettext/userpanel-nav.blade.php.php:5
 msgid "Password"
 msgstr ""
 
 #: /controllers/AuthController.php:34
-#: /models/User.php:50
+#: /models/User.php:55
 #: /storage/gettext/auth-login_form.blade.php.php:17
 msgid "Username"
 msgstr ""
@@ -146,14 +146,14 @@ msgid "Contact us"
 msgstr ""
 
 #: /controllers/HomeController.php:58
-#: /models/Account.php:50
-#: /models/AuthProvider.php:48
-#: /models/Country.php:47
-#: /models/Currency.php:48
-#: /models/Language.php:48
-#: /models/Permission.php:16
-#: /models/PermissionType.php:17
-#: /models/Profile.php:45
+#: /models/Account.php:52
+#: /models/AuthProvider.php:51
+#: /models/Country.php:50
+#: /models/Currency.php:51
+#: /models/Language.php:51
+#: /models/Permission.php:17
+#: /models/PermissionType.php:18
+#: /models/Profile.php:47
 #: /storage/gettext/home-contact.blade.php.php:19
 msgid "Name"
 msgstr ""
@@ -164,7 +164,7 @@ msgid "Company"
 msgstr ""
 
 #: /controllers/HomeController.php:60
-#: /models/Account.php:49
+#: /models/Account.php:51
 #: /storage/gettext/home-contact.blade.php.php:28
 msgid "E-mail"
 msgstr ""
@@ -194,65 +194,70 @@ msgid "Permissions"
 msgstr ""
 
 #: /controllers/UserPanelController.php:14
-#: /controllers/UserPanelController.php:26
+#: /controllers/UserPanelController.php:44
 msgid "User panel"
 msgstr ""
 
 #: /controllers/UserPanelController.php:15
+#: /models/Option.php:30
 #: /storage/gettext/admin-top-bar.blade.php.php:108
 #: /storage/gettext/userpanel-nav.blade.php.php:4
 msgid "Options"
 msgstr ""
 
-#: /controllers/UserPanelController.php:27
+#: /controllers/UserPanelController.php:34
+msgid "Options have been saved"
+msgstr ""
+
+#: /controllers/UserPanelController.php:45
 #: /storage/gettext/userpanel-password.blade.php.php:18
 msgid "Change password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:51
+#: /controllers/UserPanelController.php:69
 #: /storage/gettext/userpanel-password.blade.php.php:9
 msgid "Current password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:52
+#: /controllers/UserPanelController.php:70
 #: /storage/gettext/userpanel-password.blade.php.php:12
 msgid "New password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:53
+#: /controllers/UserPanelController.php:71
 #: /storage/gettext/admin-users-fields.blade.php.php:10
 msgid "Repeat password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:63
+#: /controllers/UserPanelController.php:81
 msgid "Wrong password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:72
+#: /controllers/UserPanelController.php:90
 msgid "Password updated"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:8
-#: /models/Country.php:28
+#: /models/Country.php:31
 #: /storage/gettext/admin-currencies-show.blade.php.php:19
 #: /storage/gettext/admin-top-bar.blade.php.php:81
 msgid "Countries"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:9
-#: /models/Language.php:28
+#: /models/Language.php:31
 #: /storage/gettext/admin-top-bar.blade.php.php:73
 msgid "Languages"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:10
-#: /models/Profile.php:26
+#: /models/Profile.php:28
 #: /storage/gettext/admin-top-bar.blade.php.php:29
 msgid "Profiles"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:11
-#: /models/User.php:31
+#: /models/User.php:36
 #: /storage/gettext/admin-countries-show.blade.php.php:17
 #: /storage/gettext/admin-languages-index.blade.php.php:5
 #: /storage/gettext/admin-languages-show.blade.php.php:13
@@ -268,7 +273,7 @@ msgid "Authentication providers"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:13
-#: /models/Account.php:27
+#: /models/Account.php:29
 #: /storage/gettext/admin-authproviders-index.blade.php.php:4
 #: /storage/gettext/admin-authproviders-show.blade.php.php:9
 #: /storage/gettext/admin-top-bar.blade.php.php:47
@@ -277,7 +282,7 @@ msgid "Accounts"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:14
-#: /models/Currency.php:28
+#: /models/Currency.php:31
 #: /storage/gettext/admin-top-bar.blade.php.php:89
 msgid "Currencies"
 msgstr ""
@@ -304,15 +309,15 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: /filters.php:91
+#: /filters.php:103
 msgid "Unknown route"
 msgstr ""
 
-#: /filters.php:97
+#: /filters.php:109
 msgid "Authorization condition failed"
 msgstr ""
 
-#: /filters.php:100
+#: /filters.php:112
 msgid "Unauthorized profile"
 msgstr ""
 
@@ -556,239 +561,269 @@ msgstr ""
 msgid "This combination of :fields already exists."
 msgstr ""
 
-#: /models/Account.php:17
+#: /models/Account.php:19
 msgid "Account"
 msgstr ""
 
-#: /models/Account.php:46
+#: /models/Account.php:48
 msgid "Remote id"
 msgstr ""
 
-#: /models/Account.php:47
+#: /models/Account.php:49
 msgid "Access token"
 msgstr ""
 
-#: /models/Account.php:48
+#: /models/Account.php:50
 msgid "Nickname"
 msgstr ""
 
-#: /models/Account.php:51
+#: /models/Account.php:53
 msgid "First name"
 msgstr ""
 
-#: /models/Account.php:52
+#: /models/Account.php:54
 msgid "Last name"
 msgstr ""
 
-#: /models/Account.php:53
+#: /models/Account.php:55
 msgid "Image"
 msgstr ""
 
-#: /models/Account.php:54
-#: /models/Language.php:50
+#: /models/Account.php:56
+#: /models/Language.php:53
 msgid "Locale"
 msgstr ""
 
-#: /models/Account.php:55
+#: /models/Account.php:57
 msgid "Location"
 msgstr ""
 
-#: /models/Account.php:56
-#: /models/AuthProvider.php:50
+#: /models/Account.php:58
+#: /models/AuthProvider.php:53
 msgid "Login count"
 msgstr ""
 
-#: /models/Account.php:57
+#: /models/Account.php:59
 msgid "Last IP address"
 msgstr ""
 
-#: /models/Account.php:58
+#: /models/Account.php:60
 msgid "Provider"
 msgstr ""
 
-#: /models/Account.php:59
-#: /models/User.php:21
+#: /models/Account.php:61
+#: /models/User.php:26
 msgid "User"
 msgstr ""
 
-#: /models/Account.php:135
-#: /models/AuthProvider.php:96
-#: /models/Profile.php:144
-#: /models/User.php:253
+#: /models/Account.php:137
+#: /models/AuthProvider.php:99
+#: /models/Profile.php:146
+#: /models/User.php:263
 #, php-format
 msgid "Deleting %s is not allowed"
 msgstr ""
 
-#: /models/AuthProvider.php:19
+#: /models/AuthProvider.php:22
 msgid "Auth. provider"
 msgstr ""
 
-#: /models/AuthProvider.php:29
+#: /models/AuthProvider.php:32
 msgid "Auth. providers"
 msgstr ""
 
-#: /models/AuthProvider.php:49
+#: /models/AuthProvider.php:52
 msgid "Title"
 msgstr ""
 
-#: /models/AuthProvider.php:51
+#: /models/AuthProvider.php:54
 msgid "App id"
 msgstr ""
 
-#: /models/AuthProvider.php:52
+#: /models/AuthProvider.php:55
 msgid "App secret"
 msgstr ""
 
-#: /models/BaseModel.php:394
+#: /models/BaseModel.php:395
 msgid "Created at"
 msgstr ""
 
-#: /models/BaseModel.php:399
+#: /models/BaseModel.php:400
 msgid "Updated at"
 msgstr ""
 
-#: /models/BaseModel.php:404
+#: /models/BaseModel.php:405
 msgid "Deleted at"
 msgstr ""
 
-#: /models/Country.php:18
-#: /models/User.php:54
+#: /models/Country.php:21
+#: /models/User.php:59
 msgid "Country"
 msgstr ""
 
-#: /models/Country.php:48
+#: /models/Country.php:51
 msgid "Full name"
 msgstr ""
 
-#: /models/Country.php:49
+#: /models/Country.php:52
 msgid "2 letters code"
 msgstr ""
 
-#: /models/Country.php:50
+#: /models/Country.php:53
 msgid "3 letters code"
 msgstr ""
 
-#: /models/Country.php:51
+#: /models/Country.php:54
 msgid "Numeric code"
 msgstr ""
 
-#: /models/Country.php:52
+#: /models/Country.php:55
 msgid "Capital"
 msgstr ""
 
-#: /models/Country.php:53
+#: /models/Country.php:56
 msgid "Citizenship"
 msgstr ""
 
-#: /models/Country.php:54
+#: /models/Country.php:57
 msgid "Region code"
 msgstr ""
 
-#: /models/Country.php:55
+#: /models/Country.php:58
 msgid "Subregion code"
 msgstr ""
 
-#: /models/Country.php:56
+#: /models/Country.php:59
 msgid "European Economic Area"
 msgstr ""
 
-#: /models/Country.php:57
-#: /models/Currency.php:18
+#: /models/Country.php:60
+#: /models/Currency.php:21
 msgid "Currency"
 msgstr ""
 
-#: /models/Currency.php:47
-#: /models/Language.php:47
+#: /models/Currency.php:50
+#: /models/Language.php:50
 msgid "Code"
 msgstr ""
 
-#: /models/Currency.php:49
+#: /models/Currency.php:52
 msgid "Alt. name"
 msgstr ""
 
-#: /models/Currency.php:50
+#: /models/Currency.php:53
 msgid "Symbol"
 msgstr ""
 
-#: /models/Currency.php:51
+#: /models/Currency.php:54
 msgid "Alt. symbol"
 msgstr ""
 
-#: /models/Currency.php:52
+#: /models/Currency.php:55
 msgid "Symbol position"
 msgstr ""
 
-#: /models/Currency.php:53
+#: /models/Currency.php:56
 msgid "Decimal separator"
 msgstr ""
 
-#: /models/Currency.php:54
+#: /models/Currency.php:57
 msgid "Thousands separator"
 msgstr ""
 
-#: /models/Currency.php:55
+#: /models/Currency.php:58
 msgid "Subunit"
 msgstr ""
 
-#: /models/Currency.php:56
+#: /models/Currency.php:59
 msgid "Alt. subunit"
 msgstr ""
 
-#: /models/Currency.php:57
+#: /models/Currency.php:60
 msgid "Unicode decimal"
 msgstr ""
 
-#: /models/Currency.php:58
+#: /models/Currency.php:61
 msgid "Unicode hexadecimal"
 msgstr ""
 
-#: /models/Language.php:18
-#: /models/User.php:55
+#: /models/Language.php:21
+#: /models/User.php:60
 msgid "Language"
 msgstr ""
 
-#: /models/Language.php:49
+#: /models/Language.php:52
 msgid "English name"
 msgstr ""
 
-#: /models/Language.php:51
+#: /models/Language.php:54
 #: /storage/gettext/admin-languages-index.blade.php.php:6
 msgid "Default"
 msgstr ""
 
-#: /models/Language.php:52
+#: /models/Language.php:55
 msgid "Priority"
 msgstr ""
 
-#: /models/Language.php:234
+#: /models/Language.php:243
 msgid "Deleting default language is not allowed"
 msgstr ""
 
-#: /models/Permission.php:17
-#: /models/PermissionType.php:18
-#: /models/Profile.php:46
-#: /models/User.php:52
+#: /models/Option.php:20
+msgid "Option"
+msgstr ""
+
+#: /models/Option.php:49
+msgid "Internal name"
+msgstr ""
+
+#: /models/Option.php:50
+msgid "Label"
+msgstr ""
+
+#: /models/Option.php:51
+#: /models/Permission.php:18
+#: /models/PermissionType.php:19
+#: /models/Profile.php:48
+#: /models/User.php:57
 msgid "Description"
 msgstr ""
 
-#: /models/Permission.php:18
+#: /models/Option.php:52
+msgid "Value"
+msgstr ""
+
+#: /models/Option.php:53
+msgid "Assignable"
+msgstr ""
+
+#: /models/Option.php:54
+msgid "Validation rules"
+msgstr ""
+
+#: /models/Option.php:116
+#: /models/Option.php:126
+msgid "Unable to save option to data base"
+msgstr ""
+
+#: /models/Permission.php:19
 msgid "Type"
 msgstr ""
 
-#: /models/Profile.php:16
-#: /models/User.php:56
+#: /models/Profile.php:18
+#: /models/User.php:61
 msgid "Profile"
 msgstr ""
 
-#: /models/Profile.php:250
+#: /models/Profile.php:252
 msgid "Unsaved profiles cannot be compared"
 msgstr ""
 
-#: /models/User.php:51
+#: /models/User.php:56
 msgid "Real name"
 msgstr ""
 
-#: /models/User.php:234
+#: /models/User.php:244
 msgid "No e-mail address found"
 msgstr ""
 
@@ -808,7 +843,7 @@ msgid "invert"
 msgstr ""
 
 #: /start/global.php:76
-#: /storage/gettext/layouts-error.blade.php.php:62
+#: /storage/gettext/layouts-error.blade.php.php:61
 msgid "Error"
 msgstr ""
 
@@ -822,7 +857,7 @@ msgstr ""
 #: /storage/gettext/admin-currencies-index.blade.php.php:6
 #: /storage/gettext/admin-languages-index.blade.php.php:7
 #: /storage/gettext/admin-profiles-index.blade.php.php:6
-#: /storage/gettext/admin-users-index.blade.php.php:6
+#: /storage/gettext/admin-users-index.blade.php.php:7
 msgid "Actions"
 msgstr ""
 
@@ -934,43 +969,48 @@ msgstr ""
 msgid "To reset your password, complete this form"
 msgstr ""
 
-#: /storage/gettext/errors-401.blade.php.php:4
+#: /storage/gettext/emails-auth-reminder.blade.php.php:11
+#, php-format
+msgid "This link will expire in %d minutes"
+msgstr ""
+
+#: /storage/gettext/errors-401.blade.php.php:3
 msgid "Your user is not authorized to access this secion"
 msgstr ""
 
-#: /storage/gettext/errors-401.blade.php.php:5
+#: /storage/gettext/errors-401.blade.php.php:4
 msgid "If you think this may be an error please contact the site admin"
 msgstr ""
 
-#: /storage/gettext/errors-401.blade.php.php:8
+#: /storage/gettext/errors-401.blade.php.php:7
 msgid "Go back"
 msgstr ""
 
-#: /storage/gettext/errors-404.blade.php.php:4
+#: /storage/gettext/errors-404.blade.php.php:3
 msgid "We're really sorry but we couldn't find the page you requested on our servers"
 msgstr ""
 
-#: /storage/gettext/errors-404.blade.php.php:5
+#: /storage/gettext/errors-404.blade.php.php:4
 msgid "It looks like this was the result of either"
 msgstr ""
 
-#: /storage/gettext/errors-404.blade.php.php:9
+#: /storage/gettext/errors-404.blade.php.php:8
 msgid "a mistyped address"
 msgstr ""
 
-#: /storage/gettext/errors-404.blade.php.php:10
+#: /storage/gettext/errors-404.blade.php.php:9
 msgid "an out-of-date link"
 msgstr ""
 
-#: /storage/gettext/errors-maintenance.blade.php.php:8
+#: /storage/gettext/errors-maintenance.blade.php.php:7
 msgid "Site down for maintenance"
 msgstr ""
 
-#: /storage/gettext/errors-maintenance.blade.php.php:9
+#: /storage/gettext/errors-maintenance.blade.php.php:8
 msgid "Sorry, our site is currently undergoing scheduled maintenance"
 msgstr ""
 
-#: /storage/gettext/errors-maintenance.blade.php.php:11
+#: /storage/gettext/errors-maintenance.blade.php.php:10
 msgid "Please visit us again in a few minutes"
 msgstr ""
 
@@ -982,15 +1022,15 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:74
+#: /storage/gettext/layouts-error.blade.php.php:73
 msgid "Something went wrong while we were processing your request"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:75
+#: /storage/gettext/layouts-error.blade.php.php:74
 msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
 msgstr ""
 
-#: /storage/gettext/layouts-error.blade.php.php:79
+#: /storage/gettext/layouts-error.blade.php.php:78
 #, php-format
 msgid "Perhaps you would like to go to our %shome page%s?"
 msgstr ""
@@ -1025,7 +1065,6 @@ msgid "Confirm"
 msgstr ""
 
 #: /storage/gettext/resource-edit.blade.php.php:10
-#: /storage/gettext/userpanel-options.blade.php.php:9
 msgid "Update"
 msgstr ""
 
@@ -1040,6 +1079,14 @@ msgstr ""
 
 #: /storage/gettext/userpanel-nav.blade.php.php:3
 msgid "Sections"
+msgstr ""
+
+#: /storage/gettext/userpanel-options.blade.php.php:15
+msgid "Save options"
+msgstr ""
+
+#: /storage/gettext/userpanel-options.blade.php.php:18
+msgid "System has no configurable options"
 msgstr ""
 
 #: /storage/gettext/userpanel-password.blade.php.php:15

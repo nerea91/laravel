@@ -44,7 +44,7 @@ Event::listen('auth.login', function ($user) {
 
 Event::listen('auth.logout', function ($user) {
 	// Reset default application language
-	Session::forget('language');
+	Language::forget();
 
 	// Purge admin panel search results cache
 	Cache::forget('adminSearchResults' . $user->getKey());

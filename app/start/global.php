@@ -44,7 +44,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 if( ! $app->runningInConsole())
 {
 	$app->singleton('language', function () {
-		return Language::detect()->setLocale();
+		return Language::detect()->apply();
 	});
 }
 

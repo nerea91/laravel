@@ -224,6 +224,16 @@ class Language extends BaseModel
 		return null;
 	}
 
+	/**
+	 * Forget language for self::detect() to poll.
+	 *
+	 * @return void
+	 */
+	public static function forget()
+	{
+		Session::forget('language');
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -266,16 +276,15 @@ class Language extends BaseModel
 	}
 
 	/**
-	 * Set the language for Gettext
-	 *
-	 * NOTE: LC_ALL may switch float decimal separator character deppending on locale. This could cause undesired issues
-	 * specially when inserting float values to your data base. If that is your case consider using LC_MESSAGES instead.
+	 * Set $this language as the application language
 	 *
 	 * @param  $category see http://php.net/manual/en/function.setlocale.php
 	 * @return Language
 	 */
-	public function setLocale($category = LC_ALL)
+	public function apply($category = null)
 	{
+		$category = (is_null($category)) ? Config::get('site.locale-category', LC_ALL) : $category;
+
 		bindtextdomain('messages', app_path().'/lang/');
 		textdomain('messages');
 		$locale = $this->locale;
@@ -289,7 +298,7 @@ class Language extends BaseModel
 	}
 
 	/**
-	 * Remeber $this language for self::detect() not having to poll.
+	 * Remember $this language for self::detect() not having to poll.
 	 *
 	 * @return Language
 	 */

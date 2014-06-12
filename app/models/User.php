@@ -122,11 +122,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 			if( ! $user->accounts()->where('provider_id', 1)->first())
 			{
 				Account::create([
-				'uid' => $user->id,
-				'nickname' => $user->username,
-				'name' => $user->name,
-				'provider_id' => 1,
-				'user_id' => $user->id,
+					'uid' => $user->id,
+					'nickname' => $user->username,
+					'name' => $user->name,
+					'provider_id' => 1,
+					'user_id' => $user->id,
 				]);
 			}
 		});
@@ -370,7 +370,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	public function applyLanguage()
 	{
 		if($this->language instanceof Language)
-			$this->language->remember();
+			$this->language->apply()->remember();
 
 		return $this;
 	}

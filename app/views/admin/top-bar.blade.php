@@ -103,8 +103,11 @@
 
 				<a>{{ _('Me') }}</a>
 				<ul class="dropdown">
-					<li><label>{{ $currentUser->name() }}</label></li>
-					<li><label>{{ $currentUser->profile->name }}</label></li>
+					<li><label>{{ _('User') }}</label></li>
+					<li><a>{{ $currentUser->name() }}</a></li>
+					<li><label>{{ _('Profile') }}</label></li>
+					<li><a>{{ $currentUser->profile->name }}</a></li>
+					<li class="divider"></li>
 					<li>{{ link_to_route('user.options', _('Options')) }}</li>
 					<li class="divider"></li>
 					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
@@ -113,16 +116,16 @@
 
 			</li>
 
-			@if ($languages->count() > 1)
+			@if ($allLanguages->count() > 1)
 			<li class="divider"></li>
 			<li class="has-dropdown">
 
-				<a>{{ $lang->name }}</a>
+				<a>{{ $appLanguage->name }}</a>
 				<ul class="dropdown">
 
 					<li><label>{{ _('Change language') }}</label></li>
-					@foreach ($languages as $language)
-					<li>{{ link_to_route('language.set', $language->name, ['code' => $language->code]) }}</li>
+					@foreach ($allLanguages as $l)
+					<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code]) }}</li>
 					@endforeach
 
 				</ul>

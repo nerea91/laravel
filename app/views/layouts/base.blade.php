@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="{{ $lang->code }}" ><![endif]-->
-<html class="no-js" lang="{{ $lang->code }}">
+<!--[if IE 9]><html class="lt-ie10" lang="{{ $appLanguage->code }}" ><![endif]-->
+<html class="no-js" lang="{{ $appLanguage->code }}">
 	<head>
 		{{-- Current page info --}}
 		<title>{{{ $title }}} | {{{ trim(Config::get('site.name')) }}}</title>
@@ -23,7 +23,7 @@
 		<meta http-equiv="cleartype" content="on" />{{-- Windows Mobile --}}
 
 		{{-- Multilanguage --}}
-		@foreach ($languages as $l)
+		@foreach ($allLanguages as $l)
 		<link rel="alternate" hreflang="{{ $l->code }}" href="{{ $l->url }}" />
 		@endforeach
 

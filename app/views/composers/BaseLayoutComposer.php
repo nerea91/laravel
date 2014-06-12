@@ -5,7 +5,7 @@ class BaseLayoutComposer
 	public function compose($view)
 	{
 		// Application language
-		$view->with('lang', App::make('language'));
+		$view->with('appLanguage', App::make('language'));
 
 		// Populate languages for implementing https://support.google.com/webmasters/answer/189077
 		$url = parse_url(Request::url());
@@ -17,7 +17,7 @@ class BaseLayoutComposer
 			$url['host'] = $l->code . '.' . $domain;
 			$l->url = http_build_url($url);
 		}
-		$view->with('languages', $languages);
+		$view->with('allLanguages', $languages);
 
 		// Authenticated user
 		$view->with('currentUser', Auth::user());

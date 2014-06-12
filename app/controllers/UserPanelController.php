@@ -13,10 +13,7 @@ class UserPanelController extends BaseController
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Options');
-		$this->layout->content = View::make('userpanel.options', [
-			'user' => Auth::user(),
-			'options' => Auth::user()->getAssignableOptions(),
-		]);
+		$this->layout->content = View::make('userpanel.options')->withOptions(Auth::user()->getAssignableOptions());
 	}
 
 	/**

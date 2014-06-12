@@ -15,7 +15,7 @@
 		@endforeach
 
 		{{
-			Form::submit(_('Save options'), ['class' => 'button']),
+			Form::submit(_('Save'), ['class' => 'button']),
 			Form::close()
 		}}
 	@else

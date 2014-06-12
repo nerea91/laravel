@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-12 01:39+0200\n"
+"POT-Creation-Date: 2014-06-12 13:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,6 +186,7 @@ msgstr "Permisos"
 
 #: /controllers/UserPanelController.php:14
 #: /controllers/UserPanelController.php:44
+#: /controllers/UserPanelController.php:100
 msgid "User panel"
 msgstr "Panel de usuario"
 
@@ -226,6 +227,15 @@ msgstr "Contraseña incorrecta"
 #: /controllers/UserPanelController.php:90
 msgid "Password updated"
 msgstr "Contraseña cambiada"
+
+#: /controllers/UserPanelController.php:101 /models/Account.php:56
+#: /models/Language.php:53 /storage/gettext/userpanel-nav.blade.php.php:6
+msgid "Locale"
+msgstr "Regional"
+
+#: /controllers/UserPanelController.php:117
+msgid "Locale options have been saved"
+msgstr "Se han guardado las opciones de región"
 
 #: /database/seeds/PermissionTypesTableSeeder.php:8 /models/Country.php:31
 #: /storage/gettext/admin-currencies-show.blade.php.php:19
@@ -570,10 +580,6 @@ msgstr "Apellidos"
 msgid "Image"
 msgstr "Imagen"
 
-#: /models/Account.php:56 /models/Language.php:53
-msgid "Locale"
-msgstr "Locale"
-
 #: /models/Account.php:57
 msgid "Location"
 msgstr "Lugar"
@@ -591,6 +597,8 @@ msgid "Provider"
 msgstr "Proveedor"
 
 #: /models/Account.php:61 /models/User.php:26
+#: /storage/gettext/home-home.blade.php.php:8
+#: /storage/gettext/home-home.blade.php.php:11
 msgid "User"
 msgstr "Usuario"
 
@@ -737,7 +745,7 @@ msgstr "Predeterminado"
 msgid "Priority"
 msgstr "Prioridad"
 
-#: /models/Language.php:243
+#: /models/Language.php:253
 msgid "Deleting default language is not allowed"
 msgstr "No está permitido borrar el idioma predeterminado"
 
@@ -850,6 +858,8 @@ msgstr "Sí"
 #: /storage/gettext/admin-countries-fields.blade.php.php:11
 #: /storage/gettext/admin-users-fields.blade.php.php:22
 #: /storage/gettext/admin-users-fields.blade.php.php:25
+#: /storage/gettext/userpanel-regional.blade.php.php:10
+#: /storage/gettext/userpanel-regional.blade.php.php:13
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -985,6 +995,10 @@ msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos
 msgid "Send"
 msgstr "Enviar"
 
+#: /storage/gettext/home-home.blade.php.php:14
+msgid "Routes"
+msgstr "Rutas"
+
 #: /storage/gettext/layouts-error.blade.php.php:73
 msgid "Something went wrong while we were processing your request"
 msgstr "Algo ha ido mal al procesar tu petición"
@@ -1045,8 +1059,9 @@ msgid "Sections"
 msgstr "Secciones"
 
 #: /storage/gettext/userpanel-options.blade.php.php:15
-msgid "Save options"
-msgstr "Guardar opciones"
+#: /storage/gettext/userpanel-regional.blade.php.php:15
+msgid "Save"
+msgstr "Guardar"
 
 #: /storage/gettext/userpanel-options.blade.php.php:18
 msgid "System has no configurable options"
@@ -1055,6 +1070,3 @@ msgstr "El sistema no tiene opciones configurables"
 #: /storage/gettext/userpanel-password.blade.php.php:15
 msgid "Repeat new password"
 msgstr "Repite nueva contraseña"
-
-#~ msgid "Changes were not saved"
-#~ msgstr "No se han guardado los cambios"

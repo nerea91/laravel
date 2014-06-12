@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-12 01:39+0200\n"
+"POT-Creation-Date: 2014-06-12 13:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,6 +186,7 @@ msgstr ""
 
 #: /controllers/UserPanelController.php:14
 #: /controllers/UserPanelController.php:44
+#: /controllers/UserPanelController.php:100
 msgid "User panel"
 msgstr ""
 
@@ -225,6 +226,15 @@ msgstr ""
 
 #: /controllers/UserPanelController.php:90
 msgid "Password updated"
+msgstr ""
+
+#: /controllers/UserPanelController.php:101 /models/Account.php:56
+#: /models/Language.php:53 /storage/gettext/userpanel-nav.blade.php.php:6
+msgid "Locale"
+msgstr ""
+
+#: /controllers/UserPanelController.php:117
+msgid "Locale options have been saved"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:8 /models/Country.php:31
@@ -570,10 +580,6 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: /models/Account.php:56 /models/Language.php:53
-msgid "Locale"
-msgstr ""
-
 #: /models/Account.php:57
 msgid "Location"
 msgstr ""
@@ -591,6 +597,8 @@ msgid "Provider"
 msgstr ""
 
 #: /models/Account.php:61 /models/User.php:26
+#: /storage/gettext/home-home.blade.php.php:8
+#: /storage/gettext/home-home.blade.php.php:11
 msgid "User"
 msgstr ""
 
@@ -737,7 +745,7 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: /models/Language.php:243
+#: /models/Language.php:253
 msgid "Deleting default language is not allowed"
 msgstr ""
 
@@ -850,6 +858,8 @@ msgstr ""
 #: /storage/gettext/admin-countries-fields.blade.php.php:11
 #: /storage/gettext/admin-users-fields.blade.php.php:22
 #: /storage/gettext/admin-users-fields.blade.php.php:25
+#: /storage/gettext/userpanel-regional.blade.php.php:10
+#: /storage/gettext/userpanel-regional.blade.php.php:13
 msgid "Unknown"
 msgstr ""
 
@@ -985,6 +995,10 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
+#: /storage/gettext/home-home.blade.php.php:14
+msgid "Routes"
+msgstr ""
+
 #: /storage/gettext/layouts-error.blade.php.php:73
 msgid "Something went wrong while we were processing your request"
 msgstr ""
@@ -1045,7 +1059,8 @@ msgid "Sections"
 msgstr ""
 
 #: /storage/gettext/userpanel-options.blade.php.php:15
-msgid "Save options"
+#: /storage/gettext/userpanel-regional.blade.php.php:15
+msgid "Save"
 msgstr ""
 
 #: /storage/gettext/userpanel-options.blade.php.php:18

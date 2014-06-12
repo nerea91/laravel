@@ -89,4 +89,33 @@ class UserPanelController extends BaseController
 
 		return Redirect::back()->withSuccess(_('Password updated'));
 	}
+
+	/**
+	 * Show form for changing current user regional settings.
+	 *
+	 * @return Response
+	 */
+	public function showRegionalForm()
+	{
+		$this->layout->title = _('User panel');
+		$this->layout->subtitle = _('Locale');
+		$this->layout->content = View::make('userpanel.regional')->withUser(Auth::user());
+	}
+
+	/**
+	 * Change current user reginal settings.
+	 *
+	 * @return Response
+	 */
+	public function updateRegional()
+	{
+		$user = Auth::user();
+		$user->country_id = Input::get('country_id');
+		$user->language_id = Input::get('language_id');
+
+		if($user->removeRule('password', 'required|confirmed')->save())
+			return Redirect::back()->withSuccess(_('Locale options have been saved'));
+
+		return Redirect::back()->withInput()->withErrors($user->getErrors());
+	}
 }

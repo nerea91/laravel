@@ -43,6 +43,8 @@ Route::group(array('https', 'before' => 'auth'), function () {
 		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions'));
 		Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
 		Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
+		Route::get('regional', array('as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm'));
+		Route::put('regional', array('as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional'));
 	});
 
 	// Admin area

@@ -14,6 +14,14 @@
 // Home page
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
+// Change application language
+Route::get('language/{code}', array('as' => 'language.set', function($code) {
+	if($language = Language::whereCode($code)->first())
+		$language->remember();
+
+	return Redirect::to(URL::previous() ?: route('home'));
+}))->where('code', '^[a-z][a-z]$');
+
 // Contact us area
 Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
 Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));

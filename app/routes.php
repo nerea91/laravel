@@ -15,7 +15,7 @@
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 
 // Change application language
-Route::get('language/{code}', array('as' => 'language.set', function($code) {
+Route::get('language/{code}', array('as' => 'language.set', function ($code) {
 	if($language = Language::whereCode($code)->first())
 		$language->remember();
 

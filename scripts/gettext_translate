@@ -39,7 +39,7 @@ mkdir -p "$DIR" || exit_error "Unable to create $DIR"
 
 # Generate .pot template
 TEMPLATE_FILE="$DIR/messages.pot"
-find "$APP_DIR" -type f -iname "$EXT" | xgettext --no-wrap --sort-by-file --from-code=UTF-8 -o- -f- | sed "s,$APP_DIR,,g" | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
+find "$APP_DIR" -type f -iname "$EXT" | xgettext --no-wrap --sort-output --no-location --from-code=UTF-8 -o- -f- | sed "s,$APP_DIR,,g" | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
 
 # If an old translation exists, make a copy and merge it with the new template
 TRANSLATED_FILE="$DIR/messages.po"

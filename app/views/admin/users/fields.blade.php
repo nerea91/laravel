@@ -27,7 +27,7 @@
 	Form::select($f, ['' => _('Unknown')] + Country::dropdown()),
 
 	Form::label($f = 'language_id', $resource->getLabel($f)),
-	Form::select($f, ['' => _('Unknown')] + Language::dropdown())
+	Form::select($f, ['' => _('Default')] + Language::dropdown())
 
 }}
 </fieldset>

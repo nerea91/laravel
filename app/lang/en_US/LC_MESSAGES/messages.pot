@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-12 13:14+0200\n"
+"POT-Creation-Date: 2014-06-16 11:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,13 +61,13 @@ msgid "Wrong credentials"
 msgstr ""
 
 #: /controllers/BaseResourceController.php:73
-#: /storage/gettext/admin-top-bar.blade.php.php:22
-#: /storage/gettext/admin-top-bar.blade.php.php:30
-#: /storage/gettext/admin-top-bar.blade.php.php:48
-#: /storage/gettext/admin-top-bar.blade.php.php:56
-#: /storage/gettext/admin-top-bar.blade.php.php:74
-#: /storage/gettext/admin-top-bar.blade.php.php:82
-#: /storage/gettext/admin-top-bar.blade.php.php:90
+#: /storage/gettext/admin-top-bar.blade.php.php:21
+#: /storage/gettext/admin-top-bar.blade.php.php:29
+#: /storage/gettext/admin-top-bar.blade.php.php:47
+#: /storage/gettext/admin-top-bar.blade.php.php:55
+#: /storage/gettext/admin-top-bar.blade.php.php:73
+#: /storage/gettext/admin-top-bar.blade.php.php:81
+#: /storage/gettext/admin-top-bar.blade.php.php:89
 msgid "Index"
 msgstr ""
 
@@ -84,13 +84,13 @@ msgstr ""
 #: /database/seeds/PermissionsTableSeeder.php:35
 #: /database/seeds/PermissionsTableSeeder.php:41
 #: /database/seeds/PermissionsTableSeeder.php:47
-#: /storage/gettext/admin-top-bar.blade.php.php:23
-#: /storage/gettext/admin-top-bar.blade.php.php:31
-#: /storage/gettext/admin-top-bar.blade.php.php:49
-#: /storage/gettext/admin-top-bar.blade.php.php:57
-#: /storage/gettext/admin-top-bar.blade.php.php:75
-#: /storage/gettext/admin-top-bar.blade.php.php:83
-#: /storage/gettext/admin-top-bar.blade.php.php:91
+#: /storage/gettext/admin-top-bar.blade.php.php:22
+#: /storage/gettext/admin-top-bar.blade.php.php:30
+#: /storage/gettext/admin-top-bar.blade.php.php:48
+#: /storage/gettext/admin-top-bar.blade.php.php:56
+#: /storage/gettext/admin-top-bar.blade.php.php:74
+#: /storage/gettext/admin-top-bar.blade.php.php:82
+#: /storage/gettext/admin-top-bar.blade.php.php:90
 #: /storage/gettext/resource-create.blade.php.php:10
 msgid "Add"
 msgstr ""
@@ -194,77 +194,77 @@ msgid "Permissions"
 msgstr ""
 
 #: /controllers/UserPanelController.php:14
-#: /controllers/UserPanelController.php:44
-#: /controllers/UserPanelController.php:100
+#: /controllers/UserPanelController.php:41
+#: /controllers/UserPanelController.php:97
 msgid "User panel"
 msgstr ""
 
 #: /controllers/UserPanelController.php:15
 #: /models/Option.php:30
-#: /storage/gettext/admin-top-bar.blade.php.php:108
+#: /storage/gettext/admin-top-bar.blade.php.php:111
 #: /storage/gettext/userpanel-nav.blade.php.php:4
 msgid "Options"
 msgstr ""
 
-#: /controllers/UserPanelController.php:34
+#: /controllers/UserPanelController.php:31
 msgid "Options have been saved"
 msgstr ""
 
-#: /controllers/UserPanelController.php:45
+#: /controllers/UserPanelController.php:42
 #: /storage/gettext/userpanel-password.blade.php.php:18
 msgid "Change password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:69
+#: /controllers/UserPanelController.php:66
 #: /storage/gettext/userpanel-password.blade.php.php:9
 msgid "Current password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:70
+#: /controllers/UserPanelController.php:67
 #: /storage/gettext/userpanel-password.blade.php.php:12
 msgid "New password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:71
+#: /controllers/UserPanelController.php:68
 #: /storage/gettext/admin-users-fields.blade.php.php:10
 msgid "Repeat password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:81
+#: /controllers/UserPanelController.php:78
 msgid "Wrong password"
 msgstr ""
 
-#: /controllers/UserPanelController.php:90
+#: /controllers/UserPanelController.php:87
 msgid "Password updated"
 msgstr ""
 
-#: /controllers/UserPanelController.php:101
+#: /controllers/UserPanelController.php:98
 #: /models/Account.php:56
 #: /models/Language.php:53
 #: /storage/gettext/userpanel-nav.blade.php.php:6
 msgid "Locale"
 msgstr ""
 
-#: /controllers/UserPanelController.php:117
+#: /controllers/UserPanelController.php:114
 msgid "Locale options have been saved"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:8
 #: /models/Country.php:31
 #: /storage/gettext/admin-currencies-show.blade.php.php:19
-#: /storage/gettext/admin-top-bar.blade.php.php:81
+#: /storage/gettext/admin-top-bar.blade.php.php:80
 msgid "Countries"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:9
 #: /models/Language.php:31
-#: /storage/gettext/admin-top-bar.blade.php.php:73
+#: /storage/gettext/admin-top-bar.blade.php.php:72
 msgid "Languages"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:10
 #: /models/Profile.php:28
-#: /storage/gettext/admin-top-bar.blade.php.php:29
+#: /storage/gettext/admin-top-bar.blade.php.php:28
 msgid "Profiles"
 msgstr ""
 
@@ -275,8 +275,8 @@ msgstr ""
 #: /storage/gettext/admin-languages-show.blade.php.php:13
 #: /storage/gettext/admin-profiles-index.blade.php.php:5
 #: /storage/gettext/admin-profiles-show.blade.php.php:17
-#: /storage/gettext/admin-top-bar.blade.php.php:16
-#: /storage/gettext/admin-top-bar.blade.php.php:21
+#: /storage/gettext/admin-top-bar.blade.php.php:15
+#: /storage/gettext/admin-top-bar.blade.php.php:20
 msgid "Users"
 msgstr ""
 
@@ -288,14 +288,14 @@ msgstr ""
 #: /models/Account.php:29
 #: /storage/gettext/admin-authproviders-index.blade.php.php:4
 #: /storage/gettext/admin-authproviders-show.blade.php.php:9
-#: /storage/gettext/admin-top-bar.blade.php.php:47
+#: /storage/gettext/admin-top-bar.blade.php.php:46
 #: /storage/gettext/admin-users-show.blade.php.php:29
 msgid "Accounts"
 msgstr ""
 
 #: /database/seeds/PermissionTypesTableSeeder.php:14
 #: /models/Currency.php:31
-#: /storage/gettext/admin-top-bar.blade.php.php:89
+#: /storage/gettext/admin-top-bar.blade.php.php:88
 msgid "Currencies"
 msgstr ""
 
@@ -620,6 +620,7 @@ msgstr ""
 
 #: /models/Account.php:61
 #: /models/User.php:26
+#: /storage/gettext/admin-top-bar.blade.php.php:106
 #: /storage/gettext/home-home.blade.php.php:8
 #: /storage/gettext/home-home.blade.php.php:11
 msgid "User"
@@ -767,6 +768,8 @@ msgstr ""
 
 #: /models/Language.php:54
 #: /storage/gettext/admin-languages-index.blade.php.php:6
+#: /storage/gettext/admin-users-fields.blade.php.php:25
+#: /storage/gettext/userpanel-regional.blade.php.php:13
 msgid "Default"
 msgstr ""
 
@@ -821,6 +824,7 @@ msgstr ""
 
 #: /models/Profile.php:18
 #: /models/User.php:61
+#: /storage/gettext/admin-top-bar.blade.php.php:108
 msgid "Profile"
 msgstr ""
 
@@ -836,17 +840,17 @@ msgstr ""
 msgid "No e-mail address found"
 msgstr ""
 
-#: /others.php:125
+#: /others.php:128
 #: /storage/gettext/admin-profiles-fields.blade.php.php:12
 msgid "all"
 msgstr ""
 
-#: /others.php:126
+#: /others.php:129
 #: /storage/gettext/admin-profiles-fields.blade.php.php:13
 msgid "none"
 msgstr ""
 
-#: /others.php:127
+#: /others.php:130
 #: /storage/gettext/admin-profiles-fields.blade.php.php:14
 msgid "invert"
 msgstr ""
@@ -895,9 +899,7 @@ msgstr ""
 
 #: /storage/gettext/admin-countries-fields.blade.php.php:11
 #: /storage/gettext/admin-users-fields.blade.php.php:22
-#: /storage/gettext/admin-users-fields.blade.php.php:25
 #: /storage/gettext/userpanel-regional.blade.php.php:10
-#: /storage/gettext/userpanel-regional.blade.php.php:13
 msgid "Unknown"
 msgstr ""
 
@@ -920,15 +922,15 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: /storage/gettext/admin-top-bar.blade.php.php:42
+#: /storage/gettext/admin-top-bar.blade.php.php:41
 msgid "Access"
 msgstr ""
 
-#: /storage/gettext/admin-top-bar.blade.php.php:55
+#: /storage/gettext/admin-top-bar.blade.php.php:54
 msgid "Providers"
 msgstr ""
 
-#: /storage/gettext/admin-top-bar.blade.php.php:68
+#: /storage/gettext/admin-top-bar.blade.php.php:67
 msgid "Localization"
 msgstr ""
 
@@ -936,9 +938,13 @@ msgstr ""
 msgid "Me"
 msgstr ""
 
-#: /storage/gettext/admin-top-bar.blade.php.php:110
+#: /storage/gettext/admin-top-bar.blade.php.php:113
 #: /storage/gettext/home-home.blade.php.php:9
 msgid "Logout"
+msgstr ""
+
+#: /storage/gettext/admin-top-bar.blade.php.php:126
+msgid "Change language"
 msgstr ""
 
 #: /storage/gettext/admin-users-fields.blade.php.php:14

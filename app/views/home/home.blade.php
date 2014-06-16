@@ -8,7 +8,7 @@
 			<li class="price">{{ _('User')}}: {{Auth::user()->username}}</li>
 			<li class="cta-button">{{ link_to_route('logout', _('Logout'), null, ['class' => 'button']) }}</li>
 			@else
-			<li class="price">{{ _('User')}}:: none</li>
+			<li class="price">{{ _('User')}}: none</li>
 			<li class="cta-button">{{ link_to_route('login', _('Login'), null, ['class' => 'button']) }}</li>
 			@endif
 			<li class="description">{{ _('Routes')}}</li>

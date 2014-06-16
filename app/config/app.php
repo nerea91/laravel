@@ -121,11 +121,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		// NOTE: Make sure you also add new service providers to config/local/app.php
+		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
 		'Stolz\Foundation\FoundationServiceProvider', //https://github.com/stevenmaguire/zurb-foundation-laravel NOTE: When bug #2290 gets fixed replace "Stolz" with "Stevenmaguire" and remove this note
-		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
-
 	),
 
 	/*

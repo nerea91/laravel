@@ -66,12 +66,12 @@ class Account extends BaseModel
 
 	public function provider()
 	{
-		return $this->belongsTo('AuthProvider', 'provider_id');
+		return $this->belongsTo('AuthProvider', 'provider_id')->withTrashed();
 	}
 
 	public function user()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo('User')->withTrashed();
 	}
 
 	// Events ======================================================================

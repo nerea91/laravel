@@ -100,7 +100,7 @@ class UserPanelController extends BaseController
 	}
 
 	/**
-	 * Change current user reginal settings.
+	 * Change current user regional settings.
 	 *
 	 * @return Response
 	 */

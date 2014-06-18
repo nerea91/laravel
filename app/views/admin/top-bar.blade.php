@@ -101,13 +101,9 @@
 			<li class="divider"></li>
 			<li class="has-dropdown">
 
-				<a>{{ _('Me') }}</a>
+			{{-- Show whatever is shorter, Name or Username --}}
+			<a>{{ (strlen($currentUser->name()) <= strlen($currentUser->username)) ? $currentUser->name() : $currentUser->username  }}</a>
 				<ul class="dropdown">
-					<li><label>{{ _('User') }}</label></li>
-					<li><a>{{ $currentUser->name() }}</a></li>
-					<li><label>{{ _('Profile') }}</label></li>
-					<li><a>{{ $currentUser->profile->name }}</a></li>
-					<li class="divider"></li>
 					<li>{{ link_to_route('user.options', _('Options')) }}</li>
 					<li class="divider"></li>
 					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>

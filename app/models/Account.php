@@ -76,6 +76,22 @@ class Account extends BaseModel
 
 	// Events ======================================================================
 
+	public static function boot()
+	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+
+		// updating BEFORE validation
+		static::updating(function ($account) {
+
+			// Updating user or provider is not allowed
+			$account->restoreOriginalAttributes('provider_id', 'user_id');
+		});
+
+		parent::boot();
+
+	}
 	// Accessors / Mutators ========================================================
 
 	/**

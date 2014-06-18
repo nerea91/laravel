@@ -1,6 +1,5 @@
 # Pending tasks
 
-- When editing and account, do not allow changing provider or user
 - Create a Git hook for checking code quiality before each push
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
 - Make usernames in lower case unique.

@@ -53,7 +53,7 @@ class Currency extends BaseModel
 			'symbol' => [_('Symbol'), 'max:8'],
 			'symbol2' => [_('Alt. symbol'), 'max:8'],
 			'symbol_position' => [_('Symbol position'), 'required|integer'],
-			'decimal_separator' => [_('Decimal separator'), 'size:1'],
+			'decimal_separator' => [_('Decimal separator'), 'required|size:1'],
 			'thousands_separator' => [_('Thousands separator'), 'size:1'],
 			'subunit' => [_('Subunit'), 'max:16'],
 			'subunit2' => [_('Alt. subunit'), 'max:16'],

@@ -26,7 +26,7 @@ class CreateCurrenciesTable extends Migration
 			$table->string('symbol', 8)->nullable();
 			$table->string('symbol2', 8)->nullable();
 			$table->boolean('symbol_position')->unsigned()->default(1); // 0 left 1 right
-			$table->string('decimal_separator', 1)->nullable();
+			$table->string('decimal_separator', 1)->default('.');
 			$table->string('thousands_separator', 1)->nullable();
 			$table->string('subunit', 16)->nullable();
 			$table->string('subunit2', 16)->nullable();

@@ -70,6 +70,10 @@ return array(
 			'//laravel/packages/barryvdh/laravel-debugbar/debugbar.css',
 		],
 
+		// Flags of all countries in one sprite. https://github.com/lafeber/world-flags-sprite
+		'flags-sprite-16px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css'],
+		'flags-sprite-32px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags21.css'],
+
 	),
 
 );

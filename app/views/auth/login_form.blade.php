@@ -27,15 +27,18 @@
 		{{ Form::close() }}
 
 
-		{{-- list with all messages but current one --}}
+		{{-- Button to change language --}}
 		@if ($languages->count())
-		<ul class="small-block-grid-4">
-		@foreach ($languages as $l)
-			<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code]) }}</li>
-		@endforeach
-		</ul>
+		<div class="text-right">
+			<br/>
+			<a href="#" data-dropdown="language-list" class="tiny secondary button dropdown">{{ $appLanguage->name }}</a>
+			<ul id="language-list" data-dropdown-content class="f-dropdown content-disabled text-left">
+				@foreach ($languages as $l)
+					<li>{{link_to_route('language.set', $l->name, ['code' => $l->code, 'class' => "flag {$l->code}"]) }}</li>
+				@endforeach
+			</ul>
+		</div>
 		@endif
-
 	</div>
 </div>
 

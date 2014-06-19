@@ -101,8 +101,7 @@
 			<li class="divider"></li>
 			<li class="has-dropdown">
 
-			{{-- Show whatever is shorter, Name or Username --}}
-			<a>{{ (strlen($currentUser->name()) <= strlen($currentUser->username)) ? $currentUser->name() : $currentUser->username  }}</a>
+			<a>{{ $currentUser->name() }}</a>
 				<ul class="dropdown">
 					<li>{{ link_to_route('user.options', _('Options')) }}</li>
 					<li class="divider"></li>
@@ -112,7 +111,7 @@
 
 			</li>
 
-			@if ($allLanguages->count() > 1)
+			@if ($languages)
 			<li class="divider"></li>
 			<li class="has-dropdown">
 
@@ -120,7 +119,7 @@
 				<ul class="dropdown">
 
 					<li><label>{{ _('Change language') }}</label></li>
-					@foreach ($allLanguages as $l)
+					@foreach ($languages as $l)
 					<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code]) }}</li>
 					@endforeach
 

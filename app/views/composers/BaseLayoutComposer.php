@@ -5,7 +5,8 @@ class BaseLayoutComposer
 	public function compose($view)
 	{
 		// Application language
-		$view->with('appLanguage', App::make('language'));
+		$appLanguage = App::make('language');
+		$view->with('appLanguage', $appLanguage);
 
 		// Populate languages for implementing https://support.google.com/webmasters/answer/189077
 		$url = parse_url(Request::url());
@@ -18,9 +19,6 @@ class BaseLayoutComposer
 			$l->url = http_build_url($url);
 		}
 		$view->with('allLanguages', $languages);
-
-		// Authenticated user
-		$view->with('currentUser', Auth::user());
 
 		// Add PHP debugbar
 		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))

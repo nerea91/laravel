@@ -25,6 +25,17 @@
 		<a href="#" class="right" data-reveal-id="problems">{{ _('Problems?') }}</a>
 
 		{{ Form::close() }}
+
+
+		{{-- list with all messages but current one --}}
+		@if ($languages->count())
+		<ul class="small-block-grid-4">
+		@foreach ($languages as $l)
+			<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code]) }}</li>
+		@endforeach
+		</ul>
+		@endif
+
 	</div>
 </div>
 

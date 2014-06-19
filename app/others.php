@@ -18,8 +18,10 @@
 */
 
 View::composers([
-	// Layout				=> View(s)
-	'BaseLayoutComposer'	=> ['layouts.base', 'layouts.admin'],
+	// View composer class	=> View file (use an array for more than one)
+	'AdminTopBarComposer'	=> 'admin/top-bar',
+	'BaseLayoutComposer'	=> 'layouts.base',
+	'LoginFormComposer'		=> 'auth.login_form',
 ]);
 
 /*

@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
 		"stolz/assets": "dev-master",
 		"stolz/zurb-foundation-laravel": "dev-master",
-		"binarix/foundation-pagination": "dev-master"
+		"binarix/foundation-pagination": "dev-master",
+		"schickling/backup": "dev-master"
 	},
 	"require-dev": {
 		"stolz/laravel-html-tidy": "dev-develop",

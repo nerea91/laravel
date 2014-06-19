@@ -32,3 +32,6 @@ Thumbs.db
 
 # SchemaSpy output
 /app/database/schema/
+
+# Database backups
+/app/database/backups/

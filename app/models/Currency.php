@@ -38,7 +38,7 @@ class Currency extends BaseModel
 	 */
 	public function __toString()
 	{
-		return $this->code;
+		return (string) $this->code;
 	}
 
 	// Validation ==================================================================

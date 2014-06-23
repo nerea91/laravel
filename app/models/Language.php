@@ -38,7 +38,7 @@ class Language extends BaseModel
 	 */
 	public function __toString()
 	{
-		return $this->english_name;
+		return (string) $this->english_name;
 	}
 
 	// Validation ==================================================================

@@ -43,7 +43,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	 */
 	public function __toString()
 	{
-		return $this->username;
+		return (string) $this->username;
 	}
 
 	// Validation ==================================================================

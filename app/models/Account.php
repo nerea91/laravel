@@ -36,7 +36,7 @@ class Account extends BaseModel
 	 */
 	public function __toString()
 	{
-		return $this->user . ' (' . $this->provider . ')';
+		return (string) $this->user . ' (' . $this->provider . ')';
 	}
 
 	// Validation ==================================================================

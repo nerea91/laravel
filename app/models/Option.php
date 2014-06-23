@@ -37,7 +37,7 @@ class Option extends BaseModel
 	 */
 	public function __toString()
 	{
-		return $this->label . ': '. $this->value;
+		return (string) $this->label . ': '. $this->value;
 	}
 
 	// Validation ==================================================================

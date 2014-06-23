@@ -14,7 +14,7 @@ class BaseLayoutComposer
 		$languages = Language::getAllByPriority();
 		foreach($languages as &$l)
 		{
-			//Regenerate URL
+			// Regenerate URL
 			$url['host'] = $l->code . '.' . $domain;
 			$l->url = http_build_url($url);
 		}

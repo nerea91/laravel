@@ -1,3 +1,6 @@
+<?php Assets::add('canvas-demo.js') ?>
+
 @section('main')
-{{ _('Home page') }}
+<canvas id="displayCanvas" width="1024" height="576"></canvas>
 @stop
+

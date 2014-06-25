@@ -3,48 +3,47 @@
 <?php Assets::add('master.css') ?>
 
 @section('body')
-<header>
 
-	<div class="row">
+	{{-- OFFCANVAS --}}
+	<div class="off-canvas-wrap" data-offcanvas>
+		<div class="inner-wrap">
 
-		<div class="large-5 columns">
-		<h1>{{ link_to_route('home', Config::get('site.name')) }}</h1>
-			<h4>{{{ $title }}}</h4>
-		</div>
+			{{-- Menu toggler for small screens --}}
+			<nav class="tab-bar show-for-small">
+				<a class="left-off-canvas-toggle menu-icon">
+					<span>{{ _('Menu') }}</span>
+				</a>
+			</nav>
 
-		<div class="large-7 columns">
+			{{-- ASIDE --}}
+			<aside class="left-off-canvas-menu">@include('home.aside')</aside>
 
-			{{-- Button to change language --}}
-			@if ($allLanguagesButCurrent->count())
-			<a href="#" data-dropdown="language-list" class="tiny secondary button dropdown right">{{ $appLanguage->name }}</a>
-			<ul id="language-list" data-dropdown-content class="f-dropdown content-disabled text-left">
-				@foreach ($allLanguagesButCurrent as $l)
-				<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code, 'class' => "flag {$l->code}"]) }}</li>
-				@endforeach
-			</ul>
-			@endif
+			{{-- HEADER --}}
+			@include('home.header')
 
-			<dl class="sub-nav right">
-				@if (Auth::check())
-				<dt>{{ Auth::user() }}</dt>
-				<dd class="active">{{ link_to_route('logout', _('Logout')) }}</dd>
-				<dd class="active">{{ link_to_route('admin', _('Admin panel')) }}</dd>
-				@else
-				<dd class="active">{{ link_to_route('login', _('Login')) }}</dd>
-				@endif
-				<dd class="active">{{ link_to_route('contact', _('Contact')) }}</dd>
-			</dl>
-		</div>
+			{{-- MAIN CONTENT --}}
+			<div id="main" class="row">@yield('main')</div>
 
-	</div>
-
-</header>
-
-<div class="row">
-@yield('main')
-</div>
-
+			{{-- Close offcanvas after click the main content --}}
+			<a class="exit-off-canvas"></a>
+		</div><!--.inner-wrap-->
+	</div><!--.off-canvas-wrap-->
+	{{-- END OFFCANVAS --}}
 @stop
 
 
 
+@section('js')
+<script>
+$(document).ready(function() {
+	{{-- Equal height for off-canvas aside and content --}}
+	var $offcanvas = $('.off-canvas-wrap'),
+		$aside = $('aside ul', $offcanvas),
+		$main = $('#main', $offcanvas);
+
+	if($main.height() < $aside.height())
+		$main.height($aside.height());
+
+});
+</script>
+@stop

@@ -101,11 +101,11 @@
 			<li class="divider"></li>
 			<li class="has-dropdown">
 
-			<a>{{ $user->name() }}</a>
+				<a>{{ $user->name() }}</a>
 				<ul class="dropdown">
 					<li>{{ link_to_route('user.options', _('Options')) }}</li>
 					<li class="divider"></li>
-					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'top:0']) }}</li>
+					<li>{{ link_to_route('logout', _('Logout'), [], ['class' => 'button alert', 'style' => 'padding:0']) }}</li>
 					<li class="divider"></li>
 				</ul>
 

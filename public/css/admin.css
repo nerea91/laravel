@@ -23,5 +23,5 @@ fieldset.checkables .checkbox_togglers {
 	float:right;
 }
 
-/* Fix for magellan + top-bar.fixed*/
+/* Fix for magellan + top-bar.fixed */
 div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin-top:45px;}

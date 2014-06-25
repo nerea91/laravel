@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 12:00+0200\n"
+"POT-Creation-Date: 2014-06-25 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,6 +127,9 @@ msgstr "Empresa"
 msgid "Confirm"
 msgstr "Confirmar"
 
+msgid "Contact"
+msgstr "Contactar"
+
 msgid "Contact form query"
 msgstr "Consulta online"
 
@@ -217,6 +220,9 @@ msgstr "Volver atrás"
 msgid "Home"
 msgstr "Inicio"
 
+msgid "Home page"
+msgstr ""
+
 msgid "I don't know my password"
 msgstr ""
 
@@ -285,9 +291,6 @@ msgstr "Desconectar"
 
 msgid "Maintenance"
 msgstr "Mantenimiento"
-
-msgid "Me"
-msgstr "Yo"
 
 msgid "Message"
 msgstr "Mensaje"
@@ -404,9 +407,6 @@ msgstr "Volver"
 msgid "Right"
 msgstr "Derecha"
 
-msgid "Routes"
-msgstr "Rutas"
-
 msgid "Sample"
 msgstr "Ejemplo"
 
@@ -422,8 +422,8 @@ msgstr "Secciones"
 msgid "Select"
 msgstr "Seleccionar"
 
-msgid "Send"
-msgstr "Enviar"
+msgid "Send query"
+msgstr "Enviar consulta"
 
 msgid "Site down for maintenance"
 msgstr "Web parada por mantenimiento"
@@ -716,3 +716,12 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
+
+#~ msgid "Me"
+#~ msgstr "Yo"
+
+#~ msgid "Routes"
+#~ msgstr "Rutas"
+
+#~ msgid "Send"
+#~ msgstr "Enviar"

@@ -29,13 +29,13 @@ Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@s
 // Guest user area
 Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
-	Route::post('/', array('uses' => 'AuthController@doLogin'));
+	Route::post('/', array('uses' => 'AuthController@login'));
 });
 
 // Authenticated user area
 Route::group(array('https', 'before' => 'auth'), function () {
 
-	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@doLogout'));
+	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@logout'));
 
 	// Current user control panel
 	Route::group(array('prefix' => 'user'), function () {

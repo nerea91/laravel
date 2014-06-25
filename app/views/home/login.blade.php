@@ -1,8 +1,7 @@
-@section('body')
+@section('main')
 <div class="row">
 	<div class="small-11 small-centered large-5 columns">
 
-		<h2 class="text-center">{{{ Config::get('site.name') }}}</h2>
 		<h3 class="subheader text-center">{{ _('Enter your credentials') }}</h3>
 		<hr/>
 
@@ -13,7 +12,7 @@
 		</div>
 		@endif
 
-		{{ Form::open(['action' => 'AuthController@doLogin']) }}
+		{{ Form::open(['action' => 'AuthController@login']) }}
 		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
 		{{ Form::password('password', ['placeholder' => _('Password')]) }}
 		{{ Form::submit(_('Login'), ['class' => 'button expand']) }}
@@ -26,19 +25,6 @@
 
 		{{ Form::close() }}
 
-
-		{{-- Button to change language --}}
-		@if ($languages->count())
-		<div class="text-right">
-			<br/>
-			<a href="#" data-dropdown="language-list" class="tiny secondary button dropdown">{{ $appLanguage->name }}</a>
-			<ul id="language-list" data-dropdown-content class="f-dropdown content-disabled text-left">
-				@foreach ($languages as $l)
-					<li>{{link_to_route('language.set', $l->name, ['code' => $l->code, 'class' => "flag {$l->code}"]) }}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif
 	</div>
 </div>
 

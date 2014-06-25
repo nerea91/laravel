@@ -3,7 +3,7 @@
 <html class="no-js" lang="{{ $appLanguage->code }}">
 	<head>
 		{{-- Current page info --}}
-		<title>{{{ $title }}} | {{{ trim(Config::get('site.name')) }}}</title>
+		<title>{{{ $title }}} | {{{ Config::get('site.name') }}}</title>
 		<meta name="description" content="@yield('description')" />
 
 		{{-- Authors info --}}

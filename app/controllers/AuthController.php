@@ -2,7 +2,7 @@
 
 class AuthController extends BaseController
 {
-	protected $layout = 'layouts.base';
+	protected $layout = 'layouts.master';
 
 	/**
 	 * Display the login form for native authentication.
@@ -12,7 +12,7 @@ class AuthController extends BaseController
 	public function showLoginForm()
 	{
 		$this->layout->title = _('Login');
-		$this->layout->content = View::make('auth.login_form');
+		$this->layout->content = View::make('home.login');
 	}
 
 	/**
@@ -20,7 +20,7 @@ class AuthController extends BaseController
 	 *
 	 * @return Response
 	 */
-	public function doLogin()
+	public function login()
 	{
 		$input = Input::only(['username', 'password', 'remember']);
 
@@ -51,10 +51,10 @@ class AuthController extends BaseController
 	 *
 	 * @return Response
 	 */
-	public function doLogout()
+	public function logout()
 	{
 		Auth::logout();
 		Session::flush();
-		return Redirect::to('/');
+		return Redirect::route('home');
 	}
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 12:00+0200\n"
+"POT-Creation-Date: 2014-06-25 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,9 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
+msgid "Contact"
+msgstr ""
+
 msgid "Contact form query"
 msgstr ""
 
@@ -218,6 +221,9 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+msgid "Home page"
+msgstr ""
+
 msgid "I don't know my password"
 msgstr ""
 
@@ -285,9 +291,6 @@ msgid "Logout"
 msgstr ""
 
 msgid "Maintenance"
-msgstr ""
-
-msgid "Me"
 msgstr ""
 
 msgid "Message"
@@ -405,9 +408,6 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-msgid "Routes"
-msgstr ""
-
 msgid "Sample"
 msgstr ""
 
@@ -423,7 +423,7 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-msgid "Send"
+msgid "Send query"
 msgstr ""
 
 msgid "Site down for maintenance"

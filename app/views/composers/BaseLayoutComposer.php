@@ -5,10 +5,9 @@ class BaseLayoutComposer
 	public function compose($view)
 	{
 		// Application language
-		$appLanguage = App::make('language');
-		$view->with('appLanguage', $appLanguage);
+		$view->with('appLanguage', $appLanguage = App::make('language'));
 
-		// Populate languages for implementing https://support.google.com/webmasters/answer/189077
+		// All languages (for implementing https://support.google.com/webmasters/answer/189077)
 		$url = parse_url(Request::url());
 		$domain = preg_replace('/^[a-z][a-z]\./', '', $url['host']);
 		$languages = Language::getAllByPriority();
@@ -19,6 +18,11 @@ class BaseLayoutComposer
 			$l->url = http_build_url($url);
 		}
 		$view->with('allLanguages', $languages);
+
+		// All languages but current one
+		$view->with('allLanguagesButCurrent', $languages->filter(function ($l) use ($appLanguage) {
+			return $l->id != $appLanguage->id;
+		}));
 
 		// Add PHP debugbar
 		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))

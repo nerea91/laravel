@@ -2,7 +2,7 @@
 
 class HomeController extends BaseController
 {
-	protected $layout = 'layouts.base';
+	protected $layout = 'layouts.master';
 
 	/**
 	 * Show main page
@@ -11,21 +11,8 @@ class HomeController extends BaseController
 	 */
 	public function showMainPage()
 	{
-		$data = [
-			'title' => _('Home'),
-			'routes' => [],
-		];
-
-		// Select all GET routes wihtout parameters excluding admin.*
-		foreach(App::make('router')->getRoutes() as $route)
-		{
-			$name = $route->getName();
-			if(substr($name, 0, 6) != 'admin.' and in_array('GET', $route->methods()))
-				$data['routes'][$name] = link_to($route->uri(), $name, [], $route->secure());
-		}
-
-		$this->layout->title = $data['title'];
-		$this->layout->content = View::make('home.home', $data);
+		$this->layout->title = $title = _('Home');
+		$this->layout->content = View::make('home.home')->withTitle($title);
 	}
 
 	/**
@@ -63,8 +50,7 @@ class HomeController extends BaseController
 		];
 
 		$input = Input::only(array_keys($rules));
-		$validator = Validator::make($input, $rules);
-		$validator->setAttributeNames($labels);
+		$validator = Validator::make($input, $rules)->setAttributeNames($labels);
 
 		if($validator->fails())
 			return Redirect::back()->withInput($input)->withErrors($validator);
@@ -75,7 +61,7 @@ class HomeController extends BaseController
 			$message->from($input['email'], $input['name'])->to(Config::get('site.contact-email'), Config::get('site.name'))->subject(_('Contact form query'));
 		});
 
-		// Post/Redirect/Get Pattern (http://en.wikipedia.org/wiki/Post/Redirect/Get)
-		return Redirect::back()->withSuccess(_('Message sent!'));
+
+		return Redirect::back()->withSuccess(_('Your query has been sent!'));
 	}
 }

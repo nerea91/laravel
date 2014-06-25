@@ -18,10 +18,9 @@
 */
 
 View::composers([
-	// View composer class	=> View file (use an array for more than one)
-	'AdminTopBarComposer'	=> 'admin/top-bar',
-	'BaseLayoutComposer'	=> 'layouts.base',
-	'LoginFormComposer'		=> 'auth.login_form',
+	// View composer class => View file (use an array for more than one)
+	'AdminTopBarComposer' => 'admin/top-bar',
+	'BaseLayoutComposer' => ['layouts.base', 'layouts.master'],
 ]);
 
 /*

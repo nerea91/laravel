@@ -1,4 +1,4 @@
-/* Offcanvas with custom width (25rem) */
+/* To set a custom with to the aside of the offcanvas add a class of ".custom-width-off-canvas" */
 .custom-width-off-canvas .left-off-canvas-menu,.custom-width-off-canvas .right-off-canvas-menu {width: 25rem;}
 .custom-width-off-canvas.move-right > .inner-wrap { -webkit-transform: translate3d(25rem, 0, 0); -moz-transform: translate3d(25rem, 0, 0); -ms-transform: translate3d(25rem, 0, 0); -o-transform: translate3d(25rem, 0, 0); transform: translate3d(25rem, 0, 0); }
 .custom-width-off-canvas.move-left > .inner-wrap { -webkit-transform: translate3d(-25rem, 0, 0); -moz-transform: translate3d(-25rem, 0, 0); -ms-transform: translate3d(-25rem, 0, 0); -o-transform: translate3d(-25rem, 0, 0); transform: translate3d(-25rem, 0, 0); }
@@ -11,4 +11,6 @@
 
 /* Fix horizontal scroll of form within off-canvas */
 .right-off-canvas-menu form,.left-off-canvas-menu form {margin:0 1em;}
+
+/* Fix for form labels withn offcanvas aside */
 .right-off-canvas-menu form label,.left-off-canvas-menu form  label { color: #EEE }

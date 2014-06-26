@@ -71,10 +71,9 @@ class Language extends BaseModel
 		// NOTE saving   -> updating -> updated   -> saved
 		// NOTE deleting -> deleted  -> restoring -> restored
 
-		parent::boot();
+		parent::boot(); // Validate the model
 
 		static::saved(function ($language) {
-
 			// Only one Language can be the default
 			if($language->is_default)
 				Language::where('id', '<>', $language->id)->update(array('is_default' => 0));
@@ -84,17 +83,14 @@ class Language extends BaseModel
 		});
 
 		static::deleted(function ($language) {
-
 			// Purge cache
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
 
 		static::restored(function ($language) {
-
 			// Purge cache
 			Cache::forget('allLanguagesOrderedByPriority');
 		});
-
 	}
 
 	// Accessors / Mutators ========================================================

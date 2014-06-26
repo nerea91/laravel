@@ -84,14 +84,13 @@ class Account extends BaseModel
 
 		// updating BEFORE validation
 		static::updating(function ($account) {
-
 			// Updating user or provider is not allowed
 			$account->restoreOriginalAttributes('provider_id', 'user_id');
 		});
 
-		parent::boot();
-
+		parent::boot(); // Validate the model
 	}
+
 	// Accessors / Mutators ========================================================
 
 	/**

@@ -211,32 +211,27 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		parent::boot();
 
 		static::saving(function ($model) {
-
 			// Global muttator to convert empty attributes to null
 			$model->convertEmptyAttributesToNull();
 		});
 
 		static::creating(function ($model) {
-
 			// Validate the model
 			if( ! $model->validate(true))
 				return false;
 		});
 
 		static::updating(function ($model) {
-
 			// Validate the model
 			if( ! $model->validate(true))
 				return false;
 		});
 
 		static::deleting(function ($model) {
-
 			// Check delete restrictions for the model
 			if( ! $model->deletable(true))
 				return false;
 		});
-
 	}
 
 	/**

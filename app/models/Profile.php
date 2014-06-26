@@ -69,7 +69,7 @@ class Profile extends BaseModel
 		// NOTE saving   -> updating -> updated   -> saved
 		// NOTE deleting -> deleted  -> restoring -> restored
 
-		parent::boot();
+		parent::boot(); // Validate the model
 
 		static::saved(function ($profile) {
 			// Purge permissions cache
@@ -80,7 +80,6 @@ class Profile extends BaseModel
 			// Purge permissions cache
 			Cache::forget("profile{$profile->id}permissions");
 		});
-
 	}
 
 	// Accessors / Mutators ========================================================

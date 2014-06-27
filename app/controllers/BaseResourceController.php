@@ -185,7 +185,7 @@ class BaseResourceController extends \BaseController
 			}
 
 			// Validate and save resource
-			if( ! $this->resource->save())
+			if($this->resource->save() === false)
 				throw new ModelValidationException(_('Wrong data'));
 
 			// Save resource relationships

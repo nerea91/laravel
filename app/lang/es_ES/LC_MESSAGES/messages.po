@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-26 10:27+0200\n"
+"POT-Creation-Date: 2014-06-27 12:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -472,6 +472,9 @@ msgstr ":attribute es obligatorio cuando no se indica ninguno de los valores :va
 
 msgid "The :attribute field is required."
 msgstr "El campo :attribute es obligatorio."
+
+msgid "The :attribute field must be true or false"
+msgstr ":attribute debe ser cierto o falso"
 
 msgid "The :attribute format is invalid."
 msgstr "El formato de :attribute no es válido."

@@ -12,7 +12,7 @@ Permission@getGroupedByType
 
 	allPermissionsGroupedByType
 
-PermissionType@scopeGetUsed
+PermissionType@scopeUsed
 
 	usedPermissionTypes
 

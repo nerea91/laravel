@@ -19,7 +19,7 @@
 
 	<?php $all = Permission::getGroupedByType(); ?>
 
-	@foreach (PermissionType::getUsed()->lists('name', 'id') as $type_id => $type)
+	@foreach (PermissionType::used()->lists('name', 'id') as $type_id => $type)
 	{{ Form::checkboxes($f, $all[$type_id], $resource->permissions->lists('id'), ['legend' => $type]) }}
 	@endforeach
 

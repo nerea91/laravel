@@ -378,8 +378,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	*/
 	public function getOption($option)
 	{
-		if($userOtion = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->first())
-			return $userOtion->pivot->value;
+		if($userOption = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->first())
+			return $userOption->pivot->value;
 
 		return Option::where('id', $option)->orWhere('name', $option)->firstOrFail()->value;
 	}

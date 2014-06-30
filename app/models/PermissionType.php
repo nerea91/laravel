@@ -35,12 +35,12 @@ class PermissionType extends BaseModel
 	// Logic =======================================================================
 
 	/**
-	 * Get types with at least one permission
+	 * Get types with at least one permission.
 	 *
 	 * @param Illuminate\Database\Eloquent\Builder
 	 * @return Illuminate\Database\Eloquent\Builder
 	 */
-	public function scopeGetUsed($query)
+	public function scopeUsed($query)
 	{
 		return $query->has('permissions')->orderBy('name')->remember(60 * 24, 'usedPermissionTypes')->get();
 	}

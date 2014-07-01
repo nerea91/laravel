@@ -6,6 +6,7 @@ class ProfilesTableSeeder extends Seeder
 	{
 		$profiles = [
 			['id' => 1, 'name' => 'Superuser', 'description' => 'Holds all the permissions'],
+			['id' => 2, 'name' => 'User', 'description' => null],
 		];
 
 		DB::table('profiles')->insert($profiles);

@@ -160,6 +160,45 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
 	}
 
+	/**
+	 * Create a new user with a random username.
+	 * If an $account is provided, the username will try to match the account username.
+	 *
+	 * @param  Account $account
+	 * @return User
+	 * @throws Exception
+	 */
+	public static function autoCreate(Account $account = null)
+	{
+		$profile = Profile::findOrFail(Config::get('site.auto-registration-profile'));
+
+		// Generate a random username that is not already in use
+		$usernameAvailable = false;
+		$loopLimit = 100;
+		while($loopLimit-- > 0 and ! $usernameAvailable)
+		{
+			$username = 'auto' . str_random(6); //to-do: try the username to match the data from $account
+			$usernameAvailable = is_null(self::withTrashed()->where('username', $username)->first());
+		}
+
+		if($loopLimit <= 0)
+			throw new Exception(_('Too many attempts'));
+
+		// Attempt to create user
+		$user = new User([
+			'username' => $username,
+			'name' => str_random(5), //to-do: try the name to match the data from $account
+			'password' => $password = str_random(32),
+			'password_confirmation' => $password,
+			'profile_id' => $profile->id,
+		]);
+
+		if( ! $user->save())
+			throw new Exception(_('Unable to create user'));
+
+		return $user;
+	}
+
 	// UserInterface implementation for auth =======================================
 
 	/**

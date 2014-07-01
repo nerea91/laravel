@@ -140,7 +140,7 @@ class Account extends BaseModel
 	 * @param  array $data
 	 * @return Account
 	 */
-	public static function fillFromFacebook(array $data)
+	public static function makeFromFacebook(array $data)
 	{
 		$account = new Account;
 

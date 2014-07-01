@@ -128,26 +128,18 @@ class AuthProvider extends BaseModel
 	 */
 	public function findOrCreateAccount(OAuthService $service)
 	{
-		// Fetch user information from remote service
-		$userInfo = $this->fetchRemoteUserInfo($service);
-
-		// Create an empty account and fill it with the remote data
-		$newAccount = new Account($userInfo);
+		// Make a new account with data provided by remote $service
+		$newAccount = $this->makeAccountFromService($service);
 
 		// If an account of $this provider already exists then return it
 		if($oldAccount = Account::where(['provider_id' => $this->id, 'uid' => $newAccount->uid])->first())
-		{
-			return $oldAccount; //to-do volver a rellenar los datos de $oldAccount que no esten en $newAccount
-		}
+			return $oldAccount; //to-do merge missing $newAccount fields with $oldAccount
 
-		// New account must be created
-
-		// If there is an account from different provider but same email, associate the new account with the same user as the existing account
-		$validator = Validator::make($newAccount->toArray(), ['email' => 'required|email']);
-		if($validator->passes() and $oldAccount = Account::where('email', $newAccount->email)->first())
+		// If there is an $oldAccount from different provider but same email, associate $newAccount with the same user
+		if(Validator::make($newAccount->toArray(), ['email' => 'required|email'])->passes() and $oldAccount = Account::where('email', $newAccount->email)->first())
 			$newAccount->user_id = $oldAccount->user_id;
 
-		// Create account (and user) with transactions
+		// Create account with transactions
 		try
 		{
 			DB::beginTransaction();
@@ -155,13 +147,13 @@ class AuthProvider extends BaseModel
 			// Create new user
 			if( ! $newAccount->user_id)
 			{
-				$user = User::create(); //to-do comprobar que ha tenido exito
+				$user = User::autoCreate($newAccount);
 				$newAccount->user_id = $user->id;
 			}
 
 			// Save new account
-			$newAccount->provider_id = $this->id;
-			$newAccount->save(); // to-do comprobar que ha tenido exito
+			if( ! $newAccount->save())
+				throw new Exception('Unable to create account');
 
 			// Success :)
 			DB::commit();
@@ -175,25 +167,26 @@ class AuthProvider extends BaseModel
 	}
 
 	/**
-	 * Fetch user information from a remote service.
+	 * Make an account of $this provider with the data fetched from $service.
 	 *
 	 * @param  \OAuth\Common\Service\AbstractService $service
-	 * @return array
+	 * @return Account
 	 * @throws Exception
 	 */
-	public function fetchRemoteUserInfo(OAuthService $service)
+	public function makeAccountFromService(OAuthService $service)
 	{
 		switch($this->name)
 		{
 			case 'facebook':
 				$data = json_decode($service->request('/me'), true);
-				$account = Account::fillFromFacebook($data);
+				$account = Account::makeFromFacebook($data);
 				break;
 
 			default:
-				throw new Exception(sprintf('Provider %s has no Oauth fetcher', $this));
+				throw new Exception(sprintf('Provider %s has no account factory', $this));
 		}
 
-		return $account->toArray();
+		$account->provider_id = $this->id;
+		return $account;
 	}
 }

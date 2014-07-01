@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateAuthprovidersTable extends Migration
 {
-
 	/**
 	 * Run the migrations.
 	 *
@@ -22,8 +21,6 @@ class CreateAuthprovidersTable extends Migration
 			// Ordinary columns
 			$table->string('name', 32)->unique();
 			$table->string('title', 32)->unique();
-			$table->string('oauth2_id')->nullable();
-			$table->string('oauth2_secret')->nullable();
 			$table->unsignedInteger('login_count')->default(0);
 
 			// Automatic columns

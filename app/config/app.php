@@ -123,6 +123,7 @@ return array(
 
 		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
 		'Schickling\Backup\BackupServiceProvider', //https://github.com/schickling/laravel-backup
+		'Jenssegers\OAuth\OAuthServiceProvider', //https://github.com/jenssegers/laravel-oauth
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
 		'Stolz\Foundation\FoundationServiceProvider', //https://github.com/stevenmaguire/zurb-foundation-laravel NOTE: When bug #2290 gets fixed replace "Stolz" with "Stevenmaguire" and remove this note
 	),
@@ -191,6 +192,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
+		'OAuth'           => 'Jenssegers\OAuth\Facades\OAuth', //https://github.com/jenssegers/laravel-oauth
 
 	),
 

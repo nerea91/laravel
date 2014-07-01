@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCountriesTable extends Migration
 {
-
 	/**
 	 * Run the migrations.
 	 *

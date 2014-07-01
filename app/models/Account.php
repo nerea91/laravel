@@ -133,6 +133,42 @@ class Account extends BaseModel
 		->get();
 	}
 
+
+	/**
+	 * Return a new account filled with data provided by Facebook.
+	 *
+	 * @param  array $data
+	 * @return Account
+	 */
+	public static function fillFromFacebook(array $data)
+	{
+		$account = new Account;
+
+		// Map between local and remote field names. https://developers.facebook.com/docs/facebook-login/permissions/v2.0
+		$map = [
+			'uid'		=> 'id',
+			//'nickname'	=> 'to-do',
+			'email'		=> 'email',
+			'name'		=> 'name',
+			'first_name' => 'first_name',
+			'last_name'	=> 'last_name',
+			//'image'		=> 'to-do',
+			'locale'	=> 'locale',
+			'location'	=> 'location',
+		];
+
+		// Fill
+		foreach($map as $local => $remote)
+			if(isset($data[$remote]))
+				$account->$local = $data[$remote];
+
+		// Unverified email are evil
+		if( ! isset($data['verified']) or $data['verified'] !== true)
+			$account->email = null;
+
+		return $account;
+	}
+
 	// Logic =======================================================================
 
 	/**

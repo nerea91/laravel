@@ -28,8 +28,14 @@ Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@s
 
 // Guest user area
 Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
+
+	// Login with native autencication
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 	Route::post('/', array('uses' => 'AuthController@login'));
+
+	// Login with Oauth provider
+	Route::get('with/{provider}', array('as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin'));
+
 });
 
 // Authenticated user area

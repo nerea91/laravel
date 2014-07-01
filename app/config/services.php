@@ -28,6 +28,12 @@ return array(
 		'secret' => '',
 	),
 
+	'facebook' => array(
+		'client_id'     => '1470439019866751',
+		'client_secret' => '1b76690067523606e52b1fd37e99f6aa',
+		'scope'         => array('email'),
+	),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Google analytics

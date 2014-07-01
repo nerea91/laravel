@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCurrenciesTable extends Migration
 {
-
 	/**
 	 * Run the migrations.
 	 *

@@ -135,7 +135,7 @@ class Account extends BaseModel
 
 
 	/**
-	 * Return a new account filled with data provided by Facebook.
+	 * Make a new account filled with data provided by Facebook.
 	 *
 	 * @param  array $data
 	 * @return Account
@@ -144,15 +144,15 @@ class Account extends BaseModel
 	{
 		$account = new Account;
 
-		// Map between local and remote field names. https://developers.facebook.com/docs/facebook-login/permissions/v2.0
+		// Map between local and remote field names
 		$map = [
 			'uid'		=> 'id',
-			//'nickname'	=> 'to-do',
+			'nickname'	=> 'username',
 			'email'		=> 'email',
 			'name'		=> 'name',
 			'first_name' => 'first_name',
 			'last_name'	=> 'last_name',
-			//'image'		=> 'to-do',
+			//'image'	=> '',
 			'locale'	=> 'locale',
 			'location'	=> 'location',
 		];
@@ -162,8 +162,43 @@ class Account extends BaseModel
 			if(isset($data[$remote]))
 				$account->$local = $data[$remote];
 
-		// Unverified email are evil
+		// Don't trust unverified email
 		if( ! isset($data['verified']) or $data['verified'] !== true)
+			$account->email = null;
+
+		return $account;
+	}
+
+	/**
+	 * Make a new account filled with data provided by Google.
+	 *
+	 * @param  array $data
+	 * @return Account
+	 */
+	public static function makeFromGoogle(array $data)
+	{
+		$account = new Account;
+
+		// Map between local and remote field names
+		$map = [
+			'uid'		=> 'id',
+			//'nickname'=> '',
+			'email'		=> 'email',
+			'name'		=> 'name',
+			'first_name' => 'given_name',
+			'last_name'	=> 'family_name',
+			'image'		=> 'picture',
+			'locale'	=> 'locale',
+			//'location'=> '',
+		];
+
+		// Fill
+		foreach($map as $local => $remote)
+			if(isset($data[$remote]))
+				$account->$local = $data[$remote];
+
+		// Don't trust unverified email
+		if( ! isset($data['verified_email']) or $data['verified_email'] !== true)
 			$account->email = null;
 
 		return $account;
@@ -225,5 +260,41 @@ class Account extends BaseModel
 		->select($this->getTable().'.*') // Avoid 'ambiguous column name' for paginate() method
 		->leftJoin($table, $column, '=', "$table.id") // Include related table
 		->orderBy("$table.$relatedColumn", $direction); // Sort by related column
+	}
+
+	/**
+	 * Return the most human readable name the account has.
+	 *
+	 * @return string|null
+	 */
+	public function nameForHumans()
+	{
+		foreach(['first_name', 'name', 'last_name', 'nickname'] as $field)
+			if( ! empty($this->$field))
+				return $this->$field;
+
+		return null;
+	}
+
+	/**
+	 * Add the fields from $account that are not present on $this account.
+	 *
+	 * @param  Account $account
+	 * @return Account
+	 */
+	public function mergeMissingAttributes(Account $account)
+	{
+		$fields = array_except(
+			array_keys($this->getRules()),
+			['uid', 'access_token', 'login_count', 'last_ip', 'provider_id', 'user_id']
+		);
+
+		foreach($fields as $field)
+		{
+			if(empty($this->$field))
+				$this->$field = $account->$field;
+		}
+
+		return $this;
 	}
 }

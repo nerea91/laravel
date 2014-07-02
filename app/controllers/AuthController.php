@@ -5,14 +5,14 @@ class AuthController extends BaseController
 	protected $layout = 'layouts.master';
 
 	/**
-	 * Display the login form for native authentication.
+	 * Display the login form.
 	 *
 	 * @return Response
 	 */
 	public function showLoginForm()
 	{
 		$this->layout->title = _('Login');
-		$this->layout->content = View::make('home.login');
+		$this->layout->content = View::make('home.login')->withProviders(AuthProvider::getUsable());
 	}
 
 	/**
@@ -37,7 +37,7 @@ class AuthController extends BaseController
 		{
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 			{
-				Event::fire('account.login', array(Auth::user()->accounts()->where('provider_id', 1)->first()));
+				Event::fire('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
 				return Redirect::intended('/');
 			}
 
@@ -59,7 +59,7 @@ class AuthController extends BaseController
 	}
 
 	/**
-	 * Attempt login with an Oauth authentication provider.
+	 * Attempt to log in an user using an Oauth authentication provider.
 	 *
 	 * @param  string
 	 * @return Response
@@ -69,26 +69,30 @@ class AuthController extends BaseController
 		try
 		{
 			// Check if provider exists
-			if( ! $provider = AuthProvider::where('id', '!=', 1)->whereName($providerName)->first())
+			if( ! $provider = AuthProvider::whereName($providerName)->first() and $provider->isUsable())
 				throw new OauthException(sprintf(_('Unknown provider: %s'), e($providerName)));
 
-			// Create an Oauth consumer for this autentication provider
-			if( ! $oauth = OAuth::consumer($provider->name))
+			// Create an Oauth service for this autentication provider
+			if( ! $oauthService = OAuth::service($provider->name))
 				throw new OauthException(sprintf('Provider %s has no Oauth implementation', $provider));
 
-			// Request code
+			// If the user does not accept our App cancell the process
+			if(Input::get('error') === 'access_denied')
+				throw new OauthException(_('Cancelled by user'));
+
+			// Request user to authorize our App
 			if( ! Input::has('code'))
-				return Redirect::to(htmlspecialchars_decode($oauth->getAuthorizationUri()));
+				return Redirect::to(htmlspecialchars_decode($oauthService->getAuthorizationUri()));
 
 			//This was a callback request from the Oauth service
 
-			// Request user to authorize our App
-			$token = $oauth->requestAccessToken(Input::get('code'));
+			// Request Access Token
+			$token = $oauthService->requestAccessToken(Input::get('code'));
 
 			// Get/create associated account
-			$account = $provider->findOrCreateAccount($oauth);
+			$account = $provider->findOrCreateAccount($oauthService);
 
-			// Do not allow login to disabled users
+			// Do not allow login to users that have been disabled
 			if($account->user->trashed())
 				throw new OauthException(_('This account has been disabled'));
 
@@ -97,11 +101,16 @@ class AuthController extends BaseController
 
 			// Fire account login event to save token
 			$account->access_token = Crypt::encrypt($token->getAccessToken());
-			Event::fire('account.login', array($account));
+			Event::fire('account.login', [$account]);
 
 			return Redirect::intended('/');
 		}
 		catch(OauthException $e)
+		{
+			Session::flash('error', $e->getMessage());
+			return Redirect::route('login');
+		}
+		catch(OAuth\Common\Http\Exception\TokenResponseException $e)
 		{
 			Session::flash('error', $e->getMessage());
 			return Redirect::route('login');

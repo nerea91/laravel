@@ -161,8 +161,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	}
 
 	/**
-	 * Create a new user with a random username.
-	 * If an $account is provided, the username will try to match the account username.
+	 * Create a new user with an automatillay generated username.
+	 * If an $account is provided, the username will try to match the account personal info.
 	 *
 	 * @param  Account $account
 	 * @return User
@@ -170,25 +170,28 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	 */
 	public static function autoCreate(Account $account = null)
 	{
+		// Profile of the user
 		$profile = Profile::findOrFail(Config::get('site.auto-registration-profile'));
 
-		// Generate a random username that is not already in use
-		$usernameAvailable = false;
-		$loopLimit = 100;
-		while($loopLimit-- > 0 and ! $usernameAvailable)
-		{
-			$username = 'auto' . str_random(6); //to-do: try the username to match the data from $account
-			$usernameAvailable = is_null(self::withTrashed()->where('username', $username)->first());
-		}
-
-		if($loopLimit <= 0)
-			throw new Exception(_('Too many attempts'));
+		// Seeds for the username
+		$seeds = ( ! $account) ? [] : array_filter([
+			$account->first_name,
+			$account->last_name,
+			$account->name,
+			$account->nickname,
+			preg_replace('/([^@]*).*/', '$1', $account->email), //Username part of the email
+			$account->first_name . str_random(4),
+			$account->last_name . str_random(4),
+			$account->name . str_random(4),
+			$account->nickname . str_random(4),
+			$account->provider->name . $account->uid,
+		]);
 
 		// Attempt to create user
 		$user = new User([
-			'username' => $username,
-			'name' => str_random(5), //to-do: try the name to match the data from $account
-			'password' => $password = str_random(32),
+			'username' => generate_username($seeds),
+			'name' => ($account) ? $account->nameForHumans() : null,
+			'password' => $password = str_random(60),
 			'password_confirmation' => $password,
 			'profile_id' => $profile->id,
 		]);

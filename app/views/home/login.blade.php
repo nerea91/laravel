@@ -25,6 +25,16 @@
 
 		{{ Form::close() }}
 
+		@if ($providers->count())
+		<hr/>
+		<fieldset class="callout panel">
+			<legend>{{ _('One click login') }}</legend>
+			@foreach($providers as $provider)
+			{{ link_to_route('login.oauth', $provider, [$provider->name], ['class' => 'tiny button', 'style' => 'padding:.5em 1em']) }}
+			@endforeach
+		</fieldset>
+		@endif
+
 	</div>
 </div>
 

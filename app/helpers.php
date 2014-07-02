@@ -107,6 +107,48 @@ if( ! function_exists('link_to_sort_by'))
 	}
 }
 
+if( ! function_exists('generate_username'))
+{
+	/**
+	 * Generate a valid username that is not already in use.
+	 *
+	 * If any arguments are passed they will be used it base for the username.
+	 *
+	 * @param  mixed  $tryWith
+	 * @return string
+	 */
+	function generate_username($tryWith = null)
+	{
+		$usernames = is_array($tryWith) ? $tryWith : func_get_args();
+		$username = array_shift($usernames);
+
+		// If no username provided generate a random one
+		if(empty($username))
+			$username = 'user' . str_random(rand(5,8));
+		else
+		{
+			// Trim non alphanumeric characters
+			$username = preg_replace('/[^\da-z]/i', null, $username);
+
+			// Trim numbers from the begining
+			$username = preg_replace('/^\d+/', null, $username);
+
+			// Ensure at least 4 characters length
+			if(strlen($username) < 4)
+				return generate_username($usernames);
+
+			// Truncate and lower case
+			$username = strtolower(substr($username, 0, 32));
+		}
+
+		if(is_null(DB::table('users')->whereUsername($username)->first()))
+			return $username;
+
+		return generate_username($usernames);
+	}
+}
+
+
 // @codingStandardsIgnoreStart
 /**
  * http_build_url

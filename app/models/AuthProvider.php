@@ -78,6 +78,18 @@ class AuthProvider extends BaseModel
 		return self::where('name', 'LIKE', "%$query%")->orWhere('title', 'LIKE', "%$query%")->orderBy('title')->get();
 	}
 
+	/**
+	 * Get all usable providers.
+	 *
+	 * @return Collection (of AuthProvider)
+	 */
+	public static function getUsable()
+	{
+		return self::orderBy('title')->get()->filter(function ($provider) {
+			return $provider->isUsable();
+		});
+	}
+
 	// Logic =======================================================================
 
 	/**
@@ -120,6 +132,24 @@ class AuthProvider extends BaseModel
 	}
 
 	/**
+	 * Determine if provider is enabled and has been configured in app/config/services.php file.
+	 *
+	 * @return boolean
+	 */
+	public function isUsable()
+	{
+		if(
+			$this->trashed() or
+			empty($this->name) or
+			empty(Config::get("services.{$this->name}.client_id")) or
+			empty(Config::get("services.{$this->name}.client_secret"))
+			)
+			return false;
+
+		return true;
+	}
+
+	/**
 	 * Find the local account associated with a remote user.
 	 * If no account is found create it.
 	 *
@@ -131,11 +161,11 @@ class AuthProvider extends BaseModel
 		// Make a new account with data provided by remote $service
 		$newAccount = $this->makeAccountFromService($service);
 
-		// If an account of $this provider already exists then return it
+		// If an account of $this provider already exists then reuse it
 		if($oldAccount = Account::where(['provider_id' => $this->id, 'uid' => $newAccount->uid])->first())
-			return $oldAccount; //to-do merge missing $newAccount fields with $oldAccount
+			return $oldAccount->mergeMissingAttributes($newAccount);
 
-		// If there is an $oldAccount from different provider but same email, associate $newAccount with the same user
+		// If an account from different provider but same email exists then reuse its user
 		if(Validator::make($newAccount->toArray(), ['email' => 'required|email'])->passes() and $oldAccount = Account::where('email', $newAccount->email)->first())
 			$newAccount->user_id = $oldAccount->user_id;
 
@@ -146,10 +176,7 @@ class AuthProvider extends BaseModel
 
 			// Create new user
 			if( ! $newAccount->user_id)
-			{
-				$user = User::autoCreate($newAccount);
-				$newAccount->user_id = $user->id;
-			}
+				$newAccount->user_id = User::autoCreate($newAccount)->id; // If something went wrong it will throw an exception
 
 			// Save new account
 			if( ! $newAccount->save())
@@ -182,8 +209,13 @@ class AuthProvider extends BaseModel
 				$account = Account::makeFromFacebook($data);
 				break;
 
+			case 'google':
+				$data = json_decode($service->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
+				$account = Account::makeFromGoogle($data);
+				break;
+
 			default:
-				throw new Exception(sprintf('Provider %s has no account factory', $this));
+				throw new Exception(sprintf('Provider %s has no account generator', $this));
 		}
 
 		$account->provider_id = $this->id;

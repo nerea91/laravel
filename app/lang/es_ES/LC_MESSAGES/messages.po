@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-27 12:59+0200\n"
+"POT-Creation-Date: 2014-07-02 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,12 +79,6 @@ msgstr "Subunidad alt."
 msgid "Alt. symbol"
 msgstr "Símbolo alt."
 
-msgid "App id"
-msgstr "App id"
-
-msgid "App secret"
-msgstr "App secret"
-
 msgid "Are you sure?"
 msgstr "¿Estás seguro?"
 
@@ -105,6 +99,9 @@ msgstr "Ha fallado la condición de autorización"
 
 msgid "Cancel"
 msgstr "Cancelar"
+
+msgid "Cancelled by user"
+msgstr "Cancelado por el usuario"
 
 msgid "Capital"
 msgstr "Capital"
@@ -318,6 +315,9 @@ msgstr "No se han encontrado resultados"
 
 msgid "Numeric code"
 msgstr "Código numérico"
+
+msgid "One click login"
+msgstr "Acceso con un click"
 
 msgid "Option"
 msgstr "Opción"
@@ -605,6 +605,9 @@ msgstr ":attribute debe tener entre :min y :max ítems."
 msgid "The selected :attribute is invalid."
 msgstr "El valor seleccionado para :attribute no es válido."
 
+msgid "This account has been disabled"
+msgstr "Esta cuenta ha sido desabilitada"
+
 msgid "This combination of :fields already exists."
 msgstr "Esta cobinacion de :fields ya existe."
 
@@ -627,6 +630,9 @@ msgstr "Completa este formulario para restablecer tu contraseña"
 msgid "Type"
 msgstr "Tipo"
 
+msgid "Unable to create user"
+msgstr "No se ha podido crear el usuario"
+
 msgid "Unable to save option to data base"
 msgstr "No se ha podido guardar la opción en la base de datos"
 
@@ -641,6 +647,9 @@ msgstr "Unicode hexadecimal"
 
 msgid "Unknown"
 msgstr "Desconocido"
+
+msgid "Unknown provider: %s"
+msgstr "Proveedor desconocido: %s"
 
 msgid "Unknown route"
 msgstr "Ruta desconocida"
@@ -719,3 +728,9 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
+
+#~ msgid "App id"
+#~ msgstr "App id"
+
+#~ msgid "App secret"
+#~ msgstr "App secret"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-27 12:59+0200\n"
+"POT-Creation-Date: 2014-07-02 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,12 +80,6 @@ msgstr ""
 msgid "Alt. symbol"
 msgstr ""
 
-msgid "App id"
-msgstr ""
-
-msgid "App secret"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr ""
 
@@ -105,6 +99,9 @@ msgid "Authorization condition failed"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "Cancelled by user"
 msgstr ""
 
 msgid "Capital"
@@ -318,6 +315,9 @@ msgid "No results found"
 msgstr ""
 
 msgid "Numeric code"
+msgstr ""
+
+msgid "One click login"
 msgstr ""
 
 msgid "Option"
@@ -606,6 +606,9 @@ msgstr ""
 msgid "The selected :attribute is invalid."
 msgstr ""
 
+msgid "This account has been disabled"
+msgstr ""
+
 msgid "This combination of :fields already exists."
 msgstr ""
 
@@ -628,6 +631,9 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
+msgid "Unable to create user"
+msgstr ""
+
 msgid "Unable to save option to data base"
 msgstr ""
 
@@ -641,6 +647,10 @@ msgid "Unicode hexadecimal"
 msgstr ""
 
 msgid "Unknown"
+msgstr ""
+
+#, php-format
+msgid "Unknown provider: %s"
 msgstr ""
 
 msgid "Unknown route"

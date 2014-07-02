@@ -28,11 +28,20 @@ return array(
 		'secret' => '',
 	),
 
+	/*
 	'facebook' => array(
-		'client_id'     => 'to-do',
-		'client_secret' => 'to-do',
+		'client_id'     => '',
+		'client_secret' => '',
 		'scope'         => array('email'),
 	),
+
+	'google' => array(
+		'client_id'     => '',
+		'client_secret' => '',
+		'scope'         => array('profile', 'email'),
+	),
+	*/
+
 
 	/*
 	|--------------------------------------------------------------------------

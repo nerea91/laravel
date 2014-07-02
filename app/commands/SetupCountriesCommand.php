@@ -110,7 +110,7 @@ class SetupCountriesCommand extends Command
 		$this->showCountriesList();
 		$answer = $this->ask("Enter 'all' or a space separated list of ids/codes to enable: ");
 
-		if (trim($answer) == 'all')
+		if (trim($answer) === 'all')
 			return $this->allCountries->lists('id');
 
 		// Filter input

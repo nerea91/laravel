@@ -328,7 +328,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 				break;
 		}
 
-		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+		$direction = (Input::get('sortdir') === 'desc') ? 'desc' : 'asc';
 
 		return $query
 		->select($this->getTable().'.*') // Avoid 'ambiguous column name' for paginate() method

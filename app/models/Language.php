@@ -263,9 +263,9 @@ class Language extends BaseModel
 	public function scopeOrderByUrl($query)
 	{
 		$column = Input::get('sortby');
-		$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+		$direction = (Input::get('sortdir') === 'desc') ? 'desc' : 'asc';
 
-		if($column == 'name')
+		if($column === 'name')
 			return $query->orderBy('english_name', $direction);
 
 		return parent::scopeOrderByUrl($query);

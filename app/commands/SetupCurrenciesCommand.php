@@ -110,7 +110,7 @@ class SetupCurrenciesCommand extends Command
 		$this->showCurrenciesList();
 		$answer = $this->ask("Enter 'all' or a space separated list of ids/codes to enable: ");
 
-		if (trim($answer) == 'all')
+		if (trim($answer) === 'all')
 			return $this->allCurrencies->lists('id');
 
 		// Filter input

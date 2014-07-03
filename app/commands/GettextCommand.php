@@ -59,7 +59,7 @@ class GettextCommand extends Command
 		{
 			// Skip not blade templates
 			$file = $f->getPathName();
-			if ('.blade.php' != substr($file, -10))
+			if ('.blade.php' !== substr($file, -10))
 				continue;
 
 			// Compile the view

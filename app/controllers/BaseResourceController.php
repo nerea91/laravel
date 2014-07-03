@@ -196,9 +196,9 @@ class BaseResourceController extends \BaseController
 
 			DB::commit();
 
-			if($action == 'update')
+			if($action === 'update')
 				$successMesssage = _('%s successfully updated');
-			elseif($action == 'store')
+			elseif($action === 'store')
 				$successMesssage = _('%s successfully created');
 			else
 				$successMesssage = _('%s successfully saved');

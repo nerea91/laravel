@@ -7,7 +7,7 @@
 	<dd>{{{ $resource->user }}}</dd>
 
 	@foreach ($labels as $field => $label)
-		@if ( ! is_null($resource->{$field}) and $field != 'provider_id' and $field != 'user_id')
+		@if ( ! is_null($resource->{$field}) and $field !== 'provider_id' and $field !== 'user_id')
 			<dt>{{ $label }}</dt>
 			<dd>{{{ $resource->{$field} }}}</dd>
 		@endif

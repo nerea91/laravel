@@ -3,7 +3,7 @@
 		@if ( ! is_null($resource->{$field}))
 			<dt>{{ $label }}</dt>
 
-			@if ($field == 'symbol_position')
+			@if ($field === 'symbol_position')
 			<dd>{{{ ($resource->{$field}) ? _('Right') : _('Left') }}}</dd>
 			@else
 			<dd>{{{ $resource->{$field} }}}</dd>

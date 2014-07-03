@@ -123,7 +123,7 @@ Form::macro('checkables', function ($type, $name, $values, $checked, $options) {
 	unset($options['legend'], $options['small'], $options['medium'], $options['large']);
 
 	$out = ($legend) ? '<fieldset class="checkables"><legend>' . $legend . '</legend>' : null;
-	if($legend and $type == 'checkbox')
+	if($legend and $type === 'checkbox')
 		$out .= '
 		<div class="checkbox_togglers">
 			<a href="all">'._('all').'</a> &#8226;
@@ -139,7 +139,7 @@ Form::macro('checkables', function ($type, $name, $values, $checked, $options) {
 		$check = in_array($value, $checked);
 
 		$out .= '<li><label for="' . $id . '" style="display:inline">';
-		$out .= ($type == 'radio') ? Form::radio($name, $value, $check, $options) : Form::checkbox($name.'[]', $value, $check, $options);
+		$out .= ($type === 'radio') ? Form::radio($name, $value, $check, $options) : Form::checkbox($name.'[]', $value, $check, $options);
 		$out .= '&nbsp;'.$label;
 		$out .= '</label></li>';
 	}

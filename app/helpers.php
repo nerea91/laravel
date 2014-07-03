@@ -97,7 +97,7 @@ if( ! function_exists('link_to_sort_by'))
 		foreach($labels as $key => $label)
 		{
 			$sortby = ['sortby' => $key];
-			if($key == $column and $direction != 'desc')
+			if($key === $column and $direction !== 'desc')
 				$sortby['sortdir'] = 'desc';
 
 			$links[$key] = link_to_route($route, $label, $sortby);
@@ -124,7 +124,7 @@ if( ! function_exists('generate_username'))
 
 		// If no username provided generate a random one
 		if(empty($username))
-			$username = 'user' . str_random(rand(5,8));
+			$username = 'user' . str_random(rand(5, 8));
 		else
 		{
 			// Trim non alphanumeric characters
@@ -220,13 +220,13 @@ if( ! function_exists('http_build_url'))
 			// Join the original URL path with the new path
 			if(isset($parts['path']) && (HTTP_URL_JOIN_PATH & $flags))
 			{
-				if(isset($url['path']) && $url['path'] != '')
+				if(isset($url['path']) && $url['path'] !== '')
 				{
 					// If the URL doesn't start with a slash, we need to merge
-					if($url['path'][0] != '/')
+					if($url['path'][0] !== '/')
 					{
 						// If the path ends with a slash, store as is
-						if('/' == $parts['path'][strlen($parts['path'])-1])
+						if('/' === $parts['path'][strlen($parts['path'])-1])
 						{
 							$sBasePath    = $parts['path'];
 						}
@@ -238,7 +238,7 @@ if( ! function_exists('http_build_url'))
 						}
 
 						// If it's empty
-						if('' == $sBasePath)    $sBasePath    = '/';
+						if('' === $sBasePath)    $sBasePath    = '/';
 
 						// Add the two together
 						$url['path']    = $sBasePath . $url['path'];

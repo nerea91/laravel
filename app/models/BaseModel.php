@@ -124,10 +124,10 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		{
 			foreach($fieldRules as $ruleName => &$ruleData)
 			{
-				if($ruleData == 'unique')
+				if($ruleData === 'unique')
 					$ruleData = "unique:$table,$field{$except}";
 
-				if($ruleName == 'unique_with')
+				if($ruleName === 'unique_with')
 					$ruleData = "{$ruleData}{$except}";
 			}
 		}
@@ -366,7 +366,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		$column = Input::get('sortby');
 		if(in_array($column, array_keys($this->getVisibleLabels())))
 		{
-			$direction = (Input::get('sortdir') == 'desc') ? 'desc' : 'asc';
+			$direction = (Input::get('sortdir') === 'desc') ? 'desc' : 'asc';
 			return $query->orderBy($column, $direction);
 		}
 
@@ -383,17 +383,17 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		$data = $this->toArray();
 		foreach($data as $key => $value)
 		{
-			if($key == 'created_at')
+			if($key === 'created_at')
 			{
 				unset($data[$key]);
 				$data[_('Created at')] = $value;
 			}
-			elseif($key == 'updated_at')
+			elseif($key === 'updated_at')
 			{
 				unset($data[$key]);
 				$data[_('Updated at')] = $value;
 			}
-			elseif($key == 'deleted_at')
+			elseif($key === 'deleted_at')
 			{
 				unset($data[$key]);
 				$data[_('Deleted at')] = $value;

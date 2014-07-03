@@ -36,6 +36,7 @@ return array(
 		'admin.countries.edit' => 12,
 		'admin.countries.update' => 12,
 		'admin.countries.destroy' => 13,
+		'admin.countries.restore' => 13,
 
 		// Languages
 		'admin.languages.index' => 20,
@@ -45,6 +46,7 @@ return array(
 		'admin.languages.edit' => 22,
 		'admin.languages.update' => 22,
 		'admin.languages.destroy' => 23,
+		'admin.languages.restore' => 23,
 
 		// Profiles
 		'admin.profiles.index' => 40,
@@ -54,6 +56,7 @@ return array(
 		'admin.profiles.edit' => 42,
 		'admin.profiles.update' => 42,
 		'admin.profiles.destroy' => 43,
+		'admin.profiles.restore' => 43,
 
 		// Users
 		'admin.users.index' => 60,
@@ -63,6 +66,7 @@ return array(
 		'admin.users.edit' => 62,
 		'admin.users.update' => 62,
 		'admin.users.destroy' => 63,
+		'admin.users.restore' => 63,
 
 		// Auth providers
 		'admin.authproviders.index' => 80,
@@ -72,6 +76,7 @@ return array(
 		'admin.authproviders.edit' => 82,
 		'admin.authproviders.update' => 82,
 		'admin.authproviders.destroy' => 83,
+		'admin.authproviders.restore' => 83,
 
 		// Accounts
 		'admin.accounts.index' => 100,
@@ -81,6 +86,7 @@ return array(
 		'admin.accounts.edit' => 102,
 		'admin.accounts.update' => 102,
 		'admin.accounts.destroy' => 103,
+		'admin.accounts.restore' => 103,
 
 		// Currencies
 		'admin.currencies.index' => 120,
@@ -90,6 +96,7 @@ return array(
 		'admin.currencies.edit' => 122,
 		'admin.currencies.update' => 122,
 		'admin.currencies.destroy' => 123,
+		'admin.currencies.restore' => 123,
 	),
 
 );

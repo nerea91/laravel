@@ -1,18 +1,20 @@
 $doc.ready(function() {
 
-	//Toggle delete resource modal
-	var $deleteModalForm = $('#delete-modal-form');
-	if($deleteModalForm.length)
+	//Toggle confirmation modals
+	var $confirmModals = $('#confirmation-modals');
+	if($confirmModals.length)
 	{
-		$('#delete-modal-close', $deleteModalForm).click(function() {
-			$deleteModalForm.foundation('reveal', 'close');
+		// Close modal on click cancel button
+		$('.close-confirm-modal', $confirmModals).click(function() {
+			$confirmModals.foundation('reveal', 'close');
 		});
 
-		var $deleteModalPrompt = $('#delete-modal-prompt', $deleteModalForm);
-		$('a.toggle-delete-modal').click(function(e) {
+		// Replace prompt/action and show modal
+		$('a.toggle-confirm-modal').click(function(e) {
 			e.preventDefault();
-			$deleteModalPrompt.text($(this).attr('title'));
-			$deleteModalForm.attr('action', $(this).attr('href')).foundation('reveal', 'open');
+			var $form = $('#' + $(this).data('modal'), $confirmModals);
+			$('.prompt', $form).text($(this).attr('title'));
+			$form.attr('action', $(this).attr('href')).foundation('reveal', 'open');
 		});
 	}
 

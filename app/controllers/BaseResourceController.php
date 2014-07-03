@@ -243,4 +243,19 @@ class BaseResourceController extends \BaseController
 
 		return $response;
 	}
+
+	/**
+	 * Restore the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function restore($id)
+	{
+		//to-do TODO not working!! Resoruces are found but not restored.
+		if($resource = $this->resource->withTrashed()->find($id) and $resource->restore())
+			Session::flash('success', sprintf(_('%s successfully restored'), $resource));
+
+		return Redirect::route("{$this->prefix}.index");
+	}
 }

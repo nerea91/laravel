@@ -14,7 +14,9 @@
 	{{ $results->appends(Input::only('sortby', 'sortdir'))->links() }}
 
 	@if ($delete)
-	@include('resource.delete')
+	<div id="confirmation-modals">
+		@include('resource.delete')
+	</div>
 	@endif
 @endif
 

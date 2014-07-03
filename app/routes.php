@@ -60,13 +60,22 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 		// Resource controllers require ACL
 		Route::group(array('before' => 'acl'), function () {
-			Route::resource('accounts', 'AccountsController');
-			Route::resource('authproviders', 'AuthProvidersController');
-			Route::resource('countries', 'CountriesController');
-			Route::resource('currencies', 'CurrenciesController');
-			Route::resource('languages', 'LanguagesController');
-			Route::resource('profiles', 'ProfilesController');
-			Route::resource('users', 'UsersController');
+
+			$resources = [
+				'accounts' => 'AccountsController',
+				'authproviders' => 'AuthProvidersController',
+				'countries' => 'CountriesController',
+				'currencies' => 'CurrenciesController',
+				'languages' => 'LanguagesController',
+				'profiles' => 'ProfilesController',
+				'users' => 'UsersController',
+			];
+
+			foreach($resources as $name => $controller)
+			{
+				Route::resource($name, $controller);
+				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "$controller@restore"));
+			}
 		});
 
 	});

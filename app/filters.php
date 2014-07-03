@@ -85,6 +85,20 @@ Route::filter('csrf', function () {
 
 /*
 |--------------------------------------------------------------------------
+| Local environment filter
+|--------------------------------------------------------------------------
+|
+| This filter ensures the app is running in local (development) enviorment.
+|
+*/
+
+Route::filter('local', function () {
+	if( ! App::environment('local'))
+		return App::abort(404);
+});
+
+/*
+|--------------------------------------------------------------------------
 | ACL Filter
 |--------------------------------------------------------------------------
 |

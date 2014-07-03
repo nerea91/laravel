@@ -72,3 +72,19 @@ Route::group(array('https', 'before' => 'auth'), function () {
 	});
 
 });
+
+// Route for testings purposes, oly available on local environment
+Route::get('test', array('before' => 'local', function () {
+
+	// Define some variables
+	$user = User::first()->toArray();
+	$language = Language::first()->toArray();
+
+	// Choose which ones of the above will be shown
+	$pleaseShowThese = compact('user', 'language');
+
+	// ==== DO NOR MODIFY BELOW HERE ================================
+
+	$tabs = array_keys($pleaseShowThese);
+	return View::make('test')->withTitle('Test route')->withSecctions($pleaseShowThese)->withActive(array_shift($tabs));
+}));

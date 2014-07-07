@@ -138,15 +138,14 @@ class AuthProvider extends BaseModel
 	 */
 	public function isUsable()
 	{
-		if(
-			$this->trashed() or
-			empty($this->name) or
-			empty(Config::get("services.{$this->name}.client_id")) or
-			empty(Config::get("services.{$this->name}.client_secret"))
-			)
+		// Check database fields
+		if( ! $this->getKey() or $this->trashed() or empty($this->name))
 			return false;
 
-		return true;
+		// Check config
+		$config = Config::get("services.{$this->name}.client_id", Config::get("services.{$this->name}.client_secret"));
+
+		return ( ! empty($config));
 	}
 
 	/**

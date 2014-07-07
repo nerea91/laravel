@@ -6,7 +6,7 @@
 	@endif
 
 	@if ($delete)
-		@if ($resource->trashed())
+		@if ($resource->deleted_at) {{-- $resource->trashed() is not always available --}}
 			{{ link_to_route("$prefix.restore", _('Restore'), array($resource->id), array('class' => 'small success radius button toggle-confirm-modal', 'data-modal' => 'restore-modal', 'title' => e(sprintf(_('Restore %s'), $resource)))) }}
 		@else
 			{{ link_to_route("$prefix.destroy", _('Delete'),  array($resource->id), array('class' => 'small alert   radius button toggle-confirm-modal', 'data-modal' => 'delete-modal',  'title' => e(sprintf(_('Delete %s'),  $resource)))) }}

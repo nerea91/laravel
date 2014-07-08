@@ -4,20 +4,21 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*",
-		"stolz/assets": "dev-master",
-		"stolz/zurb-foundation-laravel": "dev-master",
 		"binarix/foundation-pagination": "dev-master",
+		"jenssegers/oauth": "dev-master",
+		"laravel/framework": "4.2.*",
 		"schickling/backup": "dev-master",
-		"jenssegers/oauth": "dev-master"
+		"stolz/assets": "dev-master",
+		"stolz/menu": "dev-master",
+		"stolz/zurb-foundation-laravel": "dev-master"
 	},
 	"require-dev": {
+		"barryvdh/laravel-debugbar": "dev-master",
+		"daylerees/container-debug": "dev-master",
+		"squizlabs/php_codesniffer": "2.*",
 		"stolz/laravel-html-tidy": "dev-develop",
 		"stolz/laravel-schema-spy": "dev-develop",
-		"way/generators": "dev-master",
-		"barryvdh/laravel-debugbar": "dev-master",
-		"squizlabs/php_codesniffer": "2.*",
-		"daylerees/container-debug": "dev-master"
+		"way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

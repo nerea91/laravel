@@ -122,10 +122,11 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
-		'Schickling\Backup\BackupServiceProvider', //https://github.com/schickling/laravel-backup
 		'Jenssegers\OAuth\OAuthServiceProvider', //https://github.com/jenssegers/laravel-oauth
+		'Schickling\Backup\BackupServiceProvider', //https://github.com/schickling/laravel-backup
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
 		'Stolz\Foundation\FoundationServiceProvider', //https://github.com/stevenmaguire/zurb-foundation-laravel NOTE: When bug #2290 gets fixed replace "Stolz" with "Stevenmaguire" and remove this note
+
 	),
 
 	/*

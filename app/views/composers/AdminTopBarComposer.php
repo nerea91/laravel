@@ -119,8 +119,7 @@ class AdminTopBarComposer
 	{
 		extract($sections);
 
-		$menu =
-		new Node('menu', [
+		$menu = new Node('menu', [
 			new Node('left', [
 				new Node(_('Users'), [
 					$users,

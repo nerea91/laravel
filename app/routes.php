@@ -75,6 +75,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 			{
 				Route::resource($name, $controller);
 				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "$controller@restore"));
+				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"));
 			}
 		});
 
@@ -92,7 +93,7 @@ Route::get('test', array('before' => 'local', function () {
 	// Choose which ones of the above will be shown
 	$pleaseShowThese = compact('user', 'language');
 
-	// ==== DO NOR MODIFY BELOW HERE ================================
+	// ==== DO NOT MODIFY BELOW HERE ================================
 
 	$tabs = array_keys($pleaseShowThese);
 	return View::make('test')->withTitle('Test route')->withSecctions($pleaseShowThese)->withActive(array_shift($tabs));

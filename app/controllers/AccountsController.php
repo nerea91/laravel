@@ -22,16 +22,8 @@ class AccountsController extends BaseResourceController
 			'edit'	 => Auth::user()->hasPermission(102),
 			'delete' => Auth::user()->hasPermission(103),
 		]);
-	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		// Eager load model with these relations
-		return parent::index('user', 'provider');
+		// Relationships to eager load when listing resource
+		$this->with = ['user', 'provider'];
 	}
 }

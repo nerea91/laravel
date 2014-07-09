@@ -22,16 +22,8 @@ class UsersController extends BaseResourceController
 			'edit'	 => Auth::user()->hasPermission(62),
 			'delete' => Auth::user()->hasPermission(63),
 		]);
-	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		// Eager load model with these relations
-		return parent::index('profile', 'country');
+		// Relationships to eager load when listing resource
+		$this->with = ['profile', 'country'];
 	}
 }

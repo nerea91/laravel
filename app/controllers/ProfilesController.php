@@ -23,23 +23,16 @@ class ProfilesController extends BaseResourceController
 			'delete' => Auth::user()->hasPermission(43),
 		]);
 
+		// Relationships to eager load when listing resource
+		$this->with = ['users'];
+
+		// Relationships to validate when saving resource
 		$this->relationships = [
 			'permissions' => [_('Permissions'), 'required|array|min:1'],
 		];
 	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		// Eager load model with this relation
-		return parent::index('users');
-	}
 }
 
-//	// Make sure we are not duplicating profiles
-//	elseif(false !== ($similar = Profile::existSimilar($permissions, $excluded_id)))
-//	$this->resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions'), $similar).'. '._('No duplicates allowed'));
+// Make sure we are not duplicating profiles
+// if(false !== ($similar = Profile::existSimilar($permissions, $excluded_id)))
+// $this->resource->getErrors()->add('permissions', sprintf(_('Profile %s has exactly the same permissions'), $similar).'. '._('No duplicates allowed'));

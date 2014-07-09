@@ -22,16 +22,8 @@ class LanguagesController extends BaseResourceController
 			'edit'	 => Auth::user()->hasPermission(22),
 			'delete' => Auth::user()->hasPermission(23),
 		]);
-	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		// Eager load model with this relation
-		return parent::index('users');
+		// Relationships to eager load when listing resource
+		$this->with = ['users'];
 	}
 }

@@ -10,19 +10,14 @@
 
 <div class="row">
 
-	@if (Session::has('success'))
-	<div class="flash-alert alert-box success radius" data-alert>
-		{{ Session::get('success') }}
-		<a class="close">&times;</a>
-	</div>
-	@endif
-
-	@if (Session::has('error'))
-	<div class="flash-alert alert-box alert radius" data-alert>
-		{{ Session::get('error') }}
-		<a class="close">&times;</a>
-	</div>
-	@endif
+	@foreach (['error' => 'alert', 'success' => 'success', 'info' => '', 'secondary' => 'secondary'] as $flashMessage => $boxClass)
+		@if (Session::has($flashMessage))
+		<div class="flash-alert alert-box {{ $boxClass }} radius" data-alert>
+			{{ Session::get($flashMessage) }}
+			<a class="close">&times;</a>
+		</div>
+		@endif
+	@endforeach
 
 	<h3 class="text-center">{{ $title }} <small>{{ $subtitle }}</small></h3>
 

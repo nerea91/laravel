@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Common part for all resource controllers.
  */
@@ -13,22 +15,34 @@ class BaseResourceController extends \BaseController
 	protected $layout;
 
 	/**
-	 * The common part of the name shared by all the routes of this resource controller.
-	 * @var string
-	 */
-	protected $prefix;
-
-	/**
 	 * Instance of the resource that this controller is in charge of.
 	 * @var Model
 	 */
 	protected $resource;
 
 	/**
-	 * Relationships of the resource.
+	 * Relationships to eager load when listing resource.
+	 * @var array
+	 */
+	protected $with = [];
+
+	/**
+	 * Relationships to validate when saving resource.
 	 * @var array
 	 */
 	protected $relationships = [];
+
+	/**
+	 * The common part of the name shared by all the routes of this resource controller.
+	 * @var string
+	 */
+	protected $prefix;
+
+	/**
+	 * Whether or not the resource can be soft deleted.
+	 * @var boolean
+	 */
+	protected $trashable = false;
 
 	/**
 	 * Class constructor
@@ -37,28 +51,30 @@ class BaseResourceController extends \BaseController
 	 * @param  array $permissions Permissions passed to the views
 	 * @return void
 	 */
-	public function __construct($resource, array $permissions = array())
+	public function __construct(Model $resource, array $permissions = array())
 	{
 		// Enable CSRF filter
 		parent::__construct();
 
 		$this->resource = $resource;
 		$this->prefix = replace_last_segment(Route::current()->getName());
+		$this->trashable = (isset($permissions['delete']) and $permissions['delete'] and method_exists($resource, 'trashed'));
 
-		// Views require prefix to generate URLs and permissions to render buttons
-		View::share(['prefix' => $this->prefix] + $permissions);
+		View::share($permissions + [
+			'prefix' => $this->prefix,
+			'trashable' => $this->trashable,
+		]);
 	}
 
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  array|string eager load model with these relations
 	 * @return Response
 	 */
 	protected function index()
 	{
 		// Paginate resource resutls
-		$results = $this->resource->orderByUrl()->with(func_get_args())->paginate();
+		$results = $this->paginate();
 
 		// If results found add asset to make tables responsive
 		//$results->getTotal() and Assets::add('responsive-tables');
@@ -75,19 +91,6 @@ class BaseResourceController extends \BaseController
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$this->resource = $this->resource->findOrFail($id);
-		$this->layout->subtitle = _('Details');
-		return $this->loadView(__FUNCTION__, $this->resource->getVisibleLabels());
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -96,37 +99,6 @@ class BaseResourceController extends \BaseController
 	{
 		$this->layout->subtitle = _('Add');
 		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$this->resource = $this->resource->findOrFail($id);
-		$this->layout->subtitle = _('Edit');
-		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
-	}
-
-	/**
-	 * Set layout title and load view.
-	 *
-	 * @param  string   $view
-	 * @param  array    $labels
-	 * @return Response
-	 */
-	protected function loadView($view, array $labels = null)
-	{
-		$data = [
-			'resource'	=> $this->resource,
-			'labels'	=> ($labels) ? (object) $labels : (object) $this->resource->getLabels(),
-		];
-
-		$this->layout->title = $this->resource->singular();
-		$this->layout->content = View::make('resource.' . $view, $data);
 	}
 
 	/**
@@ -144,6 +116,34 @@ class BaseResourceController extends \BaseController
 	}
 
 	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$this->resource = $this->resource->findOrFail($id);
+		$this->layout->subtitle = _('Details');
+
+		return $this->loadView(__FUNCTION__, $this->resource->getVisibleLabels());
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$this->resource = $this->resource->findOrFail($id);
+		$this->layout->subtitle = _('Edit');
+
+		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
+	}
+
+	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
@@ -153,10 +153,47 @@ class BaseResourceController extends \BaseController
 	{
 		// NOTE: If you override this method remember to exclude $this->relationships from input!!
 		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
-
 		$this->resource = $this->resource->findOrFail($id)->fill($input);
 
 		return $this->persist(__FUNCTION__);
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		try
+		{
+			if($resource = $this->resource->find($id) and $resource->deletable(true) and $resource->delete())
+				Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
+
+			$response = Redirect::route("{$this->prefix}.index");
+		}
+		catch(ModelDeletionException $e)
+		{
+			Session::flash('error', $e->getMessage());
+			$response = Redirect::back();
+		}
+
+		return $response;
+	}
+
+	/**
+	 * Restore the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function restore($id)
+	{
+		if($resource = $this->resource->onlyTrashed()->find($id) and $resource->restore())
+			Session::flash('success', sprintf(_('%s successfully restored'), $resource));
+
+		return Redirect::route("{$this->prefix}.index");
 	}
 
 	/**
@@ -221,41 +258,85 @@ class BaseResourceController extends \BaseController
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Set layout title and load view.
 	 *
-	 * @param  int  $id
+	 * @param  string   $view
+	 * @param  array    $labels
 	 * @return Response
 	 */
-	public function destroy($id)
+	protected function loadView($view, array $labels = null)
 	{
-		try
-		{
-			if($resource = $this->resource->find($id) and $resource->deletable(true) and $resource->delete())
-				Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
+		$data = [
+			'resource'	=> $this->resource,
+			'labels'	=> ($labels) ? (object) $labels : (object) $this->resource->getLabels(),
+		];
 
-			$response = Redirect::route("{$this->prefix}.index");
-		}
-		catch(ModelDeletionException $e)
-		{
-			Session::flash('error', $e->getMessage());
-			$response = Redirect::back();
-		}
-
-		return $response;
+		$this->layout->title = $this->resource->singular();
+		$this->layout->content = View::make('resource.' . $view, $data);
 	}
 
 	/**
-	 * Restore the specified resource from storage.
+	 * Set the trash mode for sofdeletable resources.
 	 *
-	 * @param  int  $id
+	 * The trash mode is stored in the session.
+	 *
+	 * @param  string $mode
 	 * @return Response
 	 */
-	public function restore($id)
+	public function setTrashMode($mode)
 	{
-		//to-do TODO not working!! Resoruces are found but not restored.
-		if($resource = $this->resource->withTrashed()->find($id) and $resource->restore())
-			Session::flash('success', sprintf(_('%s successfully restored'), $resource));
+		if( ! $this->trashable)
+			return Redirect::back();
 
-		return Redirect::route("{$this->prefix}.index");
+		switch($mode)
+		{
+			default:
+				$mode = 'normal';
+			case 'normal':
+				$message = _('Showing only available resources');
+				break;
+
+			case 'deleted':
+				$message = _('Showing only deleted resources');
+				break;
+
+			case 'all':
+				$message = _('Showing all resources');
+				break;
+		}
+
+		Session::put("{$this->prefix}.mode", $mode); // Prefix = admin.resource.trash.mode
+		Session::flash('secondary', $message);
+
+		return Redirect::back();
+	}
+
+	/**
+	 * Paginate a resource obeying:
+	 * - URL parameters.
+	 * - Current trash mode.
+	 *
+	 * @param  Model $resource
+	 * @return \Illuminate\Support\Collection
+	 */
+	protected function paginate($resource = null)
+	{
+		$resource = ($resource) ?: $this->resource;
+		if($this->trashable)
+		{
+			$trashMode = Session::get("{$this->prefix}.trash.mode");
+			switch($trashMode)
+			{
+				case 'deleted':
+					$resource = $resource->onlyTrashed();
+					break;
+
+				case 'all':
+					$resource = $resource->withTrashed();
+					break;
+			}
+		}
+
+		return $resource->orderByUrl()->with($this->with)->paginate();
 	}
 }

@@ -10,16 +10,23 @@
 
 			{{-- Menu toggler for small screens --}}
 			<nav class="tab-bar show-for-small">
+				<h2 class="right">{{ link_to_route('home', Config::get('site.name')) }}&nbsp;</h2>
 				<a class="left-off-canvas-toggle menu-icon">
 					<span>{{ _('Menu') }}</span>
 				</a>
 			</nav>
 
 			{{-- ASIDE --}}
-			<aside class="left-off-canvas-menu">@include('home.aside')</aside>
+			<aside class="left-off-canvas-menu">
+			@section('side')
+				@include('home.side')
+			@show
+			</aside>
 
 			{{-- HEADER --}}
-			@include('home.header')
+			@section('header')
+				@include('home.header')
+			@show
 
 			{{-- MAIN CONTENT --}}
 			<div id="main" class="row">@yield('main')</div>

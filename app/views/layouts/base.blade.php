@@ -53,7 +53,10 @@
 		</script>
 		@endif
 
-		@if (isset($debugbar)) {{ $debugbar }}@endif
+		{{-- Debugbar --}}
+		@if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false) and Assets::add('debugbar'))
+		{{ App::make('debugbar')->getJavascriptRenderer()->render() }}
+		@endif
 
 	</body>
 </html>

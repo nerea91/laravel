@@ -1,6 +1,6 @@
 <?php
 
-class BaseLayoutComposer
+class LocaleComposer
 {
 	public function compose($view)
 	{
@@ -23,12 +23,5 @@ class BaseLayoutComposer
 		$view->with('allLanguagesButCurrent', $languages->filter(function ($l) use ($appLanguage) {
 			return $l->id != $appLanguage->id;
 		}));
-
-		// Add PHP debugbar
-		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))
-		{
-			Assets::add('debugbar');
-			$view->with('debugbar', App::make('debugbar')->getJavascriptRenderer()->render());
-		}
 	}
 }

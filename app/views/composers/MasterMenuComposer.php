@@ -1,19 +1,24 @@
 <?php
 
-use Stolz\Menu\Nodes\Flat;
-use Stolz\Menu\Nodes\Link;
-use Stolz\Menu\Nodes\Node;
-
 class MasterMenuComposer
 {
 	public function compose($view)
 	{
-		// Root of the navigation menu
-		$menu = new Node('root', [
-			//to-do
-		]);
+		// Build sections that will be available in all views that use master layout.
 
-		// Pass menu to view
-		$view->with('menu', $menu);
+		if(Auth::check())
+			$sections[Auth::user()->name()] = [
+				link_to_route('admin', _('Dashboard')),
+				link_to_route('logout', _('Logout')),
+				link_to_route('contact', _('Contact')),
+			];
+		else
+			$sections[_('Sections')] = [
+				link_to_route('login', _('Login')),
+				link_to_route('contact', _('Contact')),
+			];
+
+		// Pass sections to the view
+		$view->with('sections', $sections);
 	}
 }

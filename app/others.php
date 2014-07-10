@@ -20,7 +20,7 @@
 View::composers([
 	// View composer class => View file (use an array for more than one)
 	'AdminTopBarComposer' => 'admin/top-bar',
-	'LocaleComposer' => ['layouts.base', 'home.header', 'home.side'],
+	'LocaleComposer' => ['layouts.base', 'layouts.master'],
 	'MasterMenuComposer' => 'layouts.master'
 ]);
 

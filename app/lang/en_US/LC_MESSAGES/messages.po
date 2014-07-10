@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-02 17:15+0200\n"
+"POT-Creation-Date: 2014-07-10 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,10 @@ msgstr ""
 
 #, php-format
 msgid "%s successfully deleted"
+msgstr ""
+
+#, php-format
+msgid "%s successfully restored"
 msgstr ""
 
 #, php-format
@@ -68,6 +72,9 @@ msgid "Add"
 msgstr ""
 
 msgid "Admin panel"
+msgstr ""
+
+msgid "All"
 msgstr ""
 
 msgid "Alt. name"
@@ -154,6 +161,9 @@ msgstr ""
 msgid "Current password"
 msgstr ""
 
+msgid "Dashboard"
+msgstr ""
+
 msgid "Decimal separator"
 msgstr ""
 
@@ -165,6 +175,9 @@ msgstr ""
 
 #, php-format
 msgid "Delete %s"
+msgstr ""
+
+msgid "Deleted"
 msgstr ""
 
 msgid "Deleted at"
@@ -183,6 +196,13 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "Disable"
+msgstr ""
+
+#, php-format
+msgid "Disable %s"
+msgstr ""
+
 msgid "E-mail"
 msgstr ""
 
@@ -199,6 +219,9 @@ msgid "Error"
 msgstr ""
 
 msgid "European Economic Area"
+msgstr ""
+
+msgid "Filter"
 msgstr ""
 
 msgid "First name"
@@ -313,6 +336,9 @@ msgstr ""
 msgid "No results found"
 msgstr ""
 
+msgid "Normal"
+msgstr ""
+
 msgid "Numeric code"
 msgstr ""
 
@@ -398,6 +424,13 @@ msgstr ""
 msgid "Repeat password"
 msgstr ""
 
+msgid "Restore"
+msgstr ""
+
+#, php-format
+msgid "Restore %s"
+msgstr ""
+
 msgid "Return"
 msgstr ""
 
@@ -420,6 +453,15 @@ msgid "Select"
 msgstr ""
 
 msgid "Send query"
+msgstr ""
+
+msgid "Showing all resources"
+msgstr ""
+
+msgid "Showing only available resources"
+msgstr ""
+
+msgid "Showing only deleted resources"
 msgstr ""
 
 msgid "Site down for maintenance"

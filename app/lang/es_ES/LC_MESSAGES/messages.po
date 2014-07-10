@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-02 17:15+0200\n"
+"POT-Creation-Date: 2014-07-10 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,9 @@ msgstr "%s creado con éxito"
 #, php-format
 msgid "%s successfully deleted"
 msgstr "%s borrado con éxito"
+
+msgid "%s successfully restored"
+msgstr "%s restaurado con éxito"
 
 #, php-format
 msgid "%s successfully saved"
@@ -69,6 +72,9 @@ msgstr "Añadir"
 
 msgid "Admin panel"
 msgstr "Panel de administración"
+
+msgid "All"
+msgstr "Todos"
 
 msgid "Alt. name"
 msgstr "Nombre alt."
@@ -154,6 +160,9 @@ msgstr "Moneda"
 msgid "Current password"
 msgstr "Contraseña actual"
 
+msgid "Dashboard"
+msgstr ""
+
 msgid "Decimal separator"
 msgstr "Separador decimal"
 
@@ -166,6 +175,9 @@ msgstr "Borrar"
 #, php-format
 msgid "Delete %s"
 msgstr "Borrar %s"
+
+msgid "Deleted"
+msgstr "Borrado"
 
 msgid "Deleted at"
 msgstr "Borrado el"
@@ -182,6 +194,12 @@ msgstr "Descripción"
 
 msgid "Details"
 msgstr "Detalles"
+
+msgid "Disable"
+msgstr "Desactivar"
+
+msgid "Disable %s"
+msgstr "Desactivar %s"
 
 msgid "E-mail"
 msgstr "E-mail"
@@ -200,6 +218,9 @@ msgstr "Error"
 
 msgid "European Economic Area"
 msgstr "Espacio Económico Europeo"
+
+msgid "Filter"
+msgstr "Filtrar"
 
 msgid "First name"
 msgstr "Nombre"
@@ -313,6 +334,9 @@ msgstr "No se han encontrado dirección de e-mail"
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
+msgid "Normal"
+msgstr "Normal"
+
 msgid "Numeric code"
 msgstr "Código numérico"
 
@@ -398,6 +422,12 @@ msgstr "Repite nueva contraseña"
 msgid "Repeat password"
 msgstr "Repite contraseña"
 
+msgid "Restore"
+msgstr "Restaurar"
+
+msgid "Restore %s"
+msgstr "Restaurar %s"
+
 msgid "Return"
 msgstr "Volver"
 
@@ -421,6 +451,15 @@ msgstr "Seleccionar"
 
 msgid "Send query"
 msgstr "Enviar consulta"
+
+msgid "Showing all resources"
+msgstr "Mostrando todos"
+
+msgid "Showing only available resources"
+msgstr "Mostrando solo los disponibles"
+
+msgid "Showing only deleted resources"
+msgstr "Mostrando solo los borrados"
 
 msgid "Site down for maintenance"
 msgstr "Web parada por mantenimiento"
@@ -648,6 +687,7 @@ msgstr "Unicode hexadecimal"
 msgid "Unknown"
 msgstr "Desconocido"
 
+#, php-format
 msgid "Unknown provider: %s"
 msgstr "Proveedor desconocido: %s"
 

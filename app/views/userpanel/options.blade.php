@@ -9,7 +9,7 @@
 
 		@foreach ($options as $o)
 		{{
-			Form::label($o->name, $o->label),
+			Form::label($o->name, _($o->label)),
 			Form::text($o->name, $o->value)
 		}}
 		@endforeach

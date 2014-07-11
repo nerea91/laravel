@@ -322,6 +322,8 @@ class BaseResourceController extends \BaseController
 	protected function paginate($resource = null)
 	{
 		$resource = ($resource) ?: $this->resource;
+		$resultsPerPage = Auth::user()->getOption('admin_panel_results_per_page');
+
 		if($this->trashable)
 		{
 			$trashMode = Session::get("{$this->prefix}.trash.mode");
@@ -337,6 +339,6 @@ class BaseResourceController extends \BaseController
 			}
 		}
 
-		return $resource->orderByUrl()->with($this->with)->paginate();
+		return $resource->orderByUrl()->with($this->with)->paginate($resultsPerPage);
 	}
 }

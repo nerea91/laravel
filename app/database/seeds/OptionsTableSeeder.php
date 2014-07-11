@@ -4,16 +4,16 @@ class OptionsTableSeeder extends Seeder
 {
 	public function run()
 	{
-		/*$options = [
+		$options = [
 			['id' => 1,
-			'name' => 'option1',
-			'label' => _('Option #1'),
+			'name' => 'admin_panel_results_per_page',
+			'label' => _('Results per page'),
 			'description' => null, // Optional
-			'value' => 1, // default value
+			'value' => 15, // default value
 			'assignable' => 1, //wether or not the user can change this options
-			'validation_rules' => 'required|max:64'],
+			'validation_rules' => 'required|integer|min:5|max:50'],
 		];
 
-		DB::table('options')->insert($options);*/
+		DB::table('options')->insert($options);
 	}
 }

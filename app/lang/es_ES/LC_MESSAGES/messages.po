@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-10 18:36+0200\n"
+"POT-Creation-Date: 2014-07-11 16:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,7 @@ msgstr "%s creado con éxito"
 msgid "%s successfully deleted"
 msgstr "%s borrado con éxito"
 
+#, php-format
 msgid "%s successfully restored"
 msgstr "%s restaurado con éxito"
 
@@ -198,6 +199,7 @@ msgstr "Detalles"
 msgid "Disable"
 msgstr "Desactivar"
 
+#, php-format
 msgid "Disable %s"
 msgstr "Desactivar %s"
 
@@ -425,8 +427,12 @@ msgstr "Repite contraseña"
 msgid "Restore"
 msgstr "Restaurar"
 
+#, php-format
 msgid "Restore %s"
 msgstr "Restaurar %s"
+
+msgid "Results per page"
+msgstr "Resultados por página"
 
 msgid "Return"
 msgstr "Volver"

@@ -29,11 +29,11 @@ Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@s
 // Guest user area
 Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
 
-	// Login with native autencication
+	// Login with native authentication
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
 	Route::post('/', array('uses' => 'AuthController@login'));
 
-	// Login with Oauth provider
+	// Login with an Oauth provider
 	Route::get('with/{provider}', array('as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin'));
 
 });
@@ -84,7 +84,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 });
 
 // Route for testings purposes, oly available on local environment
-Route::get('test', array('before' => 'local', function () {
+Route::get('test', array('before' => 'env:local', function () {
 
 	// Define some variables
 	$user = User::first()->toArray();

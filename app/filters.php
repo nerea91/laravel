@@ -85,15 +85,15 @@ Route::filter('csrf', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Local environment filter
+| Environment filter
 |--------------------------------------------------------------------------
 |
-| This filter ensures the app is running in local (development) enviorment.
+| This filter ensures the app is running in the enviorment provided as parameter.
 |
 */
 
-Route::filter('local', function () {
-	if( ! App::environment('local'))
+Route::filter('env', function ($route, $request, $enviorment) {
+	if( ! App::environment($enviorment))
 		return App::abort(404);
 });
 

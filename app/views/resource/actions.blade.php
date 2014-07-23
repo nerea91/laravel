@@ -6,7 +6,7 @@
 		link_to_route(
 			"$prefix.restore",
 			_('Restore'),
-			[$resource->id],
+			[$resource->getKey()],
 			[
 				'class' => 'small success radius button expand toggle-confirm-modal',
 				'data-modal' => 'restore-modal',
@@ -17,10 +17,10 @@
 
 	@else
 
-		{{ link_to_route("$prefix.show", _('Details'), [$resource->id], ['class' => 'small secondary radius button']) }}
+		{{ link_to_route("$prefix.show", _('Details'), [$resource->getKey()], ['class' => 'small secondary radius button']) }}
 
 		@if ($edit)
-			{{ link_to_route("$prefix.edit", _('Edit'), [$resource->id], ['class' => 'small radius button']) }}
+			{{ link_to_route("$prefix.edit", _('Edit'), [$resource->getKey()], ['class' => 'small radius button']) }}
 		@endif
 
 		@if ($delete)
@@ -28,7 +28,7 @@
 			link_to_route(
 				"$prefix.destroy",
 				($trashable) ? _('Disable') : _('Delete'),
-				[$resource->id],
+				[$resource->getKey()],
 				[
 					'class' => 'small alert radius button toggle-confirm-modal',
 					'data-modal' => 'delete-modal',

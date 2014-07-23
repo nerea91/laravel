@@ -17,14 +17,14 @@
 
 			@if ($edit)
 			<div class="large-{{ $columns }} columns">
-				{{ link_to_route("$prefix.edit", _('Edit'), array($resource->id), array('class' => 'button expand')) }}
+				{{ link_to_route("$prefix.edit", _('Edit'), array($resource->getKey()), array('class' => 'button expand')) }}
 			</div>
 			@endif
 
 			@if ($delete)
 			@include('resource.delete')
 			<div class="large-{{ $columns }} columns">
-				{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->id), array('class' => 'alert button expand toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource)))) }}
+				{{ link_to_route("$prefix.destroy", _('Delete'), array($resource->getKey()), array('class' => 'alert button expand toggle-delete-modal', 'title' => e(sprintf(_('Delete %s'), $resource)))) }}
 			</div>
 			@endif
 		</div>

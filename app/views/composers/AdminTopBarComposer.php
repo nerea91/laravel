@@ -106,7 +106,7 @@ class AdminTopBarComposer
 			$changeLanguage->addChild($newLanguages);
 		}
 
-		return compact('accounts', 'userPanel', 'changeLanguage', 'countries', 'currencies', 'languages', 'profiles', 'providers', 'users');
+		return compact('accounts', 'countries', 'currencies', 'languages', 'profiles', 'providers', 'users', 'userPanel', 'changeLanguage');
 	}
 
 	/**

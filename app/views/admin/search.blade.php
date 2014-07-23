@@ -36,7 +36,7 @@
 			<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
 				<li><h4>{{ $results->label }}</h4></li>
 				@foreach ($results->collection as $model)
-				<li>{{ link_to_route($results->route, $model, array($model->id)) }}</li>
+				<li>{{ link_to_route($results->route, $model, array($model->getKey())) }}</li>
 				@endforeach
 			</ul>
 		</div>

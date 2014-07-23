@@ -119,7 +119,6 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		$table = $this->getTable();
 		$except = ($this->getKey()) ? ','.$this->getKey() : null;
 		$rules = $this->getRules();
-		$rules2 = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
 			foreach($fieldRules as $ruleName => &$ruleData)

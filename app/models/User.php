@@ -431,7 +431,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	 * The missing user options are merged with the default ones
 	 *
 	 * @param  bool
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Option)
 	*/
 	public function getOptions($onlyAssignable = false)
 	{
@@ -462,7 +462,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	 * Get all the assignable user options.
 	 * The missing user options are merged with the default ones
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection
+	 * @return Illuminate\Database\Eloquent\Collection (of Option)
 	*/
 	public function getAssignableOptions()
 	{

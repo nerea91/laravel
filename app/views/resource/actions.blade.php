@@ -17,7 +17,9 @@
 
 	@else
 
-		{{ link_to_route("$prefix.show", _('Details'), [$resource->getKey()], ['class' => 'small secondary radius button']) }}
+		@if ($view)
+			{{ link_to_route("$prefix.show", _('Details'), [$resource->getKey()], ['class' => 'small secondary radius button']) }}
+		@endif
 
 		@if ($edit)
 			{{ link_to_route("$prefix.edit", _('Edit'), [$resource->getKey()], ['class' => 'small radius button']) }}

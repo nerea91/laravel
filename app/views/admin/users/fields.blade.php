@@ -3,7 +3,7 @@
 	Form::text($f, null, ['autocomplete' => 'off']),
 
 	Form::label($f = 'profile_id', $resource->getLabel($f)),
-	Form::select($f, Auth::user()->profile->getSimilarOrInferior()->sortBy('name')->lists('name', 'id')),
+	Form::select($f, $profiles),
 
 	Form::label($f = 'password', $resource->getLabel($f)),
 	Form::password($f, null, ['autocomplete' => 'off']),

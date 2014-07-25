@@ -13,9 +13,9 @@
 	<dd>{{$type}}: <i>{{ implode(', ', $array)}}.</i></dd>
 	@endforeach
 
-	@if ($users = $resource->getUsernamesArray())
+	@if ($resource->users->count())
 	<dt>{{ _('Users') }}</dt>
-	<dd>{{ implode(', ', $users)}}</dd>
+	<dd>{{ $resource->users->sortBy('username')->implode('username', ', ') }}</dd>
 	@endif
 
 	<dt>{{ _('Last update') }}</dt>

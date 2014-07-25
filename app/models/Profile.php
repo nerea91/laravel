@@ -229,16 +229,6 @@ class Profile extends BaseModel
 	}
 
 	/**
-	 * Get usernames of users using this profile
-	 *
-	 * @return array
-	 */
-	public function getUsernamesArray()
-	{
-		return $this->users()->orderBy('username')->lists('username');
-	}
-
-	/**
 	 * Get all profiles whose permissions are same as (or a subset of) $this profile permissions.
 	 *
 	 * @return Collection (of Profile)

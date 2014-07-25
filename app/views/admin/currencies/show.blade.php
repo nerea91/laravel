@@ -17,7 +17,7 @@
 
 	@if ($resource->countries->count())
 		<dt>{{ _('Countries') }}</dt>
-		<dd>{{{ $resource->countries->implode('name', ', ') }}}</dd>
+		<dd>{{{ $resource->countries->sortBy('name')->implode('name', ', ') }}}</dd>
 	@endif
 
 </dl>

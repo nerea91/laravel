@@ -2,7 +2,14 @@
 
 # Script to fix upstream conflics with gettext translations
 
-source "$( cd "$( dirname "$0" )" && pwd )/common"
+source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
+
 go_to_laravel_dir
+
 git checkout HEAD app/lang/en_US/LC_MESSAGES/messages.mo app/lang/en_US/LC_MESSAGES/messages.po app/lang/en_US/LC_MESSAGES/messages.pot app/lang/es_ES/LC_MESSAGES/messages.mo app/lang/es_ES/LC_MESSAGES/messages.pot
-rm app/lang/en_US/LC_MESSAGES/messages.mo.BACKUP.*.mo app/lang/en_US/LC_MESSAGES/messages.mo.BASE.*.mo app/lang/en_US/LC_MESSAGES/messages.mo.LOCAL.*.mo app/lang/en_US/LC_MESSAGES/messages.mo.REMOTE.*.mo > /dev/null 2>&1
+
+git mergetool -y
+
+./scripts/delete_old_files
+
+

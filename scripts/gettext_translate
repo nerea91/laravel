@@ -2,7 +2,7 @@
 
 # Script to translate using GNU Gettext.
 
-source "$( cd "$( dirname "$0" )" && pwd )/common"
+source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
 
 ####### CONFIG #################################################################
 

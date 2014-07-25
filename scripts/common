@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Functions used by other scripts of this directory
+# Functions used by other scripts on this directory
 
 # Screen print $1 using $2 color
 function color

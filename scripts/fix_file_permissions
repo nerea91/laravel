@@ -6,7 +6,7 @@
 USER=${1:-javi}
 GROUP=${2:-nginx}
 
-source "$( cd "$( dirname "$0" )" && pwd )/common"
+source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
 
 go_to_laravel_dir
 

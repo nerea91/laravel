@@ -4,7 +4,7 @@
 # - PHP's Native Linter
 # - PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
 
-source "$( cd "$( dirname "$0" )" && pwd )/common"
+source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
 go_to_laravel_dir
 
 # Show script help #############################################################

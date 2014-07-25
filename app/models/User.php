@@ -109,6 +109,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 
 		parent::boot(); // Validate the model
 
+		static::saving(function ($user) {
+			// Make sure profile is similar or inferior
+			if(Auth::check() and Auth::user()->id !== 1 and ! Auth::user()->profile->getSimilarOrInferior()->contains($user->profile_id))
+				throw new ModelValidationException(_('Profile must be similar or inferior to your own profile'));
+		});
+
 		static::creating(function ($user) {
 			// Hash password if not hashed
 			$user->hashPassword();

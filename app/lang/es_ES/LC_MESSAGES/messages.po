@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-11 16:42+0200\n"
+"POT-Creation-Date: 2014-07-25 14:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -396,6 +396,9 @@ msgstr "¿Problemas?"
 
 msgid "Profile"
 msgstr "Perfil"
+
+msgid "Profile must be similar or inferior to your own profile"
+msgstr "El perfil debe ser similar o inferior a tu propio perfil"
 
 msgid "Profiles"
 msgstr "Perfiles"

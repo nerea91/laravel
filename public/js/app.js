@@ -11,8 +11,8 @@ if(typeof $ != 'undefined') {
 			$doc.foundation();
 
 			$('form').submit(function() {
-				$('*', this).css('visibility', 'hidden');
-				$(this).append('<div class="preloader"></div>');
+				$(':input[type=submit]', $(this)).prop("disabled", true);
+				$(this).append('<div class="slideshow-wrapper"><div class="preloader"></div></div>');
 				return true;
 			});
 		}

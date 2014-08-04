@@ -33,5 +33,17 @@ class DatabaseSeeder extends Seeder
 			'--countries'	 => 'USA,ESP',
 			'--languages'	 => 'en,es', // First in the list will be the default one
 		]);
+
+		/*
+		 * To trigger this use either:
+		 *
+		 *	php artisan db:seed --env=local
+		 *	php artisan migrate:refresh --seed --env=local
+		 *
+		 */
+		if (App::environment('local'))
+		{
+			$this->call('LocalEnvironmentSeeder');
+		}
 	}
 }

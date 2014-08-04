@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-25 14:52+0200\n"
+"POT-Creation-Date: 2014-08-04 11:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,6 +227,9 @@ msgstr "Filtrar"
 msgid "First name"
 msgstr "Nombre"
 
+msgid "Friday"
+msgstr "Viernes"
+
 #, php-format
 msgid "From %d to %d out of %d"
 msgstr "Del %d al %d de un total de %d"
@@ -314,6 +317,9 @@ msgstr "Menú"
 
 msgid "Message"
 msgstr "Mensaje"
+
+msgid "Monday"
+msgstr "Lunes"
 
 msgid "Name"
 msgstr "Nombre"
@@ -446,6 +452,9 @@ msgstr "Derecha"
 msgid "Sample"
 msgstr "Ejemplo"
 
+msgid "Saturday"
+msgstr "Sábado"
+
 msgid "Save"
 msgstr "Guardar"
 
@@ -484,6 +493,9 @@ msgstr "Código de subregión"
 
 msgid "Subunit"
 msgstr "Subunidad"
+
+msgid "Sunday"
+msgstr "Domingo"
 
 msgid "Symbol"
 msgstr "Símbolo"
@@ -669,11 +681,17 @@ msgstr "El token de restablecimiento de contraseña no es válido."
 msgid "Thousands separator"
 msgstr "Separador de millares"
 
+msgid "Thursday"
+msgstr "Jueves"
+
 msgid "Title"
 msgstr "Título"
 
 msgid "To reset your password, complete this form"
 msgstr "Completa este formulario para restablecer tu contraseña"
+
+msgid "Tuesday"
+msgstr "Martes"
 
 msgid "Type"
 msgstr "Tipo"
@@ -741,6 +759,9 @@ msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo an
 
 msgid "We're really sorry but we couldn't find the page you requested on our servers"
 msgstr "Lo sentimos mucho pero no hemos podido encontrar la página que has solicitado"
+
+msgid "Wednesday"
+msgstr "Miércoles"
 
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"

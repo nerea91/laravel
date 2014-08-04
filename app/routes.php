@@ -83,7 +83,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 });
 
-// Route for testings purposes, oly available on local environment
+// Route for testings purposes, only available on local environment
 Route::get('test', array('before' => 'env:local', function () {
 
 	// Define some variables

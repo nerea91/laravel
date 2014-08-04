@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!doctype html>
+<head>
 	<meta charset="utf-8">
 	<title>Markdown preview</title>
 	<meta name="author" content="@Stolz">
 
 	<style>#styles a{display:inline-block;padding:0 .3em}</style>
-	<link id="style" rel="stylesheet" type="text/css" media="screen" href="Markdown%20preview_files/markdown9.css">
+	<link id="style" rel="stylesheet" type="text/css" media="screen" href="" />
 
 	<script>
 		/* Zepto v1.0-1-ga3cab6c - polyfill zepto detect event ajax form fx - zeptojs.com/license */
@@ -58,7 +57,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 	</script>
 </head>
 <body>
-	<div id="styles">Style:<a href="http://jasonm23.github.io/markdown-css-themes/avenir-white.css">avenirwhite</a><a href="http://jasonm23.github.io/markdown-css-themes/foghorn.css">foghorn</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown10.css">markdown10</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown1.css">markdown1</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown2.css">markdown2</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown3.css">markdown3</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown4.css">markdown4</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown5.css">markdown5</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown6.css">markdown6</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown7.css">markdown7</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown8.css">markdown8</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown9.css">markdown9</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown-alt.css">markdownalt</a><a href="http://jasonm23.github.io/markdown-css-themes/markdown.css">markdown</a><a href="http://jasonm23.github.io/markdown-css-themes/screen.css">screen</a><a href="http://jasonm23.github.io/markdown-css-themes/swiss.css">swiss</a><a href="http://kevinburke.bitbucket.org/markdowncss/markdown.css">Space</a></div>
+	<div id="styles">Style:</div>
 <h1>Laravel 4 <small>by @Stolz</small></h1>
 
 <p><a id="index"></a></p>
@@ -115,7 +114,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 <li><a href="#model_softdel">SoftDelete</a>.</li>
 <li><a href="#model_scope">Consultas con nombre</a>.</li>
 <li><a href="#transactions">Transacciones</a>.</li>
-<li><a href="#model_relationships">Definir relaciones</a> (<a href="#rel1-1">1-1</a>, <a href="#rel1-n">1-n</a>, <a href="#reln-m">n-m</a>).</li>
+<li><a href="#model_relationships">Definir relaciones</a> (<a href="#rel1-1">1-1</a>, <a href="#rel1-n">1-n</a>, <a href="#reln-m">n-m</a>, <a href="#rel-many-through">many-through</a>).</li>
 <li><a href="#model_eager">Incluir relacionados en los resultados</a>.</li>
 <li><a href="#model_relate">Relacionar modelos</a>.</li>
 </ul></li>
@@ -199,20 +198,20 @@ artisan key:generate
 <li><strong>/tests</strong> <em>Contiene los tests unitarios de nuestra aplicación.</em></li>
 <li><strong>/views</strong> <em>Contiene las <a href="#views">vistas</a>.</em></li>
 <li>filters.php <em>Define los <a href="#route_filters">filtros de rutas</a>.</em></li>
-<li>routes.php <em>Define las <a href="#routes">rutas</a>.</em> <br><br></li>
+<li>routes.php <em>Define las <a href="#routes">rutas</a>.</em> <br/><br/></li>
 </ul></li>
 <li><strong>/bootstrap</strong> <em>Contiene archivos relacionados con la inicialización del framework.</em>
 <ul>
 <li>autoload.php <em>Inicializador principal. Entre otros carga el auto-cargador de clases de Composer y el del propio Laravel.</em></li>
 <li>paths.php <em>Define las rutas dónde Laravel debe buscar (<code>app</code>, <code>public</code> , <code>storage</code>, ...).</em></li>
-<li>start.php <em>Inicializa <code>$app</code> y detecta el <a href="#environment_config">entorno</a>.</em> <br><br></li>
+<li>start.php <em>Inicializa <code>$app</code> y detecta el <a href="#environment_config">entorno</a>.</em> <br/><br/></li>
 </ul></li>
 <li><strong>/public</strong> <em>Es el webroot (parte accesible desde web) de nuestra aplicación. Sirve para almacenar nuestros assets y el front controller.</em>
 <ul>
 <li><strong>/packages</strong> <em>Sirve para almacenar assets de aplicaciones de terceros.</em></li>
-<li>index.php <em>Front controller de nuestra aplicación.</em> <br><br></li>
+<li>index.php <em>Front controller de nuestra aplicación.</em> <br/><br/></li>
 </ul></li>
-<li><strong>/vendor</strong> <em>Contiene todos los paquetes instalados con Composer.</em> <br><br></li>
+<li><strong>/vendor</strong> <em>Contiene todos los paquetes instalados con Composer.</em> <br/><br/></li>
 <li>artisan <em>Ejecutable para interactuar por <a href="#artisan">línea de comandos</a> con Laravel.</em></li>
 <li>composer.json <em>Configuración de los paquetes Composer que usa este proyecto.</em></li>
 <li>composer.lock <em>Si está presente composer siempre instala esta versiones de los paquetes, independientemente de lo que ponga en composer.json.</em></li>
@@ -259,10 +258,7 @@ artisan key:generate
 
 <h3>Constantes</h3>
 
-<p>Laravel no tiene un sitio dedicado para establecer las constantes por
- lo que debe escogerse uno dependiendo de las necesiadades o gustos 
-personales. El orden en el que se cargan los archivos es (más o menos, 
-ya que depende de la configuración actual):</p>
+<p>Laravel no tiene un sitio dedicado para establecer las constantes por lo que debe escogerse uno dependiendo de las necesiadades o gustos personales. El orden en el que se cargan los archivos es (más o menos, ya que depende de la configuración actual):</p>
 
 <ol>
 <li>public/index.php</li>
@@ -278,9 +274,7 @@ ya que depende de la configuración actual):</p>
 <li>código enrutado como controladores y vistas</li>
 </ol>
 
-<p>Por ejemplo, si necesitamos que nuestras constantes sean accesibles 
-para toda nuestra aplicación incluyendo librerías y archivos de 
-configuración podemos usar <code>public/index.php</code>. Si por ejemplo solo las necesitamos una vez leida la configuración podemos definirlas en <code>app/start/global.php</code>.</p>
+<p>Por ejemplo, si necesitamos que nuestras constantes sean accesibles para toda nuestra aplicación incluyendo librerías y archivos de configuración podemos usar <code>public/index.php</code>. Si por ejemplo solo las necesitamos una vez leida la configuración podemos definirlas en <code>app/start/global.php</code>.</p>
 
 <p><a id="environment_config"></a></p>
 
@@ -293,11 +287,7 @@ configuración podemos usar <code>public/index.php</code>. Si por ejemplo solo l
 <li><code>testing</code>: Entorno para pruebas unitarias.</li>
 </ul>
 
-<p>El entorno por defecto es siempre <code>production</code> y sus archivos de configuración se encuentran en <code>app/config/</code>. Para configurar un nuevo entorno crear en <code>app/config/</code>
- un subdirectorio con el nombre deseado para el entorno y copiar en él 
-los archivos cuya configuración queramos cambiar. Dichos ficheros no 
-tienen por qué tener definidas todas la opciones de configuración sino 
-solo aquellas que queramos cambiar.</p>
+<p>El entorno por defecto es siempre <code>production</code> y sus archivos de configuración se encuentran en <code>app/config/</code>. Para configurar un nuevo entorno crear en <code>app/config/</code> un subdirectorio con el nombre deseado para el entorno y copiar en él los archivos cuya configuración queramos cambiar. Dichos ficheros no tienen por qué tener definidas todas la opciones de configuración sino solo aquellas que queramos cambiar.</p>
 
 <p>El entorno actual se determina automáticamente en la llamada <code>$app-&gt;detectEnvironment()</code> del archivo <code>bootstrap/start.php</code>. Para definir los entornos podemos usar un array o una <em>closure</em>.</p>
 
@@ -326,7 +316,13 @@ $env = $app-&gt;detectEnvironment(function()
 <pre><code>artisan env
 </code></pre>
 
-<p><a href="#index">Volver al índice</a></p>
+<p>Para comprobar el entorno</p>
+
+<pre><code>if (App::environment('local'))
+{
+    // The environment is local
+}
+</code></pre>
 
 <p><a id="routes"></a></p>
 
@@ -396,9 +392,7 @@ Route::delete('foo/bar', function() {
 
 <h3>Rutas avanzadas</h3>
 
-<p>Se pueden definir rutas avanzadas jugando con el segundo parámetro de
- la ruta. Existen numerosos tipos de rutas avanzadas que usan el segundo
- parámetro de distintas formas.</p>
+<p>Se pueden definir rutas avanzadas jugando con el segundo parámetro de la ruta. Existen numerosos tipos de rutas avanzadas que usan el segundo parámetro de distintas formas.</p>
 
 <p>Una forma de ruta avanzada es hacer que el segundo parámetro de la ruta sea un array con pares <code>'clave'=&gt; $valor</code> junto a una <em>closure</em>. Si la clave es <code>before</code> o <code>after</code> sirve para <a href="#route_filters">asignar un filtro a la ruta</a>. La clave <code>as</code> sirve para <a href="#route_names">asignar un nombre a la ruta</a>. La clave <code>uses</code> sirve para hacer que la ruta <a href="#route_to_controller">ejecute un método</a> de un <a href="#controllers">controlador</a>.</p>
 
@@ -433,9 +427,7 @@ Route::resource('photo', 'PhotoController', array('except' =&gt; array('create',
 
 <h3>Parámetros de rutas</h3>
 
-<p><strong>Nota:</strong> El orden en el que aparecen los parámetros en la ruta y en la <em>closure</em>
- debe ser el mismo ya que Laravel no interpreta los nombres de los 
-parámetros sino que los asigna en el orden en el que aparecen.</p>
+<p><strong>Nota:</strong> El orden en el que aparecen los parámetros en la ruta y en la <em>closure</em> debe ser el mismo ya que Laravel no interpreta los nombres de los parámetros sino que los asigna en el orden en el que aparecen.</p>
 
 <p>Parámetro obligatorio</p>
 
@@ -495,9 +487,7 @@ Route::get('user/{id}', function($id) {
 })-&gt;where(array('id' =&gt; '[0-9]+', 'name' =&gt; '[a-z]+');
 </code></pre>
 
-<p><strong>NOTA:</strong> En vez de pasar parámetros para que nuestra lógica obtenga una instancia del <a href="#models">modelo</a>
- desde la base de datos es posible hacer que sea la propia ruta quien 
-obtenga la instancia directamente y la pase a nuestra lógica usando <a href="#route_bind">route model binding</a>.</p>
+<p><strong>NOTA:</strong> En vez de pasar parámetros para que nuestra lógica obtenga una instancia del <a href="#models">modelo</a> desde la base de datos es posible hacer que sea la propia ruta quien obtenga la instancia directamente y la pase a nuestra lógica usando <a href="#route_bind">route model binding</a>.</p>
 
 <p><a id="route_names"></a></p>
 
@@ -528,25 +518,18 @@ $name = Route::current()-&gt;getName();
 
 <h3>Filtros de ruta</h3>
 
-<p>Se definen en <code>app/filters.php</code> y sirven para ejecutar 
-reglas o acciones antes o después de servir una ruta. Se usan por 
-ejemplo para requerir autenticación en ciertas areas. El orden de 
-ejecución del filtro respecto a la ruta se establece usando las claves <code>before</code> y <code>after</code> en el array de la ruta avanzada.</p>
+<p>Se definen en <code>app/filters.php</code> y sirven para ejecutar reglas o acciones antes o después de servir una ruta. Se usan por ejemplo para requerir autenticación en ciertas areas. El orden de ejecución del filtro respecto a la ruta se establece usando las claves <code>before</code> y <code>after</code> en el array de la ruta avanzada.</p>
 
 <p>Si un filtro devuelve una <a href="#responses">respuesta</a>, dicha respuesta será usada como respuesta de la solicitud y <strong>no se ejecutará la ruta</strong> ni ninguno de los filtros <code>after</code> restantes de la ruta.</p>
 
 <p>De serie vienen ya incluidos algunos filtros especiales:</p>
 
 <ul>
-<li><code>before</code> y <code>after</code> <em>se ejecutan SIEMPRE (es
- decir, no hace falta indicarlos en la clave del array) antes y después 
-de cada petición a nuestra aplicación.</em></li>
+<li><code>before</code> y <code>after</code> <em>se ejecutan SIEMPRE (es decir, no hace falta indicarlos en la clave del array) antes y después de cada petición a nuestra aplicación.</em></li>
 <li><code>auth</code> <em>Comprueba que el usuario esté logeado usando la autenticacion nativa de Laravel.</em></li>
 <li><code>auth.basic</code> <em>Comprueba que el usuario esté logeado usando autenticación HTTP Basic.</em></li>
 <li><code>guest</code> <em>Complementario del filtro auth. Comprueba que el usuario NO esté logeado usando la autenticacion nativa de Laravel.</em></li>
-<li><code>csrf</code> <em>Añade proteccion CSRF al envío de formularios 
-para asegurarse de que los datos que recibimos han sido enviados por 
-nuestra propia aplicación.</em></li>
+<li><code>csrf</code> <em>Añade proteccion CSRF al envío de formularios para asegurarse de que los datos que recibimos han sido enviados por nuestra propia aplicación.</em></li>
 </ul>
 
 <p>Definir un filtro</p>
@@ -696,11 +679,7 @@ Route::group(array('https', 'before' =&gt; 'auth'), function() {
 
 <h3>Injección de modelos en rutas</h3>
 
-<p>Es posible injectar instancias de <a href="#models">modelos</a> 
-directamente en las rutas. En vez de pasar a la ruta un identificador 
-numérico que debe ser usado por nuestra lógica para recuperar el objeto 
-de la base de datos podemos hacer que la ruta se encargue de ello 
-automáticamente. Esto se conoce como <em>Route Model Binding</em>.</p>
+<p>Es posible injectar instancias de <a href="#models">modelos</a> directamente en las rutas. En vez de pasar a la ruta un identificador numérico que debe ser usado por nuestra lógica para recuperar el objeto de la base de datos podemos hacer que la ruta se encargue de ello automáticamente. Esto se conoce como <em>Route Model Binding</em>.</p>
 
 <p>Solo hacen falta dos pasos: 1º asignar un nombre de parámetro a un modelo y 2º hacer un <em>cast</em> del parámetro de la ruta.</p>
 
@@ -733,9 +712,7 @@ Route::get('profile/{user}', function(User $user)
 
 <h2>Respuestas</h2>
 
-<p>En Laravel, todo el código enrutado (rutas, <a href="#controllers">controladores</a>, ...) debe devolver SIEMPRE un objeto del tipo <code>Response</code>.
- En caso de no hacerlo surgirán problemas cuando necesites que Laravel 
-modifique las cabeceras HTTP (por ejemplo al trabajar con <em>cookies</em>).</p>
+<p>En Laravel, todo el código enrutado (rutas, <a href="#controllers">controladores</a>, ...) debe devolver SIEMPRE un objeto del tipo <code>Response</code>. En caso de no hacerlo surgirán problemas cuando necesites que Laravel modifique las cabeceras HTTP (por ejemplo al trabajar con <em>cookies</em>).</p>
 
 <p>Laravel incluye varios objetos de tipo respuesta que podemos usar. Los más comunes son las <a href="#views">vistas</a> y las <a href="#redirect">redirecciones</a> pero existen otros por ejemplo para devolver JSON o para que el navegador inicie la descarga de un fichero:</p>
 
@@ -804,9 +781,7 @@ View::make('parent.view')-&gt;nest('raw', 'child.view', $data);
 
 <h4>Compositores de vistas</h4>
 
-<p>Es posible hacer que cada vez que se cargue una vista ésta reciba 
-parámetros de forma programada. Esto es útil para evitar repetir código 
-en vistas que siempre reciben los mismos parámetros</p>
+<p>Es posible hacer que cada vez que se cargue una vista ésta reciba parámetros de forma programada. Esto es útil para evitar repetir código en vistas que siempre reciben los mismos parámetros</p>
 
 <pre><code>View::composer('my.view', function($view)
 {
@@ -948,10 +923,7 @@ contenido
 
 <h2>Controladores</h2>
 
-<p>Los controladores se definen en <code>app/controllers/</code> y 
-sirven para agrupar en una sola clase la lógica de una o varias rutas. 
-El nombre de la clase puede ser cualquier nobre de clase válido en PHP 
-pero se considera buena práctica que acabe en <code>Controller</code>. La clase debe extender <code>BaseController</code>, que también se encuentra en <code>app/controllers/</code> y puede ser modificada para incluir código común a todos los controladores.</p>
+<p>Los controladores se definen en <code>app/controllers/</code> y sirven para agrupar en una sola clase la lógica de una o varias rutas. El nombre de la clase puede ser cualquier nobre de clase válido en PHP pero se considera buena práctica que acabe en <code>Controller</code>. La clase debe extender <code>BaseController</code>, que también se encuentra en <code>app/controllers/</code> y puede ser modificada para incluir código común a todos los controladores.</p>
 
 <p>Los métodos que queremos que sean <a href="#route_to_controller">accedidos desde las rutas</a> deben ser declarados como públicos.</p>
 
@@ -1143,9 +1115,7 @@ artisan migrate:refresh --seed
 
 <h2>Sembradores</h2>
 
-<p>Los sembradores o <em>seeders</em> sirven para insertar datos iniciales en la base de datos. Se definen en <code>app/database/seeds/</code> y su clase debe extender la clase <code>Seeder</code>.
- El nombre de la clase puede ser cualquier nobre de clase válido en PHP 
-pero se considera buena práctica que el nombre incluya la tabla que <em>siembran</em> y terminen en <code>Seeder</code>.</p>
+<p>Los sembradores o <em>seeders</em> sirven para insertar datos iniciales en la base de datos. Se definen en <code>app/database/seeds/</code> y su clase debe extender la clase <code>Seeder</code>. El nombre de la clase puede ser cualquier nobre de clase válido en PHP pero se considera buena práctica que el nombre incluya la tabla que <em>siembran</em> y terminen en <code>Seeder</code>.</p>
 
 <p>Es posible <a href="#generators_seeds">generar los sembradores</a> con <code>artisan</code>.</p>
 
@@ -1207,9 +1177,7 @@ pero se considera buena práctica que el nombre incluya la tabla que <em>siembra
 
 <p>Podemos usar algunos de los siguientes atributos de clase para modificar el comportamiento de un modelo.</p>
 
-<p>Por defecto Laravel asume que el nombre de la tabla de base de datos 
-para un modelo es la versión plurazidada del nombre del modelo. Si no es
- así se puede indicar el nombre de tabla con el siguiente atributo</p>
+<p>Por defecto Laravel asume que el nombre de la tabla de base de datos para un modelo es la versión plurazidada del nombre del modelo. Si no es así se puede indicar el nombre de tabla con el siguiente atributo</p>
 
 <pre><code>protected $table = 'tablename';
 </code></pre>
@@ -1224,9 +1192,7 @@ para un modelo es la versión plurazidada del nombre del modelo. Si no es
 <pre><code>public $timestamps = false;
 </code></pre>
 
-<p>Cuando una ruta o un controlador devuelve un modelo la salida es 
-convertida automáticamente a  JSON. Para indicar qué campos pueden ser 
-incluidos en dicha salida</p>
+<p>Cuando una ruta o un controlador devuelve un modelo la salida es convertida automáticamente a  JSON. Para indicar qué campos pueden ser incluidos en dicha salida</p>
 
 <pre><code>protected $visible = array();
 </code></pre>
@@ -1236,9 +1202,7 @@ incluidos en dicha salida</p>
 <pre><code>protected $hidden = array();
 </code></pre>
 
-<p>Es posible indicar que al actualizar los timestamps de un modelo 
-también se actualicen los timestamps de un modelo relacionado con el 
-siguiente parámetro</p>
+<p>Es posible indicar que al actualizar los timestamps de un modelo también se actualicen los timestamps de un modelo relacionado con el siguiente parámetro</p>
 
 <pre><code>protected $touches = array('post'); //En este modelo debe existir un public function post() { return $this-&gt;belongsTo('Post'); }
 </code></pre>
@@ -1294,9 +1258,7 @@ siguiente parámetro</p>
 <pre><code>$users = User::where('age', '&gt;', 30)-&gt;forPage(2, 25)-&gt;get();
 </code></pre>
 
-<p>Obtener una colección de modelos y paginar los resultados con la 
-paginación de Laravel (no hace falta indicar el número de página, 
-Laravel lo detecta)</p>
+<p>Obtener una colección de modelos y paginar los resultados con la paginación de Laravel (no hace falta indicar el número de página, Laravel lo detecta)</p>
 
 <pre><code>$users = User::where('age', '&gt;', 30)-&gt;paginate(15);
 </code></pre>
@@ -1478,6 +1440,8 @@ public function scopeWomen($query)
 <pre><code>$users = User::ofType('member')-&gt;get();
 </code></pre>
 
+<p>Es posible definir <a href="http://laravel.com/docs/eloquent#global-scopes">scopes globales</a> reutilizables por más de un modelo.</p>
+
 <p><a id="transactions"></a></p>
 
 <h3>Transacciones</h3>
@@ -1511,7 +1475,7 @@ public function scopeWomen($query)
 
 <h3>Definir relaciones</h3>
 
-<p>Para definir una relación simplemente hay que crear una función que devuelva el resultado de uno de los métodos <code>hasOne</code>, <code>hasMany</code>, <code>belongsTo</code> o <code>belongsToMany</code>. El nombre de la función debe estar en notación <em>camelCase</em>, no <em>snake_case</em>.</p>
+<p>Para definir una relación simplemente hay que crear una función que devuelva el resultado de uno de los métodos <code>hasOne</code>, <code>hasMany</code>, <code>belongsTo</code>, <code>belongsToMany</code> o <code>hasManyThrough</code>. El nombre de la función debe estar en notación <em>camelCase</em>, no <em>snake_case</em>.</p>
 
 <p>Es posible acceder a las relaciones usando el nombre de la función, es decir, no es necesario usar ...</p>
 
@@ -1643,6 +1607,48 @@ $comments = Post::find(1)-&gt;comments()-&gt;where('title', '=', 'foo')-&gt;firs
 {
     echo $role-&gt;pivot-&gt;created_at;
 }
+</code></pre>
+
+<p><a id="rel-many-through"></a></p>
+
+<h4>Relaciones varios a través</h4>
+
+<p>Es un atajo para acceder a una relación distante a través de una relación intermedia. Por ejemplo, dados estas relaciones:</p>
+
+<pre><code>countries
+    id - integer
+    name - string
+
+users
+    id - integer
+    country_id - integer
+    name - string
+
+posts
+    id - integer
+    user_id - integer
+    title - string
+</code></pre>
+
+<p>Para acceder a todos los posts de un país a través de sus usuarios la relación se define así</p>
+
+<pre><code>class Country extends Eloquent
+{
+    public function posts()
+    {
+        return $this-&gt;hasManyThrough('Post', 'User');
+    }
+}
+</code></pre>
+
+<p>Si el nombre de la clave ajena es distinto podemos indicarlo con</p>
+
+<pre><code>return $this-&gt;hasManyThrough('Post', 'User', 'country_id', 'user_id');
+</code></pre>
+
+<p>Para usarlo</p>
+
+<pre><code>$posts = Country::find(1)-&gt;posts;
 </code></pre>
 
 <p><a id="model_eager"></a></p>
@@ -1838,9 +1844,7 @@ class Greeting extends Facade {
 
 <h2>Artisan</h2>
 
-<p>Artisan es el nombre de la interfaz de línea de comandos que se 
-incluye con Laravel. Proporciona una serie de comandos útiles durante el
- desarrollo de la aplicación.</p>
+<p>Artisan es el nombre de la interfaz de línea de comandos que se incluye con Laravel. Proporciona una serie de comandos útiles durante el desarrollo de la aplicación.</p>
 
 <p>Establecer una clave segura para el cifrado</p>
 
@@ -2005,9 +2009,7 @@ artisan controller:make PhotoController --except=index
 <pre><code>artisan generate:resource photo --fields="title:string, taken:date"
 </code></pre>
 
-<p>O ir más lejos y además de lo anterior incluir más código como los 
-formularios y sus validaciones, contenido de las vistas, consultas de BD
- ...</p>
+<p>O ir más lejos y además de lo anterior incluir más código como los formularios y sus validaciones, contenido de las vistas, consultas de BD ...</p>
 
 <pre><code>artisan generate:scaffold photo --fields="title:string, taken:date"
 </code></pre>
@@ -2057,7 +2059,6 @@ artisan generate:form photo --method="update"
 
 <p><a href="#index">Volver al índice</a></p>
 
+</body>
+</html>
 
-
-
-</body></html>

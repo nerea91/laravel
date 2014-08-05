@@ -3,6 +3,9 @@
 # Check code for quality assurance using:
 # - PHP's Native Linter
 # - PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
+# - PHP version compatibility https://github.com/wimg/PHPCompatibility
+
+phpcs="./vendor/bin/phpcs app --standard=phpcodesniffer.xml,PHPCompatibility --report-width=100 --tab-width=4 --runtime-set testVersion 5.4 -s "
 
 source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
 go_to_laravel_dir
@@ -64,7 +67,7 @@ function isniffer
 	[[ -z $1 ]] && sniffs="" || sniffs="--sniffs=$1"
 
 	color "Running PHP_CodeSniffer in interactive mode" cyan
-	./vendor/bin/phpcs app --standard=phpcodesniffer.xml --report-width=100 --tab-width=4 -s -a $sniffs
+	$phpcs -a $sniffs
 	color OK
 	exit 0
 }
@@ -78,7 +81,7 @@ function sniffer
 	[[ -z $1 ]] && sniffs="" || sniffs="--sniffs=$1"
 
 	color "Running PHP_CodeSniffer" cyan
-	./vendor/bin/phpcs app --standard=phpcodesniffer.xml -p --report-width=100 --report-source --tab-width=4 -s $sniffs
+	$phpcs -p --report-source $sniffs
 
 	if [[ $? -ne 0 ]]; then
 		color "Standard coding violations found" red

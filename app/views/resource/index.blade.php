@@ -3,13 +3,7 @@
 	<p class="text-center">{{ _('No results found') }}.</p>
 @else
 
-	@if ($results->getLastPage() > 1)
-	<p class="caption">{{ sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) }}.</p>
-	@endif
-
-	<table class="hover responsive">
-	@include("$prefix.index")
-	</table>
+	<table class="hover responsive">@include("$prefix.index")</table>
 
 	{{ $results->appends(Input::only('sortby', 'sortdir'))->links() }}
 

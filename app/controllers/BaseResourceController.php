@@ -86,7 +86,7 @@ class BaseResourceController extends \BaseController
 		$return = replace_last_segment($this->prefix);
 
 		$this->layout->title = $this->resource->plural();
-		$this->layout->subtitle = _('Index');
+		$this->layout->subtitle = ($results->getLastPage() > 1) ? sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) : _('Index');
 		$this->layout->content = View::make('resource.index', compact('results', 'links', 'return'));
 	}
 

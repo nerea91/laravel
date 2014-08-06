@@ -3,6 +3,17 @@
 class UserPanelController extends BaseController
 {
 	protected $layout = 'layouts.admin';
+	protected $this->user;
+
+	/**
+	 * Class constructor
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		View::share('user', $this->user = Auth::user());
+	}
 
 	/**
 	 * Show form for changing current user options.
@@ -13,7 +24,7 @@ class UserPanelController extends BaseController
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Options');
-		$this->layout->content = View::make('userpanel.options')->withOptions(Auth::user()->getAssignableOptions());
+		$this->layout->content = View::make('userpanel.options')->withOptions($this->user->getAssignableOptions());
 	}
 
 	/**
@@ -23,7 +34,7 @@ class UserPanelController extends BaseController
 	 */
 	public function updateOptions()
 	{
-		$errors = Auth::user()->setOptions(Input::all());
+		$errors = $this->user->setOptions(Input::all());
 
 		if($errors->any())
 			return Redirect::back()->withInput()->withErrors($errors);
@@ -40,7 +51,7 @@ class UserPanelController extends BaseController
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Change password');
-		$this->layout->content = View::make('userpanel.password')->with('user', Auth::user());
+		$this->layout->content = View::make('userpanel.password');
 	}
 
 	/**
@@ -50,19 +61,18 @@ class UserPanelController extends BaseController
 	 */
 	public function updatePassword()
 	{
-		$user = Auth::user();
-		$user_rules = $user->getRules();
+		$userRules = $this->user->getRules();
 		$rules = array(
 			'current_password'		=> 'required',
-			'password'				=> $user_rules['password'],
+			'password'				=> $userRules['password'],
 			'password_confirmation'	=> 'required',
 		);
 
 		$input = Input::only(array_keys($rules));
-		$input['username'] = $user->username;
+		$input['username'] = $this->user->username;
 
 		$validator = Validator::make($input, $rules)->setAttributeNames([
-			'username' => $user->getLabel('username'), //used in case username and password match
+			'username' => $this->user->getLabel('username'), //used in case username and password match
 			'current_password'	=> _('Current password'),
 			'password'	=> _('New password'),
 			'password_confirmation' => _('Repeat password'),
@@ -73,16 +83,16 @@ class UserPanelController extends BaseController
 			return Redirect::back()->withInput($input)->withErrors($validator);
 
 		// Check old credentials
-		if( ! Auth::validate(['username' => $user->username, 'password' => $input['current_password']]))
+		if( ! Auth::validate(['username' => $this->user->username, 'password' => $input['current_password']]))
 		{
 			$validator->messages()->add('current_password', _('Wrong password'));
 			return Redirect::back()->withInput($input)->withErrors($validator);
 		}
 
 		// Update password
-		$user->password = $input['password'];
-		if( ! $user->removeRule('password', 'confirmed')->save())
-			return Redirect::back()->withInput($input)->withErrors($user->getErrors());
+		$this->user->password = $input['password'];
+		if( ! $this->user->removeRule('password', 'confirmed')->save())
+			return Redirect::back()->withInput($input)->withErrors($this->user->getErrors());
 
 		return Redirect::back()->withSuccess(_('Password updated'));
 	}
@@ -96,7 +106,7 @@ class UserPanelController extends BaseController
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Locale');
-		$this->layout->content = View::make('userpanel.regional')->withUser(Auth::user());
+		$this->layout->content = View::make('userpanel.regional');
 	}
 
 	/**
@@ -106,13 +116,12 @@ class UserPanelController extends BaseController
 	 */
 	public function updateRegional()
 	{
-		$user = Auth::user();
-		$user->country_id = Input::get('country_id');
-		$user->language_id = Input::get('language_id');
+		$this->user->country_id = Input::get('country_id');
+		$this->user->language_id = Input::get('language_id');
 
-		if($user->removeRule('password', 'required|confirmed')->save())
+		if($this->user->removeRule('password', 'required|confirmed')->save())
 			return Redirect::back()->withSuccess(_('Locale options have been saved'));
 
-		return Redirect::back()->withInput()->withErrors($user->getErrors());
+		return Redirect::back()->withInput()->withErrors($this->user->getErrors());
 	}
 }

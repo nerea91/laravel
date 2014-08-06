@@ -23,12 +23,12 @@ return array(
 
 		//Zurb Foundation (CDN)
 		'foundation-cdn' => [
-			'//cdn.jsdelivr.net/foundation/5.3.0/js/vendor/modernizr.js',
+			'//cdn.jsdelivr.net/foundation/5.3.3/js/vendor/modernizr.js',
 			'jquery2-cdn',
-			'//cdn.jsdelivr.net/foundation/5.3.0/js/foundation.min.js',
+			'//cdn.jsdelivr.net/foundation/5.3.3/js/foundation.min.js',
 			'app.js',
-			'//cdn.jsdelivr.net/foundation/5.3.0/css/normalize.css',
-			'//cdn.jsdelivr.net/foundation/5.3.0/css/foundation.min.css',
+			'//cdn.jsdelivr.net/foundation/5.3.3/css/normalize.css',
+			'//cdn.jsdelivr.net/foundation/5.3.3/css/foundation.min.css',
 		],
 
 		//Zurb Responsive tables http://zurb.com/playground/responsive-tables

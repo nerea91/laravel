@@ -3,7 +3,7 @@
 class UserPanelController extends BaseController
 {
 	protected $layout = 'layouts.admin';
-	protected $this->user;
+	protected $user;
 
 	/**
 	 * Class constructor

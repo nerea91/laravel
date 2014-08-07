@@ -16,11 +16,19 @@ class CountriesController extends BaseResourceController
 	 */
 	public function __construct(Country $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(10),
-			'add'	 => Auth::user()->hasPermission(11),
-			'edit'	 => Auth::user()->hasPermission(12),
-			'delete' => Auth::user()->hasPermission(13),
-		]);
+		$user = Auth::user();
+
+		$permissions = [
+			// Resource
+			'view'         => $user->hasPermission(10),
+			'add'          => $user->hasPermission(11),
+			'edit'         => $user->hasPermission(12),
+			'delete'       => $user->hasPermission(13),
+			// Relationships
+			'viewCurrency' => $user->hasPermission(120),
+			'viewUser'     => $user->hasPermission(10) and $this->with[] = 'users',
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

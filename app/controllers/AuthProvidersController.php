@@ -16,14 +16,18 @@ class AuthProvidersController extends BaseResourceController
 	 */
 	public function __construct(AuthProvider $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(80),
-			'add'	 => Auth::user()->hasPermission(81),
-			'edit'	 => Auth::user()->hasPermission(82),
-			'delete' => Auth::user()->hasPermission(83),
-		]);
+		$user = Auth::user();
 
-		// Relationships to eager load when listing resource
-		$this->with = ['accounts'];
+		$permissions = [
+			// Resource
+			'view'        => $user->hasPermission(80),
+			'add'         => $user->hasPermission(81),
+			'edit'        => $user->hasPermission(82),
+			'delete'      => $user->hasPermission(83),
+			// Relationships
+			'viewAccount' => $user->hasPermission(100) and $this->with[] = 'accounts',
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

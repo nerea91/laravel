@@ -65,7 +65,7 @@ class Country extends BaseModel
 
 	public function currency()
 	{
-		return $this->belongsTo('Currency');
+		return $this->belongsTo('Currency')->withTrashed();
 	}
 
 	public function users()

@@ -16,14 +16,21 @@ class UsersController extends BaseResourceController
 	 */
 	public function __construct(User $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(60),
-			'add'	 => Auth::user()->hasPermission(61),
-			'edit'	 => Auth::user()->hasPermission(62),
-			'delete' => Auth::user()->hasPermission(63),
-		]);
+		$user = Auth::user();
 
-		// Relationships to eager load when listing resource
-		$this->with = ['profile', 'country'];
+		$permissions = [
+			// Resource
+			'view'         => $user->hasPermission(60),
+			'add'          => $user->hasPermission(61),
+			'edit'         => $user->hasPermission(62),
+			'delete'       => $user->hasPermission(63),
+			// Relationships
+			'viewAccount'  => $user->hasPermission(100),
+			'viewCountry'  => $user->hasPermission(10) and $this->with[] = 'country',
+			'viewLanguage' => $user->hasPermission(20),
+			'viewProfile'  => $user->hasPermission(40) and $this->with[] = 'profile',
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

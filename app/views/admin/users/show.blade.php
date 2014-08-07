@@ -1,37 +1,41 @@
 <dl>
 
 	<dt>{{ $labels->username }}</dt>
-	<dd>{{{ $resource->username }}}</dd>
+	<dd>{{ $resource->username }}</dd>
 
 	@if ($resource->name)
-	<dt>{{ $labels->name }}</dt>
-	<dd>{{{ $resource->name }}}</dd>
+		<dt>{{ $labels->name }}</dt>
+		<dd>{{ $resource->name }}</dd>
 	@endif
 
 	@if ($resource->description)
-	<dt>{{ $labels->description }}</dt>
-	<dd>{{{ $resource->description }}}</dd>
+		<dt>{{ $labels->description }}</dt>
+		<dd>{{ $resource->description }}</dd>
 	@endif
 
-	<dt>{{ $labels->profile_id }}</dt>
-	<dd>{{{ $resource->profile->name }}}</dd>
-
-	@if ($resource->country_id)
-	<dt>{{ $labels->country_id }}</dt>
-	<dd>{{{ $resource->country }}}</dd>
+	@if ($viewProfile)
+		<dt>{{ $labels->profile_id }}</dt>
+		<dd>{{ $resource->profile }}</dd>
 	@endif
 
-	@if ($resource->language_id)
-	<dt>{{ $labels->language_id }}</dt>
-	<dd>{{{ $resource->language }}}</dd>
+	@if ($viewCountry and $resource->country_id)
+		<dt>{{ $labels->country_id }}</dt>
+		<dd>{{ $resource->country }}</dd>
 	@endif
 
-	<dt>{{ _('Accounts') }}</dt>
-	@foreach ($resource->accounts()->with('provider')->get() as $a)
-	<dd>{{{ $a->provider }}} ({{ sprintf(ngettext('%d login', '%d logins', $a->login_count), $a->login_count)}})</dd>
-	@endforeach
+	@if ($viewLanguage and $resource->language_id)
+		<dt>{{ $labels->language_id }}</dt>
+		<dd>{{ $resource->language }}</dd>
+	@endif
+
+	@if ($viewAccount)
+		<dt>{{ _('Accounts') }}</dt>
+		@foreach ($resource->accounts()->with('provider')->get() as $a)
+			<dd>{{ $a->provider }} ({{ sprintf(ngettext('%d login', '%d logins', $a->login_count), $a->login_count)}})</dd>
+		@endforeach
+	@endif
 
 	<dt>{{ _('Last update') }}</dt>
-	<dd>{{{ $resource->lastUpdate() }}}</dd>
-	<dd>{{{ $resource->lastUpdateDiff() }}}</dd>
+	<dd>{{ $resource->lastUpdate() }}</dd>
+	<dd>{{ $resource->lastUpdateDiff() }}</dd>
 </dl>

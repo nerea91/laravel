@@ -16,11 +16,18 @@ class CurrenciesController extends BaseResourceController
 	 */
 	public function __construct(Currency $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(120),
-			'add'	 => Auth::user()->hasPermission(121),
-			'edit'	 => Auth::user()->hasPermission(122),
-			'delete' => Auth::user()->hasPermission(123),
-		]);
+		$user = Auth::user();
+
+		$permissions = [
+			// Resource
+			'view'        => $user->hasPermission(120),
+			'add'         => $user->hasPermission(121),
+			'edit'        => $user->hasPermission(122),
+			'delete'      => $user->hasPermission(123),
+			// Relationships
+			'viewCountry' => $user->hasPermission(10),
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

@@ -2,8 +2,8 @@
 	<tr>
 		<th class="actions text-center">{{ $links->username }}</th>
 		<th>{{ $links->name }}</th>
-		<th>{{ $links->profile_id }}</th>
-		<th>{{ $links->country_id }}</th>
+		@if($viewProfile)<th>{{ $links->profile_id }}</th>@endif
+		@if($viewCountry)<th>{{ $links->country_id }}</th>@endif
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>
@@ -19,8 +19,8 @@
 			@endif
 		</td>
 		<td>{{ $resource->name }}</td>
-		<td>{{ $resource->profile->name }}</td>
-		<td>{{ (isset($resource->country->name)) ? $resource->country->name : null }}</td>
+		@if($viewProfile)<td>{{ $resource->profile }}</td>@endif
+		@if($viewCountry)<td>{{ $resource->country }}</td>@endif
 		@include('resource.actions')
 	</tr>
 	@endforeach

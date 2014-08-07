@@ -16,14 +16,18 @@ class LanguagesController extends BaseResourceController
 	 */
 	public function __construct(Language $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(20),
-			'add'	 => Auth::user()->hasPermission(21),
-			'edit'	 => Auth::user()->hasPermission(22),
-			'delete' => Auth::user()->hasPermission(23),
-		]);
+		$user = Auth::user();
 
-		// Relationships to eager load when listing resource
-		$this->with = ['users'];
+		$permissions = [
+			// Resource
+			'view'     => $user->hasPermission(20),
+			'add'      => $user->hasPermission(21),
+			'edit'     => $user->hasPermission(22),
+			'delete'   => $user->hasPermission(23),
+			// Relationships
+			'viewUser' => $user->hasPermission(10) and $this->with[] = 'users',
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

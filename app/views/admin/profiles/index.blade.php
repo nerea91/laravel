@@ -2,7 +2,7 @@
 	<tr>
 		<th>{{ $links->name }}</th>
 		<th>{{ $links->description }}</th>
-		<th class="text-center">{{ _('Users') }}</th>
+		@if ($viewUser)<th class="text-center">{{ _('Users') }}</th>@endif
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>
@@ -12,6 +12,7 @@
 	<tr>
 		<td>{{ $resource->name }}</td>
 		<td>{{ $resource->description }}</td>
+		@if ($viewUser)
 		<td class="text-center">
 			@if ($count = $resource->users->count())
 				<span class="has-tip" title="{{ $resource->users->sortBy('username')->implode('username', ', ') }}" data-tooltip>{{ $count }}</span>
@@ -19,6 +20,7 @@
 				{{ $count }}
 			@endif
 		</td>
+		@endif
 		@include('resource.actions')
 	</tr>
 	@endforeach

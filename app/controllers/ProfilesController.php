@@ -16,15 +16,19 @@ class ProfilesController extends BaseResourceController
 	 */
 	public function __construct(Profile $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(40),
-			'add'	 => Auth::user()->hasPermission(41),
-			'edit'	 => Auth::user()->hasPermission(42),
-			'delete' => Auth::user()->hasPermission(43),
-		]);
+		$user = Auth::user();
 
-		// Relationships to eager load when listing resource
-		$this->with = ['users'];
+		$permissions = [
+			// Resource
+			'view'     => $user->hasPermission(40),
+			'add'      => $user->hasPermission(41),
+			'edit'     => $user->hasPermission(42),
+			'delete'   => $user->hasPermission(43),
+			// Relationships
+			'viewUser' => $user->hasPermission(10) and $this->with[] = 'users',
+		];
+
+		parent::__construct($resource, $permissions);
 
 		// Relationships to validate when saving resource
 		$this->relationships = [

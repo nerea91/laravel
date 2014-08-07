@@ -16,14 +16,19 @@ class AccountsController extends BaseResourceController
 	 */
 	public function __construct(Account $resource)
 	{
-		parent::__construct($resource, $permissions = [
-			'view'	 => Auth::user()->hasPermission(100),
-			'add'	 => Auth::user()->hasPermission(101),
-			'edit'	 => Auth::user()->hasPermission(102),
-			'delete' => Auth::user()->hasPermission(103),
-		]);
+		$user = Auth::user();
 
-		// Relationships to eager load when listing resource
-		$this->with = ['user', 'provider'];
+		$permissions = [
+			// Resource
+			'view'         => $user->hasPermission(100),
+			'add'          => $user->hasPermission(101),
+			'edit'         => $user->hasPermission(102),
+			'delete'       => $user->hasPermission(103),
+			// Relationships
+			'viewProvider' => $user->hasPermission(80) and $this->with[] = 'provider',
+			'viewUser'     => $user->hasPermission(10) and $this->with[] = 'user',
+		];
+
+		parent::__construct($resource, $permissions);
 	}
 }

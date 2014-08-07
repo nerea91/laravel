@@ -13,7 +13,7 @@
 	<dd>{{$type}}: <i>{{ implode(', ', $array)}}.</i></dd>
 	@endforeach
 
-	@if ($resource->users->count())
+	@if ($viewUser and $resource->users->count())
 	<dt>{{ _('Users') }}</dt>
 	<dd>{{ $resource->users->sortBy('username')->implode('username', ', ') }}</dd>
 	@endif

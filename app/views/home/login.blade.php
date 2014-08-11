@@ -14,7 +14,7 @@
 
 		{{ Form::open(['action' => 'AuthController@login']) }}
 		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
-		<input name="password" type="password" placeholder="{{_('Password')}}" /> {{-- Laravel Form::password filters the placeholder so we don't use it --}}
+		{{ Form::password('password', ['placeholder' => _('Password')]) }}
 		{{ Form::submit(_('Login'), ['class' => 'button expand']) }}
 
 		<label class="left">

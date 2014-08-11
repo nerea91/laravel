@@ -32,7 +32,7 @@ class CreateTemplateTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function crateNormalTable($table)
+	public function crateNormalTable()
 	{
 		Schema::create('xxxs', function (Blueprint $table) {
 
@@ -61,7 +61,7 @@ class CreateTemplateTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function createPivotTable($table)
+	public function createPivotTable()
 	{
 		Schema::create('xxx_yyy', function (Blueprint $table) {
 
@@ -91,7 +91,7 @@ class CreateTemplateTable extends Migration
 	 */
 	public function ordinaryColumns($table)
 	{
-		// Modifiers: ->unsigned()->nullable()->default($value)
+		// Modifiers: ->unsigned()->nullable()->default($value)->unique()
 
 		// Integers (Exact value)
 		$table->boolean('column_name');

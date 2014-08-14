@@ -24,6 +24,7 @@ View::composers([
 	'DebugBarComposer' => 'layouts.base',
 	'LocaleComposer' => ['layouts.base', 'layouts.master'],
 	'MasterMenuComposer' => 'layouts.master',
+	'ReportTopBarComposer' => 'reports.top-bar',
 ]);
 
 /*

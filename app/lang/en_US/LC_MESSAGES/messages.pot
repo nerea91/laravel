@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 11:31+0200\n"
+"POT-Creation-Date: 2014-08-14 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,6 +165,9 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
+msgid "Day"
+msgstr ""
+
 msgid "Decimal separator"
 msgstr ""
 
@@ -235,10 +238,16 @@ msgstr ""
 msgid "From %d to %d out of %d"
 msgstr ""
 
+msgid "From date"
+msgstr ""
+
 msgid "Full name"
 msgstr ""
 
 msgid "Go back"
+msgstr ""
+
+msgid "Group by"
 msgstr ""
 
 msgid "Home"
@@ -320,6 +329,9 @@ msgid "Message"
 msgstr ""
 
 msgid "Monday"
+msgstr ""
+
+msgid "Month"
 msgstr ""
 
 msgid "Name"
@@ -434,11 +446,21 @@ msgstr ""
 msgid "Repeat password"
 msgstr ""
 
+msgid "Report"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
 msgid "Restore"
 msgstr ""
 
 #, php-format
 msgid "Restore %s"
+msgstr ""
+
+#, php-format
+msgid "Results between %s and %s grouped by %s"
 msgstr ""
 
 msgid "Results per page"
@@ -451,6 +473,9 @@ msgid "Right"
 msgstr ""
 
 msgid "Sample"
+msgstr ""
+
+msgid "Sample report"
 msgstr ""
 
 msgid "Saturday"
@@ -487,6 +512,9 @@ msgid "Something went wrong while we were processing your request"
 msgstr ""
 
 msgid "Sorry, our site is currently undergoing scheduled maintenance"
+msgstr ""
+
+msgid "Submit"
 msgstr ""
 
 msgid "Subregion code"
@@ -688,7 +716,13 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "To date"
+msgstr ""
+
 msgid "To reset your password, complete this form"
+msgstr ""
+
+msgid "Try with different form values"
 msgstr ""
 
 msgid "Tuesday"
@@ -764,6 +798,9 @@ msgstr ""
 msgid "Wednesday"
 msgstr ""
 
+msgid "Week"
+msgstr ""
+
 msgid "Wrong credentials"
 msgstr ""
 
@@ -774,6 +811,9 @@ msgid "Wrong password"
 msgstr ""
 
 msgid "Wrong relationships data"
+msgstr ""
+
+msgid "YYYY-MM-DD"
 msgstr ""
 
 msgid "Yes"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 11:31+0200\n"
+"POT-Creation-Date: 2014-08-14 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,9 @@ msgstr "Contraseña actual"
 msgid "Dashboard"
 msgstr ""
 
+msgid "Day"
+msgstr "Día"
+
 msgid "Decimal separator"
 msgstr "Separador decimal"
 
@@ -234,11 +237,17 @@ msgstr "Viernes"
 msgid "From %d to %d out of %d"
 msgstr "Del %d al %d de un total de %d"
 
+msgid "From date"
+msgstr "Desde fecha"
+
 msgid "Full name"
 msgstr "Nombre completo"
 
 msgid "Go back"
 msgstr "Volver atrás"
+
+msgid "Group by"
+msgstr "Agrupar por"
 
 msgid "Home"
 msgstr "Inicio"
@@ -320,6 +329,9 @@ msgstr "Mensaje"
 
 msgid "Monday"
 msgstr "Lunes"
+
+msgid "Month"
+msgstr "Mes"
 
 msgid "Name"
 msgstr "Nombre"
@@ -433,12 +445,22 @@ msgstr "Repite nueva contraseña"
 msgid "Repeat password"
 msgstr "Repite contraseña"
 
+msgid "Report"
+msgstr "Informe"
+
+msgid "Reports"
+msgstr "Informes"
+
 msgid "Restore"
 msgstr "Restaurar"
 
 #, php-format
 msgid "Restore %s"
 msgstr "Restaurar %s"
+
+#, php-format
+msgid "Results between %s and %s grouped by %s"
+msgstr "Resultados entre el %s y %s agrupados por %s"
 
 msgid "Results per page"
 msgstr "Resultados por página"
@@ -487,6 +509,9 @@ msgstr "Algo ha ido mal al procesar tu petición"
 
 msgid "Sorry, our site is currently undergoing scheduled maintenance"
 msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
+
+msgid "Submit"
+msgstr "Enviar"
 
 msgid "Subregion code"
 msgstr "Código de subregión"
@@ -687,8 +712,14 @@ msgstr "Jueves"
 msgid "Title"
 msgstr "Título"
 
+msgid "To date"
+msgstr "Hasta fecha"
+
 msgid "To reset your password, complete this form"
 msgstr "Completa este formulario para restablecer tu contraseña"
+
+msgid "Try with different form values"
+msgstr "Prueba con otros valores del formulario"
 
 msgid "Tuesday"
 msgstr "Martes"
@@ -763,6 +794,9 @@ msgstr "Lo sentimos mucho pero no hemos podido encontrar la página que has soli
 msgid "Wednesday"
 msgstr "Miércoles"
 
+msgid "Week"
+msgstr "Semana"
+
 msgid "Wrong credentials"
 msgstr "Nombre de usuario o contraseña incorrectos"
 
@@ -774,6 +808,9 @@ msgstr "Contraseña incorrecta"
 
 msgid "Wrong relationships data"
 msgstr "Datos de las relaciones incorrectos"
+
+msgid "YYYY-MM-DD"
+msgstr "AAAA-MM-DD"
 
 msgid "Yes"
 msgstr "Sí"
@@ -798,9 +835,3 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
-
-#~ msgid "App id"
-#~ msgstr "App id"
-
-#~ msgid "App secret"
-#~ msgstr "App secret"

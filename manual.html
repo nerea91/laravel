@@ -117,6 +117,7 @@ rscript,"")).find(f):a),h&&h.apply(d,arguments)},$.ajax(g),this};var escape=enco
 <li><a href="#model_relationships">Definir relaciones</a> (<a href="#rel1-1">1-1</a>, <a href="#rel1-n">1-n</a>, <a href="#reln-m">n-m</a>, <a href="#rel-many-through">many-through</a>).</li>
 <li><a href="#model_eager">Incluir relacionados en los resultados</a>.</li>
 <li><a href="#model_relate">Relacionar modelos</a>.</li>
+<li><a href="#model_add_non_db_attributes">Añadir atributos que no existen en la base de datos</a>.</li>
 </ul></li>
 <li><a href="#packages">Crear paquetes</a>.</li>
 <li><a href="#artisan">Artisan</a>
@@ -1751,6 +1752,23 @@ Post::find(1)-&gt;tags()-&gt;detach();
 
 //Para indicar valores de columnas extras de la tabla pivote
 Post::find(1)-&gt;tags()-&gt;sync(array(1 =&gt; array('expires' =&gt; 1), 5 =&gt; array('expires' =&gt; 0)));
+</code></pre>
+
+<p><a id="model_add_non_db_attributes"></a></p>
+
+<h3>Añadir atributos que no existen en la base de datos</h3>
+
+<p>Para añadir al modelo atributos que no existen en la base de datos se debe combinar el uso de la propiedad <code>$appends</code> con un accesor. Por ejemplo, para añadir al modelo <code>User</code> una propiedad <code>is_new</code> que indica si el usuario ha sido creado hace menos de 30 días:</p>
+
+<pre><code>class User extends Eloquent
+{
+    protected $appends = array('is_new');
+
+    public function getIsNewAttribute()
+    {
+        return $this-&gt;created_at-&gt;diff(Carbon::now())-&gt;days &lt; 30;
+    }
+}
 </code></pre>
 
 <!-- to-do http://laravel.com/docs/eloquent#collections -->

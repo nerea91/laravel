@@ -13,10 +13,11 @@ class AdminTopBarComposer
 		$user = Auth::user();
 
 		// Define all the available sections
-		$sections = $this->makeSections($user);
+		$sections = array_merge(self::makeSections($user), self::makeSecondarySections($user));
+		$sections['reports'] = ReportTopBarComposer::makeSections($user);
 
 		// Build menu tree
-		$menu = $this->buildTree($sections);
+		$menu = self::buildTree($sections);
 
 		// Set a menu render
 		$menu->setRender(new FoundationTopBar());
@@ -26,15 +27,13 @@ class AdminTopBarComposer
 	}
 
 	/**
-	 * Define all the sections that the menu may have.
+	 * Define the main sections of the menu.
 	 *
 	 * @param  User $user User to checked permissions against
 	 * @return array
 	 */
-	public function makeSections(User $user)
+	public static function makeSections(User $user)
 	{
-		/** Admin Panel secctions (in alphabetical order) **/
-
 		// Section: Accounts
 		$accounts = new Flat(_('Accounts'));
 		if($user->hasPermission(100))
@@ -84,18 +83,21 @@ class AdminTopBarComposer
 		if($user->hasPermission(61))
 			$users->addChild(new Link(route('admin.users.create'), _('Add')));
 
-		/** Current user section **/
+		return compact('accounts', 'countries', 'currencies', 'languages', 'profiles', 'providers', 'users');
+	}
 
-		$userPanel = new Node($user->name());
-		$userPanel->addChild(new Link(route('user.options'), _('Options')));
-		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'padding:0']));
-
-		/** Change application language section **/
-
+	/**
+	 * Define the secondary sections of the menu.
+	 *
+	 * @param  User $user User to checked permissions against
+	 * @return array
+	 */
+	public static function makeSecondarySections(User $user)
+	{
+		// Section: Change application language
 		$currentLanguage = App::make('language');
 		$allLanguages = Language::getAllByPriority();
 		$changeLanguage = new Node($currentLanguage);
-
 		if($allLanguages->count() > 1)
 		{
 			$newLanguages = new Flat(_('Change language'));
@@ -106,7 +108,12 @@ class AdminTopBarComposer
 			$changeLanguage->addChild($newLanguages);
 		}
 
-		return compact('accounts', 'countries', 'currencies', 'languages', 'profiles', 'providers', 'users', 'userPanel', 'changeLanguage');
+		// Section: User panel
+		$userPanel = new Node($user->name());
+		$userPanel->addChild(new Link(route('user.options'), _('Options')));
+		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'padding:0']));
+
+		return compact('changeLanguage', 'userPanel');
 	}
 
 	/**
@@ -115,7 +122,7 @@ class AdminTopBarComposer
 	 * @param  array
 	 * @return Menu\Node
 	 */
-	public function buildTree(array $sections)
+	public static function buildTree(array $sections)
 	{
 		extract($sections);
 
@@ -134,6 +141,7 @@ class AdminTopBarComposer
 					$countries,
 					$currencies,
 				]),
+				new Node(_('Reports'), $reports),
 			]),
 			new Node('right', [
 				$userPanel,

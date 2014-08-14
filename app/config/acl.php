@@ -24,9 +24,18 @@
 | - $permissions is a closure that returns FALSE.
 |
 */
+
+$onlyIfLocalEnvironment = function () {
+	return App::environment('local');
+};
+
 return array(
 
 	'map' => array(
+
+		// Reports
+		'report.sample' => $onlyIfLocalEnvironment,
+		'report.sample.validate' => $onlyIfLocalEnvironment,
 
 		// Countries
 		'admin.countries.index' => 10,

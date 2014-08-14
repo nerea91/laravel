@@ -81,6 +81,22 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 	});
 
+	// Reports area
+	Route::group(array('prefix' => 'report', 'before' => 'acl'), function () {
+
+		$reports = [
+			'sample' => 'SampleReport',
+		];
+
+		foreach($reports as $name => $controller)
+		{
+			$url = str_replace('.', '/', $name);
+			Route::get($url, array('as' => "report.$name", 'uses' => "$controller@show"));
+			Route::post($url, array('as' => "report.$name.validate", 'uses' => "$controller@validate"));
+		}
+
+	});
+
 });
 
 // Route for testings purposes, only available on local environment

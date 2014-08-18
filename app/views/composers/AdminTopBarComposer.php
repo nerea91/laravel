@@ -9,21 +9,55 @@ class AdminTopBarComposer
 {
 	public function compose($view)
 	{
-		// User to check permissions against
-		$user = Auth::user();
+		// Build menu tree for the top bar
+		$menu = new Node('menu', [
+			self::buildTree()->addChild(ReportTopBarComposer::buildTree()),
+			self::buildSecondaryTree()
+		]);
 
-		// Define all the available sections
-		$sections = array_merge(self::makeSections($user), self::makeSecondarySections($user));
-		$sections['reports'] = ReportTopBarComposer::makeSections($user);
+		// Pass menu to the view
+		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge());
+	}
 
-		// Build menu tree
-		$menu = self::buildTree($sections);
+	/**
+	 * Build the main tree.
+	 *
+	 * @return Menu\Node
+	 */
+	public static function buildTree()
+	{
+		extract(self::makeSections(Auth::user()));
 
-		// Set a menu render
-		$menu->setRender(new FoundationTopBar());
+		return new Node(_('Dashboard'), [
+			new Node(_('Users'), [
+				$users,
+				$profiles,
+			]),
+			new Node(_('Access'), [
+				$accounts,
+				$providers,
+			]),
+			new Node(_('Localization'), [
+				$languages,
+				$countries,
+				$currencies,
+			])
+		]);
+	}
 
-		// Pass menu to view
-		$view->with('menu', $menu);
+	/**
+	 * Build the secondary tree.
+	 *
+	 * @return Menu\Node
+	 */
+	public static function buildSecondaryTree()
+	{
+		extract(self::makeSecondarySections(Auth::user()));
+
+		return new Node('right', [
+			$userPanel,
+			$changeLanguage,
+		]);
 	}
 
 	/**
@@ -114,41 +148,5 @@ class AdminTopBarComposer
 		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'padding:0']));
 
 		return compact('changeLanguage', 'userPanel');
-	}
-
-	/**
-	 * Create a tree struture from $sections.
-	 *
-	 * @param  array
-	 * @return Menu\Node
-	 */
-	public static function buildTree(array $sections)
-	{
-		extract($sections);
-
-		$menu = new Node('menu', [
-			new Node('left', [
-				new Node(_('Users'), [
-					$users,
-					$profiles,
-				]),
-				new Node(_('Access'), [
-					$accounts,
-					$providers,
-				]),
-				new Node(_('Localization'), [
-					$languages,
-					$countries,
-					$currencies,
-				]),
-				new Node(_('Reports'), $reports),
-			]),
-			new Node('right', [
-				$userPanel,
-				$changeLanguage,
-			]),
-		]);
-
-		return $menu->purge();
 	}
 }

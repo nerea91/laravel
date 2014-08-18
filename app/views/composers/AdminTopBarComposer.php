@@ -64,7 +64,7 @@ class AdminTopBarComposer
 	 * Define the main sections of the menu.
 	 *
 	 * @param  User $user User to checked permissions against
-	 * @return array
+	 * @return array (of Menu\Node)
 	 */
 	public static function makeSections(User $user)
 	{
@@ -124,7 +124,7 @@ class AdminTopBarComposer
 	 * Define the secondary sections of the menu.
 	 *
 	 * @param  User $user User to checked permissions against
-	 * @return array
+	 * @return array (of Menu\Node)
 	 */
 	public static function makeSecondarySections(User $user)
 	{

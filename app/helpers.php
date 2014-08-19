@@ -79,6 +79,26 @@ if( ! function_exists('replace_last_segment'))
 	}
 }
 
+if( ! function_exists('add_timestamps'))
+{
+	/**
+	 * Adds 'created_at' and 'updated_at' keys to all elements of $array.
+	 *
+	 * @param  array $array of arrays
+	 * @return array
+	 */
+	function add_timestamps(array $array)
+	{
+		$now = \Carbon\Carbon::now()->toDateTimeString();
+
+		return array_map(function ($row) use ($now) {
+			$row['updated_at'] = $row['created_at'] = $now;
+			return $row;
+
+		}, $array);
+	}
+}
+
 if( ! function_exists('link_to_sort_by'))
 {
 	/**

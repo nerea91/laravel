@@ -9,57 +9,40 @@ class ReportTopBarComposer
 {
 	public function compose($view)
 	{
-		// User to check permissions against
-		$user = Auth::user();
+		// Build menu tree for the top bar
+		$menu = new Node('menu', [
+			self::buildTree()->addChild(AdminTopBarComposer::buildTree()),
+			AdminTopBarComposer::buildSecondaryTree()
+		]);
 
-		// Define all the available sections
-		$sections = array_merge(self::makeSections($user), AdminTopBarComposer::makeSecondarySections($user));
-		$sections['dashboard'] = AdminTopBarComposer::makeSections($user);
+		// Pass menu to the view
+		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge());
+	}
 
-		// Build menu tree
-		$menu = self::buildTree($sections);
+	/**
+	 * Build the main tree.
+	 *
+	 * @return Menu\Node
+	 */
+	public static function buildTree()
+	{
+		extract(self::makeSections(Auth::user()));
 
-		// Set a menu render
-		$menu->setRender(new FoundationTopBar());
-
-		// Pass menu to view
-		$view->with('menu', $menu);
+		return new Node(_('Reports'), [
+			$sampleReport,
+		]);
 	}
 
 	/**
 	 * Define the main sections of the menu.
 	 *
 	 * @param  User $user User to checked permissions against
-	 * @return array
+	 * @return array (of Menu\Node)
 	 */
 	public static function makeSections(User $user)
 	{
 		$sampleReport = (App::environment('local')) ? new Link(route('report.sample'), with(new SampleReport)->title()) : new Node();
 
 		return compact('sampleReport');
-	}
-
-	/**
-	 * Create a tree struture from $sections.
-	 *
-	 * @param  array
-	 * @return Menu\Node
-	 */
-	public static function buildTree(array $sections)
-	{
-		extract($sections);
-
-		$menu = new Node('menu', [
-			new Node('left', [
-				$sampleReport
-			]),
-			new Node('right', [
-				new Node(_('Dashboard'), $dashboard),
-				$userPanel,
-				$changeLanguage,
-			]),
-		]);
-
-		return $menu->purge();
 	}
 }

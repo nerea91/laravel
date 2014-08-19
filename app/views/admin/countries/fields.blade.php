@@ -4,8 +4,8 @@
 @endforeach
 
 {{ Form::label($f = 'eea', $labels->$f) }}
-@if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif
 {{ Form::radios($f, [_('No'), _('Yes') ]) }}
+@if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif
 
 {{
 	Form::label($f = 'currency_id', $resource->getLabel($f)),

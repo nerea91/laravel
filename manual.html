@@ -1533,7 +1533,7 @@ $user = Phone::find(1)-&gt;user;
 
 <h4>Relaciones uno a muchos</h4>
 
-<p>En un lado de la relación</p>
+<p>En un lado de la relación (el que no tiene la clave ajena)</p>
 
 <pre><code>class Post extends Eloquent
 {
@@ -1544,7 +1544,7 @@ $user = Phone::find(1)-&gt;user;
 }
 </code></pre>
 
-<p>En el otro lado de la relación</p>
+<p>En el otro lado de la relación (el que tiene la clave ajena)</p>
 
 <pre><code>class Comment extends Eloquent
 {
@@ -1553,6 +1553,11 @@ $user = Phone::find(1)-&gt;user;
         return $this-&gt;belongsTo('Post');
     }
 }
+</code></pre>
+
+<p>Si el nombre de la clave ajena es distinto podemos indicarlo con</p>
+
+<pre><code>return $this-&gt;belongsTo('Post', 'custom_key');
 </code></pre>
 
 <p>Para usarlo</p>

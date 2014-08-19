@@ -9,19 +9,19 @@ table.hover tbody:hover > tr {/*opacity: 0.5;*/}table.hover tbody:hover > tr:hov
 table.hover .actions .button {margin:0;padding:.3em .5em;}
 table.hover .actions {white-space:nowrap;}
 
-.flash-alert {margin:1em 20% 0}
-#delete-modal-form {padding-bottom:0}
-
-span.currency {white-space:nowrap}
-
-fieldset.checkables{padding-bottom:0;}
-/* fieldset.checkables li{padding-bottom:0;} */
+form [class*="block-grid-"] > li {padding:0;}
+fieldset.checkables {padding-top:.5em;padding-bottom:0;}
 fieldset.checkables .checkbox_togglers {
-	margin-top: -2.3em;
+	margin-top: -2em;
 	padding:0 .5em;
 	background-color:white;
 	float:right;
 }
+
+span.currency {white-space:nowrap}
+
+.flash-alert {margin:1em 20% 0}
+#delete-modal-form {padding-bottom:0}
 
 /* Fix for magellan + top-bar.fixed */
 div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin-top:45px;}

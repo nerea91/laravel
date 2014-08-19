@@ -26,9 +26,6 @@ class CreatePermissionProfileTable extends Migration
 
 			// Extra keys
 			$table->unique(['permission_id', 'profile_id']);
-
-			// Automatic columns
-			$table->timestamps();
 		});
 	}
 

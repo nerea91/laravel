@@ -12,6 +12,6 @@ class ProfilesTableSeeder extends Seeder
 		DB::table('profiles')->insert(add_timestamps($profiles));
 
 		//Add all permissions to Superuser profile
-		DB::insert('INSERT INTO permission_profile (permission_id, profile_id, created_at, updated_at) SELECT id, 1, NOW(), NOW() FROM permissions');
+		DB::insert('INSERT INTO permission_profile (permission_id, profile_id) SELECT id, 1 FROM permissions');
 	}
 }

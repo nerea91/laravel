@@ -49,6 +49,36 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 
 	// Meta ========================================================================
 
+	/**
+	 * Singular form of this model's name.
+	 *
+	 * @return string
+	 */
+	public function singular()
+	{
+		return str_singular(get_called_class());
+	}
+
+	/**
+	 * Plural form of this model's name.
+	 *
+	 * @return string
+	 */
+	public function plural()
+	{
+		return str_plural(get_called_class());
+	}
+
+	/**
+	 * What should be returned when this model is casted to string.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return (string) $this->getKey();
+	}
+
 	// Validation ==================================================================
 
 	/**

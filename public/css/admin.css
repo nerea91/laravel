@@ -17,7 +17,7 @@ span.currency {white-space:nowrap}
 fieldset.checkables{padding-bottom:0;}
 /* fieldset.checkables li{padding-bottom:0;} */
 fieldset.checkables .checkbox_togglers {
-	margin-top: -2.3em;
+	margin-top: -2.7em;
 	padding:0 .5em;
 	background-color:white;
 	float:right;

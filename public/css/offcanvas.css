@@ -10,7 +10,16 @@
 .no-csstransforms .custom-width-off-canvas.move-right > .inner-wrap { left: 25rem; }
 
 /* Fix horizontal scroll of form within off-canvas */
-.right-off-canvas-menu form,.left-off-canvas-menu form {margin:0 1em;}
+.left-off-canvas-menu form,.right-off-canvas-menu form{margin:0 1em;}
 
-/* Fix for form labels withn offcanvas aside */
-.right-off-canvas-menu form label,.left-off-canvas-menu form  label { color: #EEE }
+/* Fix for form labels within off-canvas */
+.left-off-canvas-menu form label,.right-off-canvas-menu form  label{color: #EEE;}
+
+/* Fix for fieldset within off-canvas */
+.left-off-canvas-menu form fieldset legend,.right-off-canvas-menu form fieldset legend,
+.left-off-canvas-menu .checkbox_togglers,.right-off-canvas-menu .checkbox_togglers
+{
+	background-color: #333 !important;
+	color:#EEE;
+	font-weight:normal;
+}

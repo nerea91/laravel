@@ -3,8 +3,8 @@
 # Fix file and directory permissions for webserver
 
 # Default user and group if none is provided as argument
-USER=${1:-javi}
-GROUP=${2:-nginx}
+USER=${1:-www-data}
+GROUP=${2:-www-data}
 
 source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
 

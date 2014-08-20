@@ -27,7 +27,7 @@ Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showCon
 Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));
 
 // Guest user area
-Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
+Route::group(array('before' => 'guest', 'prefix' => 'login'), function () {
 
 	// Login with native authentication
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
@@ -39,7 +39,7 @@ Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function 
 });
 
 // Authenticated user area
-Route::group(array('https', 'before' => 'auth'), function () {
+Route::group(array('before' => 'auth'), function () {
 
 	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@logout'));
 

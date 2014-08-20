@@ -47,11 +47,11 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-	'local' => array('quad', 'solid'), //to-do set your development hostnames here
-
-));
+$env = $app->detectEnvironment(function()
+{
+	// Force local env.
+	#return 'local';
+});
 
 /*
 |--------------------------------------------------------------------------

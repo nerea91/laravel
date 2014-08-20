@@ -5,7 +5,7 @@ class CountriesTableSeeder extends Seeder
 	public function run()
 	{
 		$countries = [
-			['id' => 4,'name' => 'Afghanistan','full_name' => 'Islamic Republic of Afghanistan','iso_3166_2' => 'AF','iso_3166_3' => 'AFG','code' => '004','capital' => 'Kabul','citizenship' => 'Afghan','region' => '142','subregion' => '034','eea' => 0,'currency_id' => 2],
+			/*['id' => 4,'name' => 'Afghanistan','full_name' => 'Islamic Republic of Afghanistan','iso_3166_2' => 'AF','iso_3166_3' => 'AFG','code' => '004','capital' => 'Kabul','citizenship' => 'Afghan','region' => '142','subregion' => '034','eea' => 0,'currency_id' => 2],
 			['id' => 8,'name' => 'Albania','full_name' => 'Republic of Albania','iso_3166_2' => 'AL','iso_3166_3' => 'ALB','code' => '008','capital' => 'Tirana','citizenship' => 'Albanian','region' => '150','subregion' => '039','eea' => 0,'currency_id' => 3],
 			['id' => 10,'name' => 'Antarctica','full_name' => 'Antarctica','iso_3166_2' => 'AQ','iso_3166_3' => 'ATA','code' => '010','capital' => 'Antartica','citizenship' => 'of Antartica','region' => null,'subregion' => null,'eea' => 0,'currency_id' => null],
 			['id' => 12,'name' => 'Algeria','full_name' => 'People’s Democratic Republic of Algeria','iso_3166_2' => 'DZ','iso_3166_3' => 'DZA','code' => '012','capital' => 'Algiers','citizenship' => 'Algerian','region' => '002','subregion' => '015','eea' => 0,'currency_id' => 44],
@@ -213,8 +213,8 @@ class CountriesTableSeeder extends Seeder
 			['id' => 706,'name' => 'Somalia','full_name' => 'Somali Republic','iso_3166_2' => 'SO','iso_3166_3' => 'SOM','code' => '706','capital' => 'Mogadishu','citizenship' => 'Somali','region' => '002','subregion' => '014','eea' => 0,'currency_id' => 146],
 			['id' => 710,'name' => 'South Africa','full_name' => 'Republic of South Africa','iso_3166_2' => 'ZA','iso_3166_3' => 'ZAF','code' => '710','capital' => 'Pretoria (ZA1)','citizenship' => 'South African','region' => '002','subregion' => '018','eea' => 0,'currency_id' => 187],
 			['id' => 716,'name' => 'Zimbabwe','full_name' => 'Republic of Zimbabwe','iso_3166_2' => 'ZW','iso_3166_3' => 'ZWE','code' => '716','capital' => 'Harare','citizenship' => 'Zimbabwean','region' => '002','subregion' => '014','eea' => 0,'currency_id' => null],
-			['id' => 724,'name' => 'Spain','full_name' => 'Kingdom of Spain','iso_3166_2' => 'ES','iso_3166_3' => 'ESP','code' => '724','capital' => 'Madrid','citizenship' => 'Spaniard','region' => '150','subregion' => '039','eea' => 1,'currency_id' => 50],
-			['id' => 728,'name' => 'South Sudan','full_name' => null,'iso_3166_2' => 'SS','iso_3166_3' => 'SSD','code' => '728','capital' => null,'citizenship' => 'South Sudanese','region' => '002','subregion' => '015','eea' => 0,'currency_id' => null],
+			*/['id' => 724,'name' => 'Spain','full_name' => 'Kingdom of Spain','iso_3166_2' => 'ES','iso_3166_3' => 'ESP','code' => '724','capital' => 'Madrid','citizenship' => 'Spaniard','region' => '150','subregion' => '039','eea' => 1,'currency_id' => 50],
+			/*['id' => 728,'name' => 'South Sudan','full_name' => null,'iso_3166_2' => 'SS','iso_3166_3' => 'SSD','code' => '728','capital' => null,'citizenship' => 'South Sudanese','region' => '002','subregion' => '015','eea' => 0,'currency_id' => null],
 			['id' => 729,'name' => 'Sudan','full_name' => 'Republic of the Sudan','iso_3166_2' => 'SD','iso_3166_3' => 'SDN','code' => '729','capital' => 'Khartoum','citizenship' => 'Sudanese','region' => '002','subregion' => '015','eea' => 0,'currency_id' => 139],
 			['id' => 732,'name' => 'Western Sahara','full_name' => 'Western Sahara','iso_3166_2' => 'EH','iso_3166_3' => 'ESH','code' => '732','capital' => 'Al aaiun','citizenship' => 'Sahrawi','region' => '002','subregion' => '015','eea' => 0,'currency_id' => 98],
 			['id' => 740,'name' => 'Suriname','full_name' => 'Republic of Suriname','iso_3166_2' => 'SR','iso_3166_3' => 'SUR','code' => '740','capital' => 'Paramaribo','citizenship' => 'Surinamer','region' => '019','subregion' => '005','eea' => 0,'currency_id' => 147],
@@ -253,7 +253,7 @@ class CountriesTableSeeder extends Seeder
 			['id' => 876,'name' => 'Wallis and Futuna','full_name' => 'Wallis and Futuna','iso_3166_2' => 'WF','iso_3166_3' => 'WLF','code' => '876','capital' => 'Mata-Utu','citizenship' => 'Wallisian; Futunan; Wallis and Futuna Islander','region' => '009','subregion' => '061','eea' => 0,'currency_id' => 182],
 			['id' => 882,'name' => 'Samoa','full_name' => 'Independent State of Samoa','iso_3166_2' => 'WS','iso_3166_3' => 'WSM','code' => '882','capital' => 'Apia','citizenship' => 'Samoan','region' => '009','subregion' => '061','eea' => 0,'currency_id' => 174],
 			['id' => 887,'name' => 'Yemen','full_name' => 'Republic of Yemen','iso_3166_2' => 'YE','iso_3166_3' => 'YEM','code' => '887','capital' => 'San’a','citizenship' => 'Yemenite','region' => '142','subregion' => '145','eea' => 0,'currency_id' => 185],
-			['id' => 894,'name' => 'Zambia','full_name' => 'Republic of Zambia','iso_3166_2' => 'ZM','iso_3166_3' => 'ZMB','code' => '894','capital' => 'Lusaka','citizenship' => 'Zambian','region' => '002','subregion' => '014','eea' => 0,'currency_id' => 188],
+			['id' => 894,'name' => 'Zambia','full_name' => 'Republic of Zambia','iso_3166_2' => 'ZM','iso_3166_3' => 'ZMB','code' => '894','capital' => 'Lusaka','citizenship' => 'Zambian','region' => '002','subregion' => '014','eea' => 0,'currency_id' => 188],*/
 		];
 
 		DB::table('countries')->insert($countries);

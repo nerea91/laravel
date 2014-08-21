@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 14:43+0200\n"
+"POT-Creation-Date: 2014-08-21 17:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,10 @@ msgstr[1] "%d accesos"
 #, php-format
 msgid "%d results found"
 msgstr "Se han encontrado %d resultados"
+
+#, php-format
+msgid "%s and %s"
+msgstr "%s y %s"
 
 #, php-format
 msgid "%s successfully created"
@@ -162,7 +166,7 @@ msgid "Current password"
 msgstr "Contraseña actual"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Panel"
 
 msgid "Day"
 msgstr "Día"
@@ -473,6 +477,9 @@ msgstr "Derecha"
 
 msgid "Sample"
 msgstr "Ejemplo"
+
+msgid "Sample report"
+msgstr "Informe de ejemplo"
 
 msgid "Saturday"
 msgstr "Sábado"

@@ -85,21 +85,20 @@ if( ! function_exists('format_number'))
 	 * Format a number with optional symbol.
 	 *
 	 * @param  float  $number The number being formatted.
-
 	 * @param  string $decimalSep Separator for the decimal point.
 	 * @param  string $thousandsSep Separator for thousands.
 	 * @param  string $symbol Symbol ($, €, %, ...).
-	 * @param  bool   $position Symbol position: false->left, true->right.
+	 * @param  bool   $symbolToTheRight Whether or not symbol should be place at the right.
 	 * @return void
 	 */
-	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $position = true)
+	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $symbolToTheRight = true)
 	{
-		$formated = number_format($number, intval($precision), (string) $decimalSep, (string) $thousandsSep);
+		$formatted = number_format(sprintf('%F', $number), intval($precision), $decimalSep, $thousandsSep);
 
 		if( ! strlen($symbol))
-			return $formated;
+			return $formatted;
 
-		return ($position) ? "$formated $symbol" : "$symbol $formated";
+		return ($symbolToTheRight) ? "$formatted $symbol" : "$symbol $formatted";
 	}
 }
 

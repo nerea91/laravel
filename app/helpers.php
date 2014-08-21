@@ -119,6 +119,27 @@ if( ! function_exists('percent'))
 	}
 }
 
+if( ! function_exists('enum'))
+{
+	/**
+	 * Implode an $array using 'and' as the last $glue.
+	 *
+	 * i.e: enum(['one','two','three']) will return 'one, two and three'
+	 *
+	 * @param array
+	 * @param string
+	 * @return string
+	 */
+	function enum(array $array, $glue = ', ')
+	{
+		$last = array_pop($array);
+
+		if( ! $array)
+			return $last;
+
+		return sprintf(_('%s and %s'), implode($array, $glue), $last);
+	}
+}
 
 if( ! function_exists('add_timestamps'))
 {

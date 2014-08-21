@@ -9,7 +9,7 @@ class ProfilesTableSeeder extends Seeder
 			['id' => 2, 'name' => 'User', 'description' => null],
 		];
 
-		DB::table('profiles')->insert($profiles);
+		DB::table('profiles')->insert(add_timestamps($profiles));
 
 		//Add all permissions to Superuser profile
 		DB::insert('INSERT INTO permission_profile (permission_id, profile_id) SELECT id, 1 FROM permissions');

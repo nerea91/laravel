@@ -8,6 +8,6 @@ class AuthprovidersTableSeeder extends Seeder
 			['id' => 1, 'name' => 'laravel', 'title' => 'Laravel'],
 		];
 
-		DB::table('authproviders')->insert($providers);
+		DB::table('authproviders')->insert(add_timestamps($providers));
 	}
 }

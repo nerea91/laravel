@@ -53,7 +53,7 @@ class Profile extends BaseModel
 
 	public function permissions()
 	{
-		return $this->belongsToMany('Permission')->withTimestamps();
+		return $this->belongsToMany('Permission');
 	}
 
 	public function users()

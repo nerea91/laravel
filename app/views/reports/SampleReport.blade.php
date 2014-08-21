@@ -21,7 +21,7 @@
 	<table class="hover responsive" summary="">
 
 		<thead>
-			<tr>
+			<tr class="zebra">
 				<th>Col 1</th>
 				<th>Col 2</th>
 			</tr>

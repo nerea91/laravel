@@ -138,6 +138,7 @@ abstract class BaseReportController extends BaseController
 		if( ! $results)
 			return $this->loadView();
 
+		Assets::add('responsive-tables');
 		$this->setSubtitle($input);
 		$this->data['results'] = $results;
 		return $this->loadView(true);

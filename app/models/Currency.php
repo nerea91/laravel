@@ -97,7 +97,7 @@ class Currency extends BaseModel
 	// Logic =======================================================================
 
 	/**
-	 * Adds digit separators and currency sybol.
+	 * Format currency $number for humans, adding digit separators and currency sybol.
 	 *
 	 * @param  float
 	 * @param  integer
@@ -105,11 +105,6 @@ class Currency extends BaseModel
 	 */
 	public function format($number, $precision = 2)
 	{
-		$formated = number_format($number, $precision, (string) $this->decimal_separator, (string) $this->thousands_separator);
-
-		if( ! strlen($this->symbol))
-			return $formated;
-
-		return ($this->symbol_position) ? $formated . ' ' . $this->symbol : $this->symbol . ' ' . $formated;
+		return format_number($number, $precision, $this->decimal_separator, $this->thousands_separator, $this->symbol, $this->symbol_position);
 	}
 }

@@ -79,6 +79,47 @@ if( ! function_exists('replace_last_segment'))
 	}
 }
 
+if( ! function_exists('format_number'))
+{
+	/**
+	 * Format a number with optional symbol.
+	 *
+	 * @param  float  $number The number being formatted.
+
+	 * @param  string $decimalSep Separator for the decimal point.
+	 * @param  string $thousandsSep Separator for thousands.
+	 * @param  string $symbol Symbol ($, €, %, ...).
+	 * @param  bool   $position Symbol position: false->left, true->right.
+	 * @return void
+	 */
+	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $position = true)
+	{
+		$formated = number_format($number, intval($precision), (string) $decimalSep, (string) $thousandsSep);
+
+		if( ! strlen($symbol))
+			return $formated;
+
+		return ($position) ? "$formated $symbol" : "$symbol $formated";
+	}
+}
+
+if( ! function_exists('percent'))
+{
+	/**
+	 * Format a percentage as currency.
+	 *
+	 * @param  float
+	 * @param  Currency
+	 * @param  int
+	 * @return void
+	 */
+	function percent($number, Currency $currency, $precision = 2)
+	{
+		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator, '%', true);
+	}
+}
+
+
 if( ! function_exists('add_timestamps'))
 {
 	/**

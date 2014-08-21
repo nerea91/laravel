@@ -18,6 +18,7 @@ fieldset.checkables .checkbox_togglers {
 	float:right;
 }
 
+.nowrap {white-space: nowrap;}
 span.currency {white-space:nowrap}
 
 .flash-alert {margin:1em 20% 0}

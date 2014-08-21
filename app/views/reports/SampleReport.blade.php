@@ -27,7 +27,7 @@
 			</tr>
 		</thead>
 
-		<tbody>
+		<tbody class="nowrap">
 			@foreach ($results->rows as $row)
 			<tr>
 				<td>{{ $row->col1 }}</td>
@@ -36,7 +36,7 @@
 			@endforeach
 		</tbody>
 
-		<tfoot>
+		<tfoot class="nowrap">
 			<tr>
 				<td>{{ $results->totals->col1 }}</td>
 				<td>{{ $results->totals->col2 }}</td>

@@ -10,6 +10,6 @@ git checkout HEAD app/lang/en_US/LC_MESSAGES/messages.mo app/lang/en_US/LC_MESSA
 
 git mergetool -y
 
-./scripts/delete_old_files
+./bin/delete_old_files
 
 

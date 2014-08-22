@@ -66,17 +66,20 @@ class SampleReport extends BaseReportController implements ReportInterface
 	 * @return StdClass
 	 *  ->rows
 	 *  ->totals
+	 *  ->currency
 	 */
 	public function get(array $data)
 	{
 		$data = new StdClass();
 
 		$data->rows = [
-			(object) ['col1' => 1, 'col2' => 2],
-			(object) ['col1' => 3, 'col2' => 4],
+			(object) ['number' => 1234, 'currency' => 1234.56, 'percentage' => 33.33],
+			(object) ['number' => 5678, 'currency' => 9012.34, 'percentage' => 66.66],
 		];
 
-		$data->totals = (object) ['col1' => 5, 'col2' => 6];
+		$data->totals = (object) ['number' => 6912, 'currency' => 10246.9, 'percentage' => 99.99];
+
+		$data->currency = Currency::first();
 
 		return $data;
 	}

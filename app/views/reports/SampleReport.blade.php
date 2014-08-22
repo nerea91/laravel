@@ -22,24 +22,27 @@
 
 		<thead>
 			<tr class="zebra">
-				<th>Col 1</th>
-				<th>Col 2</th>
+				<th class="text-center">Number</th>
+				<th class="text-center">Currency</th>
+				<th class="text-center">Percentage</th>
 			</tr>
 		</thead>
 
 		<tbody class="nowrap">
 			@foreach ($results->rows as $row)
 			<tr>
-				<td>{{ $row->col1 }}</td>
-				<td>{{ $row->col2 }}</td>
+				<td class="text-center">{{ number($row->number, $results->currency) }}</td>
+				<td class="text-right">{{ currency($row->currency, $results->currency) }}</td>
+				<td class="text-right">{{ percent($row->percentage, $results->currency) }}</td>
 			</tr>
 			@endforeach
 		</tbody>
 
 		<tfoot class="nowrap">
 			<tr>
-				<td>{{ $results->totals->col1 }}</td>
-				<td>{{ $results->totals->col2 }}</td>
+				<td class="text-center">{{ number($results->totals->number, $results->currency) }}</td>
+				<td class="text-right">{{ currency($results->totals->currency, $results->currency) }}</td>
+				<td class="text-right">{{ percent($results->totals->percentage, $results->currency) }}</td>
 			</tr>
 		</tfoot>
 

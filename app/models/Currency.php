@@ -105,6 +105,6 @@ class Currency extends BaseModel
 	 */
 	public function format($number, $precision = 2)
 	{
-		return format_number($number, $precision, $this->decimal_separator, $this->thousands_separator, $this->symbol, $this->symbol_position);
+		return currency($number, $this, $precision);
 	}
 }

@@ -84,7 +84,7 @@ if( ! function_exists('format_number'))
 	/**
 	 * Format a number with optional symbol.
 	 *
-	 * NOTE If decimal part is 0 it will be trimed.
+	 * NOTE If decimal part is all zeros it will be trimed.
 	 *
 	 * @param  float  $number The number being formatted.
 	 * @param  string $decimalSep Separator for the decimal point.
@@ -116,6 +116,22 @@ if( ! function_exists('format_number'))
 	}
 }
 
+if( ! function_exists('number'))
+{
+	/**
+	 * Format a number as currency but without symbol.
+	 *
+	 * @param  float
+	 * @param  Currency
+	 * @param  int
+	 * @return void
+	 */
+	function number($number, Currency $currency, $precision = 2)
+	{
+		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator);
+	}
+}
+
 if( ! function_exists('percent'))
 {
 	/**
@@ -129,6 +145,22 @@ if( ! function_exists('percent'))
 	function percent($number, Currency $currency, $precision = 2)
 	{
 		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator, '%', true);
+	}
+}
+
+if( ! function_exists('currency'))
+{
+	/**
+	 * Format a number as currency.
+	 *
+	 * @param  float
+	 * @param  Currency
+	 * @param  int
+	 * @return void
+	 */
+	function currency($number, Currency $currency, $precision = 2)
+	{
+		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator, $currency->symbol, $currency->symbol_position);
 	}
 }
 

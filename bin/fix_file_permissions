@@ -21,8 +21,6 @@ find . -type d -exec chmod 770 {} \;
 find . -type f -exec chmod 660 {} \;
 
 # Exec permission for scripts
-chmod 760 artisan
-find . -type f -name "*.sh" -exec chmod 760 {} \;
-find . -type d -name bin -o -name scripts -exec chmod 760 {} \;
+chmod 760 artisan bin/* vendor/bin/*
 
 exit 0

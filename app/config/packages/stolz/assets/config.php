@@ -1,20 +1,21 @@
 <?php
 
+// Get protocol agnostinc version of the configured application URL
 $appUrl = rtrim(substr($appUrl = Config::get('app.url'), strpos($appUrl, ':') + 1), '/');
 
-return array(
+return [
 
 	'pipeline'	=> true,
-	'autoload'	=> array('foundation-cdn'),
-	'collections' => array(
+	'autoload'	=> ['foundation-cdn'],
+	'collections' => [
 
-		//jQuery 1.x (CDN)
+		// jQuery 1.x (CDN)
 		'jquery-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'],
 
-		//jQuery 2.x (CDN)
+		// jQuery 2.x (CDN)
 		'jquery2-cdn' => ['//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'],
 
-		//jQuery UI (CDN)
+		// jQuery UI (CDN)
 		'jquery-ui-cdn' => [
 			'jquery-cdn',
 			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
@@ -23,7 +24,7 @@ return array(
 			'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css',
 		],
 
-		//Zurb Foundation (CDN)
+		// Zurb Foundation (CDN)
 		'foundation-cdn' => [
 			'//cdn.jsdelivr.net/foundation/5.3.3/js/vendor/modernizr.js',
 			'jquery2-cdn',
@@ -33,29 +34,17 @@ return array(
 			'//cdn.jsdelivr.net/foundation/5.3.3/css/foundation.min.css',
 		],
 
-		//Zurb Responsive tables http://zurb.com/playground/responsive-tables
+		// Zurb Responsive tables http://zurb.com/playground/responsive-tables
 		'responsive-tables' => [
 			'zurb/responsive-tables:responsive-tables.js',
 			'zurb/responsive-tables:responsive-tables.css',
 		],
 
-		//Twitter Bootstrap (CDN)
-		'bootstrap-cdn' => [
-			'jquery-cdn',
-			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
-			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
-			'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css',
-		],
+		// Flags of all countries in one sprite. https://github.com/lafeber/world-flags-sprite
+		'flags-sprite-16px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css'],
+		'flags-sprite-32px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags21.css'],
 
-		// Twitter Bootstrap. To install it run: composer require twitter/bootstrap:3.0.*; artisan asset:publish twitter/bootstrap --path=vendor/twitter/bootstrap/dist/
-		'bootstrap' => [
-			'jquery-cdn',
-			'twitter/bootstrap:bootstrap.min.js',
-			'twitter/bootstrap:bootstrap.min.css',
-			'twitter/bootstrap:bootstrap-theme.min.css',
-		],
-
-		// Assets for admin panel
+		// Admin panel
 		'admin' => [
 			'admin.js',
 			'admin.css',
@@ -72,10 +61,6 @@ return array(
 			"$appUrl/packages/barryvdh/laravel-debugbar/debugbar.css",
 		],
 
-		// Flags of all countries in one sprite. https://github.com/lafeber/world-flags-sprite
-		'flags-sprite-16px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css'],
-		'flags-sprite-32px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags21.css'],
+	],
 
-	),
-
-);
+];

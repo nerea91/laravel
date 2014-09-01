@@ -13,7 +13,7 @@
 	@endforeach
 
 	<dt>{{ _('Sample') }}</dt>
-	<dd><span class="currency">{{ $resource->format(1234.56) }}</span></dd>
+	<dd><span class="nowrap">{{ $resource->format(1234.56) }}</span></dd>
 
 	@if ($viewCountry and $resource->countries->count())
 		<dt>{{ _('Countries') }}</dt>

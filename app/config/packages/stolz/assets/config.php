@@ -1,5 +1,7 @@
 <?php
 
+$appUrl = rtrim(substr($appUrl = Config::get('app.url'), strpos($appUrl, ':') + 1), '/');
+
 return array(
 
 	'pipeline'	=> true,
@@ -61,13 +63,13 @@ return array(
 
 		// PHP debugbar
 		'debugbar' => [
-			'//laravel/packages/barryvdh/laravel-debugbar/debugbar.js',
-			'//laravel/packages/barryvdh/laravel-debugbar/widgets.js',
-			'//laravel/packages/barryvdh/laravel-debugbar/openhandler.js',
-			'//laravel/packages/barryvdh/laravel-debugbar/vendor/font-awesome/css/font-awesome.min.css',
-			'//laravel/packages/barryvdh/laravel-debugbar/widgets.css',
-			'//laravel/packages/barryvdh/laravel-debugbar/openhandler.css',
-			'//laravel/packages/barryvdh/laravel-debugbar/debugbar.css',
+			"$appUrl/packages/barryvdh/laravel-debugbar/debugbar.js",
+			"$appUrl/packages/barryvdh/laravel-debugbar/widgets.js",
+			"$appUrl/packages/barryvdh/laravel-debugbar/openhandler.js",
+			"$appUrl/packages/barryvdh/laravel-debugbar/vendor/font-awesome/css/font-awesome.min.css",
+			"$appUrl/packages/barryvdh/laravel-debugbar/widgets.css",
+			"$appUrl/packages/barryvdh/laravel-debugbar/openhandler.css",
+			"$appUrl/packages/barryvdh/laravel-debugbar/debugbar.css",
 		],
 
 		// Flags of all countries in one sprite. https://github.com/lafeber/world-flags-sprite

@@ -70,8 +70,8 @@ class CreateTemplateTable extends Migration
 			$table->increments('id');
 
 			// Foreign keys
-			$table->unsignedInteger('xxx_id')->unsigned();$table->foreign('xxx_id')->references('id')->on('xxxs')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('yyy_id')->unsigned();$table->foreign('yyy_id')->references('id')->on('yyys')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('xxx_id');$table->foreign('xxx_id')->references('id')->on('xxxs')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('yyy_id');$table->foreign('yyy_id')->references('id')->on('yyys')->onUpdate('cascade')->onDelete('cascade');
 
 			// Pivot columns
 			// NOTE see $this->ordinaryColumns()

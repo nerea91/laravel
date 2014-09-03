@@ -37,8 +37,6 @@ class Permission extends BaseModel
 
 	// Static Methods ==============================================================
 
-	// Logic =======================================================================
-
 	/**
 	 * Get ALL permissions grouped by type.
 	 *
@@ -51,4 +49,6 @@ class Permission extends BaseModel
 			$permissions[$p->type_id][$p->id] = $p->name;
 		return $permissions;
 	}
+
+	// Logic =======================================================================
 }

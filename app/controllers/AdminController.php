@@ -34,56 +34,71 @@ class AdminController extends BaseController
 	{
 		$query = Input::get('search');
 		$user = Auth::user();
-		$cache_id = 'adminSearchResults' . $user->getKey();
+		$cacheId = 'adminSearchResults' . $user->getKey();
 
 		if(strlen($query) > 0)
 		{
-			$results = [];
-			$total_results = 0;
-			$current_route = Route::current()->getName();
-			$searchable_models = [
-				60 => 'User',
-				100 => 'Account',
+			$results = new Illuminate\Support\Collection;
+			$totalResults = 0;
+			$currentRoute = Route::current()->getName();
+			$searchableModels = [
+				10 => 'Country',
+				20 => 'Language',
 				40 => 'Profile',
 				60 => 'AuthProvider',
+				60 => 'User',
+				100 => 'Account',
 				120 => 'Currency',
-				20 => 'Language',
-				10 => 'Country',
 			];
 
 			// Perform search for all searchable models
-			foreach($searchable_models as $permission => $model_name)
+			foreach($searchableModels as $permission => $modelName)
 			{
 				if($user->hasPermission($permission))
 				{
-					$model = new $model_name;
+					$model = new $modelName;
 					$collection = $model->search($query);
 					if( ! $count = $collection->count())
 						continue;
 
-					$total_results += $count;
+					$totalResults += $count;
 					$result = new stdClass();
 					$result->label = $model->plural();
-					$result->route = replace_last_segment($current_route, strtolower(str_plural($model_name)).'.show');
+					$result->route = replace_last_segment($currentRoute, strtolower(str_plural($modelName)).'.show');
 					$result->collection = $collection;
-					$results[$model_name] = $result;
+					$results[$modelName] = $result;
 				}
 			}
 
-			// Store results in the cache for 5 minutes
+			// Results found
 			if($results)
 			{
-				Cache::put($cache_id, $results, 5);
-				Session::flash('success', sprintf(_('%d results found'), $total_results));
+				// Sort results showing first the models with smaller collections
+				$results = $results->sort(function ($result1, $result2)
+				{
+					$count1 = $result1->collection->count();
+					$count2 = $result2->collection->count();
+
+					// Is same count order alphabetically
+					if ($count1 == $count2)
+						return strcasecmp($result1->label, $result2->label);
+
+					return ($count1 < $count2) ? -1 : 1;
+				});
+
+				// Store results in the cache for 5 minutes
+				Cache::put($cacheId, $results, 5);
+				Session::flash('success', sprintf(_('%d results found'), $totalResults));
 			}
+			// No results found
 			else
 			{
-				Cache::forget($cache_id);
+				Cache::forget($cacheId);
 				Session::flash('error', _('No results found'));
 			}
 		}
 		else
-			Cache::forget($cache_id);
+			Cache::forget($cacheId);
 
 		return Redirect::route('admin')->withInput();
 	}

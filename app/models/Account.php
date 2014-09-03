@@ -114,23 +114,36 @@ class Account extends BaseModel
 	/**
 	 * Search this model
 	 *
-	 * @param  string $query
+	 * @param  string $pattern
 	 * @return Illuminate\Database\Eloquent\Collection (of Account)
 	 */
-	public static function search($query)
+	public static function search($pattern)
 	{
-		return self::where('uid', 'LIKE', "%$query%")
-		->orWhere('nickname', 'LIKE', "%$query%")
-		->orWhere('email', 'LIKE', "%$query%")
-		->orWhere('name', 'LIKE', "%$query%")
-		->orWhere('first_name', 'LIKE', "%$query%")
-		->orWhere('last_name', 'LIKE', "%$query%")
-		->orderBy('name')
-		->orderBy('first_name')
-		->orderBy('last_name')
-		->get();
-	}
+		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
+		return self::where(function($query) use ($pattern) {
 
+			// If pattern is a number search in the numeric columns
+			if(is_numeric($pattern))
+				$query->orWhere('id', $pattern);
+
+			// If pattern looks like a date search in the datetime columns
+			if(preg_match('/^\d{4}-[01]\d-[0-3]\d$/', $pattern))
+				$query->orWhereRaw('DATE(created_at) = ?', [$pattern]);
+
+			// If pattern looks like an email address
+			if(strlen($pattern) > 5 and strpos($pattern, '@'))
+				$query->orWhere('email', 'LIKE', "%$pattern%");
+
+			// In any other case search in all the relevant columns
+			$query->orWhere('uid', 'LIKE', "%$pattern%")
+			->orWhere('nickname', 'LIKE', "%$pattern%")
+			->orWhere('name', 'LIKE', "%$pattern%")
+			->orWhere('first_name', 'LIKE', "%$pattern%")
+			->orWhere('last_name', 'LIKE', "%$pattern%")
+			->orWhere('location', 'LIKE', "%$pattern%");
+
+		})->orderBy('name')->orderBy('first_name')->orderBy('last_name')->orderBy('email')->get();
+	}
 
 	/**
 	 * Make a new account filled with data provided by Facebook.

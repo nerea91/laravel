@@ -81,23 +81,28 @@ class Country extends BaseModel
 	/**
 	 * Search this model
 	 *
-	 * @param  string $query
+	 * @param  string $pattern
 	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
-	public static function search($query)
+	public static function search($pattern)
 	{
-		if(is_numeric($query))
-			$search = self::where('code', $query);
-		else
-		{
-			$search = self::where('name', 'LIKE', "%$query%")->orWhere('full_name', 'LIKE', "%$query%");
-			if(strlen($query) == 2)
-				$search->orWhere('iso_3166_2', $query);
-			if(strlen($query) == 3)
-				$search->orWhere('iso_3166_3', $query);
-		}
+		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
+		return self::where(function($query) use ($pattern) {
 
-		return $search->orderBy('name')->get();
+			// If pattern is a number search in the numeric columns
+			if(is_numeric($pattern))
+				$query->orWhere('id', $pattern);
+
+			// If it looks like an ISO code
+			if(strlen($pattern) === 2)
+				$query->orWhere('iso_3166_2', $pattern);
+			if(strlen($pattern) === 3)
+				$query->orWhere('iso_3166_3', $pattern);
+
+			// In any other case search in all the relevant columns
+			$query->orWhere('name', 'LIKE', "%$pattern%")->orWhere('full_name', 'LIKE', "%$pattern%");
+
+		})->orderBy('name')->get();
 	}
 
 	// Logic =======================================================================

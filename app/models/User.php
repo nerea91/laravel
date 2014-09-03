@@ -157,12 +157,26 @@ class User extends BaseModel implements UserInterface, RemindableInterface
 	/**
 	 * Search this model
 	 *
-	 * @param  string $query
+	 * @param  string $pattern
 	 * @return Illuminate\Database\Eloquent\Collection (of User)
 	 */
-	public static function search($query)
+	public static function search($pattern)
 	{
-		return self::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('username')->get();
+		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
+		return self::where(function($query) use ($pattern) {
+
+			// If pattern is a number search in the numeric columns
+			if(is_numeric($pattern))
+				$query->orWhere('id', $pattern);
+
+			// If pattern looks like a date search in the datetime columns
+			if(preg_match('/^\d{4}-[01]\d-[0-3]\d$/', $pattern))
+				$query->orWhereRaw('DATE(created_at) = ?', [$pattern]);
+
+			// In any other case search in all the relevant columns
+			$query->orWhere('name', 'LIKE', "%$pattern%")->orWhere('username', 'LIKE', "%$pattern%")->orWhere('description', 'LIKE', "%$pattern%");
+
+		})->orderBy('username')->get();
 	}
 
 	/**

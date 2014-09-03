@@ -100,23 +100,24 @@ class Language extends BaseModel
 	/**
 	 * Search this model
 	 *
-	 * @param  string $query
+	 * @param  string $pattern
 	 * @return Illuminate\Database\Eloquent\Collection (of Language)
 	 */
-	public static function search($query)
+	public static function search($pattern)
 	{
-		if(is_numeric($query))
-			return new Collection;
+		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
+		return self::where(function($query) use ($pattern) {
 
-		$search = self::where('name', 'LIKE', "%$query%")->orWhere('english_name', 'LIKE', "%$query%");
+			// If pattern is a number search in the numeric columns
+			if(is_numeric($pattern))
+				$query->orWhere('id', $pattern);
+			elseif(strlen($pattern) === 2)
+				$query->orWhere('code', $pattern);
 
-		if(strlen($query) == 2)
-			$search->orWhere('code', $query);
+			// In any other case search in all the relevant columns
+			$query->orWhere('name', 'LIKE', "%$pattern%")->orWhere('english_name', 'LIKE', "%$pattern%")->orWhere('locale', 'LIKE', "%$pattern%");
 
-		if(strlen($query) <= 5)
-			$search->orWhere('locale', $query);
-
-		return $search->orderBy('english_name')->get();
+		})->orderBy('english_name')->get();
 	}
 
 	/**

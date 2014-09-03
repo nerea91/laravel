@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Country extends BaseModel
@@ -83,7 +82,7 @@ class Country extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Collection (of Currency)
+	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($query)
 	{

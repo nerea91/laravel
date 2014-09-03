@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use OAuth\Common\Service\AbstractService as OAuthService;
 
@@ -71,7 +70,7 @@ class AuthProvider extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Collection (of AuthProvider)
+	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function search($query)
 	{
@@ -81,7 +80,7 @@ class AuthProvider extends BaseModel
 	/**
 	 * Get all usable providers.
 	 *
-	 * @return Collection (of AuthProvider)
+	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function getUsable()
 	{

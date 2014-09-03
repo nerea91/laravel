@@ -79,7 +79,7 @@ class Currency extends BaseModel
 	 * Search this model
 	 *
 	 * @param  string $query
-	 * @return Collection (of Currency)
+	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($query)
 	{

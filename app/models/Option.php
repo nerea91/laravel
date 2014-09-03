@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\MessageBag;
 
 class Option extends BaseModel

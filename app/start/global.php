@@ -66,8 +66,8 @@ App::error(function (Exception $exception, $code) {
 	// Add exception to log file
 	Log::error($exception);
 
-	//If debug is enabled keep using the default error view
-	if(Config::get('app.debug'))
+	// If debug is enabled keep using the default error view
+	if (Config::get('app.debug'))
 		return;
 
 	$message = $exception->getMessage();

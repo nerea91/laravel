@@ -74,13 +74,12 @@ class AdminController extends BaseController
 			if($results)
 			{
 				// Sort results showing first the models with smaller collections
-				$results = $results->sort(function ($result1, $result2)
-				{
+				$results = $results->sort(function ($result1, $result2) {
 					$count1 = $result1->collection->count();
 					$count2 = $result2->collection->count();
 
 					// Is same count order alphabetically
-					if ($count1 == $count2)
+					if ($count1 === $count2)
 						return strcasecmp($result1->label, $result2->label);
 
 					return ($count1 < $count2) ? -1 : 1;

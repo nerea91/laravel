@@ -11,9 +11,12 @@ if( ! $app->runningInConsole())
 	//Log::getMonolog()->pushHandler(new \Monolog\Handler\FirePHPHandler()); //to-do enable if you use FirePHP debugger
 
 	// Log the detected language
-	Log::info(value(function () {
-		$lang = App::make('language');
+	if (Config::get('app.debug'))
+	{
+		Log::info(value(function () {
+			$lang = App::make('language');
 
-		return $lang .' detected from ' . $lang->detectedFrom;
-	}));
+			return $lang .' detected from ' . $lang->detectedFrom;
+		}));
+	}
 }

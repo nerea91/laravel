@@ -317,13 +317,16 @@ class BaseResourceController extends \BaseController
 	 * - Current trash mode.
 	 *
 	 * @param  Model $resource
-	 * @return \Illuminate\Support\Collection
+	 * @param  int   $resultsPerPage
+	 * @return \Illuminate\Pagination\Paginator
 	 */
-	protected function paginate($resource = null)
+	protected function paginate($resource = null, $resultsPerPage = null)
 	{
+		// If no arguments are provided fallback to sensible defaults
 		$resource = ($resource) ?: $this->resource;
-		$resultsPerPage = Auth::user()->getOption('admin_panel_results_per_page');
+		$resultsPerPage = ($resultsPerPage) ?: Auth::user()->getOption('admin_panel_results_per_page');
 
+		// Set whether or not trashed items should be shown
 		if($this->trashable)
 		{
 			$trashMode = Session::get("{$this->prefix}.trash.mode");

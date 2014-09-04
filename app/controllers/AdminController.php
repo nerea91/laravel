@@ -45,8 +45,8 @@ class AdminController extends BaseController
 				10 => 'Country',
 				20 => 'Language',
 				40 => 'Profile',
-				60 => 'AuthProvider',
 				60 => 'User',
+				80 => 'AuthProvider',
 				100 => 'Account',
 				120 => 'Currency',
 			];

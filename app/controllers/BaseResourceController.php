@@ -227,7 +227,7 @@ class BaseResourceController extends \BaseController
 
 			// Save resource relationships
 			foreach($this->relationships as $relationship => $notUsed)
-				$this->resource->$relationship()->sync(Input::get($relationship));
+				$this->resource->$relationship()->sync(Input::get($relationship, []));
 
 			// Success :)
 

@@ -41,7 +41,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | Set application language and bind it to the IoC container.
 |
 */
-if( ! $app->runningInConsole())
+if( ! $app->runningInConsole() or App::environment('testing'))
 {
 	$app->singleton('language', function () {
 		return Language::detect()->apply();

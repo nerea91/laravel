@@ -4,6 +4,10 @@ AdminController@search
 
 	adminSearchResults{Auth:user()->id}
 
+DebugBarComposer@compose
+
+	debugbar
+
 Language@getAllByPriority
 
 	allLanguagesOrderedByPriority

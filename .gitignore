@@ -23,8 +23,8 @@ Thumbs.db
 /tags
 
 # PHP Debugbar assets
-/public/packages/barryvdh/
-/public/packages/maximebf/
+/public/css/debugbar.css
+/public/js/debugbar.js
 
 # Pipelined assets
 /public/css/min/

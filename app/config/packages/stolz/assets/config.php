@@ -1,10 +1,6 @@
 <?php
 
-// Get protocol agnostinc version of the configured application URL
-$appUrl = rtrim(substr($appUrl = Config::get('app.url'), strpos($appUrl, ':') + 1), '/');
-
 return [
-
 	'pipeline'	=> true,
 	'autoload'	=> ['foundation-cdn'],
 	'collections' => [
@@ -44,23 +40,10 @@ return [
 		'flags-sprite-16px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css'],
 		'flags-sprite-32px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags21.css'],
 
+		// PHP debugbar https://github.com/barryvdh/laravel-debugbar
+		'debugbar' => ['debugbar.css', 'debugbar.js'],
+
 		// Admin panel
-		'admin' => [
-			'admin.js',
-			'admin.css',
-		],
-
-		// PHP debugbar
-		'debugbar' => [
-			"$appUrl/packages/barryvdh/laravel-debugbar/debugbar.js",
-			"$appUrl/packages/barryvdh/laravel-debugbar/widgets.js",
-			"$appUrl/packages/barryvdh/laravel-debugbar/openhandler.js",
-			"$appUrl/packages/barryvdh/laravel-debugbar/vendor/font-awesome/css/font-awesome.min.css",
-			"$appUrl/packages/barryvdh/laravel-debugbar/widgets.css",
-			"$appUrl/packages/barryvdh/laravel-debugbar/openhandler.css",
-			"$appUrl/packages/barryvdh/laravel-debugbar/debugbar.css",
-		],
-
+		'admin' => ['admin.js', 'admin.css'],
 	],
-
 ];

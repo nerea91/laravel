@@ -42,8 +42,7 @@
 		"post-update-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-			"ctags",
-			"php artisan debugbar:publish"
+			"ctags"
 		],
 		"post-create-project-cmd": [
 			"php artisan key:generate",

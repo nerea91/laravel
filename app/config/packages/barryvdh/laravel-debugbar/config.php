@@ -37,7 +37,10 @@ return array(
 	|
 	| Vendor files are included by default, but can be set to false.
 	| This can also be set to 'js' or 'css', to only include javascript or css vendor files.
-	| Vendor files are for css: font-awesome (including fonts) en for js: jquery 1.8.3
+	| Vendor files are for css: font-awesome (including fonts) and highlight.js (css files)
+	| and for js: jquery and and highlight.js
+	| So if you want syntax highlighting, set it to true.
+	| jQuery is set to not conflict with existing jQuery scripts.
 	|
 	*/
 
@@ -57,6 +60,17 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Capture Console Commands
+	|--------------------------------------------------------------------------
+	|
+	| The Debugbar can listen to Artisan commands. You can view them with the browse button in the Debugbar.
+	|
+	*/
+
+	'capture_console' => true,
+
+	/*
+	|--------------------------------------------------------------------------
 	| DataCollectors
 	|--------------------------------------------------------------------------
 	|
@@ -65,7 +79,7 @@ return array(
 	*/
 
 	'collectors' => array(
-		'phpinfo'         => true,  // Php version
+		'phpinfo'         => false,  // Php version
 		'messages'        => true,  // Messages
 		'time'            => true,  // Time Datalogger
 		'memory'          => true,  // Memory usage
@@ -74,7 +88,7 @@ return array(
 		'db'              => true,  // Show database (PDO) queries and bindings
 		'views'           => true,  // Views with their data
 		'route'           => true,  // Current route information
-		'laravel'         => false, // Laravel version and environment
+		'laravel'         => true, // Laravel version and environment
 		'events'          => true, // All events fired
 		'twig'            => false, // Twig, requires barryvdh/laravel-twigbridge
 		'default_request' => false, // Regular or special Symfony request logger
@@ -84,6 +98,7 @@ return array(
 		'files'           => false, // Show the included files
 		'config'          => false, // Display config settings
 		'auth'            => true, // Display Laravel authentication status
+		'session'         => true, // Display session data in a separate tab
 	),
 
 	/*
@@ -96,12 +111,13 @@ return array(
 	*/
 
 	'options' => array(
-		'pdo' => array(
+		'auth' => array(
+			'show_name' => false,   // Also show the users name/email in the debugbar
+		),
+		'db' => array(
 			'with_params'       => true,   // Render SQL with the parameters substituted
-			'quotation_char'    => "'",    // The character to surround params
-			'extra_connections' => array(  // Add extra connections to the PDO Collector
-				// 'mysql',
-			)
+			'timeline'          => true,  // Add the queries to the timeline
+			'backtrace'         => false,  // EXPERIMENTAL: Use a backtrace to find the origin of the query in your files.
 		),
 		'mail' => array(
 			'full_log' => false

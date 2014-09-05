@@ -71,6 +71,7 @@ return array(
 	),
 	"unique"               => _("The :attribute has already been taken."),
 	"url"                  => _("The :attribute format is invalid."),
+	"timezone"             => _("The :attribute must be a valid zone."),
 
 	"alpha_space"          => _("The :attribute may only contain letters and spaces."),
 	"alpha_dash_space"     => _("The :attribute may only contain letters, numbers, dashes and spaces."),

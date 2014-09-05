@@ -3,6 +3,7 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
+	"type": "project",
 	"require": {
 		"binarix/foundation-pagination": "dev-master",
 		"jenssegers/oauth": "dev-master",

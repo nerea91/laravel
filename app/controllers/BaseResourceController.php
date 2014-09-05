@@ -316,8 +316,8 @@ class BaseResourceController extends \BaseController
 	 * - URL parameters.
 	 * - Current trash mode.
 	 *
-	 * @param  Model $resource
-	 * @param  int   $resultsPerPage
+	 * @param  Model|\Illuminate\Database\Eloquent\Builder $resource
+	 * @param  int                                         $resultsPerPage
 	 * @return \Illuminate\Pagination\Paginator
 	 */
 	protected function paginate($resource = null, $resultsPerPage = null)

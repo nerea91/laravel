@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-21 17:57+0200\n"
+"POT-Creation-Date: 2014-09-05 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -382,6 +382,9 @@ msgstr "Se han guardado las opciones"
 msgid "Password"
 msgstr "Contraseña"
 
+msgid "Password has been reset!"
+msgstr "¡Contraseña enviada!"
+
 msgid "Password reminder sent!"
 msgstr "¡Recordatorio de contraseña enviado"
 
@@ -645,6 +648,9 @@ msgstr ":attribute debe ser una dirección IP válida."
 
 msgid "The :attribute must be a valid email address."
 msgstr ":attribute debe ser una dirección de email válida."
+
+msgid "The :attribute must be a valid zone."
+msgstr "El campo :attribute debe ser una zona horaria válida."
 
 msgid "The :attribute must be accepted."
 msgstr "El campo :attribute debe ser aceptado"

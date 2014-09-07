@@ -198,6 +198,8 @@ class CurrenciesTableSeeder extends Seeder
 			['id' => 191,'code' => 'ZWD','name' => 'Zimbabwe Dollar','name2' => null,'symbol' => 'Z$','symbol2' => null,'symbol_position' => 1,'decimal_separator' => '.','thousands_separator' => null,'subunit' => null,'subunit2' => null,'unicode_decimal' => '90,36','unicode_hexadecimal' => '5a,24'],
 		];
 
-		DB::table('currencies')->insert($currencies);
+		// Split array into chunks for SQLite
+		foreach (array_chunk_for_sqlite($currencies) as $chunk)
+			DB::table('currencies')->insert($chunk);
 	}
 }

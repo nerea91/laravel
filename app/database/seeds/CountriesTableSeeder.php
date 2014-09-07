@@ -256,6 +256,8 @@ class CountriesTableSeeder extends Seeder
 			['id' => 894,'name' => 'Zambia','full_name' => 'Republic of Zambia','iso_3166_2' => 'ZM','iso_3166_3' => 'ZMB','code' => '894','capital' => 'Lusaka','citizenship' => 'Zambian','region' => '002','subregion' => '014','eea' => 0,'currency_id' => 188],
 		];
 
-		DB::table('countries')->insert($countries);
+		// Split array into chunks for SQLite
+		foreach (array_chunk_for_sqlite($countries) as $chunk)
+			DB::table('countries')->insert($chunk);
 	}
 }

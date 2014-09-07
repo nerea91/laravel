@@ -206,6 +206,24 @@ if( ! function_exists('add_timestamps'))
 	}
 }
 
+if( ! function_exists('array_chunk_for_sqlite'))
+{
+	/**
+	 * Split an $array into chunks whose size does not exceed the SQLite batch insert limits.
+	 *
+	 * http://www.sqlite.org/limits.html
+	 *
+	 * @param  array $array of arrays
+	 * @return array
+	 */
+	function array_chunk_for_sqlite(array $array)
+	{
+		$limit = floor(999 / count(reset($array)));
+
+		return array_chunk($array, $limit);
+	}
+}
+
 if( ! function_exists('link_to_sort_by'))
 {
 	/**

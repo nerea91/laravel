@@ -1,2 +1,8 @@
 <?php
-return require __DIR__.'/../local/database.php';
+
+return array(
+
+	// Test DB in memory
+	'default' => 'sqlite-memory',
+
+);

@@ -83,6 +83,12 @@ return array(
 			'prefix'   => '',
 		),
 
+		'sqlite-memory' => array(
+			'driver'   => 'sqlite',
+			'database' => ':memory:',
+			'prefix'   => '',
+		),
+
 	),
 
 	/*

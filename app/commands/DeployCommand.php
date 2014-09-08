@@ -64,6 +64,8 @@ class DeployCommand extends Command
 			'pwd',
 		];
 
+		$this->info('Deploying to ' . $connection);
+
 		// Run the commands and show their output
 		SSH::into($connection)->run($commands, function ($line) {
 			$this->line($line);

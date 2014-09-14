@@ -1,7 +1,0 @@
-<?php
-
-return array(
-
-	'path' => app_path('database/backups/'),
-
-);

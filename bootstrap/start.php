@@ -47,11 +47,7 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-	'local' => array('quad', 'solid'), //to-do set your development hostnames here
-
-));
+require __DIR__.'/environment.php';
 
 /*
 |--------------------------------------------------------------------------

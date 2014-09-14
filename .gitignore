@@ -1,37 +1,23 @@
-/bootstrap/compiled.php
 /vendor
 composer.phar
 composer.lock
-.env.*.php
-.env.php
+.env.*
 .DS_Store
 Thumbs.db
 
-# Old files
 *~
 .*~
 *.nfs00*
 *.kate-swp
 *.old
+
 /.inotify
-
-# Storage
-/app/storage/gettext/
-/app/storage/debugbar/
-
-# Ctags
-/tags
-
-# PHP Debugbar assets
+/database/backups/
+/database/schema/
 /public/css/debugbar.css
-/public/js/debugbar.js
-
-# Pipelined assets
 /public/css/min/
+/public/js/debugbar.js
 /public/js/min/
-
-# SchemaSpy output
-/app/database/schema/
-
-# Database backups
-/app/database/backups/
+/storage/debugbar/
+/storage/gettext/
+/tags

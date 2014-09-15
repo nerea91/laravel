@@ -1,6 +1,10 @@
 <?php namespace App\Composers;
 
-class ApplicationLanguage
+use App;
+use App\Language;
+use Request;
+
+class ApplicationLanguageComposer
 {
 	public function compose($view)
 	{

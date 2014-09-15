@@ -16,7 +16,7 @@ class EnvironmentFilter
 	 */
 	public function filter(Route $route, Request $request, $enviorment)
 	{
-		if( ! App::environment($enviorment))
+		if ( ! App::environment($enviorment))
 			return App::abort(404);
 	}
 }

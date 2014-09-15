@@ -1,9 +1,9 @@
-<?php namespace App\Http\Controllers; namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as UpstreamController;
+use Illuminate\Routing\Controller as RoutingController;
 use View;
 
-class Controller extends UpstreamController
+class Controller extends RoutingController
 {
 	/**
 	 * Common constructor for all our controllers
@@ -18,5 +18,17 @@ class Controller extends UpstreamController
 		{
 			$this->layout = View::make($this->layout);
 		}
+	}
+
+	/**
+	 * Execute an action on the controller.
+	 *
+	 * @param  string  $method
+	 * @param  array   $parameters
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function callAction($method, $parameters)
+	{
+		return (call_user_func_array(array($this, $method), $parameters)) ?: $this->layout;
 	}
 }

@@ -1,13 +1,12 @@
 <?php namespace App\Console;
 
+use File;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\View\Compilers\BladeCompiler;
-use File;
 
 class GettextCommand extends Command
 {
-
 	/**
 	 * The console command name.
 	 *

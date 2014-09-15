@@ -24,3 +24,4 @@
 - Migrar cache.md
 - Migrar phpcodesniffer.xml
 - En el composer.json volver a poner versiones estable de "laravel/framework"
+- When all packages are migrated to V5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master

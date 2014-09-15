@@ -1,6 +1,8 @@
 <?php namespace App\Composers;
 
-class SimilarProfiles
+use Auth;
+
+class SimilarProfilesComposer
 {
 	public function compose($view)
 	{

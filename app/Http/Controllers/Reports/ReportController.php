@@ -1,8 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Reports;
 
-/**
- * Common part for all report controllers.
- */
+use App\Http\Controllers\Controller;
 
 abstract class ReportController extends Controller
 {

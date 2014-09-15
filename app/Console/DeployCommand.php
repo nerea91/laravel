@@ -1,10 +1,10 @@
 <?php namespace App\Console;
 
+use Config;
 use Illuminate\Console\Command;
+use SSH;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Config;
-use SSH;
 
 class DeployCommand extends Command
 {

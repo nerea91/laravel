@@ -5,7 +5,7 @@ use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
 use Stolz\Menu\Renders\FoundationTopBar;
 
-class AdminPanelMenu
+class AdminPanelMenuComposer
 {
 	public function compose($view)
 	{

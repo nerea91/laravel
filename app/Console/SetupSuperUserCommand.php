@@ -1,8 +1,8 @@
 <?php namespace App\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\Console\Input\InputArgument;
 
 class SetupSuperUserCommand extends Command
 {

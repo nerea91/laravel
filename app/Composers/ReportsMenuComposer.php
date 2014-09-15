@@ -1,18 +1,19 @@
 <?php namespace App\Composers;
 
+use Auth;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
 use Stolz\Menu\Renders\FoundationTopBar;
 
-class ReportsMenu
+class ReportsMenuComposer
 {
 	public function compose($view)
 	{
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
-			self::buildTree()->addChild(AdminTopBarComposer::buildTree()),
-			AdminTopBarComposer::buildSecondaryTree()
+			self::buildTree()->addChild(AdminPanelMenuComposer::buildTree()),
+			AdminPanelMenuComposer::buildSecondaryTree()
 		]);
 
 		// Pass menu to the view

@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Session;
+use Request;
+use Config;
 
 class Language extends Model
 {

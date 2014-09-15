@@ -1,6 +1,8 @@
 <?php namespace App\Composers;
 
-class MasterMenu
+use Auth;
+
+class MasterMenuComposer
 {
 	public function compose($view)
 	{

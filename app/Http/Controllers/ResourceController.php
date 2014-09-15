@@ -1,12 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
-/**
- * Common part for all resource controllers.
- */
-
-class BaseResourceController extends \BaseController
+class ResourceController extends Controller
 {
 	/**
 	 * The layout that should be used for responses.

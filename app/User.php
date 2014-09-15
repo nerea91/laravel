@@ -1,11 +1,10 @@
-<?php namespace App; namespace App;
+<?php namespace App;
 
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Contracts\Auth\Remindable as RemindableContract;
 use Illuminate\Contracts\Auth\User as UserContract;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
-
 
 class User extends Model implements UserContract, RemindableContract
 {

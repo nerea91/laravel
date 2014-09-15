@@ -2,33 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Extensions
-|--------------------------------------------------------------------------
-|
-| Here is where you can add all the snippets that your application needs
-| other than routes, filters or helpers  (i.e: view composers, auth drivers,
-| custom validation rules, etc ...).
-|
-*/
-
-/*
-|--------------------------------------------------------------------------
-| View composers
-|--------------------------------------------------------------------------
-*/
-
-View::composers([
-	// View composer class => View file (use an array for more than one)
-	'AdminTopBarComposer' => 'admin/top-bar',
-	'AdminUsersFieldsComposer' => 'admin.users.fields',
-	'DebugBarComposer' => 'layouts.base',
-	'LocaleComposer' => ['layouts.base', 'layouts.master'],
-	'MasterMenuComposer' => 'layouts.master',
-	'ReportTopBarComposer' => 'reports.top-bar',
-]);
-
-/*
-|--------------------------------------------------------------------------
 | Event listentener
 |--------------------------------------------------------------------------
 */

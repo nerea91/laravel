@@ -1,6 +1,6 @@
-<?php
+<?php namespace App;
 
-class Profile extends BaseModel
+class Profile extends Model
 {
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 

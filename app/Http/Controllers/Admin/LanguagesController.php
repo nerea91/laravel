@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers\Admin;;
+<?php namespace App\Http\Controllers\Admin;
 
-class Languages extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class LanguagesController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

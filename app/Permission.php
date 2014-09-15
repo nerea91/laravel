@@ -1,6 +1,6 @@
-<?php
+<?php namespace App;
 
-class Permission extends BaseModel
+class Permission extends Model
 {
 	public $timestamps = false;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');

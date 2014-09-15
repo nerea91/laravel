@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers\Admin;;
+<?php namespace App\Http\Controllers\Admin;
 
-class Profiles extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class ProfilesController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

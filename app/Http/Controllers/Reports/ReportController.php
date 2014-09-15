@@ -4,7 +4,7 @@
  * Common part for all report controllers.
  */
 
-abstract class BaseReportController extends BaseController
+abstract class ReportController extends Controller
 {
 	/**
 	 * The layout that should be used for responses.

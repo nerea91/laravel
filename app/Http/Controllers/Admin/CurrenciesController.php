@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers\Admin;;
+<?php namespace App\Http\Controllers\Admin;
 
-class Currencies extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class CurrenciesController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

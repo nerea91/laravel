@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Reports;
 
-class Sample extends BaseReportController implements ReportInterface
+class Sample extends ReportController implements ReportInterface
 {
 	/**
 	 * Class constructor.

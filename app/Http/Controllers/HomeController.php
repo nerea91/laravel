@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use View;
+
 class HomeController extends Controller
 {
 	protected $layout = 'layouts.master';

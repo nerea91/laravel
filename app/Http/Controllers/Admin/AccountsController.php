@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers\Admin;;
+<?php namespace App\Http\Controllers\Admin;
 
-class Accounts extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class AccountsController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App; namespace App;
 
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserTrait;

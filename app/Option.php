@@ -1,8 +1,8 @@
-<?php
+<?php namespace App;
 
 use Illuminate\Support\MessageBag;
 
-class Option extends BaseModel
+class Option extends Model
 {
 	public $timestamps = false;
 	protected $guarded = array('id', 'assignable', 'deleted_at');

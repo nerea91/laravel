@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class AuthController extends BaseController
+class AuthController extends Controller
 {
 	protected $layout = 'layouts.master';
 

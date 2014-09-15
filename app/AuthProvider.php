@@ -1,9 +1,9 @@
-<?php
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use OAuth\Common\Service\AbstractService as OAuthService;
 
-class AuthProvider extends BaseModel
+class AuthProvider extends Model
 {
 	use SoftDeletingTrait;
 	protected $table = 'authproviders';

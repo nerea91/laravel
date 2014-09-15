@@ -1,25 +1,19 @@
 <?php namespace App\Http\Controllers; namespace App\Http\Controllers;
 
-class Controller extends Illuminate\Routing\Controller
+use Illuminate\Routing\Controller as UpstreamController;
+use View;
+
+class Controller extends UpstreamController
 {
 	/**
 	 * Common constructor for all our controllers
 	 */
 	public function __construct()
 	{
-		parent::__construct();
-
 		// Enable CSRF for all controllers
 		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'patch', 'delete'));
-	}
 
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	protected function setupLayout()
-	{
+		// Setup the layout used by the controller
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);

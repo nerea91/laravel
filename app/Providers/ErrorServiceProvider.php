@@ -1,7 +1,7 @@
 <?php namespace App\Providers;
 
-use App, Log, Exception;
 use Illuminate\Support\ServiceProvider;
+use App, Config, Exception, Log, Response;
 
 class ErrorServiceProvider extends ServiceProvider {
 

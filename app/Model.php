@@ -1,4 +1,7 @@
-<?php
+<?php namespace App;
+
+use App\Validation\Validator;
+use Illuminate\Database\Eloquent\Model as UpstreamModel;
 
 /**
 	This class adds to Eloquent:
@@ -11,7 +14,7 @@
 
 	Usage example:
 
-	class SomeModel extends BaseModel
+	class SomeModel extends Model
 	{
 		public function __construct(array $attributes = array())
 		{
@@ -24,7 +27,7 @@
 	}
 */
 
-class BaseModel extends \Illuminate\Database\Eloquent\Model
+class Model extends UpstreamModel
 {
 	/**
 	 * Validation rules
@@ -89,7 +92,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 	 */
 	protected function setRules(array $rules)
 	{
-		list($this->labels, $this->rules) = \Stolz\Validation\Validator::parseRules($rules);
+		list($this->labels, $this->rules) = Validator::parseRules($rules);
 
 		return $this;
 	}
@@ -162,7 +165,7 @@ class BaseModel extends \Illuminate\Database\Eloquent\Model
 		}
 
 		// Validate
-		$validator = \Validator::make($this->attributes, $rules);
+		$validator = Validator::make($this->attributes, $rules);
 		$validator->setAttributeNames($this->getLabels());
 
 		if( ! $validator->passes())

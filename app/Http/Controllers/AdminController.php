@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class AdminController extends BaseController
+class AdminController extends Controller
 {
 	protected $layout = 'layouts.admin';
 

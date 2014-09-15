@@ -32,6 +32,7 @@ class FilterServiceProvider extends ServiceProvider {
 		'auth.basic' => 'App\Http\Filters\BasicAuthFilter',
 		'csrf' => 'App\Http\Filters\CsrfFilter',
 		'guest' => 'App\Http\Filters\GuestFilter',
+		'env' => 'App\Http\Filters\EnvironmentFilter',
 	];
 
 }

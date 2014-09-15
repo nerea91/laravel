@@ -1,4 +1,4 @@
-<?php
+<?php namespace App;
 
 // Thrown when a model does not pass validation
 class ModelValidationException extends \Exception {}

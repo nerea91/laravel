@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 class AuthprovidersTableSeeder extends Seeder
 {
 	public function run()

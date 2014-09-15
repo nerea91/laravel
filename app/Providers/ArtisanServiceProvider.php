@@ -12,7 +12,7 @@ class ArtisanServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->commands([
-			'App\Console\DeployCommand',
+ 			'App\Console\DeployCommand',
 			'App\Console\GettextCommand',
 			'App\Console\InspireCommand',
 			'App\Console\SetupCommand',

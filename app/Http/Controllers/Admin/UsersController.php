@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers\Admin;
 
-class Users extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class UsersController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

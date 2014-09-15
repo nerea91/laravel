@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Seeder;
+
 class PermissionTypesTableSeeder extends Seeder
 {
 	public function run()

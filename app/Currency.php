@@ -1,9 +1,9 @@
-<?php
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Currency extends BaseModel
+class Currency extends Model
 {
 	use SoftDeletingTrait;
 	public $timestamps = false;

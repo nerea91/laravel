@@ -1,6 +1,6 @@
-<?php
+<?php namespace App;
 
-class PermissionType extends BaseModel
+class PermissionType extends Model
 {
 	public $table = 'permissiontypes';
 	public $timestamps = false;

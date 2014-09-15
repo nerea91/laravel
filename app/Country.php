@@ -1,8 +1,8 @@
-<?php
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Country extends BaseModel
+class Country extends Model
 {
 	use SoftDeletingTrait;
 	public $timestamps = false;

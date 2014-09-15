@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers\Admin;;
+<?php namespace App\Http\Controllers\Admin;
 
-class AuthProviders extends BaseResourceController
+use App\Http\Controllers\ResourceController;
+
+class AuthProvidersController extends ResourceController
 {
 	/**
 	 * The layout that should be used for responses.

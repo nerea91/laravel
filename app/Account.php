@@ -1,6 +1,6 @@
-<?php
+<?php namespace App;
 
-class Account extends BaseModel
+class Account extends Model
 {
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
 	protected $hidden = array('access_token', 'last_ip');

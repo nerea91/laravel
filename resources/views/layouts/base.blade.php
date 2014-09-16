@@ -3,7 +3,7 @@
 <html class="no-js" lang="{{ $appLanguage->code }}">
 	<head>
 		{{-- Current page info --}}
-		<title>{{{ $title }}} | {{{ Config::get('site.name') }}}</title>
+		<title>{{ $title }} | {{ Config::get('site.name') }}</title>
 		<meta name="description" content="@yield('description')" />
 
 		{{-- Authors info --}}
@@ -31,14 +31,14 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
 		{{-- CSS  --}}
-		{{ Assets::css() }}
+		{!! Assets::css() !!}
 		@yield('css')
 	</head>
 	<body>
 		@yield('body')
 
 		{{-- JavaScript  --}}
-		{{ Assets::js() }}
+		{!! Assets::js() !!}
 		@yield('js')
 
 		{{-- Google Analytics --}}
@@ -54,6 +54,6 @@
 		@endif
 
 		{{-- Debugbar --}}
-		{{ $debugbar or null }}
+		{!! $debugbar or null !!}
 	</body>
 </html>

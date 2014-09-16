@@ -285,7 +285,7 @@ class Language extends Model
 	{
 		$category = (is_null($category)) ? Config::get('site.locale-category', LC_ALL) : $category;
 
-		bindtextdomain('messages', app_path().'/lang/');
+		bindtextdomain('messages', base_path('resources/lang'));
 		textdomain('messages');
 		$locale = $this->locale;
 

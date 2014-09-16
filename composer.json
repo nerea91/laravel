@@ -4,9 +4,19 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"type": "project",
+    "repositories": [
+		{ "type": "vcs", "url": "https://github.com/Stolz/Laravel-Foundation-Pagination" },
+		{ "type": "vcs", "url": "https://github.com/Stolz/container-debug" },
+		{ "type": "vcs", "url": "https://github.com/Stolz/laravel-backup" },
+		{ "type": "vcs", "url": "https://github.com/Stolz/laravel-oauth" },
+		{ "type": "vcs", "url": "https://github.com/Stolz/zurb-foundation-laravel" }
+	],
 	"require": {
 		"binarix/foundation-pagination": "dev-master",
-		"laravel/framework": "5.0.x-dev",
+		"illuminate/html": "dev-master",
+		"illuminate/remote": "dev-master",
+		"jenssegers/oauth": "dev-master",
+		"laravel/framework": "dev-master",
 		"schickling/backup": "dev-master",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
@@ -22,6 +32,9 @@
 		"way/generators": "dev-master"
 	},
 	"autoload": {
+		"files": [
+			"resources/helpers.php"
+		],
 		"classmap": [
 			"database",
 			"tests/TestCase.php"

@@ -100,6 +100,7 @@ return [
 		 */
 		'App\Providers\AppServiceProvider',
 		'App\Providers\ArtisanServiceProvider',
+		'App\Providers\ComposerServiceProvider',
 		'App\Providers\ErrorServiceProvider',
 		'App\Providers\FilterServiceProvider',
 		'App\Providers\LogServiceProvider',
@@ -128,6 +129,12 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+
+		/*
+		 * Laravel Service Providers not included in the default framework installation
+		 */
+		'Illuminate\Html\HtmlServiceProvider',
+		'Illuminate\Remote\RemoteServiceProvider',
 
 		/*
 		 * Packages Service Providers...
@@ -195,6 +202,10 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		// Laravel Facades  not included in the default framework installation
+		'Form'      => 'Illuminate\Html\FormFacade',
+		'HTML'      => 'Illuminate\Html\HtmlFacade',
+		'SSH'       => 'Illuminate\Remote\RemoteFacade',
 	],
 
 ];

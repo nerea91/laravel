@@ -10,6 +10,20 @@
 |
 */
 
+if ( ! function_exists('_'))
+{
+	/**
+	 * Dummy gettext alias. Workaround until HHVM supports Gettext PHP extension.
+	 *
+	 * @param  string
+	 * @return string
+	 */
+	function _($s)
+	{
+		return $s;
+	}
+}
+
 if( ! function_exists('p'))
 {
 	/**

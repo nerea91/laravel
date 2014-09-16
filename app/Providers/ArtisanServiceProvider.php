@@ -14,7 +14,6 @@ class ArtisanServiceProvider extends ServiceProvider
 		$this->commands([
  			'App\Console\DeployCommand',
 			'App\Console\GettextCommand',
-			'App\Console\InspireCommand',
 			'App\Console\SetupCommand',
 			'App\Console\SetupCountriesCommand',
 			'App\Console\SetupCurrenciesCommand',

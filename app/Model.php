@@ -1,31 +1,7 @@
 <?php namespace App;
 
-use App\Validation\Validator;
 use Illuminate\Database\Eloquent\Model as UpstreamModel;
-
-/**
-	This class adds to Eloquent:
-	- Custom labels for database fields.
-	- Validation in the model.
-	- Validation uses custom labels instead of field names.
-	- Compact 'unique' validation rule.
-	- Global muttator to replace empty strings with NULL values.
-	- Model event trigger.
-
-	Usage example:
-
-	class SomeModel extends Model
-	{
-		public function __construct(array $attributes = array())
-		{
-			parent::__construct($attributes);
-			$this->setRules(array(
-				'name' => [_('Name'), 'required|max:64|unique'],
-				'description' => [_('Description'), 'max:255'],
-			));
-		}
-	}
-*/
+use Validator;
 
 class Model extends UpstreamModel
 {
@@ -92,7 +68,7 @@ class Model extends UpstreamModel
 	 */
 	protected function setRules(array $rules)
 	{
-		list($this->labels, $this->rules) = Validator::parseRules($rules);
+		list($this->labels, $this->rules) = \App\Validation\Validator::parseRules($rules);
 
 		return $this;
 	}

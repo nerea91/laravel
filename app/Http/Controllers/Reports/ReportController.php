@@ -1,6 +1,10 @@
 <?php namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
+use Input;
+use Redirect;
+use Session;
+use Validator;
 
 abstract class ReportController extends Controller
 {
@@ -75,7 +79,7 @@ abstract class ReportController extends Controller
 		$this->title = $title;
 		$this->view = $view;
 		$this->defaultInput = $input;
-		list($this->labels, $this->rules) = \Stolz\Validation\Validator::parseRules($fields);
+		list($this->labels, $this->rules) = \App\Validation\Validator::parseRules($fields);
 		$this->offCanvasClass = $offCanvasClass;
 	}
 

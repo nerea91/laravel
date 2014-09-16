@@ -1,5 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\AuthProvider;
+use Config;
+use Validator;
+use View;
+
 class AuthController extends Controller
 {
 	protected $layout = 'layouts.master';

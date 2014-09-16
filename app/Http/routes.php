@@ -1,5 +1,7 @@
 <?php
 
+use App\Language;
+
 // Home page
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
 

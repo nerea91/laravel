@@ -1,14 +1,14 @@
-{{
+{!!
 	Form::label($f = 'name', $labels->$f),
 	Form::text($f),
 
 	Form::label($f = 'description', $labels->$f),
 	Form::text($f)
-}}
+!!}
 
 <div id="permissions" class="{{ ($e = $errors->has($f = 'permissions')) ? 'error' : null }}">
 
-	{{ Form::label($f, _('Permissions'))}}
+	{!! Form::label($f, _('Permissions')) !!}
 	<span class="right checkbox_togglers" style="margin-top:-1.5em">
 		{{ _('Select') }}:
 		<a rel="#permissions" href="all">{{ _('all') }}</a> &#8226;
@@ -20,7 +20,7 @@
 	<?php $all = Permission::getGroupedByType(); ?>
 
 	@foreach (PermissionType::used()->lists('name', 'id') as $type_id => $type)
-	{{ Form::checkboxes($f, $all[$type_id], $resource->permissions->lists('id'), ['legend' => $type]) }}
+		{!! Form::checkboxes($f, $all[$type_id], $resource->permissions->lists('id'), ['legend' => $type]) !!}
 	@endforeach
 
 </div>

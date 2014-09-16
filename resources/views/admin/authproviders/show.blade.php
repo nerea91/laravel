@@ -8,7 +8,7 @@
 
 	@if($viewAccount)
 		<dt>{{ _('Accounts') }}</dt>
-		<dd>{{{ $resource->accounts->count() }}}</dd>
+		<dd>{{ $resource->accounts->count() }}</dd>
 	@endif
 
 	<dt>{{ _('Last update') }}</dt>

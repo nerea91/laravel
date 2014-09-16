@@ -207,7 +207,7 @@ class ResourceController extends Controller
 			// Validate resource relationships
 			if($this->relationships)
 			{
-				list($labels, $rules) = \Stolz\Validation\Validator::parseRules($this->relationships);
+				list($labels, $rules) = \App\Validation\Validator::parseRules($this->relationships);
 				$validator = Validator::make(Input::only(array_keys($rules)), $rules)->setAttributeNames($labels);
 				if($validator->fails())
 				{

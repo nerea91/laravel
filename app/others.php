@@ -30,19 +30,3 @@ Event::listen('auth.logout', function ($user) {
 	// Purge admin panel search results cache
 	Cache::forget('adminSearchResults' . $user->getKey());
 });
-
-/*
-|--------------------------------------------------------------------------
-| Validation
-|--------------------------------------------------------------------------
-*/
-
-Validator::resolver(function ($translator, $data, $rules, $messages) {
-	return new \Stolz\Validation\Validator($translator, $data, $rules, $messages);
-});
-
-/*
-|--------------------------------------------------------------------------
-| Form macros
-|--------------------------------------------------------------------------
-*/

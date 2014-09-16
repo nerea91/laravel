@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller as UpstreamController;
 use View;
 
-class Controller extends RoutingController
+class Controller extends UpstreamController
 {
 	/**
 	 * Common constructor for all our controllers

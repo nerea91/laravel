@@ -1,5 +1,7 @@
 <?php namespace App\Console;
 
+use DB;
+use App\Language;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 

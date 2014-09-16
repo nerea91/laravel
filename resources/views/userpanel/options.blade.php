@@ -5,7 +5,7 @@
 	@include('userpanel.nav', array('active' => 'options'))
 
 	@if ($options->count())
-		{{ Form::open(array('method' => 'PUT', 'route' => 'user.options.update')) }}
+		{!! Form::open(array('method' => 'PUT', 'route' => 'user.options.update')) !!}
 
 		@foreach ($options as $o)
 		{{

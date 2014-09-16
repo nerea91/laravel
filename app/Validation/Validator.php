@@ -1,8 +1,8 @@
 <?php namespace App\Validation;
 
-use Illuminate\Validation\Validator as IlluminateValidator;
+use Illuminate\Validation\Validator as UpstreamValidator;
 
-class Validator extends IlluminateValidator
+class Validator extends UpstreamValidator
 {
 	/**
 	 * Create a new Validator instance.

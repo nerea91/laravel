@@ -1,6 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
+use Mail;
+use Config;
+use Redirect;
 use View;
+use Validator;
 
 class HomeController extends Controller
 {

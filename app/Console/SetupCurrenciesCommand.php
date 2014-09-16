@@ -1,5 +1,7 @@
 <?php namespace App\Console;
 
+use App\Currency;
+use DB;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 

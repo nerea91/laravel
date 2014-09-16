@@ -12,25 +12,27 @@
 		</div>
 		@endif
 
-		{{ Form::open(['action' => 'AuthController@login']) }}
-		{{ Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']) }}
-		{{ Form::password('password', ['placeholder' => _('Password')]) }}
-		{{ Form::submit(_('Login'), ['class' => 'button expand']) }}
+		{!!
+			Form::open(['action' => 'AuthController@login']),
+			Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']),
+			Form::password('password', ['placeholder' => _('Password')]),
+			Form::submit(_('Login'), ['class' => 'button expand'])
+		!!}
 
 		<label class="left">
-			{{ Form::checkbox('remember') }}
+			{!! Form::checkbox('remember') !!}}
 			&nbsp;{{ _('Remember me') }}
 		</label>
 		<a href="#" class="right" data-reveal-id="problems">{{ _('Problems?') }}</a>
 
-		{{ Form::close() }}
+		{!! Form::close() !!}}
 
 		@if ($providers->count())
 		<hr/>
 		<fieldset class="callout panel">
 			<legend>{{ _('One click login') }}</legend>
 			@foreach($providers as $provider)
-			{{ link_to_route('login.oauth', $provider, [$provider->name], ['class' => 'tiny button', 'style' => 'padding:.5em 1em']) }}
+			{!! link_to_route('login.oauth', $provider, [$provider->name], ['class' => 'tiny button', 'style' => 'padding:.5em 1em']) !!}
 			@endforeach
 		</fieldset>
 		@endif
@@ -42,7 +44,7 @@
 	<ul>
 		<li><a>{{ _("I don't know my username") }}</a></li>
 		<li><a>{{ _("I don't know my password") }}</a></li>
-		<li>{{ link_to_route('contact', _("I'm having other problems")) }}</li>
+		<li>{!! link_to_route('contact', _("I'm having other problems")) !!}</li>
 	</ul>
 	<a class="close-reveal-modal">&#215;</a>
 </div>

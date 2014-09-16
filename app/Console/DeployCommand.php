@@ -20,7 +20,7 @@ class DeployCommand extends Command
 	 *
 	 * @var string
 	 */
-	protected $description = 'Deploy this application to a server via SSH.';
+	protected $description = 'Deploy this application to a server via SSH';
 
 	/**
 	 * Default connection.

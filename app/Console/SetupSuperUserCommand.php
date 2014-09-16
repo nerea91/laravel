@@ -1,5 +1,8 @@
 <?php namespace App\Console;
 
+use App\user;
+use Auth;
+use Hash;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Console\Input\InputArgument;

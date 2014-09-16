@@ -1,11 +1,11 @@
 <dl>
 
 	<dt>{{ $labels->name }}</dt>
-	<dd>{{{ $resource->name }}}</dd>
+	<dd>{{ $resource->name }}</dd>
 
 	@if ($resource->description)
 	<dt>{{ $labels->description }}</dt>
-	<dd>{{{ $resource->description }}}</dd>
+	<dd>{{ $resource->description }}</dd>
 	@endif
 
 	<dt>{{ _('Permissions') }}</dt>
@@ -19,7 +19,7 @@
 	@endif
 
 	<dt>{{ _('Last update') }}</dt>
-	<dd>{{{ $resource->lastUpdate() }}}</dd>
-	<dd>{{{ $resource->lastUpdateDiff() }}}</dd>
+	<dd>{{ $resource->lastUpdate() }}</dd>
+	<dd>{{ $resource->lastUpdateDiff() }}</dd>
 
 </dl>

@@ -2,9 +2,9 @@
 
 	{{-- Render menu sections --}}
 	@foreach ($sections as $sectionTitle => $links)
-		<li><label>{{ $sectionTitle}}</label></li>
+		<li><label>{{ $sectionTitle }}</label></li>
 		@foreach ($links as $link)
-			<li>{{ $link }}</li>
+			<li>{!! $link !!}</li>
 		@endforeach
 	@endforeach
 
@@ -13,7 +13,7 @@
 	@if( $allLanguagesButCurrent->count())
 		<li><label>{{ _('Change language') }}</label></li>
 		@foreach ($allLanguagesButCurrent as $l)
-			<li>{{ link_to_route('language.set', $l->name, ['code' => $l->code]) }}</li>
+			<li>{!! link_to_route('language.set', $l->name, ['code' => $l->code]) !!}</li>
 		@endforeach
 	@endif
 

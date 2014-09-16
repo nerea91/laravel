@@ -55,7 +55,7 @@ $codes = array(
 <div class="row">
 	<div class="large-7 columns large-centered">
 
-		<h2 class="text-center">{{{ Config::get('site.name') }}}</h2>
+		<h2 class="text-center">{{ Config::get('site.name') }}</h2>
 
 		<div class="panel radius">
 			<div class="row collapse">

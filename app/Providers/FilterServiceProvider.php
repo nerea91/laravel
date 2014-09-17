@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use App;
 use Illuminate\Routing\FilterServiceProvider as ServiceProvider;
 
 class FilterServiceProvider extends ServiceProvider
@@ -34,5 +35,22 @@ class FilterServiceProvider extends ServiceProvider
 		'csrf' => 'App\Http\Filters\CsrfFilter',
 		'env' => 'App\Http\Filters\EnvironmentFilter',
 		'guest' => 'App\Http\Filters\GuestFilter',
+		'tidy' => 'Stolz\Filters\HtmlTidy\Filter',
 	];
+
+	/**
+	 * Create a new service provider instance.
+	 *
+	 * @param  \Illuminate\Contracts\Foundation\Application $app
+	 * @return void
+	 */
+	public function __construct($app)
+	{
+		parent::__construct($app);
+
+		if (App::environment('local'))
+		{
+			$this->after[] = 'Stolz\Filters\HtmlTidy\Filter@globalFilter';
+		}
+	}
 }

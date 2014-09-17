@@ -77,7 +77,7 @@ $codes = array(
 			</p>
 			@show
 
-			<p>{{ sprintf(_('Perhaps you would like to go to our %shome page%s?'), '<a href="/">', '</a>') }}</p>
+			<p>{!! sprintf(_('Perhaps you would like to go to our %shome page%s?'), '<a href="/">', '</a>') !!}</p>
 			<script>
 			var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
 			</script>

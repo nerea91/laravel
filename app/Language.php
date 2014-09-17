@@ -289,14 +289,14 @@ class Language extends Model
 	{
 		$category = (is_null($category)) ? Config::get('site.locale-category', LC_ALL) : $category;
 
-		bindtextdomain('messages', base_path('resources/lang'));
+		bindtextdomain('messages', base_path('resources/lang/'));
 		textdomain('messages');
 		$locale = $this->locale;
 
 		$current_locale = setlocale($category, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		// if($current_locale === false)
-		//	App::abort(500, sprintf('Failed to set %s locate: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
+		//	App::abort(500, sprintf('Failed to set %s locale: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
 
 		return $this;
 	}

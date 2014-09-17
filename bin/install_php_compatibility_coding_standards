@@ -10,9 +10,9 @@ cd vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/ || exit_error PHP_Cod
 
 if [[ -d PHPCompatibility ]]; then
 	cd PHPCompatibility
-	git pull
+	git pull -q
 else
-	git clone http://github.com/wimg/PHPCompatibility.git
+	git clone http://github.com/wimg/PHPCompatibility.git -q
 fi
 
 color "USAGE:

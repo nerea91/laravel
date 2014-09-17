@@ -8,22 +8,14 @@
 
 # Pending from 4.2
 
-- Migrate old app/start/local.php to App/Providers/
-- Migrate old app/filters.php to App/Http/Filter and  App/Providers/FilterServiceProvider.php
-- Migrate old app/views/composers/ to App and check namespaces.
-- config/remote.php where is it now? When found add  to teh config `'agent' => false,`
-- config/acl.php
-- Buscar un a defincion adecuada dentro del namespace App para app/exceptions.php
-- Buscar un a defincion adecuada dentro del namespace App para app/others.php
-- Buscar un a defincion adecuada dentro del namespace App para /libraries/*
-- Migrar los helpers
-- Migrar los ficheros gettext del antiguo app/lang/ al nuevo resources/lang
+- Migrate old app/start/local.php to ¿App/Providers/?
+- Migrar los ficheros gettext del antiguo app/lang/ al nuevo resources/lang y comprobar que las traducciones funcionan
 - Migrar rutas
-- Copiar bin/ y probar los scrips
-- Migrar el Manual
+- Probar los scrips de /bin
+- Migrar el Manual.html
 - Migrar cache.md
 - Migrar phpcodesniffer.xml
-- En el composer.json volver a poner versiones estable de "laravel/framework"
+- En el composer.json volver a poner versiones estable de los paquetes
 - When all packages are migrated to V5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
 - Check the new artisan stuff:
   auth:controller              Create a stub authentication controller

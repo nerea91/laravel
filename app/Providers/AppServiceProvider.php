@@ -3,6 +3,7 @@
 use App\Language;
 use Illuminate\Support\ServiceProvider;
 use Validator;
+use App\Validation\Validator as CustomValidator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
 		// Register our custom validator
 		Validator::resolver(function ($translator, $data, $rules, $messages) {
-			return new \App\Validation\Validator($translator, $data, $rules, $messages);
+			return new CustomValidator($translator, $data, $rules, $messages);
 		});
 	}
 

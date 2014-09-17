@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use App\Currency;
 use App\Http\Controllers\ResourceController;
 
 class CurrenciesController extends ResourceController
@@ -13,7 +14,7 @@ class CurrenciesController extends ResourceController
 	/**
 	 * Class constructor.
 	 *
-	 * @param  Model $resource Instance of the resource this controller is in charge of.
+	 * @param  App\Model $resource Instance of the resource this controller is in charge of.
 	 * @return void
 	 */
 	public function __construct(Currency $resource)

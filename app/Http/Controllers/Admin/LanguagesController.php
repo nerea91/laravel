@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\ResourceController;
+use App\Language;
 
 class LanguagesController extends ResourceController
 {
@@ -13,7 +14,7 @@ class LanguagesController extends ResourceController
 	/**
 	 * Class constructor.
 	 *
-	 * @param  Model $resource Instance of the resource this controller is in charge of.
+	 * @param  App\Model $resource Instance of the resource this controller is in charge of.
 	 * @return void
 	 */
 	public function __construct(Language $resource)

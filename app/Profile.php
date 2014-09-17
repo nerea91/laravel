@@ -1,5 +1,11 @@
 <?php namespace App;
 
+use Cache;
+use Config;
+use DB;
+use Input;
+use Validator;
+
 class Profile extends Model
 {
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
@@ -51,12 +57,12 @@ class Profile extends Model
 
 	public function permissions()
 	{
-		return $this->belongsToMany('Permission');
+		return $this->belongsToMany('App\Permission');
 	}
 
 	public function users()
 	{
-		return $this->hasMany('User');
+		return $this->hasMany('App\User');
 	}
 
 	// Events ======================================================================
@@ -146,7 +152,7 @@ class Profile extends Model
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

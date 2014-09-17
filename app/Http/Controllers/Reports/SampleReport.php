@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\Reports;
 
+use Carbon\Carbon;
+
 class SampleReport extends ReportController implements ReportInterface
 {
 	/**
@@ -32,8 +34,8 @@ class SampleReport extends ReportController implements ReportInterface
 			],
 			// Form default values
 			[
-				'date1' => Carbon\Carbon::yesterday()->toDateString(),
-				'date2' => Carbon\Carbon::now()->toDateString(),
+				'date1' => Carbon::yesterday()->toDateString(),
+				'date2' => Carbon::now()->toDateString(),
 				'group_by' => 'week',
 			]
 			// Off-canvas class

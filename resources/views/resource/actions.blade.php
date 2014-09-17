@@ -2,7 +2,7 @@
 
 	{{-- Soft deleted models have only one action: Restore --}}
 	@if ($trashable and $resource->trashed())
-	{{
+	{!!
 		link_to_route(
 			"$prefix.restore",
 			_('Restore'),
@@ -13,7 +13,7 @@
 				'title' => e(sprintf(_('Restore %s'), $resource))
 			]
 		)
-	}}
+	!!}
 
 	@else
 
@@ -26,7 +26,7 @@
 		@endif
 
 		@if ($delete)
-		{{
+		{!!
 			link_to_route(
 				"$prefix.destroy",
 				($trashable) ? _('Disable') : _('Delete'),
@@ -37,7 +37,7 @@
 					'title' => e(sprintf(($trashable) ? _('Disable %s') : _('Delete %s'), $resource))
 				]
 			)
-		}}
+		!!}
 		@endif
 
 	@endif

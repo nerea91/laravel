@@ -1,7 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\AuthProvider;
-use Config;
+use App\Exceptions\OauthException;
+use App\User;
+use Auth;
+use Crypt;
+use Event;
+use Input;
+use Redirect;
+use Session;
 use Validator;
 use View;
 

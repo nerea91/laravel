@@ -1,8 +1,12 @@
 <?php namespace App;
 
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use App\Exceptions\ModelDeletionException;
 use Config;
+use DB;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Input;
 use OAuth\Common\Service\AbstractService as OAuthService;
+use Validator;
 
 class AuthProvider extends Model
 {
@@ -58,7 +62,7 @@ class AuthProvider extends Model
 
 	public function accounts()
 	{
-		return $this->hasMany('Account', 'provider_id');
+		return $this->hasMany('App\Account', 'provider_id');
 	}
 
 	// Events ======================================================================
@@ -112,7 +116,7 @@ class AuthProvider extends Model
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

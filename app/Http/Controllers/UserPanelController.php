@@ -1,5 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
+use Input;
+use Redirect;
+use Validator;
+use View;
+
 class UserPanelController extends Controller
 {
 	protected $layout = 'layouts.admin';
@@ -12,6 +18,9 @@ class UserPanelController extends Controller
 	 */
 	public function __construct()
 	{
+		// Enable CSRF filter
+		parent::__construct();
+		
 		View::share('user', $this->user = Auth::user());
 	}
 

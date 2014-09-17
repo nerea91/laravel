@@ -22,7 +22,7 @@ Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function 
 
 	// Login with native authentication
 	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
-	Route::post('/', array('uses' => 'AuthController@login'));
+	Route::post('/', array('as' => 'login.send', 'uses' => 'AuthController@login'));
 
 	// Login with an Oauth provider
 	Route::get('with/{provider}', array('as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin'));
@@ -65,8 +65,8 @@ Route::group(array('https', 'before' => 'auth'), function () {
 			foreach($resources as $name => $controller)
 			{
 				Route::resource($name, $controller);
-				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "$controller@restore"));
-				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"));
+				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "Admin\\$controller@restore"));
+				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "Admin\\$controller@setTrashMode"));
 			}
 		});
 
@@ -94,8 +94,8 @@ Route::group(array('https', 'before' => 'auth'), function () {
 Route::get('test', array('before' => 'env:local', function () {
 
 	// Define some variables
-	$user = User::first()->toArray();
-	$language = Language::first()->toArray();
+	$user = \App\User::first()->toArray();
+	$language = \App\Language::first()->toArray();
 
 	// Choose which ones of the above will be shown
 	$pleaseShowThese = compact('user', 'language');

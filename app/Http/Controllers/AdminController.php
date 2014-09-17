@@ -1,5 +1,14 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
+use Cache;
+use Illuminate\Support\Collection;
+use Input;
+use Redirect;
+use Route;
+use Session;
+use View;
+
 class AdminController extends Controller
 {
 	protected $layout = 'layouts.admin';
@@ -38,7 +47,7 @@ class AdminController extends Controller
 
 		if(strlen($query) > 0)
 		{
-			$results = new Illuminate\Support\Collection;
+			$results = new Collection;
 			$totalResults = 0;
 			$currentRoute = Route::current()->getName();
 			$searchableModels = [
@@ -56,13 +65,14 @@ class AdminController extends Controller
 			{
 				if($user->hasPermission($permission))
 				{
-					$model = new $modelName;
+					$namespacedModel = "\App\\$modelName";
+					$model = new $namespacedModel;
 					$collection = $model->search($query);
 					if( ! $count = $collection->count())
 						continue;
 
 					$totalResults += $count;
-					$result = new stdClass();
+					$result = new \stdClass();
 					$result->label = $model->plural();
 					$result->route = replace_last_segment($currentRoute, strtolower(str_plural($modelName)).'.show');
 					$result->collection = $collection;

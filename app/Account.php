@@ -1,5 +1,9 @@
 <?php namespace App;
 
+use App\Exceptions\ModelDeletionException;
+use Crypt;
+use Input;
+
 class Account extends Model
 {
 	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
@@ -64,12 +68,12 @@ class Account extends Model
 
 	public function provider()
 	{
-		return $this->belongsTo('AuthProvider', 'provider_id')->withTrashed();
+		return $this->belongsTo('App\AuthProvider', 'provider_id')->withTrashed();
 	}
 
 	public function user()
 	{
-		return $this->belongsTo('User')->withTrashed();
+		return $this->belongsTo('App\User')->withTrashed();
 	}
 
 	// Events ======================================================================
@@ -223,7 +227,7 @@ class Account extends Model
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

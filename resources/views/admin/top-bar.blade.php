@@ -6,7 +6,7 @@
 
 	<section class="top-bar-section">
 
-		{{ $menu->render() }}
+		{!! $menu->render() !!}
 
 	</section>
 </nav>

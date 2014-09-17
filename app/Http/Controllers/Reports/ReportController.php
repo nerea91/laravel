@@ -76,6 +76,9 @@ abstract class ReportController extends Controller
 	 */
 	public function __construct($title, $view, array $fields, array $input, $offCanvasClass = null)
 	{
+		// Enable CSRF filter
+		parent::__construct();
+
 		$this->title = $title;
 		$this->view = $view;
 		$this->defaultInput = $input;

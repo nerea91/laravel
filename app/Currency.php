@@ -66,7 +66,7 @@ class Currency extends Model
 
 	public function countries()
 	{
-		return $this->hasMany('Country');
+		return $this->hasMany('App\Country');
 	}
 
 	// Events ======================================================================

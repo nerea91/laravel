@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model as UpstreamModel;
+use Input;
 use Validator;
 
 class Model extends UpstreamModel
@@ -355,7 +356,7 @@ class Model extends UpstreamModel
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

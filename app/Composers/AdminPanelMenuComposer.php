@@ -1,5 +1,9 @@
 <?php namespace App\Composers;
 
+use App;
+use App\Language;
+use App\User;
+use Auth;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
@@ -11,7 +15,7 @@ class AdminPanelMenuComposer
 	{
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
-			self::buildTree()->addChild(ReportTopBarComposer::buildTree()),
+			self::buildTree()->addChild(ReportsMenuComposer::buildTree()),
 			self::buildSecondaryTree()
 		]);
 

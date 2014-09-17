@@ -1,5 +1,7 @@
 <?php namespace App\Composers;
 
+use App;
+use App\User;
 use Auth;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
@@ -42,7 +44,7 @@ class ReportsMenuComposer
 	 */
 	public static function makeSections(User $user)
 	{
-		$sampleReport = (App::environment('local')) ? new Link(route('report.sample'), with(new SampleReport)->title()) : new Node();
+		$sampleReport = (App::environment('local')) ? new Link(route('report.sample'), with(new \App\Http\Controllers\Reports\SampleReport)->title()) : new Node();
 
 		return compact('sampleReport');
 	}

@@ -64,12 +64,12 @@ class Country extends Model
 
 	public function currency()
 	{
-		return $this->belongsTo('Currency')->withTrashed();
+		return $this->belongsTo('App\Currency')->withTrashed();
 	}
 
 	public function users()
 	{
-		return $this->hasMany('User');
+		return $this->hasMany('App\User');
 	}
 
 	// Events ======================================================================

@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Support\MessageBag;
+use Validator;
 
 class Option extends Model
 {
@@ -58,7 +59,7 @@ class Option extends Model
 
 	public function users()
 	{
-		return $this->belongsToMany('User')->withPivot('value');
+		return $this->belongsToMany('App\User')->withPivot('value');
 	}
 
 	// Events ======================================================================

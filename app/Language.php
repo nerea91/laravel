@@ -1,10 +1,14 @@
 <?php namespace App;
 
+use App;
+use App\Exceptions\ModelDeletionException;
+use Cache;
+use Config;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
-use Session;
+use Input;
 use Request;
-use Config;
+use Session;
 
 class Language extends Model
 {
@@ -63,7 +67,7 @@ class Language extends Model
 
 	public function users()
 	{
-		return $this->hasMany('User');
+		return $this->hasMany('App\User');
 	}
 
 	// Events ======================================================================
@@ -242,7 +246,7 @@ class Language extends Model
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

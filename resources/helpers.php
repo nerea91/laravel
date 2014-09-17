@@ -36,7 +36,7 @@ if( ! function_exists('p'))
 	{
 		echo '<pre>';
 		foreach(func_get_args() as $x)
-			echo TVarDumper::dump($x);
+			echo \App\Debug\TVarDumper::dump($x);
 		echo '</pre>';
 	}
 }

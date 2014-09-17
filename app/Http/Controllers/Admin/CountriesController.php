@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use App\Http\Controllers\ResourceController;
 
 class CountriesController extends ResourceController
@@ -13,7 +14,7 @@ class CountriesController extends ResourceController
 	/**
 	 * Class constructor.
 	 *
-	 * @param  Model $resource Instance of the resource this controller is in charge of.
+	 * @param  App\Model $resource Instance of the resource this controller is in charge of.
 	 * @return void
 	 */
 	public function __construct(Country $resource)

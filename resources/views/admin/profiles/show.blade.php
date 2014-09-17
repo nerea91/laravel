@@ -10,7 +10,7 @@
 
 	<dt>{{ _('Permissions') }}</dt>
 	@foreach ($resource->getPermissionsGroupedByType(true) as $type => $array)
-	<dd>{{$type}}: <i>{{ implode(', ', $array)}}.</i></dd>
+	<dd>{{ $type }}: <i>{{ implode(', ', $array) }}.</i></dd>
 	@endforeach
 
 	@if ($viewUser and $resource->users->count())

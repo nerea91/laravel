@@ -4,7 +4,7 @@
 
 	@include('userpanel.nav', array('active' => 'regional'))
 
-	{{
+	{!!
 		Form::model($user, array('method' => 'PUT', 'route' => 'user.regional.update')),
 
 		Form::label($f = 'country_id', $user->getLabel($f)),
@@ -15,7 +15,7 @@
 
 		Form::submit(_('Save'), ['class' => 'button']),
 		Form::close()
-	}}
+	!!}
 
 	</div>
 </div>

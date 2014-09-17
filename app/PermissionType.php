@@ -23,7 +23,7 @@ class PermissionType extends Model
 
 	public function permissions()
 	{
-		return $this->hasMany('Permission', 'type_id');
+		return $this->hasMany('App\Permission', 'type_id');
 	}
 
 	// Events ======================================================================

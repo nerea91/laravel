@@ -23,12 +23,12 @@ class Permission extends Model
 
 	public function profiles()
 	{
-		return $this->belongsToMany('Profile');
+		return $this->belongsToMany('App\Profile');
 	}
 
 	public function type()
 	{
-		return $this->belongsTo('PermissionType', 'type_id');
+		return $this->belongsTo('App\PermissionType', 'type_id');
 	}
 
 	// Events ======================================================================

@@ -13,19 +13,19 @@
 		@endif
 
 		{!!
-			Form::open(['action' => 'AuthController@login']),
+			Form::open(['route' => 'login.send']),
 			Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']),
 			Form::password('password', ['placeholder' => _('Password')]),
 			Form::submit(_('Login'), ['class' => 'button expand'])
 		!!}
 
 		<label class="left">
-			{!! Form::checkbox('remember') !!}}
+			{!! Form::checkbox('remember') !!}
 			&nbsp;{{ _('Remember me') }}
 		</label>
 		<a href="#" class="right" data-reveal-id="problems">{{ _('Problems?') }}</a>
 
-		{!! Form::close() !!}}
+		{!! Form::close() !!}
 
 		@if ($providers->count())
 		<hr/>

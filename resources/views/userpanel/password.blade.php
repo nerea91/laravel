@@ -4,7 +4,7 @@
 
 		@include('userpanel.nav', array('active' => 'password'))
 
-		{{
+		{!!
 			Form::model($user, array('method' => 'PUT', 'route' => 'user.password.update')),
 
 			Form::label('current_password', _('Current password')),
@@ -18,7 +18,7 @@
 
 			Form::submit(_('Change password'), ['class' => 'button']),
 			Form::close()
-		}}
+		!!}
 
 	</div>
 </div>

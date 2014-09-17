@@ -2,8 +2,8 @@
 
 use Illuminate\Routing\FilterServiceProvider as ServiceProvider;
 
-class FilterServiceProvider extends ServiceProvider {
-
+class FilterServiceProvider extends ServiceProvider
+{
 	/**
 	 * The filters that should run before all requests.
 	 *
@@ -28,11 +28,11 @@ class FilterServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $filters = [
+		'acl' => 'App\Http\Filters\AccessControlListFilter',
 		'auth' => 'App\Http\Filters\AuthFilter',
 		'auth.basic' => 'App\Http\Filters\BasicAuthFilter',
 		'csrf' => 'App\Http\Filters\CsrfFilter',
-		'guest' => 'App\Http\Filters\GuestFilter',
 		'env' => 'App\Http\Filters\EnvironmentFilter',
+		'guest' => 'App\Http\Filters\GuestFilter',
 	];
-
 }

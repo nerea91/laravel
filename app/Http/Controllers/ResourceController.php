@@ -1,6 +1,17 @@
 <?php namespace App\Http\Controllers;
 
+use App\Exceptions\ModelDeletionException;
+use App\Exceptions\ModelValidationException;
 use App\Model;
+use Assets;
+use Auth;
+use DB;
+use Input;
+use Redirect;
+use Route;
+use Session;
+use Validator;
+use View;
 
 class ResourceController extends Controller
 {
@@ -43,7 +54,7 @@ class ResourceController extends Controller
 	/**
 	 * Class constructor
 	 *
-	 * @param  Model $resource An instance of the resource this controller is in charge of.
+	 * @param  App\Model $resource An instance of the resource this controller is in charge of.
 	 * @param  array $permissions Permissions passed to the views
 	 * @return void
 	 */
@@ -312,8 +323,8 @@ class ResourceController extends Controller
 	 * - URL parameters.
 	 * - Current trash mode.
 	 *
-	 * @param  Model|\Illuminate\Database\Eloquent\Builder $resource
-	 * @param  int                                         $resultsPerPage
+	 * @param  App\Model|\Illuminate\Database\Eloquent\Builder $resource
+	 * @param  int                                             $resultsPerPage
 	 * @return \Illuminate\Pagination\Paginator
 	 */
 	protected function paginate($resource = null, $resultsPerPage = null)

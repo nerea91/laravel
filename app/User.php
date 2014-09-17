@@ -1,10 +1,18 @@
 <?php namespace App;
 
+use App\Exceptions\ModelDeletionException;
+use App\Exceptions\ModelValidationException;
+use Auth;
+use Cache;
+use Config;
+use Crypt;
+use Hash;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Contracts\Auth\Remindable as RemindableContract;
 use Illuminate\Contracts\Auth\User as UserContract;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Input;
 
 class User extends Model implements UserContract, RemindableContract
 {
@@ -65,27 +73,27 @@ class User extends Model implements UserContract, RemindableContract
 
 	public function accounts()
 	{
-		return $this->hasMany('Account');
+		return $this->hasMany('App\Account');
 	}
 
 	public function country()
 	{
-		return $this->belongsTo('Country');
+		return $this->belongsTo('App\Country');
 	}
 
 	public function language()
 	{
-		return $this->belongsTo('Language');
+		return $this->belongsTo('App\Language');
 	}
 
 	public function options()
 	{
-		return $this->belongsToMany('Option')->withPivot('value');
+		return $this->belongsToMany('App\Option')->withPivot('value');
 	}
 
 	public function profile()
 	{
-		return $this->belongsTo('Profile');
+		return $this->belongsTo('App\Profile');
 	}
 
 	// Events ======================================================================
@@ -305,7 +313,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * @param  boolean $throwExceptions
 	 * @return boolean
 	 *
-	 * @throws ModelDeletionException
+	 * @throws \App\Exceptions\ModelDeletionException
 	 */
 	public function deletable($throwExceptions = false)
 	{

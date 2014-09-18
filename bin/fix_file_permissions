@@ -3,7 +3,7 @@
 # Fix file and directory permissions for webserver
 
 # Default user and group if none is provided as argument
-USER=${1:-javi}
+USER=${1:-$USER}
 GROUP=${2:-nginx}
 
 source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
@@ -24,3 +24,4 @@ find . -type f -exec chmod 660 {} \;
 chmod 760 artisan bin/* vendor/bin/*
 
 exit 0
+

@@ -16,7 +16,7 @@ class Controller extends UpstreamController
 		// Setup the layout used by the controller
 		if ( ! is_null($this->layout))
 		{
-			$this->layout = View::make($this->layout);
+			$this->layout = view($this->layout);
 		}
 	}
 

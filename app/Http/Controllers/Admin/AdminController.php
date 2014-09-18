@@ -5,7 +5,6 @@ use Auth;
 use Cache;
 use Illuminate\Support\Collection;
 use Input;
-use Redirect;
 use Route;
 use Session;
 use View;
@@ -26,7 +25,7 @@ class AdminController extends Controller
 
 		$this->layout->title = _('Admin panel');
 		$this->layout->subtitle = _('Search');
-		$this->layout->content = View::make('admin.search');
+		$this->layout->content = view('admin.search');
 	}
 
 	/**
@@ -110,6 +109,6 @@ class AdminController extends Controller
 		else
 			Cache::forget($cacheId);
 
-		return Redirect::route('admin')->withInput();
+		return redirect()->route('admin')->withInput();
 	}
 }

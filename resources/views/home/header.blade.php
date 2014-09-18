@@ -2,7 +2,7 @@
 	<div class="row">
 
 		<div class="medium-5 columns">
-			<h1>{!! link_to_route('home', Config::get('site.name')) !!}</h1>
+			<h1>{!! link_to_route('home', config('site.name')) !!}</h1>
 			<h4>{{ $title }}</h4>
 		</div>
 

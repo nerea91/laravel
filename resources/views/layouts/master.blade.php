@@ -11,7 +11,7 @@
 			{{-- Menu toggler for small screens --}}
 			<nav class="tab-bar show-for-small">
 				<section class="left-small"><a class="left-off-canvas-toggle menu-icon" title="{{ _('Menu') }}"><span>&nbsp;</span></a></section>
-				<section class="middle tab-bar-section">{!! link_to_route('home', Config::get('site.name')) !!} <i>{{ $title }}</i></section>
+				<section class="middle tab-bar-section">{!! link_to_route('home', config('site.name')) !!} <i>{{ $title }}</i></section>
 				{{--<section class="right-small"></section>--}}
 			</nav>
 

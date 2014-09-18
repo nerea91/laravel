@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Config;
-
 return array(
 
 	/*
@@ -13,7 +11,7 @@ return array(
 	|
 	*/
 
-	'enabled' => Config::get('app.debug'),
+	'enabled' => config('app.debug'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -27,7 +25,7 @@ return array(
 	*/
 	'storage' => array(
 		'enabled' => true,
-		'path' => storage_path() . '/debugbar',
+		'path' => storage_path('debugbar'),
 	),
 
 	/*

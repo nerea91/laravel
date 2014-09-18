@@ -10,7 +10,7 @@ Route::get('language/{code}', array('as' => 'language.set', function ($code) {
 	if($language = Language::whereCode($code)->first())
 		$language->remember();
 
-	return Redirect::to(URL::previous() ?: route('home'));
+	return redirect(URL::previous() ?: route('home'));
 }))->where('code', '^[a-z][a-z]$');
 
 // Contact us area
@@ -76,7 +76,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 	Route::group(array('prefix' => 'report', 'before' => 'acl'), function () {
 
 		$reports = [
-			'sample' => 'SampleReport',
+			'sample' => 'Reports\SampleReport',
 		];
 
 		foreach($reports as $name => $controller)
@@ -103,5 +103,5 @@ Route::get('test', array('before' => 'env:local', function () {
 	// ==== DO NOT MODIFY BELOW HERE ================================
 
 	$tabs = array_keys($pleaseShowThese);
-	return View::make('test')->withTitle('Test route')->withSecctions($pleaseShowThese)->withActive(array_shift($tabs));
+	return view('test')->withTitle('Test route')->withSecctions($pleaseShowThese)->withActive(array_shift($tabs));
 }));

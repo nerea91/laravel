@@ -1,6 +1,5 @@
 <?php namespace App\Console;
 
-use Config;
 use Illuminate\Console\Command;
 use SSH;
 use Symfony\Component\Console\Input\InputArgument;
@@ -81,7 +80,7 @@ class DeployCommand extends Command
 	protected function showList($selectedConnection)
 	{
 		$data = [];
-		foreach(Config::get('remote.connections') as $name => $info)
+		foreach(config('remote.connections') as $name => $info)
 		{
 			$data[] = [
 				$name,

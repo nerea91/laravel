@@ -1,6 +1,5 @@
 <?php namespace App\Http\Filters;
 
-use App;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -16,7 +15,7 @@ class EnvironmentFilter
 	 */
 	public function filter(Route $route, Request $request, $enviorment)
 	{
-		if ( ! App::environment($enviorment))
-			return App::abort(404);
+		if ( ! app()->environment($enviorment))
+			return app()->abort(404);
 	}
 }

@@ -4,7 +4,6 @@ use App\Exceptions\ModelDeletionException;
 use App\Exceptions\ModelValidationException;
 use Auth;
 use Cache;
-use Config;
 use Crypt;
 use Hash;
 use Illuminate\Auth\Reminders\RemindableTrait;
@@ -198,7 +197,7 @@ class User extends Model implements UserContract, RemindableContract
 	public static function autoCreate(Account $account = null)
 	{
 		// Profile of the user
-		$profile = Profile::findOrFail(Config::get('site.auto-registration-profile'));
+		$profile = Profile::findOrFail(config('site.auto-registration-profile'));
 
 		// Seeds for the username
 		$seeds = ( ! $account) ? [] : array_filter([

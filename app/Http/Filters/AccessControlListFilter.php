@@ -1,9 +1,8 @@
 <?php namespace App\Http\Filters;
 
-use App;
 use App\Exceptions\AccessControlListException;
 use Auth;
-use Config;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +20,7 @@ class AccessControlListFilter
 	 */
 	public function filter(Route $route, Request $request)
 	{
-		$acl = Config::get('acl.map', []);
+		$acl = config('acl.map', []);
 		$routeName = $route->getName();
 		$user = Auth::user();
 
@@ -44,7 +43,7 @@ class AccessControlListFilter
 		}
 		catch(AccessControlListException $e)
 		{
-			return App::abort(401, $e->getMessage());
+			return app()->abort(401, $e->getMessage());
 		}
 	}
 }

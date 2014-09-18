@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Reports;
 
+use App\Currency;
 use Carbon\Carbon;
 
 class SampleReport extends ReportController implements ReportInterface
@@ -25,7 +26,7 @@ class SampleReport extends ReportController implements ReportInterface
 			// Title
 			_('Sample report'),
 			// View file
-			'reports.' . __CLASS__,
+			'reports.' . class_basename(__CLASS__),
 			// Form validation
 			[
 				'date1' => [_('From date'), 'required|date'],
@@ -72,7 +73,7 @@ class SampleReport extends ReportController implements ReportInterface
 	 */
 	public function get(array $data)
 	{
-		$data = new StdClass();
+		$data = new \StdClass();
 
 		$data->rows = [
 			(object) ['number' => 1234, 'currency' => 1234.56, 'percentage' => 33.33],

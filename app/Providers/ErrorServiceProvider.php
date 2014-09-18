@@ -1,7 +1,5 @@
 <?php namespace App\Providers;
 
-use App;
-use Config;
 use Exception;
 use Illuminate\Support\ServiceProvider;
 use Log;
@@ -22,13 +20,13 @@ class ErrorServiceProvider extends ServiceProvider
 		// exceptions. If nothing is returned, the default error view is
 		// shown, which includes a detailed stack trace during debug.
 
-		App::error(function(Exception $exception, $code) {
+		app()->error(function(Exception $exception, $code) {
 
 			// Add exception to log file
 			Log::error($exception);
 
 			// If debug is enabled keep using the default error view
-			if (Config::get('app.debug'))
+			if (config('app.debug'))
 				return;
 
 			// Otherwise load a custom view deppending on the error code

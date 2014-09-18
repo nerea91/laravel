@@ -1,6 +1,5 @@
 <?php namespace App\Providers;
 
-use App;
 use Illuminate\Routing\RouteServiceProvider as ServiceProvider;
 use URL;
 
@@ -27,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	public function map()
 	{
-		App::booted(function() {
+		app()->booted(function() {
 			// Once the application has booted, we will include the default routes
 			// file. This "namespace" helper will load the routes file within a
 			// route group which automatically sets the controller namespace.

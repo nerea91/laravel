@@ -1,9 +1,7 @@
 <?php namespace App;
 
-use App;
 use App\Exceptions\ModelDeletionException;
 use Cache;
-use Config;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Input;
@@ -287,7 +285,7 @@ class Language extends Model
 	 */
 	public function apply($category = null)
 	{
-		$category = (is_null($category)) ? Config::get('site.locale-category', LC_ALL) : $category;
+		$category = (is_null($category)) ? config('site.locale-category', LC_ALL) : $category;
 
 		bindtextdomain('messages', base_path('resources/lang/'));
 		textdomain('messages');
@@ -296,7 +294,7 @@ class Language extends Model
 		$current_locale = setlocale($category, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		// if($current_locale === false)
-		//	App::abort(500, sprintf('Failed to set %s locale: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
+		//	app()->abort(500, sprintf('Failed to set %s locale: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
 
 		return $this;
 	}

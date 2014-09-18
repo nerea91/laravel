@@ -26,7 +26,7 @@
 */
 
 $onlyIfLocalEnvironment = function () {
-	return App::environment('local');
+	return app()->environment('local');
 };
 
 return [

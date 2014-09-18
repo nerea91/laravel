@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers\Reports;
 
 use App\Http\Controllers\Controller;
+use Assets;
 use Input;
-use Redirect;
+use Route;
 use Session;
 use Validator;
+use View;
 
 abstract class ReportController extends Controller
 {
@@ -117,9 +119,9 @@ abstract class ReportController extends Controller
 		$validator = Validator::make($input, $this->rules)->setAttributeNames($this->labels);
 
 		if($validator->passes())
-			return Redirect::back()->withInput($input);
+			return redirect()->back()->withInput($input);
 
-		return Redirect::back()->withInput($input)->withErrors($validator);
+		return redirect()->back()->withInput($input)->withErrors($validator);
 	}
 
 	/**
@@ -168,6 +170,6 @@ abstract class ReportController extends Controller
 		$this->data['subtitle'] = $this->subtitle();
 
 		// Load view
-		$this->layout->content = View::make($this->view, $this->data);
+		$this->layout->content = view($this->view, $this->data);
 	}
 }

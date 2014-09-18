@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 		 *	php artisan migrate:refresh --seed --env=local
 		 *
 		 */
-		if (App::environment('local'))
+		if (app()->environment('local'))
 		{
 			$this->call('LocalEnvironmentSeeder');
 		}

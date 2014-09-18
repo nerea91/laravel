@@ -1,6 +1,5 @@
 <?php namespace App\Http\Filters;
 
-use App;
 use Response;
 
 class MaintenanceFilter
@@ -12,7 +11,7 @@ class MaintenanceFilter
 	 */
 	public function filter()
 	{
-		if (App::isDownForMaintenance())
+		if (app()->isDownForMaintenance())
 		{
 			return Response::view('errors.maintenance', array('title' => _('Maintenance')), 503);
 		}

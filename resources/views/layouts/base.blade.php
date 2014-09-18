@@ -3,7 +3,7 @@
 <html class="no-js" lang="{{ $appLanguage->code }}">
 	<head>
 		{{-- Current page info --}}
-		<title>{{ $title }} | {{ Config::get('site.name') }}</title>
+		<title>{{ $title }} | {{ config('site.name') }}</title>
 		<meta name="description" content="@yield('description')" />
 
 		{{-- Authors info --}}
@@ -49,7 +49,7 @@
 			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 			e.src='//www.google-analytics.com/analytics.js';
 			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-			ga('create','{{Config::get("services.googleanalytics")}}');ga('send','pageview');
+			ga('create','{{config("services.googleanalytics")}}');ga('send','pageview');
 		</script>
 		@endif
 

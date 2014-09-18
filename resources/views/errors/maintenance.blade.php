@@ -3,7 +3,7 @@
 @section('body')
 <div class="row">
 	<div class="large-7 columns large-centered text-center">
-		<h2>{{ Config::get('site.name') }}</h2>
+		<h2>{{ config('site.name') }}</h2>
 		<div class="panel callout radius">
 
 			<h5>{{ _('Site down for maintenance') }}.</h5>

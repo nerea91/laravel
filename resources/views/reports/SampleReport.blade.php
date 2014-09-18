@@ -1,5 +1,5 @@
 @section('form')
-{{
+{!!
 	Form::label($f = 'date1', $labels->$f),
 	Form::text($f, null, ['placeholder' => _('YYYY-MM-DD')]),
 
@@ -8,7 +8,7 @@
 
 	Form::label($f = 'group_by', $labels->$f),
 	Form::radios($f, $group_by, [], ['small' => 2, 'medium' => 3, 'large' => 3])
-}}
+!!}
 @stop
 
 @if (isset($results))

@@ -1,10 +1,8 @@
 <?php namespace App\Composers;
 
-use App;
 use Assets;
 use Cache;
 use Carbon\Carbon;
-use Config;
 use File;
 
 class DebugBarComposer
@@ -12,10 +10,10 @@ class DebugBarComposer
 	public function compose($view)
 	{
 		// Add debugbar if it's enabled
-		if(App::bound('debugbar') and Config::get('laravel-debugbar::config.enabled', false))
+		if(app()->bound('debugbar') and config('laravel-debugbar::config.enabled', false))
 		{
 			Assets::add('debugbar');
-			$renderer = App::make('debugbar')->getJavascriptRenderer();
+			$renderer = app('debugbar')->getJavascriptRenderer();
 
 			// Dinamically generate DebugBar assets every 7 days
 			$lastTimeAssetsWereGenerated = Cache::remember('debugbar', 60 * 24 * 7, function() use ($renderer) {

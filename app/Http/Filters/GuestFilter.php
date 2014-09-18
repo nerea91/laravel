@@ -1,7 +1,6 @@
 <?php namespace App\Http\Filters;
 
 use Auth;
-use Redirect;
 
 class GuestFilter
 {
@@ -14,7 +13,7 @@ class GuestFilter
 	{
 		if (Auth::check())
 		{
-			return Redirect::to('/');
+			return redirect('/');
 		}
 	}
 }

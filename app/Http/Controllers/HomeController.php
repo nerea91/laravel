@@ -1,9 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Config;
 use Input;
 use Mail;
-use Redirect;
 use Validator;
 use View;
 
@@ -19,7 +17,7 @@ class HomeController extends Controller
 	public function showMainPage()
 	{
 		$this->layout->title = $title = _('Home');
-		$this->layout->content = View::make('home.home')->withTitle($title);
+		$this->layout->content = view('home.home')->withTitle($title);
 	}
 
 	/**
@@ -30,7 +28,7 @@ class HomeController extends Controller
 	public function showContactForm()
 	{
 		$this->layout->title = _('Contact us');
-		$this->layout->content = View::make('home.contact');
+		$this->layout->content = view('home.contact');
 	}
 
 	/**
@@ -60,15 +58,15 @@ class HomeController extends Controller
 		$validator = Validator::make($input, $rules)->setAttributeNames($labels);
 
 		if($validator->fails())
-			return Redirect::back()->withInput($input)->withErrors($validator);
+			return redirect()->back()->withInput($input)->withErrors($validator);
 
 		$message = $input['message'] . "\n\n" . $input['name'] . "\n" . $input['company'] . "\n" . $input['phone'];
 
 		Mail::send(array('text' => 'emails.plain-text'), ['text' => $message], function ($message) use ($input) {
-			$message->from($input['email'], $input['name'])->to(Config::get('site.contact-email'), Config::get('site.name'))->subject(_('Contact form query'));
+			$message->from($input['email'], $input['name'])->to(config('site.contact-email'), config('site.name'))->subject(_('Contact form query'));
 		});
 
 
-		return Redirect::back()->withSuccess(_('Your query has been sent!'));
+		return redirect()->back()->withSuccess(_('Your query has been sent!'));
 	}
 }

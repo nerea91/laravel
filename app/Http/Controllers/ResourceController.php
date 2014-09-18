@@ -7,7 +7,6 @@ use Assets;
 use Auth;
 use DB;
 use Input;
-use Redirect;
 use Route;
 use Session;
 use Validator;
@@ -94,7 +93,7 @@ class ResourceController extends Controller
 
 		$this->layout->title = $this->resource->plural();
 		$this->layout->subtitle = ($results->getLastPage() > 1) ? sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) : _('Index');
-		$this->layout->content = View::make('resource.index', compact('results', 'links', 'return'));
+		$this->layout->content = view('resource.index', compact('results', 'links', 'return'));
 	}
 
 	/**
@@ -178,12 +177,12 @@ class ResourceController extends Controller
 			if($resource = $this->resource->find($id) and $resource->deletable(true) and $resource->delete())
 				Session::flash('success', sprintf(_('%s successfully deleted'), $resource));
 
-			$response = Redirect::route("{$this->prefix}.index");
+			$response = redirect()->route("{$this->prefix}.index");
 		}
 		catch(ModelDeletionException $e)
 		{
 			Session::flash('error', $e->getMessage());
-			$response = Redirect::back();
+			$response = redirect()->back();
 		}
 
 		return $response;
@@ -200,7 +199,7 @@ class ResourceController extends Controller
 		if($resource = $this->resource->onlyTrashed()->find($id) and $resource->restore())
 			Session::flash('success', sprintf(_('%s successfully restored'), $resource));
 
-		return Redirect::route("{$this->prefix}.index");
+		return redirect()->route("{$this->prefix}.index");
 	}
 
 	/**
@@ -249,7 +248,7 @@ class ResourceController extends Controller
 
 			Session::flash('success', sprintf($successMesssage, $this->resource));
 
-			return Redirect::route("{$this->prefix}.show", $this->resource->getKey());
+			return redirect()->route("{$this->prefix}.show", $this->resource->getKey());
 		}
 		catch(Exception $e)
 		{
@@ -260,7 +259,7 @@ class ResourceController extends Controller
 			else
 				throw $e; // Unexpected exception, re-throw it to be able to debug it.
 
-			return Redirect::back()->withInput()->withErrors($this->resource->getErrors());
+			return redirect()->back()->withInput()->withErrors($this->resource->getErrors());
 		}
 	}
 
@@ -279,7 +278,7 @@ class ResourceController extends Controller
 		];
 
 		$this->layout->title = $this->resource->singular();
-		$this->layout->content = View::make('resource.' . $view, $data);
+		$this->layout->content = view('resource.' . $view, $data);
 	}
 
 	/**
@@ -293,7 +292,7 @@ class ResourceController extends Controller
 	public function setTrashMode($mode)
 	{
 		if( ! $this->trashable)
-			return Redirect::back();
+			return redirect()->back();
 
 		switch($mode)
 		{
@@ -315,7 +314,7 @@ class ResourceController extends Controller
 		Session::put("{$this->prefix}.mode", $mode); // Prefix = admin.resource.trash.mode
 		Session::flash('secondary', $message);
 
-		return Redirect::back();
+		return redirect()->back();
 	}
 
 	/**

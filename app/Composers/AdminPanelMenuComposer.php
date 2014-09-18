@@ -1,6 +1,5 @@
 <?php namespace App\Composers;
 
-use App;
 use App\Language;
 use App\User;
 use Auth;
@@ -133,7 +132,7 @@ class AdminPanelMenuComposer
 	public static function makeSecondarySections(User $user)
 	{
 		// Section: Change application language
-		$currentLanguage = App::make('language');
+		$currentLanguage = app('language');
 		$allLanguages = Language::getAllByPriority();
 		$changeLanguage = new Node($currentLanguage);
 		if($allLanguages->count() > 1)

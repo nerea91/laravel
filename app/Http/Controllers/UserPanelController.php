@@ -2,7 +2,6 @@
 
 use Auth;
 use Input;
-use Redirect;
 use Validator;
 use View;
 
@@ -20,7 +19,7 @@ class UserPanelController extends Controller
 	{
 		// Enable CSRF filter
 		parent::__construct();
-		
+
 		View::share('user', $this->user = Auth::user());
 	}
 
@@ -33,7 +32,7 @@ class UserPanelController extends Controller
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Options');
-		$this->layout->content = View::make('userpanel.options')->withOptions($this->user->getAssignableOptions());
+		$this->layout->content = view('userpanel.options')->withOptions($this->user->getAssignableOptions());
 	}
 
 	/**
@@ -46,9 +45,9 @@ class UserPanelController extends Controller
 		$errors = $this->user->setOptions(Input::all());
 
 		if($errors->any())
-			return Redirect::back()->withInput()->withErrors($errors);
+			return redirect()->back()->withInput()->withErrors($errors);
 
-		return Redirect::back()->withSuccess(_('Options have been saved'));
+		return redirect()->back()->withSuccess(_('Options have been saved'));
 	}
 
 	/**
@@ -60,7 +59,7 @@ class UserPanelController extends Controller
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Change password');
-		$this->layout->content = View::make('userpanel.password');
+		$this->layout->content = view('userpanel.password');
 	}
 
 	/**
@@ -89,21 +88,21 @@ class UserPanelController extends Controller
 
 		// Validate form
 		if($validator->fails())
-			return Redirect::back()->withInput($input)->withErrors($validator);
+			return redirect()->back()->withInput($input)->withErrors($validator);
 
 		// Check old credentials
 		if( ! Auth::validate(['username' => $this->user->username, 'password' => $input['current_password']]))
 		{
 			$validator->messages()->add('current_password', _('Wrong password'));
-			return Redirect::back()->withInput($input)->withErrors($validator);
+			return redirect()->back()->withInput($input)->withErrors($validator);
 		}
 
 		// Update password
 		$this->user->password = $input['password'];
 		if( ! $this->user->removeRule('password', 'confirmed')->save())
-			return Redirect::back()->withInput($input)->withErrors($this->user->getErrors());
+			return redirect()->back()->withInput($input)->withErrors($this->user->getErrors());
 
-		return Redirect::back()->withSuccess(_('Password updated'));
+		return redirect()->back()->withSuccess(_('Password updated'));
 	}
 
 	/**
@@ -115,7 +114,7 @@ class UserPanelController extends Controller
 	{
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Locale');
-		$this->layout->content = View::make('userpanel.regional');
+		$this->layout->content = view('userpanel.regional');
 	}
 
 	/**
@@ -129,8 +128,8 @@ class UserPanelController extends Controller
 		$this->user->language_id = Input::get('language_id');
 
 		if($this->user->removeRule('password', 'required|confirmed')->save())
-			return Redirect::back()->withSuccess(_('Locale options have been saved'));
+			return redirect()->back()->withSuccess(_('Locale options have been saved'));
 
-		return Redirect::back()->withInput()->withErrors($this->user->getErrors());
+		return redirect()->back()->withInput()->withErrors($this->user->getErrors());
 	}
 }

@@ -1,6 +1,5 @@
 <?php namespace App\Providers;
 
-use App;
 use Illuminate\Routing\FilterServiceProvider as ServiceProvider;
 
 class FilterServiceProvider extends ServiceProvider
@@ -48,7 +47,7 @@ class FilterServiceProvider extends ServiceProvider
 	{
 		parent::__construct($app);
 
-		if (App::environment('local'))
+		if (app()->environment('local'))
 		{
 			$this->after[] = 'Stolz\Filters\HtmlTidy\Filter@globalFilter';
 		}

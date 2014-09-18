@@ -7,7 +7,6 @@ use Auth;
 use Crypt;
 use Event;
 use Input;
-use Redirect;
 use Session;
 use Validator;
 use View;
@@ -24,7 +23,7 @@ class AuthController extends Controller
 	public function showLoginForm()
 	{
 		$this->layout->title = _('Login');
-		$this->layout->content = View::make('home.login')->withProviders(AuthProvider::getUsable());
+		$this->layout->content = view('home.login')->withProviders(AuthProvider::getUsable());
 	}
 
 	/**
@@ -50,12 +49,12 @@ class AuthController extends Controller
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 			{
 				Event::fire('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
-				return Redirect::intended('/');
+				return redirect()->intended('/');
 			}
 
 			Session::flash('error', _('Wrong credentials'));
 		}
-		return Redirect::back()->withInput(array_except($input, 'password'))->withErrors($validator);
+		return redirect()->back()->withInput(array_except($input, 'password'))->withErrors($validator);
 	}
 
 	/**
@@ -67,7 +66,7 @@ class AuthController extends Controller
 	{
 		Auth::logout();
 		Session::flush();
-		return Redirect::route('home');
+		return redirect()->route('home');
 	}
 
 	/**
@@ -94,7 +93,7 @@ class AuthController extends Controller
 
 			// Request user to authorize our App
 			if( ! Input::has('code'))
-				return Redirect::to(htmlspecialchars_decode($oauthService->getAuthorizationUri()));
+				return redirect(htmlspecialchars_decode($oauthService->getAuthorizationUri()));
 
 			//This was a callback request from the Oauth service
 
@@ -115,17 +114,17 @@ class AuthController extends Controller
 			$account->access_token = Crypt::encrypt($token->getAccessToken());
 			Event::fire('account.login', [$account]);
 
-			return Redirect::intended('/');
+			return redirect()->intended('/');
 		}
 		catch(OauthException $e)
 		{
 			Session::flash('error', $e->getMessage());
-			return Redirect::route('login');
+			return redirect()->route('login');
 		}
 		catch(OAuth\Common\Http\Exception\TokenResponseException $e)
 		{
 			Session::flash('error', $e->getMessage());
-			return Redirect::route('login');
+			return redirect()->route('login');
 		}
 	}
 }

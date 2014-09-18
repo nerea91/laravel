@@ -1,6 +1,5 @@
 <?php namespace App\Composers;
 
-use App;
 use App\Language;
 use Request;
 
@@ -9,7 +8,7 @@ class ApplicationLanguageComposer
 	public function compose($view)
 	{
 		// Application language
-		$view->with('appLanguage', $appLanguage = App::make('language'));
+		$view->with('appLanguage', $appLanguage = app('language'));
 
 		// All languages (for implementing https://support.google.com/webmasters/answer/189077)
 		$url = parse_url(Request::url());

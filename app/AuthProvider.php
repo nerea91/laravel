@@ -1,7 +1,6 @@
 <?php namespace App;
 
 use App\Exceptions\ModelDeletionException;
-use Config;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Input;
@@ -161,7 +160,7 @@ class AuthProvider extends Model
 			return false;
 
 		// Check config
-		$config = Config::get("services.{$this->name}.client_id", Config::get("services.{$this->name}.client_secret"));
+		$config = config("services.{$this->name}.client_id", config("services.{$this->name}.client_secret"));
 
 		return ( ! empty($config));
 	}

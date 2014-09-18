@@ -2,10 +2,10 @@
 @if ( ! $resource->id)
 {!!
 	Form::label($f = 'provider_id', $labels->$f),
-	Form::select($f, AuthProvider::dropdown('title')),
+	Form::select($f, App\AuthProvider::dropdown('title')),
 
 	Form::label($f = 'user_id', $labels->$f),
-	Form::select($f, User::dropdown('username'))
+	Form::select($f, App\User::dropdown('username'))
 !!}
 @endif
 

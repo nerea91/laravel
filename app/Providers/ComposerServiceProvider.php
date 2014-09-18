@@ -3,8 +3,8 @@
 use Illuminate\Support\ServiceProvider;
 use View;
 
-class ComposerServiceProvider extends ServiceProvider {
-
+class ComposerServiceProvider extends ServiceProvider
+{
 	/**
 	 * Bootstrap the application services.
 	 *
@@ -32,5 +32,4 @@ class ComposerServiceProvider extends ServiceProvider {
 	{
 		//
 	}
-
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ResourceController;
 use App\Language;
+use Auth;
 
 class LanguagesController extends ResourceController
 {

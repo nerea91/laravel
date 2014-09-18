@@ -46,27 +46,27 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 	// Admin area
 	Route::group(array('prefix' => 'admin'), function () {
-		Route::get('/', array('as' => 'admin',  'uses' => 'AdminController@showAdminPage'));
-		Route::post('/', array('as' => 'admin.search', 'uses' => 'AdminController@search'));
+		Route::get('/', array('as' => 'admin',  'uses' => 'Admin\AdminController@showAdminPage'));
+		Route::post('/', array('as' => 'admin.search', 'uses' => 'Admin\AdminController@search'));
 
 		// Resource controllers require ACL
 		Route::group(array('before' => 'acl'), function () {
 
 			$resources = [
-				'accounts' => 'AccountsController',
-				'authproviders' => 'AuthProvidersController',
-				'countries' => 'CountriesController',
-				'currencies' => 'CurrenciesController',
-				'languages' => 'LanguagesController',
-				'profiles' => 'ProfilesController',
-				'users' => 'UsersController',
+				'accounts' => 'Admin\AccountsController',
+				'authproviders' => 'Admin\AuthProvidersController',
+				'countries' => 'Admin\CountriesController',
+				'currencies' => 'Admin\CurrenciesController',
+				'languages' => 'Admin\LanguagesController',
+				'profiles' => 'Admin\ProfilesController',
+				'users' => 'Admin\UsersController',
 			];
 
 			foreach($resources as $name => $controller)
 			{
 				Route::resource($name, $controller);
-				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "Admin\\$controller@restore"));
-				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "Admin\\$controller@setTrashMode"));
+				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "$controller@restore"));
+				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"));
 			}
 		});
 

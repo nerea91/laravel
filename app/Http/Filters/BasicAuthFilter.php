@@ -2,8 +2,8 @@
 
 use Auth;
 
-class BasicAuthFilter {
-
+class BasicAuthFilter
+{
 	/**
 	 * Run the request filter.
 	 *
@@ -13,5 +13,4 @@ class BasicAuthFilter {
 	{
 		return Auth::basic();
 	}
-
 }

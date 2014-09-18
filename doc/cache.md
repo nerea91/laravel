@@ -1,25 +1,25 @@
 # Cache keys in use
 
-AdminController@search
-
-	adminSearchResults{Auth:user()->id}
-
-DebugBarComposer@compose
+App\Composers\DebugBarComposer@compose
 
 	debugbar
 
-Language@getAllByPriority
+App\Http\Controllers\Admin\AdminController@search
+
+	adminSearchResults{Auth:user()->id}
+
+App\Language@getAllByPriority
 
 	allLanguagesOrderedByPriority
 
-Permission@getGroupedByType
+App\Permission@getGroupedByType
 
 	allPermissionsGroupedByType
 
-PermissionType@scopeUsed
+App\PermissionType@scopeUsed
 
 	usedPermissionTypes
 
-Profile@getPermissions
+App\Profile@getPermissions
 
 	profile{$this->id}permissions

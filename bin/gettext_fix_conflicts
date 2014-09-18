@@ -11,5 +11,3 @@ git checkout HEAD resources/lang/en_US/LC_MESSAGES/messages.mo resources/lang/en
 git mergetool -y
 
 ./bin/delete_old_files
-
-

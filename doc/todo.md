@@ -9,14 +9,9 @@
 # Pending from 4.2
 
 - Migrate old app/start/local.php to ¿App/Providers/?
-- Migrar los ficheros gettext del antiguo app/lang/ al nuevo resources/lang y comprobar que las traducciones funcionan
-- Migrar rutas
-- Probar los scrips de /bin
-- Migrar el Manual.html
-- Migrar cache.md
-- Migrar phpcodesniffer.xml
-- En el composer.json volver a poner versiones estable de los paquetes
+- Gettext no funciona
 - When all packages are migrated to V5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
+- Migrar el Manual.html
 - Check the new artisan stuff:
   auth:controller              Create a stub authentication controller
   auth:login-request           Create a stub login form request

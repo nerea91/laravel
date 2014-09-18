@@ -1,5 +1,8 @@
 <?php
 
+use App\Currency;
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Application helpers
@@ -136,7 +139,7 @@ if( ! function_exists('number'))
 	 * Format a number as currency but without symbol.
 	 *
 	 * @param  float
-	 * @param  Currency
+	 * @param  \App\Currency
 	 * @param  int
 	 * @return void
 	 */
@@ -152,7 +155,7 @@ if( ! function_exists('percent'))
 	 * Format a percentage as currency.
 	 *
 	 * @param  float
-	 * @param  Currency
+	 * @param  \App\Currency
 	 * @param  int
 	 * @return void
 	 */
@@ -168,7 +171,7 @@ if( ! function_exists('currency'))
 	 * Format a number as currency.
 	 *
 	 * @param  float
-	 * @param  Currency
+	 * @param  \App\Currency
 	 * @param  int
 	 * @return void
 	 */
@@ -210,7 +213,7 @@ if( ! function_exists('add_timestamps'))
 	 */
 	function add_timestamps(array $array)
 	{
-		$now = \Carbon\Carbon::now()->toDateTimeString();
+		$now = Carbon::now()->toDateTimeString();
 
 		return array_map(function ($row) use ($now) {
 			$row['updated_at'] = $row['created_at'] = $now;

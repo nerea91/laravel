@@ -2,6 +2,7 @@
 
 use App\Country;
 use App\Http\Controllers\ResourceController;
+use Auth;
 
 class CountriesController extends ResourceController
 {

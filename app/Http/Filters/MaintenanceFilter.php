@@ -1,9 +1,10 @@
 <?php namespace App\Http\Filters;
 
-use App, Response;
+use App;
+use Response;
 
-class MaintenanceFilter {
-
+class MaintenanceFilter
+{
 	/**
 	 * Run the request filter.
 	 *
@@ -16,5 +17,4 @@ class MaintenanceFilter {
 			return Response::view('errors.maintenance', array('title' => _('Maintenance')), 503);
 		}
 	}
-
 }

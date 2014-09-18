@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ResourceController;
 use App\Profile;
+use Auth;
 
 class ProfilesController extends ResourceController
 {

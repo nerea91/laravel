@@ -1,11 +1,13 @@
 <?php namespace App\Http\Filters;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
-use Auth, Redirect, Response;
+use Redirect;
+use Response;
 
-class AuthFilter {
-
+class AuthFilter
+{
 	/**
 	 * Run the request filter.
 	 *
@@ -27,5 +29,4 @@ class AuthFilter {
 			}
 		}
 	}
-
 }

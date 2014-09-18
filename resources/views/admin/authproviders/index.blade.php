@@ -1,7 +1,7 @@
 <thead>
 	<tr>
-		<th>{{ $links->name }}</th>
-		<th class="text-center">{{ $links->login_count }}</th>
+		<th>{!! $links->name !!}</th>
+		<th class="text-center">{!! $links->login_count !!}</th>
 		@if($viewAccount)<th class="text-center">{{ _('Accounts') }}</th>@endif
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>

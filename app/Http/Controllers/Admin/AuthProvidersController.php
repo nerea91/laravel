@@ -2,6 +2,7 @@
 
 use App\AuthProvider;
 use App\Http\Controllers\ResourceController;
+use Auth;
 
 class AuthProvidersController extends ResourceController
 {

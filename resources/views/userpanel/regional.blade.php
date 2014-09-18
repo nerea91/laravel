@@ -8,10 +8,10 @@
 		Form::model($user, array('method' => 'PUT', 'route' => 'user.regional.update')),
 
 		Form::label($f = 'country_id', $user->getLabel($f)),
-		Form::select($f, ['' => _('Unknown')] + Country::dropdown()),
+		Form::select($f, ['' => _('Unknown')] + App\Country::dropdown()),
 
 		Form::label($f = 'language_id', $user->getLabel($f)),
-		Form::select($f, ['' => _('Default')] + Language::dropdown()),
+		Form::select($f, ['' => _('Default')] + App\Language::dropdown()),
 
 		Form::submit(_('Save'), ['class' => 'button']),
 		Form::close()

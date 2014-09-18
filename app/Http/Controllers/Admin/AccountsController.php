@@ -2,6 +2,7 @@
 
 use App\Account;
 use App\Http\Controllers\ResourceController;
+use Auth;
 
 class AccountsController extends ResourceController
 {

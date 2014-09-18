@@ -17,9 +17,9 @@
 	</span>
 	@if($e)<small class="error">{{ $errors->first($f) }}</small>@endif
 
-	<?php $all = Permission::getGroupedByType(); ?>
+	<?php $all = App\Permission::getGroupedByType(); ?>
 
-	@foreach (PermissionType::used()->lists('name', 'id') as $type_id => $type)
+	@foreach (App\PermissionType::used()->lists('name', 'id') as $type_id => $type)
 		{!! Form::checkboxes($f, $all[$type_id], $resource->permissions->lists('id'), ['legend' => $type]) !!}
 	@endforeach
 

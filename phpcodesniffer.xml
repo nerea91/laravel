@@ -4,16 +4,16 @@
 
 	<description>Stolz's custom PSR-2 rules for Laravel</description>
 
-	<exclude-pattern>/database/schema/</exclude-pattern>
-	<exclude-pattern>/exceptions.php</exclude-pattern>
+	<exclude-pattern>/public/</exclude-pattern>
 	<exclude-pattern>/storage/</exclude-pattern>
 	<exclude-pattern>/tests/</exclude-pattern>
+	<exclude-pattern>/vendor/</exclude-pattern>
 
 	<!--RULES ARE IN ALPHABETICAL ORDER-->
 
 	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine">
 		<!--Allow two statemens per line for migrations-->
-		<exclude-pattern>database/migrations/</exclude-pattern>
+		<exclude-pattern>/database/migrations/</exclude-pattern>
 	</rule>
 
 	<!--Use space after cast-->
@@ -22,7 +22,7 @@
 	<!--Function name in camelCase-->
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
 		<!--Allow helpers with snake_case-->
-		<exclude-pattern>helpers.php</exclude-pattern>
+		<exclude-pattern>/resources/helpers.php</exclude-pattern>
 	</rule>
 
 	<!--PHP5 constructor syntax "function __construct()"-->
@@ -36,7 +36,12 @@
 
 	<!--Suppress warning for some files without PHP code-->
 	<rule ref="Internal.NoCodeFound">
-		<exclude-pattern>/views/</exclude-pattern>
+		<exclude-pattern>/resources/views/</exclude-pattern>
+	</rule>
+
+	<!--Single responsability files-->
+	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+		<exclude-pattern>/bootstrap/autoload.php</exclude-pattern>
 	</rule>
 
 	<rule ref="PSR2">
@@ -85,7 +90,7 @@
 
 	<!--Blade files need close tags-->
 	<rule ref="Zend.Files.ClosingTag.NotAllowed">
-		<exclude-pattern>/views/*.blade.php</exclude-pattern>
+		<exclude-pattern>/resources/views/*.blade.php</exclude-pattern>
 	</rule>
 
 	<!--UNUSED RULES-->
@@ -238,5 +243,3 @@
 <!-- 	</rule> -->
 
 </ruleset>
-
-

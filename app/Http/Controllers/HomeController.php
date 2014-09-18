@@ -72,4 +72,3 @@ class HomeController extends Controller
 		return Redirect::back()->withSuccess(_('Your query has been sent!'));
 	}
 }
-

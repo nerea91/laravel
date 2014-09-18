@@ -9,5 +9,5 @@
 
 {!!
 	Form::label($f = 'currency_id', $resource->getLabel($f)),
-	Form::select($f, ['' => _('Unknown')] + Currency::dropdown())
+	Form::select($f, ['' => _('Unknown')] + App\Currency::dropdown())
 !!}

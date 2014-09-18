@@ -1,9 +1,10 @@
 <?php namespace App\Http\Filters;
 
-use Auth, Redirect;
+use Auth;
+use Redirect;
 
-class GuestFilter {
-
+class GuestFilter
+{
 	/**
 	 * Run the request filter.
 	 *
@@ -16,5 +17,4 @@ class GuestFilter {
 			return Redirect::to('/');
 		}
 	}
-
 }

@@ -2,6 +2,7 @@
 
 use App\Currency;
 use App\Http\Controllers\ResourceController;
+use Auth;
 
 class CurrenciesController extends ResourceController
 {

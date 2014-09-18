@@ -1,9 +1,9 @@
 <thead>
 	<tr>
-		<th class="actions text-center">{{ $links->username }}</th>
-		<th>{{ $links->name }}</th>
-		@if($viewProfile)<th>{{ $links->profile_id }}</th>@endif
-		@if($viewCountry)<th>{{ $links->country_id }}</th>@endif
+		<th class="actions text-center">{!! $links->username !!}</th>
+		<th>{!! $links->name !!}</th>
+		@if($viewProfile)<th>{!! $links->profile_id !!}</th>@endif
+		@if($viewCountry)<th>{!! $links->country_id !!}</th>@endif
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>
 </thead>

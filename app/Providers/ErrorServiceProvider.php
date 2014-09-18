@@ -1,15 +1,19 @@
 <?php namespace App\Providers;
 
+use App;
+use Config;
+use Exception;
 use Illuminate\Support\ServiceProvider;
-use App, Config, Exception, Log, Response;
+use Log;
+use Response;
 
-class ErrorServiceProvider extends ServiceProvider {
-
+class ErrorServiceProvider extends ServiceProvider
+{
 	/**
-	 * Register any error handlers.
-	 *
-	 * @return void
-	 */
+	* Register any error handlers.
+	*
+	* @return void
+	*/
 	public function boot()
 	{
 		// Here you may handle any errors that occur in your application, including
@@ -49,13 +53,12 @@ class ErrorServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
+	* Register the service provider.
+	*
+	* @return void
+	*/
 	public function register()
 	{
 		//
 	}
-
 }

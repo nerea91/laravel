@@ -1,7 +1,7 @@
 <thead>
 	<tr>
-		<th>{{ $links->name }}</th>
-		<th class="text-center">{{ $links->iso_3166_2 }}</th>
+		<th>{!! $links->name !!}</th>
+		<th class="text-center">{!! $links->iso_3166_2 !!}</th>
 		@if($viewUser)<th class="text-center">{{ _('Users') }}</th>@endif
 		<th class="actions text-center">{{ _('Actions') }}</th>
 	</tr>

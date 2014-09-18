@@ -11,7 +11,7 @@ color "Pending tasks"
 grep -Ir --colour=auto \
 --exclude-from=.gitignore  \
 --exclude="`basename $0`"  \
---exclude="manual.html" \
+--exclude="doc/manual.html" \
 --exclude-dir="\.git"  \
 --exclude-dir="storage"  \
 --exclude-dir="vendor"  \

@@ -1,5 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Auth;
 use Cache;
 use Illuminate\Support\Collection;

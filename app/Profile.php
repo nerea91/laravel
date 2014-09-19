@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\Exceptions\ModelDeletionException;
 use Cache;
 use Config;
 use DB;

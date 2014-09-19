@@ -25,7 +25,7 @@
 			{!! link_to_route("$prefix.edit", _('Edit'), [$resource->getKey()], ['class' => 'small radius button']) !!}
 		@endif
 
-		@if ($delete)
+		@if ($delete and $resource->deletable())
 		{!!
 			link_to_route(
 				"$prefix.destroy",

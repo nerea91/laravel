@@ -2,15 +2,9 @@
 
 - Create a Git hook for checking code quiality before each push
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
-- Add reserved usernames to prevent users from having conflictive usernames.
 - In user panel add a seccion to show user accoutns (other than native) and allow to revoke access.
-- Add indexes to DB columns that are used in self::search() model methods
-
-# Pending from 4.2
-
-- When all packages are migrated to V5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
+- When all packages are migrated to Laravel 5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
 - Migrar el Manual.html
-- Gettext no funciona
 - Check the new artisan stuff:
   auth:controller              Create a stub authentication controller
   auth:login-request           Create a stub login form request

@@ -38,9 +38,8 @@ class AppServiceProvider extends ServiceProvider
 		if( ! $this->app->runningInConsole() or $this->app->environment('testing'))
 		{
 			$this->app->singleton('language', function () {
-
 				// Detect language
-				$language = Language::detect()->apply();
+				$language = Language::detect();
 
 				// Write the result to the log
 				if(config('app.debug'))
@@ -48,6 +47,11 @@ class AppServiceProvider extends ServiceProvider
 
 				// Bind language to the IoC container
 				return $language;
+			});
+
+			// Apply once the application has booted
+			$this->app->booted(function() {
+				$this->app->make('language')->apply();
 			});
 		}
 	}

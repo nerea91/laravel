@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 class ArtisanServiceProvider extends ServiceProvider
 {
 	/**
-	 * Register the service provider.
+	 * Register artisan console commands.
 	 *
 	 * @return void
 	 */

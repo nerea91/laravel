@@ -132,7 +132,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 
 		/*
-		 * Laravel Service Providers not included in the default framework installation
+		 * Other Laravel Service Providers
 		 */
 		'Illuminate\Html\HtmlServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',

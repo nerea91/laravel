@@ -8,9 +8,9 @@
 
 # Pending from 4.2
 
-- Migrate old app/start/local.php to ¿App/Providers/?
 - When all packages are migrated to V5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
 - Migrar el Manual.html
+- Gettext no funciona
 - Check the new artisan stuff:
   auth:controller              Create a stub authentication controller
   auth:login-request           Create a stub login form request

@@ -13,6 +13,9 @@ class LogServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		Log::useFiles(storage_path().'/logs/laravel.log');
+
+		// Add FirePHP Handler to Monolog
+		//Log::getMonolog()->pushHandler(new \Monolog\Handler\FirePHPHandler());
 	}
 
 	/**

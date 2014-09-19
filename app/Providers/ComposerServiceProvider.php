@@ -6,7 +6,7 @@ use View;
 class ComposerServiceProvider extends ServiceProvider
 {
 	/**
-	 * Bootstrap the application services.
+	 * Register view composers.
 	 *
 	 * @return void
 	 */

@@ -9,7 +9,7 @@ use Request;
 class EventServiceProvider extends ServiceProvider
 {
 	/**
-	 * Bootstrap the application services.
+	 * Subscribe to several application events.
 	 *
 	 * @return void
 	 */

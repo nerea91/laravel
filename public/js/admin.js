@@ -12,7 +12,7 @@ $doc.ready(function() {
 		// Replace prompt/action and show modal
 		$('a.toggle-confirm-modal').click(function(e) {
 			e.preventDefault();
-			var $form = $('#' + $(this).data('modal'), $confirmModals);
+			var $form = $('#' + $(this).data('reveal-id'), $confirmModals);
 			$('.prompt', $form).text($(this).attr('title'));
 			$form.attr('action', $(this).attr('href')).foundation('reveal', 'open');
 		});

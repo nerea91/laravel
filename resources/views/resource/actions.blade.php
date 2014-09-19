@@ -9,7 +9,7 @@
 			[$resource->getKey()],
 			[
 				'class' => 'small success radius button expand toggle-confirm-modal',
-				'data-modal' => 'restore-modal',
+				'data-reveal-id' => 'restore-modal',
 				'title' => e(sprintf(_('Restore %s'), $resource))
 			]
 		)
@@ -33,7 +33,7 @@
 				[$resource->getKey()],
 				[
 					'class' => 'small alert radius button toggle-confirm-modal',
-					'data-modal' => 'delete-modal',
+					'data-reveal-id' => 'delete-modal',
 					'title' => e(sprintf(($trashable) ? _('Disable %s') : _('Delete %s'), $resource))
 				]
 			)

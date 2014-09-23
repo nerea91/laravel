@@ -38,18 +38,15 @@ class FilterServiceProvider extends ServiceProvider
 	];
 
 	/**
-	 * Create a new service provider instance.
+	 * Register extra filters.
 	 *
-	 * @param  \Illuminate\Contracts\Foundation\Application $app
 	 * @return void
 	 */
-	public function __construct($app)
+	public function boot()
 	{
-		parent::__construct($app);
+		parent::boot();
 
-		if (app()->environment('local'))
-		{
-			$this->after[] = 'Stolz\Filters\HtmlTidy\Filter@globalFilter';
-		}
+		if($this->app->environment('local'))
+			$this->app['router']->after('Stolz\Filters\HtmlTidy\Filter@globalFilter');
 	}
 }

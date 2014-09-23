@@ -250,7 +250,7 @@ class ResourceController extends Controller
 
 			return redirect()->route("{$this->prefix}.show", $this->resource->getKey());
 		}
-		catch(Exception $e)
+		catch(\Exception $e)
 		{
 			DB::rollBack();
 

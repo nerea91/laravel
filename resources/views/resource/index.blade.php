@@ -15,10 +15,10 @@
 @endif
 
 <div class="text-center">
-	{!! link_to_route($return, _('Return'), null, ['class' => 'secondary button']) !!}
+	{!! link_to_route($return, _('Return'), [], ['class' => 'secondary button']) !!}
 
 	@if ($add)
-	&nbsp;{!! link_to_route("$prefix.create", _('Create'), null, ['class' => 'success button']) !!}
+	&nbsp;{!! link_to_route("$prefix.create", _('Create'), [], ['class' => 'success button']) !!}
 	@endif
 
 	@if ($trashable)

@@ -248,7 +248,7 @@ class ResourceController extends Controller
 
 			Session::flash('success', sprintf($successMesssage, $this->resource));
 
-			return redirect()->route("{$this->prefix}.show", $this->resource->getKey());
+			return redirect()->route("{$this->prefix}.show", [$this->resource->getKey()]);
 		}
 		catch(\Exception $e)
 		{

@@ -24,7 +24,7 @@ class AuthFilter
 			}
 			else
 			{
-				return redirect()->guest('auth/login');
+				return redirect()->guest('login');
 			}
 		}
 	}

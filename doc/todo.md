@@ -1,8 +1,9 @@
 # Pending tasks
 
 - Create a Git hook for checking code quiality before each push
+- On production enable route:cache (add it to composer.josn scripts?)
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
-- In user panel add a seccion to show user accoutns (other than native) and allow to revoke access.
+- In user panel add a seccion to show user accounts (other than native) and allow to revoke access.
 - When all packages are migrated to Laravel 5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
 - Migrar el Manual.html
 - Check the new artisan stuff:

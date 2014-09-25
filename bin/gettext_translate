@@ -3,24 +3,20 @@
 # Script to translate using GNU Gettext.
 
 source "$( cd "$( dirname "$0" )" && pwd )/common" || exit 1
+go_to_laravel_dir
 
 ####### CONFIG #################################################################
 
-LARAVEL_DIR="`laravel_dir`"
-
 # Where to look for files ...
-APP_DIR="$LARAVEL_DIR/app"
+SOURCES="app bootstrap config database resources storage/gettext"
 
 # What files to look for ...
 EXT="*.php"
 
-# Directory (relative to $APP_DIR) where translations will be stored
-LOCALE_DIR="lang"
-
 ####### DO NOT MODIFY BELOW HERE ###############################################
 
 color "Compiling Blade view files"
-php $LARAVEL_DIR/artisan gettext
+php artisan gettext
 
 # Choose locale
 color "Choose language you are going to transtale into:
@@ -34,15 +30,15 @@ case "$LOCALE" in
 esac
 
 # Create destination dir
-DIR="$APP_DIR/$LOCALE_DIR/$LOCALE/LC_MESSAGES"
-mkdir -p "$DIR" || exit_error "Unable to create $DIR"
+DESTINATION="resources/lang/$LOCALE/LC_MESSAGES"
+mkdir -p "$DESTINATION" || exit_error "Unable to create $DESTINATION"
 
 # Generate .pot template
-TEMPLATE_FILE="$DIR/messages.pot"
-find "$APP_DIR" -type f -iname "$EXT" | xgettext --no-wrap --sort-output --no-location --from-code=UTF-8 -o- -f- | sed "s,$APP_DIR,,g" | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
+TEMPLATE_FILE="$DESTINATION/messages.pot"
+find $SOURCES -type f -iname "$EXT" | xgettext --no-wrap --sort-output --no-location --from-code=UTF-8 -o- -f- | sed "s,; charset=CHARSET,; charset=UTF-8,g" > $TEMPLATE_FILE
 
 # If an old translation exists, make a copy and merge it with the new template
-TRANSLATED_FILE="$DIR/messages.po"
+TRANSLATED_FILE="$DESTINATION/messages.po"
 if [ -f "$TRANSLATED_FILE" ]; then
 	cp "$TRANSLATED_FILE" "$TRANSLATED_FILE".old
 	msgmerge --no-wrap -q -v -o "$TRANSLATED_FILE" "$TRANSLATED_FILE" "$TEMPLATE_FILE" || exit_error "Unable to merge old translation"
@@ -56,6 +52,6 @@ fi
 \kate "$TRANSLATED_FILE" > /dev/null 2>&1
 
 # Generate binary catalog file
-msgfmt --verbose --output-file "$DIR/messages.mo" "$TRANSLATED_FILE" || exit_error "Unable to generae binary catalog"
+msgfmt --verbose --output-file "$DESTINATION/messages.mo" "$TRANSLATED_FILE" || exit_error "Unable to generae binary catalog"
 
 exit $?

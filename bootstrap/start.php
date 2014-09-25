@@ -2,29 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| HHVM Gettext workaround
-|--------------------------------------------------------------------------
-|
-| Workaround until HHVM supports Gettext PHP extension.
-|
-*/
-
-if ( ! function_exists('_'))
-{
-	/**
-	 * Dummy gettext alias
-	 *
-	 * @param  string
-	 * @return string
-	 */
-	function _($s)
-	{
-		return $s;
-	}
-}
-
-/*
-|--------------------------------------------------------------------------
 | Create The Application
 |--------------------------------------------------------------------------
 |
@@ -47,11 +24,7 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-	'local' => array('quad', 'solid'), //to-do set your development hostnames here
-
-));
+require __DIR__.'/environment.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +50,7 @@ $app->bindInstallPaths(require __DIR__.'/paths.php');
 |
 */
 
-$framework = $app['path.base'].
-                 '/vendor/laravel/framework/src';
+$framework = $app['path.base'] . '/vendor/laravel/framework/src';
 
 require $framework.'/Illuminate/Foundation/start.php';
 

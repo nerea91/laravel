@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-19 12:18+0200\n"
+"POT-Creation-Date: 2014-09-25 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,9 +185,6 @@ msgstr ""
 msgid "Delete %s"
 msgstr ""
 
-msgid "Deleted"
-msgstr ""
-
 msgid "Deleted at"
 msgstr ""
 
@@ -359,13 +356,16 @@ msgstr ""
 msgid "No results found"
 msgstr ""
 
-msgid "Normal"
-msgstr ""
-
 msgid "Numeric code"
 msgstr ""
 
 msgid "One click login"
+msgstr ""
+
+msgid "Only deleted"
+msgstr ""
+
+msgid "Only enabled"
 msgstr ""
 
 msgid "Option"
@@ -418,9 +418,6 @@ msgid "Previous"
 msgstr ""
 
 msgid "Priority"
-msgstr ""
-
-msgid "Problems?"
 msgstr ""
 
 msgid "Profile"

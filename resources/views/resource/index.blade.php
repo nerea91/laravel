@@ -24,8 +24,8 @@
 	@if ($trashable)
 	<a href="#" data-dropdown="trash-mode" class="dropdown button">{{ _('Filter') }}</a>
 	<ul id="trash-mode" class="f-dropdown text-left" data-dropdown-content>
-		<li>{!! link_to_route("$prefix.trash.mode", _('Normal'), ['normal']) !!}</li>
-		<li>{!! link_to_route("$prefix.trash.mode", _('Deleted'), ['deleted']) !!}</li>
+		<li>{!! link_to_route("$prefix.trash.mode", _('Only enabled'), ['normal']) !!}</li>
+		<li>{!! link_to_route("$prefix.trash.mode", _('Only deleted'), ['trashed']) !!}</li>
 		<li>{!! link_to_route("$prefix.trash.mode", _('All'), ['all']) !!}</li>
 	</ul>
 	@endif

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-19 12:17+0200\n"
+"POT-Creation-Date: 2014-09-25 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,9 +184,6 @@ msgstr "Borrar"
 msgid "Delete %s"
 msgstr "Borrar %s"
 
-msgid "Deleted"
-msgstr "Borrado"
-
 msgid "Deleted at"
 msgstr "Borrado el"
 
@@ -358,14 +355,17 @@ msgstr "No se han encontrado dirección de e-mail"
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
-msgid "Normal"
-msgstr "Normal"
-
 msgid "Numeric code"
 msgstr "Código numérico"
 
 msgid "One click login"
 msgstr "Acceso con un click"
+
+msgid "Only deleted"
+msgstr "Solo borrados"
+
+msgid "Only enabled"
+msgstr "Solo activados"
 
 msgid "Option"
 msgstr "Opción"
@@ -418,9 +418,6 @@ msgstr "Anterior"
 
 msgid "Priority"
 msgstr "Prioridad"
-
-msgid "Problems?"
-msgstr "¿Problemas?"
 
 msgid "Profile"
 msgstr "Perfil"

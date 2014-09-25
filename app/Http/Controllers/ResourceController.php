@@ -302,7 +302,7 @@ class ResourceController extends Controller
 				$message = _('Showing only available resources');
 				break;
 
-			case 'deleted':
+			case 'trashed':
 				$message = _('Showing only deleted resources');
 				break;
 

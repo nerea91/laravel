@@ -23,7 +23,7 @@
 			{!! Form::checkbox('remember') !!}
 			&nbsp;{{ _('Remember me') }}
 		</label>
-		<a href="#" class="right" data-reveal-id="problems">{{ _('Problems?') }}</a>
+		{{--<a href="#" class="right" data-reveal-id="problems">{{ _('Problems?') }}</a>--}}
 
 		{!! Form::close() !!}
 

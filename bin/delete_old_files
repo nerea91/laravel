@@ -14,7 +14,7 @@ read
 find . -type f \( -name ".*~" -o -name "*~" \) -exec rm {} \;
 
 # Git conflicts remains
-for ext in php mo po; do
+for ext in php mo po json; do
 	find . -type f \( -name "*.$ext.orig" -o -name "*.$ext.BACKUP.*.$ext" -o -name "*.$ext.BASE.*.$ext" -o  -name "*.$ext.LOCAL.*.$ext" -o -name "*.$ext.REMOTE.*.$ext" \) -exec rm -i {} \;
 done
 

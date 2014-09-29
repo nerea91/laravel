@@ -5,7 +5,14 @@ use Illuminate\Support\ServiceProvider;
 class ArtisanServiceProvider extends ServiceProvider
 {
 	/**
-	 * Register artisan console commands.
+	 * Indicates if loading of the provider is deferred.
+	 *
+	 * @var bool
+	 */
+	protected $defer = true;
+
+	/**
+	 * Register the service provider.
 	 *
 	 * @return void
 	 */
@@ -20,5 +27,15 @@ class ArtisanServiceProvider extends ServiceProvider
 			'App\Console\SetupLanguagesCommand',
 			'App\Console\SetupSuperUserCommand',
 		]);
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return ['App\Console\InspireCommand'];
 	}
 }

@@ -1,29 +1,31 @@
 <?php namespace App\Providers;
 
 use Exception;
+use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\ServiceProvider;
-use Log;
+use Illuminate\Contracts\Exception\Handler;
 use Response;
 
 class ErrorServiceProvider extends ServiceProvider
 {
 	/**
-	* Register any error handlers.
-	*
-	* @return void
-	*/
-	public function boot()
+	 * Register any error handlers.
+	 *
+	 * @param  Handler  $handler
+	 * @param  Log  $log
+	 * @return void
+	 */
+	public function boot(Handler $handler, Log $log)
 	{
 		// Here you may handle any errors that occur in your application, including
 		// logging them or displaying custom views for specific errors. You may
 		// even register several error handlers to handle different types of
 		// exceptions. If nothing is returned, the default error view is
 		// shown, which includes a detailed stack trace during debug.
-
-		app()->error(function(Exception $exception, $code) {
-
+		$handler->error(function(Exception $e) use ($log) {
+			
 			// Add exception to log file
-			Log::error($exception);
+			$log->error($e);
 
 			// If debug is enabled keep using the default error view
 			if (config('app.debug'))
@@ -51,10 +53,10 @@ class ErrorServiceProvider extends ServiceProvider
 	}
 
 	/**
-	* Register the service provider.
-	*
-	* @return void
-	*/
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
 	public function register()
 	{
 		//

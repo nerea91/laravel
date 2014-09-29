@@ -12,7 +12,7 @@
 
 			@if ($view)
 			<div class="large-{{ $columns }} columns">
-				{!! link_to_route("$prefix.show", _('Cancel'), $resource->getKey(), array('class' => 'secondary button expand')) !!}
+				{!! link_to_route("$prefix.show", _('Cancel'), [$resource->getKey()], array('class' => 'secondary button expand')) !!}
 			</div>
 			@endif
 		</div>

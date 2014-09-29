@@ -120,14 +120,13 @@ class AuthProvider extends Model
 	public function deletable($throwExceptions = false)
 	{
 		// Prevent deleting Admin native account
-		if($this->id == 1)
-		{
-			if($throwExceptions)
-				throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
-			return false;
-		}
+		if($this->id != 1)
+			return true;
 
-		return true;
+		if($throwExceptions)
+			throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
+
+		return false;
 	}
 
 	/**

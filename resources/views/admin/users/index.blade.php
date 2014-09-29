@@ -1,6 +1,6 @@
 <thead>
 	<tr>
-		<th class="actions text-center">{!! $links->username !!}</th>
+		<th class="text-center">{!! $links->username !!}</th>
 		<th>{!! $links->name !!}</th>
 		@if($viewProfile)<th>{!! $links->profile_id !!}</th>@endif
 		@if($viewCountry)<th>{!! $links->country_id !!}</th>@endif
@@ -11,7 +11,7 @@
 <tbody>
 	@foreach ($results as $resource)
 	<tr>
-		<td class="actions text-center">
+		<td class="text-center">
 			@if (strlen($resource->description))
 			<span data-tooltip class="has-tip" title="{{ $resource->description }}">{{ $resource->username }}</span>
 			@else

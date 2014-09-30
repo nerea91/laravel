@@ -2,6 +2,7 @@
 
 use App\Exceptions\ModelDeletionException;
 use Crypt;
+use Hash;
 use Input;
 
 class Account extends Model
@@ -152,34 +153,45 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Facebook.
 	 *
-	 * @param  array $data
+	 * @param  \Laravel\Socialite\AbstractUser $user
 	 * @return Account
 	 */
-	public static function makeFromFacebook(array $data)
+	public static function makeFromFacebook(\Laravel\Socialite\AbstractUser $user)
 	{
-		$account = new Account;
+		/* Example of Facebook $user:
+			[token] => 'xxxYYYYzzzzzzWWWWW'
+			[id] => '12345'
+			[nickname] => null
+			[name] => 'John Doe'
+			[email] => 'john@example.com'
+			[avatar] => 'https://graph.facebook.com/12345/picture?type=normal'
+			[user] => array (
+				[id] => '12345'
+				[email] => 'john@example.com'
+				[first_name] => 'John'
+				[gender] => 'male'
+				[last_name] => 'Doe'
+				[link] => 'https://www.facebook.com/app_scoped_user_id/12345/'
+				[locale] => 'en_US'
+				[name] => 'John Doe'
+				[timezone] => 2
+				[updated_time] => '2012-07-17T17:26:49+0000'
+				[verified] => true
+			)
+		*/
 
-		// Map between local and remote field names
-		$map = [
-			'uid'		=> 'id',
-			'nickname'	=> 'username',
-			'email'		=> 'email',
-			'name'		=> 'name',
-			'first_name' => 'first_name',
-			'last_name'	=> 'last_name',
-			//'image'	=> '',
-			'locale'	=> 'locale',
-			'location'	=> 'location',
-		];
-
-		// Fill
-		foreach($map as $local => $remote)
-			if(isset($data[$remote]))
-				$account->$local = $data[$remote];
-
-		// Don't trust unverified email
-		if( ! isset($data['verified']) or $data['verified'] !== true)
-			$account->email = null;
+		$account = new Account([
+			'uid'          => $user->id,
+			'access_token' => Hash::make($user->token),
+			'nickname'     => (isset($user->nickname)) ? $user->nickname : null,
+			'email'        => (isset($user->email) and isset($user->user['verified']) and $user->user['verified'] === true) ? $user->email : null,
+			'name'         => (isset($user->name)) ? $user->name : null,
+			'first_name'   => (isset($user->user['first_name'])) ? $user->user['first_name'] : null,
+			'last_name'    => (isset($user->user['last_name'])) ? $user->user['last_name'] : null,
+			'image'        => (isset($user->avatar)) ? $user->avatar : null,
+			'locale'       => (isset($user->user['locale'])) ? $user->user['locale'] : null,
+			//'location'     => null,
+		]);
 
 		return $account;
 	}
@@ -187,10 +199,10 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Google.
 	 *
-	 * @param  array $data
+	 * @param  \Laravel\Socialite\AbstractUser $user
 	 * @return Account
 	 */
-	public static function makeFromGoogle(array $data)
+	public static function makeFromGoogle(\Laravel\Socialite\AbstractUser $user)
 	{
 		$account = new Account;
 
@@ -209,11 +221,11 @@ class Account extends Model
 
 		// Fill
 		foreach($map as $local => $remote)
-			if(isset($data[$remote]))
-				$account->$local = $data[$remote];
+			if(isset($user[$remote]))
+				$account->$local = $user[$remote];
 
 		// Don't trust unverified email
-		if( ! isset($data['verified_email']) or $data['verified_email'] !== true)
+		if( ! isset($user['verified_email']) or $user['verified_email'] !== true)
 			$account->email = null;
 
 		return $account;
@@ -294,21 +306,30 @@ class Account extends Model
 	/**
 	 * Add the fields from $account that are not present on $this account.
 	 *
+	 * The fields provided in $foreceUpdateOnTheseFields will be replaced
+	 * even if they were not empty.
+	 *
 	 * @param  Account $account
+	 * @param  array   $foreceUpdateOnThisFields
 	 * @return Account
 	 */
-	public function mergeMissingAttributes(Account $account)
+	public function mergeMissingAttributes(Account $account, array $foreceUpdateOnTheseFields = [])
 	{
 		$fields = array_except(
 			array_keys($this->getRules()),
-			['uid', 'access_token', 'login_count', 'last_ip', 'provider_id', 'user_id']
+			['uid', 'login_count', 'last_ip', 'provider_id', 'user_id', 'created_at', 'updated_at']
 		);
 
+		// Add fields that were empty
 		foreach($fields as $field)
 		{
 			if(empty($this->$field))
 				$this->$field = $account->$field;
 		}
+
+		// Add forced fields
+		foreach($foreceUpdateOnTheseFields as $field)
+			$this->$field = $account->$field;
 
 		return $this;
 	}

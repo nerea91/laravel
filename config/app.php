@@ -136,6 +136,7 @@ return [
 		 */
 		'Illuminate\Html\HtmlServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',
+		'Laravel\Socialite\SocialiteServiceProvider',
 
 		/*
 		 * Packages Service Providers...
@@ -207,6 +208,7 @@ return [
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'HTML'      => 'Illuminate\Html\HtmlFacade',
 		'SSH'       => 'Illuminate\Remote\RemoteFacade',
+		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 	],
 
 ];

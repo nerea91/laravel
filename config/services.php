@@ -1,5 +1,7 @@
 <?php
 
+$socialLoginBaseUrl = 'https://dev.laravel.es/login/with/'; //to-do
+
 return [
 
 	/*
@@ -28,19 +30,28 @@ return [
 		'secret' => '',
 	],
 
-	/*
+	//Dev URL: https://github.com/settings/applications
+	'github' => [
+		'client_id'     => '',
+		'client_secret' => '',
+		'redirect'      => $socialLoginBaseUrl . 'github',
+	],
+
+	//Dev URL: https://developers.facebook.com/apps
 	'facebook' => [
 		'client_id'     => '',
 		'client_secret' => '',
-		'scope'         => ['email'],
+		'redirect'      => $socialLoginBaseUrl . 'facebook',
+		'scopes'         => ['email'],
 	],
 
+	// Dev URL: https://code.google.com/apis/console/
 	'google' => [
-		'client_id'     => '',
+		'client_id'     => '.apps.googleusercontent.com',
 		'client_secret' => '',
-		'scope'         => ['profile', 'email'],
+		'redirect'      => $socialLoginBaseUrl . 'google',
+		'scopes'         => ['profile', 'email'],
 	],
-	*/
 
 
 	/*

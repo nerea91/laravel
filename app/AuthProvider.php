@@ -4,7 +4,6 @@ use App\Exceptions\ModelDeletionException;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Input;
-use OAuth\Common\Service\AbstractService as OAuthService;
 use Validator;
 
 class AuthProvider extends Model
@@ -166,19 +165,20 @@ class AuthProvider extends Model
 
 	/**
 	 * Find the local account associated with a remote user.
-	 * If no account is found create it.
 	 *
-	 * @param  \OAuth\Common\Service\AbstractService $service
+	 * If no account is found it will create it.
+	 *
+	 * @param  \Laravel\Socialite\AbstractUser $user
 	 * @return Account
 	 */
-	public function findOrCreateAccount(OAuthService $service)
+	public function findOrCreateAccount(\Laravel\Socialite\AbstractUser $user)
 	{
 		// Make a new account with data provided by remote $service
-		$newAccount = $this->makeAccountFromService($service);
+		$newAccount = $this->makeAccountFromService($user);
 
 		// If an account of $this provider already exists then reuse it
 		if($oldAccount = Account::where(['provider_id' => $this->id, 'uid' => $newAccount->uid])->first())
-			return $oldAccount->mergeMissingAttributes($newAccount);
+			return $oldAccount->mergeMissingAttributes($newAccount, ['access_token']);
 
 		// If an account from different provider but same email exists then reuse its user
 		if(Validator::make($newAccount->toArray(), ['email' => 'required|email'])->passes() and $oldAccount = Account::where('email', $newAccount->email)->first())
@@ -211,29 +211,29 @@ class AuthProvider extends Model
 	/**
 	 * Make an account of $this provider with the data fetched from $service.
 	 *
-	 * @param  \OAuth\Common\Service\AbstractService $service
+	 * @param  \Laravel\Socialite\AbstractUser $user
 	 * @return Account
-	 * @throws Exception
+	 * @throws Exceptions\OauthException
 	 */
-	public function makeAccountFromService(OAuthService $service)
+	public function makeAccountFromService(\Laravel\Socialite\AbstractUser $user)
 	{
 		switch($this->name)
 		{
 			case 'facebook':
-				$data = json_decode($service->request('/me'), true);
-				$account = Account::makeFromFacebook($data);
+				$account = Account::makeFromFacebook($user);
 				break;
 
 			case 'google':
-				$data = json_decode($service->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
-				$account = Account::makeFromGoogle($data);
+				$account = Account::makeFromGoogle($user);
 				break;
 
 			default:
-				throw new Exception(sprintf('Provider %s has no account generator', $this));
+				throw new Exceptions\OauthException(sprintf('Provider %s has no account generator', $this));
 		}
 
+		// Attach provider
 		$account->provider_id = $this->id;
+
 		return $account;
 	}
 }

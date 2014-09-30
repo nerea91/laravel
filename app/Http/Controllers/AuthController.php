@@ -2,6 +2,7 @@
 
 use App\AuthProvider;
 use App\Exceptions\OauthException;
+use Socialite;
 use App\User;
 use Auth;
 use Crypt;
@@ -80,11 +81,11 @@ class AuthController extends Controller
 		try
 		{
 			// Check if provider exists
-			if( ! $provider = AuthProvider::whereName($providerName)->first() and $provider->isUsable())
+			if( ! $provider = AuthProvider::whereName($providerName)->first() or ! $provider->isUsable())
 				throw new OauthException(sprintf(_('Unknown provider: %s'), e($providerName)));
 
 			// Create an Oauth service for this autentication provider
-			if( ! $oauthService = OAuth::service($provider->name))
+			if( ! $oauthService = Socialite::with($provider->name))
 				throw new OauthException(sprintf('Provider %s has no Oauth implementation', $provider));
 
 			// If the user does not accept our App cancell the process
@@ -93,15 +94,12 @@ class AuthController extends Controller
 
 			// Request user to authorize our App
 			if( ! Input::has('code'))
-				return redirect(htmlspecialchars_decode($oauthService->getAuthorizationUri()));
+				return $oauthService->redirect();
 
-			//This was a callback request from the Oauth service
-
-			// Request Access Token
-			$token = $oauthService->requestAccessToken(Input::get('code'));
+			// This was a callback request from the Oauth service
 
 			// Get/create associated account
-			$account = $provider->findOrCreateAccount($oauthService);
+			$account = $provider->findOrCreateAccount($oauthService->user());
 
 			// Do not allow login to users that have been disabled
 			if($account->user->trashed())
@@ -110,8 +108,7 @@ class AuthController extends Controller
 			// Login user
 			Auth::login($account->user);
 
-			// Fire account login event to save token
-			$account->access_token = Crypt::encrypt($token->getAccessToken());
+			// Fire account login event
 			Event::fire('account.login', [$account]);
 
 			return redirect()->intended('/');
@@ -121,7 +118,7 @@ class AuthController extends Controller
 			Session::flash('error', $e->getMessage());
 			return redirect()->route('login');
 		}
-		catch(OAuth\Common\Http\Exception\TokenResponseException $e)
+		catch(\InvalidArgumentException  $e)
 		{
 			Session::flash('error', $e->getMessage());
 			return redirect()->route('login');

@@ -170,11 +170,17 @@ class AuthProvider extends Model
 	 *
 	 * @param  \Laravel\Socialite\AbstractUser $user
 	 * @return Account
+	 * @throws Exceptions\OauthException
 	 */
 	public function findOrCreateAccount(\Laravel\Socialite\AbstractUser $user)
 	{
-		// Make a new account with data provided by remote $service
-		$newAccount = $this->makeAccountFromService($user);
+		// Check if there is a method to generate accounts of $this provider
+		if ( ! method_exists('\App\Account', $factory = 'makeFrom' . ucfirst($this->name)))
+			throw new Exceptions\OauthException(sprintf('Provider %s has no account generator', $this));
+
+		// Make a new account of $this provider with provided $user data
+		$newAccount = Account::$factory($user);
+		$newAccount->provider_id = $this->id;
 
 		// If an account of $this provider already exists then reuse it
 		if($oldAccount = Account::where(['provider_id' => $this->id, 'uid' => $newAccount->uid])->first())
@@ -206,34 +212,5 @@ class AuthProvider extends Model
 			DB::rollBack();
 			throw $e; // Unexpected exception, re-throw it to be able to debug it.
 		}
-	}
-
-	/**
-	 * Make an account of $this provider with the data fetched from $service.
-	 *
-	 * @param  \Laravel\Socialite\AbstractUser $user
-	 * @return Account
-	 * @throws Exceptions\OauthException
-	 */
-	public function makeAccountFromService(\Laravel\Socialite\AbstractUser $user)
-	{
-		switch($this->name)
-		{
-			case 'facebook':
-				$account = Account::makeFromFacebook($user);
-				break;
-
-			case 'google':
-				$account = Account::makeFromGoogle($user);
-				break;
-
-			default:
-				throw new Exceptions\OauthException(sprintf('Provider %s has no account generator', $this));
-		}
-
-		// Attach provider
-		$account->provider_id = $this->id;
-
-		return $account;
 	}
 }

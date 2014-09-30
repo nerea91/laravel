@@ -4,6 +4,7 @@ use App\Exceptions\ModelDeletionException;
 use Crypt;
 use Hash;
 use Input;
+use Laravel\Socialite\AbstractUser as SocialUser;
 
 class Account extends Model
 {
@@ -153,12 +154,12 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Facebook.
 	 *
-	 * @param  \Laravel\Socialite\AbstractUser $user
+	 * @param  SocialUser $user
 	 * @return Account
 	 */
-	public static function makeFromFacebook(\Laravel\Socialite\AbstractUser $user)
+	public static function makeFromFacebook(SocialUser $user)
 	{
-		/* Example of Facebook $user:
+		/* Example of Facebook $user object:
 			[token] => 'xxxYYYYzzzzzzWWWWW'
 			[id] => '12345'
 			[nickname] => null
@@ -199,34 +200,45 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Google.
 	 *
-	 * @param  \Laravel\Socialite\AbstractUser $user
+	 * @param  SocialUser $user
 	 * @return Account
 	 */
-	public static function makeFromGoogle(\Laravel\Socialite\AbstractUser $user)
+	public static function makeFromGoogle(SocialUser $user)
 	{
-		$account = new Account;
+		/* Example of Google $user object:
+			[token] => 'xxxYYYYzzzzzzWWWWW*'
+			[id] => '12345'
+			[nickname] => null
+			[name] => 'John Doe'
+			[email] => 'john@example.com'
+			[avatar] => 'https://lh3.googleusercontent.com/foo/photo.jpg'
+			[user] => array(
+				[id] => '12345'
+				[email] => 'john@example.com'
+				[verified_email] => true
+				[name] => 'John Doe'
+				[given_name] => 'John'
+				[family_name] => 'Doe'
+				[link] => 'https://plus.google.com/12345'
+				[picture] => 'https://lh3.googleusercontent.com/foo/photo.jpg'
+				[gender] => 'male'
+				[locale] => 'en'
+				[hd] => 'example.com'
+			)
+		*/
 
-		// Map between local and remote field names
-		$map = [
-			'uid'		=> 'id',
-			//'nickname'=> '',
-			'email'		=> 'email',
-			'name'		=> 'name',
-			'first_name' => 'given_name',
-			'last_name'	=> 'family_name',
-			'image'		=> 'picture',
-			'locale'	=> 'locale',
-			//'location'=> '',
-		];
-
-		// Fill
-		foreach($map as $local => $remote)
-			if(isset($user[$remote]))
-				$account->$local = $user[$remote];
-
-		// Don't trust unverified email
-		if( ! isset($user['verified_email']) or $user['verified_email'] !== true)
-			$account->email = null;
+		$account = new Account([
+			'uid'          => $user->id,
+			'access_token' => Hash::make($user->token),
+			'nickname'     => (isset($user->nickname)) ? $user->nickname : null,
+			'email'        => (isset($user->email) and isset($user->user['verified_email']) and $user->user['verified_email'] === true) ? $user->email : null,
+			'name'         => (isset($user->name)) ? $user->name : null,
+			'first_name'   => (isset($user->user['given_name'])) ? $user->user['given_name'] : null,
+			'last_name'    => (isset($user->user['family_name'])) ? $user->user['family_name'] : null,
+			'image'        => (isset($user->avatar)) ? $user->avatar : null,
+			'locale'       => (isset($user->user['locale'])) ? $user->user['locale'] : null,
+			//'location'     => null,
+		]);
 
 		return $account;
 	}

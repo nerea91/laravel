@@ -186,7 +186,7 @@ class Model extends UpstreamModel
 	/**
 	 * Set error message bag.
 	 *
-	 * @param Illuminate\Support\MessageBag
+	 * @param \Illuminate\Support\MessageBag
 	 * @return void
 	 */
 	protected function setErrors($errors)
@@ -197,7 +197,7 @@ class Model extends UpstreamModel
 	/**
 	 * Retrieve error message bag.
 	 *
-	 * @return Illuminate\Support\MessageBag
+	 * @return \Illuminate\Support\MessageBag
 	 */
 	public function getErrors()
 	{
@@ -367,8 +367,8 @@ class Model extends UpstreamModel
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @param Illuminate\Database\Eloquent\Builder
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
 	{

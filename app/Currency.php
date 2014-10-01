@@ -79,7 +79,7 @@ class Currency extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($pattern)
 	{

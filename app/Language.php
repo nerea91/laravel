@@ -106,7 +106,7 @@ class Language extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of Language)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	public static function search($pattern)
 	{
@@ -196,7 +196,7 @@ class Language extends Model
 	/**
 	 * Get all enabled languages sorted by priority
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of Language)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	public static function getAllByPriority()
 	{
@@ -209,7 +209,7 @@ class Language extends Model
 	 * Returns null if not found.
 	 *
 	 * @param  string $needle
-	 * @param  Illuminate\Database\Eloquent\Collection (of Language) $haystack
+	 * @param  \Illuminate\Database\Eloquent\Collection (of Language) $haystack
 	 * @return Language|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
@@ -263,8 +263,8 @@ class Language extends Model
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @param Illuminate\Database\Eloquent\Builder
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
 	{

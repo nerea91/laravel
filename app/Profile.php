@@ -95,7 +95,7 @@ class Profile extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of Profile)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Profile)
 	 */
 	public static function search($pattern)
 	{
@@ -250,14 +250,14 @@ class Profile extends Model
 	/**
 	 * Get all profiles whose permissions are same as (or a subset of) $this profile permissions.
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of Profile)
-	 * @throws Exception
+	 * @return \Illuminate\Database\Eloquent\Collection (of Profile)
+	 * @throws \Exception
 	 */
 	public function getSimilarOrInferior()
 	{
 		// Unsaved profiles have no permissions therefore cannot be compared
 		if( ! $this->id)
-			throw new Exception(_('Unsaved profiles cannot be compared'));
+			throw new \Exception(_('Unsaved profiles cannot be compared'));
 
 		// Profiles with more permissions than current one
 		$excludedProfiles = DB::table('permission_profile')

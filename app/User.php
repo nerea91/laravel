@@ -165,7 +165,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of User)
+	 * @return \Illuminate\Database\Eloquent\Collection (of User)
 	 */
 	public static function search($pattern)
 	{
@@ -192,7 +192,7 @@ class User extends Model implements UserContract, RemindableContract
 	 *
 	 * @param  Account $account
 	 * @return User
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public static function autoCreate(Account $account = null)
 	{
@@ -223,7 +223,7 @@ class User extends Model implements UserContract, RemindableContract
 		]);
 
 		if( ! $user->save())
-			throw new Exception(_('Unable to create user'));
+			throw new \Exception(_('Unable to create user'));
 
 		return $user;
 	}
@@ -290,7 +290,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * Get the e-mail address where password reminders are sent.
 	 *
 	 * @return string
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function getReminderEmail()
 	{
@@ -301,7 +301,7 @@ class User extends Model implements UserContract, RemindableContract
 				return $account->email;
 		}
 
-		throw new Exception(_('No e-mail address found'));
+		throw new \Exception(_('No e-mail address found'));
 	}
 
 	// Logic =======================================================================
@@ -331,8 +331,8 @@ class User extends Model implements UserContract, RemindableContract
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @param Illuminate\Database\Eloquent\Builder
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
 	{
@@ -457,7 +457,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * The missing user options are merged with the default ones
 	 *
 	 * @param  bool
-	 * @return Illuminate\Database\Eloquent\Collection (of Option)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Option)
 	*/
 	public function getOptions($onlyAssignable = false)
 	{
@@ -488,7 +488,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * Get all the assignable user options.
 	 * The missing user options are merged with the default ones
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of Option)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Option)
 	*/
 	public function getAssignableOptions()
 	{
@@ -499,7 +499,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * Change $this user options.
 	 *
 	 * @param  array
-	 * @return Illuminate\Support\MessageBag
+	 * @return \Illuminate\Support\MessageBag
 	 */
 	public function setOptions(array $options)
 	{

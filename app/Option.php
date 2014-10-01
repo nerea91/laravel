@@ -73,7 +73,7 @@ class Option extends Model
 	 *
 	 * @param  User
 	 * @param  array
-	 * @return Illuminate\Support\MessageBag
+	 * @return \Illuminate\Support\MessageBag
 	 */
 	public static function massAssignToUser(User $user, array $options)
 	{
@@ -102,7 +102,7 @@ class Option extends Model
 	 *
 	 * @param  User
 	 * @param  string
-	 * @return Illuminate\Support\MessageBag
+	 * @return \Illuminate\Support\MessageBag
 	 */
 	public function assignToUser(User $user, $value)
 	{

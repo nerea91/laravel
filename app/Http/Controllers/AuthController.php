@@ -88,15 +88,20 @@ class AuthController extends Controller
 			if( ! $oauthService = Socialite::with($provider->name))
 				throw new OauthException(sprintf('Provider %s has no Oauth implementation', $provider));
 
-			// If the user does not accept our App cancell the process
-			if(Input::get('error') === 'access_denied')
-				throw new OauthException(_('Cancelled by user'));
+			// If the remote provider sends an error cancel the process
+			if(Input::has('error'))
+				throw new OauthException(_('Something went wrong') . '. ' . Input::get('error'));
 
 			// Request user to authorize our App
 			if( ! Input::has('code'))
-				return $oauthService->redirect();
+			{
+				// If we have condigured some scopes use them, otherwise use defaults
+				$scopes = config("services.{$provider->name}.scopes");
 
-			// This was a callback request from the Oauth service
+				return ($scopes) ? $oauthService->scopes($scopes)->redirect() : $oauthService->redirect();
+			}
+
+			// == This was a callback request from the Oauth service ==
 
 			// Get/create associated account
 			$account = $provider->findOrCreateAccount($oauthService->user());

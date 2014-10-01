@@ -2,7 +2,6 @@
 
 use App\Exceptions\ModelDeletionException;
 use Crypt;
-use Hash;
 use Input;
 use Laravel\Socialite\AbstractUser as SocialUser;
 
@@ -121,7 +120,7 @@ class Account extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of Account)
+	 * @return \Illuminate\Database\Eloquent\Collection (of Account)
 	 */
 	public static function search($pattern)
 	{
@@ -159,31 +158,9 @@ class Account extends Model
 	 */
 	public static function makeFromFacebook(SocialUser $user)
 	{
-		/* Example of Facebook $user object:
-			[token] => 'xxxYYYYzzzzzzWWWWW'
-			[id] => '12345'
-			[nickname] => null
-			[name] => 'John Doe'
-			[email] => 'john@example.com'
-			[avatar] => 'https://graph.facebook.com/12345/picture?type=normal'
-			[user] => array (
-				[id] => '12345'
-				[email] => 'john@example.com'
-				[first_name] => 'John'
-				[gender] => 'male'
-				[last_name] => 'Doe'
-				[link] => 'https://www.facebook.com/app_scoped_user_id/12345/'
-				[locale] => 'en_US'
-				[name] => 'John Doe'
-				[timezone] => 2
-				[updated_time] => '2012-07-17T17:26:49+0000'
-				[verified] => true
-			)
-		*/
-
 		$account = new Account([
 			'uid'          => $user->id,
-			'access_token' => Hash::make($user->token),
+			'access_token' => Crypt::encrypt($user->token),
 			'nickname'     => (isset($user->nickname)) ? $user->nickname : null,
 			'email'        => (isset($user->email) and isset($user->user['verified']) and $user->user['verified'] === true) ? $user->email : null,
 			'name'         => (isset($user->name)) ? $user->name : null,
@@ -205,31 +182,9 @@ class Account extends Model
 	 */
 	public static function makeFromGoogle(SocialUser $user)
 	{
-		/* Example of Google $user object:
-			[token] => 'xxxYYYYzzzzzzWWWWW*'
-			[id] => '12345'
-			[nickname] => null
-			[name] => 'John Doe'
-			[email] => 'john@example.com'
-			[avatar] => 'https://lh3.googleusercontent.com/foo/photo.jpg'
-			[user] => array(
-				[id] => '12345'
-				[email] => 'john@example.com'
-				[verified_email] => true
-				[name] => 'John Doe'
-				[given_name] => 'John'
-				[family_name] => 'Doe'
-				[link] => 'https://plus.google.com/12345'
-				[picture] => 'https://lh3.googleusercontent.com/foo/photo.jpg'
-				[gender] => 'male'
-				[locale] => 'en'
-				[hd] => 'example.com'
-			)
-		*/
-
 		$account = new Account([
 			'uid'          => $user->id,
-			'access_token' => Hash::make($user->token),
+			'access_token' => Crypt::encrypt($user->token),
 			'nickname'     => (isset($user->nickname)) ? $user->nickname : null,
 			'email'        => (isset($user->email) and isset($user->user['verified_email']) and $user->user['verified_email'] === true) ? $user->email : null,
 			'name'         => (isset($user->name)) ? $user->name : null,
@@ -238,6 +193,30 @@ class Account extends Model
 			'image'        => (isset($user->avatar)) ? $user->avatar : null,
 			'locale'       => (isset($user->user['locale'])) ? $user->user['locale'] : null,
 			//'location'     => null,
+		]);
+
+		return $account;
+	}
+
+	/**
+	 * Make a new account filled with data provided by GitHub.
+	 *
+	 * @param  SocialUser $user
+	 * @return Account
+	 */
+	public static function makeFromGithub(SocialUser $user)
+	{
+		$account = new Account([
+			'uid'          => $user->id,
+			'access_token' => Crypt::encrypt($user->token),
+			'nickname'     => (isset($user->nickname)) ? $user->nickname : null,
+			// No way to know if it's veridied !!! 'email'        => (isset($user->email) and isset($user->user['verified_email']) and $user->user['verified_email'] === true) ? $user->email : null,
+			'name'         => (isset($user->name)) ? $user->name : null,
+			'first_name'   => (isset($user->user['given_name'])) ? $user->user['given_name'] : null,
+			'last_name'    => (isset($user->user['family_name'])) ? $user->user['family_name'] : null,
+			'image'        => (isset($user->avatar)) ? $user->avatar : null,
+			'locale'       => (isset($user->user['locale'])) ? $user->user['locale'] : null,
+			'location'     => (isset($user->user['location'])) ? $user->user['location'] : null,
 		]);
 
 		return $account;
@@ -270,8 +249,8 @@ class Account extends Model
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @param Illuminate\Database\Eloquent\Builder
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
 	{

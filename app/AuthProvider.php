@@ -73,7 +73,7 @@ class AuthProvider extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
-	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
+	 * @return \Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function search($pattern)
 	{
@@ -97,7 +97,7 @@ class AuthProvider extends Model
 	/**
 	 * Get all usable providers.
 	 *
-	 * @return Illuminate\Database\Eloquent\Collection (of AuthProvider)
+	 * @return \Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function getUsable()
 	{
@@ -132,8 +132,8 @@ class AuthProvider extends Model
 	 * Sort model by parameters given in the URL
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
-	 * @param Illuminate\Database\Eloquent\Builder
-	 * @return Illuminate\Database\Eloquent\Builder
+	 * @param \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
 	{
@@ -175,10 +175,11 @@ class AuthProvider extends Model
 	public function findOrCreateAccount(\Laravel\Socialite\AbstractUser $user)
 	{
 		// Check if there is a method to generate accounts of $this provider
-		if ( ! method_exists('\App\Account', $factory = 'makeFrom' . ucfirst($this->name)))
+		$factory = 'makeFrom' . ucfirst($this->name);
+		if ( ! method_exists('\App\Account', $factory))
 			throw new Exceptions\OauthException(sprintf('Provider %s has no account generator', $this));
 
-		// Make a new account of $this provider with provided $user data
+		// Make a new account of $this provider with received $user data
 		$newAccount = Account::$factory($user);
 		$newAccount->provider_id = $this->id;
 
@@ -201,13 +202,13 @@ class AuthProvider extends Model
 
 			// Save new account
 			if( ! $newAccount->save())
-				throw new Exception('Unable to create account');
+				throw new \Exception('Unable to create account');
 
 			// Success :)
 			DB::commit();
 			return $newAccount;
 		}
-		catch(Exception $e)
+		catch(\Exception $e)
 		{
 			DB::rollBack();
 			throw $e; // Unexpected exception, re-throw it to be able to debug it.

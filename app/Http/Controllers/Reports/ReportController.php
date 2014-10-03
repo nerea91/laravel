@@ -133,7 +133,7 @@ abstract class ReportController extends Controller
 	{
 		// If validation failed there is nothing to show
 		if(Session::has('errors'))
-			return $this->loadView();
+			return $this->format([], false);
 
 		// If it's the first time the report is loaded then flash default input
 		if( ! Input::old())
@@ -142,30 +142,57 @@ abstract class ReportController extends Controller
 		// Get report results
 		$results = $this->get($input = array_only(Input::old(), array_keys($this->rules)));
 
-		if( ! $results)
-			return $this->loadView();
-
-		Assets::add('responsive-tables');
-		$this->setSubtitle($input);
-		$this->data['results'] = $results;
-		return $this->loadView(true);
+		// Return formated results
+		return $this->format($input, $results);
 	}
 
 	/**
-	 * Set layout and view variables.
+	 * Format report results.
 	 *
-	 * @param  bool
+	 * If the is no formater for provided format fallbacks to web.
+	 *
+	 * @param  array
+	 * @param  mixed
+	 * @return Response
+	 * @throws
+	 */
+	public function format(array $input, $results)
+	{
+		// Fallback to web format if there are no results or no format was provided
+		if( ! $results or ! isset($input['format']))
+			$input['format'] = 'web';
+
+		// Fallback to web format if formater method does not exist
+		$method = 'format' . ucfirst(strtolower($input['format']));
+		if( ! method_exists($this, $method))
+			$method = 'formatWeb';
+
+		// Delegate to corresponding method
+		return $this->$method($input, $results);
+	}
+
+	/**
+	 * Format report results for Web.
+	 *
+	 * @param  array
+	 * @param  mixed
 	 * @return Response
 	 */
-	protected function loadView($resultsFound = false)
+	public function formatWeb(array $input, $results)
 	{
 		// Set variables for the layout
 		$this->layout->title = $this->title;
 		$this->layout->offCanvasClass = $this->offCanvasClass;
 		$this->layout->action = Route::current()->getName().'.validate';
-		$this->layout->results = $resultsFound;
+		$this->layout->results = (bool) $results;
 
 		// Set variables for the view
+		if($results)
+		{
+			Assets::add('responsive-tables');
+			$this->setSubtitle($input);
+			$this->data['results'] = $results;
+		}
 		$this->data['labels'] = (object) $this->labels;
 		$this->data['subtitle'] = $this->subtitle();
 

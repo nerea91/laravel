@@ -15,6 +15,11 @@ class SampleReport extends ReportController implements ReportInterface
 	public function __construct()
 	{
 		// Add extra variables to the view
+		/*$this->data['formats'] = [
+			'web' => _('Web'),
+			'json' => _('Json'),
+			'xls' => _('Excel')
+		];*/
 		$this->data['group_by'] = [
 			'day' => _('Day'),
 			'week' => _('Week'),
@@ -29,12 +34,14 @@ class SampleReport extends ReportController implements ReportInterface
 			'reports.' . class_basename(__CLASS__),
 			// Form validation
 			[
+				//'format' => [_('Format'), 'in:'.implode(array_keys($this->data['formats']), ',')],
 				'date1' => [_('From date'), 'required|date'],
 				'date2' => [_('To date'), 'required|date'],
 				'group_by' => [_('Group by'), 'required|in:'.implode(array_keys($this->data['group_by']), ',')],
 			],
 			// Form default values
 			[
+				//'format' => 'web',
 				'date1' => Carbon::yesterday()->toDateString(),
 				'date2' => Carbon::now()->toDateString(),
 				'group_by' => 'week',

@@ -8,7 +8,6 @@
 		{ "type": "vcs", "url": "https://github.com/Stolz/Laravel-Foundation-Pagination" },
 		{ "type": "vcs", "url": "https://github.com/Stolz/container-debug" },
 		{ "type": "vcs", "url": "https://github.com/Stolz/laravel-backup" },
-		{ "type": "vcs", "url": "https://github.com/Stolz/laravel-oauth" },
 		{ "type": "vcs", "url": "https://github.com/Stolz/zurb-foundation-laravel" }
 	],
 	"require": {

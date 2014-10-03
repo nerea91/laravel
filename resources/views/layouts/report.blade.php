@@ -74,7 +74,7 @@ $(document).ready(function() {
 		$main.height($form.height());
 
 	@if($errors->any() or ! $results)
-	// Togle canvas in no results or errors
+	// Togle canvas if no results or errors
 	$offcanvas.toggleClass('move-right');
 	@endif
 

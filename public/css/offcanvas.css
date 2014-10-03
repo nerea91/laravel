@@ -12,6 +12,10 @@
 /* Fix horizontal scroll of form within off-canvas */
 .left-off-canvas-menu form,.right-off-canvas-menu form{margin:0 1em;}
 
+
+/* Fix horizontal scroll in off-canvas content */
+section.main-section{overflow-x:auto}
+
 /* Fix for form labels within off-canvas */
 .left-off-canvas-menu form label,.right-off-canvas-menu form  label{color: #EEE;}
 

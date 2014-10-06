@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11+0200\n"
+"POT-Creation-Date: 2014-10-06 11:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,9 +110,6 @@ msgid "Authorization condition failed"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
-
-msgid "Cancelled by user"
 msgstr ""
 
 msgid "Capital"
@@ -513,6 +510,9 @@ msgid "Showing only deleted resources"
 msgstr ""
 
 msgid "Site down for maintenance"
+msgstr ""
+
+msgid "Something went wrong"
 msgstr ""
 
 msgid "Something went wrong while we were processing your request"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11+0200\n"
+"POT-Creation-Date: 2014-10-06 11:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,9 +110,6 @@ msgstr "Ha fallado la condición de autorización"
 
 msgid "Cancel"
 msgstr "Cancelar"
-
-msgid "Cancelled by user"
-msgstr "Cancelado por el usuario"
 
 msgid "Capital"
 msgstr "Capital"
@@ -514,6 +511,9 @@ msgstr "Mostrando solo los borrados"
 msgid "Site down for maintenance"
 msgstr "Web parada por mantenimiento"
 
+msgid "Something went wrong"
+msgstr "Algo fue mal"
+
 msgid "Something went wrong while we were processing your request"
 msgstr "Algo ha ido mal al procesar tu petición"
 
@@ -848,3 +848,6 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
+
+#~ msgid "Cancelled by user"
+#~ msgstr "Cancelado por el usuario"

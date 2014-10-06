@@ -8,12 +8,13 @@ class LogServiceProvider extends ServiceProvider
 	/**
 	 * Configure the application's logging facilities.
 	 *
+	 * @param  Log  $log
 	 * @return void
 	 */
 	public function boot(Log $log)
 	{
-		$log->useFiles(storage_path().'/logs/laravel.log');
-
+		$log->useFiles(storage_path().'/laravel.log');
+		
 		// Add FirePHP Handler to Monolog
 		//Log::getMonolog()->pushHandler(new \Monolog\Handler\FirePHPHandler());
 	}

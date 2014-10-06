@@ -59,7 +59,7 @@ class ResourceController extends Controller
 	 */
 	public function __construct(Model $resource, array $permissions = array())
 	{
-		// Enable CSRF filter
+		// Setup layout
 		parent::__construct();
 
 		$this->resource = $resource;
@@ -77,23 +77,29 @@ class ResourceController extends Controller
 	 *
 	 * @return Response
 	 */
-	protected function index()
+	public function index()
 	{
 		// Paginate resource resutls
 		$results = $this->paginate();
 
 		// If results found add asset to make tables responsive
-		//$results->getTotal() and Assets::add('responsive-tables');
+		$results->getTotal() and Assets::add('responsive-tables');
 
 		// Create header links for sorting by column
 		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());
 
 		// Set the route for the return button
-		$return = replace_last_segment($this->prefix);
+		$returnRouteName = replace_last_segment($this->prefix);
 
+		// Add data to the view
+		$view = view('resource.index', compact(['results', 'links', 'returnRouteName']));
+
+		// Add data to the layout
 		$this->layout->title = $this->resource->plural();
-		$this->layout->subtitle = ($results->getLastPage() > 1) ? sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) : _('Index');
-		$this->layout->content = view('resource.index', compact('results', 'links', 'return'));
+		$this->layout->subtitle  = ($results->getLastPage() > 1) ? sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) : _('Index');
+
+		// Return layout + view
+		return $this->layout($view);
 	}
 
 	/**
@@ -264,7 +270,7 @@ class ResourceController extends Controller
 	}
 
 	/**
-	 * Set layout title and load view.
+	 * Set layout title and load resource view.
 	 *
 	 * @param  string   $view
 	 * @param  array    $labels
@@ -272,13 +278,17 @@ class ResourceController extends Controller
 	 */
 	protected function loadView($view, array $labels = null)
 	{
-		$data = [
-			'resource'	=> $this->resource,
-			'labels'	=> ($labels) ? (object) $labels : (object) $this->resource->getLabels(),
-		];
+		// Add data to the view
+		$view = view('resource.' . $view)->with([
+			'resource' => $this->resource,
+			'labels'   => ($labels) ? (object) $labels : (object) $this->resource->getLabels(),
+		]);
 
+		// Add data to the layout
 		$this->layout->title = $this->resource->singular();
-		$this->layout->content = view('resource.' . $view, $data);
+
+		// Return layout + view
+		return $this->layout($view);
 	}
 
 	/**

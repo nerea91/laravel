@@ -17,7 +17,7 @@ class UserPanelController extends Controller
 	 */
 	public function __construct()
 	{
-		// Enable CSRF filter
+		// Setup layout
 		parent::__construct();
 
 		View::share('user', $this->user = Auth::user());
@@ -30,9 +30,15 @@ class UserPanelController extends Controller
 	 */
 	public function showOptionsForm()
 	{
+		// Add data to the view
+		$view = view('userpanel.options')->withOptions($this->user->getAssignableOptions());
+
+		// Add data to the layout
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Options');
-		$this->layout->content = view('userpanel.options')->withOptions($this->user->getAssignableOptions());
+
+		// Return layout + view
+		return $this->layout($view);
 	}
 
 	/**
@@ -57,9 +63,12 @@ class UserPanelController extends Controller
 	 */
 	public function showChangePasswordForm()
 	{
+		// Add data to the layout
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Change password');
-		$this->layout->content = view('userpanel.password');
+
+		// Return layout + view
+		return $this->layout(view('userpanel.password'));
 	}
 
 	/**
@@ -112,9 +121,12 @@ class UserPanelController extends Controller
 	 */
 	public function showRegionalForm()
 	{
+		// Add data to the layout
 		$this->layout->title = _('User panel');
 		$this->layout->subtitle = _('Locale');
-		$this->layout->content = view('userpanel.regional');
+
+		// Return layout + view
+		return $this->layout(view('userpanel.regional'));
 	}
 
 	/**

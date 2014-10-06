@@ -1,34 +1,53 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as UpstreamController;
-use View;
+use Illuminate\View\View;
 
-class Controller extends UpstreamController
+class Controller
 {
 	/**
-	 * Common constructor for all our controllers
+	 * Common constructor for all our controllers.
 	 */
 	public function __construct()
 	{
-		// Enable CSRF for all controllers
-		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'patch', 'delete'));
-
 		// Setup the layout used by the controller
-		if ( ! is_null($this->layout))
-		{
-			$this->layout = view($this->layout);
-		}
+		$this->setupLayout();
 	}
 
 	/**
-	 * Execute an action on the controller.
+	 * Setup the layout used by the controller.
 	 *
-	 * @param  string  $method
-	 * @param  array   $parameters
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @param  string $layout
+	 * @return Controller
 	 */
-	public function callAction($method, $parameters)
+	public function setupLayout($layout = null)
 	{
-		return (call_user_func_array(array($this, $method), $parameters)) ?: $this->layout;
+		$this->layout = view(($layout) ?: $this->layout);
+
+		return $this;
+	}
+
+	/**
+	 * Attach view to layout.
+	 *
+	 * @param  string  $view
+	 * @param  array   $data
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @throws \InvalidArgumentException
+	 */
+	public function layout(View $view, array $data = [])
+	{
+		// Sanity check
+		if(array_key_exists('content', $data))
+			throw new \InvalidArgumentException('Content keyword is reserved');
+
+		// Add optional data to the layout
+		foreach($data as $key => $value)
+			$this->layout->$key = $value;
+
+		// Attach view to layout
+		$this->layout->content = $view;
+
+		// Return controller layout
+		return $this->layout;
 	}
 }

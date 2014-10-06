@@ -21,11 +21,16 @@ class AdminController extends Controller
 	public function showAdminPage()
 	{
 		// Get results from previous search
-		View::share('search_results', Cache::get('adminSearchResults' . Auth::user()->getKey(), false));
+		$searchResults = Cache::get('adminSearchResults' . Auth::user()->getKey(), false);
 
-		$this->layout->title = _('Admin panel');
-		$this->layout->subtitle = _('Search');
-		$this->layout->content = view('admin.search');
+		// Add data to the view
+		$view = view('admin.search')->withSearchResults($searchResults);
+
+		// Add data to the layout
+		$this->layout->withTitle(_('Admin panel'))->withSubtitle(_('Search'));
+
+		// Return layout + view
+		return $this->layout($view);
 	}
 
 	/**

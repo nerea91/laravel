@@ -23,8 +23,14 @@ class AuthController extends Controller
 	 */
 	public function showLoginForm()
 	{
+		// Add data to the layout
 		$this->layout->title = _('Login');
-		$this->layout->content = view('home.login')->withProviders(AuthProvider::getUsable());
+
+		// Add data to the view
+		$view = view('home.login')->withProviders(AuthProvider::getUsable());
+
+		// Return layout + view
+		return $this->layout($view);
 	}
 
 	/**

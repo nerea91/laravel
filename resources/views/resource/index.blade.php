@@ -15,7 +15,7 @@
 @endif
 
 <div class="text-center">
-	{!! link_to_route($return, _('Return'), [], ['class' => 'secondary button']) !!}
+	{!! link_to_route($returnRouteName, _('Return'), [], ['class' => 'secondary button']) !!}
 
 	@if ($add)
 	&nbsp;{!! link_to_route("$prefix.create", _('Create'), [], ['class' => 'success button']) !!}

@@ -16,8 +16,11 @@ class HomeController extends Controller
 	 */
 	public function showMainPage()
 	{
-		$this->layout->title = $title = _('Home');
-		$this->layout->content = view('home.home')->withTitle($title);
+		// Add data to the layout
+		$this->layout->title = _('Home');
+
+		// Return layout + view
+		return $this->layout(view('home.home'));
 	}
 
 	/**
@@ -27,8 +30,11 @@ class HomeController extends Controller
 	 */
 	public function showContactForm()
 	{
+		// Add data to the layout
 		$this->layout->title = _('Contact us');
-		$this->layout->content = view('home.contact');
+
+		// Return layout + view
+		return $this->layout(view('home.contact'));
 	}
 
 	/**

@@ -18,6 +18,9 @@ class RouteServiceProvider extends ServiceProvider
 	public function before(Router $router, UrlGenerator $url)
 	{
 		$url->setRootControllerNamespace('App\Http\Controllers');
+
+		// Enable CSRF for all routes on relevant HTTP verbs
+		$router->when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 	}
 
 	/**

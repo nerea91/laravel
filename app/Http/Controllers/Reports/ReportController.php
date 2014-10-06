@@ -78,7 +78,7 @@ abstract class ReportController extends Controller
 	 */
 	public function __construct($title, $view, array $fields, array $input, $offCanvasClass = null)
 	{
-		// Enable CSRF filter
+		// Setup layout
 		parent::__construct();
 
 		$this->title = $title;
@@ -196,7 +196,7 @@ abstract class ReportController extends Controller
 		$this->data['labels'] = (object) $this->labels;
 		$this->data['subtitle'] = $this->subtitle();
 
-		// Load view
-		$this->layout->content = view($this->view, $this->data);
+		// Return layout + view
+		return $this->layout(view($this->view, $this->data));
 	}
 }

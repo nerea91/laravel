@@ -1,7 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-
 class Controller
 {
 	/**
@@ -31,10 +29,10 @@ class Controller
 	 *
 	 * @param  string  $view
 	 * @param  array   $data
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @return \Illuminate\View\View
 	 * @throws \InvalidArgumentException
 	 */
-	public function layout(View $view, array $data = [])
+	public function layout(\Illuminate\View\View $view, array $data = [])
 	{
 		// Sanity check
 		if(array_key_exists('content', $data))

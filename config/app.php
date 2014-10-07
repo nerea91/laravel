@@ -204,7 +204,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-		// Laravel Facades  not included in the default framework installation
+		// Laravel Facades not included in the default framework installation
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'HTML'      => 'Illuminate\Html\HtmlFacade',
 		'SSH'       => 'Illuminate\Remote\RemoteFacade',

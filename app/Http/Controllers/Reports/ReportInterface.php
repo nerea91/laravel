@@ -20,7 +20,7 @@ interface ReportInterface
 	 * Set report subtitle.
 	 *
 	 * @param  array
-	 * @return void
+	 * @return ReportInterface
 	 */
 	public function setSubtitle(array $data = []);
 

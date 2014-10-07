@@ -55,7 +55,7 @@ class SampleReport extends ReportController implements ReportInterface
 	 * Set report subtitle.
 	 *
 	 * @param  array
-	 * @return void
+	 * @return SampleReport
 	 */
 	public function setSubtitle(array $data = [])
 	{
@@ -65,6 +65,8 @@ class SampleReport extends ReportController implements ReportInterface
 			$data['date2'],
 			strtolower($this->data['group_by'][$data['group_by']])
 		);
+
+		return $this;
 	}
 
 	/**

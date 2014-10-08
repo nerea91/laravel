@@ -10,7 +10,7 @@ if(typeof $ != 'undefined') {
 		{
 			$doc.foundation();
 
-			$('form').submit(function() {
+			$('form').not('.nospinner').submit(function() {
 				$(':input[type=submit]', $(this)).prop("disabled", true);
 				$(this).append('<div class="slideshow-wrapper"><div class="preloader"></div></div>');
 				return true;

@@ -1,6 +1,6 @@
 <?php namespace App\Console;
 
-use App\user;
+use App\User;
 use Auth;
 use Hash;
 use Illuminate\Console\Command;

@@ -200,7 +200,6 @@ class Validator extends UpstreamValidator
 		return $verifier->getCount($table, $column, $value, $ignore_id, null, $extra) == 0;
 	}
 
-
 	/**
 	 * Validate a n-tuple of hexadecimal characters.
 	 *

@@ -83,8 +83,9 @@ abstract class ReportController extends Controller
 
 		$this->title = $title;
 		$this->view = $view;
-		$this->defaultInput = $input;
 		list($this->labels, $this->rules) = \App\Validation\Validator::parseRules($fields);
+		$input['referer'] = Route::currentRouteName();
+		$this->defaultInput = $input;
 		$this->offCanvasClass = $offCanvasClass;
 	}
 
@@ -136,7 +137,7 @@ abstract class ReportController extends Controller
 			return $this->format([], false);
 
 		// If it's the first time the report is loaded then flash default input
-		if( ! Input::old())
+		if(Input::old('referer') !== Route::currentRouteName())
 			Session::flashInput($this->defaultInput);
 
 		// Get report results

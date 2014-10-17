@@ -200,6 +200,26 @@ class Validator extends UpstreamValidator
 		return $verifier->getCount($table, $column, $value, $ignore_id, null, $extra) == 0;
 	}
 
+
+	/**
+	 * Validate a n-tuple of hexadecimal characters.
+	 *
+	 * i.e: To validate A1B2-C3D4-E5F6-A1B2-C3D4-E5F6 use rule hex_tuple:4,6
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @param  array   $parameters First paramer is number of characters per element, second is number of elements. (aka the 'n' from the n-tuple).
+	 * @return bool
+	 */
+	public function validateHexTuple($attribute, $value, $parameters)
+	{
+		list($charactersPerGroup, $numberOfGroups) = $parameters;
+
+		$regex = implode('-', array_fill(0, $numberOfGroups, "[a-f0-9]{{$charactersPerGroup}}"));
+
+		return preg_match("/^[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}$/i", $value);
+	}
+
 	/**
 	 * Replace all place-holders for the above rules.
 	 *
@@ -232,29 +252,40 @@ class Validator extends UpstreamValidator
 
 		return str_replace(':fields', $fields, $message);
 	}
+	protected function replaceHexTuple($message, $attribute, $rule, $parameters)
+	{
+		list($charactersPerGroup, $numberOfGroups) = $parameters;
+
+		$sample = implode('-', array_fill(0, $numberOfGroups, str_repeat('F', $charactersPerGroup)));
+		$message = str_replace(':n', $numberOfGroups, $message);
+		$message = str_replace(':characters', $charactersPerGroup, $message);
+		$message = str_replace(':sample', $sample, $message);
+
+		return $message;
+	}
 
 	/**
 	 * Parse validation rules in compact format.
 	 *
 	 * Converts:
 	 *
-	 		[
-	 			'field1' => ['Label1', 'rule1|rule11'],
-	 			'field2' => ['Label2', ['rule2','rule22']],
-	 		];
-
+	 *		[
+	 *			'field1' => ['Label1', 'rule1|rule11'],
+	 *			'field2' => ['Label2', ['rule2','rule22']],
+	 *		];
+	 *
 	 * To:
-
-	 		[
-	 			'labels' => [
-	 				'field1' => 'Label1',
-					'field2' => 'Label2',
-				],
-				'rules' => [
-					'field1' => ['rule1', 'rule11'],
-					'field2' => ['rule2', 'rule22'],
-				]
-			];
+	 *
+	 *		[
+	 *			'labels' => [
+	 *				'field1' => 'Label1',
+	 *				'field2' => 'Label2',
+	 *			],
+	 *			'rules' => [
+	 *				'field1' => ['rule1', 'rule11'],
+	 *				'field2' => ['rule2', 'rule22'],
+	 *			]
+	 *		];
 	 *
 	 * @param  array
 	 * @return array

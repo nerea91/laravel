@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-06 11:34+0200\n"
+"POT-Creation-Date: 2014-10-17 14:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -627,6 +627,9 @@ msgstr ":attribute debe ser de :size kilobytes."
 
 msgid "The :attribute must be :size."
 msgstr ":attribute debe ser de tamaño :size."
+
+msgid "The :attribute must be a :n-tuple of hexadecimal characters with :characters characters per group. i.e.: :sample"
+msgstr ":attribute debe ser una :n-tupla de caracteres hexadecimales con :characters caracteres por groupo. ejemplo: :sample"
 
 msgid "The :attribute must be a date after :date."
 msgstr ":attribute debe ser una fecha posterior a :date."

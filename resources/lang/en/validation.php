@@ -82,6 +82,7 @@ return [
 	"max_length"           => _("The :attribute must be less than :length characters."),
 	"min_length"           => _("The :attribute must be at least :length characters."),
 	'unique_with'          => _("This combination of :fields already exists."),
+	"hex_tuple"            => _("The :attribute must be a :n-tuple of hexadecimal characters with :characters characters per group. i.e.: :sample"),
 
 
 	/*

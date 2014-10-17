@@ -217,7 +217,7 @@ class Validator extends UpstreamValidator
 
 		$regex = implode('-', array_fill(0, $numberOfGroups, "[a-f0-9]{{$charactersPerGroup}}"));
 
-		return preg_match("/^[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}$/i", $value);
+		return preg_match("/^$regex$/i", $value);
 	}
 
 	/**

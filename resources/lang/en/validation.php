@@ -74,6 +74,7 @@ return [
 	"url"                  => _("The :attribute format is invalid."),
 	"timezone"             => _("The :attribute must be a valid zone."),
 
+	// Custom rules
 	"alpha_space"          => _("The :attribute may only contain letters and spaces."),
 	"alpha_dash_space"     => _("The :attribute may only contain letters, numbers, dashes and spaces."),
 	"alpha_num_space"      => _("The :attribute may only contain letters, numbers and spaces."),
@@ -83,6 +84,7 @@ return [
 	"min_length"           => _("The :attribute must be at least :length characters."),
 	'unique_with'          => _("This combination of :fields already exists."),
 	"hex_tuple"            => _("The :attribute must be a :n-tuple of hexadecimal characters with :characters characters per group. i.e.: :sample"),
+	"time"                 => _("The :attribute must be a valid 24h time."),
 
 
 	/*

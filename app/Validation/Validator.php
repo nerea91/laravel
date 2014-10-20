@@ -201,6 +201,18 @@ class Validator extends UpstreamValidator
 	}
 
 	/**
+	 * Validate a 24h time with optional leading zeros and optional seconds.
+	 *
+	 * @param  string  $attribute
+	 * @param  mixed   $value
+	 * @return bool
+	 */
+	protected function validateTime($attribute, $value)
+	{
+		return preg_match('/(2[0-3]|[0-1]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?/', $value);
+	}
+
+	/**
 	 * Validate a n-tuple of hexadecimal characters.
 	 *
 	 * i.e: To validate A1B2-C3D4-E5F6-A1B2-C3D4-E5F6 use rule hex_tuple:4,6

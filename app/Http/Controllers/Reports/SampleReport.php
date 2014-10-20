@@ -54,7 +54,7 @@ class SampleReport extends ReportController implements ReportInterface
 	/**
 	 * Set report subtitle.
 	 *
-	 * @param  array
+	 * @param  array $data
 	 * @return SampleReport
 	 */
 	public function setSubtitle(array $data = [])

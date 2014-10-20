@@ -151,8 +151,8 @@ abstract class ReportController extends Controller
 	 *
 	 * If the is no formatter for provided format fallbacks to web.
 	 *
-	 * @param  array
-	 * @param  mixed
+	 * @param  array $input
+	 * @param  mixed $results
 	 * @return Response
 	 * @throws
 	 */
@@ -174,8 +174,8 @@ abstract class ReportController extends Controller
 	/**
 	 * Format report results for Web.
 	 *
-	 * @param  array
-	 * @param  mixed
+	 * @param  array $input
+	 * @param  mixed $results
 	 * @return Response
 	 */
 	public function formatWeb(array $input, $results)

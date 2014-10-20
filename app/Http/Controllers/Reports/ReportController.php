@@ -149,7 +149,7 @@ abstract class ReportController extends Controller
 	/**
 	 * Format report results.
 	 *
-	 * If the is no formater for provided format fallbacks to web.
+	 * If the is no formatter for provided format fallbacks to web.
 	 *
 	 * @param  array
 	 * @param  mixed
@@ -162,7 +162,7 @@ abstract class ReportController extends Controller
 		if( ! $results or ! isset($input['format']))
 			$input['format'] = 'web';
 
-		// Fallback to web format if formater method does not exist
+		// Fallback to web format if formatter method does not exist
 		$method = 'format' . ucfirst(strtolower($input['format']));
 		if( ! method_exists($this, $method))
 			$method = 'formatWeb';

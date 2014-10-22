@@ -23,7 +23,7 @@ class ErrorServiceProvider extends ServiceProvider
 		// exceptions. If nothing is returned, the default error view is
 		// shown, which includes a detailed stack trace during debug.
 		$handler->error(function(Exception $e) use ($log) {
-			
+
 			// Add exception to log file
 			$log->error($e);
 
@@ -32,9 +32,10 @@ class ErrorServiceProvider extends ServiceProvider
 				return;
 
 			// Otherwise load a custom view deppending on the error code
+			$code = ($e->getCode()) ?: 500; //to-do Workaround debido a que el nuevo error handler de Laravel no informa del codigo HTTP en la excepcion.
 			$data = [
 				'title'  => _('Error')." $code",
-				'header' => $exception->getMessage(),
+				'header' => $e->getMessage(),
 				'code'   => $code
 			];
 

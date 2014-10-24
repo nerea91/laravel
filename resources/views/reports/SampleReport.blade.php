@@ -53,3 +53,18 @@
 
 @stop
 @endif
+
+
+@section('js')
+@parent
+<script>
+$(document).ready(function() {
+
+	{{-- JS datepicker --}}
+	<?php Assets::add('datepicker'); ?>
+	@include('reports.datepicker', ['selector' => '#date1']);
+	@include('reports.datepicker', ['selector' => '#date2']);
+
+});
+</script>
+@stop

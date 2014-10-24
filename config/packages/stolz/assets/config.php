@@ -40,6 +40,12 @@ return [
 		'flags-sprite-16px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css'],
 		'flags-sprite-32px' => ['//cloud.github.com/downloads/lafeber/world-flags-sprite/flags21.css'],
 
+		// Zurb Foundation datepicker https://github.com/najlepsiwebdesigner/foundation-datepicker
+		'datepicker' => [
+			'peterbeno/datepicker:datepicker.css',
+			'peterbeno/datepicker:/datepicker.js'
+		],
+
 		// PHP debugbar https://github.com/barryvdh/laravel-debugbar
 		'debugbar' => ['debugbar.css', 'debugbar.js'],
 

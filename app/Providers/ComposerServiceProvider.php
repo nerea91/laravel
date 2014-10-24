@@ -17,7 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
 			'\App\Composers\AdminPanelMenuComposer' => 'admin/top-bar',
 			'\App\Composers\SimilarProfilesComposer' => 'admin.users.fields',
 			'\App\Composers\DebugBarComposer' => 'layouts.base',
-			'\App\Composers\ApplicationLanguageComposer' => ['layouts.base', 'layouts.master'],
+			'\App\Composers\ApplicationLanguageComposer' => ['layouts.base', 'layouts.master', 'reports.datepicker'],
 			'\App\Composers\MasterMenuComposer' => 'layouts.master',
 			'\App\Composers\ReportsMenuComposer' => 'reports.top-bar',
 		]);

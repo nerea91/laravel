@@ -26,6 +26,7 @@ class ArtisanServiceProvider extends ServiceProvider
 			'App\Console\SetupCurrenciesCommand',
 			'App\Console\SetupLanguagesCommand',
 			'App\Console\SetupSuperUserCommand',
+			'App\Console\SyncDatabaseMetaTablesCommand',
 		]);
 	}
 

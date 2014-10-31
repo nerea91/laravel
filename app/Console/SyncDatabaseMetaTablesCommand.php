@@ -14,6 +14,7 @@ class SyncDatabaseMetaTablesCommand extends Command
 	 */
 	protected $tables = [
 		// Table          => Primary key
+		'options'         => 'name',
 		'permissiontypes' => 'id',
 		'permissions'     => 'id',
 	];

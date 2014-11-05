@@ -3,15 +3,20 @@
 /* to-do set your own details */
 
 /* TEAM */
-Company: Your Company
-Developer: Javi
-Email: you@example.com
-Twitter: @Stolz
+Developer: Javi (Twitter: @Stolz).
+Sysadmin: Javi (Twitter: @Stolz).
+Company: Your Company.
 Location: Valencia, Spain.
 
 /* SITE */
-Last update: 2013/09/23
+Languages: English and Spanish.
 Standards: HTML5, CSS3.
-IDE: Kate (KDE Editor).
-Revision control: Git.
-Powered by: Gentoo Linux, Nginx and MySQL.
+Last update: 2014/11/30.
+
+/* THANKS TO */
+Gentoo Linux.
+Kate (KDE Editor).
+Git.
+PHP and Composer.
+Nginx.
+MySQL.

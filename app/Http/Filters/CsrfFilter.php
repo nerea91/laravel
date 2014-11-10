@@ -17,7 +17,7 @@ class CsrfFilter
 	 */
 	public function filter(Route $route, Request $request)
 	{
-		if ($request->getSession()->token() != $request->input('_token'))
+		if ($request->getSession()->token() !== $request->input('_token'))
 		{
 			throw new TokenMismatchException;
 		}

@@ -59,10 +59,13 @@ class SampleReport extends ReportController implements ReportInterface
 	 */
 	public function setSubtitle(array $data = [])
 	{
+		$date1 = new Carbon($data['date1']);
+		$date2 = new Carbon($data['date2']);
+
 		$this->subtitle = sprintf(
 			_('Results between %s and %s grouped by %s'),
-			$data['date1'],
-			$data['date2'],
+			$date1->formatLocalized('%A %d %B %Y'),
+			$date2->formatLocalized('%A %d %B %Y'),
 			strtolower($this->data['group_by'][$data['group_by']])
 		);
 

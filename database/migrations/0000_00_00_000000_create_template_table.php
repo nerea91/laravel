@@ -124,7 +124,7 @@ class CreateTemplateTable extends Migration
 		$table->dateTime('column_name');
 	}
 
-	/* Other available methods penddinf to add to this template:
+	/* Other available methods pendding to add to this template:
 	binary('column');
 	dropColumn('column');
 	dropForeign($index);

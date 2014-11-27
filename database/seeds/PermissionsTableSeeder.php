@@ -50,6 +50,12 @@ class PermissionsTableSeeder extends Seeder
 			['id' => 122, 'type_id' => 7, 'name' => _('Edit')],
 			['id' => 123, 'type_id' => 7, 'name' => _('Delete')],
 
+			// Documents (Reserved range: 140-159)
+			['id' => 140, 'type_id' => 8, 'name' => _('View')],
+			['id' => 141, 'type_id' => 8, 'name' => _('Add')],
+			['id' => 142, 'type_id' => 8, 'name' => _('Edit')],
+			['id' => 143, 'type_id' => 8, 'name' => _('Delete')],
+
 		];
 
 		DB::table('permissions')->insert($permissions);

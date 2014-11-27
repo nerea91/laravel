@@ -57,6 +57,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 				'authproviders' => 'Admin\AuthProvidersController',
 				'countries' => 'Admin\CountriesController',
 				'currencies' => 'Admin\CurrenciesController',
+				'documents' => 'Admin\DocumentsController',
 				'languages' => 'Admin\LanguagesController',
 				'profiles' => 'Admin\ProfilesController',
 				'users' => 'Admin\UsersController',

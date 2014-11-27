@@ -113,6 +113,17 @@ return [
 		'admin.currencies.destroy' => 123,
 		'admin.currencies.restore' => 123,
 		'admin.currencies.trash.mode' => 123,
+
+		// Documents
+		'admin.documents.index' => 140,
+		'admin.documents.show' => 140,
+		'admin.documents.create' => 141,
+		'admin.documents.store' => 141,
+		'admin.documents.edit' => 142,
+		'admin.documents.update' => 142,
+		'admin.documents.destroy' => 143,
+		'admin.documents.restore' => 143,
+		'admin.documents.trash.mode' => 143,
 	],
 
 ];

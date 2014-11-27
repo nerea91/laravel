@@ -14,6 +14,7 @@ class PermissionTypesTableSeeder extends Seeder
 			['id' => 5, 'name' => _('Authentication providers')],
 			['id' => 6, 'name' => _('Accounts')],
 			['id' => 7, 'name' => _('Currencies')],
+			['id' => 8, 'name' => _('Documents')],
 		];
 
 		DB::table('permissiontypes')->insert($types);

@@ -63,6 +63,7 @@ class AdminController extends Controller
 				80 => 'AuthProvider',
 				100 => 'Account',
 				120 => 'Currency',
+				140 => 'Document',
 			];
 
 			// Perform search for all searchable models

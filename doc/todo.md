@@ -5,7 +5,6 @@
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
 - In user panel add a seccion to show user accounts (other than native) and allow to revoke access.
 - When all packages are migrated to Laravel 5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
-- Migrar el Manual.html
 - Check the new artisan stuff:
   auth:controller              Create a stub authentication controller
   auth:login-request           Create a stub login form request

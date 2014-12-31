@@ -62,6 +62,11 @@ class Country extends Model
 
 	// Relationships ===============================================================
 
+	public function accounts()
+	{
+		return $this->hasManyThrough('App\Account', 'App\User');
+	}
+
 	public function currency()
 	{
 		return $this->belongsTo('App\Currency')->withTrashed();

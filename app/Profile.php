@@ -56,6 +56,11 @@ class Profile extends Model
 
 	// Relationships ===============================================================
 
+	public function accounts()
+	{
+		return $this->hasManyThrough('App\Account', 'App\User');
+	}
+
 	public function permissions()
 	{
 		return $this->belongsToMany('App\Permission');

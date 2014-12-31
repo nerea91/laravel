@@ -94,7 +94,7 @@ Route::group(array('https', 'before' => 'auth'), function () {
 Route::get('test', array('before' => 'env:local', function () {
 
 	// Define some variables
-	$user = \App\User::first()->toArray();
+	$user = App\Profile::findOrFail(1)->accounts->toArray();
 	$language = \App\Language::first()->toArray();
 
 	// Choose which ones of the above will be shown

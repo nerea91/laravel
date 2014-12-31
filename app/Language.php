@@ -63,6 +63,11 @@ class Language extends Model
 
 	// Relationships ===============================================================
 
+	public function accounts()
+	{
+		return $this->hasManyThrough('App\Account', 'App\User');
+	}
+
 	public function users()
 	{
 		return $this->hasMany('App\User');

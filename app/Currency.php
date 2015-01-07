@@ -69,6 +69,11 @@ class Currency extends Model
 		return $this->hasMany('App\Country');
 	}
 
+	public function users()
+	{
+		return $this->hasManyThrough('App\User', 'App\Country');
+	}
+
 	// Events ======================================================================
 
 	// Accessors / Mutators ========================================================

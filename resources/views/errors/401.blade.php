@@ -2,7 +2,7 @@
 
 @section('problem-description')
 <p>
-{{ _("Your user is not authorized to access this secion") }}.
+{{ _("Your user is not authorized to access this section") }}.
 {{ _("If you think this may be an error please contact the site admin") }}.
 </p>
 

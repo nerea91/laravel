@@ -1619,7 +1619,23 @@ $comments = Post::find(1)-&gt;comments()-&gt;where('title', '=', 'foo')-&gt;firs
 
 <h4>Relaciones varios a través</h4>
 
-<p>Es un atajo para acceder a una relación distante a través de una relación intermedia. Por ejemplo, dados estas relaciones:</p>
+<p>Es un atajo para acceder a una relación distante a través de una relación intermedia. Si tenemos las relaciones <code>A hasMany B</code> y <code>B hasMany C</code> podemos definir la relación <code>A hasMany C Through B</code> así:</p>
+
+<pre><code>class A extends Eloquent
+{
+    public function cs()
+    {
+        return $this-&gt;hasManyThrough('C', 'B');
+    }
+}
+</code></pre>
+
+<p>Si el nombre de las claves ajenas no es estandar podemos indicarlos con</p>
+
+<pre><code>return $this-&gt;hasManyThrough('C', 'B', 'a_id', 'b_id');
+</code></pre>
+
+<p>Por ejemplo, supongamos que un país tiene varios usuarios y un usuario tiene varios posts. La base de datos que define estas relaciones sería:</p>
 
 <pre><code>countries
     id - integer

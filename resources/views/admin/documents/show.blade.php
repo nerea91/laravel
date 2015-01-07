@@ -1,17 +1,6 @@
-<dl>
-	@foreach ($labels as $field => $label)
-		@if ( ! is_null($resource->{$field}))
-			<dt>{{ $label }}</dt>
-			<dd>{{ $resource->{$field} }}</dd>
-		@endif
-	@endforeach
+<h3>{{ _('Profiles') }}</h3>
+{{enum($resource->profiles->lists('name'))}}
 
-	@if($viewAccount)
-		<dt>{{ _('Accounts') }}</dt>
-		<dd>{{ $resource->accounts->count() }}</dd>
-	@endif
+<h2>{{ $resource->title }}</h2>
 
-	<dt>{{ _('Last update') }}</dt>
-	<dd>{{ $resource->lastUpdate() }}</dd>
-	<dd>{{ $resource->lastUpdateDiff() }}</dd>
-</dl>
+<pre>{{ $resource->body }}</pre> {{-- to-do procesar con markdown --}}

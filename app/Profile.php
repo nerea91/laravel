@@ -61,6 +61,11 @@ class Profile extends Model
 		return $this->hasManyThrough('App\Account', 'App\User');
 	}
 
+	public function documents()
+	{
+		return $this->belongsToMany('App\Document');
+	}
+
 	public function permissions()
 	{
 		return $this->belongsToMany('App\Permission');

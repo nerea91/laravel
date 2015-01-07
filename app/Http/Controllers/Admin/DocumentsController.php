@@ -33,5 +33,10 @@ class DocumentsController extends ResourceController
 		];
 
 		parent::__construct($resource, $permissions);
+
+		// Relationships to validate when saving resource
+		$this->relationships = [
+			'profiles' => [_('Profiles'), 'required|array|min:1'],
+		];
 	}
 }

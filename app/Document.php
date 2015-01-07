@@ -53,7 +53,10 @@ class Document extends Model
 
 	// Relationships ===============================================================
 
-	//to-do N-M con profile
+	public function profiles()
+	{
+		return $this->belongsToMany('App\Profile');
+	}
 
 	// Events ======================================================================
 

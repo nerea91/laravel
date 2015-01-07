@@ -19,7 +19,7 @@ class CreateDocumentsTable extends Migration
 			$table->increments('id');
 
 			// Ordinary columns
-			$table->string('title', $length = 255)->unique();
+			$table->string('title')->unique();
 			$table->longText('body');
 
 			// Automatic columns

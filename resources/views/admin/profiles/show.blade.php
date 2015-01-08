@@ -10,12 +10,12 @@
 
 	<dt>{{ _('Permissions') }}</dt>
 	@foreach ($resource->getPermissionsGroupedByType(true) as $type => $array)
-	<dd>{{ $type }}: <i>{{ implode(', ', $array) }}.</i></dd>
+	<dd>{{ _($type) }}: <i>{{ enum(array_map('gettext', $array)) }}.</i></dd>
 	@endforeach
 
 	@if ($viewUser and $resource->users->count())
 	<dt>{{ _('Users') }}</dt>
-	<dd>{{ $resource->users->sortBy('username')->implode('username', ', ') }}</dd>
+	<dd>{{ enum($resource->users->sortBy('username')->lists('username')) }}</dd>
 	@endif
 
 	<dt>{{ _('Last update') }}</dt>

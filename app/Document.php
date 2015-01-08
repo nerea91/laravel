@@ -60,6 +60,27 @@ class Document extends Model
 
 	// Events ======================================================================
 
+	public static function boot()
+	{
+		// NOTE saving   -> creating -> created   -> saved
+		// NOTE saving   -> updating -> updated   -> saved
+		// NOTE deleting -> deleted  -> restoring -> restored
+
+		parent::boot(); // Validate the model
+
+		static::saved(function ($doc) {
+			Profile::purgeDocumentsCache();
+		});
+
+		static::deleted(function ($doc) {
+			Profile::purgeDocumentsCache();
+		});
+
+		static::restored(function ($doc) {
+			Profile::purgeDocumentsCache();
+		});
+	}
+
 	// Accessors / Mutators ========================================================
 
 	// Static Methods ==============================================================

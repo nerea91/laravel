@@ -89,6 +89,9 @@ Route::group(array('https', 'before' => 'auth'), function () {
 
 	});
 
+	// Documents area
+	Route::get('document/{id}/{title?}', array('as' => 'document', 'uses' => 'DocumentController@show'));
+
 });
 
 // Route for testings purposes, only available on local environment

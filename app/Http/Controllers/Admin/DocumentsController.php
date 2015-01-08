@@ -29,7 +29,7 @@ class DocumentsController extends ResourceController
 			'edit'        => $user->hasPermission(142),
 			'delete'      => $user->hasPermission(143),
 			// Relationships
-			'viewProfile' => $user->hasPermission(40),
+			'viewProfile' => $user->hasPermission(40) and $this->with[] = 'profiles',
 		];
 
 		parent::__construct($resource, $permissions);

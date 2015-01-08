@@ -45,8 +45,9 @@ class AdminPanelMenuComposer
 				$countries,
 				$currencies,
 			]),
-			new Node(_('System'), [
+			new Node(_('Documents'), [
 				$documents,
+				$documentsList,
 			])
 		]);
 	}
@@ -96,11 +97,16 @@ class AdminPanelMenuComposer
 			$currencies->addChild(new Link(route('admin.currencies.create'), _('Add')));
 
 		// Section: Documents
-		$documents = new Node(_('Documents'));
+		$documents = new Node(_('Manage'));
 		if($user->hasPermission(140))
 			$documents->addChild(new Link(route('admin.documents.index'), _('Index')));
 		if($user->hasPermission(141))
 			$documents->addChild(new Link(route('admin.documents.create'), _('Add')));
+
+		// Section: DocumentsList
+		$documentsList = new Flat(_('Read'));
+		foreach($user->profile->getDocuments() as $id => $title)
+			$documentsList->addChild(new Link(route('document', ['id' => $id, 'title' => $title]), $title));
 
 		// Section: Languages
 		$languages = new Flat(_('Languages'));
@@ -130,7 +136,7 @@ class AdminPanelMenuComposer
 		if($user->hasPermission(61))
 			$users->addChild(new Link(route('admin.users.create'), _('Add')));
 
-		return compact('accounts', 'countries', 'currencies', 'documents', 'languages', 'profiles', 'providers', 'users');
+		return compact('accounts', 'countries', 'currencies', 'documents', 'documentsList', 'languages', 'profiles', 'providers', 'users');
 	}
 
 	/**

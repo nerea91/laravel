@@ -23,3 +23,7 @@ App\PermissionType@scopeUsed
 App\Profile@getPermissions
 
 	profile{$this->id}permissions
+
+App\Profile@getDocuments
+
+	profile{$this->id}documents

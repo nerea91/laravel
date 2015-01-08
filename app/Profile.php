@@ -92,8 +92,9 @@ class Profile extends Model
 		});
 
 		static::deleted(function ($profile) {
-			// Purge permissions cache
+			// Purge permissions and documents cache
 			Cache::forget("profile{$profile->id}permissions");
+			Cache::forget("profile{$profile->id}documents");
 		});
 	}
 
@@ -153,6 +154,20 @@ class Profile extends Model
 		}
 
 		return false;
+	}
+
+	/**
+	 * Purge documents cache for all profiles.
+	 *
+	 * @return integer number of cleared cache files
+	 */
+	public static function purgeDocumentsCache()
+	{
+		with($all = self::all())->each(function ($profile) {
+			Cache::forget("profile{$profile->id}documents");
+		});
+
+		return $all->count();
 	}
 
 	// Logic =======================================================================
@@ -279,5 +294,33 @@ class Profile extends Model
 
 		// Invert condition
 		return ($excludedProfiles) ? self::whereNotIn('id', array_fetch($excludedProfiles, 'profile_id'))->get() : self::all();
+	}
+
+	/**
+	 * Get list of documents of this profile
+	 *
+	 * @return array
+	 */
+	public function getDocuments()
+	{
+		return Cache::rememberForever("profile{$this->id}documents", function() {
+			$documents = [];
+			$this->documents()->get(['title'])->each(function ($doc) use (&$documents) {
+				$documents[$doc->pivot->document_id] = $doc->title;
+			});
+
+			return $documents;
+		});
+	}
+
+	/**
+	 * Check if profile has the provided document
+	 *
+	 * @param  App\Document
+	 * @return bool
+	 */
+	public function hasDocument(Document $document)
+	{
+		return array_key_exists($document->id, $this->getDocuments());
 	}
 }

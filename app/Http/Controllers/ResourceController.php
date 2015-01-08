@@ -348,7 +348,7 @@ class ResourceController extends Controller
 			$trashMode = Session::get("{$this->prefix}.trash.mode");
 			switch($trashMode)
 			{
-				case 'deleted':
+				case 'trashed':
 					$resource = $resource->onlyTrashed();
 					break;
 

@@ -142,6 +142,7 @@ return [
 		 * Packages Service Providers...
 		 */
 		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
+		'GrahamCampbell\Markdown\MarkdownServiceProvider', //https://github.com/GrahamCampbell/Laravel-Markdown
 		'Schickling\Backup\BackupServiceProvider', //https://github.com/schickling/laravel-backup
 		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
 		'Stolz\LaravelFormBuilder\ServiceProvider', //https://github.com/Stolz/laravel-form-builder

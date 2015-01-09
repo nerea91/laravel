@@ -1,6 +1,5 @@
 # Pending tasks
 
-- Create a Git hook for checking code quiality before each push
 - On production enable route:cache (add it to composer.josn scripts?)
 - For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
 - In user panel add a seccion to show user accounts (other than native) and allow to revoke access.

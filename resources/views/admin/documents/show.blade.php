@@ -2,4 +2,4 @@
 {{enum($resource->profiles->lists('name'))}}
 
 <h2>{{ $resource->title }}</h2>
-{!! app('markdown')->convertToHtml($resource->body) !!}
+{!! markdown($resource->body) !!}

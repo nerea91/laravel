@@ -354,6 +354,20 @@ if( ! function_exists('week_day'))
 	}
 }
 
+if( ! function_exists('markdown'))
+{
+	/**
+	 * Convert from Markdown to HTML.
+	 *
+	 * @param  string
+	 * @return string
+	 */
+	function markdown($source)
+	{
+		return with(new \League\CommonMark\CommonMarkConverter())->convertToHtml($source);
+	}
+}
+
 // @codingStandardsIgnoreStart
 /**
  * http_build_url

@@ -12,11 +12,11 @@
 	],
 	"require": {
 		"binarix/foundation-pagination": "dev-master",
-		"graham-campbell/markdown": "~3.0",
 		"illuminate/html": "~5.0",
 		"illuminate/remote": "~5.0",
 		"laravel/framework": "~5.0",
 		"laravel/socialite": "~2.0",
+		"league/commonmark": "dev-master",
 		"schickling/backup": "dev-master",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
@@ -28,8 +28,7 @@
 		"phpunit/phpunit": "~4.0",
 		"squizlabs/php_codesniffer": "2.*",
 		"stolz/laravel-html-tidy": "dev-develop",
-		"stolz/laravel-schema-spy": "dev-develop",
-		"way/generators": "dev-master"
+		"stolz/laravel-schema-spy": "dev-develop"
 	},
 	"autoload": {
 		"files": [

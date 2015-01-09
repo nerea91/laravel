@@ -27,7 +27,7 @@ class DocumentController
 		// Render document
 		return view('document', [
 			'title' => $document->title,
-			'body'  => app('markdown')->convertToHtml($document->body),
+			'body'  => markdown($document->body),
 			'documents' => Auth::user()->profile->getDocuments()
 		]);
 	}

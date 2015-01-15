@@ -48,8 +48,8 @@ class AppServiceProvider extends ServiceProvider
 				$language = Language::detect();
 
 				// Write the result to the log
-				if(config('app.debug'))
-					info($language .' detected from ' . $language->detectedFrom);
+				/*if(config('app.debug'))
+					info($language .' detected from ' . $language->detectedFrom);*/
 
 				// Bind language to the IoC container
 				return $language;

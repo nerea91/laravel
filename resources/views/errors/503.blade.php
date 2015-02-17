@@ -1,41 +1,27 @@
-<html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+@extends('layouts.base')
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
-			}
+@section('body')
+<div class="row">
+	<div class="large-7 columns large-centered text-center">
+		<h2>{{ config('site.name') }}</h2>
+		<div class="panel callout radius">
 
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
+			<h5>{{ _('Site down for maintenance') }}.</h5>
+			<p><i>{{ _('Sorry, our site is currently undergoing scheduled maintenance') }}.</i></p>
 
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
+			<p>{{ _('Please visit us again in a few minutes') }}.</p>
 
-			.title {
-				font-size: 72px;
-				margin-bottom: 40px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Be right back.</div>
-			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
+@stop
+
+@section('css')
+<style>
+h5{margin-bottom:2em !important}
+.panel{
+	font-size:120%;
+	box-shadow: 2px 2px 10px #999 !important;
+}
+</style>
+@stop

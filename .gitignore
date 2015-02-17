@@ -1,3 +1,13 @@
-/vendor
-/node_modules
+*~
+.*~
 .env
+.kate-swp
+/.inotify
+/database/backups/
+/database/schema/
+/public/*/debugbar.*
+/public/*/min/
+/storage/debugbar/
+/storage/gettext/
+/tags
+/vendor

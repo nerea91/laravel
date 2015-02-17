@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+	'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://laravel', //to-do
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', 'SomeRandomString'), //to-do
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -115,7 +115,7 @@ return [
 		 */
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Bus\BusServiceProvider',
+		//'Illuminate\Bus\BusServiceProvider', to-do remove comment if you plan to use command bus
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
 		'Illuminate\Routing\ControllerServiceProvider',
@@ -125,12 +125,12 @@ return [
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Foundation\Providers\FoundationServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
-		'Illuminate\Mail\MailServiceProvider',
+		//'Illuminate\Mail\MailServiceProvider', to-do remove comment if you plan to send e-mails
 		'Illuminate\Pagination\PaginationServiceProvider',
 		'Illuminate\Pipeline\PipelineServiceProvider',
-		'Illuminate\Queue\QueueServiceProvider',
-		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
+		//'Illuminate\Queue\QueueServiceProvider', to-do remove comment if you plan to use queues
+		//'Illuminate\Redis\RedisServiceProvider', to-do remove comment if you plan to use Redis
+		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', to-do remove comment if you plan to allowpPassword resets
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
@@ -140,11 +140,24 @@ return [
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
+		//'App\Providers\BusServiceProvider', to-do remove comment if you plan to use command bus
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'App\Providers\ViewComposersServiceProvider',
 
+		/*
+		 * Package Service Providers...
+		 */
+		'Stolz\Assets\Laravel\ServiceProvider',
+		'Stolz\LaravelFormBuilder\ServiceProvider',
+
+		/*
+		 * Environment Specific Service Providers...
+		 */
+		'Barryvdh\Debugbar\ServiceProvider', //to-do Remove on production environment
+		'Stolz\HtmlTidy\ServiceProvider',    //to-do Remove on production environment
+		'Stolz\SchemaSpy\ServiceProvider',   //to-do Remove on production environment
 	],
 
 	/*
@@ -175,7 +188,7 @@ return [
 		'File'      => 'Illuminate\Support\Facades\File',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
 		'Input'     => 'Illuminate\Support\Facades\Input',
-		'Inspiring' => 'Illuminate\Foundation\Inspiring',
+		//'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',
 		'Log'       => 'Illuminate\Support\Facades\Log',
 		'Mail'      => 'Illuminate\Support\Facades\Mail',

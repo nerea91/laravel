@@ -30,4 +30,18 @@ return [
 
 	'compiled' => realpath(storage_path().'/framework/views'),
 
+	/*
+	|--------------------------------------------------------------------------
+	| Pagination View
+	|--------------------------------------------------------------------------
+	|
+	| This view will be used to render the pagination link output, and can
+	| be easily customized here to show any view you like. A clean view
+	| compatible with Twitter's Bootstrap is given to you by default.
+	|
+	*/
+
+	//to-do esto lo he copiado de L4 pero no se si en el 5 está soportado
+	'pagination' => 'foundationpagination::slider-center',
+
 ];

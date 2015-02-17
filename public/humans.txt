@@ -1,0 +1,22 @@
+/* humanstxt.org */
+
+/* to-do set your own details */
+
+/* TEAM */
+Developer: Javi (Twitter: @Stolz).
+Sysadmin: Javi (Twitter: @Stolz).
+Company: Your Company.
+Location: Valencia, Spain.
+
+/* SITE */
+Languages: English and Spanish.
+Standards: HTML5, CSS3.
+Last update: 2014/11/30.
+
+/* THANKS TO */
+Gentoo Linux.
+Kate (KDE Editor).
+Git.
+PHP and Composer.
+Nginx.
+MySQL.

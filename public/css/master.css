@@ -1,0 +1,24 @@
+a {cursor: pointer !important}
+
+header {
+	background: url('http://foundation.zurb.com/assets/img/marquee-stars.svg') repeat scroll 0% 0% / cover #074E68;
+	margin-bottom: 1em;
+	padding: 22px 0px;
+}
+
+header h1 a{
+	color: #FFF;
+	margin-bottom: 0px;
+}
+
+header h4 {
+	color: #CCC;
+}
+
+header .sub-nav {
+	clear:right;
+}
+
+header a[data-dropdown="language-list"] {
+	padding:.5em 3.5em .5em .5em !important;
+}

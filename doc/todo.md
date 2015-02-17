@@ -1,0 +1,22 @@
+- Artisan Console Commands (migrados todos menos el "deploy", pero falta ejecutarlos uno a uno para ver si funcionan)
+- /bin Scripts
+- Models
+- Events listeneres (en un provider?)
+- Http/Controllers and Http/Controllers/Reports
+- Traducciones
+- Login social, con sus CLIENT_id/secret en $_ENV
+- Configuraciones, incluyendo la de los paquetes
+- Buscar to-do pendientes
+- Vuscar TODOS los ficheros PHP y comprobar una a una todas las funciones
+- Debugbar
+- paquete de backups de base de datos
+- Comprobar que en produccion no se muestra Whoops, sino las vistas adecuadas segun el tipo de error
+- Comprobar que al poner la app en mantenimiento se muestra la vista adecuada
+- Cuando todo este migrado volver a ejecutar codesniffer
+
+
+- On production enable route:cache (add it to composer.josn scripts?)
+- For production update composer.json and change "minimum-stability": "dev" to "minimum-stability": "stable"
+- In user panel add a seccion to show user accounts (other than native) and allow to revoke access.
+- When all packages are migrated to Laravel 5 remove all 'repositories' entries form composer.josn and change *-develop versions to *-master
+- Check the new artisan stuff

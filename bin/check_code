@@ -43,19 +43,24 @@ function linter
 	exit 0
 }
 
-# Check PHP_CodeSniffer is installed ###########################################
+# Check PHP_CodeSniffer and PHPCompatibility are installed #####################
 
 function check_sniffer_is_installed
 {
+
 	if [[ ! -x ./vendor/bin/phpcs ]]; then
 		color "PHP_CodeSniffer script not found" "red"
 		echo
 		color "Install it with composer:" "yellow"
 		echo
-		color "    require 'squizlabs/php_codesniffer=2.*' --dev" "yellow"
-		color "    composer update" "yellow"
+		color "    composer require squizlabs/php_codesniffer:~2 --dev" "yellow"
 		exit 1
 	fi
+
+	if [[ ! -d ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility ]]; then
+		./bin/install_php_compatibility_coding_standards
+	fi
+
 }
 
 # Run PHP_CodeSniffer inteactive mode ##########################################

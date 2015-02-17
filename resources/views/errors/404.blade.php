@@ -1,16 +1,15 @@
 @extends('layouts.error')
 
 @section('problem-description')
-<p>
-{{ _("We're really sorry but we couldn't find the page you requested on our servers") }}.
-{{ _("It looks like this was the result of either") }}:
-</p>
+	<p>
+	{{ _("We're really sorry but we couldn't find the page you requested on our servers") }}.
+	{{ _("It looks like this was the result of either") }}:
+	</p>
 
-<ul class="circle">
-	<li>{{ _("a mistyped address") }}.</li>
-	<li>{{ _("an out-of-date link") }}.</li>
-</ul>
-
+	<ul>
+		<li>{{ _("a mistyped address") }}.</li>
+		<li>{{ _("an out-of-date link") }}.</li>
+	</ul>
 @stop
 
 @section('css')

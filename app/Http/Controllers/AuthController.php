@@ -6,7 +6,6 @@ use Socialite;
 use App\User;
 use Auth;
 use Crypt;
-use Event;
 use Input;
 use Session;
 use Validator;
@@ -55,7 +54,7 @@ class AuthController extends Controller
 		{
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 			{
-				Event::fire('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
+				event('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
 				return redirect()->intended('/');
 			}
 
@@ -120,7 +119,7 @@ class AuthController extends Controller
 			Auth::login($account->user);
 
 			// Fire account login event
-			Event::fire('account.login', [$account]);
+			event('account.login', [$account]);
 
 			return redirect()->intended('/');
 		}

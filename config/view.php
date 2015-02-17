@@ -13,7 +13,9 @@ return [
 	|
 	*/
 
-	'paths' => [base_path().'/resources/views'],
+	'paths' => [
+		realpath(base_path('resources/views'))
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,19 +28,7 @@ return [
 	|
 	*/
 
-	'compiled' => storage_path().'/framework/views',
+	'compiled' => realpath(storage_path().'/framework/views'),
 
-	/*
-	|--------------------------------------------------------------------------
-	| Pagination View
-	|--------------------------------------------------------------------------
-	|
-	| This view will be used to render the pagination link output, and can
-	| be easily customized here to show any view you like. A clean view
-	| compatible with Twitter's Bootstrap is given to you by default.
-	|
-	*/
-
-	'pagination' => 'foundationpagination::slider-center',
 
 ];

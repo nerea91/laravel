@@ -1,27 +1,17 @@
 <?php namespace App\Http\Controllers;
 
-class Controller
+use Illuminate\Routing\Controller as BaseController;
+
+abstract class Controller extends BaseController
 {
 	/**
-	 * Common constructor for all our controllers.
+	 * Common constructor for all controllers.
 	 */
 	public function __construct()
 	{
 		// Setup the layout used by the controller
-		$this->setupLayout();
-	}
-
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @param  string $layout
-	 * @return Controller
-	 */
-	public function setupLayout($layout = null)
-	{
-		$this->layout = view(($layout) ?: $this->layout);
-
-		return $this;
+		if(is_string($this->layout))
+			$this->layout = view($this->layout);
 	}
 
 	/**

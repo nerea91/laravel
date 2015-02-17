@@ -3,14 +3,14 @@
 use App\Exceptions\ModelDeletionException;
 use Cache;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Input;
 use Request;
 use Session;
 
 class Language extends Model
 {
-	use SoftDeletingTrait;
+	use SoftDeletes;
 	public $timestamps = false;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 
@@ -205,7 +205,12 @@ class Language extends Model
 	 */
 	public static function getAllByPriority()
 	{
-		return self::orderBy('is_default', 'desc')->orderBy('priority')->remember(60 * 12 /*12 hours*/, 'allLanguagesOrderedByPriority')->get();
+		// Remember for 12 hours
+		$minutes = 60 * 12;
+
+		return Cache::remember('allLanguagesOrderedByPriority', $minutes, function() {
+			return self::orderBy('is_default', 'desc')->orderBy('priority')->get();
+		});
 	}
 
 	/**
@@ -299,7 +304,7 @@ class Language extends Model
 		$current_locale = setlocale($category, "$locale.UTF-8", "$locale.utf-8", "$locale.utf8", "$locale UTF8", "$locale UTF-8", "$locale utf-8", "$locale utf8", "$locale UTF8", $locale);
 
 		// if($current_locale === false)
-		//	app()->abort(500, sprintf('Failed to set %s locale: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
+		//	abort(500, sprintf('Failed to set %s locale: The locale does not exist on your system, the category name is invalid or the locale functionality is not implemented on your platform.', $locale));
 
 		return $this;
 	}

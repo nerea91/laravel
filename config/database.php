@@ -60,21 +60,22 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => $_ENV['DB_NAME'],
-			'username'  => $_ENV['DB_USER'],
-			'password'  => $_ENV['DB_PASSWORD'],
+			'host'      => env('DB_HOST', 'localhost'),
+			'database'  => env('DB_DATABASE', 'forge'),
+			'username'  => env('DB_USERNAME', 'forge'),
+			'password'  => env('DB_PASSWORD', ''),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
+			'strict'    => env('DB_STRICT', false),
 		],
 
 		'pgsql' => [
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'forge',
-			'username' => 'forge',
-			'password' => '',
+			'host'     => env('DB_HOST', 'localhost'),
+			'database' => env('DB_DATABASE', 'forge'),
+			'username' => env('DB_USERNAME', 'forge'),
+			'password' => env('DB_PASSWORD', ''),
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
@@ -82,10 +83,10 @@ return [
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'     => env('DB_HOST', 'localhost'),
+			'database' => env('DB_DATABASE', 'forge'),
+			'username' => env('DB_USERNAME', 'forge'),
+			'password' => env('DB_PASSWORD', ''),
 			'prefix'   => '',
 		],
 

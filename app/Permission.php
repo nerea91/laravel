@@ -44,10 +44,15 @@ class Permission extends Model
 	 */
 	public static function getGroupedByType()
 	{
-		$permissions = array();
-		foreach(self::orderBy('name')->remember(60 * 24, 'allPermissionsGroupedByType')->get() as $p)
-			$permissions[$p->type_id][$p->id] = $p->name;
-		return $permissions;
+		return Cache::remember('allPermissionsGroupedByType', 60 * 24, function() {
+
+			$permissions = array();
+
+			foreach(self::orderBy('name')->get() as $p)
+				$permissions[$p->type_id][$p->id] = $p->name;
+
+			return $permissions;
+		});
 	}
 
 	// Logic =======================================================================

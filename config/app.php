@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => false,
+	'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,9 +78,24 @@ return [
 	|
 	*/
 
-	'key' => 'to-do key for production enviro.', // Use command: php artisan key:generate.
+	'key' => env('APP_KEY', 'SomeRandomString'), //to-do
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Logging Configuration
+	|--------------------------------------------------------------------------
+	|
+	| Here you may configure the log settings for your application. Out of
+	| the box, Laravel uses the Monolog PHP logging library. This gives
+	| you a variety of powerful log handlers / formatters to utilize.
+	|
+	| Available Settings: "single", "daily", "syslog", "errorlog"
+	|
+	*/
+
+	'log' => 'daily',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,70 +111,54 @@ return [
 	'providers' => [
 
 		/*
-		 * Application Service Providers...
-		 */
-		'App\Providers\AppServiceProvider',
-		'App\Providers\ArtisanServiceProvider',
-		'App\Providers\ComposerServiceProvider',
-		'App\Providers\ErrorServiceProvider',
-		'App\Providers\EventServiceProvider',
-		'App\Providers\FilterServiceProvider',
-		'App\Providers\LogServiceProvider',
-		'App\Providers\RouteServiceProvider',
-
-		/*
 		 * Laravel Framework Service Providers...
 		 */
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
+		//'Illuminate\Bus\BusServiceProvider', to-do remove comment if you plan to use command bus
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
+		'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
 		'Illuminate\Encryption\EncryptionServiceProvider',
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Foundation\Providers\FoundationServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
-		'Illuminate\Log\LogServiceProvider',
-		'Illuminate\Mail\MailServiceProvider',
+		//'Illuminate\Mail\MailServiceProvider', to-do remove comment if you plan to send e-mails
 		'Illuminate\Pagination\PaginationServiceProvider',
-		'Illuminate\Queue\QueueServiceProvider',
-		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Reminders\ReminderServiceProvider',
+		'Illuminate\Pipeline\PipelineServiceProvider',
+		//'Illuminate\Queue\QueueServiceProvider', to-do remove comment if you plan to use queues
+		//'Illuminate\Redis\RedisServiceProvider', to-do remove comment if you plan to use Redis
+		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', to-do remove comment if you plan to allowpPassword resets
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 
 		/*
-		 * Other Laravel Service Providers
+		 * Application Service Providers...
 		 */
-		'Illuminate\Html\HtmlServiceProvider',
-		'Illuminate\Remote\RemoteServiceProvider',
-		'Laravel\Socialite\SocialiteServiceProvider',
+		'App\Providers\AppServiceProvider',
+		//'App\Providers\BusServiceProvider', to-do remove comment if you plan to use command bus
+		'App\Providers\ConfigServiceProvider',
+		'App\Providers\EventServiceProvider',
+		'App\Providers\RouteServiceProvider',
+		'App\Providers\ViewComposersServiceProvider',
 
 		/*
-		 * Packages Service Providers...
+		 * Package Service Providers...
 		 */
-		'Binarix\FoundationPagination\FoundationPaginationServiceProvider', //https://github.com/binarix/Laravel-Foundation-Pagination
-		'Schickling\Backup\BackupServiceProvider', //https://github.com/schickling/laravel-backup
-		'Stolz\Assets\ManagerServiceProvider', //https://github.com/Stolz/Assets
-		'Stolz\LaravelFormBuilder\ServiceProvider', //https://github.com/Stolz/laravel-form-builder
+		'Stolz\Assets\Laravel\ServiceProvider',
+		'Stolz\LaravelFormBuilder\ServiceProvider',
 
+		/*
+		 * Environment Specific Service Providers...
+		 */
+		'Barryvdh\Debugbar\ServiceProvider', //to-do Remove on production environment
+		'Stolz\HtmlTidy\ServiceProvider',    //to-do Remove on production environment
+		'Stolz\SchemaSpy\ServiceProvider',   //to-do Remove on production environment
 	],
-
-	/*
-	|--------------------------------------------------------------------------
-	| Service Provider Manifest
-	|--------------------------------------------------------------------------
-	|
-	| The service provider manifest is used by Laravel to lazy load service
-	| providers which are not needed for each request, as well to keep a
-	| list of all of the services. Here, you may set its storage spot.
-	|
-	*/
-
-	'manifest' => storage_path().'/framework',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -178,19 +177,21 @@ return [
 		'Artisan'   => 'Illuminate\Support\Facades\Artisan',
 		'Auth'      => 'Illuminate\Support\Facades\Auth',
 		'Blade'     => 'Illuminate\Support\Facades\Blade',
+		'Bus'       => 'Illuminate\Support\Facades\Bus',
 		'Cache'     => 'Illuminate\Support\Facades\Cache',
 		'Config'    => 'Illuminate\Support\Facades\Config',
 		'Cookie'    => 'Illuminate\Support\Facades\Cookie',
 		'Crypt'     => 'Illuminate\Support\Facades\Crypt',
 		'DB'        => 'Illuminate\Support\Facades\DB',
+		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
 		'File'      => 'Illuminate\Support\Facades\File',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
 		'Input'     => 'Illuminate\Support\Facades\Input',
+		//'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',
 		'Log'       => 'Illuminate\Support\Facades\Log',
 		'Mail'      => 'Illuminate\Support\Facades\Mail',
-		'Paginator' => 'Illuminate\Support\Facades\Paginator',
 		'Password'  => 'Illuminate\Support\Facades\Password',
 		'Queue'     => 'Illuminate\Support\Facades\Queue',
 		'Redirect'  => 'Illuminate\Support\Facades\Redirect',
@@ -200,15 +201,11 @@ return [
 		'Route'     => 'Illuminate\Support\Facades\Route',
 		'Schema'    => 'Illuminate\Support\Facades\Schema',
 		'Session'   => 'Illuminate\Support\Facades\Session',
+		'Storage'   => 'Illuminate\Support\Facades\Storage',
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-		// Laravel Facades not included in the default framework installation
-		'Form'      => 'Illuminate\Html\FormFacade',
-		'HTML'      => 'Illuminate\Html\HtmlFacade',
-		'SSH'       => 'Illuminate\Remote\RemoteFacade',
-		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 	],
 
 ];

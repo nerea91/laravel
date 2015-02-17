@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
 			$table->string('name', 64)->nullable();
 			$table->string('description', 128)->nullable();
 			$table->string('password', 60);
-			$table->string('remember_token', 100)->nullable();
 
 			// Foreign keys
 			$table->unsignedInteger('country_id')->nullable();$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('set null');
@@ -31,6 +30,7 @@ class CreateUsersTable extends Migration
 			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('restrict');
 
 			// Automatic columns
+			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();
 		});

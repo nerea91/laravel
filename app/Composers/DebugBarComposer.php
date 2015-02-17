@@ -10,7 +10,7 @@ class DebugBarComposer
 	public function compose($view)
 	{
 		// Add debugbar if it's enabled
-		if(app()->bound('debugbar') and config('laravel-debugbar::config.enabled', false))
+		if(app()->bound('debugbar') and config('debugbar.enabled', false))
 		{
 			Assets::add('debugbar');
 			$renderer = app('debugbar')->getJavascriptRenderer();

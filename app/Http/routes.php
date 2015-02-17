@@ -3,54 +3,54 @@
 use App\Language;
 
 // Home page
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@showMainPage'));
+get('/', ['as' => 'home', 'uses' => 'HomeController@showMainPage']);
 
 // Change application language
-Route::get('language/{code}', array('as' => 'language.set', function ($code) {
+get('language/{code}', ['as' => 'language.set', function ($code) {
 	if($language = Language::whereCode($code)->first())
 		$language->remember();
 
 	return redirect(URL::previous() ?: route('home'));
-}))->where('code', '^[a-z][a-z]$');
+}])->where('code', '^[a-z][a-z]$');
 
 // Contact us area
-Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@showContactForm'));
-Route::post('contact', array('as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail'));
+get('contact', ['as' => 'contact', 'uses' => 'HomeController@showContactForm']);
+post('contact', ['as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail']);
 
 // Guest user area
-Route::group(array('https', 'before' => 'guest', 'prefix' => 'login'), function () {
+Route::group(['https', 'middleware' => 'guest', 'prefix' => 'login'], function () {
 
 	// Login with native authentication
-	Route::get('/', array('as' => 'login', 'uses' => 'AuthController@showLoginForm'));
-	Route::post('/', array('as' => 'login.send', 'uses' => 'AuthController@login'));
+	get('/', ['as' => 'login', 'uses' => 'AuthController@showLoginForm']);
+	post('/', ['as' => 'login.send', 'uses' => 'AuthController@login']);
 
 	// Login with an Oauth provider
-	Route::get('with/{provider}', array('as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin'));
+	get('with/{provider}', ['as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin']);
 
 });
 
 // Authenticated user area
-Route::group(array('https', 'before' => 'auth'), function () {
+Route::group(['https', 'middleware' => 'auth'], function () {
 
-	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@logout'));
+	get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
 	// Current user control panel
-	Route::group(array('prefix' => 'user'), function () {
-		Route::get('options', array('as' => 'user.options', 'uses' => 'UserPanelController@showOptionsForm'));
-		Route::put('options', array('as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions'));
-		Route::get('password', array('as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm'));
-		Route::put('password', array('as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword'));
-		Route::get('regional', array('as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm'));
-		Route::put('regional', array('as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional'));
+	Route::group(['prefix' => 'user'], function () {
+		get('options', ['as' => 'user.options', 'uses' => 'UserPanelController@showOptionsForm']);
+		put('options', ['as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions']);
+		get('password', ['as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm']);
+		put('password', ['as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword']);
+		get('regional', ['as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm']);
+		put('regional', ['as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional']);
 	});
 
 	// Admin area
-	Route::group(array('prefix' => 'admin'), function () {
-		Route::get('/', array('as' => 'admin',  'uses' => 'Admin\AdminController@showAdminPage'));
-		Route::post('/', array('as' => 'admin.search', 'uses' => 'Admin\AdminController@search'));
+	Route::group(['prefix' => 'admin'], function () {
+		get('/', ['as' => 'admin',  'uses' => 'Admin\AdminController@showAdminPage']);
+		post('/', ['as' => 'admin.search', 'uses' => 'Admin\AdminController@search']);
 
 		// Resource controllers require ACL
-		Route::group(array('before' => 'acl'), function () {
+		Route::group(['middleware' => 'acl'], function () {
 
 			$resources = [
 				'accounts' => 'Admin\AccountsController',
@@ -66,15 +66,15 @@ Route::group(array('https', 'before' => 'auth'), function () {
 			foreach($resources as $name => $controller)
 			{
 				Route::resource($name, $controller);
-				Route::put("$name/{id}/restore", array('as' => "admin.$name.restore", 'uses' => "$controller@restore"));
-				Route::get("$name/trash/{mode}", array('as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"));
+				put("$name/{id}/restore", ['as' => "admin.$name.restore", 'uses' => "$controller@restore"]);
+				get("$name/trash/{mode}", ['as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"]);
 			}
 		});
 
 	});
 
 	// Reports area
-	Route::group(array('prefix' => 'report', 'before' => 'acl'), function () {
+	Route::group(['prefix' => 'report', 'middleware' => 'acl'], function () {
 
 		$reports = [
 			'sample' => 'Reports\SampleReport',
@@ -83,29 +83,26 @@ Route::group(array('https', 'before' => 'auth'), function () {
 		foreach($reports as $name => $controller)
 		{
 			$url = str_replace('.', '/', $name);
-			Route::get($url, array('as' => "report.$name", 'uses' => "$controller@show"));
-			Route::post($url, array('as' => "report.$name.validate", 'uses' => "$controller@validate"));
+			get($url, ['as' => "report.$name", 'uses' => "$controller@show"]);
+			post($url, ['as' => "report.$name.validate", 'uses' => "$controller@validate"]);
 		}
 
 	});
 
 	// Documents area
-	Route::get('document/{id}/{title?}', array('as' => 'document', 'uses' => 'DocumentController@show'));
+	get('document/{id}/{title?}', ['as' => 'document', 'uses' => 'DocumentController@show']);
 
 });
 
 // Route for testings purposes, only available on local environment
-Route::get('test', array('before' => 'env:local', function () {
+get('test', ['as' => 'test', 'middleware' => 'acl', function () {
 
-	// Define some variables
-	$user = \App\User::first()->toArray();
-	$language = \App\Language::first()->toArray();
+	dd(1,2,3);
+}]);
 
-	// Choose which ones of the above will be shown
-	$pleaseShowThese = compact('user', 'language');
 
-	// ==== DO NOT MODIFY BELOW HERE ================================
-
-	$tabs = array_keys($pleaseShowThese);
-	return view('test')->withTitle('Test route')->withSecctions($pleaseShowThese)->withActive(array_shift($tabs));
-}));
+//to-do de laravel 5
+/*Route::controllers([
+ *	'auth' => 'Auth\AuthController',
+ *	'password' => 'Auth\PasswordController',
+ * ]);*/

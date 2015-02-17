@@ -4,39 +4,26 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"type": "project",
-    "repositories": [
-		{ "type": "vcs", "url": "https://github.com/Stolz/Laravel-Foundation-Pagination" },
-		{ "type": "vcs", "url": "https://github.com/Stolz/container-debug" },
-		{ "type": "vcs", "url": "https://github.com/Stolz/laravel-backup" },
-		{ "type": "vcs", "url": "https://github.com/Stolz/zurb-foundation-laravel" }
-	],
 	"require": {
-		"binarix/foundation-pagination": "dev-master",
-		"illuminate/html": "~5.0",
-		"illuminate/remote": "~5.0",
 		"laravel/framework": "~5.0",
-		"laravel/socialite": "~2.0",
 		"league/commonmark": "dev-master",
-		"schickling/backup": "dev-master",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
 		"stolz/menu": "dev-master"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",
-		"daylerees/container-debug": "dev-master",
-		"phpunit/phpunit": "~4.0",
-		"squizlabs/php_codesniffer": "2.*",
-		"stolz/laravel-html-tidy": "dev-develop",
-		"stolz/laravel-schema-spy": "dev-develop"
+		"filp/whoops": "~1.0",
+		"squizlabs/php_codesniffer": "~2",
+		"stolz/laravel-html-tidy": "dev-master",
+		"stolz/laravel-schema-spy": "dev-master"
 	},
 	"autoload": {
 		"files": [
 			"resources/helpers.php"
 		],
 		"classmap": [
-			"database",
-			"tests/TestCase.php"
+			"database"
 		],
 		"psr-4": {
 			"App\\": "app/"
@@ -56,6 +43,7 @@
 			"ctags"
 		],
 		"post-create-project-cmd": [
+			"php -r \"copy('.env.example', '.env');\"",
 			"php artisan key:generate",
 			"bin/fix_file_permissions",
 			"ctags"
@@ -63,6 +51,5 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	},
-	"minimum-stability": "dev"
+	}
 }

@@ -13,15 +13,23 @@ go_to_laravel_dir
 color "Changing permissions for `pwd`"
 color "Owner will be set to $USER:$GROUP. Use $0 [user] [group] to customize this" "yellow"
 
+
+# Wrapper command
+if [[ $EUID -ne 0 && -x /usr/bin/sudo ]]; then
+	SUDO='sudo'
+else
+	SUDO=''
+fi
+
 # Owner
-chown $USER:$GROUP . -R
+$SUDO chown $USER:$GROUP . -R
 
 # Default safe permissions
-find . -type d -exec chmod 770 {} \;
-find . -type f -exec chmod 660 {} \;
+$SUDO find . -type d -exec chmod 770 {} \;
+$SUDO find . -type f -exec chmod 660 {} \;
 
 # Exec permission for scripts
-chmod 760 artisan bin/* vendor/bin/*
+$SUDO chmod 760 artisan bin/* vendor/bin/*
 
 exit 0
 

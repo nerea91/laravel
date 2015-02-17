@@ -83,7 +83,7 @@ class ResourceController extends Controller
 		$results = $this->paginate();
 
 		// If results found add asset to make tables responsive
-		$results->getTotal() and Assets::add('responsive-tables');
+		$results->total() and Assets::add('responsive-tables');
 
 		// Create header links for sorting by column
 		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());
@@ -96,7 +96,7 @@ class ResourceController extends Controller
 
 		// Add data to the layout
 		$this->layout->title = $this->resource->plural();
-		$this->layout->subtitle  = ($results->getLastPage() > 1) ? sprintf(_('From %d to %d out of %d'), $results->getFrom(), $results->getTo(), $results->getTotal()) : _('Index');
+		$this->layout->subtitle = ($results->lastPage() > 1) ? sprintf(_('Page %d/%d'), $results->currentPage(), $results->lastPage()) : _('Index');
 
 		// Return layout + view
 		return $this->layout($view);

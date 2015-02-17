@@ -42,6 +42,8 @@ class PermissionType extends Model
 	 */
 	public function scopeUsed($query)
 	{
-		return $query->has('permissions')->orderBy('name')->remember(60 * 24, 'usedPermissionTypes')->get();
+		return Cache::remember('usedPermissionTypes', 60 * 24, function() {
+			return $query->has('permissions')->orderBy('name')->get();
+		});
 	}
 }

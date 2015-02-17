@@ -1,10 +1,10 @@
 <?php namespace App;
 
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Document extends Model
 {
-	use SoftDeletingTrait;
+	use SoftDeletes;
 	public $timestamps = false;
 	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
 

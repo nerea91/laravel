@@ -5,7 +5,7 @@
 
 	<table class="hover responsive">@include("$prefix.index")</table>
 
-	{!! $results->appends(Input::only('sortby', 'sortdir'))->links() !!}
+	{!! pagination_links($results->appends(Input::only('sortby', 'sortdir'))) !!}
 
 	@if ($delete)
 	<div id="confirmation-modals">

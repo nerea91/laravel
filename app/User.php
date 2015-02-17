@@ -6,19 +6,18 @@ use Auth;
 use Cache;
 use Crypt;
 use Hash;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\UserTrait;
-use Illuminate\Contracts\Auth\Remindable as RemindableContract;
-use Illuminate\Contracts\Auth\User as UserContract;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Input;
 
-class User extends Model implements UserContract, RemindableContract
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-	use RemindableTrait, SoftDeletingTrait, UserTrait;
+	use Authenticatable, SoftDeletes;
 
 	protected $guarded = array('id', 'remember_token', 'created_at', 'updated_at', 'deleted_at');
-	protected $hidden = array('password', 'password_confirmation', 'current_password', 'remember_token',);
+	protected $hidden = array('password', 'password_confirmation', 'current_password', 'remember_token');
 
 	// Meta ========================================================================
 
@@ -228,37 +227,9 @@ class User extends Model implements UserContract, RemindableContract
 		return $user;
 	}
 
-	// UserContract implementation for auth =======================================
+	// AuthenticatableContract implementation ======================================
 
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
-
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
-
-	/**
-	 * Get the token value for the "remember me" session.
-	 *
-	 * @return string
-	 */
-	public function getRememberToken()
-	{
-		return $this->remember_token;
-	}
+	// NOTE: The remaining methods from the contract are inplemented in the Authenticatable trait
 
 	/**
 	 * Set the token value for the "remember me" session.
@@ -271,28 +242,18 @@ class User extends Model implements UserContract, RemindableContract
 		// Avoid validation error when Illuminate\Auth\Guard tries to store remember_token
 		$this->removeRule('password', 'required|confirmed');
 
-		$this->remember_token = $value;
+		$this->{$this->getRememberTokenName()} = $value;
 	}
 
-	/**
-	 * Get the column name for the "remember me" token.
-	 *
-	 * @return string
-	 */
-	public function getRememberTokenName()
-	{
-		return 'remember_token';
-	}
-
-	// RemindableContract implementation for auth =================================
+	// CanResetPasswordContract implementation =====================================
 
 	/**
-	 * Get the e-mail address where password reminders are sent.
+	 * Get the e-mail address where password reset links are sent.
 	 *
 	 * @return string
 	 * @throws \Exception
 	 */
-	public function getReminderEmail()
+	public function getEmailForPasswordReset()
 	{
 		// Get the email from the most recently updated account
 		foreach($this->accounts()->orderBy('updated_at', 'desc')->get() as $account)
@@ -443,7 +404,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * @return string
 	 *
 	 * @thows Illuminate\Database\Eloquent\ModelNotFoundException
-	*/
+	 */
 	public function getOption($option)
 	{
 		if($userOption = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->first())
@@ -458,7 +419,7 @@ class User extends Model implements UserContract, RemindableContract
 	 *
 	 * @param  bool
 	 * @return \Illuminate\Database\Eloquent\Collection (of Option)
-	*/
+	 */
 	public function getOptions($onlyAssignable = false)
 	{
 		// Get default generic options
@@ -489,7 +450,7 @@ class User extends Model implements UserContract, RemindableContract
 	 * The missing user options are merged with the default ones
 	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Option)
-	*/
+	 */
 	public function getAssignableOptions()
 	{
 		return $this->getOptions(true);

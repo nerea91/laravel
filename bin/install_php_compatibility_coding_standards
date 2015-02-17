@@ -15,7 +15,4 @@ else
 	git clone http://github.com/wimg/PHPCompatibility.git -q
 fi
 
-color "PHPCompatibility successfully installed!"
-color "To use it:
-
-./vendor/bin/phpcs --report-width=100 --tab-width=4 -as --standard=PHPCompatibility app/ --runtime-set testVersion <<PHPversion>>" yellow
+# To use it: ./vendor/bin/phpcs --report-width=100 --tab-width=4 -as --standard=PHPCompatibility app/ --runtime-set testVersion <<PHPversion>>" yellow

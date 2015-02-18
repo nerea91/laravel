@@ -50,18 +50,13 @@ class AppServiceProvider extends ServiceProvider
 		// Bind language to the IoC container
 		$this->app->singleton('language', function () {
 
-			$language = \App\Language::detect();
+			$language = \App\Language::detect()->apply();
 
 			// Write the result to the log
 			if(config('app.debug'))
 				info($language .' detected from ' . $language->detectedFrom);
 
 			return $language;
-		});
-
-		// Apply once the application has booted
-		$this->app->booted(function() {
-			$this->app->make('language')->apply();
 		});
 	}
 }

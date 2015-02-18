@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use Cache;
+
 class PermissionType extends Model
 {
 	public $table = 'permissiontypes';
@@ -43,7 +45,7 @@ class PermissionType extends Model
 	public function scopeUsed($query)
 	{
 		return Cache::remember('usedPermissionTypes', 60 * 24, function() {
-			return $query->has('permissions')->orderBy('name')->get();
+			return self::has('permissions')->orderBy('name')->get();
 		});
 	}
 }

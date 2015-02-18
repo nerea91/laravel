@@ -7,6 +7,7 @@
 /database/schema/
 /public/*/debugbar.*
 /public/*/min/
+/resources/lang/*/LC_MESSAGES/messages.po.old
 /storage/debugbar/
 /storage/gettext/
 /tags

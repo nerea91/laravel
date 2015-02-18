@@ -73,7 +73,7 @@ class Profile extends Model
 
 	public function users()
 	{
-		return $this->hasMany('App\User');
+		return $this->hasMany('App\User')->withTrashed();
 	}
 
 	// Events ======================================================================
@@ -187,6 +187,16 @@ class Profile extends Model
 		{
 			if($throwExceptions)
 				throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
+
+			return false;
+		}
+
+		// Prevent deleting profiles assigned to users
+		if(count($usernames = $this->users->lists('username')))
+		{
+			if($throwExceptions)
+				throw new ModelDeletionException(_('Profile cannot be deleted because it is assegned to these users') . ': ' . enum($usernames));
+
 			return false;
 		}
 

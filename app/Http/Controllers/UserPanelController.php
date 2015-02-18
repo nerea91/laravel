@@ -80,9 +80,9 @@ class UserPanelController extends Controller
 	{
 		$userRules = $this->user->getRules();
 		$rules = array(
-			'current_password'		=> 'required',
-			'password'				=> $userRules['password'],
-			'password_confirmation'	=> 'required',
+			'current_password' => 'required',
+			'password' => $userRules['password'],
+			'password_confirmation' => 'required',
 		);
 
 		$input = Input::only(array_keys($rules));
@@ -90,8 +90,8 @@ class UserPanelController extends Controller
 
 		$validator = Validator::make($input, $rules)->setAttributeNames([
 			'username' => $this->user->getLabel('username'), //used in case username and password match
-			'current_password'	=> _('Current password'),
-			'password'	=> _('New password'),
+			'current_password' => _('Current password'),
+			'password' => _('New password'),
 			'password_confirmation' => _('Repeat password'),
 		]);
 

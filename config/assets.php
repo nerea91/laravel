@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'pipeline'	=> env('ASSETS_PIPELINE', false),
-	'autoload'	=> ['foundation-cdn'],
+	'pipeline' => env('ASSETS_PIPELINE', false),
+	'autoload' => ['foundation-cdn'],
 	'collections' => [
 
 		// jQuery 1.x (CDN)

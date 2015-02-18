@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-08 16:03+0100\n"
+"POT-Creation-Date: 2015-02-18 12:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,10 +241,6 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
-#, php-format
-msgid "From %d to %d out of %d"
-msgstr ""
-
 msgid "From date"
 msgstr ""
 
@@ -326,9 +322,6 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-msgid "Maintenance"
-msgstr ""
-
 msgid "Manage"
 msgstr ""
 
@@ -389,16 +382,11 @@ msgstr ""
 msgid "Options have been saved"
 msgstr ""
 
+#, php-format
+msgid "Page %d/%d"
+msgstr ""
+
 msgid "Password"
-msgstr ""
-
-msgid "Password Reset"
-msgstr ""
-
-msgid "Password has been reset!"
-msgstr ""
-
-msgid "Password reminder sent!"
 msgstr ""
 
 msgid "Password updated"
@@ -584,7 +572,7 @@ msgstr ""
 msgid "The :attribute field is required."
 msgstr ""
 
-msgid "The :attribute field must be true or false"
+msgid "The :attribute field must be true or false."
 msgstr ""
 
 msgid "The :attribute format is invalid."
@@ -731,10 +719,6 @@ msgstr ""
 msgid "This combination of :fields already exists."
 msgstr ""
 
-#, php-format
-msgid "This link will expire in %d minutes"
-msgstr ""
-
 msgid "This password reset token is invalid."
 msgstr ""
 
@@ -748,9 +732,6 @@ msgid "Title"
 msgstr ""
 
 msgid "To date"
-msgstr ""
-
-msgid "To reset your password, complete this form"
 msgstr ""
 
 msgid "Try with different form values"
@@ -820,6 +801,9 @@ msgstr ""
 msgid "We can't find a user with that e-mail address."
 msgstr ""
 
+msgid "We have e-mailed your password reset link!"
+msgstr ""
+
 msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
 msgstr ""
 
@@ -848,6 +832,9 @@ msgid "YYYY-MM-DD"
 msgstr ""
 
 msgid "Yes"
+msgstr ""
+
+msgid "Your password has been reset!"
 msgstr ""
 
 msgid "Your query has been sent!"

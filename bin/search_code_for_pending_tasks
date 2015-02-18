@@ -9,12 +9,12 @@ go_to_laravel_dir
 color "Pending tasks"
 
 grep -Ir --colour=auto \
---exclude-from=.gitignore  \
---exclude="`basename $0`"  \
---exclude="doc/manual.html" \
 --exclude-dir="\.git"  \
 --exclude-dir="storage"  \
 --exclude-dir="vendor"  \
+--exclude-from=.gitignore  \
+--exclude="`basename $0`"  \
+--exclude=.env.example  \
 "to-do" .
 
 exit $?

@@ -280,23 +280,23 @@ class Validator extends UpstreamValidator
 	 *
 	 * Converts:
 	 *
-	 *		[
-	 *			'field1' => ['Label1', 'rule1|rule11'],
-	 *			'field2' => ['Label2', ['rule2','rule22']],
-	 *		];
+	 * [
+	 *   'field1' => ['Label1', 'rule1|rule11'],
+	 *   'field2' => ['Label2', ['rule2','rule22']],
+	 * ];
 	 *
 	 * To:
 	 *
-	 *		[
-	 *			'labels' => [
-	 *				'field1' => 'Label1',
-	 *				'field2' => 'Label2',
-	 *			],
-	 *			'rules' => [
-	 *				'field1' => ['rule1', 'rule11'],
-	 *				'field2' => ['rule2', 'rule22'],
-	 *			]
-	 *		];
+	 * [
+	 *   'labels' => [
+	 *     'field1' => 'Label1',
+	 *     'field2' => 'Label2',
+	 *   ],
+	 *   'rules' => [
+	 *     'field1' => ['rule1', 'rule11'],
+	 *   'field2' => ['rule2', 'rule22'],
+	 *  ]
+	 *];
 	 *
 	 * @param  array
 	 * @return array

@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use Cache;
+
 class Permission extends Model
 {
 	public $timestamps = false;

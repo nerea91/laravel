@@ -97,7 +97,7 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 // Route for testings purposes, only available on local environment
 get('test', ['as' => 'test', 'middleware' => 'acl', function () {
 
-	dd(1,2,3);
+	dd(1, 2, 3);
 }]);
 
 

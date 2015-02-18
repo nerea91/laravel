@@ -39,9 +39,9 @@ return array(
 	*/
 
 	'arguments' => [
-		'-t'	=> 'mysql',
-		'-dp'	=> '/home/stolz/git/java-schema-spy/mysql-connector-java-5.1.30-bin.jar',
-		'-hq'	=> null,
+		'-t'  => 'mysql',
+		'-dp' => '/home/stolz/git/java-schema-spy/mysql-connector-java-5.1.30-bin.jar',
+		'-hq' => null,
 	],
 
 );

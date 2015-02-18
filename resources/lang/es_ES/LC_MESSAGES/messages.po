@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-08 16:03+0100\n"
+"POT-Creation-Date: 2015-02-18 12:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -240,10 +240,6 @@ msgstr "Nombre"
 msgid "Friday"
 msgstr "Viernes"
 
-#, php-format
-msgid "From %d to %d out of %d"
-msgstr "Del %d al %d de un total de %d"
-
 msgid "From date"
 msgstr "Desde fecha"
 
@@ -325,9 +321,6 @@ msgstr "Nº accesos"
 msgid "Logout"
 msgstr "Desconectar"
 
-msgid "Maintenance"
-msgstr "Mantenimiento"
-
 msgid "Manage"
 msgstr "Administrar"
 
@@ -388,17 +381,12 @@ msgstr "Opciones"
 msgid "Options have been saved"
 msgstr "Se han guardado las opciones"
 
+#, php-format
+msgid "Page %d/%d"
+msgstr "Página %d/%d"
+
 msgid "Password"
 msgstr "Contraseña"
-
-msgid "Password Reset"
-msgstr "Restablecer contraseña"
-
-msgid "Password has been reset!"
-msgstr "¡Contraseña enviada!"
-
-msgid "Password reminder sent!"
-msgstr "¡Recordatorio de contraseña enviado"
 
 msgid "Password updated"
 msgstr "Contraseña cambiada"
@@ -583,8 +571,8 @@ msgstr ":attribute es obligatorio cuando no se indica ninguno de los valores :va
 msgid "The :attribute field is required."
 msgstr "El campo :attribute es obligatorio."
 
-msgid "The :attribute field must be true or false"
-msgstr ":attribute debe ser cierto o falso"
+msgid "The :attribute field must be true or false."
+msgstr ":attribute debe ser cierto o falso."
 
 msgid "The :attribute format is invalid."
 msgstr "El formato de :attribute no es válido."
@@ -730,10 +718,6 @@ msgstr "Esta cuenta ha sido desabilitada"
 msgid "This combination of :fields already exists."
 msgstr "Esta cobinacion de :fields ya existe."
 
-#, php-format
-msgid "This link will expire in %d minutes"
-msgstr "Este enlace caducará en %d minutos"
-
 msgid "This password reset token is invalid."
 msgstr "El token de restablecimiento de contraseña no es válido."
 
@@ -748,9 +732,6 @@ msgstr "Título"
 
 msgid "To date"
 msgstr "Hasta fecha"
-
-msgid "To reset your password, complete this form"
-msgstr "Completa este formulario para restablecer tu contraseña"
 
 msgid "Try with different form values"
 msgstr "Prueba con otros valores del formulario"
@@ -819,6 +800,9 @@ msgstr "Ver"
 msgid "We can't find a user with that e-mail address."
 msgstr "No hemos podido encontrar ningún usuario con esa dirección de e-mail."
 
+msgid "We have e-mailed your password reset link!"
+msgstr "Te hemos enviado por e-mail el enlace para restablecer contraseña"
+
 msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
 msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo antes posible"
 
@@ -849,6 +833,9 @@ msgstr "AAAA-MM-DD"
 msgid "Yes"
 msgstr "Sí"
 
+msgid "Your password has been reset!"
+msgstr "Tu contraseña ha sido restablecida"
+
 msgid "Your query has been sent!"
 msgstr "Tu consulta ha sido enviada"
 
@@ -869,6 +856,24 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
+
+#~ msgid "From %d to %d out of %d"
+#~ msgstr "Del %d al %d de un total de %d"
+
+#~ msgid "Maintenance"
+#~ msgstr "Mantenimiento"
+
+#~ msgid "Password Reset"
+#~ msgstr "Restablecer contraseña"
+
+#~ msgid "Password reminder sent!"
+#~ msgstr "¡Recordatorio de contraseña enviado"
+
+#~ msgid "This link will expire in %d minutes"
+#~ msgstr "Este enlace caducará en %d minutos"
+
+#~ msgid "To reset your password, complete this form"
+#~ msgstr "Completa este formulario para restablecer tu contraseña"
 
 #~ msgid "Cancelled by user"
 #~ msgstr "Cancelado por el usuario"

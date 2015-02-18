@@ -130,7 +130,7 @@ return [
 		'Illuminate\Pipeline\PipelineServiceProvider',
 		//'Illuminate\Queue\QueueServiceProvider', to-do remove comment if you plan to use queues
 		//'Illuminate\Redis\RedisServiceProvider', to-do remove comment if you plan to use Redis
-		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', to-do remove comment if you plan to allowpPassword resets
+		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', to-do remove comment if you plan to allow password resets
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',

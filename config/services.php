@@ -1,7 +1,7 @@
 <?php
 
 // Base URL for social login
-$url = 'https://laravel.dev/login/with/'; //to-do
+$url = 'https://laravel.dev/login/with/'; //to-do customice for your application needs
 
 return [
 

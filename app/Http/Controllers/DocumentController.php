@@ -1,10 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use App\Exceptions\AccessControlListException;
 use App\Document;
+use App\Exceptions\AccessControlListException;
 use Auth;
+use Illuminate\Routing\Controller;
 
-class DocumentController
+class DocumentController extends Controller
 {
 	/**
 	 * Show main page
@@ -20,9 +21,7 @@ class DocumentController
 
 		// Check if user profile has permission to see this document
 		if( ! Auth::user()->profile->hasDocument($document))
-			throw new AccessControlListException(_('Unauthorized profile'));
-
-
+			throw new AccessControlListException(_('Unauthorized profile'), 401);
 
 		// Render document
 		return view('document', [

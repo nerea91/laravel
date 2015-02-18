@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e6d8cf1b36ca1006f064a19a6d5c3d4d",
+    "hash": "c889093b342bf50f05a308ccdc7d0972",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -585,12 +585,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "a0869b541c85244c543e52340bc237ef2d4eeeda"
+                "reference": "962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/a0869b541c85244c543e52340bc237ef2d4eeeda",
-                "reference": "a0869b541c85244c543e52340bc237ef2d4eeeda",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df",
+                "reference": "962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6-dev"
+                    "dev-master": "0.7-dev"
                 }
             },
             "autoload": {
@@ -636,7 +636,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-02-16 16:06:49"
+            "time": "2015-02-18 14:46:36"
         },
         {
             "name": "league/flysystem",
@@ -2308,12 +2308,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/laravel-html-tidy.git",
-                "reference": "0eaae4356addacda65457ff1e3791deabc0cc6da"
+                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/0eaae4356addacda65457ff1e3791deabc0cc6da",
-                "reference": "0eaae4356addacda65457ff1e3791deabc0cc6da",
+                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
+                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
                 "shasum": ""
             },
             "require": {
@@ -2357,7 +2357,7 @@
                 "middleware",
                 "tidy"
             ],
-            "time": "2015-02-05 13:53:25"
+            "time": "2015-02-18 11:30:23"
         },
         {
             "name": "stolz/laravel-schema-spy",

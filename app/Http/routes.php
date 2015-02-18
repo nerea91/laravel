@@ -99,10 +99,3 @@ get('test', ['as' => 'test', 'middleware' => 'acl', function () {
 
 	dd(1, 2, 3);
 }]);
-
-
-//to-do de laravel 5
-/*Route::controllers([
- *	'auth' => 'Auth\AuthController',
- *	'password' => 'Auth\PasswordController',
- * ]);*/

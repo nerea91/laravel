@@ -59,6 +59,6 @@ return [
 	 |
 	 */
 
-	'auto-registration-profile' => 2, //to-do
+	'auto-registration-profile' => 2, //to-do customize if you are going to offer social login
 
 ];

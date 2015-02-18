@@ -112,6 +112,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			}
 		});
 
+		// restoring BEFORE validation
+		static::restoring(function ($user) {
+			$user->removeRule('password', 'required|confirmed');
+		});
+
 		parent::boot(); // Validate the model
 
 		static::saving(function ($user) {

@@ -51,5 +51,8 @@ return [
 
 		// Admin panel
 		'admin' => ['admin.js', 'admin.css'],
+
+		// Zurb Foundation Offcanvas extras
+		'offcanvas' => ['offcanvas.js', 'offcanvas.css'],
 	],
 ];

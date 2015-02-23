@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-<?php Assets::add('master.css') ?>
+<?php Assets::add('master.css', 'offcanvas.js') ?>
 
 @section('body')
 
@@ -35,20 +35,4 @@
 		</div><!--.inner-wrap-->
 	</div><!--.off-canvas-wrap-->
 	{{-- END OFFCANVAS --}}
-@stop
-
-
-@section('js')
-<script>
-$(document).ready(function() {
-	{{-- Equal height for off-canvas aside and content --}}
-	var $offcanvas = $('.off-canvas-wrap'),
-		$aside = $('aside ul', $offcanvas),
-		$main = $('#main', $offcanvas);
-
-	if($main.height() < $aside.height())
-		$main.height($aside.height());
-
-});
-</script>
 @stop

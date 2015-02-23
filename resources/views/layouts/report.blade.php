@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-<?php Assets::add(['offcanvas.css', 'admin.css']) ?>
+<?php Assets::add(['offcanvas', 'admin.css']) ?>
 
 @section('body')
 
@@ -30,7 +30,7 @@
 			</aside>
 
 			{{-- REPORT RESULTS --}}
-			<section class="main-section">
+			<section id="main">
 
 				<br/>
 
@@ -65,17 +65,9 @@
 <script>
 $(document).ready(function() {
 
-	var $offcanvas = $('#report'),
-		$form = $('form', $offcanvas),
-		$main = $('.main-section', $offcanvas);
-
-	// Equal height
-	if($main.height() < $form.height())
-		$main.height($form.height());
-
+	{{-- Toggle canvas if no results or errors --}}
 	@if($errors->any() or ! $results)
-	// Togle canvas if no results or errors
-	$offcanvas.toggleClass('move-right');
+	$('#report').toggleClass('move-right');
 	@endif
 
 });

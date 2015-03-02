@@ -151,6 +151,7 @@ return [
 		 */
 		'Stolz\Assets\Laravel\ServiceProvider',
 		'Stolz\LaravelFormBuilder\ServiceProvider',
+		'Spatie\Tail\TailServiceProvider',
 
 		/*
 		 * Environment Specific Service Providers...

@@ -1,6 +1,6 @@
 /* humanstxt.org */
 
-/* to-do set your own details */
+/* TODO set your own details */
 
 /* TEAM */
 Developer: Javi (Twitter: @Stolz).

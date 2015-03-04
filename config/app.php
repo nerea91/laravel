@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://laravel', //to-do
+	'url' => 'http://laravel', //TODO
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'), //to-do
+	'key' => env('APP_KEY', 'SomeRandomString'), //TODO
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -115,7 +115,7 @@ return [
 		 */
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
-		//'Illuminate\Bus\BusServiceProvider', to-do remove comment if you plan to use command bus
+		//'Illuminate\Bus\BusServiceProvider', TODO remove comment if you plan to use command bus
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
 		'Illuminate\Routing\ControllerServiceProvider',
@@ -125,12 +125,12 @@ return [
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Foundation\Providers\FoundationServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
-		//'Illuminate\Mail\MailServiceProvider', to-do remove comment if you plan to send e-mails
+		//'Illuminate\Mail\MailServiceProvider', TODO remove comment if you plan to send e-mails
 		'Illuminate\Pagination\PaginationServiceProvider',
 		'Illuminate\Pipeline\PipelineServiceProvider',
-		//'Illuminate\Queue\QueueServiceProvider', to-do remove comment if you plan to use queues
-		//'Illuminate\Redis\RedisServiceProvider', to-do remove comment if you plan to use Redis
-		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', to-do remove comment if you plan to allow password resets
+		//'Illuminate\Queue\QueueServiceProvider', TODO remove comment if you plan to use queues
+		//'Illuminate\Redis\RedisServiceProvider', TODO remove comment if you plan to use Redis
+		//'Illuminate\Auth\Passwords\PasswordResetServiceProvider', TODO remove comment if you plan to allow password resets
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
@@ -140,7 +140,7 @@ return [
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		//'App\Providers\BusServiceProvider', to-do remove comment if you plan to use command bus
+		//'App\Providers\BusServiceProvider', TODO remove comment if you plan to use command bus
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
@@ -155,9 +155,9 @@ return [
 		/*
 		 * Environment Specific Service Providers...
 		 */
-		'Barryvdh\Debugbar\ServiceProvider', //to-do Remove on production environment
-		'Stolz\HtmlTidy\ServiceProvider',    //to-do Remove on production environment
-		'Stolz\SchemaSpy\ServiceProvider',   //to-do Remove on production environment
+		'Barryvdh\Debugbar\ServiceProvider', //TODO Remove on production environment
+		'Stolz\HtmlTidy\ServiceProvider',    //TODO Remove on production environment
+		'Stolz\SchemaSpy\ServiceProvider',   //TODO Remove on production environment
 	],
 
 	/*

@@ -105,8 +105,8 @@ class Handler extends ExceptionHandler
 
 		// Data for the view
 		$data = [
-			'title'  => (empty($message)) ? _('Error') : $message,
-			'code'   => $code
+			'title' => (empty($message)) ? _('Error') : $message,
+			'code'  => $code
 		];
 
 		return Response::view($view, $data, $code);
@@ -115,7 +115,7 @@ class Handler extends ExceptionHandler
 	/**
 	 * Render an exception into an HTTP response using Whoops.
 	 *
-	 * @return void
+	 * @return \Illuminate\Http\Response
 	 */
 	protected function whoops(Exception $e)
 	{

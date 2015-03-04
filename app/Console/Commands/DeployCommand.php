@@ -58,7 +58,7 @@ class DeployCommand extends Command
 
 		// Commands that will be executed on remote server
 		$commands = [
-			//to-do set the necessary commands for deployment
+			//TODO set the necessary commands for deployment
 			//'cd /var/www/myproject',
 			//'git pull origin mybranch',
 			'pwd',

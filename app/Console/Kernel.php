@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel
 	 * @var array
 	 */
 	protected $commands = [
-		//to-do 'App\Console\Commands\DeployCommand',
+		//TODO 'App\Console\Commands\DeployCommand',
 		'App\Console\Commands\GettextCommand',
 		'App\Console\Commands\SetupCommand',
 		'App\Console\Commands\SetupCountriesCommand',

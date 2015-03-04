@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'App\Http\Middleware\VerifyCsrfToken',
-		'Stolz\HtmlTidy\Middleware', //to-do Remove on production environment
+		'Stolz\HtmlTidy\Middleware', //TODO Remove on production environment
 	];
 
 	/**

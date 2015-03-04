@@ -15,6 +15,6 @@ grep -Ir --colour=auto \
 --exclude-from=.gitignore  \
 --exclude="`basename $0`"  \
 --exclude=.env.example  \
-"to-do" .
+"TODO" .
 
 exit $?

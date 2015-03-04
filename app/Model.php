@@ -446,7 +446,7 @@ class Model extends UpstreamModel
 	 */
 	public function restoreOriginalAttributes($attributes)
 	{
-		$attributes = is_array($attributes) ? $attributes : (array) func_get_args();
+		$attributes = is_array($attributes) ? $attributes : func_get_args();
 		foreach($attributes as $attribute)
 			$this->$attribute = $this->getOriginal($attribute);
 

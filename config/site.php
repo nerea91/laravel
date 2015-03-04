@@ -12,7 +12,7 @@ return [
 	|
 	*/
 
-	'name' => 'Test Project', //to-do
+	'name' => 'Test Project', //TODO
 
 	/*
 	 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
 	 |
 	 */
 
-	'contact-email' => 'contact@example.com', //to-do
+	'contact-email' => 'contact@example.com', //TODO
 
 	/*
 	 |--------------------------------------------------------------------------
@@ -59,6 +59,6 @@ return [
 	 |
 	 */
 
-	'auto-registration-profile' => 2, //to-do customize if you are going to offer social login
+	'auto-registration-profile' => 2, //TODO customize if you are going to offer social login
 
 ];

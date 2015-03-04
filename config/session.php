@@ -109,7 +109,7 @@ return [
 	|
 	*/
 
-	'cookie' => 'laravel_session', //to-do if you reuse your webapp set a different value for each one to avoid session stealing
+	'cookie' => 'laravel_session', //TODO Set to a custom name for avoiding cookie session fixation attacks
 
 	/*
 	|--------------------------------------------------------------------------
@@ -135,7 +135,7 @@ return [
 	|
 	*/
 
-	'domain' => null, //to-do set to .example.com to keep the session between subdomains
+	'domain' => null, //TODO set to .example.com to keep the session between subdomains
 
 	/*
 	|--------------------------------------------------------------------------

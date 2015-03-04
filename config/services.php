@@ -1,8 +1,5 @@
 <?php
 
-// Base URL for social login
-$url = 'https://laravel.dev/login/with/'; //to-do customice for your application needs
-
 return [
 
 	/*
@@ -20,22 +17,24 @@ return [
 	'facebook' => [
 		'client_id'     => env('FACEBOOK_OAUTH_CLIENT_ID'),
 		'client_secret' => env('FACEBOOK_OAUTH_CLIENT_SECRET'),
-		'redirect'      => $url . 'facebook',
 		'scopes'        => ['email'],
 	],
 
 	'github' => [
 		'client_id'     => env('GITHUB_OAUTH_CLIENT_ID'),
 		'client_secret' => env('GITHUB_OAUTH_CLIENT_SECRET'),
-		'redirect'      => $url . 'github',
 		'scopes'        => ['user:email'],
 	],
 
 	'google' => [
 		'client_id'     => env('GOOGLE_OAUTH_CLIENT_ID'),
 		'client_secret' => env('GOOGLE_OAUTH_CLIENT_SECRET'),
-		'redirect'      => $url . 'google',
 		'scopes'        => ['profile', 'email'],
+	],
+
+	'twitter' => [
+		'client_id'     => env('TWITTER_OAUTH_CLIENT_ID'),
+		'client_secret' => env('TWITTER_OAUTH_CLIENT_SECRET'),
 	],
 
 	'mailgun' => [

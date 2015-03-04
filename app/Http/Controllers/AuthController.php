@@ -85,53 +85,84 @@ class AuthController extends Controller
 	{
 		try
 		{
+			// If the remote provider sends an error cancel the process
+			foreach(['error', 'error_message', 'error_code'] as $error)
+				if(Input::has($error))
+					throw new OauthException(_('Something went wrong') . '. ' . Input::get($error));
+
 			// Check if provider exists
 			if( ! $provider = AuthProvider::whereName($providerName)->first() or ! $provider->isUsable())
 				throw new OauthException(sprintf(_('Unknown provider: %s'), e($providerName)));
+
+			// Set provider callback url
+			Config::set("services.{$provider->name}.redirect", URL::current());
 
 			// Create an Oauth service for this autentication provider
 			if( ! $oauthService = Socialite::with($provider->name))
 				throw new OauthException(sprintf('Provider %s has no Oauth implementation', $provider));
 
-			// If the remote provider sends an error cancel the process
-			if(Input::has('error'))
-				throw new OauthException(_('Something went wrong') . '. ' . Input::get('error'));
-
-			// Request user to authorize our App
-			if( ! Input::has('code'))
+			// Oauth 2
+			if($oauthService instanceof \Laravel\Socialite\Two\AbstractProvider)
 			{
-				// If we have condigured some scopes use them, otherwise use defaults
-				$scopes = config("services.{$provider->name}.scopes");
+				// Check if current request is a callback from the provider
+				if(Input::has('code'))
+					return $this->loginSocialUser($provider, $oauthService->user());
 
-				return ($scopes) ? $oauthService->scopes($scopes)->redirect() : $oauthService->redirect();
+				// If we have configured custom scopes use them
+				if($scopes = config("services.{$provider->slug}.scopes"))
+					$oauthService->scopes($scopes);
+			}
+			// Oauth 1
+			else
+			try
+			{
+				// Check if current request is a final callback from the provider
+				if($user = $oauthService->user())
+					return $this->loginSocialUser($provider, $user);
+			}
+			catch(\InvalidArgumentException $e)
+			{
+				// This is not the final callback.
+				// As both Oauth 1 and Oauth 2 need redirecting at this
+				// point the redirection is done outside the 'catch' block.
 			}
 
-			// == This was a callback request from the Oauth service ==
-
-			// Get/create associated account
-			$account = $provider->findOrCreateAccount($oauthService->user());
-
-			// Do not allow login to users that have been disabled
-			if($account->user->trashed())
-				throw new OauthException(_('This account has been disabled'));
-
-			// Login user
-			Auth::login($account->user);
-
-			// Fire account login event
-			event('account.login', [$account]);
-
-			return redirect()->intended('/');
+			// Request user to authorize our App
+			return $oauthService->redirect();
 		}
 		catch(OauthException $e)
 		{
 			Session::flash('error', $e->getMessage());
+			
 			return redirect()->route('login');
 		}
-		catch(\InvalidArgumentException  $e)
-		{
-			Session::flash('error', $e->getMessage());
-			return redirect()->route('login');
-		}
+	}
+
+	/**
+	 * Handle callback from provider.
+	 *
+	 * It creates/gets the user account and logs him/her in.
+	 *
+	 * @param  \App\Provider
+	 * @param  \Laravel\Socialite\Contracts\User
+	 * @return Response
+	 * @throws OauthException
+	 */
+	protected function loginSocialUser(Provider $provider, SocialUser $socialUser)
+	{
+		// Get/create associated account
+		$account = $provider->findOrCreateAccount($socialUser);
+
+		// Do not ley disabled user to log in
+		if($account->user->trashed())
+			throw new OauthException(_('This account has been disabled'));
+
+		// Login user
+		Auth::login($account->user);
+
+		// Fire account login event
+		event('account.login', [$account]);
+
+		return redirect()->intended('/');
 	}
 }

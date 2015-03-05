@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-18 12:33+0100\n"
+"POT-Creation-Date: 2015-03-05 17:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -418,6 +418,9 @@ msgstr "Prioridad"
 
 msgid "Profile"
 msgstr "Perfil"
+
+msgid "Profile cannot be deleted because it is assegned to these users"
+msgstr "El perfil no puede eliminarse porque está asignado a estos usuarios"
 
 msgid "Profile must be similar or inferior to your own profile"
 msgstr "El perfil debe ser similar o inferior a tu propio perfil"
@@ -856,24 +859,3 @@ msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
-
-#~ msgid "From %d to %d out of %d"
-#~ msgstr "Del %d al %d de un total de %d"
-
-#~ msgid "Maintenance"
-#~ msgstr "Mantenimiento"
-
-#~ msgid "Password Reset"
-#~ msgstr "Restablecer contraseña"
-
-#~ msgid "Password reminder sent!"
-#~ msgstr "¡Recordatorio de contraseña enviado"
-
-#~ msgid "This link will expire in %d minutes"
-#~ msgstr "Este enlace caducará en %d minutos"
-
-#~ msgid "To reset your password, complete this form"
-#~ msgstr "Completa este formulario para restablecer tu contraseña"
-
-#~ msgid "Cancelled by user"
-#~ msgstr "Cancelado por el usuario"

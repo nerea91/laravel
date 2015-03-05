@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-18 12:33+0100\n"
+"POT-Creation-Date: 2015-03-05 17:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -418,6 +418,9 @@ msgid "Priority"
 msgstr ""
 
 msgid "Profile"
+msgstr ""
+
+msgid "Profile cannot be deleted because it is assegned to these users"
 msgstr ""
 
 msgid "Profile must be similar or inferior to your own profile"

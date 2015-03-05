@@ -7,6 +7,7 @@
 	"require": {
 		"laravel/framework": "~5.0",
 		"league/commonmark": "dev-master",
+		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
 		"stolz/menu": "dev-master"

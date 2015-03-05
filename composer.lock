@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c889093b342bf50f05a308ccdc7d0972",
+    "hash": "e97a37583eb3b144ed8f3040eb02ab83",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -456,16 +456,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.5",
+            "version": "v5.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653"
+                "reference": "c263240daa383e6b9bd979600dc61dcb2c436d53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b1aea041cbc0cd54563e2d3709a54a71eed57653",
-                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c263240daa383e6b9bd979600dc61dcb2c436d53",
+                "reference": "c263240daa383e6b9bd979600dc61dcb2c436d53",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +482,7 @@
                 "mtdowling/cron-expression": "~1.0",
                 "nesbot/carbon": "~1.0",
                 "php": ">=5.4.0",
-                "psy/psysh": "0.3.*",
+                "psy/psysh": "0.4.*",
                 "swiftmailer/swiftmailer": "~5.1",
                 "symfony/console": "2.6.*",
                 "symfony/debug": "2.6.*",
@@ -577,7 +577,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-02-13 19:10:59"
+            "time": "2015-02-27 00:32:38"
         },
         {
             "name": "league/commonmark",
@@ -585,12 +585,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df"
+                "reference": "7b428e962fb83a13715e057c65c88873d3165df0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df",
-                "reference": "962e2ddaae13dcf1a2a6493ccf2e4ec3d72123df",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7b428e962fb83a13715e057c65c88873d3165df0",
+                "reference": "7b428e962fb83a13715e057c65c88873d3165df0",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7-dev"
+                    "dev-master": "0.8-dev"
                 }
             },
             "autoload": {
@@ -636,7 +636,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-02-18 14:46:36"
+            "time": "2015-03-01 21:29:05"
         },
         {
             "name": "league/flysystem",
@@ -823,7 +823,7 @@
             ],
             "authors": [
                 {
-                    "name": "Steve Clay",
+                    "name": "Stephen Clay",
                     "email": "steve@mrclay.org",
                     "homepage": "http://www.mrclay.org/",
                     "role": "Developer"
@@ -1045,16 +1045,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.3.5",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "2ce0e8f3020fd292c2ad2a496c5d83939823f642"
+                "reference": "3787f3436f4fd898e0ac1eb6f5abd2ab6b24085b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/2ce0e8f3020fd292c2ad2a496c5d83939823f642",
-                "reference": "2ce0e8f3020fd292c2ad2a496c5d83939823f642",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3787f3436f4fd898e0ac1eb6f5abd2ab6b24085b",
+                "reference": "3787f3436f4fd898e0ac1eb6f5abd2ab6b24085b",
                 "shasum": ""
             },
             "require": {
@@ -1072,6 +1072,7 @@
             },
             "suggest": {
                 "ext-pcntl": "Enabling the PCNTL extension makes PsySH a lot happier :)",
+                "ext-pdo-sqlite": "The doc command requires SQLite to work.",
                 "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well.",
                 "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history."
             },
@@ -1111,7 +1112,54 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-02-12 19:35:52"
+            "time": "2015-02-25 20:35:54"
+        },
+        {
+            "name": "spatie/laravel-tail",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/freekmurze/laravel-tail.git",
+                "reference": "0bb3ec5c15f6ed74efeafae806bbbba03ea0302d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/freekmurze/laravel-tail/zipball/0bb3ec5c15f6ed74efeafae806bbbba03ea0302d",
+                "reference": "0bb3ec5c15f6ed74efeafae806bbbba03ea0302d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.0.x",
+                "illuminate/support": "5.0.x",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Tail\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The missing tail command for Laravel 5",
+            "homepage": "https://github.com/freekmurze/laravel-tail",
+            "keywords": [
+                "laravel 5",
+                "laravel-tail",
+                "log",
+                "tail"
+            ],
+            "time": "2015-02-10 22:40:13"
         },
         {
             "name": "stolz/assets",
@@ -2072,12 +2120,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "77b9cc071f4bbd839923269668b14d308778d8b0"
+                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/77b9cc071f4bbd839923269668b14d308778d8b0",
-                "reference": "77b9cc071f4bbd839923269668b14d308778d8b0",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/7bdf8acf3b955f4fcf922e74abdfdec370369196",
+                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196",
                 "shasum": ""
             },
             "require": {
@@ -2118,7 +2166,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-02-15 14:11:42"
+            "time": "2015-02-19 10:26:39"
         },
         {
             "name": "filp/whoops",
@@ -2308,12 +2356,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/laravel-html-tidy.git",
-                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8"
+                "reference": "5b14d52e4f84413d202b2466151a1f690c2303e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
-                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
+                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/5b14d52e4f84413d202b2466151a1f690c2303e5",
+                "reference": "5b14d52e4f84413d202b2466151a1f690c2303e5",
                 "shasum": ""
             },
             "require": {
@@ -2357,7 +2405,7 @@
                 "middleware",
                 "tidy"
             ],
-            "time": "2015-02-18 11:30:23"
+            "time": "2015-02-22 13:42:25"
         },
         {
             "name": "stolz/laravel-schema-spy",

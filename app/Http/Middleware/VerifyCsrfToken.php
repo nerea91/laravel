@@ -14,6 +14,11 @@ class VerifyCsrfToken extends BaseVerifier
 	 */
 	public function handle($request, Closure $next)
 	{
+		// Apply global language
+		app('language')->apply();
+		// NOTE: This code was originally in AppServideProvider boot() method but since Laravel 5 is broken
+		// it has being moved here due to the VerifyCsrfToken being always executed
+
 		return parent::handle($request, $next);
 	}
 }

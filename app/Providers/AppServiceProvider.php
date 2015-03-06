@@ -13,6 +13,9 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+		// Apply global language
+		//app('language')->apply(); NOTE: Moved to a middleware since Laravel 5 is broken and calling this here has no effect anymore
+
 		// Register our custom validator
 		Validator::resolver(function ($translator, $data, $rules, $messages) {
 			return new CustomValidator($translator, $data, $rules, $messages);
@@ -35,28 +38,10 @@ class AppServiceProvider extends ServiceProvider
 			'App\Services\Registrar'
 		);
 
-		// Register application global language
-		if( ! $this->app->runningInConsole())
-			$this->registerAppLanguage();
-	}
-
-	/**
-	 * Register application global language.
-	 *
-	 * @return void
-	 */
-	protected function registerAppLanguage()
-	{
-		// Bind language to the IoC container
+		// Detect global language
 		$this->app->singleton('language', function () {
 
-			$language = \App\Language::detect()->apply();
-
-			// Write the result to the log
-			if(config('app.debug'))
-				info($language .' detected from ' . $language->detectedFrom);
-
-			return $language;
+			return \App\Language::detect();
 		});
 	}
 }

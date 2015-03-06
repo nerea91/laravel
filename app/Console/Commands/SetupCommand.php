@@ -20,16 +20,6 @@ class SetupCommand extends Command
 	protected $description = 'Setup default values for several database tables';
 
 	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
 	 * Execute the console command.
 	 *
 	 * @return mixed

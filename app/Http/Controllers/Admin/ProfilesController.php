@@ -3,6 +3,7 @@
 use App\Http\Controllers\ResourceController;
 use App\Profile;
 use Auth;
+use Cache;
 
 class ProfilesController extends ResourceController
 {
@@ -38,6 +39,21 @@ class ProfilesController extends ResourceController
 		$this->relationships = [
 			'permissions' => [_('Permissions'), 'required|array|min:1'],
 		];
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		// Purge permission cache
+		Cache::forget('usedPermissionTypes');
+		Cache::forget("profile{$id}permissions");
+
+		return parent::edit($id);
 	}
 }
 

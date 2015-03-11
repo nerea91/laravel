@@ -456,16 +456,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.13",
+            "version": "v5.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c263240daa383e6b9bd979600dc61dcb2c436d53"
+                "reference": "f61e0098151c73db9068a6be6d86bfc60b01de25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c263240daa383e6b9bd979600dc61dcb2c436d53",
-                "reference": "c263240daa383e6b9bd979600dc61dcb2c436d53",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f61e0098151c73db9068a6be6d86bfc60b01de25",
+                "reference": "f61e0098151c73db9068a6be6d86bfc60b01de25",
                 "shasum": ""
             },
             "require": {
@@ -577,7 +577,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-02-27 00:32:38"
+            "time": "2015-03-07 03:18:10"
         },
         {
             "name": "league/commonmark",
@@ -585,24 +585,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "7b428e962fb83a13715e057c65c88873d3165df0"
+                "reference": "69168c96d5c10e1184036f735db395059accd737"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7b428e962fb83a13715e057c65c88873d3165df0",
-                "reference": "7b428e962fb83a13715e057c65c88873d3165df0",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/69168c96d5c10e1184036f735db395059accd737",
+                "reference": "69168c96d5c10e1184036f735db395059accd737",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=5.3.3"
+                "php": ">=5.4.8"
             },
             "replace": {
                 "colinodell/commonmark-php": "*"
             },
             "require-dev": {
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.17",
+                "jgm/commonmark": "0.18",
                 "michelf/php-markdown": "~1.4",
                 "phpunit/phpunit": "~4.3"
             },
@@ -636,7 +636,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-03-01 21:29:05"
+            "time": "2015-03-08 23:19:21"
         },
         {
             "name": "league/flysystem",
@@ -723,16 +723,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f"
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c41c218e239b50446fd883acb1ecfd4b770caeae",
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae",
                 "shasum": ""
             },
             "require": {
@@ -749,6 +749,7 @@
                 "phpunit/phpunit": "~4.0",
                 "raven/raven": "~0.5",
                 "ruflin/elastica": "0.90.*",
+                "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
             "suggest": {
@@ -765,7 +766,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12.x-dev"
+                    "dev-master": "1.13.x-dev"
                 }
             },
             "autoload": {
@@ -791,25 +792,31 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-12-29 21:29:35"
+            "time": "2015-03-05 01:12:12"
         },
         {
             "name": "mrclay/minify",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mrclay/minify.git",
-                "reference": "d245bca4987dec197d1e6d7dc117614b60ff7494"
+                "reference": "3c11ba8232a2155a1a29552aafc528be5fb0a662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrclay/minify/zipball/d245bca4987dec197d1e6d7dc117614b60ff7494",
-                "reference": "d245bca4987dec197d1e6d7dc117614b60ff7494",
+                "url": "https://api.github.com/repos/mrclay/minify/zipball/3c11ba8232a2155a1a29552aafc528be5fb0a662",
+                "reference": "3c11ba8232a2155a1a29552aafc528be5fb0a662",
                 "shasum": ""
             },
             "require": {
                 "ext-pcre": "*",
                 "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "tubalmartin/cssmin": "~2.4.8"
+            },
+            "suggest": {
+                "tubalmartin/cssmin": "Support minify with CSSMin (YUI PHP port)"
             },
             "type": "library",
             "autoload": {
@@ -825,13 +832,12 @@
                 {
                     "name": "Stephen Clay",
                     "email": "steve@mrclay.org",
-                    "homepage": "http://www.mrclay.org/",
                     "role": "Developer"
                 }
             ],
             "description": "Minify is a PHP5 app that helps you follow several rules for client-side performance. It combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers",
             "homepage": "http://code.google.com/p/minify/",
-            "time": "2014-03-12 12:54:23"
+            "time": "2014-10-30 22:58:02"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -879,16 +885,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.14.0",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e"
+                "reference": "9b7665041754eaa9bb2622349bc9adbc1cf61cb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/9b7665041754eaa9bb2622349bc9adbc1cf61cb8",
+                "reference": "9b7665041754eaa9bb2622349bc9adbc1cf61cb8",
                 "shasum": ""
             },
             "require": {
@@ -915,13 +921,13 @@
                 }
             ],
             "description": "A simple API extension for DateTime.",
-            "homepage": "https://github.com/briannesbitt/Carbon",
+            "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2015-02-06 05:07:29"
+            "time": "2015-03-04 04:50:11"
         },
         {
             "name": "nicmart/tree",
@@ -1167,12 +1173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/Assets.git",
-                "reference": "1b30061575cd2c37990e530f07606e2b0f8ee761"
+                "reference": "c7af3497d55babda4d672999dc52ad925a467ec3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/Assets/zipball/1b30061575cd2c37990e530f07606e2b0f8ee761",
-                "reference": "1b30061575cd2c37990e530f07606e2b0f8ee761",
+                "url": "https://api.github.com/repos/Stolz/Assets/zipball/c7af3497d55babda4d672999dc52ad925a467ec3",
+                "reference": "c7af3497d55babda4d672999dc52ad925a467ec3",
                 "shasum": ""
             },
             "require": {
@@ -1216,7 +1222,7 @@
                 "minify",
                 "pipeline"
             ],
-            "time": "2015-02-10 17:52:30"
+            "time": "2015-03-06 13:29:20"
         },
         {
             "name": "stolz/laravel-form-builder",
@@ -2120,12 +2126,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196"
+                "reference": "77be5170f3777e2e899ec98105ce5686cd4aa63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/7bdf8acf3b955f4fcf922e74abdfdec370369196",
-                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/77be5170f3777e2e899ec98105ce5686cd4aa63b",
+                "reference": "77be5170f3777e2e899ec98105ce5686cd4aa63b",
                 "shasum": ""
             },
             "require": {
@@ -2166,7 +2172,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-02-19 10:26:39"
+            "time": "2015-03-07 15:15:23"
         },
         {
             "name": "filp/whoops",
@@ -2356,12 +2362,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/laravel-html-tidy.git",
-                "reference": "5b14d52e4f84413d202b2466151a1f690c2303e5"
+                "reference": "0ff4c5ef1edf286b1ea5985f90c6d272953d1d31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/5b14d52e4f84413d202b2466151a1f690c2303e5",
-                "reference": "5b14d52e4f84413d202b2466151a1f690c2303e5",
+                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/0ff4c5ef1edf286b1ea5985f90c6d272953d1d31",
+                "reference": "0ff4c5ef1edf286b1ea5985f90c6d272953d1d31",
                 "shasum": ""
             },
             "require": {
@@ -2405,7 +2411,7 @@
                 "middleware",
                 "tidy"
             ],
-            "time": "2015-02-22 13:42:25"
+            "time": "2015-03-04 11:27:30"
         },
         {
             "name": "stolz/laravel-schema-spy",

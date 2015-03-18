@@ -33,15 +33,23 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind(
-			'Illuminate\Contracts\Auth\Registrar',
-			'App\Services\Registrar'
-		);
-
 		// Detect global language
 		$this->app->singleton('language', function () {
 
 			return \App\Language::detect();
 		});
+
+		// Load environment Specific Service Providers...
+		if($this->app->environment('local'))
+		{
+			$providers = [
+				'Barryvdh\Debugbar\ServiceProvider',
+				'Stolz\HtmlTidy\ServiceProvider',
+				'Stolz\SchemaSpy\ServiceProvider',
+			];
+
+			foreach($providers as $provider)
+				$this->app->register($provider);
+		}
 	}
 }

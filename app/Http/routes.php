@@ -45,22 +45,22 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 	});
 
 	// Admin area
-	Route::group(['prefix' => 'admin'], function () {
-		get('/', ['as' => 'admin',  'uses' => 'Admin\AdminController@showAdminPage']);
-		post('/', ['as' => 'admin.search', 'uses' => 'Admin\AdminController@search']);
+	Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+		get('/', ['as' => 'admin', 'uses' => 'AdminController@showAdminPage']);
+		post('/', ['as' => 'admin.search', 'uses' => 'AdminController@search']);
 
 		// Resource controllers require ACL
 		Route::group(['middleware' => 'acl'], function () {
 
 			$resources = [
-				'accounts' => 'Admin\AccountsController',
-				'authproviders' => 'Admin\AuthProvidersController',
-				'countries' => 'Admin\CountriesController',
-				'currencies' => 'Admin\CurrenciesController',
-				'documents' => 'Admin\DocumentsController',
-				'languages' => 'Admin\LanguagesController',
-				'profiles' => 'Admin\ProfilesController',
-				'users' => 'Admin\UsersController',
+				'accounts' => 'AccountsController',
+				'authproviders' => 'AuthProvidersController',
+				'countries' => 'CountriesController',
+				'currencies' => 'CurrenciesController',
+				'documents' => 'DocumentsController',
+				'languages' => 'LanguagesController',
+				'profiles' => 'ProfilesController',
+				'users' => 'UsersController',
 			];
 
 			foreach($resources as $name => $controller)
@@ -74,10 +74,10 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 	});
 
 	// Reports area
-	Route::group(['prefix' => 'report', 'middleware' => 'acl'], function () {
+	Route::group(['prefix' => 'report', 'middleware' => 'acl', 'namespace' => 'Reports'], function () {
 
 		$reports = [
-			'sample' => 'Reports\SampleReport',
+			'sample' => 'SampleReport',
 		];
 
 		foreach($reports as $name => $controller)

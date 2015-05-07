@@ -94,7 +94,7 @@ if( ! function_exists('numerize'))
 	/**
 	 * Converts a literal representing a number to the most appropiated numeric format (integer or float).
 	 *
-	 * If the string does not represent a number it is returned unaltered.
+	 * If the literal does not represent a number it is returned unaltered.
 	 *
 	 * i.e:
 	 *

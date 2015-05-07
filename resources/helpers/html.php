@@ -29,3 +29,31 @@ if( ! function_exists('pagination_links'))
 		return with(new \Stolz\LaravelFormBuilder\Pagination($paginator))->render();
 	}
 }
+
+if( ! function_exists('link_to_sort_by'))
+{
+	/**
+	 * Build up links for sorting resource by column (?sortby=column)
+	 *
+	 * @param  array
+	 * @return array
+	 */
+	function link_to_sort_by($labels)
+	{
+		$route = Route::current()->getName();
+		$column = Input::get('sortby');
+		$direction = Input::get('sortdir');
+		$links = [];
+
+		foreach($labels as $key => $label)
+		{
+			$sortby = ['sortby' => $key];
+			if($key === $column and $direction !== 'desc')
+				$sortby['sortdir'] = 'desc';
+
+			$links[$key] = link_to_route($route, $label, $sortby);
+		}
+
+		return $links;
+	}
+}

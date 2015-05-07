@@ -89,31 +89,27 @@ if( ! function_exists('array_chunk_for_sqlite'))
 	}
 }
 
-if( ! function_exists('link_to_sort_by'))
+if( ! function_exists('numerize'))
 {
 	/**
-	 * Build up links for sorting resource by column (?sortby=column)
+	 * Converts a literal representing a number to the most appropiated numeric format (integer or float).
 	 *
-	 * @param  array
-	 * @return array
+	 * If the string does not represent a number it is returned unaltered.
+	 *
+	 * i.e:
+	 *
+	 *  "foo" => "foo" (string)
+	 *  "1.2" => 1.2   (float)
+	 *    1.2 => 1.2   (float)
+	 *    "1" => 1     (integer)
+	 *      1 => 1     (integer)
+	 *
+	 * @param  mixed
+	 * @return mixed
 	 */
-	function link_to_sort_by($labels)
+	function numerize($literal)
 	{
-		$route = Route::current()->getName();
-		$column = Input::get('sortby');
-		$direction = Input::get('sortdir');
-		$links = [];
-
-		foreach($labels as $key => $label)
-		{
-			$sortby = ['sortby' => $key];
-			if($key === $column and $direction !== 'desc')
-				$sortby['sortdir'] = 'desc';
-
-			$links[$key] = link_to_route($route, $label, $sortby);
-		}
-
-		return $links;
+		return (is_numeric($literal)) ? "$literal" + 0 : $literal;
 	}
 }
 

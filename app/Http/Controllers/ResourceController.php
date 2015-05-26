@@ -135,7 +135,10 @@ class ResourceController extends Controller
 	 */
 	public function show($id)
 	{
-		$this->resource = $this->resource->findOrFail($id);
+		// Get the resource if it has not been provided by the child class
+		if( ! $this->resource->getKey())
+			$this->resource = $this->resource->findOrFail($id);
+
 		$this->layout->subtitle = _('Details');
 
 		return $this->loadView(__FUNCTION__, $this->resource->getVisibleLabels());
@@ -149,7 +152,10 @@ class ResourceController extends Controller
 	 */
 	public function edit($id)
 	{
-		$this->resource = $this->resource->findOrFail($id);
+		// Get the resource if it has not been provided by the child class
+		if( ! $this->resource->getKey())
+			$this->resource = $this->resource->findOrFail($id);
+
 		$this->layout->subtitle = _('Edit');
 
 		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
@@ -163,9 +169,15 @@ class ResourceController extends Controller
 	 */
 	public function update($id)
 	{
+		// Get the resource if it has not been provided by the child class
+		if( ! $this->resource->getKey())
+			$this->resource = $this->resource->findOrFail($id);
+
 		// NOTE: If you override this method remember to exclude $this->relationships from input!!
 		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
-		$this->resource = $this->resource->findOrFail($id)->fill($input);
+
+		// Transfer input to the resource
+		$this->resource = $this->resource->fill($request->input());
 
 		return $this->persist(__FUNCTION__);
 	}

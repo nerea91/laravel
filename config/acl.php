@@ -36,6 +36,7 @@ return [
 	// Reports
 	'report.sample' => $onlyIfLocalEnvironment,
 	'report.sample.validate' => $onlyIfLocalEnvironment,
+	#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 
 	// Countries
 	'admin.countries.index' => 10,
@@ -124,5 +125,7 @@ return [
 	'admin.documents.destroy' => 143,
 	'admin.documents.restore' => 143,
 	'admin.documents.trash.mode' => 143,
+
+	#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 
 ];

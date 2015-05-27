@@ -61,6 +61,7 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 				'languages' => 'LanguagesController',
 				'profiles' => 'ProfilesController',
 				'users' => 'UsersController',
+				#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 			];
 
 			foreach($resources as $name => $controller)
@@ -78,6 +79,7 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 
 		$reports = [
 			'sample' => 'SampleReport',
+			#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 		];
 
 		foreach($reports as $name => $controller)

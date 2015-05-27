@@ -136,6 +136,8 @@ class AdminPanelMenuComposer
 		if($user->hasPermission(61))
 			$users->addChild(new Link(route('admin.users.create'), _('Add')));
 
+		#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
+
 		return compact('accounts', 'countries', 'currencies', 'documents', 'documentsList', 'languages', 'profiles', 'providers', 'users');
 	}
 

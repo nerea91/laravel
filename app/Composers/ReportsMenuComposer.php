@@ -44,6 +44,7 @@ class ReportsMenuComposer
 	public static function makeSections(User $user)
 	{
 		$sampleReport = (app()->environment('local')) ? new Link(route('report.sample'), with(new \App\Http\Controllers\Reports\SampleReport)->title()) : new Node();
+		#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 
 		return compact('sampleReport');
 	}

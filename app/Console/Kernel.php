@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
 	protected $commands = [
 		//TODO 'App\Console\Commands\DeployCommand',
 		'App\Console\Commands\GettextCommand',
+		'App\Console\Commands\MakeReportCommand',
+		'App\Console\Commands\MakeResourceCommand',
 		'App\Console\Commands\SetupCommand',
 		'App\Console\Commands\SetupCountriesCommand',
 		'App\Console\Commands\SetupCurrenciesCommand',

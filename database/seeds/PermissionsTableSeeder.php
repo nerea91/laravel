@@ -8,6 +8,9 @@ class PermissionsTableSeeder extends Seeder
 	{
 		$permissions = [
 
+			// Reports (Reserved range: TODO)
+			#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
+
 			// Countries (Reserved range: 0-19)
 			['id' => 10, 'type_id' => 1, 'name' => _('View')],
 			['id' => 11, 'type_id' => 1, 'name' => _('Add')],
@@ -55,6 +58,8 @@ class PermissionsTableSeeder extends Seeder
 			['id' => 141, 'type_id' => 8, 'name' => _('Add')],
 			['id' => 142, 'type_id' => 8, 'name' => _('Edit')],
 			['id' => 143, 'type_id' => 8, 'name' => _('Delete')],
+
+			#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 
 		];
 

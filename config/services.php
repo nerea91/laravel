@@ -53,7 +53,8 @@ return [
 	],
 
 	'stripe' => [
-		'model'  => 'User',
+		'model'  => 'App\User',
+		'key' => '',
 		'secret' => '',
 	],
 

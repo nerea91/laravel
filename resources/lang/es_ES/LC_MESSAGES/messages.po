@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-05 17:07+0100\n"
+"POT-Creation-Date: 2015-05-28 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,6 +651,9 @@ msgstr ":attribute debe ser un número."
 
 msgid "The :attribute must be a positive number."
 msgstr ":attribute debe ser un número positivo."
+
+msgid "The :attribute must be a string."
+msgstr "El campo :attribute debe ser una cadena."
 
 msgid "The :attribute must be a valid 24h time."
 msgstr "El campo :attribute debe ser una hora válida en formato 24h."

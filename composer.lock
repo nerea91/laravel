@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aa6212a302dfaebe66fc0900071548da",
+    "hash": "e97a37583eb3b144ed8f3040eb02ab83",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -456,16 +456,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.31",
+            "version": "v5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "db0a7400465df159ba8c6eaa954f97f50bc19687"
+                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/db0a7400465df159ba8c6eaa954f97f50bc19687",
-                "reference": "db0a7400465df159ba8c6eaa954f97f50bc19687",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b1aea041cbc0cd54563e2d3709a54a71eed57653",
+                "reference": "b1aea041cbc0cd54563e2d3709a54a71eed57653",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +482,7 @@
                 "mtdowling/cron-expression": "~1.0",
                 "nesbot/carbon": "~1.0",
                 "php": ">=5.4.0",
-                "psy/psysh": "0.4.*",
+                "psy/psysh": "0.3.*",
                 "swiftmailer/swiftmailer": "~5.1",
                 "symfony/console": "2.6.*",
                 "symfony/debug": "2.6.*",
@@ -535,7 +535,7 @@
                 "predis/predis": "~1.0"
             },
             "suggest": {
-                "aws/aws-sdk-php": "Required to use the SQS queue driver and SES mail driver (~2.4).",
+                "aws/aws-sdk-php": "Required to use the SQS queue driver (~2.4).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
                 "guzzlehttp/guzzle": "Required to use the Mailgun and Mandrill mail drivers (~5.0).",
                 "iron-io/iron_mq": "Required to use the iron queue driver (~1.5).",
@@ -573,12 +573,11 @@
                 }
             ],
             "description": "The Laravel Framework.",
-            "homepage": "http://laravel.com",
             "keywords": [
                 "framework",
                 "laravel"
             ],
-            "time": "2015-05-11 22:15:00"
+            "time": "2015-02-13 19:10:59"
         },
         {
             "name": "league/commonmark",
@@ -586,33 +585,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "2205386ee3ee0558241298eb9efb056b2fae0f82"
+                "reference": "fc2638d3cd698c880f1188d6618a65efe70fecf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/2205386ee3ee0558241298eb9efb056b2fae0f82",
-                "reference": "2205386ee3ee0558241298eb9efb056b2fae0f82",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/fc2638d3cd698c880f1188d6618a65efe70fecf0",
+                "reference": "fc2638d3cd698c880f1188d6618a65efe70fecf0",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=5.4.8"
+                "php": ">=5.3.3"
             },
             "replace": {
                 "colinodell/commonmark-php": "*"
             },
             "require-dev": {
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.19",
+                "jgm/commonmark": "0.17",
                 "michelf/php-markdown": "~1.4",
-                "phpunit/phpunit": "~4.3",
-                "phpunit/phpunit-mock-objects": "2.3.0",
-                "symfony/finder": "~2.3"
+                "phpunit/phpunit": "~4.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.9-dev"
+                    "dev-master": "0.7-dev"
                 }
             },
             "autoload": {
@@ -639,7 +636,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-05-16 12:31:42"
+            "time": "2015-02-20 19:56:10"
         },
         {
             "name": "league/flysystem",
@@ -1055,16 +1052,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.4.4",
+            "version": "v0.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "489816db71649bd95b416e3ed9062d40528ab0ac"
+                "reference": "2ce0e8f3020fd292c2ad2a496c5d83939823f642"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/489816db71649bd95b416e3ed9062d40528ab0ac",
-                "reference": "489816db71649bd95b416e3ed9062d40528ab0ac",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/2ce0e8f3020fd292c2ad2a496c5d83939823f642",
+                "reference": "2ce0e8f3020fd292c2ad2a496c5d83939823f642",
                 "shasum": ""
             },
             "require": {
@@ -1075,14 +1072,13 @@
                 "symfony/console": "~2.3.10|~2.4.2|~2.5"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "~1.5",
+                "fabpot/php-cs-fixer": "~1.3",
                 "phpunit/phpunit": "~3.7|~4.0",
                 "squizlabs/php_codesniffer": "~2.0",
-                "symfony/finder": "~2.1|~3.0"
+                "symfony/finder": "~2.1"
             },
             "suggest": {
                 "ext-pcntl": "Enabling the PCNTL extension makes PsySH a lot happier :)",
-                "ext-pdo-sqlite": "The doc command requires SQLite to work.",
                 "ext-posix": "If you have PCNTL, you'll want the POSIX extension as well.",
                 "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history."
             },
@@ -1092,7 +1088,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.4.x-dev"
+                    "dev-develop": "0.3.x-dev"
                 }
             },
             "autoload": {
@@ -1122,7 +1118,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-03-26 18:43:54"
+            "time": "2015-02-12 19:35:52"
         },
         {
             "name": "spatie/laravel-tail",
@@ -1177,12 +1173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/Assets.git",
-                "reference": "c7af3497d55babda4d672999dc52ad925a467ec3"
+                "reference": "1b30061575cd2c37990e530f07606e2b0f8ee761"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/Assets/zipball/c7af3497d55babda4d672999dc52ad925a467ec3",
-                "reference": "c7af3497d55babda4d672999dc52ad925a467ec3",
+                "url": "https://api.github.com/repos/Stolz/Assets/zipball/1b30061575cd2c37990e530f07606e2b0f8ee761",
+                "reference": "1b30061575cd2c37990e530f07606e2b0f8ee761",
                 "shasum": ""
             },
             "require": {
@@ -1226,7 +1222,7 @@
                 "minify",
                 "pipeline"
             ],
-            "time": "2015-03-06 13:29:20"
+            "time": "2015-02-10 17:52:30"
         },
         {
             "name": "stolz/laravel-form-builder",
@@ -2150,16 +2146,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "c0114360dccbd0e7c1ce3d6440e5ceae25807e56"
+                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c0114360dccbd0e7c1ce3d6440e5ceae25807e56",
-                "reference": "c0114360dccbd0e7c1ce3d6440e5ceae25807e56",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/7bdf8acf3b955f4fcf922e74abdfdec370369196",
+                "reference": "7bdf8acf3b955f4fcf922e74abdfdec370369196",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.0.17|5.1.*",
+                "illuminate/support": "5.0.x",
                 "maximebf/debugbar": "~1.10.2",
                 "php": ">=5.4.0",
                 "symfony/finder": "~2.6"
@@ -2196,20 +2192,20 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-05-26 07:02:48"
+            "time": "2015-02-19 10:26:39"
         },
         {
             "name": "filp/whoops",
-            "version": "1.1.5",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "c982fe62c44798c433229cb0425c61b487cc1883"
+                "reference": "a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/c982fe62c44798c433229cb0425c61b487cc1883",
-                "reference": "c982fe62c44798c433229cb0425c61b487cc1883",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf",
+                "reference": "a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf",
                 "shasum": ""
             },
             "require": {
@@ -2254,7 +2250,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-03-30 15:26:59"
+            "time": "2014-10-26 09:05:09"
         },
         {
             "name": "maximebf/debugbar",
@@ -2386,12 +2382,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stolz/laravel-html-tidy.git",
-                "reference": "e9b41d74ff6589a9b1b431aeda90ffadfeb40120"
+                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/e9b41d74ff6589a9b1b431aeda90ffadfeb40120",
-                "reference": "e9b41d74ff6589a9b1b431aeda90ffadfeb40120",
+                "url": "https://api.github.com/repos/Stolz/laravel-html-tidy/zipball/495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
+                "reference": "495fc9585ff6ab29a6bdcdaa7569473bf8ccbae8",
                 "shasum": ""
             },
             "require": {
@@ -2435,7 +2431,7 @@
                 "middleware",
                 "tidy"
             ],
-            "time": "2015-04-21 12:11:23"
+            "time": "2015-02-18 11:30:23"
         },
         {
             "name": "stolz/laravel-schema-spy",

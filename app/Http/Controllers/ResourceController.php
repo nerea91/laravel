@@ -177,7 +177,7 @@ class ResourceController extends Controller
 		$input = Input::except(array_keys($this->relationships)); // Less safe, more convenient
 
 		// Transfer input to the resource
-		$this->resource = $this->resource->fill($request->input());
+		$this->resource = $this->resource->fill($input);
 
 		return $this->persist(__FUNCTION__);
 	}

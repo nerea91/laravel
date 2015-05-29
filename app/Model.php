@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model as UpstreamModel;
 use Input;
 use Validator;
 
-class Model extends UpstreamModel
+abstract class Model extends UpstreamModel
 {
 	/**
 	 * Validation rules

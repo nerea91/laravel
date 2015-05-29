@@ -93,7 +93,7 @@ class Handler extends ExceptionHandler
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);
 
 		// Get code
-		$code = ($e instanceof HttpException) ? $e->getStatusCode() : $e->geCode();
+		$code = ($e instanceof HttpException) ? $e->getStatusCode() : $e->getCode();
 
 		// Get message
 		$message = $e->getMessage();

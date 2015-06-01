@@ -115,7 +115,7 @@ return [
 		 */
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
-		//'Illuminate\Bus\BusServiceProvider', TODO remove comment if you plan to use command bus
+		//'Illuminate\Broadcasting\BroadcastServiceProvider', TODO remove comment if you plan to use command bus
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
 		'Illuminate\Routing\ControllerServiceProvider',
@@ -140,8 +140,6 @@ return [
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		//'App\Providers\BusServiceProvider', TODO remove comment if you plan to use command bus
-		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\ViewComposersServiceProvider',

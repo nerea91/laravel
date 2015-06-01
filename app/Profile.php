@@ -192,7 +192,7 @@ class Profile extends Model
 		}
 
 		// Prevent deleting profiles assigned to users
-		if(count($usernames = $this->users->lists('username')))
+		if(count($usernames = $this->users->lists('username')->all()))
 		{
 			if($throwExceptions)
 				throw new ModelDeletionException(_('Profile cannot be deleted because it is assegned to these users') . ': ' . enum($usernames));
@@ -216,7 +216,7 @@ class Profile extends Model
 
 		// Store profile permissions in cache to save some queries
 		$permissions = Cache::remember("profile{$this->id}permissions", 60, function () {
-			return $this->permissions->lists('id');
+			return $this->permissions->lists('id')->all();
 		});
 
 		return $permissions;

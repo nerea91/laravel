@@ -266,7 +266,7 @@ abstract class Model extends UpstreamModel
 	 */
 	public static function dropdown($label = 'name', $value = 'id')
 	{
-		return self::orderBy($label)->lists($label, $value);
+		return self::orderBy($label)->lists($label, $value)->all();
 	}
 
 	// Labels ======================================================================

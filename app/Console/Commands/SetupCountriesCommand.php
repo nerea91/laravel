@@ -103,7 +103,7 @@ class SetupCountriesCommand extends Command
 		$answer = $this->ask("Enter 'all' or a space separated list of ids/codes to enable: ");
 
 		if (trim($answer) === 'all')
-			return $this->allCountries->lists('id');
+			return $this->allCountries->lists('id')->all();
 
 		// Filter input
 		$answer = array_map('strtoupper', array_filter(array_map('trim', explode(' ', $answer))));

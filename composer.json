@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.0.*",
+		"laravel/framework": "5.1.*",
 		"league/commonmark": "dev-master",
 		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
@@ -15,6 +15,10 @@
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",
 		"filp/whoops": "~1.0",
+		"fzaninotto/faker": "~1.4",
+		"mockery/mockery": "0.9.*",
+		"phpspec/phpspec": "~2.1",
+		"phpunit/phpunit": "~4.0",
 		"squizlabs/php_codesniffer": "~2",
 		"stolz/laravel-html-tidy": "dev-master",
 		"stolz/laravel-schema-spy": "dev-master"
@@ -30,29 +34,34 @@
 			"App\\": "app/"
 		}
 	},
+	"autoload-dev": {
+		"classmap": [
+			"tests/TestCase.php"
+		]
+	},
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
 			"bin/fix_file_permissions",
-			"ctags"
+			"which ctags && ctags"
 		],
-		"pre-update-cmd": [
-        		"php artisan clear-compiled"
-        	],
 		"post-update-cmd": [
+			"php artisan clear-compiled",
 			"php artisan optimize",
 			"bin/fix_file_permissions",
-			"ctags"
+			"which ctags && ctags"
 		],
 		"post-create-project-cmd": [
 			"php -r \"copy('.env.example', '.env');\"",
 			"php artisan key:generate",
 			"bin/fix_file_permissions",
-			"ctags"
+			"which ctags && ctags"
 		]
 	},
 	"config": {
 		"preferred-install": "dist"
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

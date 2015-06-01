@@ -1,6 +1,6 @@
 {!!
 	Form::label($f = 'profiles', _('Profiles')),
-	Form::checkboxes($f, App\Profile::lists('name', 'id'), $resource->profiles->lists('id'))
+	Form::checkboxes($f, App\Profile::lists('name', 'id')->all(), $resource->profiles->lists('id')->all())
 !!}
 @if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif
 

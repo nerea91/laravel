@@ -10,7 +10,7 @@ use Request;
 class EventServiceProvider extends ServiceProvider
 {
 	/**
-	 * The event handler mappings for the application.
+	 * The event listener mappings for the application.
 	 *
 	 * @var array
 	 */

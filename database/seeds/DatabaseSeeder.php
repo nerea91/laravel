@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run()
 	{
+		// Disable mass-assign protection
 		Model::unguard();
 
 		// Clear cache
@@ -48,5 +49,8 @@ class DatabaseSeeder extends Seeder
 		{
 			$this->call('LocalEnvironmentSeeder');
 		}
+
+		// Restore mass-assign protection
+		Model::reguard();
 	}
 }

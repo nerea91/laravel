@@ -51,7 +51,7 @@ class ProfilesController extends ResourceController
 	{
 		// Purge permission cache
 		Cache::forget('usedPermissionTypes');
-		Cache::forget("profile{$id}permissions");
+		Cache::forget('profile' . intval($id) . 'permissions');
 
 		return parent::edit($id);
 	}

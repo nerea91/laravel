@@ -77,7 +77,7 @@ class Option extends Model
 	 */
 	public static function massAssignToUser(User $user, array $options)
 	{
-		$errors = new Illuminate\Support\MessageBag;
+		$errors = new MessageBag;
 		foreach($options as $name => $value)
 			$errors->merge(self::whereName($name)->firstOrFail()->assignToUser($user, $value)->toArray());
 

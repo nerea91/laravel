@@ -125,7 +125,7 @@ return [
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Foundation\Providers\FoundationServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
-		//'Illuminate\Mail\MailServiceProvider', TODO remove comment if you plan to send e-mails
+		'Illuminate\Mail\MailServiceProvider',
 		'Illuminate\Pagination\PaginationServiceProvider',
 		'Illuminate\Pipeline\PipelineServiceProvider',
 		//'Illuminate\Queue\QueueServiceProvider', TODO remove comment if you plan to use queues

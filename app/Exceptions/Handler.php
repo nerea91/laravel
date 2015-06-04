@@ -88,6 +88,10 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $e)
 	{
+		// If in testing environment delegate to parent
+		if(app()->environment('testing'))
+			return parent::render($request, $e);
+
 		// If debug is enabled in local environment dump stack trace
 		if(config('app.debug') and app()->environment('local'))
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);
@@ -109,7 +113,7 @@ class Handler extends ExceptionHandler
 			'code'  => $code
 		];
 
-		return Response::view($view, $data, $code);
+		return Response::view($view, $data, (isset($this->httpCodes[$code]) ? $code : 500));
 	}
 
 	/**

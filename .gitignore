@@ -1,8 +1,9 @@
 *.kate-swp
 *.orig
 *~
+.#*
 .*~
-/.env
+/.env*
 /.inotify
 /database/backups/
 /database/schema/

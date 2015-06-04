@@ -144,4 +144,37 @@ class UserPanelController extends Controller
 
 		return redirect()->back()->withInput()->withErrors($this->user->getErrors());
 	}
+
+	/**
+	 * Show form for changing current user accounts.
+	 *
+	 * @return Response
+	 */
+	public function showAccountsForm()
+	{
+		// Add data to the layout
+		$this->layout->title = _('User panel');
+		$this->layout->subtitle = _('Accounts');
+
+		$view = view('userpanel.accounts')->withAccounts($this->user->getNonNativeAccounts());
+
+		// Return layout + view
+		return $this->layout($view);
+	}
+
+	/**
+	 * Change current user accounts.
+	 *
+	 * @return Response
+	 */
+	public function updateAccounts()
+	{
+		$accountId = intval(Input::get('account_id'));
+		$userAccounts = $this->user->getNonNativeAccounts();
+
+		if($userAccounts->contains('id', $accountId) and $userAccounts->find($accountId)->delete())
+			return redirect()->back()->withSuccess(_('Account access has been revoked'));
+
+		return redirect()->back();
+	}
 }

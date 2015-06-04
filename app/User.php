@@ -471,4 +471,26 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return Option::massAssignToUser($this, array_except($options, ['_method', '_token']));
 	}
+
+	/**
+	 * Get user accounts from social providers.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection (of Account)
+	 */
+	public function getNonNativeAccounts()
+	{
+		// Determine if current request is HTTPs
+		$secure = ( ! empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== 'off') or $_SERVER['SERVER_PORT'] == 443;
+
+		$protocol = ($secure) ? 'https' : 'http';
+
+		$accounts = $this->accounts()->where('provider_id', '<>', 1)->latest('updated_at')->with('provider')->get()->each(function ($account) use($protocol) {
+
+			// Gravatar
+			if( ! $account->image and $account->email)
+				$account->image = $protocol . '://www.gravatar.com/avatar/' . md5($account->email);
+		});
+
+		return $accounts;
+	}
 }

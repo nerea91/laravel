@@ -42,6 +42,8 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 		put('password', ['as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword']);
 		get('regional', ['as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm']);
 		put('regional', ['as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional']);
+		get('accounts', ['as' => 'user.accounts', 'uses' => 'UserPanelController@showAccountsForm']);
+		put('accounts', ['as' => 'user.accounts.update', 'uses' => 'UserPanelController@updateAccounts']);
 	});
 
 	// Admin area

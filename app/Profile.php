@@ -192,10 +192,11 @@ class Profile extends Model
 		}
 
 		// Prevent deleting profiles assigned to users
-		if(count($usernames = $this->users->lists('username')->all()))
+		$usernames = $this->users->lists('username');
+		if($usernames->count())
 		{
 			if($throwExceptions)
-				throw new ModelDeletionException(_('Profile cannot be deleted because it is assegned to these users') . ': ' . enum($usernames));
+				throw new ModelDeletionException(_('Profile cannot be deleted because it is assegned to these users') . ': ' . enum($usernames->all()));
 
 			return false;
 		}

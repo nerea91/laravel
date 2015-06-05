@@ -26,7 +26,7 @@ class SetupCurrenciesCommand extends Command
 	 *
 	 * @var Illuminate\Database\Eloquent\Collection
 	 */
-	protected $allCurrencies = [];
+	protected $allCurrencies;
 
 	/**
 	 * List of currency codes/ids that will be enabled

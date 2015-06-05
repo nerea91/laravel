@@ -172,7 +172,7 @@ class UserPanelController extends Controller
 		$accountId = intval(Input::get('account_id'));
 		$userAccounts = $this->user->getNonNativeAccounts();
 
-		if($userAccounts->contains('id', $accountId) and $userAccounts->find($accountId)->delete())
+		if($userAccounts->contains($accountId) and $userAccounts->find($accountId)->delete())
 			return redirect()->back()->withSuccess(_('Account access has been revoked'));
 
 		return redirect()->back();

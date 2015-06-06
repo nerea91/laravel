@@ -9,7 +9,7 @@ use Validator;
 
 class Profile extends Model
 {
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -45,13 +45,13 @@ class Profile extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'name' => [_('Name'), 'required|max:64|unique'],
+		$this->setRules([
+			'name'        => [_('Name'), 'required|max:64|unique'],
 			'description' => [_('Description'), 'max:255'],
-		));
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -106,12 +106,13 @@ class Profile extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Profile)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -136,6 +137,7 @@ class Profile extends Model
 	 *
 	 * @param  array   $permissions
 	 * @param  integer $excluded_id
+	 *
 	 * @return mixed   boolean|string
 	 */
 	public static function existSimilar($permissions, $excluded_id = null)
@@ -176,6 +178,7 @@ class Profile extends Model
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -227,19 +230,21 @@ class Profile extends Model
 	 * Get profile permissions grouped by type.
 	 *
 	 * @param  boolean $use_type_name_for_keys
+	 *
 	 * @return array
 	 */
 	public function getPermissionsGroupedByType($use_type_name_for_keys = false)
 	{
 		// Unsaved profiles have no permissions
 		if( ! $this->id)
-			return array();
+			return [];
 
-		$permissions = array();
+		$permissions = [];
 		foreach($this->permissions()->with('type')->orderBy('name')->get() as $p)
 			$permissions[($use_type_name_for_keys) ? $p->type->name : $p->type_id][$p->id] = $p->name;
 
 		ksort($permissions);
+
 		return $permissions;
 	}
 
@@ -247,6 +252,7 @@ class Profile extends Model
 	 * Check if profile has ALL of the provided permissions
 	 *
 	 * @param dynamic $permissions
+	 *
 	 * @return bool
 	 */
 	public function hasPermission($permissions)
@@ -264,6 +270,7 @@ class Profile extends Model
 	 * Check if profile has ANY of the provided permissions
 	 *
 	 * @param dynamic $permissions
+	 *
 	 * @return bool
 	 */
 	public function hasAnyPermission($permissions)
@@ -314,7 +321,7 @@ class Profile extends Model
 	 */
 	public function getDocuments()
 	{
-		return Cache::rememberForever("profile{$this->id}documents", function() {
+		return Cache::rememberForever("profile{$this->id}documents", function () {
 			$documents = [];
 			$this->documents()->get(['title'])->each(function ($doc) use (&$documents) {
 				$documents[$doc->pivot->document_id] = $doc->title;
@@ -328,6 +335,7 @@ class Profile extends Model
 	 * Check if profile has the provided document
 	 *
 	 * @param  App\Document
+	 *
 	 * @return bool
 	 */
 	public function hasDocument(Document $document)

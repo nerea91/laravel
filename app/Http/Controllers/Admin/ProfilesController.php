@@ -17,6 +17,7 @@ class ProfilesController extends ResourceController
 	 * Class constructor.
 	 *
 	 * @param  App\Model $resource Instance of the resource this controller is in charge of.
+	 *
 	 * @return void
 	 */
 	public function __construct(Profile $resource)
@@ -44,7 +45,8 @@ class ProfilesController extends ResourceController
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function edit($id)

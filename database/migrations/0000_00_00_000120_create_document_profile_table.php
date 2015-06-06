@@ -19,8 +19,11 @@ class CreateDocumentProfileTable extends Migration
 			$table->increments('id');
 
 			// Foreign keys
-			$table->unsignedInteger('document_id');$table->foreign('document_id')->references('id')->on('documents')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('document_id');
+			$table->foreign('document_id')->references('id')->on('documents')->onUpdate('cascade')->onDelete('cascade');
+			
+			$table->unsignedInteger('profile_id');
+			$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
 
 			// Extra keys
 			$table->unique(['document_id', 'profile_id']);

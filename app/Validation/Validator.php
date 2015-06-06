@@ -7,13 +7,14 @@ class Validator extends UpstreamValidator
 	/**
 	 * Create a new Validator instance.
 	 *
-	 * @param  \Symfony\Component\Translation\TranslatorInterface  $translator
-	 * @param  array  $data
-	 * @param  array  $rules
-	 * @param  array  $messages
+	 * @param  \Symfony\Component\Translation\TranslatorInterface $translator
+	 * @param  array                                              $data
+	 * @param  array                                              $rules
+	 * @param  array                                              $messages
+	 *
 	 * @return void
 	 */
-	public function __construct($translator, $data, $rules, $messages = array())
+	public function __construct($translator, $data, $rules, $messages = [])
 	{
 		parent::__construct($translator, $data, $rules, $messages);
 
@@ -23,9 +24,10 @@ class Validator extends UpstreamValidator
 	/**
 	 * Similar to parent::validateIn() but allowing $value to be an array
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters
+	 *
 	 * @return bool
 	 */
 	protected function validateIn($attribute, $value, $parameters)
@@ -36,8 +38,9 @@ class Validator extends UpstreamValidator
 	/**
 	 * Validate that an attribute contains only alphabetic characters and spaces.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 *
 	 * @return bool
 	 */
 	protected function validateAlphaSpace($attribute, $value)
@@ -48,8 +51,9 @@ class Validator extends UpstreamValidator
 	/**
 	 * Validate that an attribute contains only alpha-numeric characters and spaces.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 *
 	 * @return bool
 	 */
 	protected function validateAlphaNumSpace($attribute, $value)
@@ -60,8 +64,9 @@ class Validator extends UpstreamValidator
 	/**
 	 * Validate that an attribute contains only alpha-numeric characters, spaces, dashes, and underscores.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 *
 	 * @return bool
 	 */
 	protected function validateAlphaDashSpace($attribute, $value)
@@ -72,8 +77,9 @@ class Validator extends UpstreamValidator
 	/**
 	 * Validate that an attribute is numeric and greather than 0.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 *
 	 * @return bool
 	 */
 	protected function validatePositive($attribute, $value)
@@ -85,9 +91,10 @@ class Validator extends UpstreamValidator
 	 * Validate that an attribute has no more than the given length.
 	 * Intended for numeric values. For string valures use the native size() function.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters
+	 *
 	 * @return bool
 	 */
 	protected static function validateMaxLength($attribute, $value, $parameters)
@@ -99,9 +106,10 @@ class Validator extends UpstreamValidator
 	 * Validate that an attribute has at least the given length.
 	 * Intended for numeric values. For string valures use the native size() function.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters
+	 *
 	 * @return bool
 	 */
 	protected static function validateMinLength($attribute, $value, $parameters)
@@ -113,9 +121,10 @@ class Validator extends UpstreamValidator
 	 * Validate that an attribute has the given length.
 	 * Intended for numeric values. For string valures use the native size() function.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters
+	 *
 	 * @return bool
 	 */
 	protected static function validateLength($attribute, $value, $parameters)
@@ -128,9 +137,10 @@ class Validator extends UpstreamValidator
 	 *
 	 * @author Felix Kiss https://github.com/felixkiss/uniquewith-validator/. MIT License.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters
+	 *
 	 * @return bool
 	 */
 	public function validateUniqueWith($attribute, $value, $parameters)
@@ -145,7 +155,7 @@ class Validator extends UpstreamValidator
 
 		// Create $extra array with all other columns, so getCount() will include
 		// them as where clauses as well
-		$extra = array();
+		$extra = [];
 
 		// Check if last parameter is an integer. If it is, then it will ignore the row with the specified id - useful when updating a row
 		$parameters_length = sizeof($parameters);
@@ -203,8 +213,9 @@ class Validator extends UpstreamValidator
 	/**
 	 * Validate a 24h time with optional leading zeros and optional seconds.
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 *
 	 * @return bool
 	 */
 	protected function validateTime($attribute, $value)
@@ -217,9 +228,10 @@ class Validator extends UpstreamValidator
 	 *
 	 * i.e: To validate A1B2-C3D4-E5F6-A1B2-C3D4-E5F6 use rule hex_tuple:4,6
 	 *
-	 * @param  string  $attribute
-	 * @param  mixed   $value
-	 * @param  array   $parameters First paramer is number of characters per element, second is number of elements. (aka the 'n' from the n-tuple).
+	 * @param  string $attribute
+	 * @param  mixed  $value
+	 * @param  array  $parameters First paramer is number of characters per element, second is number of elements. (aka the 'n' from the n-tuple).
+	 *
 	 * @return bool
 	 */
 	public function validateHexTuple($attribute, $value, $parameters)
@@ -234,27 +246,31 @@ class Validator extends UpstreamValidator
 	/**
 	 * Replace all place-holders for the above rules.
 	 *
-	 * @param  string  $message
-	 * @param  string  $attribute
-	 * @param  string  $rule
-	 * @param  array   $parameters
+	 * @param  string $message
+	 * @param  string $attribute
+	 * @param  string $rule
+	 * @param  array  $parameters
+	 *
 	 * @return string
 	 */
 	protected function replaceMaxLength($message, $attribute, $rule, $parameters)
 	{
 		return $this->replaceLength($message, $attribute, $rule, $parameters);
 	}
+
 	protected function replaceMinLength($message, $attribute, $rule, $parameters)
 	{
 		return $this->replaceLength($message, $attribute, $rule, $parameters);
 	}
+
 	protected function replaceLength($message, $attribute, $rule, $parameters)
 	{
-		return str_replace(array(':length'), $parameters, $message);
+		return str_replace([':length'], $parameters, $message);
 	}
+
 	protected function replaceUniqueWith($message, $attribute, $rule, $parameters)
 	{
-		$fields = array($attribute);
+		$fields = [$attribute];
 		$size = sizeof($parameters);
 
 		for($i = 1; $i < $size; $i++)
@@ -263,6 +279,7 @@ class Validator extends UpstreamValidator
 
 		return str_replace(':fields', $fields, $message);
 	}
+
 	protected function replaceHexTuple($message, $attribute, $rule, $parameters)
 	{
 		list($charactersPerGroup, $numberOfGroups) = $parameters;
@@ -299,6 +316,7 @@ class Validator extends UpstreamValidator
 	 *];
 	 *
 	 * @param  array
+	 *
 	 * @return array
 	 */
 	public static function parseRules(array $originalRules)

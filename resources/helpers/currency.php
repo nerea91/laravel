@@ -9,11 +9,12 @@ if( ! function_exists('format_number'))
 	 *
 	 * NOTE If decimal part is all zeros it will be trimed.
 	 *
-	 * @param  float  $number The number being formatted.
-	 * @param  string $decimalSep Separator for the decimal point.
-	 * @param  string $thousandsSep Separator for thousands.
-	 * @param  string $symbol Symbol ($, €, %, ...).
+	 * @param  float  $number           The number being formatted.
+	 * @param  string $decimalSep       Separator for the decimal point.
+	 * @param  string $thousandsSep     Separator for thousands.
+	 * @param  string $symbol           Symbol ($, €, %, ...).
 	 * @param  bool   $symbolToTheRight Whether or not symbol should be place at the right.
+	 *
 	 * @return void
 	 */
 	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $symbolToTheRight = true)
@@ -47,6 +48,7 @@ if( ! function_exists('number'))
 	 * @param  float
 	 * @param  \App\Currency
 	 * @param  int
+	 *
 	 * @return void
 	 */
 	function number($number, App\Currency $currency, $precision = 2)
@@ -63,6 +65,7 @@ if( ! function_exists('percent'))
 	 * @param  float
 	 * @param  \App\Currency
 	 * @param  int
+	 *
 	 * @return void
 	 */
 	function percent($number, App\Currency $currency, $precision = 2)
@@ -79,6 +82,7 @@ if( ! function_exists('currency'))
 	 * @param  float
 	 * @param  \App\Currency
 	 * @param  int
+	 *
 	 * @return void
 	 */
 	function currency($number, App\Currency $currency, $precision = 2)

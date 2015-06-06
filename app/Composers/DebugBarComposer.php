@@ -16,9 +16,10 @@ class DebugBarComposer
 			$renderer = app('debugbar')->getJavascriptRenderer();
 
 			// Dinamically generate DebugBar assets every 7 days
-			$lastTimeAssetsWereGenerated = Cache::remember('debugbar', 60 * 24 * 7, function() use ($renderer) {
+			$lastTimeAssetsWereGenerated = Cache::remember('debugbar', 60 * 24 * 7, function () use ($renderer) {
 				File::put(public_path('css/debugbar.css'), $renderer->dumpAssetsToString('css') . 'div.phpdebugbar ul,div.phpdebugbar ol,div.phpdebugbar dl {font-size: 100%;}');
 				File::put(public_path('js/debugbar.js'), $renderer->dumpAssetsToString('js'));
+
 				return Carbon::now()->toDateString();
 			});
 

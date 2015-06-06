@@ -14,7 +14,7 @@ class ReportsMenuComposer
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
 			self::buildTree()->addChild(AdminPanelMenuComposer::buildTree()),
-			AdminPanelMenuComposer::buildSecondaryTree()
+			AdminPanelMenuComposer::buildSecondaryTree(),
 		]);
 
 		// Pass menu to the view
@@ -39,6 +39,7 @@ class ReportsMenuComposer
 	 * Define the main sections of the menu.
 	 *
 	 * @param  User $user User to checked permissions against
+	 *
 	 * @return array (of Menu\Node)
 	 */
 	public static function makeSections(User $user)

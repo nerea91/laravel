@@ -36,6 +36,7 @@ class MakeResourceCommand extends MakeSectionCommand
 	 *  Add permissions to the seeder file.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToSeeder()
@@ -54,6 +55,7 @@ class MakeResourceCommand extends MakeSectionCommand
 	 *  Add permissions to the ACL file.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToAcl()
@@ -77,6 +79,7 @@ class MakeResourceCommand extends MakeSectionCommand
 	 * Create the menu entry.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToMenu()

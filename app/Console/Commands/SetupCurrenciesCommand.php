@@ -44,14 +44,14 @@ class SetupCurrenciesCommand extends Command
 	{
 		// Check if there are any currencies available
 		$this->allCurrencies = $this->getCurrencies(true);
-		if ( ! $this->allCurrencies->count())
+		if( ! $this->allCurrencies->count())
 			return $this->error('No currencies found. Did you seed the database?.');
 
 		// If no currencies are provided ask for them interactively
 		$this->selectedCurrencies = $this->argument('currency') ?: $this->askCurrencies();
 
 		// Check if all provided currencies exist
-		if ($unknownCurrencies = $this->getUnknownCurrencies())
+		if($unknownCurrencies = $this->getUnknownCurrencies())
 			return $this->error('Invdalid currencies: ' . PHP_EOL . implode(PHP_EOL, $unknownCurrencies));
 
 		// Disable all
@@ -70,6 +70,7 @@ class SetupCurrenciesCommand extends Command
 	 * Fetch currencies from database
 	 *
 	 * @param  bool
+	 *
 	 * @return Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	protected function getCurrencies($withTrashed)
@@ -102,7 +103,7 @@ class SetupCurrenciesCommand extends Command
 		$this->showCurrenciesList();
 		$answer = $this->ask("Enter 'all' or a space separated list of ids/codes to enable: ");
 
-		if (trim($answer) === 'all')
+		if(trim($answer) === 'all')
 			return $this->allCurrencies->lists('id')->all();
 
 		// Filter input
@@ -125,7 +126,7 @@ class SetupCurrenciesCommand extends Command
 	{
 		$unknown = $this->selectedCurrencies;
 
-		foreach ($this->allCurrencies as $currency)
+		foreach($this->allCurrencies as $currency)
 		{
 			foreach (['id', 'code'] as $column)
 			{

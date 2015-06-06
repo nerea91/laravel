@@ -6,7 +6,7 @@ use Validator;
 class Option extends Model
 {
 	public $timestamps = false;
-	protected $guarded = array('id', 'assignable', 'deleted_at');
+	protected $guarded = ['id', 'assignable', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -37,22 +37,22 @@ class Option extends Model
 	 */
 	public function __toString()
 	{
-		return (string) $this->label . ': '. $this->value;
+		return (string) $this->label . ': ' . $this->value;
 	}
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'name' => [_('Internal name'), 'required|min:3|max:32|alpha_dash|unique'],
-			'label' => [_('Label'), 'required|max:64|unique'],
+		$this->setRules([
+			'name'        => [_('Internal name'), 'required|min:3|max:32|alpha_dash|unique'],
+			'label'       => [_('Label'), 'required|max:64|unique'],
 			'description' => [_('Description'), 'max:128'],
-			'value' => [_('Value'), 'required|max:64'],
-			'assignable' => [_('Assignable'), 'required|max:1|min:0'],
-			'rules' => [_('Validation rules'), 'required|max:255'],
-		));
+			'value'       => [_('Value'), 'required|max:64'],
+			'assignable'  => [_('Assignable'), 'required|max:1|min:0'],
+			'rules'       => [_('Validation rules'), 'required|max:255'],
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -73,6 +73,7 @@ class Option extends Model
 	 *
 	 * @param  User
 	 * @param  array
+	 *
 	 * @return \Illuminate\Support\MessageBag
 	 */
 	public static function massAssignToUser(User $user, array $options)
@@ -90,11 +91,12 @@ class Option extends Model
 	 * Check wether or not $this option is assigned to $user
 	 *
 	 * @param  User
+	 *
 	 * @return boolean
 	 */
 	public function assignedToUser(User $user)
 	{
-		 return (bool) $user->options()->where('options.id', $this->getKey())->first();
+		return (bool) $user->options()->where('options.id', $this->getKey())->first();
 	}
 
 	/**
@@ -102,6 +104,7 @@ class Option extends Model
 	 *
 	 * @param  User
 	 * @param  string
+	 *
 	 * @return \Illuminate\Support\MessageBag
 	 */
 	public function assignToUser(User $user, $value)
@@ -134,6 +137,7 @@ class Option extends Model
 	 *
 	 * @param  User
 	 * @param  string
+	 *
 	 * @return boolean
 	 */
 	public function syncWithUser(User $user, $value = null)
@@ -148,7 +152,7 @@ class Option extends Model
 		 */
 
 		// If already exist update it
-		if ($this->assignedToUser($user))
+		if($this->assignedToUser($user))
 			return $user->options()->updateExistingPivot($this->getKey(), ['value' => $value], false) or true;
 
 		// Otherwise add it

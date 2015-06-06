@@ -23,7 +23,8 @@ class CreatePermissionsTable extends Migration
 			$table->string('description')->nullable();
 
 			// Foreign keys
-			$table->unsignedInteger('type_id');$table->foreign('type_id')->references('id')->on('permissiontypes')->onUpdate('cascade')->onDelete('restrict');
+			$table->unsignedInteger('type_id');
+			$table->foreign('type_id')->references('id')->on('permissiontypes')->onUpdate('cascade')->onDelete('restrict');
 		});
 	}
 

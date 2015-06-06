@@ -12,7 +12,7 @@ class Language extends Model
 {
 	use SoftDeletes;
 	public $timestamps = false;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -48,17 +48,17 @@ class Language extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'code' => [_('Code'), 'required|size:2|regex:/^[a-z]+$/|unique'],
-			'name' => [_('Name'), 'required|alpha|max:32|unique'],
+		$this->setRules([
+			'code'         => [_('Code'), 'required|size:2|regex:/^[a-z]+$/|unique'],
+			'name'         => [_('Name'), 'required|alpha|max:32|unique'],
 			'english_name' => [_('English name'), 'required|alpha|max:32|unique'],
-			'locale' => [_('Locale'), 'required|size:5|regex:/^[a-z]+_[A-Z]+$/'],
-			'is_default' => [_('Default'), 'required|integer|min:0|max:1'],
-			'priority' => [_('Priority'), 'required|integer'],
-		));
+			'locale'       => [_('Locale'), 'required|size:5|regex:/^[a-z]+_[A-Z]+$/'],
+			'is_default'   => [_('Default'), 'required|integer|min:0|max:1'],
+			'priority'     => [_('Priority'), 'required|integer'],
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -86,7 +86,7 @@ class Language extends Model
 		static::saved(function ($language) {
 			// Only one Language can be the default
 			if($language->is_default)
-				Language::where('id', '<>', $language->id)->update(array('is_default' => 0));
+				Language::where('id', '<>', $language->id)->update(['is_default' => 0]);
 
 			// Purge cache
 			Cache::forget('allLanguagesOrderedByPriority');
@@ -111,12 +111,13 @@ class Language extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -157,6 +158,7 @@ class Language extends Model
 			{
 				$lang = $all->find($lang->id);
 				$lang->detectedFrom = 'session';
+
 				return $lang;
 			}
 		}
@@ -169,6 +171,7 @@ class Language extends Model
 		if(isset($matches[1]) and ! is_null($lang = self::findByLocaleOrCode($matches[1], $all)))
 		{
 			$lang->detectedFrom = 'subdomain';
+
 			return $lang;
 		}
 
@@ -179,6 +182,7 @@ class Language extends Model
 		if( ! isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) or $_SERVER['HTTP_ACCEPT_LANGUAGE'] == '')
 		{
 			$default->detectedFrom = 'default (browser languages not available)';
+
 			return $default;
 		}
 
@@ -189,12 +193,14 @@ class Language extends Model
 			if( ! is_null($lang))
 			{
 				$lang->detectedFrom = 'browser';
+
 				return $lang;
 			}
 		}
 
 		// Fallback to default
 		$default->detectedFrom = "default (browser doesn't have any known language)";
+
 		return $default;
 	}
 
@@ -208,7 +214,7 @@ class Language extends Model
 		// Remember for 12 hours
 		$minutes = 60 * 12;
 
-		return Cache::remember('allLanguagesOrderedByPriority', $minutes, function() {
+		return Cache::remember('allLanguagesOrderedByPriority', $minutes, function () {
 			return self::orderBy('is_default', 'desc')->orderBy('priority')->get();
 		});
 	}
@@ -218,8 +224,9 @@ class Language extends Model
 	 *
 	 * Returns null if not found.
 	 *
-	 * @param  string $needle
+	 * @param  string                                                 $needle
 	 * @param  \Illuminate\Database\Eloquent\Collection (of Language) $haystack
+	 *
 	 * @return Language|null
 	 */
 	private static function findByLocaleOrCode($needle, $haystack)
@@ -252,6 +259,7 @@ class Language extends Model
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -263,6 +271,7 @@ class Language extends Model
 		{
 			if($throwExceptions)
 				throw new ModelDeletionException(_('Deleting default language is not allowed'));
+
 			return false;
 		}
 
@@ -274,6 +283,7 @@ class Language extends Model
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
@@ -291,6 +301,7 @@ class Language extends Model
 	 * Set $this language as the application language
 	 *
 	 * @param  $category see http://php.net/manual/en/function.setlocale.php
+	 *
 	 * @return Language
 	 */
 	public function apply($category = null)

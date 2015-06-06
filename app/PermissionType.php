@@ -6,19 +6,19 @@ class PermissionType extends Model
 {
 	public $table = 'permissiontypes';
 	public $timestamps = false;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'name' => [_('Name'), 'required|max:64|unique'],
+		$this->setRules([
+			'name'        => [_('Name'), 'required|max:64|unique'],
 			'description' => [_('Description'), 'max:255'],
-		));
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -40,11 +40,12 @@ class PermissionType extends Model
 	 * Get types with at least one permission.
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeUsed($query)
 	{
-		return Cache::remember('usedPermissionTypes', 60 * 24, function() {
+		return Cache::remember('usedPermissionTypes', 60 * 24, function () {
 			return self::has('permissions')->orderBy('name')->get();
 		});
 	}

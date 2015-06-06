@@ -45,18 +45,18 @@ class HomeController extends Controller
 	public function sendContactEmail()
 	{
 		$rules = [
-			'name' => 'required|max:50',
+			'name'    => 'required|max:50',
 			'company' => 'max:50',
-			'email' => 'required|email',
-			'phone' => 'min:6|max:64',
+			'email'   => 'required|email',
+			'phone'   => 'min:6|max:64',
 			'message' => 'required|min:10|max:1000',
 		];
 
 		$labels = [
-			'name' => _('Name'),
+			'name'    => _('Name'),
 			'company' => _('Company'),
-			'email' => _('E-mail'),
-			'phone' => _('Phone'),
+			'email'   => _('E-mail'),
+			'phone'   => _('Phone'),
 			'message' => _('Message'),
 		];
 
@@ -68,7 +68,7 @@ class HomeController extends Controller
 
 		$message = $input['message'] . "\n\n" . $input['name'] . "\n" . $input['company'] . "\n" . $input['phone'];
 
-		Mail::send(array('text' => 'emails.plain-text'), ['text' => $message], function ($message) use ($input) {
+		Mail::send(['text' => 'emails.plain-text'], ['text' => $message], function ($message) use ($input) {
 			$message->from($input['email'], $input['name'])->to(config('site.contact-email'), config('site.name'))->subject(_('Contact form query'));
 		});
 

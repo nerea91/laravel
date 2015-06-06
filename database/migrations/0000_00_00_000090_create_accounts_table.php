@@ -33,12 +33,15 @@ class CreateAccountsTable extends Migration
 			$table->text('last_ip')->nullable();
 
 			// Foreign keys
-			$table->unsignedInteger('provider_id');$table->foreign('provider_id')->references('id')->on('authproviders')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('user_id');$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('provider_id');
+			$table->foreign('provider_id')->references('id')->on('authproviders')->onUpdate('cascade')->onDelete('cascade');
+			
+			$table->unsignedInteger('user_id');
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 			// Extra keys
-			$table->unique(array('provider_id', 'uid'));
-			$table->unique(array('provider_id', 'user_id'));
+			$table->unique(['provider_id', 'uid']);
+			$table->unique(['provider_id', 'user_id']);
 
 			// Automatic columns
 			$table->timestamps();

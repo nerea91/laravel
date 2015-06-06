@@ -8,6 +8,7 @@ if( ! function_exists('markdown'))
 	 * Convert from Markdown to HTML.
 	 *
 	 * @param  string
+	 *
 	 * @return string
 	 */
 	function markdown($source)
@@ -22,6 +23,7 @@ if( ! function_exists('pagination_links'))
 	 * Custom paginator presenter using Zurb Foundation style
 	 *
 	 * @param  \Illuminate\Contracts\Pagination\Paginator
+	 *
 	 * @return string
 	 */
 	function pagination_links(\Illuminate\Contracts\Pagination\Paginator $paginator)
@@ -36,6 +38,7 @@ if( ! function_exists('link_to_sort_by'))
 	 * Build up links for sorting resource by column (?sortby=column)
 	 *
 	 * @param  array
+	 *
 	 * @return array
 	 */
 	function link_to_sort_by($labels)

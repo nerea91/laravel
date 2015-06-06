@@ -44,14 +44,14 @@ class SetupCountriesCommand extends Command
 	{
 		// Check if there are any countries available
 		$this->allCountries = $this->getCountries(true);
-		if ( ! $this->allCountries->count())
+		if( ! $this->allCountries->count())
 			return $this->error('No countries found. Did you seed the database?.');
 
 		// If no countries are provided ask for them interactively
 		$this->selectedCountries = $this->argument('country') ?: $this->askCountries();
 
 		// Check if all provided countries exist
-		if ($unknownCountries = $this->getUnknownCountries())
+		if($unknownCountries = $this->getUnknownCountries())
 			return $this->error('Invdalid countries: ' . PHP_EOL . implode(PHP_EOL, $unknownCountries));
 
 		// Disable all
@@ -70,6 +70,7 @@ class SetupCountriesCommand extends Command
 	 * Fetch countries from database
 	 *
 	 * @param  bool
+	 *
 	 * @return Illuminate\Database\Eloquent\Collection (of Country)
 	 */
 	protected function getCountries($withTrashed)
@@ -102,7 +103,7 @@ class SetupCountriesCommand extends Command
 		$this->showCountriesList();
 		$answer = $this->ask("Enter 'all' or a space separated list of ids/codes to enable: ");
 
-		if (trim($answer) === 'all')
+		if(trim($answer) === 'all')
 			return $this->allCountries->lists('id')->all();
 
 		// Filter input
@@ -124,13 +125,13 @@ class SetupCountriesCommand extends Command
 	{
 		$unknown = $this->selectedCountries;
 
-		foreach ($this->allCountries as $country)
+		foreach($this->allCountries as $country)
 		{
 			foreach (['id', 'iso_3166_2', 'iso_3166_3'] as $column)
 			{
 				// If there is a column match then the country is not unknown
 				$key = array_search($country->$column, $unknown);
-				if ($key !== false)
+				if($key !== false)
 				{
 					unset($unknown[$key]);
 					continue 2;

@@ -21,8 +21,8 @@ class SampleReport extends ReportController implements ReportInterface
 			'xls' => _('Excel')
 		];*/
 		$this->data['group_by'] = [
-			'day' => _('Day'),
-			'week' => _('Week'),
+			'day'   => _('Day'),
+			'week'  => _('Week'),
 			'month' => _('Month'),
 		];
 
@@ -35,15 +35,15 @@ class SampleReport extends ReportController implements ReportInterface
 			// Form validation
 			[
 				//'format' => [_('Format'), 'in:'.implode(array_keys($this->data['formats']), ',')],
-				'date1' => [_('From date'), 'required|date'],
-				'date2' => [_('To date'), 'required|date'],
-				'group_by' => [_('Group by'), 'required|in:'.implode(array_keys($this->data['group_by']), ',')],
+				'date1'    => [_('From date'), 'required|date'],
+				'date2'    => [_('To date'), 'required|date'],
+				'group_by' => [_('Group by'), 'required|in:' . implode(array_keys($this->data['group_by']), ',')],
 			],
 			// Form default values
 			[
 				//'format' => 'web',
-				'date1' => Carbon::yesterday()->toDateString(),
-				'date2' => Carbon::now()->toDateString(),
+				'date1'    => Carbon::yesterday()->toDateString(),
+				'date2'    => Carbon::now()->toDateString(),
 				'group_by' => 'week',
 			]
 			// Off-canvas class
@@ -55,6 +55,7 @@ class SampleReport extends ReportController implements ReportInterface
 	 * Set report subtitle.
 	 *
 	 * @param  array $data
+	 *
 	 * @return self
 	 */
 	public function setSubtitle(array $data = [])
@@ -77,7 +78,8 @@ class SampleReport extends ReportController implements ReportInterface
 	 *
 	 * NOTE If no results are found the returned value MUST evaluate to false.
 	 *
-	 * @param  array    $data required to calculate the report results
+	 * @param  array $data required to calculate the report results
+	 *
 	 * @return StdClass
 	 *  ->rows
 	 *  ->totals

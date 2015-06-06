@@ -31,7 +31,8 @@ class CreateCountriesTable extends Migration
 			$table->boolean('eea')->unsigned()->default(0); //European Economic Area
 
 			// Foreign keys
-			$table->unsignedInteger('currency_id')->nullable();$table->foreign('currency_id')->references('id')->on('currencies')->onUpdate('cascade')->onDelete('set null');
+			$table->unsignedInteger('currency_id')->nullable();
+			$table->foreign('currency_id')->references('id')->on('currencies')->onUpdate('cascade')->onDelete('set null');
 
 			// Automatic columns
 			$table->softDeletes();

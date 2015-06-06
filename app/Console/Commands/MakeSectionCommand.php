@@ -133,6 +133,7 @@ abstract class MakeSectionCommand extends Command
 	 * Set marker.
 	 *
 	 * @param  string
+	 *
 	 * @return self
 	 */
 	public function setMarker($marker)
@@ -146,6 +147,7 @@ abstract class MakeSectionCommand extends Command
 	 * Set composer file.
 	 *
 	 * @param  string
+	 *
 	 * @return self
 	 */
 	public function setComposerFile($composer)
@@ -159,6 +161,7 @@ abstract class MakeSectionCommand extends Command
 	 * Set controller class name.
 	 *
 	 * @param  string
+	 *
 	 * @return self
 	 */
 	public function setClass($sufix)
@@ -185,11 +188,11 @@ abstract class MakeSectionCommand extends Command
 			return false;
 
 		// Search for the marker on each line
-		foreach ($lines as $lineNumber => $line)
+		foreach($lines as $lineNumber => $line)
 		{
 			$position = strpos($line, $this->marker);
 			// Marker found
-			if ($position !== false)
+			if($position !== false)
 			{
 				// Format content
 				$content = (array) $content;
@@ -214,6 +217,7 @@ abstract class MakeSectionCommand extends Command
 	 *  Add permissions to the seeder file.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToSeeder()
@@ -227,6 +231,7 @@ abstract class MakeSectionCommand extends Command
 	 *  Add permissions to the ACL file.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToAcl()
@@ -252,6 +257,7 @@ abstract class MakeSectionCommand extends Command
 	 * Create the menu entry.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return bool
 	 */
 	public function addToMenu()

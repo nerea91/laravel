@@ -11,10 +11,7 @@
 	<!--RULES ARE IN ALPHABETICAL ORDER-->
 
 	<!--Only one statemet per line -->
-	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine">
-		<!--Allow two statemens per line for migrations-->
-		<exclude-pattern>/database/migrations/</exclude-pattern>
-	</rule>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine"/>
 
 	<!--Use space after cast-->
 	<rule ref="Generic.Formatting.SpaceAfterCast"/>

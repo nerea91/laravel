@@ -11,6 +11,7 @@ class DocumentController extends Controller
 	 * Show main page
 	 *
 	 * @param  integer
+	 *
 	 * @return Response
 	 * @throws App\Exceptions\AccessControlListException;
 	 */
@@ -25,9 +26,9 @@ class DocumentController extends Controller
 
 		// Render document
 		return view('document', [
-			'title' => $document->title,
-			'body'  => markdown($document->body),
-			'documents' => Auth::user()->profile->getDocuments()
+			'title'     => $document->title,
+			'body'      => markdown($document->body),
+			'documents' => Auth::user()->profile->getDocuments(),
 		]);
 	}
 }

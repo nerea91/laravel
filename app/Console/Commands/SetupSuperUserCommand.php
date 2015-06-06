@@ -43,7 +43,7 @@ class SetupSuperUserCommand extends Command
 			$this->superuser = User::findOrFail(1);
 
 			// If current password is not the default one ask for it to confirm credentials
-			if ( ! Hash::check('secret', $this->superuser->password) and ! $this->checkCurrentPassword())
+			if( ! Hash::check('secret', $this->superuser->password) and ! $this->checkCurrentPassword())
 				throw new Exception('Wrong current password');
 
 			$this->askNewPassword();
@@ -58,7 +58,7 @@ class SetupSuperUserCommand extends Command
 		}
 
 		// Update password
-		if ($this->superuser->save())
+		if($this->superuser->save())
 			$this->info('Superuser password set correctly');
 		else
 			$this->showValidationErrors();
@@ -71,15 +71,16 @@ class SetupSuperUserCommand extends Command
 	 */
 	protected function getArguments()
 	{
-		return array(
-			array('superuser', InputArgument::OPTIONAL, 'Update superuser password'),
-		);
+		return [
+			['superuser', InputArgument::OPTIONAL, 'Update superuser password'],
+		];
 	}
 
 	/**
 	 * Ask for new superuser password with confirmation
 	 *
 	 * @param  integer $attemps Max number of attemps
+	 *
 	 * @return bool
 	 */
 	protected function askNewPassword($attemps = 3)
@@ -90,7 +91,7 @@ class SetupSuperUserCommand extends Command
 		$this->superuser->password = $this->secret('Enter NEW superuser password: ');
 		$this->superuser->password_confirmation = $this->secret('Enter NEW superuser password again: ');
 
-		if ($this->superuser->validate())
+		if($this->superuser->validate())
 			return true;
 
 		$this->showValidationErrors();

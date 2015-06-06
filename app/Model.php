@@ -11,14 +11,14 @@ abstract class Model extends UpstreamModel
 	 *
 	 * @var Array
 	 */
-	protected $rules = array();
+	protected $rules = [];
 
 	/**
 	 * Field labels
 	 *
 	 * @var Array
 	 */
-	protected $labels = array();
+	protected $labels = [];
 
 	/**
 	 * Error message bag
@@ -65,6 +65,7 @@ abstract class Model extends UpstreamModel
 	 * Set validation rules and labels.
 	 *
 	 * @param  array
+	 *
 	 * @return Model
 	 */
 	protected function setRules(array $rules)
@@ -79,6 +80,7 @@ abstract class Model extends UpstreamModel
 	 *
 	 * @param  string $field
 	 * @param  string $rule
+	 *
 	 * @return Model
 	 */
 	public function setRule($field, $rule)
@@ -99,11 +101,12 @@ abstract class Model extends UpstreamModel
 		return $this->rules;
 	}
 
-		/**
+	/**
 	 * Remove validation rules from a field.
 	 *
 	 * @param  string       $field
 	 * @param  string|array $rules
+	 *
 	 * @return Model
 	 */
 	public function removeRule($field, $rules)
@@ -121,13 +124,14 @@ abstract class Model extends UpstreamModel
 	 * Validate current attributes against rules.
 	 *
 	 * @param  boolean $triggered_by_event
+	 *
 	 * @return boolean
 	 */
 	public function validate($triggered_by_event = false)
 	{
 		// If $this has 'id' use it as excluded key for "unique" and "unique_with" rules
 		$table = $this->getTable();
-		$except = ($this->getKey()) ? ','.$this->getKey() : null;
+		$except = ($this->getKey()) ? ',' . $this->getKey() : null;
 		$rules = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
@@ -148,6 +152,7 @@ abstract class Model extends UpstreamModel
 		if( ! $validator->passes())
 		{
 			$this->setErrors($validator->messages());
+
 			return false;
 		}
 
@@ -187,6 +192,7 @@ abstract class Model extends UpstreamModel
 	 * Set error message bag.
 	 *
 	 * @param \Illuminate\Support\MessageBag
+	 *
 	 * @return void
 	 */
 	protected function setErrors($errors)
@@ -262,6 +268,7 @@ abstract class Model extends UpstreamModel
 	 *
 	 * @param  strin $label Column used for labels
 	 * @param  strin $value Column used for values
+	 *
 	 * @return array
 	 */
 	public static function dropdown($label = 'name', $value = 'id')
@@ -276,6 +283,7 @@ abstract class Model extends UpstreamModel
 	 *
 	 * @param string $field
 	 * @param string $label
+	 *
 	 * @return Model
 	 */
 	public function addLabel($field, $label)
@@ -289,6 +297,7 @@ abstract class Model extends UpstreamModel
 	 * Retrieve the label for a $field.
 	 *
 	 * @param string $field
+	 *
 	 * @return string
 	 */
 	public function getLabel($field)
@@ -331,7 +340,7 @@ abstract class Model extends UpstreamModel
 	 */
 	public function getFillableLabels()
 	{
-		$fillable = array();
+		$fillable = [];
 
 		foreach($this->labels as $key => $value)
 		{
@@ -344,7 +353,7 @@ abstract class Model extends UpstreamModel
 
 	// Logic =======================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
 		$this->errors = new \Illuminate\Support\MessageBag;
@@ -354,6 +363,7 @@ abstract class Model extends UpstreamModel
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -368,6 +378,7 @@ abstract class Model extends UpstreamModel
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
@@ -376,6 +387,7 @@ abstract class Model extends UpstreamModel
 		if(in_array($column, array_keys($this->getVisibleLabels())))
 		{
 			$direction = (Input::get('sortdir') === 'desc') ? 'desc' : 'asc';
+
 			return $query->orderBy($column, $direction);
 		}
 
@@ -421,6 +433,7 @@ abstract class Model extends UpstreamModel
 	 * Return las update date in localized format.
 	 *
 	 * @param  string $format
+	 *
 	 * @return string
 	 */
 	public function lastUpdate($format = '%A %d %B %Y @ %T (%Z)')
@@ -442,6 +455,7 @@ abstract class Model extends UpstreamModel
 	 * Restore provided model attributes to their original state.
 	 *
 	 * @param  mixed
+	 *
 	 * @return Model
 	 */
 	public function restoreOriginalAttributes($attributes)

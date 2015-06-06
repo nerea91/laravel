@@ -56,11 +56,11 @@ class AdminController extends Controller
 			$totalResults = 0;
 			$currentRoute = Route::current()->getName();
 			$searchableModels = [
-				10 => 'Country',
-				20 => 'Language',
-				40 => 'Profile',
-				60 => 'User',
-				80 => 'AuthProvider',
+				10  => 'Country',
+				20  => 'Language',
+				40  => 'Profile',
+				60  => 'User',
+				80  => 'AuthProvider',
 				100 => 'Account',
 				120 => 'Currency',
 				140 => 'Document',
@@ -80,7 +80,7 @@ class AdminController extends Controller
 					$totalResults += $count;
 					$result = new \stdClass();
 					$result->label = $model->plural();
-					$result->route = replace_last_segment($currentRoute, strtolower(str_plural($modelName)).'.show');
+					$result->route = replace_last_segment($currentRoute, strtolower(str_plural($modelName)) . '.show');
 					$result->collection = $collection;
 					$results[$modelName] = $result;
 				}
@@ -95,7 +95,7 @@ class AdminController extends Controller
 					$count2 = $result2->collection->count();
 
 					// Is same count order alphabetically
-					if ($count1 === $count2)
+					if($count1 === $count2)
 						return strcasecmp($result1->label, $result2->label);
 
 					return ($count1 < $count2) ? -1 : 1;

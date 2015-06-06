@@ -16,6 +16,7 @@ if( ! function_exists('replace_last_segment'))
 	 *
 	 * @param  string $route_name
 	 * @param  string $new_segment
+	 *
 	 * @return string
 	 */
 	function replace_last_segment($route_name, $new_segment = null)
@@ -38,6 +39,7 @@ if( ! function_exists('enum'))
 	 *
 	 * @param array
 	 * @param string
+	 *
 	 * @return string
 	 */
 	function enum(array $array, $glue = ', ')
@@ -57,6 +59,7 @@ if( ! function_exists('add_timestamps'))
 	 * Adds 'created_at' and 'updated_at' keys to all elements of $array.
 	 *
 	 * @param  array $array of arrays
+	 *
 	 * @return array
 	 */
 	function add_timestamps(array $array)
@@ -65,6 +68,7 @@ if( ! function_exists('add_timestamps'))
 
 		return array_map(function ($row) use ($now) {
 			$row['updated_at'] = $row['created_at'] = $now;
+
 			return $row;
 
 		}, $array);
@@ -79,6 +83,7 @@ if( ! function_exists('array_chunk_for_sqlite'))
 	 * http://www.sqlite.org/limits.html
 	 *
 	 * @param  array $array of arrays
+	 *
 	 * @return array
 	 */
 	function array_chunk_for_sqlite(array $array)
@@ -105,6 +110,7 @@ if( ! function_exists('numerize'))
 	 *      1 => 1     (integer)
 	 *
 	 * @param  mixed
+	 *
 	 * @return mixed
 	 */
 	function numerize($literal)

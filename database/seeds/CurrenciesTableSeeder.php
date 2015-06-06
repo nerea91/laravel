@@ -201,7 +201,7 @@ class CurrenciesTableSeeder extends Seeder
 		];
 
 		// Split array into chunks for SQLite
-		foreach (array_chunk_for_sqlite($currencies) as $chunk)
+		foreach(array_chunk_for_sqlite($currencies) as $chunk)
 			DB::table('currencies')->insert($chunk);
 	}
 }

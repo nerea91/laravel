@@ -7,7 +7,7 @@ class Currency extends Model
 {
 	use SoftDeletes;
 	public $timestamps = false;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -43,23 +43,23 @@ class Currency extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'code' => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], // ISO 4217
-			'name' => [_('Name'), 'required|max:64'],
-			'name2' => [_('Alt. name'), 'max:64'],
-			'symbol' => [_('Symbol'), 'max:8'],
-			'symbol2' => [_('Alt. symbol'), 'max:8'],
-			'symbol_position' => [_('Symbol position'), 'required|integer'],
-			'decimal_separator' => [_('Decimal separator'), 'required|size:1'],
+		$this->setRules([
+			'code'                => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], // ISO 4217
+			'name'                => [_('Name'), 'required|max:64'],
+			'name2'               => [_('Alt. name'), 'max:64'],
+			'symbol'              => [_('Symbol'), 'max:8'],
+			'symbol2'             => [_('Alt. symbol'), 'max:8'],
+			'symbol_position'     => [_('Symbol position'), 'required|integer'],
+			'decimal_separator'   => [_('Decimal separator'), 'required|size:1'],
 			'thousands_separator' => [_('Thousands separator'), 'size:1'],
-			'subunit' => [_('Subunit'), 'max:16'],
-			'subunit2' => [_('Alt. subunit'), 'max:16'],
-			'unicode_decimal' => [_('Unicode decimal'), 'max:32'],
+			'subunit'             => [_('Subunit'), 'max:16'],
+			'subunit2'            => [_('Alt. subunit'), 'max:16'],
+			'unicode_decimal'     => [_('Unicode decimal'), 'max:32'],
 			'unicode_hexadecimal' => [_('Unicode hexadecimal'), 'max:16'],
-		));
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -84,12 +84,13 @@ class Currency extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -110,6 +111,7 @@ class Currency extends Model
 	 *
 	 * @param  float
 	 * @param  integer
+	 *
 	 * @return string
 	 */
 	public function format($number, $precision = 2)

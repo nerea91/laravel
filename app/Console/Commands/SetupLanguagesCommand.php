@@ -44,14 +44,14 @@ class SetupLanguagesCommand extends Command
 	{
 		// Check if there are any languages available
 		$this->allLanguages = $this->getLanguages(true);
-		if ( ! $this->allLanguages->count())
+		if( ! $this->allLanguages->count())
 			return $this->error('No languages found. Did you seed the database?.');
 
 		// If no languages are provided ask for them interactively
 		$this->selectedLanguages = $this->argument('language') ?: $this->askLanguages();
 
 		// Check if all provided languages exist
-		if ($unknownLanguages = $this->getUnknownLanguages())
+		if($unknownLanguages = $this->getUnknownLanguages())
 			return $this->error('Invdalid languages: ' . PHP_EOL . implode(PHP_EOL, $unknownLanguages));
 
 		// Disable all
@@ -73,6 +73,7 @@ class SetupLanguagesCommand extends Command
 	 * Fetch languages from database
 	 *
 	 * @param  bool
+	 *
 	 * @return Illuminate\Database\Eloquent\Collection (of Language)
 	 */
 	protected function getLanguages($withTrashed)
@@ -121,9 +122,9 @@ class SetupLanguagesCommand extends Command
 	{
 		$unknown = $this->selectedLanguages;
 
-		foreach ($this->allLanguages as $language)
+		foreach($this->allLanguages as $language)
 		{
-			foreach (['id', 'code'] as $column)
+			foreach(['id', 'code'] as $column)
 			{
 				// If there is a column match then the language is not unknown
 				$key = array_search($language->$column, $unknown);

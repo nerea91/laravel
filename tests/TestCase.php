@@ -11,7 +11,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	 */
 	public function createApplication()
 	{
-		$app = require __DIR__.'/../bootstrap/app.php';
+		$app = require __DIR__ . '/../bootstrap/app.php';
 
 		$app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
@@ -25,6 +25,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	 * Seed multiple seeds with one call.
 	 *
 	 * @param  dynamic
+	 *
 	 * @return $this
 	 */
 	protected function seeds()
@@ -64,8 +65,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	 * NOTE: This method is the same than the parent one (Illuminate\Foundation\Testing\CrawlerTrait)
 	 * but allowing setting invalid values in choice fields (select, radio, checkbox).
 	 *
-	 * @param  string  $buttonText
+	 * @param  string $buttonText
 	 * @param  array  $inputs
+	 *
 	 * @return \Symfony\Component\DomCrawler\Form
 	 */
 	protected function fillForm($buttonText, $inputs = [])
@@ -83,6 +85,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	 * Assert session has no errors.
 	 *
 	 * @param  string
+	 *
 	 * @return $this
 	 */
 	protected function assertSessionHasNoErrors($label = null)

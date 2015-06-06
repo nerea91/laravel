@@ -6,7 +6,7 @@ class Document extends Model
 {
 	use SoftDeletes;
 	public $timestamps = false;
-	protected $guarded = array('id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -42,13 +42,13 @@ class Document extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
+		$this->setRules([
 			'title' => [_('Title'), 'required|max:255|unique'],
-			'body' => [_('Body'), 'required'],
-		));
+			'body'  => [_('Body'), 'required'],
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -89,6 +89,7 @@ class Document extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Currency)
 	 */
 	public static function search($pattern)

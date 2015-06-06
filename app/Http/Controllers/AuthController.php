@@ -55,11 +55,13 @@ class AuthController extends Controller
 			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
 			{
 				event('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
+
 				return redirect()->intended('/');
 			}
 
 			Session::flash('error', _('Wrong credentials'));
 		}
+
 		return redirect()->back()->withInput(array_except($input, 'password'))->withErrors($validator);
 	}
 
@@ -72,6 +74,7 @@ class AuthController extends Controller
 	{
 		Auth::logout();
 		Session::flush();
+
 		return redirect()->route('home');
 	}
 
@@ -79,6 +82,7 @@ class AuthController extends Controller
 	 * Attempt to log in an user using an Oauth authentication provider.
 	 *
 	 * @param  string
+	 *
 	 * @return Response
 	 */
 	public function oauthLogin($providerName)
@@ -133,7 +137,7 @@ class AuthController extends Controller
 		catch(OauthException $e)
 		{
 			Session::flash('error', $e->getMessage());
-			
+
 			return redirect()->route('login');
 		}
 	}
@@ -145,6 +149,7 @@ class AuthController extends Controller
 	 *
 	 * @param  \App\Provider
 	 * @param  \Laravel\Socialite\Contracts\User
+	 *
 	 * @return Response
 	 * @throws OauthException
 	 */

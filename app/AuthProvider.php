@@ -10,7 +10,7 @@ class AuthProvider extends Model
 {
 	use SoftDeletes;
 	protected $table = 'authproviders';
-	protected $guarded = array('login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
+	protected $guarded = ['login_count', 'id', 'created_at', 'updated_at', 'deleted_at'];
 
 	// Meta ========================================================================
 
@@ -46,14 +46,14 @@ class AuthProvider extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'name' => [_('Name'), 'required|alpha_num|max:32|unique'],
-			'title' => [_('Title'), 'required|max:32|unique'],
+		$this->setRules([
+			'name'        => [_('Name'), 'required|alpha_num|max:32|unique'],
+			'title'       => [_('Title'), 'required|max:32|unique'],
 			'login_count' => [_('Login count'), 'integer|min:0'],
-		));
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -73,12 +73,13 @@ class AuthProvider extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of AuthProvider)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -112,6 +113,7 @@ class AuthProvider extends Model
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -133,6 +135,7 @@ class AuthProvider extends Model
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
@@ -169,6 +172,7 @@ class AuthProvider extends Model
 	 * If no account is found it will create it.
 	 *
 	 * @param  \Laravel\Socialite\AbstractUser $user
+	 *
 	 * @return Account
 	 * @throws Exceptions\OauthException
 	 */
@@ -176,7 +180,7 @@ class AuthProvider extends Model
 	{
 		// Check if there is a method to generate accounts of $this provider
 		$factory = 'makeFrom' . ucfirst($this->name);
-		if ( ! method_exists('\App\Account', $factory))
+		if( ! method_exists('\App\Account', $factory))
 			throw new Exceptions\OauthException(sprintf('Provider %s has no account generator', $this));
 
 		// Make a new account of $this provider with received $user data
@@ -206,6 +210,7 @@ class AuthProvider extends Model
 
 			// Success :)
 			DB::commit();
+
 			return $newAccount;
 		}
 		catch(\Exception $e)

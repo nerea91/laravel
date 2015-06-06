@@ -19,8 +19,11 @@ class CreateOptionUserTable extends Migration
 			$table->increments('id');
 
 			// Foreign keys
-			$table->unsignedInteger('option_id');$table->foreign('option_id')->references('id')->on('options')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('user_id');$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('option_id');
+			$table->foreign('option_id')->references('id')->on('options')->onUpdate('cascade')->onDelete('cascade');
+			
+			$table->unsignedInteger('user_id');
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 			// Pivot columns
 			$table->string('value', 64);

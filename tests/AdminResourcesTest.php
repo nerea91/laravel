@@ -12,6 +12,7 @@ class AdminResourcesTest extends TestCase
 	 *
 	 * @param  string $resource Name of the resource route/table
 	 * @param  array  $input
+	 *
 	 * @return $this
 	 */
 	protected function resource($resource, array $input)

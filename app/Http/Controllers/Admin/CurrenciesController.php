@@ -16,6 +16,7 @@ class CurrenciesController extends ResourceController
 	 * Class constructor.
 	 *
 	 * @param  App\Model $resource Instance of the resource this controller is in charge of.
+	 *
 	 * @return void
 	 */
 	public function __construct(Currency $resource)

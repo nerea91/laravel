@@ -17,8 +17,9 @@ abstract class Controller extends BaseController
 	/**
 	 * Attach view to layout.
 	 *
-	 * @param  string  $view
-	 * @param  array   $data
+	 * @param  string $view
+	 * @param  array  $data
+	 *
 	 * @return \Illuminate\View\View
 	 * @throws \InvalidArgumentException
 	 */

@@ -19,8 +19,11 @@ class CreatePermissionProfileTable extends Migration
 			$table->increments('id');
 
 			// Foreign keys
-			$table->unsignedInteger('permission_id');$table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('profile_id');$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('permission_id');
+			$table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade')->onDelete('cascade');
+			
+			$table->unsignedInteger('profile_id');
+			$table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade')->onDelete('cascade');
 
 			// Pivot columns
 

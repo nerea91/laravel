@@ -11,8 +11,9 @@ class AccessControlList implements Middleware
 	 * Check if current user has granted access to current route.
 	 * The permissions list is defined in config/acl.php
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Closure                 $next
+	 *
 	 * @return mixed
 	 * @throws \App\Exceptions\AccessControlListException
 	 */

@@ -53,11 +53,12 @@ class ResourceController extends Controller
 	/**
 	 * Class constructor
 	 *
-	 * @param  App\Model $resource An instance of the resource this controller is in charge of.
-	 * @param  array $permissions Permissions passed to the views
+	 * @param  App\Model $resource    An instance of the resource this controller is in charge of.
+	 * @param  array     $permissions Permissions passed to the views
+	 *
 	 * @return void
 	 */
-	public function __construct(Model $resource, array $permissions = array())
+	public function __construct(Model $resource, array $permissions = [])
 	{
 		// Setup layout
 		parent::__construct();
@@ -67,9 +68,9 @@ class ResourceController extends Controller
 		$this->trashable = (isset($permissions['delete']) and $permissions['delete'] and method_exists($resource, 'trashed'));
 
 		View::share($permissions + [
-			'prefix' => $this->prefix,
-			'trashable' => $this->trashable,
-		]);
+				'prefix'    => $this->prefix,
+				'trashable' => $this->trashable,
+			]);
 	}
 
 	/**
@@ -110,6 +111,7 @@ class ResourceController extends Controller
 	public function create()
 	{
 		$this->layout->subtitle = _('Add');
+
 		return $this->loadView(__FUNCTION__, $this->resource->getFillableLabels());
 	}
 
@@ -130,7 +132,8 @@ class ResourceController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function show($id)
@@ -147,7 +150,8 @@ class ResourceController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function edit($id)
@@ -164,7 +168,8 @@ class ResourceController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function update($id)
@@ -185,7 +190,8 @@ class ResourceController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function destroy($id)
@@ -209,7 +215,8 @@ class ResourceController extends Controller
 	/**
 	 * Restore the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
+	 *
 	 * @return Response
 	 */
 	public function restore($id)
@@ -223,7 +230,8 @@ class ResourceController extends Controller
 	/**
 	 * Save resource to the data base using transactions.
 	 *
-	 * @param  string   $action
+	 * @param  string $action
+	 *
 	 * @return Response
 	 */
 	protected function persist($action)
@@ -284,8 +292,9 @@ class ResourceController extends Controller
 	/**
 	 * Set layout title and load resource view.
 	 *
-	 * @param  string   $view
-	 * @param  array    $labels
+	 * @param  string $view
+	 * @param  array  $labels
+	 *
 	 * @return Response
 	 */
 	protected function loadView($view, array $labels = null)
@@ -309,6 +318,7 @@ class ResourceController extends Controller
 	 * The trash mode is stored in the session.
 	 *
 	 * @param  string $mode
+	 *
 	 * @return Response
 	 */
 	public function setTrashMode($mode)
@@ -346,6 +356,7 @@ class ResourceController extends Controller
 	 *
 	 * @param  App\Model|\Illuminate\Database\Eloquent\Builder $resource
 	 * @param  int                                             $resultsPerPage
+	 *
 	 * @return \Illuminate\Pagination\Paginator
 	 */
 	protected function paginate($resource = null, $resultsPerPage = null)

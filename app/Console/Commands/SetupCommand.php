@@ -53,9 +53,9 @@ class SetupCommand extends Command
 	 */
 	protected function getArguments()
 	{
-		return array(
-		//	['example', InputArgument::REQUIRED, 'An example argument.'],
-		);
+		return [
+			//['example', InputArgument::REQUIRED, 'An example argument.'],
+		];
 	}
 
 	/**

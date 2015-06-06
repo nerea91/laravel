@@ -44,7 +44,8 @@ class CreateTemplateTable extends Migration
 			// NOTE see $this->ordinaryColumns()
 
 			// Foreign keys
-			$table->unsignedInteger('zzz_id')->nullable();$table->foreign('zzz_id')->references('id')->on('zzzs')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('zzz_id')->nullable();
+			$table->foreign('zzz_id')->references('id')->on('zzzs')->onUpdate('cascade')->onDelete('cascade');
 
 			// Extra keys
 			$table->index('column', $name = null);
@@ -70,8 +71,11 @@ class CreateTemplateTable extends Migration
 			$table->increments('id');
 
 			// Foreign keys
-			$table->unsignedInteger('xxx_id');$table->foreign('xxx_id')->references('id')->on('xxxs')->onUpdate('cascade')->onDelete('cascade');
-			$table->unsignedInteger('yyy_id');$table->foreign('yyy_id')->references('id')->on('yyys')->onUpdate('cascade')->onDelete('cascade');
+			$table->unsignedInteger('xxx_id');
+			$table->foreign('xxx_id')->references('id')->on('xxxs')->onUpdate('cascade')->onDelete('cascade');
+
+			$table->unsignedInteger('yyy_id');
+			$table->foreign('yyy_id')->references('id')->on('yyys')->onUpdate('cascade')->onDelete('cascade');
 
 			// Pivot columns
 			// NOTE see $this->ordinaryColumns()

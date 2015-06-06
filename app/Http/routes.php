@@ -55,14 +55,14 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 		Route::group(['middleware' => 'acl'], function () {
 
 			$resources = [
-				'accounts' => 'AccountsController',
+				'accounts'      => 'AccountsController',
 				'authproviders' => 'AuthProvidersController',
-				'countries' => 'CountriesController',
-				'currencies' => 'CurrenciesController',
-				'documents' => 'DocumentsController',
-				'languages' => 'LanguagesController',
-				'profiles' => 'ProfilesController',
-				'users' => 'UsersController',
+				'countries'     => 'CountriesController',
+				'currencies'    => 'CurrenciesController',
+				'documents'     => 'DocumentsController',
+				'languages'     => 'LanguagesController',
+				'profiles'      => 'ProfilesController',
+				'users'         => 'UsersController',
 				#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 			];
 

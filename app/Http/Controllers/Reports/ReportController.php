@@ -69,11 +69,12 @@ abstract class ReportController extends Controller
 	 *
 	 * Initialize class properties.
 	 *
-	 * @param  string $title  Title of the report
-	 * @param  string $view   View file for showing the results
-	 * @param  array  $fields Form fields labels and validation rules
-	 * @param  array  $input  Default form input
+	 * @param  string $title          Title of the report
+	 * @param  string $view           View file for showing the results
+	 * @param  array  $fields         Form fields labels and validation rules
+	 * @param  array  $input          Default form input
 	 * @param  string $offCanvasClass Class to apply to the off-canvas
+	 *
 	 * @return void
 	 */
 	public function __construct($title, $view, array $fields, array $input, $offCanvasClass = null)
@@ -153,6 +154,7 @@ abstract class ReportController extends Controller
 	 *
 	 * @param  array $input
 	 * @param  mixed $results
+	 *
 	 * @return Response
 	 * @throws
 	 */
@@ -176,6 +178,7 @@ abstract class ReportController extends Controller
 	 *
 	 * @param  array $input
 	 * @param  mixed $results
+	 *
 	 * @return Response
 	 */
 	public function formatWeb(array $input, $results)
@@ -183,7 +186,7 @@ abstract class ReportController extends Controller
 		// Set variables for the layout
 		$this->layout->title = $this->title;
 		$this->layout->offCanvasClass = $this->offCanvasClass;
-		$this->layout->action = Route::current()->getName().'.validate';
+		$this->layout->action = Route::current()->getName() . '.validate';
 		$this->layout->results = (bool) $results;
 
 		// Set variables for the view

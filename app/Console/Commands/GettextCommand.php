@@ -33,7 +33,7 @@ class GettextCommand extends Command
 		$outputPath = storage_path('gettext');
 
 		// Create $outputPath or empty it if already exists
-		if (File::isDirectory($outputPath))
+		if(File::isDirectory($outputPath))
 			File::cleanDirectory($outputPath);
 		else
 			File::makeDirectory($outputPath);
@@ -44,11 +44,11 @@ class GettextCommand extends Command
 
 		// Get all view files
 		$allFiles = File::allFiles($inputPath);
-		foreach ($allFiles as $f)
+		foreach($allFiles as $f)
 		{
 			// Skip not blade templates
 			$file = $f->getPathName();
-			if ('.blade.php' !== substr($file, -10))
+			if('.blade.php' !== substr($file, -10))
 				continue;
 
 			// Compile the view
@@ -60,9 +60,9 @@ class GettextCommand extends Command
 			File::move($outputPath . DIRECTORY_SEPARATOR . md5($file), $outputPath . DIRECTORY_SEPARATOR . $human . '.php');
 		}
 
-		if ($compiled)
+		if($compiled)
 			$this->info("$compiled files compiled.");
 		else
-			$this->error('No .blade.php files found in '.$inputPath);
+			$this->error('No .blade.php files found in ' . $inputPath);
 	}
 }

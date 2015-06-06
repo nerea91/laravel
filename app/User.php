@@ -16,8 +16,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
 	use Authenticatable, SoftDeletes;
 
-	protected $guarded = array('id', 'remember_token', 'created_at', 'updated_at', 'deleted_at');
-	protected $hidden = array('password', 'password_confirmation', 'current_password', 'remember_token');
+	protected $guarded = ['id', 'remember_token', 'created_at', 'updated_at', 'deleted_at'];
+	protected $hidden = ['password', 'password_confirmation', 'current_password', 'remember_token'];
 
 	// Meta ========================================================================
 
@@ -53,18 +53,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'username' => [_('Username'), 'required|min:4|max:32|regex:/^[a-zA-z]+[a-zA-z0-9]+$/|unique'],
-			'name' => [_('Real name'), 'alpha_dash_space|max:64'],
+		$this->setRules([
+			'username'    => [_('Username'), 'required|min:4|max:32|regex:/^[a-zA-z]+[a-zA-z0-9]+$/|unique'],
+			'name'        => [_('Real name'), 'alpha_dash_space|max:64'],
 			'description' => [_('Description'), 'max:128'],
-			'password' => [_('Password'), 'required|min:5|max:60|different:username|confirmed'],
-			'country_id' => [_('Country'), 'exists:countries,id'],
+			'password'    => [_('Password'), 'required|min:5|max:60|different:username|confirmed'],
+			'country_id'  => [_('Country'), 'exists:countries,id'],
 			'language_id' => [_('Language'), 'exists:languages,id'],
-			'profile_id' => [_('Profile'), 'required|exists:profiles,id'],
-		));
+			'profile_id'  => [_('Profile'), 'required|exists:profiles,id'],
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -135,11 +135,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			if( ! $user->accounts()->where('provider_id', 1)->first())
 			{
 				Account::create([
-					'uid' => $user->id,
-					'nickname' => $user->username,
-					'name' => $user->name,
+					'uid'         => $user->id,
+					'nickname'    => $user->username,
+					'name'        => $user->name,
 					'provider_id' => 1,
-					'user_id' => $user->id,
+					'user_id'     => $user->id,
 				]);
 			}
 		});
@@ -169,12 +169,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of User)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -195,6 +196,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * If an $account is provided, the username will try to match the account personal info.
 	 *
 	 * @param  Account $account
+	 *
 	 * @return User
 	 * @throws \Exception
 	 */
@@ -219,11 +221,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		// Attempt to create user
 		$user = new User([
-			'username' => generate_username($seeds),
-			'name' => ($account) ? $account->nameForHumans() : null,
-			'password' => $password = str_random(60),
+			'username'              => generate_username($seeds),
+			'name'                  => ($account) ? $account->nameForHumans() : null,
+			'password'              => $password = str_random(60),
 			'password_confirmation' => $password,
-			'profile_id' => $profile->id,
+			'profile_id'            => $profile->id,
 		]);
 
 		if( ! $user->save())
@@ -239,7 +241,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	/**
 	 * Set the token value for the "remember me" session.
 	 *
-	 * @param  string  $value
+	 * @param  string $value
+	 *
 	 * @return void
 	 */
 	public function setRememberToken($value)
@@ -276,6 +279,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -287,6 +291,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 			if($throwExceptions)
 				throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
+
 			return false;
 		}
 
@@ -298,6 +303,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
@@ -332,6 +338,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Check if user's profile has ALL of the provided permissions
 	 *
 	 * @param dynamic $permissions
+	 *
 	 * @return bool
 	 */
 	public function hasPermission($permissions)
@@ -349,6 +356,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Check if user's profile has ANY of the provided permissions
 	 *
 	 * @param dynamic $permissions
+	 *
 	 * @return bool
 	 */
 	public function hasAnyPermission($permissions)
@@ -406,6 +414,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Fallback to default if user does not have such option.
 	 *
 	 * @param  string
+	 *
 	 * @return string
 	 *
 	 * @thows Illuminate\Database\Eloquent\ModelNotFoundException
@@ -423,6 +432,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * The missing user options are merged with the default ones
 	 *
 	 * @param  bool
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Option)
 	 */
 	public function getOptions($onlyAssignable = false)
@@ -465,6 +475,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Change $this user options.
 	 *
 	 * @param  array
+	 *
 	 * @return \Illuminate\Support\MessageBag
 	 */
 	public function setOptions(array $options)
@@ -484,7 +495,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		$protocol = ($secure) ? 'https' : 'http';
 
-		$accounts = $this->accounts()->where('provider_id', '<>', 1)->latest('updated_at')->with('provider')->get()->each(function ($account) use($protocol) {
+		$accounts = $this->accounts()->where('provider_id', '<>', 1)->latest('updated_at')->with('provider')->get()->each(function ($account) use ($protocol) {
 
 			// Gravatar
 			if( ! $account->image and $account->email)

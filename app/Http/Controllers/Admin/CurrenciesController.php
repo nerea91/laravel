@@ -2,6 +2,7 @@
 
 use App\Currency;
 use App\Http\Controllers\ResourceController;
+use App\User;
 use Auth;
 
 class CurrenciesController extends ResourceController
@@ -21,7 +22,7 @@ class CurrenciesController extends ResourceController
 	 */
 	public function __construct(Currency $resource)
 	{
-		$user = Auth::user();
+		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

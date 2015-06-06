@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ResourceController;
 use App\Profile;
+use App\User;
 use Auth;
 use Cache;
 
@@ -22,7 +23,7 @@ class ProfilesController extends ResourceController
 	 */
 	public function __construct(Profile $resource)
 	{
-		$user = Auth::user();
+		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

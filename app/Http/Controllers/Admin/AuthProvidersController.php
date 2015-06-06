@@ -2,6 +2,7 @@
 
 use App\AuthProvider;
 use App\Http\Controllers\ResourceController;
+use App\User;
 use Auth;
 
 class AuthProvidersController extends ResourceController
@@ -21,7 +22,7 @@ class AuthProvidersController extends ResourceController
 	 */
 	public function __construct(AuthProvider $resource)
 	{
-		$user = Auth::user();
+		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

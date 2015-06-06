@@ -3,9 +3,9 @@
 use App\Document;
 use App\Exceptions\AccessControlListException;
 use Auth;
-use Illuminate\Routing\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class DocumentController extends Controller
+class DocumentController extends BaseController
 {
 	/**
 	 * Show main page

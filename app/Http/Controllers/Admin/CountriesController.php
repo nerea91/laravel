@@ -2,6 +2,7 @@
 
 use App\Country;
 use App\Http\Controllers\ResourceController;
+use App\User;
 use Auth;
 
 class CountriesController extends ResourceController
@@ -21,7 +22,7 @@ class CountriesController extends ResourceController
 	 */
 	public function __construct(Country $resource)
 	{
-		$user = Auth::user();
+		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

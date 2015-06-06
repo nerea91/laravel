@@ -64,7 +64,7 @@ class ResourceController extends Controller
 		parent::__construct();
 
 		$this->resource = $resource;
-		$this->prefix = replace_last_segment(Route::current()->getName());
+		$this->prefix = ($route = Route::current()) ? replace_last_segment($route->getName()) : null;  // Fallback for `php artisan route:list` to work
 		$this->trashable = (isset($permissions['delete']) and $permissions['delete'] and method_exists($resource, 'trashed'));
 
 		View::share($permissions + [

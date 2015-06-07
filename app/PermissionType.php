@@ -34,19 +34,15 @@ class PermissionType extends Model
 
 	// Static Methods ==============================================================
 
-	// Logic =======================================================================
-
 	/**
 	 * Get types with at least one permission.
 	 *
-	 * @param \Illuminate\Database\Eloquent\Builder
-	 *
-	 * @return \Illuminate\Database\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Collection (of User)
 	 */
-	public function scopeUsed($query)
+	public static function inUse()
 	{
-		return Cache::remember('usedPermissionTypes', 60 * 24, function () {
-			return self::has('permissions')->orderBy('name')->get();
-		});
+		return self::has('permissions')->orderBy('name')->get();
 	}
+
+	// Logic =======================================================================
 }

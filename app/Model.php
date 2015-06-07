@@ -123,11 +123,11 @@ abstract class Model extends UpstreamModel
 	/**
 	 * Validate current attributes against rules.
 	 *
-	 * @param  boolean $triggered_by_event
+	 * @param  boolean $triggeredByEvent
 	 *
 	 * @return boolean
 	 */
-	public function validate($triggered_by_event = false)
+	public function validate($triggeredByEvent = false)
 	{
 		// If $this has 'id' use it as excluded key for "unique" and "unique_with" rules
 		$table = $this->getTable();
@@ -158,7 +158,7 @@ abstract class Model extends UpstreamModel
 
 		// Make sure save() wont get the *_confirmation attributes.
 		// They make sense only for validation not for storage
-		if($triggered_by_event)
+		if($triggeredByEvent)
 		{
 			foreach($this->attributes as $name => $value)
 				if(ends_with($name, '_confirmation'))

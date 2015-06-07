@@ -14,17 +14,17 @@ if( ! function_exists('replace_last_segment'))
 	 *
 	 * Assumes full stop (.) is the route segments separator.
 	 *
-	 * @param  string $route_name
-	 * @param  string $new_segment
+	 * @param  string $routeName
+	 * @param  string $newSegment
 	 *
 	 * @return string
 	 */
-	function replace_last_segment($route_name, $new_segment = null)
+	function replace_last_segment($routeName, $newSegment = null)
 	{
-		$segments = explode('.', $route_name);
+		$segments = explode('.', $routeName);
 		$segments = array_slice($segments, 0, count($segments) - 1);
-		if( ! is_null($new_segment))
-			$segments[] = $new_segment;
+		if( ! is_null($newSegment))
+			$segments[] = $newSegment;
 
 		return implode('.', $segments);
 	}

@@ -16,10 +16,6 @@ App\Permission@getGroupedByType
 
 	allPermissionsGroupedByType
 
-App\PermissionType@scopeUsed
-
-	usedPermissionTypes
-
 App\Profile@getPermissions
 
 	profile{$this->id}permissions

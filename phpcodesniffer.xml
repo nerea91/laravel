@@ -96,14 +96,15 @@
 	<!--========== Generic ========================================-->
 
 	<!--<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>-->
+	<!--Look for pending tasks-->
 	<!--<rule ref="Generic.Commenting.Todo"/>-->
 	<!--<rule ref="Generic.Debug.ClosureLinter"/>-->
 	<!--<rule ref="Generic.Debug.ClosureLinter.ExternalToolError"/>-->
 	<!--<rule ref="Generic.Formatting.MultipleStatementAlignment"/>-->
 	<!--<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>-->
 	<!--<rule ref="Generic.Metrics.CyclomaticComplexity"/>-->
-	<!--<rule ref="Generic.Metrics.NestingLevel"/>-->
-	<!--<rule ref="Generic.Strings.UnnecessaryStringConcat"/>-->
+	<rule ref="Generic.Metrics.NestingLevel"/>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
 
 	<!--========== MySource ========================================-->
 
@@ -235,9 +236,9 @@
 
 	<!--<rule ref="Zend.Debug.CodeAnalyzer"/>-->
 	<!--Variable names in camelCase-->
-<!-- 	<rule ref="Zend.NamingConventions.ValidVariableName"> -->
+	<!--<rule ref="Zend.NamingConventions.ValidVariableName">-->
 		<!--Protected variable don't need an underscore prefix-->
-<!-- 		<exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore"/> -->
-<!-- 	</rule> -->
+		<!--<exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>-->
+	<!--</rule>-->
 
 </ruleset>

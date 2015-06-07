@@ -7,8 +7,8 @@ use Laravel\Socialite\AbstractUser as SocialUser;
 
 class Account extends Model
 {
-	protected $guarded = array('access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at');
-	protected $hidden = array('access_token', 'last_ip');
+	protected $guarded = ['access_token', 'last_ip', 'login_count', 'id', 'created_at', 'updated_at', 'deleted_at'];
+	protected $hidden = ['access_token', 'last_ip'];
 
 	// Meta ========================================================================
 
@@ -44,25 +44,25 @@ class Account extends Model
 
 	// Validation ==================================================================
 
-	public function __construct(array $attributes = array())
+	public function __construct(array $attributes = [])
 	{
 		parent::__construct($attributes);
-		$this->setRules(array(
-			'uid' => [_('Remote id'), 'required|max:128|unique_with:accounts,provider_id'],
+		$this->setRules([
+			'uid'          => [_('Remote id'), 'required|max:128|unique_with:accounts,provider_id'],
 			'access_token' => [_('Access token'), null],
-			'nickname' => [_('Nickname'), 'max:128'],
-			'email' => [_('E-mail'), 'email|max:255'],
-			'name' => [_('Name'), 'max:128'],
-			'first_name' => [_('First name'), 'max:64'],
-			'last_name' => [_('Last name'), 'max:64'],
-			'image' => [_('Image'), 'max:255'],
-			'locale' => [_('Locale'), 'max:5'],
-			'location' => [_('Location'), 'max:128'],
-			'login_count' => [_('Login count'), 'integer|min:0'],
-			'last_ip' => [_('Last IP address'), null], // Could be 'ip' but as it's encrypt it would not validate
-			'provider_id' => [_('Provider'), 'required|exists:authproviders,id'],
-			'user_id' => [_('User'), 'required|exists:users,id|unique_with:accounts,provider_id'],
-		));
+			'nickname'     => [_('Nickname'), 'max:128'],
+			'email'        => [_('E-mail'), 'email|max:255'],
+			'name'         => [_('Name'), 'max:128'],
+			'first_name'   => [_('First name'), 'max:64'],
+			'last_name'    => [_('Last name'), 'max:64'],
+			'image'        => [_('Image'), 'max:255'],
+			'locale'       => [_('Locale'), 'max:5'],
+			'location'     => [_('Location'), 'max:128'],
+			'login_count'  => [_('Login count'), 'integer|min:0'],
+			'last_ip'      => [_('Last IP address'), null], // Could be 'ip' but as it's encrypt it would not validate
+			'provider_id'  => [_('Provider'), 'required|exists:authproviders,id'],
+			'user_id'      => [_('User'), 'required|exists:users,id|unique_with:accounts,provider_id'],
+		]);
 	}
 
 	// Relationships ===============================================================
@@ -120,12 +120,13 @@ class Account extends Model
 	 * Search this model
 	 *
 	 * @param  string $pattern
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection (of Account)
 	 */
 	public static function search($pattern)
 	{
 		// Apply parameter grouping http://laravel.com/docs/queries#advanced-wheres
-		return self::where(function($query) use ($pattern) {
+		return self::where(function ($query) use ($pattern) {
 
 			// If pattern is a number search in the numeric columns
 			if(is_numeric($pattern))
@@ -154,6 +155,7 @@ class Account extends Model
 	 * Make a new account filled with data provided by Facebook.
 	 *
 	 * @param  SocialUser $user
+	 *
 	 * @return Account
 	 */
 	public static function makeFromFacebook(SocialUser $user)
@@ -178,6 +180,7 @@ class Account extends Model
 	 * Make a new account filled with data provided by Google.
 	 *
 	 * @param  SocialUser $user
+	 *
 	 * @return Account
 	 */
 	public static function makeFromGoogle(SocialUser $user)
@@ -202,6 +205,7 @@ class Account extends Model
 	 * Make a new account filled with data provided by GitHub.
 	 *
 	 * @param  SocialUser $user
+	 *
 	 * @return Account
 	 */
 	public static function makeFromGithub(SocialUser $user)
@@ -228,6 +232,7 @@ class Account extends Model
 	 * Determine whether or not the model can be deleted.
 	 *
 	 * @param  boolean $throwExceptions
+	 *
 	 * @return boolean
 	 *
 	 * @throws \App\Exceptions\ModelDeletionException
@@ -239,6 +244,7 @@ class Account extends Model
 		{
 			if($throwExceptions)
 				throw new ModelDeletionException(sprintf(_('Deleting %s is not allowed'), $this));
+
 			return false;
 		}
 
@@ -250,6 +256,7 @@ class Account extends Model
 	 * i.e: ?sortby=name&sortdir=desc
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder
+	 *
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeOrderByUrl($query)
@@ -302,6 +309,7 @@ class Account extends Model
 	 *
 	 * @param  Account $account
 	 * @param  array   $foreceUpdateOnThisFields
+	 *
 	 * @return Account
 	 */
 	public function mergeMissingAttributes(Account $account, array $foreceUpdateOnTheseFields = [])

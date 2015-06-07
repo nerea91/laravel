@@ -11,6 +11,7 @@ class DocumentController extends BaseController
 	 * Show main page
 	 *
 	 * @param  integer
+	 * @param  string   $notUsed  Title
 	 *
 	 * @return Response
 	 * @throws App\Exceptions\AccessControlListException;

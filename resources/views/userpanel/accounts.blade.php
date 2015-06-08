@@ -14,7 +14,9 @@
 				!!}
 
 				<p>{{ $account->provider }}</p>
-				<p><img height="80" width="80" src="{{ $account->image }}" alt=""></p>
+				@if ($account->image)
+					<p><img height="80" width="80" src="{{ $account->image }}" alt=""></p>
+				@endif
 
 				{!!
 					Form::submit(_('Revoke access'), ['class' => 'button']),

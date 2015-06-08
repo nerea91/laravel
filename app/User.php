@@ -490,16 +490,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function getNonNativeAccounts()
 	{
-		// Determine if current request is HTTPs
-		$secure = ( ! empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== 'off') or $_SERVER['SERVER_PORT'] == 443;
-
+		// Determine protocol to use for Gravatar URLs
+		$secure = (isset($_SERVER['HTTPS']) and ! empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== 'off') or (isset($_SERVER['SERVER_PORT']) and $_SERVER['SERVER_PORT'] == 443);
 		$protocol = ($secure) ? 'https' : 'http';
 
-		$accounts = $this->accounts()->where('provider_id', '<>', 1)->latest('updated_at')->with('provider')->get()->each(function ($account) use ($protocol) {
+		// Get non native accounts
+		$accounts = $this->accounts()->where('provider_id', '<>', 1)->latest('updated_at')->with('provider')->get();
 
-			// Gravatar
-			if( ! $account->image and $account->email)
-				$account->image = $protocol . '://www.gravatar.com/avatar/' . md5($account->email);
+		// Attach gravatar image to accouunts without image url
+		$accounts->each(function ($account) use ($protocol) {
+			if( ! strlen($account->image))
+			{
+				// Fallback to default Gravatar image
+				$account->image = $protocol . '://www.gravatar.com/avatar/';
+
+				// Custom Gravatar image
+				if(strlen($account->email))
+					$account->image .= md5($account->email);
+			}
 		});
 
 		return $accounts;

@@ -80,4 +80,39 @@ class UserPanelControllerTest extends TestCase
 		->assertSessionHasNoErrors()
 		->seeInDatabase('users', $expectedDatabaseData);
 	}
+
+	public function testUpdateAccounts()
+	{
+		$this->seeds('LanguagesTableSeeder', 'ProfilesTableSeeder', 'UsersTableSeeder', 'AuthprovidersTableSeeder', 'AccountsTableSeeder');
+
+		// Create an account
+		$user = $this->getSuperUser();
+		$provider = App\AuthProvider::create([
+			'name' => 'testing',
+			'title' => 'Testing provider ' . str_random(5)
+		]);
+		$account = App\Account::create($expectedDatabaseData = [
+			'provider_id' => $provider->getKey(),
+			'user_id' => $user->getKey(),
+			'uid' => 666,
+		]);
+
+		//Make sure the provider is non native, otherwise the account wont be listed on the page
+		$this
+		->seeInDatabase('accounts', $expectedDatabaseData)
+		->assertGreaterThan(1, $provider->getKey());
+
+		// Revoke access from the account
+		$page = route('user.accounts');
+
+		$this
+		->actingAs($user)
+		->visit($page)
+		->see($provider->title)
+		->press(_('Revoke access'))
+		->seePageIs($page)
+		->see($provider->title, true) //Not see
+		->see(_('Account access has been revoked'))
+		->notSeeInDatabase('accounts', $expectedDatabaseData);
+	}
 }

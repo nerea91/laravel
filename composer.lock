@@ -418,12 +418,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "73ad2636ced1219d6170d4352e091a51a885feb7"
+                "reference": "861358ecb610f3e5b10a0f9f0a0f61b09806439d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/73ad2636ced1219d6170d4352e091a51a885feb7",
-                "reference": "73ad2636ced1219d6170d4352e091a51a885feb7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/861358ecb610f3e5b10a0f9f0a0f61b09806439d",
+                "reference": "861358ecb610f3e5b10a0f9f0a0f61b09806439d",
                 "shasum": ""
             },
             "require": {
@@ -538,7 +538,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-06-03 21:29:40"
+            "time": "2015-06-09 02:15:39"
         },
         {
             "name": "league/commonmark",
@@ -550,7 +550,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/2205386ee3ee0558241298eb9efb056b2fae0f82",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/59b3deb827a0d92ce0ca909755d963006e00c176",
                 "reference": "2205386ee3ee0558241298eb9efb056b2fae0f82",
                 "shasum": ""
             },
@@ -2149,7 +2149,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c0114360dccbd0e7c1ce3d6440e5ceae25807e56",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/3edaea0e8056edde00f7d0af13ed0d406412182d",
                 "reference": "c0114360dccbd0e7c1ce3d6440e5ceae25807e56",
                 "shasum": ""
             },

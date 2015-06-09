@@ -24,7 +24,7 @@ class AuthControllerTest extends TestCase
 	public function testLogoutPage()
 	{
 		$this
-		->seeds('UsersTableSeeder') // Required because Auth::logout() will try to update remember token
+		->seeds('ProfilesTableSeeder', 'UsersTableSeeder') // Required because Auth::logout() will try to update remember token
 		->actingAs(App\User::firstOrFail())
 		->assertTrue(Auth::check());
 

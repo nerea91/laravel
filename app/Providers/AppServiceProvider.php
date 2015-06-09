@@ -40,16 +40,28 @@ class AppServiceProvider extends ServiceProvider
 		});
 
 		// Load environment Specific Service Providers...
-		if($this->app->environment('local'))
+		switch($this->app->environment())
 		{
-			$providers = [
-				'Barryvdh\Debugbar\ServiceProvider',
-				'Stolz\HtmlTidy\ServiceProvider',
-				'Stolz\SchemaSpy\ServiceProvider',
-			];
+			default:
+				$providers = [];
+				break;
 
-			foreach($providers as $provider)
-				$this->app->register($provider);
+			case 'local':
+				$providers = [
+					'Barryvdh\Debugbar\ServiceProvider',
+					'Stolz\HtmlTidy\ServiceProvider',
+					'Stolz\SchemaSpy\ServiceProvider',
+				];
+				break;
+
+			case 'testing':
+				$providers = [
+					'Stolz\HtmlTidy\ServiceProvider',
+				];
+				break;
 		}
+
+		foreach($providers as $provider)
+			$this->app->register($provider);
 	}
 }

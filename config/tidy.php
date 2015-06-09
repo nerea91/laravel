@@ -10,10 +10,13 @@
 | For more info please visit https://github.com/Stolz/laravel-html-tidy
 |
 */
+
+$currentEnvironment = app()->environment()
+
 return [
 
-	// Enable if PHP has tidy extension support
-	'enabled' => app()->environment('local'),
+	// Enable if develop environment
+	'enabled' => in_array($currentEnvironment, ['local', 'testing']),
 
 	// Errors that match these regexs wont be displayed
 	'ignored_errors' => [

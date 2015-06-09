@@ -21,7 +21,7 @@
 		<h5 class="text-center">{{ $subtitle }}</h5>
 	@endif
 
-	<table class="hover responsive" summary="">
+	<table class="hover responsive" summary="report-results">
 
 		<thead>
 			<tr class="zebra">

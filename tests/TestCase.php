@@ -13,7 +13,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	{
 		$app = require __DIR__ . '/../bootstrap/app.php';
 
-		$app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+		$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
 		// Set the base URL to use while testing the application
 		$this->baseUrl = $app->config->get('app.url');

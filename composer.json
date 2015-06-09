@@ -7,6 +7,7 @@
 	"require": {
 		"laravel/framework": "5.1.*",
 		"league/commonmark": "dev-master",
+		"php": ">=5.5.9",
 		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
@@ -46,12 +47,6 @@
 		"post-update-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-			"bin/fix_file_permissions",
-			"which ctags && ctags"
-		],
-		"post-create-project-cmd": [
-			"php -r \"copy('.env.example', '.env');\"",
-			"php artisan key:generate",
 			"bin/fix_file_permissions",
 			"which ctags && ctags"
 		]

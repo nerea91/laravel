@@ -29,11 +29,11 @@ return [
 	'stores' => [
 
 		'apc' => [
-			'driver' => 'apc'
+			'driver' => 'apc',
 		],
 
 		'array' => [
-			'driver' => 'array'
+			'driver' => 'array',
 		],
 
 		'database' => [

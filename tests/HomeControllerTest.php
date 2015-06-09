@@ -32,7 +32,7 @@ class HomeControllerTest extends TestCase
 	public function testSendContactEmail()
 	{
 		// Make sure the mail service provider is enabled.
-		$this->assertContains('Illuminate\Mail\MailServiceProvider', config('app.providers'));
+		$this->assertContains(Illuminate\Mail\MailServiceProvider::class, config('app.providers'));
 
 		$this->seeds('LanguagesTableSeeder')
 		->visit(route('contact'))

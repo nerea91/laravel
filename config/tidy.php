@@ -11,7 +11,7 @@
 |
 */
 
-$currentEnvironment = app()->environment()
+$currentEnvironment = app()->environment();
 
 return [
 

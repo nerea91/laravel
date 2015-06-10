@@ -11,12 +11,10 @@
 |
 */
 
-$currentEnvironment = app()->environment();
-
 return [
 
 	// Enable if develop environment
-	'enabled' => in_array($currentEnvironment, ['local', 'testing']),
+	'enabled' => app()->environment(['local', 'testing']),
 
 	// Errors that match these regexs wont be displayed
 	'ignored_errors' => [

@@ -1,7 +1,6 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use View;
 
 class ViewComposersServiceProvider extends ServiceProvider
 {
@@ -12,7 +11,7 @@ class ViewComposersServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		View::composers([
+		view()->composers([
 			//View composer class => View file (use an array for more than one)
 			'App\Composers\AdminPanelMenuComposer'      => 'admin/top-bar',
 			'App\Composers\SimilarProfilesComposer'     => 'admin.users.fields',

@@ -10,7 +10,6 @@ use Input;
 use Route;
 use Session;
 use Validator;
-use View;
 
 class ResourceController extends Controller
 {
@@ -67,10 +66,10 @@ class ResourceController extends Controller
 		$this->prefix = ($route = Route::current()) ? replace_last_segment($route->getName()) : null;  // Fallback for `php artisan route:list` to work
 		$this->trashable = (isset($permissions['delete']) and $permissions['delete'] and method_exists($resource, 'trashed'));
 
-		View::share($permissions + [
-				'prefix'    => $this->prefix,
-				'trashable' => $this->trashable,
-			]);
+		view()->share($permissions + [
+			'prefix'    => $this->prefix,
+			'trashable' => $this->trashable,
+		]);
 	}
 
 	/**

@@ -3,7 +3,6 @@
 use Auth;
 use Input;
 use Validator;
-use View;
 
 class UserPanelController extends Controller
 {
@@ -20,7 +19,7 @@ class UserPanelController extends Controller
 		// Setup layout
 		parent::__construct();
 
-		View::share('user', $this->user = Auth::user());
+		view()->share('user', $this->user = Auth::user());
 	}
 
 	/**

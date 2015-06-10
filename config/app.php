@@ -148,9 +148,9 @@ return [
 		/*
 		 * Package Service Providers...
 		 */
+		Spatie\Tail\TailServiceProvider::class,
 		Stolz\Assets\Laravel\ServiceProvider::class,
 		Stolz\LaravelFormBuilder\ServiceProvider::class,
-		Spatie\Tail\TailServiceProvider::class,
 	],
 
 	/*

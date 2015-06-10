@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 10:14+0200\n"
+"POT-Creation-Date: 2015-06-10 16:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,6 +65,9 @@ msgid "Access token"
 msgstr ""
 
 msgid "Account"
+msgstr ""
+
+msgid "Account access has been revoked"
 msgstr ""
 
 msgid "Accounts"
@@ -479,6 +482,9 @@ msgstr ""
 msgid "Return"
 msgstr ""
 
+msgid "Revoke access"
+msgstr ""
+
 msgid "Right"
 msgstr ""
 
@@ -838,6 +844,9 @@ msgid "YYYY-MM-DD"
 msgstr ""
 
 msgid "Yes"
+msgstr ""
+
+msgid "You have not signed in with any external provider yet"
 msgstr ""
 
 msgid "Your password has been reset!"

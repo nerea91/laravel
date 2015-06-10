@@ -100,4 +100,34 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
 		return $this;
 	}
+
+	/**
+	 * Create an account of a non native provider
+	 *
+	 * @param  App\User
+	 * @return App\Account
+	 */
+	protected function createNonNativeAccount(App\User $user)
+	{
+		// Create non native provider
+		$provider = App\AuthProvider::create([
+			'name' => 'testing',
+			'title' => 'Testing provider'
+		]);
+
+		// Create account
+		$data = [
+			'provider_id' => $provider->getKey(),
+			'user_id' => $user->getKey(),
+			'uid' => 666,
+		];
+		$account = App\Account::create($data);
+
+		// Make sure the account is from a non native provider
+		$this
+		->seeInDatabase('accounts', $data)
+		->assertGreaterThan(1, $account->provider_id);
+
+		return $account;
+	}
 }

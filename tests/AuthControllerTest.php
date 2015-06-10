@@ -1,18 +1,14 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 class AuthControllerTest extends TestCase
 {
-	// Rollback the database after each test and migrate it before the next test.
-	use DatabaseMigrations;
+	use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 	public function testLoginPage()
 	{
 		$this->assertFalse(Auth::check());
 
 		$this
-		->seeds('ProfilesTableSeeder', 'UsersTableSeeder', 'AuthprovidersTableSeeder', 'AccountsTableSeeder')
 		->visit(route('login'))
 		->submitForm($button = _('Login'), [
 			'username' => 'admin',
@@ -24,8 +20,7 @@ class AuthControllerTest extends TestCase
 	public function testLogoutPage()
 	{
 		$this
-		->seeds('ProfilesTableSeeder', 'UsersTableSeeder') // Required because Auth::logout() will try to update remember token
-		->actingAs(App\User::firstOrFail())
+		->actingAs($this->getSuperUser())
 		->assertTrue(Auth::check());
 
 		$this

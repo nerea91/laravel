@@ -108,7 +108,7 @@ abstract class MakeSectionCommand extends Command
 		$this->route = $this->argument('route');
 		$this->permission = $this->argument('permission');
 		$this->permissionType = $this->argument('permissionType');
-/*TODO
+
 		// Add permission to the seeder file
 		if( ! $this->addToSeeder())
 			return $this->error('Unable to add permission to the seeder file');
@@ -124,11 +124,11 @@ abstract class MakeSectionCommand extends Command
 		// Add menu menu entry to the ViewComposer file
 		if( ! $this->addToMenu())
 			return $this->error('Unable to create menu entry');
-*/
+
 		// Add test to the unit tests file
 		if( ! $this->addToTests())
 			return $this->error('Unable to add test to the tests file');
-/*
+
 		// Create the controller file
 		if( ! $this->createController())
 			return $this->error('Unable to create controller');
@@ -136,7 +136,7 @@ abstract class MakeSectionCommand extends Command
 		// Create the view file
 		if( ! $this->createView())
 			return $this->error('Unable to create view');
-*/
+
 		return $this->info('OK');
 	}
 

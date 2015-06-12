@@ -156,7 +156,6 @@ abstract class ReportController extends Controller
 	 * @param  mixed $results
 	 *
 	 * @return Response
-	 * @throws
 	 */
 	public function format(array $input, $results)
 	{

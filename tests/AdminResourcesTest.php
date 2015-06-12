@@ -110,4 +110,6 @@ class AdminResourcesTest extends TestCase
 			'profiles' => [1, 2]
 		], ['profiles']);
 	}
+
+	#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 }

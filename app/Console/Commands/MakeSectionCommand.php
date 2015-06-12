@@ -34,6 +34,13 @@ abstract class MakeSectionCommand extends Command
 	protected $composerFile;
 
 	/**
+	 * The unit tests file path.
+	 *
+	 * @var string
+	 */
+	protected $testFile;
+
+	/**
 	 * The marker used for file replacement.
 	 *
 	 * @var string
@@ -101,7 +108,7 @@ abstract class MakeSectionCommand extends Command
 		$this->route = $this->argument('route');
 		$this->permission = $this->argument('permission');
 		$this->permissionType = $this->argument('permissionType');
-
+/*TODO
 		// Add permission to the seeder file
 		if( ! $this->addToSeeder())
 			return $this->error('Unable to add permission to the seeder file');
@@ -114,10 +121,14 @@ abstract class MakeSectionCommand extends Command
 		if( ! $this->addToRoutes())
 			return $this->error('Unable to add route to the routes file');
 
-		// Create the menu entry
+		// Add menu menu entry to the ViewComposer file
 		if( ! $this->addToMenu())
 			return $this->error('Unable to create menu entry');
-
+*/
+		// Add test to the unit tests file
+		if( ! $this->addToTests())
+			return $this->error('Unable to add test to the tests file');
+/*
 		// Create the controller file
 		if( ! $this->createController())
 			return $this->error('Unable to create controller');
@@ -125,7 +136,7 @@ abstract class MakeSectionCommand extends Command
 		// Create the view file
 		if( ! $this->createView())
 			return $this->error('Unable to create view');
-
+*/
 		return $this->info('OK');
 	}
 
@@ -150,9 +161,23 @@ abstract class MakeSectionCommand extends Command
 	 *
 	 * @return self
 	 */
-	public function setComposerFile($composer)
+	public function setComposerFile($file)
 	{
-		$this->composerFile = $composer;
+		$this->composerFile = $file;
+
+		return $this;
+	}
+
+	/**
+	 * Set unit tests file.
+	 *
+	 * @param  string
+	 *
+	 * @return self
+	 */
+	public function setTestFile($file)
+	{
+		$this->testFile = $file;
 
 		return $this;
 	}
@@ -222,9 +247,10 @@ abstract class MakeSectionCommand extends Command
 	 */
 	public function addToSeeder()
 	{
+		$file = $this->permissionSeederFile;
 		$content = func_get_args();
 
-		return $this->addContentBeforeMarker($this->permissionSeederFile, $content);
+		return $this->addContentBeforeMarker($file, $content);
 	}
 
 	/**
@@ -236,9 +262,10 @@ abstract class MakeSectionCommand extends Command
 	 */
 	public function addToAcl()
 	{
+		$file = $this->aclFile;
 		$content = func_get_args();
 
-		return $this->addContentBeforeMarker($this->aclFile, $content);
+		return $this->addContentBeforeMarker($file, $content);
 	}
 
 	/**
@@ -248,13 +275,14 @@ abstract class MakeSectionCommand extends Command
 	 */
 	protected function addToRoutes()
 	{
+		$file = $this->routesFile;
 		$content = "'{$this->route}' => '{$this->class}{$this->sufix}',";
 
-		return $this->addContentBeforeMarker($this->routesFile, $content);
+		return $this->addContentBeforeMarker($file, $content);
 	}
 
 	/**
-	 * Create the menu entry.
+	 * Add section to the menu ViewComposer file.
 	 *
 	 * @param  dynamic
 	 *
@@ -262,10 +290,25 @@ abstract class MakeSectionCommand extends Command
 	 */
 	public function addToMenu()
 	{
-		$composerFile = app_path('Composers/' . $this->composerFile);
+		$file = app_path('Composers/' . $this->composerFile);
 		$content = func_get_args();
 
-		return $this->addContentBeforeMarker($composerFile, $content);
+		return $this->addContentBeforeMarker($file, $content);
+	}
+
+	/**
+	 * Add function to the unit tests file.
+	 *
+	 * @param  dynamic
+	 *
+	 * @return bool
+	 */
+	public function addToTests()
+	{
+		$file = base_path('tests/' . $this->testFile);
+		$content = func_get_args();
+
+		return $this->addContentBeforeMarker($file, $content);
 	}
 
 	/**

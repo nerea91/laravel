@@ -24,9 +24,11 @@ class MakeResourceCommand extends MakeSectionCommand
 	public function fire()
 	{
 		// Initialize class properties
-		$this->setMarker('#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#');
-		$this->setComposerFile('AdminPanelMenuComposer.php');
-		$this->setClass($sufix = 'Controller');
+		$this
+		->setClass($sufix = 'Controller')
+		->setMarker('#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#')
+		->setComposerFile('AdminPanelMenuComposer.php')
+		->setTestFile('AdminResourcesTest.php');
 
 		// Fire command
 		parent::fire();
@@ -76,7 +78,7 @@ class MakeResourceCommand extends MakeSectionCommand
 	}
 
 	/**
-	 * Create the menu entry.
+	 * Add section to the menu ViewComposer file.
 	 *
 	 * @param  dynamic
 	 *
@@ -94,6 +96,25 @@ class MakeResourceCommand extends MakeSectionCommand
 			sprintf("	{$lower}->addChild(new Link(route('admin.%s.index'), _('Index')));", $this->route),
 			sprintf("if(\$user->hasPermission(%d))", $this->permission + 1),
 			sprintf("	{$lower}->addChild(new Link(route('admin.%s.create'), _('Add')));", $this->route)
+		);
+	}
+
+	/**
+	 * Add function to the unit tests file.
+	 *
+	 * @param  dynamic
+	 *
+	 * @return bool
+	 */
+	public function addToTests()
+	{
+		return parent::addToTests(
+			sprintf('public function test%s()', $this->class),
+			'{',
+			sprintf("\t\$this->resource('%s', [", $this->route),
+			sprintf("\t\t'foo' => 'TO%s',", 'DO'),
+			"\t]);",
+			"}\n"
 		);
 	}
 

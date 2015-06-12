@@ -25,17 +25,17 @@
 |
 */
 
-$onlyIfLocalEnvironment = function () {
-	return app()->environment('local');
+$onlyIfDevEnvironment = function () {
+	return app()->environment('local', 'testing');
 };
 
 return [
 
-	'test' => $onlyIfLocalEnvironment,
+	'test' => $onlyIfDevEnvironment,
 
 	// Reports
-	'report.sample' => $onlyIfLocalEnvironment,
-	'report.sample.validate' => $onlyIfLocalEnvironment,
+	'report.sample' => $onlyIfDevEnvironment,
+	'report.sample.validate' => $onlyIfDevEnvironment,
 	#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#
 
 	// Countries

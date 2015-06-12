@@ -24,9 +24,11 @@ class MakeReportCommand extends MakeSectionCommand
 	public function fire()
 	{
 		// Initialize class properties
-		$this->setMarker('#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#');
-		$this->setComposerFile('ReportsMenuComposer.php');
-		$this->setClass($sufix = 'Report');
+		$this
+		->setClass($sufix = 'Report')
+		->setMarker('#_REPORT_GENERATOR_MARKER_#_DO_NOT_REMOVE_#')
+		->setComposerFile('ReportsMenuComposer.php')
+		->setTestFile('ReportsTest.php');
 
 		// Fire command
 		parent::fire();
@@ -69,7 +71,7 @@ class MakeReportCommand extends MakeSectionCommand
 	}
 
 	/**
-	 * Create the menu entry.
+	 * Add section to the menu ViewComposer file.
 	 *
 	 * @param  dynamic
 	 *
@@ -88,6 +90,23 @@ class MakeReportCommand extends MakeSectionCommand
 		);
 
 		return parent::addToMenu($content);
+	}
+
+	/**
+	 * Add function to the unit tests file.
+	 *
+	 * @param  dynamic
+	 *
+	 * @return bool
+	 */
+	public function addToTests()
+	{
+		return parent::addToTests(
+			sprintf('public function test%s%s()', $this->class, $this->sufix),
+			'{',
+			sprintf("\t\$this->common('report.%s'); //%s%s", $this->route, 'TO', 'DO'),
+			"}\n"
+		);
 	}
 
 	/**

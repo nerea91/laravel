@@ -72,7 +72,7 @@ class Handler extends ExceptionHandler
 	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
 	 *
 	 * @param  \Exception  $e
-	 * 
+	 *
 	 * @return void
 	 */
 	public function report(Exception $e)
@@ -89,10 +89,6 @@ class Handler extends ExceptionHandler
 	 */
 	public function render($request, Exception $e)
 	{
-		// If in testing environment delegate to parent
-		if(app()->environment('testing'))
-			return parent::render($request, $e);
-
 		// If debug is enabled in local environment dump stack trace
 		if(config('app.debug') and app()->environment('local'))
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);

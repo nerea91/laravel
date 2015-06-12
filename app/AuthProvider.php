@@ -171,12 +171,12 @@ class AuthProvider extends Model
 	 *
 	 * If no account is found it will create it.
 	 *
-	 * @param  \Laravel\Socialite\AbstractUser $user
+	 * @param  \Laravel\Socialite\Contracts\User $user
 	 *
 	 * @return Account
 	 * @throws Exceptions\OauthException
 	 */
-	public function findOrCreateAccount(\Laravel\Socialite\AbstractUser $user)
+	public function findOrCreateAccount(\Laravel\Socialite\Contracts\User $user)
 	{
 		// Check if there is a method to generate accounts of $this provider
 		$factory = 'makeFrom' . ucfirst($this->name);

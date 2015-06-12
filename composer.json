@@ -6,6 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.1.*",
+		"laravel/socialite": "~2.0",
 		"league/commonmark": "dev-master",
 		"php": ">=5.5.9",
 		"spatie/laravel-tail": "~1.0",

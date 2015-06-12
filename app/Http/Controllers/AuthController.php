@@ -2,14 +2,13 @@
 
 use App\AuthProvider;
 use App\Exceptions\OauthException;
-use Socialite;
-use App\User;
 use Auth;
-use Crypt;
+use Config;
 use Input;
 use Session;
+use Socialite;
+use URL;
 use Validator;
-use View;
 
 class AuthController extends Controller
 {
@@ -147,13 +146,13 @@ class AuthController extends Controller
 	 *
 	 * It creates/gets the user account and logs him/her in.
 	 *
-	 * @param  \App\Provider
+	 * @param  \App\AuthProvider
 	 * @param  \Laravel\Socialite\Contracts\User
 	 *
 	 * @return Response
 	 * @throws OauthException
 	 */
-	protected function loginSocialUser(Provider $provider, SocialUser $socialUser)
+	protected function loginSocialUser(AuthProvider $provider, \Laravel\Socialite\Contracts\User $socialUser)
 	{
 		// Get/create associated account
 		$account = $provider->findOrCreateAccount($socialUser);

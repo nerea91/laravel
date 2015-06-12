@@ -3,7 +3,6 @@
 use App\Exceptions\ModelDeletionException;
 use Crypt;
 use Input;
-use Laravel\Socialite\AbstractUser as SocialUser;
 
 class Account extends Model
 {
@@ -154,11 +153,11 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Facebook.
 	 *
-	 * @param  SocialUser $user
+	 * @param  \Laravel\Socialite\Contracts\User $user
 	 *
 	 * @return Account
 	 */
-	public static function makeFromFacebook(SocialUser $user)
+	public static function makeFromFacebook(\Laravel\Socialite\Contracts\User $user)
 	{
 		$account = new Account([
 			'uid'          => $user->id,
@@ -179,11 +178,11 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by Google.
 	 *
-	 * @param  SocialUser $user
+	 * @param  \Laravel\Socialite\Contracts\User $user
 	 *
 	 * @return Account
 	 */
-	public static function makeFromGoogle(SocialUser $user)
+	public static function makeFromGoogle(\Laravel\Socialite\Contracts\User $user)
 	{
 		$account = new Account([
 			'uid'          => $user->id,
@@ -204,11 +203,11 @@ class Account extends Model
 	/**
 	 * Make a new account filled with data provided by GitHub.
 	 *
-	 * @param  SocialUser $user
+	 * @param  \Laravel\Socialite\Contracts\User $user
 	 *
 	 * @return Account
 	 */
-	public static function makeFromGithub(SocialUser $user)
+	public static function makeFromGithub(\Laravel\Socialite\Contracts\User $user)
 	{
 		$account = new Account([
 			'uid'          => $user->id,

@@ -15,7 +15,7 @@ class AdminResourcesTest extends TestCase
 		->actingAs($user)
 		->visit($page)
 		->submitForm($button, $input)
-		//->seePageIs(route("admin.$resource.show", [(int) DB::table($resource)->max('id')]))
+		->seePageIs(route("admin.$resource.show", [(int) DB::table($resource)->max('id')]))
 		->assertSessionHasNoErrors($resource)
 		->seeInDatabase($resource, $data);
 
@@ -32,18 +32,17 @@ class AdminResourcesTest extends TestCase
 		]);
 	}
 
-// 	public function testCountry()
-// 	{
-// 		$this->markTestIncomplete('This test works only when executed alone'); // TODO
-//
-// 		$this->resource('countries', [
-// 			'name' => 'Wonderland',
-// 			'iso_3166_2' => 'WL',
-// 			'iso_3166_3' => 'WLD',
-// 			'code' => '000',
-// 			'eea' => 0,
-// 		]);
-// 	}
+	public function testCountry()
+	{
+		$this->resource('countries', [
+			'name' => 'Wonderland',
+			'iso_3166_2' => 'WL',
+			'iso_3166_3' => 'WLD',
+			'code' => '000',
+			'eea' => 0,
+			'currency_id' => 50,
+		]);
+	}
 
 	public function testLanguage()
 	{

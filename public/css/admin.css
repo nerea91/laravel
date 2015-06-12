@@ -11,7 +11,7 @@ table.hover .actions .button {margin:0;padding:.3em .5em;}
 table.hover .actions form {display:inline-block}
 tr.zebra th:nth-child(odd) {background-color: #074E68; color: #FFF; text-shadow: 0px 0px 1px #000;}
 tr.zebra th:nth-child(odd) a{color: #FFF; text-decoration: underline}
-tr.zebra th:nth-child(even) {background-color: #2ba6cb; color: #FFF;text-shadow: 0px 0px 2px #FFF;}
+tr.zebra th:nth-child(even) {background-color: #2ba6cb; color: #222;text-shadow: 0px 0px 2px #FFF;}
 tr.zebra th:nth-child(even) a{color: #000; text-decoration: underline}
 
 form [class*="block-grid-"] > li {padding:0;}

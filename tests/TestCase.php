@@ -18,6 +18,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 		// Set the base URL to use while testing the application
 		$this->baseUrl = $app->config->get('app.url');
 
+		// Set application language
+		App\Language::detect()->apply();
+
 		return $app;
 	}
 

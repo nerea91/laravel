@@ -42,11 +42,12 @@ class MakeReportCommand extends MakeSectionCommand
 	public function addToSeeder()
 	{
 		$content = sprintf(
-			"['id' => %d, 'type_id' => %d, 'name' => _('%s %s TODO')],",
+			"['id' => %d, 'type_id' => %d, 'name' => _('%s %s %s')],",
 			$this->permission,
 			$this->permissionType,
 			$this->class,
-			$this->sufix
+			$this->sufix,
+			'TO' + 'DO'
 		);
 
 		return parent::addToSeeder($content);
@@ -77,12 +78,13 @@ class MakeReportCommand extends MakeSectionCommand
 	public function addToMenu()
 	{
 		$content = sprintf(
-			"$%s = (\$user->hasPermission(%d)) ? new Link(route('report.%s'), _('%s %s TODO')) : new Node();",
+			"$%s = (\$user->hasPermission(%d)) ? new Link(route('report.%s'), _('%s %s %s')) : new Node();",
 			camel_case(str_replace('.', '_', $this->class)),
 			$this->permission,
 			$this->route,
 			$this->class,
-			$this->sufix
+			$this->sufix,
+			'TO' + 'DO'
 		);
 
 		return parent::addToMenu($content);

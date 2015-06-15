@@ -1,13 +1,11 @@
 <?php
 
-use App\Language;
-
 // Home page
 get('/', ['as' => 'home', 'uses' => 'HomeController@showMainPage']);
 
 // Change application language
 get('language/{code}', ['as' => 'language.set', function ($code) {
-	if($language = Language::whereCode($code)->first())
+	if($language = App\Language::whereCode($code)->first())
 		$language->remember();
 
 	return redirect(URL::previous() ?: route('home'));
@@ -99,7 +97,6 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 });
 
 // Route for testings purposes, only available on local environment
-get('test', ['as' => 'test', 'middleware' => 'acl', function () {
-
-	dd(1, 2, 3);
+get('test', ['middleware' => 'env:local', function () {
+	dd(time());
 }]);

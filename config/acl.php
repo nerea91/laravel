@@ -31,8 +31,6 @@ $onlyIfDevEnvironment = function () {
 
 return [
 
-	'test' => $onlyIfDevEnvironment,
-
 	// Reports
 	'report.sample' => $onlyIfDevEnvironment,
 	'report.sample.validate' => $onlyIfDevEnvironment,

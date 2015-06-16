@@ -21,4 +21,10 @@
 		<env name="QUEUE_DRIVER" value="sync"/>
 		<env name="MAIL_PRETEND" value="true"/>
 	</php>
+	<!--Code coverage-->
+	<filter>
+		<whitelist>
+			<directory suffix=".php">./app</directory>
+		</whitelist>
+	</filter>
 </phpunit>

@@ -3,6 +3,7 @@
 *~
 .#*
 .*~
+.kateproject*
 /.env*
 /.inotify
 /database/backups/

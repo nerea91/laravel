@@ -111,7 +111,7 @@ class MakeResourceCommand extends MakeSectionCommand
 		return parent::addToTests(
 			sprintf('public function test%s()', $this->class),
 			'{',
-			sprintf("\t\$this->resource('%s', [", $this->route),
+			sprintf("\t\$this->resource('%s')->create([", $this->route),
 			sprintf("\t\t'foo' => 'TO%s',", 'DO'),
 			"\t]);",
 			"}\n"

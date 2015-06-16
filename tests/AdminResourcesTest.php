@@ -4,9 +4,27 @@ class AdminResourcesTest extends TestCase
 {
 	use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-	protected function resource($route, array $input, array $except = [])
+	/** Helper methods **/
+
+	protected function resource($resource)
+	{
+		$this->resource = $resource;
+
+		return $this;
+	}
+
+	protected function table($table)
+	{
+		$this->table = $table;
+
+		return $this;
+	}
+
+	// Test resource creation via HTTP
+	protected function create(array $input, array $except = [])
 	{
 		$user = $this->getSuperUser();
+		$route = $this->resource;
 		$page = route("admin.$route.create");
 		$button = _('Add');
 		$table = (isset($this->table)) ? $this->table : $route;
@@ -23,9 +41,11 @@ class AdminResourcesTest extends TestCase
 		return $this;
 	}
 
-	public function testCurrency()
+	/** Functional tests */
+
+	public function testCreateCurrency()
 	{
-		$this->resource('currencies', [
+		$this->resource('currencies')->create([
 			'name' => 'Pesetas',
 			'code' => 'PTS',
 			'symbol_position' => 1,
@@ -33,9 +53,9 @@ class AdminResourcesTest extends TestCase
 		]);
 	}
 
-	public function testCountry()
+	public function testCreateCountry()
 	{
-		$this->resource('countries', [
+		$this->resource('countries')->create([
 			'name' => 'Wonderland',
 			'iso_3166_2' => 'WL',
 			'iso_3166_3' => 'WLD',
@@ -45,9 +65,9 @@ class AdminResourcesTest extends TestCase
 		]);
 	}
 
-	public function testLanguage()
+	public function testCreateLanguage()
 	{
-		$this->resource('languages', [
+		$this->resource('languages')->create([
 			'code' => 'vy',
 			'name' => 'Valyrian',
 			'english_name' => 'Valyrian',
@@ -57,21 +77,21 @@ class AdminResourcesTest extends TestCase
 		]);
 	}
 
-	public function testProfile()
+	public function testCreateProfile()
 	{
-		$this->resource('profiles', [
+		$this->resource('profiles')->create([
 			'name' => 'Tester',
 			'permissions' => range(10, 13)
 		], ['permissions']);
 	}
 
-// 	public function testUser()
+// 	public function testCreateUser()
 // 	{
 // 		$this->markTestIncomplete('This test works only when executed alone'); // TODO
 //
 // 		$password = str_random(15);
 //
-// 		$this->resource('users', [
+// 		$this->resource('users')->create([
 // 			'username' => 'tester',
 // 			'password' => $password,
 // 			'password_confirmation' => $password,
@@ -79,15 +99,15 @@ class AdminResourcesTest extends TestCase
 // 		], ['password', 'password_confirmation']);
 // 	}
 
-	public function testAuthProvider()
+	public function testCreateAuthProvider()
 	{
-		$this->resource('authproviders', [
+		$this->resource('authproviders')->create([
 			'name' => 'foo',
 			'title' => 'Foo'
 		]);
 	}
 
-	public function testAccount()
+	public function testCreateAccount()
 	{
 		$account = $this->createNonNativeAccount($this->getSuperUser());
 		$account->delete();
@@ -102,9 +122,9 @@ class AdminResourcesTest extends TestCase
 		$this->notSeeInDatabase('accounts', $input)->resource('accounts', $input);
 	}
 
-	public function testDocument()
+	public function testCreateDocument()
 	{
-		$this->resource('documents', [
+		$this->resource('documents')->create([
 			'title' => 'Tester',
 			'body' => 'Testing',
 			'profiles' => [1, 2]

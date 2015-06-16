@@ -45,7 +45,9 @@ class AdminResourcesTest extends TestCase
 
 	public function testCreateCurrency()
 	{
-		$this->resource('currencies')->create([
+		$this
+		->resource('currencies')
+		->create([
 			'name' => 'Pesetas',
 			'code' => 'PTS',
 			'symbol_position' => 1,
@@ -55,7 +57,9 @@ class AdminResourcesTest extends TestCase
 
 	public function testCreateCountry()
 	{
-		$this->resource('countries')->create([
+		$this
+		->resource('countries')
+		->create([
 			'name' => 'Wonderland',
 			'iso_3166_2' => 'WL',
 			'iso_3166_3' => 'WLD',
@@ -67,7 +71,9 @@ class AdminResourcesTest extends TestCase
 
 	public function testCreateLanguage()
 	{
-		$this->resource('languages')->create([
+		$this
+		->resource('languages')
+		->create([
 			'code' => 'vy',
 			'name' => 'Valyrian',
 			'english_name' => 'Valyrian',
@@ -79,7 +85,9 @@ class AdminResourcesTest extends TestCase
 
 	public function testCreateProfile()
 	{
-		$this->resource('profiles')->create([
+		$this
+		->resource('profiles')
+		->create([
 			'name' => 'Tester',
 			'permissions' => range(10, 13)
 		], ['permissions']);
@@ -91,7 +99,9 @@ class AdminResourcesTest extends TestCase
 //
 // 		$password = str_random(15);
 //
-// 		$this->resource('users')->create([
+// 		$this
+// 		->resource('users')
+//		->create([
 // 			'username' => 'tester',
 // 			'password' => $password,
 // 			'password_confirmation' => $password,
@@ -101,7 +111,9 @@ class AdminResourcesTest extends TestCase
 
 	public function testCreateAuthProvider()
 	{
-		$this->resource('authproviders')->create([
+		$this
+		->resource('authproviders')
+		->create([
 			'name' => 'foo',
 			'title' => 'Foo'
 		]);
@@ -118,13 +130,17 @@ class AdminResourcesTest extends TestCase
 			'user_id' => $account->user_id,
 		];
 
-		// Create a new account from the same provider, this time using HTTP
-		$this->notSeeInDatabase('accounts', $input)->resource('accounts', $input);
+		$this
+		->notSeeInDatabase('accounts', $input)
+		->resource('accounts')
+		->create($input);
 	}
 
 	public function testCreateDocument()
 	{
-		$this->resource('documents')->create([
+		$this
+		->resource('documents')
+		->create([
 			'title' => 'Tester',
 			'body' => 'Testing',
 			'profiles' => [1, 2]

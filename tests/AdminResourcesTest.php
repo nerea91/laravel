@@ -4,20 +4,21 @@ class AdminResourcesTest extends TestCase
 {
 	use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-	protected function resource($resource, array $input, array $except = [])
+	protected function resource($route, array $input, array $except = [])
 	{
 		$user = $this->getSuperUser();
-		$page = route("admin.$resource.create");
+		$page = route("admin.$route.create");
 		$button = _('Add');
+		$table = (isset($this->table)) ? $this->table : $route;
 		$data = array_except($input, $except);
 
 		$this
 		->actingAs($user)
 		->visit($page)
 		->submitForm($button, $input)
-		->seePageIs(route("admin.$resource.show", [(int) DB::table($resource)->max('id')]))
-		->assertSessionHasNoErrors($resource)
-		->seeInDatabase($resource, $data);
+		->seePageIs(route("admin.$route.show", [(int) DB::table($table)->max('id')]))
+		->assertSessionHasNoErrors($route)
+		->seeInDatabase($table, $data);
 
 		return $this;
 	}

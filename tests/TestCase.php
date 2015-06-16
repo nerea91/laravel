@@ -53,11 +53,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 	/**
 	 * Dump last response of the crawler.
 	 *
+	 * @param  string $response
+	 *
 	 * @return $this
 	 */
-	public function dump()
+	public function dump($response = null)
 	{
-		fwrite(STDOUT, $this->response->getContent() . "\n");
+		fwrite(STDOUT, ($response) ?: $this->response->getContent() . "\n");
 
 		return $this;
 	}

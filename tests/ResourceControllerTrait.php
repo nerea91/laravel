@@ -37,8 +37,8 @@ trait ResourceControllerTrait
 		->actingAs($user)
 		->visit($page)
 		->submitForm($button, $data)
-		->seePageIs(route("admin.$route.show", [(int) DB::table($table)->max('id')]))
 		->assertSessionHasNoErrors($route)
+		->seePageIs(route("admin.$route.show", [(int) DB::table($table)->max('id')]))
 		->seeInDatabase($table, $expected);
 
 		return $this;

@@ -28,7 +28,7 @@ class MakeResourceCommand extends MakeSectionCommand
 		->setClass($sufix = 'Controller')
 		->setMarker('#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#')
 		->setComposerFile('AdminPanelMenuComposer.php')
-		->setTestFile('AdminResourcesTest.php');
+		->setTestFile('ResourceControllerTest.php');
 
 		// Fire command
 		parent::fire();

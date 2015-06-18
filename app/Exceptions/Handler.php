@@ -93,24 +93,36 @@ class Handler extends ExceptionHandler
 		if(config('app.debug') and app()->environment('local'))
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);
 
-		// Get code
-		$code = ($e instanceof HttpException) ? $e->getStatusCode() : $e->getCode();
+		// HTTP exceptions are are normally intentionally thrown and its safe to show their message
+		if($e instanceof HttpException)
+		{
+			$code = $e->getStatusCode();
+			$message = $e->getMessage();
 
-		// Get message
-		$message = $e->getMessage();
-		if(empty($message) and isset($this->httpCodes[$code]))
+			if(empty($message))
+				$message = (isset($this->httpCodes[$code])) ? $this->httpCodes[$code] : $this->httpCodes[500];
+		}
+		// Other exceptions are usually unexpected errors and is best not to show their message but instead disguise them as error 500.
+		else
+		{
+			$code = $e->getCode();
+
+			if( ! isset($this->httpCodes[$code]))
+				$code = 500;
+
 			$message = $this->httpCodes[$code];
+		}
 
 		// If a custom view exist use it, otherwise use generic error page
-		$view = (file_exists(base_path("resources/views/errors/$code.blade.php"))) ? "errors/$code" : 'layouts/error';
+		$view = (view()->exists("errors/$code")) ? "errors/$code" : 'layouts/error';
 
 		// Data for the view
 		$data = [
-			'title' => (empty($message)) ? _('Error') : $message,
+			'title' => $message,
 			'code'  => $code
 		];
 
-		return Response::view($view, $data, (isset($this->httpCodes[$code]) ? $code : 500));
+		return Response::view($view, $data, $code);
 	}
 
 	/**

@@ -17,7 +17,7 @@ class LogViewerController extends \Illuminate\Routing\Controller
 	{
 		// Check permissions
 		$isSuperUser = $request->user() and $request->user()->id === 1;
-		if( ! app()->environment('local') or ! $isSuperUser)
+		if( ! app()->environment('local') and ! $isSuperUser)
 			abort(404);
 
 		// Check parameters

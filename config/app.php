@@ -149,6 +149,7 @@ return [
 		 * Package Service Providers...
 		 */
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		Spatie\Tail\TailServiceProvider::class,
 		Stolz\Assets\Laravel\ServiceProvider::class,
 		Stolz\LaravelFormBuilder\ServiceProvider::class,

@@ -15,6 +15,9 @@ get('language/{code}', ['as' => 'language.set', function ($code) {
 get('contact', ['as' => 'contact', 'uses' => 'HomeController@showContactForm']);
 post('contact', ['as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail']);
 
+// Log viewer. Permissions are handled by the controller
+get('logs', 'LogViewerController@showLogs');
+
 // Guest user area
 Route::group(['https', 'middleware' => 'guest', 'prefix' => 'login'], function () {
 
@@ -96,7 +99,7 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 
 });
 
-// Route for testings purposes, only available on local environment
+// Route for testings purposes. Only available on local environment
 get('test', ['middleware' => 'env:local', function () {
 	dd(time());
 }]);

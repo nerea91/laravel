@@ -43,11 +43,19 @@ return [
 		// Zurb Foundation datepicker https://github.com/najlepsiwebdesigner/foundation-datepicker
 		'datepicker' => [
 			'peterbeno/datepicker:datepicker.css',
-			'peterbeno/datepicker:/datepicker.js'
+			'peterbeno/datepicker:datepicker.js'
 		],
 
 		// PHP debugbar https://github.com/barryvdh/laravel-debugbar
 		'debugbar' => ['debugbar.css', 'debugbar.js'],
+
+		// Data Tables https://github.com/DataTables/DataTables
+		'data-tables' => [
+			'datatables/datatables:jquery.dataTables.min.css',
+			'datatables/datatables:jquery.dataTables.min.js',
+			'datatables/datatables:dataTables.foundation.css',
+			'datatables/datatables:dataTables.foundation.js',
+		],
 
 		// Admin panel
 		'admin' => ['admin.js', 'admin.css'],

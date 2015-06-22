@@ -104,7 +104,7 @@ $labelClass = [
 							<span class="{{ $labelClass[$log['level']] }} radius label"><b>{{ $log['level'] }}</b></span>
 						</td>
 
-						<td>
+						<td style="width:100%">
 							{!! $log['text'] !!}<br/>
 
 							@if (isset($log['in_file']))
@@ -122,9 +122,9 @@ $labelClass = [
 
 				<tfoot>
 					<tr>
-						<th><input type="text" placeholder="Filter by date" /></th>
-						<th><input type="text" placeholder="Filter by level" /></th>
-						<th><input type="text" placeholder="Filter by content" /></th>
+						<th><input type="text" title="Filter by date" placeholder="Filter by date" /></th>
+						<th><input type="text" title="Filter by level" placeholder="Filter by level" /></th>
+						<th><input type="text" title="Filter by content" placeholder="Filter by content" /></th>
 					</tr>
 				</tfoot>
 			</table>

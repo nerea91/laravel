@@ -94,7 +94,7 @@ class Handler extends ExceptionHandler
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);
 
 		// HTTP exceptions are are normally intentionally thrown and its safe to show their message
-		if($e instanceof HttpException)
+		if($this->isHttpException($e))
 		{
 			$code = $e->getStatusCode();
 			$message = $e->getMessage();

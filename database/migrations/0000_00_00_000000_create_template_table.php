@@ -129,7 +129,7 @@ class CreateTemplateTable extends Migration
 	}
 
 	/* Other available methods pendding to add to this template:
-	binary('column');
+	$table->binary('column');	BLOB equivalent for the database.
 	dropColumn('column');
 	dropForeign($index);
 	dropIndex($index);
@@ -148,5 +148,9 @@ class CreateTemplateTable extends Migration
 	rename($to);
 	renameColumn($from, $to);
 	toSql(Connection $connection, Grammar $grammar);
+	$table->boolean('confirmed');	BOOLEAN equivalent for the database.
+	$table->enum('choices', ['foo', 'bar']);	ENUM equivalent for the database.
+	$table->json('options');	JSON equivalent for the database.
+	$table->jsonb('options');	JSONB equivalent for the database.
 	*/
 }

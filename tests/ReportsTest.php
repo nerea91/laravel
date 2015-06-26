@@ -5,7 +5,7 @@ class ReportsTest extends TestCase
 	/**
 	 * @before
 	 */
-	protected function foo()
+	protected function clearCache()
 	{
 		$this->artisan('cache:clear');
 	}

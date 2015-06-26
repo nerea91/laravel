@@ -16,18 +16,18 @@ function usage
 {
 	color "Usage:" "yellow"
 	echo
-	color "    $0 -l | -s [sniffs] | -i [sniffs]" "yellow"
+	color "    $0 -l | -s [sniffs] | -i [sniffs]" "cyan"
 	echo
 	color "where:" "yellow"
 	echo
-	color "    -l Run PHP linter (Search for syntax errors)" "yellow"
-	color "    -s Run PHP_CodeSniffer (Search for coding standard violations)" "yellow"
-	color "    -i Run PHP_CodeSniffer in interactive mode (file by file)" "yellow"
-	color "    -h Show this help menu" "yellow"
+	color "    -l Run PHP linter (Search for syntax errors)" "cyan"
+	color "    -s Run PHP_CodeSniffer (Search for coding standard violations)" "cyan"
+	color "    -i Run PHP_CodeSniffer in interactive mode (file by file)" "cyan"
+	color "    -h Show this help menu" "cyan"
 	echo
 	color "and:" "yellow"
 	echo
-	color "    [sniffs] A comma separated lists of sniffs to filter by" "yellow"
+	color "    [sniffs] A comma separated lists of sniffs to filter by" "cyan"
 }
 
 # Rund PHP Linter ##############################################################

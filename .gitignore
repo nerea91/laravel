@@ -9,8 +9,11 @@
 /.inotify
 /database/backups/
 /database/schema/
+/node_modules/
+/npm-debug.log
 /public/*/debugbar.*
 /public/*/min/
+/resources/assets/bower_components/
 /resources/lang/*/LC_MESSAGES/messages.po.old
 /storage/debugbar/
 /storage/gettext/

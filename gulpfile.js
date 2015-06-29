@@ -1,5 +1,5 @@
 // Bower components path
-var bower = 'resources/assets/bower_components/';
+var bower = 'resources/assets/bower/';
 
 // Destination dir for compiled componentes
 var destination = 'public/packages/zurb/foundation/';

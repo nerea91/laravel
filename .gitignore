@@ -13,7 +13,7 @@
 /npm-debug.log
 /public/*/debugbar.*
 /public/*/min/
-/resources/assets/bower_components/
+/resources/assets/bower/
 /resources/lang/*/LC_MESSAGES/messages.po.old
 /storage/debugbar/
 /storage/gettext/

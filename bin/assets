@@ -66,6 +66,11 @@ case $opt in
 		#  Watch for changes and build uncompressed
 		$gulp watch
 		exit 0;
+
+		# NOTE If you get "Error: watch ENOSPC" you may need to increase the allowed inotify watchers
+		#     echo 65536 > /proc/sys/fs/inotify/max_user_watches
+		# To make changes permanent
+		#     echo fs.inotify.max_user_watches=65536 >> /etc/sysctl.conf
 	;;
 
 	h)

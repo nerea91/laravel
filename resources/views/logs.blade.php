@@ -19,6 +19,18 @@ $labelClass = [
 
 @section('css')
 <style>
+
+	table { width:100%; }
+	table tbody:hover > tr {/*opacity: 0.8; */}
+	table tbody:hover > tr:hover {
+		/*opacity: 1.0; */
+		background-color:#BBB !important;
+	}
+	pre {
+		font-size:80%;
+		padding:0 1em;
+	}
+
 	.row.fullWidth {
 		width: 100%;
 		margin-left: auto;
@@ -27,23 +39,12 @@ $labelClass = [
 		margin-top:1em !important;
 	}
 	.side-nav .active { border-left: 2px solid #008CBA; }
-	.no-wrap{ white-space: nowrap; }
-
-	.stack { cursor:pointer; }
-	.stack + pre {
-		font-size:85%;
-		padding:0 1em;
-		margin-top: 1em;
+	.reveal-modal {margin:0 !important}
+	.no-wrap{
+		white-space: nowrap;
+		vertical-align: top;
 	}
-
-	table { width:100%; }
-	table tbody:hover > tr {
-	 	/*opacity: 0.8; */
-	}
-	table tbody:hover > tr:hover {
-		/*opacity: 1.0; */
-		background-color:#BBB !important;
-	}
+	.tiny.radius.button { padding: .2em .6em }
 
 	/* Fix bug with original style*/
 	.dataTables_wrapper .dataTables_paginate .paginate_button,
@@ -112,8 +113,13 @@ $labelClass = [
 							@endif
 
 							@if ($log['stack'])
-								<span class="label radius stack">Details</span>
-								<pre class="panel hide">{!! $log['stack'] !!}</pre>
+								<a class="tiny radius button" data-reveal-id="stack{{ $key }}">Details</a>
+								<div id="stack{{ $key }}" class="reveal-modal full" data-reveal>
+									<pre class="panel">
+										{!! htmlspecialchars(str_replace(base_path(). DIRECTORY_SEPARATOR, '', $log['stack'])) !!}
+									</pre>
+									<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+								</div>
 							@endif
 						</td>
 					</tr>
@@ -145,27 +151,19 @@ $labelClass = [
 <script>
 $(document).ready(function() {
 
-	// Toggle stack trace
-	$(".stack").click(function() {
-		$(this).next().toggleClass('hide');
-	});
-
 	// Initialize table plugin
 	var table = $('#logs').DataTable({
 		order: [0, 'desc'],
 	});
 
-	//Filter by column
-	table.columns().every( function () {
+	// Filter by column
+	table.columns().every(function () {
 		var that = this;
 
-		$( 'input', this.footer() ).on( 'keyup change', function () {
-			that
-			.search( this.value )
-			.draw();
-		} );
+		$('input', this.footer()).on('keyup change', function () {
+			that.search(this.value).draw();
+		});
 	});
-
 
 });
 </script>

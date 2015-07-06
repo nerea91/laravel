@@ -135,4 +135,29 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
 		return $account;
 	}
+
+
+	/**
+	 * Remove Eloquent Model events and create them again.
+	 * Workaround for BUG https://github.com/laravel/framework/issues/1181
+	 *
+	 * @param  dynamic
+	 *
+	 * @return $this
+	 */
+	protected function resetModelEvents()
+	{
+		$models = func_get_args();
+
+		foreach($models as $model)
+		{
+			// Flush any existing listeners.
+			call_user_func(array($model, 'flushEventListeners'));
+
+			// Reregister them.
+			call_user_func(array($model, 'boot'));
+		}
+
+		return $this;
+	}
 }

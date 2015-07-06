@@ -96,13 +96,12 @@ class ResourceControllerTest extends TestCase
 
 	public function testCreateUser()
 	{
-		$this->markTestIncomplete('This test works only when executed alone'); // TODO
-
 		$password = str_random(15);
 
 		$this
 		->resource('users')
 		->relationships('password', 'password_confirmation')
+		->resetModelEvents('App\User') // Workaround for BUG 1181
 		->create([
 			'username' => 'tester',
 			'password' => $password,

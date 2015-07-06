@@ -2,6 +2,7 @@
 	"name": "laravel",
 	"private": "true",
 	"dependencies": {
-		"foundation": "latest"
+		"foundation": "latest",
+		"marked": "latest"
 	}
 }

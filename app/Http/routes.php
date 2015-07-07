@@ -99,7 +99,20 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 
 });
 
-// Route for testings purposes. Only available on local environment
-get('test', ['middleware' => 'env:local', function () {
-	dd(time());
-}]);
+// Test routes (available only on local environment)
+Route::group(['prefix' => 'test', 'middleware' => 'env:local'], function() {
+
+	// General purpose
+	get('/', function() {
+		return ['time' => time()];
+	});
+
+	// Zurb Foundation
+	get('foundation', ['middleware' => 'env:local', function () {
+		$title = 'Foundation';
+		$colors = ['white', 'ghost', 'snow', 'vapor', 'white-smoke', 'silver', 'smoke', 'gainsboro', 'iron', 'base', 'aluminum', 'jumbo', 'monsoon', 'steel', 'charcoal', 'tuatara', 'oil', 'jet', 'black', 'primary-color', 'secondary-color', 'alert-color', 'success-color', 'warning-color', 'info-color'];
+
+		return view('foundation/index', compact('title', 'colors'));
+	}]);
+
+});

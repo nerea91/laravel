@@ -43,3 +43,18 @@
 'foundation/components/top-bar',
 'foundation/components/type',
 'foundation/components/visibility';
+
+// Color palette
+$palette: $white $ghost $snow $vapor $white-smoke $silver $smoke $gainsboro $iron $base $aluminum $jumbo $monsoon $steel $charcoal $tuatara $oil $jet $black $primary-color $secondary-color $alert-color $success-color $warning-color $info-color;
+$palette-size: 130px;
+@each $color in $palette {
+	$i: index($palette, $color);
+	.palette-#{$i} {background-color: $color;}
+}
+.palette {
+	color: #000;
+	text-align: center;
+	display: inline-block;
+	height: $palette-size;
+	width: $palette-size;
+}

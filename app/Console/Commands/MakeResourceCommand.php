@@ -114,6 +114,11 @@ class MakeResourceCommand extends MakeSectionCommand
 			sprintf("\t\$this->resource('%s')->create([", $this->route),
 			sprintf("\t\t'foo' => 'TO%s',", 'DO'),
 			"\t]);",
+			"}\n",
+			"\n",
+			sprintf('public function testDelete%s()', $this->class),
+			'{',
+			sprintf("\t\$this->resource('%s')->destroy(TO%s);", $this->route, 'DO'),
 			"}\n"
 		);
 	}

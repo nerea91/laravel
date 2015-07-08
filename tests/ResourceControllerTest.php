@@ -21,6 +21,13 @@ class ResourceControllerTest extends TestCase
 		->create($input);
 	}
 
+	public function testDeleteAccount()
+	{
+		$account = $this->createNonNativeAccount($this->getSuperUser());
+
+		$this->resource('accounts')->destroy($account->getKey());
+	}
+
 	public function testCreateAuthProvider()
 	{
 		$this
@@ -29,6 +36,13 @@ class ResourceControllerTest extends TestCase
 			'name' => 'foo',
 			'title' => 'Foo'
 		]);
+	}
+
+	public function testDeleteAuthProvider()
+	{
+		$account = $this->createNonNativeAccount($this->getSuperUser());
+
+		$this->resource('authproviders')->destroy($account->provider->getKey());
 	}
 
 	public function testCreateCountry()
@@ -45,6 +59,11 @@ class ResourceControllerTest extends TestCase
 		]);
 	}
 
+	public function testDeleteCountry()
+	{
+		$this->resource('countries')->destroy(724); // Spain
+	}
+
 	public function testCreateCurrency()
 	{
 		$this
@@ -57,6 +76,11 @@ class ResourceControllerTest extends TestCase
 		]);
 	}
 
+	public function testDeleteCurrency()
+	{
+		$this->resource('currencies')->destroy(50); // €
+	}
+
 	public function testCreateDocument()
 	{
 		$this
@@ -67,6 +91,16 @@ class ResourceControllerTest extends TestCase
 			'body' => 'Testing',
 			'profiles' => [1, 2]
 		]);
+	}
+
+	public function testDeleteDocument()
+	{
+		$resource = App\Document::create([
+			'title' => 'Tester',
+			'body' => 'Testing',
+		]);
+
+		$this->resource('documents')->destroy($resource->getKey());
 	}
 
 	public function testCreateLanguage()
@@ -83,6 +117,14 @@ class ResourceControllerTest extends TestCase
 		]);
 	}
 
+	public function testDeleteLanguage()
+	{
+		// First non-default language
+		$resource = App\Language::whereIsDefault(0)->firstOrFail();
+
+		$this->resource('languages')->destroy($resource->getKey());
+	}
+
 	public function testCreateProfile()
 	{
 		$this
@@ -94,20 +136,38 @@ class ResourceControllerTest extends TestCase
 		]);
 	}
 
+	public function testDeleteProfile()
+	{
+		$this->resource('profiles')->destroy(2);
+	}
+
 	public function testCreateUser()
 	{
-		$password = str_random(15);
-
 		$this
 		->resource('users')
 		->relationships('password', 'password_confirmation')
 		->resetModelEvents('App\User') // Workaround for BUG 1181
 		->create([
 			'username' => 'tester',
-			'password' => $password,
+			'password' => $password = str_random(15),
 			'password_confirmation' => $password,
 			'profile_id' => 2,
 		]);
+	}
+
+	public function testDeleteUser()
+	{
+		$this->resetModelEvents('App\User'); // Workaround for BUG 1181
+
+		$resource = App\User::create([
+			'username' => 'tester',
+			'name' => 'tester',
+			'password' => $password = str_random(15),
+			'password_confirmation' => $password,
+			'profile_id' => 2,
+		]);
+
+		$this->resource('users')->destroy($resource->getKey());
 	}
 
 	#_RESOURCE_GENERATOR_MARKER_#_DO_NOT_REMOVE_#

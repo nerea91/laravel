@@ -43,4 +43,31 @@ trait ResourceControllerTrait
 
 		return $this;
 	}
+
+	// Test resource deletion via HTTP
+	protected function destroy($id, $primaryKey = 'id')
+	{
+		$user = $this->getSuperUser();
+		$route = $this->resource;
+		$table = (isset($this->table)) ? $this->table : $route;
+		$page = route("admin.$route.destroy", $id);
+		$landingPage = route("admin.$route.index");
+		$button = _('Confirm');
+		$expected = [$primaryKey => $id];
+
+		// Handle softDeletes
+		if(Schema::hasColumn($table, 'deleted_at'))
+			$expected['deleted_at'] = null;
+
+		$this
+		->seeInDatabase($table, $expected)
+		->actingAs($user)
+		->visit($page)
+		->press($button)
+		->assertSessionHasNoErrors($route)
+		->seePageIs($landingPage)
+		->notSeeInDatabase($table, $expected);
+
+		return $this;
+	}
 }

@@ -1,5 +1,18 @@
-<h3>{{ _('Profiles') }}</h3>
-{{enum($resource->profiles->lists('name')->all())}}
+<h3>{{ _('Profiles') }} <small>{{enum($resource->profiles->lists('name')->all())}}</small></h3>
 
-<h2>{{ $resource->title }}</h2>
-{!! markdown($resource->body) !!}
+<div id ="document" class="panel">
+	<h1>{!! $resource->title !!}</h1>
+	{!! markdown($resource->body) !!}
+</div>
+
+@section('js')
+@parent
+<script>
+$(document).ready(function() {
+
+	// Cancel grid
+	$('#document').parent().removeClass();
+
+});
+</script>
+@stop

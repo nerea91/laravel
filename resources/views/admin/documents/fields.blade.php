@@ -18,7 +18,8 @@
 {{-- Live preview of Markdown --}}
 <fieldset>
 	<legend>{{ _('Preview') }}</legend>
-	<div id="preview"></div>
+	<h1 id="previewTitle">{!! $resource->title !!}</h1>
+	<div id="previewBody">{!! markdown($resource->body) !!}</div>
 </fieldset>
 
 @section('js')
@@ -26,7 +27,7 @@
 <script>
 $(document).ready(function() {
 
-	var $form = $("form"), $source = $("#body"), $preview = $("#preview");
+	var $form = $("form"), $title = $("#title"), $body = $("#body"), $previewTitle = $("#previewTitle"), $previewBody = $("#previewBody");
 
 	// Cancel grid
 	$form.parent().removeClass();
@@ -34,12 +35,12 @@ $(document).ready(function() {
 	// Move preview to form bottom
 	$('fieldset').insertAfter($form);
 
-	// Reder existing code
-	$preview.html(marked($source.val()));
-
-	// Render new code
-	$source.keyup(function () {
-		$preview.html(marked($source.val()));
+	// Live preview
+	$title.keyup(function () {
+		$previewTitle.text($title.val());
+	});
+	$body.keyup(function () {
+		$previewBody.html(marked($body.val()));
 	});
 
 });

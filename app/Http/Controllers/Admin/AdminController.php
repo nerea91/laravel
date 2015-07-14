@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use Cache;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class AdminController extends Controller
 {
@@ -65,7 +64,7 @@ class AdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function search(Request $request, Route $route)
+	public function search(Request $request)
 	{
 		$user = $request->user();
 		$searchableModels = $this->getSearchableModels($user);
@@ -85,7 +84,7 @@ class AdminController extends Controller
 		// Initializate results
 		$query = $request->input('query');
 		$session = $request->session();
-		$currentRoute = $route->getName();
+		$currentRoute =  $request->route()->getName();
 		$cacheId = 'adminSearchResults' . $user->getKey();
 		$results = collect();
 		$totalResults = 0;

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ResourceController;
 use App\User;
-use Auth;
 
 class UsersController extends ResourceController
 {
@@ -21,7 +20,7 @@ class UsersController extends ResourceController
 	 */
 	public function __construct(User $resource)
 	{
-		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
+		$user = (auth()->user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

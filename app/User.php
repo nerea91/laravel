@@ -2,7 +2,6 @@
 
 use App\Exceptions\ModelDeletionException;
 use App\Exceptions\ModelValidationException;
-use Auth;
 use Cache;
 use Crypt;
 use Hash;
@@ -121,7 +120,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		static::saving(function ($user) {
 			// Make sure profile is similar or inferior
-			if(Auth::check() and Auth::user()->id !== 1 and ! Auth::user()->profile->getSimilarOrInferior()->contains($user->profile_id))
+			if(auth()->check() and auth()->user()->id !== 1 and ! auth()->user()->profile->getSimilarOrInferior()->contains($user->profile_id))
 				throw new ModelValidationException(_('Profile must be similar or inferior to your own profile'));
 		});
 
@@ -151,7 +150,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		static::updated(function ($user) {
 			// If we have updated current user then change application language accordingly
-			if(Auth::check() and Auth::user()->id == $user->id)
+			if(auth()->check() and auth()->user()->id == $user->id)
 				$user->applyLanguage();
 		});
 

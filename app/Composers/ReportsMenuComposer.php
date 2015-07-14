@@ -1,7 +1,6 @@
 <?php namespace App\Composers;
 
 use App\User;
-use Auth;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
@@ -28,7 +27,7 @@ class ReportsMenuComposer
 	 */
 	public static function buildTree()
 	{
-		extract(self::makeSections(Auth::user()));
+		extract(self::makeSections(auth()->user()));
 
 		return new Node(_('Reports'), [
 			$sampleReport,

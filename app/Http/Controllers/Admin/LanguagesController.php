@@ -3,7 +3,6 @@
 use App\Http\Controllers\ResourceController;
 use App\Language;
 use App\User;
-use Auth;
 
 class LanguagesController extends ResourceController
 {
@@ -22,7 +21,7 @@ class LanguagesController extends ResourceController
 	 */
 	public function __construct(Language $resource)
 	{
-		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
+		$user = (auth()->user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

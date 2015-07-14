@@ -1,15 +1,13 @@
 <?php namespace App\Composers;
 
-use Auth;
-
 class MasterMenuComposer
 {
 	public function compose($view)
 	{
 		// Build sections that will be available in all views that use master layout.
 
-		if(Auth::check())
-			$sections[Auth::user()->name()] = [
+		if(auth()->check())
+			$sections[auth()->user()->name()] = [
 				link_to_route('admin', _('Dashboard')),
 				link_to_route('logout', _('Logout')),
 				link_to_route('contact', _('Contact')),

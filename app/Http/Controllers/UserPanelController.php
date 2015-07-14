@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Auth;
 use Input;
 use Validator;
 
@@ -19,7 +18,7 @@ class UserPanelController extends Controller
 		// Setup layout
 		parent::__construct();
 
-		view()->share('user', $this->user = Auth::user());
+		view()->share('user', $this->user = auth()->user());
 	}
 
 	/**
@@ -99,7 +98,7 @@ class UserPanelController extends Controller
 			return redirect()->back()->withInput($input)->withErrors($validator);
 
 		// Check old credentials
-		if( ! Auth::validate(['username' => $this->user->username, 'password' => $input['current_password']]))
+		if( ! auth()->validate(['username' => $this->user->username, 'password' => $input['current_password']]))
 		{
 			$validator->messages()->add('current_password', _('Wrong password'));
 

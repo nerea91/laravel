@@ -2,7 +2,6 @@
 
 use App\Document;
 use App\Exceptions\AccessControlListException;
-use Auth;
 use Illuminate\Routing\Controller as BaseController;
 
 class DocumentController extends BaseController
@@ -22,14 +21,16 @@ class DocumentController extends BaseController
 		$document = Document::findOrFail($documentId);
 
 		// Check if user profile has permission to see this document
-		if( ! Auth::user()->profile->hasDocument($document))
+		$user = auth()->user();
+
+		if( ! $user->profile->hasDocument($document))
 			throw new AccessControlListException(_('Unauthorized profile'), 401);
 
 		// Render document
 		return view('document', [
 			'title'     => $document->title,
 			'body'      => markdown($document->body),
-			'documents' => Auth::user()->profile->getDocuments(),
+			'documents' => $user->profile->getDocuments(),
 		]);
 	}
 }

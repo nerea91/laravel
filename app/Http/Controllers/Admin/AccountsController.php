@@ -3,7 +3,6 @@
 use App\Account;
 use App\Http\Controllers\ResourceController;
 use App\User;
-use Auth;
 
 class AccountsController extends ResourceController
 {
@@ -22,7 +21,7 @@ class AccountsController extends ResourceController
 	 */
 	public function __construct(Account $resource)
 	{
-		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
+		$user = (auth()->user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

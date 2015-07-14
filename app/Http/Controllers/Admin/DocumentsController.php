@@ -3,7 +3,6 @@
 use App\Document;
 use App\Http\Controllers\ResourceController;
 use App\User;
-use Auth;
 
 class DocumentsController extends ResourceController
 {
@@ -22,7 +21,7 @@ class DocumentsController extends ResourceController
 	 */
 	public function __construct(Document $resource)
 	{
-		$user = (Auth::user()) ?: new User; // Fallback for `php artisan route:list` to work
+		$user = (auth()->user()) ?: new User; // Fallback for `php artisan route:list` to work
 
 		$permissions = [
 			// Resource

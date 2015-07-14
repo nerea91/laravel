@@ -1,7 +1,6 @@
 <?php namespace App\Console\Commands;
 
 use App\User;
-use Auth;
 use Hash;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -111,7 +110,7 @@ class SetupSuperUserCommand extends Command
 			'password' => $this->secret('Enter superuser CURRENT password: ')
 		];
 
-		return Auth::validate($credentials);
+		return auth()->validate($credentials);
 	}
 
 	/**

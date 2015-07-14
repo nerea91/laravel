@@ -4,7 +4,6 @@ use App\Exceptions\ModelDeletionException;
 use App\Exceptions\ModelValidationException;
 use App\Model;
 use Assets;
-use Auth;
 use DB;
 use Input;
 use Route;
@@ -362,7 +361,7 @@ class ResourceController extends Controller
 	{
 		// If no arguments are provided fallback to sensible defaults
 		$resource = ($resource) ?: $this->resource;
-		$resultsPerPage = ($resultsPerPage) ?: Auth::user()->getOption('admin_panel_results_per_page');
+		$resultsPerPage = ($resultsPerPage) ?: auth()->user()->getOption('admin_panel_results_per_page');
 
 		// Set whether or not trashed items should be shown
 		if($this->trashable)

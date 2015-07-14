@@ -2,7 +2,6 @@
 
 use App\AuthProvider;
 use App\Exceptions\OauthException;
-use Auth;
 use Config;
 use Input;
 use Session;
@@ -51,9 +50,9 @@ class AuthController extends Controller
 
 		if($validator->passes())
 		{
-			if(Auth::attempt(array_except($input, 'remember'), Input::has('remember')))
+			if(auth()->attempt(array_except($input, 'remember'), Input::has('remember')))
 			{
-				event('account.login', [Auth::user()->accounts()->where('provider_id', 1)->first()]);
+				event('account.login', [auth()->user()->accounts()->where('provider_id', 1)->first()]);
 
 				return redirect()->intended('/');
 			}
@@ -71,7 +70,7 @@ class AuthController extends Controller
 	 */
 	public function logout()
 	{
-		Auth::logout();
+		auth()->logout();
 		Session::flush();
 
 		return redirect()->route('home');
@@ -162,7 +161,7 @@ class AuthController extends Controller
 			throw new OauthException(_('This account has been disabled'));
 
 		// Login user
-		Auth::login($account->user);
+		auth()->login($account->user);
 
 		// Fire account login event
 		event('account.login', [$account]);

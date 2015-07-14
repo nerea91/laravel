@@ -2,7 +2,6 @@
 
 use App\Language;
 use App\User;
-use Auth;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
@@ -29,7 +28,7 @@ class AdminPanelMenuComposer
 	 */
 	public static function buildTree()
 	{
-		extract(self::makeSections(Auth::user()));
+		extract(self::makeSections(auth()->user()));
 
 		return new Node(_('Dashboard'), [
 			new Node(_('Users'), [
@@ -59,7 +58,7 @@ class AdminPanelMenuComposer
 	 */
 	public static function buildSecondaryTree()
 	{
-		extract(self::makeSecondarySections(Auth::user()));
+		extract(self::makeSecondarySections(auth()->user()));
 
 		return new Node('right', [
 			$userPanel,

@@ -1,7 +1,6 @@
 <?php namespace App\Http\Middleware;
 
 use App\Exceptions\AccessControlListException;
-use Auth;
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 
@@ -21,7 +20,7 @@ class AccessControlList implements Middleware
 	{
 		$acl = config('acl', []);
 		$routeName = $request->route()->getName();
-		$user = Auth::user();
+		$user = auth()->user();
 
 		try
 		{

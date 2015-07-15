@@ -5,7 +5,7 @@ var bower = 'resources/assets/bower/';
 var destination = 'public/packages/zurb/foundation/';
 
 // Zurb Foundation vendor dependencies
-var vendor = ['vendor/modernizr.js', 'vendor/jquery.js'];
+var vendor = ['vendor/modernizr.js', 'vendor/fastclick.js', 'vendor/jquery.js'];
 
 // Zurb Foundation components
 var components = [
@@ -40,7 +40,7 @@ elixir(function(mix) {
 	mix.sass('app.scss', destination + 'css', {includePaths: [bower + 'foundation/scss']});
 
 	// Compile JavaScript
-	mix.scripts(vendor.concat(components), destination + 'js/app.js', bower + 'foundation/js' );
+	mix.scripts(vendor.concat(components), destination + 'js/app.js', bower + 'foundation/js');
 
 	// Copy Bower assets
 	mix.copy(bower + 'marked/marked.min.js', 'public/js/');

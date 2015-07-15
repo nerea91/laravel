@@ -84,7 +84,7 @@ class AdminController extends Controller
 		// Initializate results
 		$query = addcslashes($request->input('query'), '%_'); // Sanitize for 'LIKE' searches
 		$session = $request->session();
-		$currentRoute =  $request->route()->getName();
+		$currentRoute = $request->route()->getName();
 		$cacheId = 'adminSearchResults' . $user->getKey();
 		$results = collect();
 		$totalResults = 0;

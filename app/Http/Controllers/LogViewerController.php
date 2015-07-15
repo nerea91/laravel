@@ -29,7 +29,7 @@ class LogViewerController extends \Illuminate\Routing\Controller
 
 		return view('logs', [
 			'title' => 'Logs',
-			'logs' =>  LaravelLogViewer::all(),
+			'logs' => LaravelLogViewer::all(),
 			'files' => LaravelLogViewer::getFiles(true),
 			'current_file' => LaravelLogViewer::getFileName()
 		]);

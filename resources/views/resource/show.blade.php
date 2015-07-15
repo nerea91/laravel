@@ -1,11 +1,9 @@
-@section('main')
-
 <?php
 $delete = ($delete and $resource->deletable());
 $columns = 12 / (1 + $edit + $delete);
 ?>
 
-<div class="row">
+@section('main')
 	<div class="small-11 small-centered large-6 large-centered columns">
 
 		@include("$prefix.show")
@@ -49,5 +47,4 @@ $columns = 12 / (1 + $edit + $delete);
 		</div>
 
 	</div>
-</div>
 @stop

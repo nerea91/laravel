@@ -82,7 +82,7 @@ class AdminController extends Controller
 				unset($searchableModels[$permission]);
 
 		// Initializate results
-		$query = $request->input('query');
+		$query = addcslashes($request->input('query'), '%_'); // Sanitize for 'LIKE' searches
 		$session = $request->session();
 		$currentRoute =  $request->route()->getName();
 		$cacheId = 'adminSearchResults' . $user->getKey();

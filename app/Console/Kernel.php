@@ -11,16 +11,17 @@ class Kernel extends ConsoleKernel
 	 * @var array
 	 */
 	protected $commands = [
-		//TODO 'App\Console\Commands\DeployCommand',
-		'App\Console\Commands\GettextCommand',
-		'App\Console\Commands\MakeReportCommand',
-		'App\Console\Commands\MakeResourceCommand',
-		'App\Console\Commands\SetupCommand',
-		'App\Console\Commands\SetupCountriesCommand',
-		'App\Console\Commands\SetupCurrenciesCommand',
-		'App\Console\Commands\SetupLanguagesCommand',
-		'App\Console\Commands\SetupSuperUserCommand',
-		'App\Console\Commands\SyncDatabaseMetaTablesCommand',
+		\App\Console\Commands\DatabaseBackupCommand::class,
+		//TODO \App\Console\Commands\DeployCommand::class,
+		\App\Console\Commands\GettextCommand::class,
+		\App\Console\Commands\MakeReportCommand::class,
+		\App\Console\Commands\MakeResourceCommand::class,
+		\App\Console\Commands\SetupCommand::class,
+		\App\Console\Commands\SetupCountriesCommand::class,
+		\App\Console\Commands\SetupCurrenciesCommand::class,
+		\App\Console\Commands\SetupLanguagesCommand::class,
+		\App\Console\Commands\SetupSuperUserCommand::class,
+		\App\Console\Commands\SyncDatabaseMetaTablesCommand::class,
 	];
 
 	/**

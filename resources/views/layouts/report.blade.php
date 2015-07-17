@@ -23,7 +23,7 @@
 
 			{{-- FORM --}}
 			<aside class="left-off-canvas-menu">
-				{!! Form::open(['route' => $action, 'class' => 'nospinner']) !!}
+				{!! Form::open(['route' => $action, 'class' => 'dontDisable']) !!}
 					@yield('form')
 					{!! Form::submit(_('Submit'), ['class' => 'button expand']) !!}
 				{!! Form::close() !!}

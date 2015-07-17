@@ -12,7 +12,7 @@ if(typeof $ != 'undefined') {
 
 			$('form').not('.nospinner').submit(function() {
 				$(':input[type=submit]', $(this)).prop("disabled", true);
-				$(this).append('<div class="slideshow-wrapper"><div class="preloader"></div></div>');
+				$('body').append('<span class="spinner"></span>');
 				return true;
 			});
 		}

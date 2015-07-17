@@ -3,6 +3,7 @@
 	"private": "true",
 	"dependencies": {
 		"foundation": "latest",
-		"marked": "latest"
+		"marked": "latest",
+		"spinners": "latest"
 	}
 }

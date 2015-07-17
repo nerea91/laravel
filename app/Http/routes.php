@@ -100,10 +100,10 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 });
 
 // Test routes (available only on local environment)
-Route::group(['prefix' => 'test', 'middleware' => 'env:local'], function() {
+Route::group(['prefix' => 'test', 'middleware' => 'env:local'], function () {
 
 	// General purpose
-	get('/', function() {
+	get('/', function () {
 		return ['time' => time()];
 	});
 

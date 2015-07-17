@@ -37,7 +37,7 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
 
 	// Compile CSS
-	mix.sass('app.scss', destination + 'css', {includePaths: [bower + 'foundation/scss']});
+	mix.sass('app.scss', destination + 'css', {includePaths: [bower + 'foundation/scss', bower + 'spinners/stylesheets']});
 
 	// Compile JavaScript
 	mix.scripts(vendor.concat(components), destination + 'js/app.js', bower + 'foundation/js');

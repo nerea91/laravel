@@ -58,3 +58,13 @@ $palette-size: 130px;
 	height: $palette-size;
 	width: $palette-size;
 }
+
+// Spinner
+@import 'spinners';
+.spinner {
+	@include spinner(border-color $base);
+	position: absolute;
+	top:5px;
+	left:5px;
+	z-index:999;
+}

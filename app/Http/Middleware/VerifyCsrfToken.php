@@ -25,8 +25,9 @@ class VerifyCsrfToken extends BaseVerifier
 	{
 		// Apply global language
 		app('language')->apply();
-		// NOTE: This code was originally in AppServideProvider boot() method but since Laravel 5 is broken
-		// it has being moved here due to the VerifyCsrfToken being always executed
+		// NOTE:
+		// This code was originally in AppServideProvider boot() method but since Laravel 5 does not work. I tried moving
+		// it to a custom middleware but it has no effect. The only place that seems to have effect is in the Csrf middleware.
 
 		return parent::handle($request, $next);
 	}

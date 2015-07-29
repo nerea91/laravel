@@ -41,9 +41,10 @@ class AuthController extends Controller
 	public function login(Request $request)
 	{
 		// Check if there are too many login attempts for current username and IP
-		$this->incrementLoginAttempts($request);
 		if($this->hasTooManyLoginAttempts($request))
 			return $this->sendLockoutResponse($request);
+
+		$this->incrementLoginAttempts($request);
 
 		// Validate form
 		$credentials = $request->only('username', 'password');
@@ -84,10 +85,14 @@ class AuthController extends Controller
 	 */
 	public function oauthLogin(Request $request, $providerName)
 	{
-		// Check if there are too many login attempts for current username and IP
-		$this->incrementLoginAttempts($request);
+		// Use provider name as the throttling cache key name
+		$request['username'] = $providerName;
+
+		// Check if there are too many login attempts for current provider and IP
 		if($this->hasTooManyLoginAttempts($request))
-			return $this->sendLockoutResponse($request);
+			return $this->sendLockoutResponse($request, ['username']);
+
+		$this->incrementLoginAttempts($request);
 
 		try
 		{
@@ -196,15 +201,23 @@ class AuthController extends Controller
 	 * Redirect the user after determining they are locked out.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
+	 * @param  array
+	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	protected function sendLockoutResponse(Request $request)
+	protected function sendLockoutResponse(Request $request, $exceptInput = [])
 	{
+		// Flash error message
 		$seconds = (int) \Cache::get($this->getLoginLockExpirationKey($request)) - time();
 		$message = sprintf(_('Too many login attempts. Please try again in %d seconds.'), $seconds);
 		$request->session()->flash('error', $message);
 
-		return redirect()->back()->withInput($request->except('password'));
+		// Make sure we don't send back unwanted input
+		$exceptInput[] = 'password'; // For security reasons always exclude password
+		$input = $request->except($exceptInput);
+		$input['time'] = time(); // workaround for making sure $input is not empty, otherwise ->withInput() will send back ALL input.
+
+		return redirect()->back()->withInput($input);
 	}
 
 	/**

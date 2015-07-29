@@ -4,7 +4,7 @@
 .#*
 .*~
 .kateproject*
-/.env*
+/.env
 /.idea/
 /.inotify
 /database/backups/

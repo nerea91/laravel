@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-10 16:55+0200\n"
+"POT-Creation-Date: 2015-07-29 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -414,6 +414,9 @@ msgstr ""
 msgid "Please visit us again in a few minutes"
 msgstr ""
 
+msgid "Preview"
+msgstr ""
+
 msgid "Previous"
 msgstr ""
 
@@ -465,6 +468,9 @@ msgstr ""
 msgid "Reports"
 msgstr ""
 
+msgid "Required"
+msgstr ""
+
 msgid "Restore"
 msgstr ""
 
@@ -501,6 +507,9 @@ msgid "Save"
 msgstr ""
 
 msgid "Search"
+msgstr ""
+
+msgid "Search in"
 msgstr ""
 
 msgid "Sections"
@@ -725,6 +734,9 @@ msgstr ""
 msgid "The selected :attribute is invalid."
 msgstr ""
 
+msgid "These credentials do not match our records."
+msgstr ""
+
 msgid "This account has been disabled"
 msgstr ""
 
@@ -744,6 +756,13 @@ msgid "Title"
 msgstr ""
 
 msgid "To date"
+msgstr ""
+
+#, php-format
+msgid "Too many login attempts. Please try again in %d seconds."
+msgstr ""
+
+msgid "Too many login attempts. Please try again in :seconds seconds."
 msgstr ""
 
 msgid "Try with different form values"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-10 16:55+0200\n"
+"POT-Creation-Date: 2015-07-29 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -413,6 +413,9 @@ msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos
 msgid "Please visit us again in a few minutes"
 msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
 
+msgid "Preview"
+msgstr "Vista previa"
+
 msgid "Previous"
 msgstr "Anterior"
 
@@ -464,6 +467,9 @@ msgstr "Informe"
 msgid "Reports"
 msgstr "Informes"
 
+msgid "Required"
+msgstr "Requerido"
+
 msgid "Restore"
 msgstr "Restaurar"
 
@@ -501,6 +507,9 @@ msgstr "Guardar"
 
 msgid "Search"
 msgstr "Buscar"
+
+msgid "Search in"
+msgstr "Buscar en"
 
 msgid "Sections"
 msgstr "Secciones"
@@ -724,6 +733,9 @@ msgstr ":attribute debe tener entre :min y :max ítems."
 msgid "The selected :attribute is invalid."
 msgstr "El valor seleccionado para :attribute no es válido."
 
+msgid "These credentials do not match our records."
+msgstr "Los credenciales no coinciden con nuestros registros."
+
 msgid "This account has been disabled"
 msgstr "Esta cuenta ha sido desabilitada"
 
@@ -744,6 +756,13 @@ msgstr "Título"
 
 msgid "To date"
 msgstr "Hasta fecha"
+
+#, php-format
+msgid "Too many login attempts. Please try again in %d seconds."
+msgstr "Demasiados intentos de acceso. Por favor inténtalo de nuevo en %d segundos."
+
+msgid "Too many login attempts. Please try again in :seconds seconds."
+msgstr "Demasiados intentos de acceso. Por favor inténtalo de nuevo en :seconds segundos."
 
 msgid "Try with different form values"
 msgstr "Prueba con otros valores del formulario"

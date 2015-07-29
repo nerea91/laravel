@@ -19,23 +19,23 @@ class DatabaseSeeder extends Seeder
 		Artisan::call('cache:clear');
 
 		// Seed
-		$this->call('CurrenciesTableSeeder');
-		$this->call('CountriesTableSeeder');
-		$this->call('LanguagesTableSeeder');
-		$this->call('PermissionTypesTableSeeder');
-		$this->call('PermissionsTableSeeder');
-		$this->call('ProfilesTableSeeder');
-		$this->call('UsersTableSeeder');
-		$this->call('AuthprovidersTableSeeder');
-		$this->call('AccountsTableSeeder');
-		$this->call('OptionsTableSeeder');
+		$this->call(CurrenciesTableSeeder::class);
+		$this->call(CountriesTableSeeder::class);
+		$this->call(LanguagesTableSeeder::class);
+		$this->call(PermissionTypesTableSeeder::class);
+		$this->call(PermissionsTableSeeder::class);
+		$this->call(ProfilesTableSeeder::class);
+		$this->call(UsersTableSeeder::class);
+		$this->call(AuthprovidersTableSeeder::class);
+		$this->call(AccountsTableSeeder::class);
+		$this->call(OptionsTableSeeder::class);
 
 		// Setup initial configuration
 		Artisan::call('setup', [
-			'--no-superuser' => null,
-			'--currencies'   => 'USD,EUR',
-			'--countries'    => 'USA,ESP',
-			'--languages'    => 'en,es', // First in the list will be the default one
+		'--no-superuser' => null,
+		'--currencies'   => 'USD,EUR',
+		'--countries'    => 'USA,ESP',
+		'--languages'    => 'en,es', // First in the list will be the default one
 		]);
 
 		/*
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
 		 */
 		if (app()->environment('local'))
 		{
-			$this->call('LocalEnvironmentSeeder');
+			$this->call(LocalEnvironmentSeeder::class);
 		}
 
 		// Restore mass-assign protection

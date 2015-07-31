@@ -1,4 +1,4 @@
-<?php Assets::add(['marked.min.js']) ?>
+<?php Assets::add(['marked.min.js', 'screenfull.js']) ?>
 
 {!!
 	Form::label($f = 'profiles', _('Profiles')),
@@ -16,8 +16,8 @@
 
 
 {{-- Live preview of Markdown --}}
-<fieldset>
-	<legend>{{ _('Preview') }}</legend>
+<fieldset id="preview">
+	<legend>{{ _('Preview') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="full">{{ _('Toggle full screen') }}</a></legend>
 	<h1 id="previewTitle">{!! $resource->title !!}</h1>
 	<div id="previewBody">{!! markdown($resource->body) !!}</div>
 </fieldset>
@@ -27,13 +27,19 @@
 <script>
 $(document).ready(function() {
 
-	var $form = $("form"), $title = $("#title"), $body = $("#body"), $previewTitle = $("#previewTitle"), $previewBody = $("#previewBody");
+	var
+		$form = $("form"),
+		$title = $("#title"),
+		$body = $("#body"),
+		$previewTitle = $("#previewTitle"),
+		$previewBody = $("#previewBody"),
+		$full = $("#full");
 
 	// Cancel grid
 	$form.parent().removeClass();
 
-	// Move preview to form bottom
-	$('fieldset').insertAfter($form);
+	// Move preview to bottom
+	$('fieldset').insertAfter('#preview');
 
 	// Live preview
 	$title.keyup(function () {
@@ -43,6 +49,34 @@ $(document).ready(function() {
 		$previewBody.html(marked($body.val()));
 	});
 
+	// Sync scroll
+	var $scrollers = $('#body, #preview');
+	var syncScroll = function(e){
+		var $other = $scrollers.not(this).off('scroll'), other = $other.get(0);
+		var percentage = this.scrollTop / (this.scrollHeight - this.offsetHeight);
+		other.scrollTop = percentage * (other.scrollHeight - other.offsetHeight);
+		// Firefox workaround. Rebinding without delay isn't enough.
+		setTimeout( function(){ $other.on('scroll', syncScroll ); },10);
+	}
+	$scrollers.on( 'scroll', syncScroll);
+
+
+	// Full-screen mode
+	if(screenfull.enabled)
+		$full.click(function () { screenfull.toggle(); });
+	else
+		$full.hide();
+
 });
 </script>
+@stop
+
+
+@section('css')
+<style>
+#preview{
+	max-height:25em;
+	overflow-y:scroll
+}
+</style>
 @stop

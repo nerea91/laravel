@@ -43,6 +43,6 @@ elixir(function(mix) {
 	mix.scripts(vendor.concat(components), destination + 'js/app.js', bower + 'foundation/js');
 
 	// Copy Bower assets
-	mix.copy(bower + 'marked/marked.min.js', 'public/js/');
+	mix.copy([bower + 'marked/marked.min.js', bower + 'screenfull/dist/screenfull.js'], 'public/js/');
 
 });

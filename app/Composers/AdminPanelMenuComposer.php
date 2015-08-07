@@ -167,7 +167,7 @@ class AdminPanelMenuComposer
 		// Section: User panel
 		$userPanel = new Node($user->name());
 		$userPanel->addChild(new Link(route('user.options'), _('Options')));
-		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'padding:0']));
+		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'height:auto;padding:0']));
 
 		return compact('changeLanguage', 'userPanel');
 	}

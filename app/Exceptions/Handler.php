@@ -1,9 +1,10 @@
 <?php namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -14,6 +15,7 @@ class Handler extends ExceptionHandler
 	 */
 	protected $dontReport = [
 		HttpException::class,
+		ModelNotFoundException::class,
 	];
 
 	protected $httpCodes = [
@@ -92,6 +94,10 @@ class Handler extends ExceptionHandler
 		// If debug is enabled in local environment dump stack trace
 		if(config('app.debug') and app()->environment('local'))
 			return (class_exists('Whoops\\Run')) ? $this->whoops($e) : parent::render($request, $e);
+
+		// Convert ModelNotFoundException into 404 HttpException
+		if ($e instanceof ModelNotFoundException)
+			$e = new NotFoundHttpException($e->getMessage(), $e);
 
 		// HTTP exceptions are are normally intentionally thrown and its safe to show their message
 		if($this->isHttpException($e))

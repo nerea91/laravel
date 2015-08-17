@@ -41,6 +41,7 @@ return [
 	'in'                   => _('The selected :attribute is invalid.'),
 	'integer'              => _('The :attribute must be an integer.'),
 	'ip'                   => _('The :attribute must be a valid IP address.'),
+	'json'                 => _('The :attribute must be a valid JSON string.'),
 	'max'                  => [
 		'numeric' => _('The :attribute may not be greater than :max.'),
 		'file'    => _('The :attribute may not be greater than :max kilobytes.'),

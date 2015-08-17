@@ -108,11 +108,11 @@ Route::group(['prefix' => 'test', 'middleware' => 'env:local'], function () {
 	});
 
 	// Zurb Foundation
-	get('foundation', ['middleware' => 'env:local', function () {
+	get('foundation', function () {
 		$title = 'Foundation';
 		$colors = ['white', 'ghost', 'snow', 'vapor', 'white-smoke', 'silver', 'smoke', 'gainsboro', 'iron', 'base', 'aluminum', 'jumbo', 'monsoon', 'steel', 'charcoal', 'tuatara', 'oil', 'jet', 'black', 'primary-color', 'secondary-color', 'alert-color', 'success-color', 'warning-color', 'info-color'];
 
 		return view('foundation/index', compact('title', 'colors'));
-	}]);
+	});
 
 });

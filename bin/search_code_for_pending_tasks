@@ -10,12 +10,15 @@ color "Pending tasks"
 
 grep -Ir --colour=auto \
 --exclude-dir="\.git"  \
---exclude-dir="storage"  \
---exclude-dir="vendor"  \
---exclude-dir="node_modules"  \
+--exclude-dir=bower  \
+--exclude-dir=node_modules  \
+--exclude-dir=storage  \
+--exclude-dir=vendor  \
 --exclude-from=.gitignore  \
 --exclude="`basename $0`"  \
 --exclude=.env.example  \
+--exclude=.inotify  \
+--exclude=tags  \
 "TODO" .
 
 exit $?

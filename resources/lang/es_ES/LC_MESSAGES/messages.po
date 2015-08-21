@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 16:27+0200\n"
+"POT-Creation-Date: 2015-08-21 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -676,6 +676,9 @@ msgstr "El campo :attribute debe ser una hora válida en formato 24h."
 msgid "The :attribute must be a valid IP address."
 msgstr ":attribute debe ser una dirección IP válida."
 
+msgid "The :attribute must be a valid JSON string."
+msgstr "El campo :attribute debe ser JSON válido."
+
 msgid "The :attribute must be a valid email address."
 msgstr ":attribute debe ser una dirección de email válida."
 
@@ -756,6 +759,9 @@ msgstr "Título"
 
 msgid "To date"
 msgstr "Hasta fecha"
+
+msgid "Toggle full screen"
+msgstr "Alternar modo de pantalla completa"
 
 #, php-format
 msgid "Too many login attempts. Please try again in %d seconds."

@@ -33,6 +33,6 @@ class Kernel extends ConsoleKernel
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		//i.e: $schedule->command('inspire')->hourly();
+		//i.e: $schedule->command('inspire')->hourly()->withoutOverlapping();
 	}
 }

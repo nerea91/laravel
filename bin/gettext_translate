@@ -52,6 +52,6 @@ fi
 \kate "$TRANSLATED_FILE" > /dev/null 2>&1
 
 # Generate binary catalog file
-msgfmt --verbose --output-file "$DESTINATION/messages.mo" "$TRANSLATED_FILE" || exit_error "Unable to generae binary catalog"
+msgfmt --verbose --output-file "$DESTINATION/messages.mo" "$TRANSLATED_FILE" || exit_error "Unable to generate binary catalog"
 
 exit $?

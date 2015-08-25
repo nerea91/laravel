@@ -1,6 +1,5 @@
 <?php namespace App\Console\Commands;
 
-use Config;
 use Illuminate\Console\Command;
 use SSH;
 use Symfony\Component\Console\Input\InputArgument;
@@ -66,7 +65,7 @@ class DeployCommand extends Command
 
 		// Override connection password
 		if ($this->option('password'))
-			Config::set("remote.connections.$connection.password", $this->secret('What is the password?'));
+			config(["remote.connections.$connection.password" => $this->secret('What is the password?')]);
 
 		$this->info('Deploying to ' . $connection);
 

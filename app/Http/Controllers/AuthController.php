@@ -106,7 +106,7 @@ class AuthController extends Controller
 				throw new OauthException(sprintf(_('Unknown provider: %s'), e($providerName)));
 
 			// Set provider callback url
-			\Config::set("services.{$provider->name}.redirect", URL::current());
+			config(["services.{$provider->name}.redirect" => URL::current()]);
 
 			// Create an Oauth service for this autentication provider
 			if( ! $oauthService = Socialite::with($provider->name))

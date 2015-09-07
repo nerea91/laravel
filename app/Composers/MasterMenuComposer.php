@@ -4,8 +4,9 @@ class MasterMenuComposer
 {
 	public function compose($view)
 	{
-		// Build sections that will be available in all views that use master layout.
+		\Assets::add('master');
 
+		// Build sections that will be available in all views that use master layout.
 		if(auth()->check())
 			$sections[auth()->user()->name()] = [
 				link_to_route('admin', _('Dashboard')),

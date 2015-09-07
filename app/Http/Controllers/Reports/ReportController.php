@@ -191,7 +191,6 @@ abstract class ReportController extends Controller
 		// Set variables for the view
 		if($results)
 		{
-			Assets::add('responsive-tables');
 			$this->setSubtitle($input);
 			$this->data['results'] = $results;
 		}

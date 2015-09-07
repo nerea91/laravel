@@ -81,9 +81,6 @@ class ResourceController extends Controller
 		// Paginate resource resutls
 		$results = $this->paginate();
 
-		// If results found add asset to make tables responsive
-		$results->total() and Assets::add('responsive-tables');
-
 		// Create header links for sorting by column
 		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());
 

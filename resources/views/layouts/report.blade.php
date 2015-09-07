@@ -1,7 +1,5 @@
 @extends('layouts.base')
 
-<?php Assets::add(['admin', 'offcanvas']) ?>
-
 @section('body')
 
 	{{-- TOP BAR --}}

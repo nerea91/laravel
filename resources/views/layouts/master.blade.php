@@ -1,7 +1,5 @@
 @extends('layouts.base')
 
-<?php Assets::add('master') ?>
-
 @section('body')
 
 	{{-- OFFCANVAS --}}

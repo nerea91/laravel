@@ -11,6 +11,8 @@ class AdminPanelMenuComposer
 {
 	public function compose($view)
 	{
+		\Assets::add('admin');
+
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
 			self::buildTree()->addChild(ReportsMenuComposer::buildTree()),

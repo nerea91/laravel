@@ -61,7 +61,6 @@
 $(document).ready(function() {
 
 	{{-- JS datepicker --}}
-	<?php Assets::add('datepicker'); ?>
 	@include('reports.datepicker', ['selector' => '#date1,#date2'])
 
 });

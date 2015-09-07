@@ -10,6 +10,8 @@ class ReportsMenuComposer
 {
 	public function compose($view)
 	{
+		\Assets::add(['admin', 'offcanvas', 'datepicker']);
+
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
 			self::buildTree()->addChild(AdminPanelMenuComposer::buildTree()),

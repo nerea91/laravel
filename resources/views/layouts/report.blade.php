@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-<?php Assets::add(['offcanvas', 'admin.css']) ?>
+<?php Assets::add(['admin', 'offcanvas']) ?>
 
 @section('body')
 

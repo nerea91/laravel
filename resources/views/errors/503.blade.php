@@ -1,6 +1,9 @@
 @extends('layouts.base')
 
-<?php app('language')->apply() ?>
+<?php
+	app('language')->apply();
+	Assets::add('master');
+?>
 
 @section('body')
 <div class="row text-center">

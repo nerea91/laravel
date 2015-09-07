@@ -1,0 +1,29 @@
+/* To set a custom with to the aside of the offcanvas add a class of ".custom-width-off-canvas" */
+.custom-width-off-canvas .left-off-canvas-menu,.custom-width-off-canvas .right-off-canvas-menu {width: 25rem;}
+.custom-width-off-canvas.move-right > .inner-wrap { -webkit-transform: translate3d(25rem, 0, 0); -moz-transform: translate3d(25rem, 0, 0); -ms-transform: translate3d(25rem, 0, 0); -o-transform: translate3d(25rem, 0, 0); transform: translate3d(25rem, 0, 0); }
+.custom-width-off-canvas.move-left > .inner-wrap { -webkit-transform: translate3d(-25rem, 0, 0); -moz-transform: translate3d(-25rem, 0, 0); -ms-transform: translate3d(-25rem, 0, 0); -o-transform: translate3d(-25rem, 0, 0); transform: translate3d(-25rem, 0, 0); }
+.csstransforms.no-csstransforms3d .custom-width-off-canvas.move-left > .inner-wrap { -webkit-transform: translate(-25rem, 0); -moz-transform: translate(-25rem, 0); -ms-transform: translate(-25rem, 0); -o-transform: translate(-25rem, 0); transform: translate(-25rem, 0); }
+.csstransforms.no-csstransforms3d .custom-width-off-canvas.move-right > .inner-wrap { -webkit-transform: translate(25rem, 0); -moz-transform: translate(25rem, 0); -ms-transform: translate(25rem, 0); -o-transform: translate(25rem, 0); transform: translate(25rem, 0); }
+.no-csstransforms .custom-width-off-canvas .left-off-canvas-menu { left: -25rem; }
+.no-csstransforms .custom-width-off-canvas .right-off-canvas-menu { right: -25rem; }
+.no-csstransforms .custom-width-off-canvas.move-left > .inner-wrap { right: 25rem; }
+.no-csstransforms .custom-width-off-canvas.move-right > .inner-wrap { left: 25rem; }
+
+/* Fix horizontal scroll of form within off-canvas */
+.left-off-canvas-menu form,.right-off-canvas-menu form{margin:0 1em;}
+
+
+/* Fix horizontal scroll in off-canvas content */
+#main{overflow-x:auto}
+
+/* Fix for form labels within off-canvas */
+.left-off-canvas-menu form label,.right-off-canvas-menu form  label{color: #EEE;}
+
+/* Fix for fieldset within off-canvas */
+.left-off-canvas-menu form fieldset legend,.right-off-canvas-menu form fieldset legend,
+.left-off-canvas-menu .checkbox_togglers,.right-off-canvas-menu .checkbox_togglers
+{
+	background-color: #333 !important;
+	color:#EEE;
+	font-weight:normal;
+}

@@ -1,0 +1,69 @@
+@import 'normalize';
+@import 'master-settings';
+@import // Selective import Foundation components
+//'foundation/components/accordion',
+'foundation/components/alert-boxes',
+//'foundation/components/block-grid',
+//'foundation/components/breadcrumbs',
+//'foundation/components/button-groups',
+'foundation/components/buttons',
+//'foundation/components/clearing',
+'foundation/components/dropdown',
+'foundation/components/dropdown-buttons',
+//'foundation/components/flex-video',
+'foundation/components/forms',
+'foundation/components/grid',
+//'foundation/components/icon-bar',
+'foundation/components/inline-lists',
+//'foundation/components/joyride',
+//'foundation/components/keystrokes',
+//'foundation/components/labels',
+//'foundation/components/magellan',
+'foundation/components/offcanvas',
+//'foundation/components/orbit',
+//'foundation/components/pagination',
+'foundation/components/panels',
+//'foundation/components/pricing-tables',
+//'foundation/components/progress-bars',
+//'foundation/components/range-slider',
+//'foundation/components/reveal',
+//'foundation/components/side-nav',
+//'foundation/components/split-buttons',
+'foundation/components/sub-nav',
+//'foundation/components/switches',
+//'foundation/components/tables',
+//'foundation/components/tabs',
+//'foundation/components/thumbs',
+//'foundation/components/tooltips',
+//'foundation/components/top-bar',
+'foundation/components/type',
+'foundation/components/visibility';
+
+@import 'spinner';
+@import 'printer';
+
+a {cursor: pointer !important}
+
+header {
+	background: url('http://foundation.zurb.com/assets/img/marquee-stars.svg') repeat scroll 0% 0% / cover #074E68;
+	margin-bottom: 1em;
+	padding: 22px 0px;
+
+	h1 a{
+		color: #FFF;
+		margin-bottom: 0px;
+	}
+
+	h4 {
+		color: #CCC;
+	}
+
+	.sub-nav {
+		clear:right;
+	}
+
+	a[data-dropdown="language-list"] {
+		padding:.5em 3.5em .5em .5em !important;
+	}
+}
+

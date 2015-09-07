@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+<?php Assets::add('master') ?>
+
 @section('body')
 <div class="row">
 	<div class="large-7 columns large-centered">

@@ -2,7 +2,7 @@
 
 <?php
 
-Assets::add('data-tables');
+Assets::add(['admin', 'datatables']);
 
 $labelClass = [
 	//level    =>  CSS class

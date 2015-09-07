@@ -1,4 +1,4 @@
-<?php Assets::add(['marked.min.js', 'screenfull.js']) ?>
+<?php Assets::add(['markdown.js']) ?>
 
 {!!
 	Form::label($f = 'profiles', _('Profiles')),

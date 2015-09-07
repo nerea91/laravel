@@ -2,39 +2,34 @@
 
 return [
 	'pipeline' => env('ASSETS_PIPELINE', false),
-	'autoload' => ['foundation'],
 	'collections' => [
 
 		// Zurb Foundation
-		'foundation' => ['zurb/foundation:app.css', 'zurb/foundation:app.js', 'app.js'],
-
-		// Admin panel
+		'master' => ['master.css', 'master.js'],
 		'admin' => ['admin.css', 'admin.js'],
 
-		// Zurb Foundation Offcanvas extras
-		'offcanvas' => ['offcanvas.js', 'offcanvas.css'],
-
-		// PHP debugbar https://github.com/barryvdh/laravel-debugbar
+		// PHP debugbar
 		'debugbar' => ['debugbar.css', 'debugbar.js'],
 
-		// Zurb Responsive tables http://zurb.com/playground/responsive-tables
+		// Offcanvas extras
+		'offcanvas' => ['offcanvas.css', 'offcanvas.js'],
+
+		// Datepicker https://github.com/najlepsiwebdesigner/foundation-datepicker
+		'datepicker' => [
+			'datepicker.css',
+			'datepicker.js'
+		],
+
+		// Responsive tables http://zurb.com/playground/responsive-tables
 		'responsive-tables' => [
 			'zurb/responsive-tables:responsive-tables.js',
 			'zurb/responsive-tables:responsive-tables.css',
 		],
 
-		// Zurb Foundation datepicker https://github.com/najlepsiwebdesigner/foundation-datepicker
-		'datepicker' => [
-			'peterbeno/datepicker:datepicker.css',
-			'peterbeno/datepicker:datepicker.js'
-		],
-
 		// Data Tables https://github.com/DataTables/DataTables
-		'data-tables' => [
-			'datatables/datatables:jquery.dataTables.min.css',
-			'datatables/datatables:jquery.dataTables.min.js',
-			'datatables/datatables:dataTables.foundation.css',
-			'datatables/datatables:dataTables.foundation.js',
+		'datatables' => [
+			'datatables.css',
+			'datatables.js'
 		],
 
 	],

@@ -1,0 +1,4 @@
+@media print {
+	/* Avoid printing the address of the link */
+	a[href]:after{ content: none !important; }
+}

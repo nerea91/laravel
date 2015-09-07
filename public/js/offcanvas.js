@@ -1,9 +1,1 @@
-$doc.ready(function() {
-
-	// Make canvas content as tall as possible
-	var $main = $('#main'), height = Math.max($doc.height(), $(window).height());
-
-	if($main.height() < height)
-		$main.height(height);
-
-});
+$doc.ready(function(){var h=$("#main"),i=Math.max($doc.height(),$(window).height());h.height()<i&&h.height(i)});

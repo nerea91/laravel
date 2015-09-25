@@ -160,18 +160,17 @@ if( ! function_exists('generate_username'))
 	}
 }
 
-
 if( ! function_exists('escape_sql'))
 {
 	/**
-	* Escapes special characters in a $string for use in an SQL statement
-	* and optionaly wraps the $string with a $prefix and a $postfix.
-	*
-	* @param  string
-	* @param  string
-	* @param  string
-	* @return string
-	*/
+	 * Escapes special characters in a $string for use in an SQL statement
+	 * and optionaly wraps the $string with a $prefix and a $postfix.
+	 *
+	 * @param  string
+	 * @param  string
+	 * @param  string
+	 * @return string
+	 */
 	function escape_sql($string, $prefix = '', $postfix = '')
 	{
 		// Remove special chars

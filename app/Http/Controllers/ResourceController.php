@@ -341,7 +341,10 @@ class ResourceController extends Controller
 		Session::put("{$this->prefix}.mode", $mode); // Prefix = admin.resource.trash.mode
 		Session::flash('secondary', $message);
 
-		return redirect()->back();
+		// Same as redirect()->back() but removing the 'page=X' attribute from URL
+		$back = redirect()->getUrlGenerator()->previous();
+
+		return redirect()->to(preg_replace('/[\?&]page=\d+/', null, $back));
 	}
 
 	/**

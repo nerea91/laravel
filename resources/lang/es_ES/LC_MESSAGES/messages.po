@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-21 12:40+0200\n"
+"POT-Creation-Date: 2015-12-02 16:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -573,6 +573,10 @@ msgstr ":attribute no conincide con el valor de confirmación."
 
 msgid "The :attribute does not match the format :format."
 msgstr ":attribute no cumple el formato :format."
+
+
+msgid "The :attribute field is required unless :other is in :values."
+msgstr ":attribute es obligatorio a menos que :other sea :values."
 
 msgid "The :attribute field is required when :other is :value."
 msgstr ":attribute es obligatorio cuando :other es :value."

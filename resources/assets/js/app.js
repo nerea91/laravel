@@ -26,7 +26,9 @@ if(typeof $ != 'undefined') {
 			break;
 
 			case 'invert':
-				$checkboxes.each( function() {$(this).prop('checked', ! $(this).prop('checked'));});
+				$checkboxes.each(function() {
+					$(this).prop('checked', ! $(this).prop('checked'));
+				});
 			break;
 		}
 	});

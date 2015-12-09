@@ -44,6 +44,7 @@ class HomeController extends Controller
 	 */
 	public function sendContactEmail()
 	{
+		// Validate form
 		$rules = [
 			'name'    => 'required|max:50',
 			'company' => 'max:50',
@@ -66,12 +67,12 @@ class HomeController extends Controller
 		if($validator->fails())
 			return redirect()->back()->withInput($input)->withErrors($validator);
 
-		$message = $input['message'] . "\n\n" . $input['name'] . "\n" . $input['company'] . "\n" . $input['phone'];
+		// Send e-mail
+		$text = $input['message'] . "\n\n" . $input['name'] . "\n" . $input['company'] . "\n" . $input['phone'];
 
-		Mail::send(['text' => 'emails.plain-text'], ['text' => $message], function ($message) use ($input) {
+		Mail::raw($text, function ($message) use ($input) {
 			$message->from($input['email'], $input['name'])->to(config('site.contact-email'), config('site.name'))->subject(_('Contact form query'));
 		});
-
 
 		return redirect()->back()->withSuccess(_('Your query has been sent!'));
 	}

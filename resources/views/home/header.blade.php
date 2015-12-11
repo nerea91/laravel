@@ -1,4 +1,4 @@
-<header class="hide-for-small">
+<header class="hide-for-small-only">
 	<div class="row">
 
 		<div class="medium-5 columns">

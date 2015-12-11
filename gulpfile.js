@@ -1,20 +1,21 @@
 var elixir = require('laravel-elixir');
+
 elixir.config.sourcemaps = false;
 
 // Shortcut name for common paths
-var assetsDir = elixir.config.assetsDir;       // resources/assets/
-var bowerDir = assetsDir + 'bower/';           // resources/assets/bower/
-var foundationDir = bowerDir + 'foundation/';  // resources/assets/bower/foundation/
-var publicDir = elixir.config.publicDir + '/'; // plublic/
-var publicCssDir = publicDir + 'css/';         // plublic/css/
-var publicJsDir = publicDir + 'js/';           // plublic/js/
+var assetsDir = elixir.config.assetsPath;       // resources/assets
+var bowerDir = assetsDir + '/bower/';           // resources/assets/bower/
+var foundationDir = bowerDir + 'foundation-sites/';  // resources/assets/bower/foundation-sites/
+var publicDir = elixir.config.publicPath + '/'; // plublic/
+var publicCssDir = publicDir + '/css/';         // plublic/css/
+var publicJsDir = publicDir + '/js/';           // plublic/js/
 
 // ===== MAIN ==================================================================
 
 elixir(function(mix) {
 	doCommon(mix);    // Assets required in both master and admin pages
 	doFrontEnd(mix);  // Assets required only in the master page
-	doBackend(mix);   // Assets required only in the admin page
+	//doBackend(mix);   // Assets required only in the admin page
 });
 
 // ===== COMMON ================================================================
@@ -22,7 +23,7 @@ elixir(function(mix) {
 function doCommon(mix)
 {
 	// Foundation app.js
-	mix.copy(assetsDir + 'js/app.js', foundationDir + 'js/');
+	mix.copy(assetsDir + '/js/app.js', foundationDir + 'js/');
 
 	// Foundation datepicker
 	mix.copy(bowerDir + 'foundation-datepicker/css/foundation-datepicker.min.css', publicCssDir + 'datepicker.css');
@@ -47,36 +48,30 @@ function doFrontEnd(mix)
 	// Foundation components to include
 	var components = [
 		// Vendor dependencies
-		'vendor/modernizr.js',
-		'vendor/jquery.js',
-		'vendor/fastclick.js',
+		'../modernizr/modernizr.js',
+		'../jquery/dist/jquery.js',
+		'../fastclick/lib/fastclick.js',
+		'../what-input/what-input.js',
 
 		// Components
-		'foundation/foundation.js',
-		//'foundation/foundation.abide.js',
-		//'foundation/foundation.accordion.js',
-		'foundation/foundation.alert.js',
-		//'foundation/foundation.clearing.js',
-		'foundation/foundation.dropdown.js',
-		//'foundation/foundation.equalizer.js',
-		//'foundation/foundation.interchange.js',
-		//'foundation/foundation.joyride.js',
-		//'foundation/foundation.magellan.js',
-		'foundation/foundation.offcanvas.js',
-		//'foundation/foundation.orbit.js',
-		//'foundation/foundation.reveal.js',
-		//'foundation/foundation.slider.js',
-		//'foundation/foundation.tab.js',
-		//'foundation/foundation.tooltip.js',
-		//'foundation/foundation.topbar.js',
-		'app.js'
+		"js/foundation.core.js",
+		"js/foundation.util.keyboard.js",
+		"js/foundation.util.motion.js",
+		"js/foundation.util.box.js",
+		"js/foundation.util.triggers.js",
+		"js/foundation.util.mediaQuery.js",
+		"js/foundation.util.nest.js",
+		"js/foundation.offcanvas.js",
+		"js/foundation.dropdownMenu.js",
+// 		"dist/foundation.js",
+		'js/app.js'
 	];
 
 	// Build CSS
 	mix.sass('master.scss', publicCssDir + 'master.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
 
 	// Build JavaScript
-	mix.scripts(components, publicJsDir + 'master.js', foundationDir + 'js/');
+	mix.scripts(components, publicJsDir + 'master.js', foundationDir);
 }
 
 // ===== BACKEND ===============================================================

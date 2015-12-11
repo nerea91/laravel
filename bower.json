@@ -2,11 +2,12 @@
   "name": "laravel",
   "private": "true",
   "dependencies": {
-	"foundation": "latest",
-	"foundation-datepicker": "latest",
-	"datatables": "latest",
-	"marked": "latest",
-	"screenfull": "latest",
-	"spinners": "latest"
+    "foundation": "latest",
+    "foundation-datepicker": "latest",
+    "datatables": "latest",
+    "marked": "latest",
+    "screenfull": "latest",
+    "spinners": "latest",
+    "foundation-sites": "~6.0.5"
   }
 }

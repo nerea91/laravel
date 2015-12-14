@@ -15,7 +15,7 @@ var publicJsDir = publicDir + '/js/';           // plublic/js/
 elixir(function(mix) {
 	doCommon(mix);    // Assets required in both master and admin pages
 	doFrontEnd(mix);  // Assets required only in the master page
-	//doBackend(mix);   // Assets required only in the admin page
+	doBackend(mix);   // Assets required only in the admin page
 });
 
 // ===== COMMON ================================================================
@@ -82,35 +82,29 @@ function doBackend(mix)
 	// Foundation components to include
 	var components = [
 		// Vendor dependencies
-		'vendor/modernizr.js',
-		'vendor/jquery.js',
-		//'vendor/fastclick.js',
-
+		'../modernizr/modernizr.js',
+		'../jquery/dist/jquery.js',
+		'../fastclick/lib/fastclick.js',
+		'../what-input/what-input.js',
+		
 		// Components
-		'foundation/foundation.js',
-		//'foundation/foundation.abide.js',
-		//'foundation/foundation.accordion.js',
-		'foundation/foundation.alert.js',
-		//'foundation/foundation.clearing.js',
-		'foundation/foundation.dropdown.js',
-		//'foundation/foundation.equalizer.js',
-		//'foundation/foundation.interchange.js',
-		//'foundation/foundation.joyride.js',
-		'foundation/foundation.magellan.js',
-		'foundation/foundation.offcanvas.js',
-		//'foundation/foundation.orbit.js',
-		'foundation/foundation.reveal.js',
-		//'foundation/foundation.slider.js',
-		//'foundation/foundation.tab.js',
-		'foundation/foundation.tooltip.js',
-		'foundation/foundation.topbar.js',
-		'app.js'
+		"js/foundation.core.js",
+		"js/foundation.util.keyboard.js",
+		"js/foundation.dropdown.js",
+		"js/foundation.util.motion.js",
+		"js/foundation.util.box.js",
+		"js/foundation.util.triggers.js",
+		"js/foundation.util.mediaQuery.js",
+		"js/foundation.util.nest.js",
+		"js/foundation.offcanvas.js",
+		"js/foundation.dropdownMenu.js",
+		'js/app.js'
 	];
 
 	// Build CSS
 	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
 
 	// Build JavaScript
-	mix.scripts(components, publicJsDir + 'admin.js', foundationDir + 'js/');
+	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
 }
 

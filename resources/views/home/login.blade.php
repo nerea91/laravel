@@ -16,7 +16,7 @@
 			Form::open(['route' => 'login.send']),
 			Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']),
 			Form::password('password', ['placeholder' => _('Password')]),
-			Form::submit(_('Login'), ['class' => 'button expand'])
+			Form::submit(_('Login'), ['class' => 'button expanded'])
 		!!}
 
 		<label class="left">
@@ -40,12 +40,12 @@
 	</div>
 </div>
 
-<div id="problems" class="reveal-modal small" data-reveal>
+<!--<div id="problems" class="reveal-modal small" data-reveal>
 	<ul>
 		<li><a>{{ _("I don't know my username") }}</a></li>
 		<li><a>{{ _("I don't know my password") }}</a></li>
 		<li>{!! link_to_route('contact', _("I'm having other problems")) !!}</li>
 	</ul>
 	<a class="close-reveal-modal">&#215;</a>
-</div>
+</div>-->
 @stop

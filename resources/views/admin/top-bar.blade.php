@@ -18,9 +18,8 @@
     </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" placeholder="Search"></li>
-      <li><button type="button" class="button">Search</button></li>
+    <ul class="dropdown menu" data-dropdown-menu>
+     {!! $rightmenu->render() !!}
     </ul>
   </div>
 </div>

@@ -15,12 +15,15 @@ class AdminPanelMenuComposer
 
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
-			self::buildTree()->addChild(ReportsMenuComposer::buildTree())/*,
-			self::buildSecondaryTree(),*/
+			self::buildTree()->addChild(ReportsMenuComposer::buildTree())
+		]);
+		
+		$rightmenu = new Node('rightmenu', [
+			self::buildSecondaryTree()
 		]);
 
 		// Pass menu to the view
-		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge());
+		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge())->with('rightmenu', $rightmenu->setRender(new FoundationTopBar())->purge());
 	}
 
 	/**

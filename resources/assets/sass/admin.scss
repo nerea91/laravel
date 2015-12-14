@@ -1,5 +1,5 @@
 @import 'vendor/normalize';
-@import 'master-settings';
+@import 'admin-settings';
 
 // Sass utilities
 @import 'util/util';
@@ -175,8 +175,58 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 #report .tab-bar {background-color:rgba(51, 51, 51, 0.9)} /*Hex: #333*/
 
 /*Top bar*/
+.contain-to-grid .top-bar {
+	margin: 0 auto;
+	max-width: 62.5rem;
+}
+
+.contain-to-grid{
+	background: #333 none repeat scroll 0 0;
+}
 .top-bar .menu-text h1, .top-bar .menu-text h2, .top-bar .menu-text h3, .top-bar .menu-text h4, .top-bar .menu-text p, .top-bar .menu-text span {
 	font-size: 1.0625rem;
 	line-height: 2.8125rem;
 	margin: 0;
+}
+
+.top-bar .submenu li label{
+	background: #333 none repeat scroll 0 0;
+	white-space: nowrap;
+	color: #777;
+	font-size: 0.625rem;
+	font-weight: 700;
+	margin-bottom: 0;
+	padding: 8px 0.9375rem 2px;
+	text-transform: uppercase;
+}
+
+.top-bar .submenu li a:not(.button) {
+	background: #333 none repeat scroll 0 0;
+	color: #fff;
+	line-height: 2.8125rem;
+	padding: 12px 0.9375rem;
+	white-space: nowrap;
+}
+
+.top-bar ul li > a:not(.button) {
+	color: #fff;
+	display: block;
+	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 400;
+	padding: 12px 0 12px 0.9375rem;
+	text-transform: none;
+	
+}
+
+.top-bar .submenu li a:not(.button):hover{
+	background: #242424 none repeat scroll 0 0;
+}
+.dropdown.menu .submenu{
+	min-width: 100px;
+}
+
+
+.top-bar ul {
+	list-style: outside none none;
 }

@@ -56,6 +56,7 @@ function doFrontEnd(mix)
 		// Components
 		"js/foundation.core.js",
 		"js/foundation.util.keyboard.js",
+		"js/foundation.dropdown.js",
 		"js/foundation.util.motion.js",
 		"js/foundation.util.box.js",
 		"js/foundation.util.triggers.js",

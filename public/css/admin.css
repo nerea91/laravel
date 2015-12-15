@@ -3304,8 +3304,11 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed] {
 
 .top-bar .menu-text h1, .top-bar .menu-text h2, .top-bar .menu-text h3, .top-bar .menu-text h4, .top-bar .menu-text p, .top-bar .menu-text span {
   font-size: 1.0625rem;
-  line-height: 2.8125rem;
+  line-height: 1.5rem;
   margin: 0; }
+
+.top-bar-right {
+  margin-top: 0.3rem; }
 
 .top-bar .submenu li label {
   background: #333 none repeat scroll 0 0;
@@ -3341,3 +3344,14 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed] {
 
 .top-bar ul {
   list-style: outside none none; }
+
+.top-bar ul li > a.button.alert {
+  background-color: #f04124;
+  border-color: #cf2a0e;
+  color: #fff;
+  min-height: 2rem;
+  text-align: center;
+  vertical-align: middle; }
+
+.top-bar .submenu li .button, .top-bar .dropdown li button {
+  top: auto; }

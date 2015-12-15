@@ -1,6 +1,6 @@
 {{-- Modal form to confirm deletion of resource --}}
 
-{!! Form::open(['method' => 'DELETE', 'id' => 'delete-modal', 'class' => 'reveal-modal small confirm-modal', 'data-reveal']) !!}
+{!! Form::open(['method' => 'DELETE', 'id' => 'delete-modal', 'class' => 'reveal', 'data-reveal']) !!}
 	<h3 class="prompt text-center">{{-- Populated with JS --}}</h3>
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">
@@ -18,7 +18,7 @@
 
 {{-- Modal form to confirm restoration of resource --}}
 
-{!! Form::open(['method' => 'PUT', 'id' => 'restore-modal', 'class' => 'reveal-modal small confirm-modal', 'data-reveal']) !!}
+{!! Form::open(['method' => 'PUT', 'id' => 'restore-modal', 'class' => 'reveal', 'data-reveal']) !!}
 	<h3 class="prompt text-center">{{-- Populated with JS --}}</h3>
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">

@@ -96,10 +96,20 @@ function doBackend(mix)
 		"js/foundation.util.triggers.js",
 		"js/foundation.util.mediaQuery.js",
 		"js/foundation.util.nest.js",
-		
+		"js/foundation.toggler.js",
+		"js/foundation.reveal.js",
+		"js/foundation.accordionMenu.js",
+		"js/foundation.drilldown.js",
+		"js/foundation.util.timerAndImageLoader.js",
+		"js/foundation.util.touch.js",
 		"js/foundation.offcanvas.js",
 		"js/foundation.dropdownMenu.js",
 		"js/foundation.magellan.js",
+		"js/foundation.toggler.js",
+		"js/foundation.tabs.js",
+		"js/foundation.slider.js",
+		"js/foundation.responsiveMenu.js",
+		"js/foundation.responsiveToggle.js",
 		
 		'js/app.js'
 	];

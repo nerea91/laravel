@@ -9,9 +9,11 @@
 		{{-- Flash errors --}}
 		@foreach (['error' => 'alert', 'success' => 'success', 'info' => '', 'secondary' => 'secondary'] as $flashMessage => $boxClass)
 			@if (Session::has($flashMessage))
-			<div class="flash-alert alert-box {{ $boxClass }} radius" data-alert>
+			<div class="flash-alert callout {{ $boxClass }} radius" data-closable >
 				{{ Session::get($flashMessage) }}
-				<a class="close">&times;</a>
+				<button class="close-button" aria-label="Dismiss alert" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			@endif
 		@endforeach

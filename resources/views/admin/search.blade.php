@@ -5,7 +5,7 @@
 
 			{!! Form::open(['route' => 'admin.search']) !!}
 
-				{!! Form::checkboxes($f = 'sections', $models, array_keys($models), ['legend' => _('Search in')]) !!}
+				{!! checkboxes($f = 'sections', $models, array_keys($models), ['legend' => _('Search in')]) !!}
 				@if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif
 
 				<div class="row collapse">
@@ -37,7 +37,7 @@
 			@foreach ($searchResults as $model => $results)
 			<a name="{{ $model }}"></a>
 			<div class="panel" data-magellan-destination="{{ $model }}">
-				<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+				<ul class="small-up-2 medium-up-3 large-up-4">
 					<li><h4>{{ $results->label }}</h4></li>
 					@foreach ($results->collection as $model)
 					<li>{!! link_to_route($results->route, $model, array($model->getKey())) !!}</li>

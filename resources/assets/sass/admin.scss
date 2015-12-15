@@ -153,6 +153,8 @@ tr.zebra {
 
 form [class*="block-grid-"] > li {padding:0;}
 fieldset.checkables {
+	border: 1px solid #ddd;
+    margin: 1.125rem 0;
 	padding-top:.5em;
 	padding-bottom:0;
 

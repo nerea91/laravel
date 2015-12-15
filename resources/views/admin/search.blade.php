@@ -13,7 +13,7 @@
 						{!! Form::text('query', null, ['autofocus', 'autocomplete' => 'off']) !!}
 					</div>
 					<div class="small-5 columns">
-						{!! Form::submit(_('Search'), ['class' => 'button postfix']) !!}
+						{!! Form::submit(_('Search'), ['class' => 'button postfix expanded']) !!}
 					</div>
 				</div>
 
@@ -25,26 +25,32 @@
 
 			{{-- If more than 1 kind of result show nav bar --}}
 			@if (count($searchResults) > 1)
-			<div data-magellan-expedition="fixed" data-options="destination_threshold:110">
-				<dl class="sub-nav">
-					@foreach ($searchResults as $model => $results)
-					<dd data-magellan-arrival="{{ $model }}"><a href="/admin#{{ $model }}">{{ $results->label }} ({{ $results->collection->count() }})</a></dd>
-					@endforeach
-				</dl>
-			</div>
+			<div data-sticky-container>
+				<div class="sticky" id="example" data-sticky data-margin-top="0" style="width:70%;" data-margin-bottom="0" data-top-anchor="topAnchorExample" data-btm-anchor="bottomOfContentId:bottom">
+					<nav data-magellan>
+					<ul class="horizontal menu expanded">
+						@foreach ($searchResults as $model => $results)
+						<li><a href="/admin#{{ $model }}">{{ $results->label }} ({{ $results->collection->count() }})</a></li>
+						@endforeach
+					</ul>
+					</nav>
+				</div>
+			</div><br><br><br><br><br>
 			@endif
 
-			@foreach ($searchResults as $model => $results)
-			<a name="{{ $model }}"></a>
-			<div class="panel" data-magellan-destination="{{ $model }}">
-				<ul class="small-up-2 medium-up-3 large-up-4">
-					<li><h4>{{ $results->label }}</h4></li>
-					@foreach ($results->collection as $model)
-					<li>{!! link_to_route($results->route, $model, array($model->getKey())) !!}</li>
-					@endforeach
-				</ul>
+			<div class="sections">
+				@foreach ($searchResults as $model => $results)
+					<section class="panel" id="{{ $model }}" data-magellan-target="{{ $model }}">
+						<div class="row small-up-2 medium-up-3 large-up-4">
+							<div class="column"><h4>{{ $results->label }}</h4></div>
+							@foreach ($results->collection as $model)
+								<div class="column">{!! link_to_route($results->route, $model, array($model->getKey())) !!}</div>
+							@endforeach
+						</div>
+					</section>
+				@endforeach
 			</div>
-			@endforeach
+			
 		@endif
 
 	</div>

@@ -96,8 +96,11 @@ function doBackend(mix)
 		"js/foundation.util.triggers.js",
 		"js/foundation.util.mediaQuery.js",
 		"js/foundation.util.nest.js",
+		
 		"js/foundation.offcanvas.js",
 		"js/foundation.dropdownMenu.js",
+		"js/foundation.magellan.js",
+		
 		'js/app.js'
 	];
 

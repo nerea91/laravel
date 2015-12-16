@@ -6,7 +6,7 @@
 	<div class="fixed contain-to-grid-DISABLED">@include('reports.top-bar')</div>
 
 	{{-- OFFCANVAS --}}
-	<div id="report" class="off-canvas-wrapper  custom-width-off-canvas {{ $offCanvasClass }}">
+	<div id="report" class="off-canvas-wrapper {{ $offCanvasClass }}">
 		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
 			{{-- REPORT HEADER --}}
@@ -24,7 +24,7 @@
 			<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
 				{!! Form::open(['route' => $action, 'class' => 'dontDisable']) !!}
 					@yield('form')
-					{!! Form::submit(_('Submit'), ['class' => 'button expand']) !!}
+					{!! Form::submit(_('Submit'), ['class' => 'button expanded']) !!}
 				{!! Form::close() !!}
 			</div>
 

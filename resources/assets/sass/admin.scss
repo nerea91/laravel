@@ -166,6 +166,20 @@ fieldset.checkables {
 	}
 }
 
+.checkables {
+	margin-bottom: 4em;
+}
+
+fieldset legend {
+	background: #fff none repeat scroll 0 0;
+	font-weight: 700;
+	margin: 0;
+}
+legend {
+	border: 0 none;
+	padding: 0;
+}
+
 .nowrap {white-space: nowrap;}
 
 .flash-alert {margin:1em 20% 0}

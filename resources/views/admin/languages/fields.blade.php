@@ -4,5 +4,5 @@
 @endforeach
 
 {!! Form::label($f = 'is_default', $labels->$f) !!}
-{!! Form::radios($f, [_('No'), _('Yes') ]) !!}
+{!! radios($f, [_('No'), _('Yes') ]) !!}
 @if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif

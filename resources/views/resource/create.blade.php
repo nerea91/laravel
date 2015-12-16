@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="small-12">
 					<div class="large-6 columns">
-						{!! Form::submit(_('Add'), array('class' => 'button expand')) !!}
+						{!! Form::submit(_('Add'), array('class' => 'button expanded')) !!}
 					</div>
 
 					<div class="large-6 columns">

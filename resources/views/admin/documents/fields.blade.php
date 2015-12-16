@@ -2,7 +2,7 @@
 
 {!!
 	Form::label($f = 'profiles', _('Profiles')),
-	Form::checkboxes($f, App\Profile::dropdown(), $resource->profiles->lists('id')->all())
+	checkboxes($f, App\Profile::dropdown(), $resource->profiles->lists('id')->all())
 !!}
 @if($errors->has($f))<small class="error">{{ $errors->first($f) }}</small>@endif
 

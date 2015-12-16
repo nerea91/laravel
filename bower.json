@@ -8,6 +8,7 @@
     "marked": "latest",
     "screenfull": "latest",
     "spinners": "latest",
-    "foundation-sites": "~6.0.5"
+    "foundation-sites": "~6.0.5",
+    "motion-ui": "^1.1.0"
   }
 }

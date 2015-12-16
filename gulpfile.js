@@ -92,9 +92,9 @@ function doBackend(mix)
 		
 		// Components
 		"js/foundation.core.js",
+		"js/foundation.util.motion.js",
 		"js/foundation.util.keyboard.js",
 		"js/foundation.dropdown.js",
-		"js/foundation.util.motion.js",
 		"js/foundation.util.box.js",
 		"js/foundation.util.triggers.js",
 		"js/foundation.util.mediaQuery.js",
@@ -116,9 +116,9 @@ function doBackend(mix)
 		
 		'js/app.js'
 	];
-
+	
 	// Build CSS
-	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
+	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
 	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);

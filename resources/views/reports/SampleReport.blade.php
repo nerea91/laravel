@@ -7,7 +7,7 @@
 	Form::text($f, null, ['placeholder' => _('YYYY-MM-DD')]),
 
 	Form::label($f = 'group_by', $labels->$f),
-	Form::radios($f, $group_by, [], ['small' => 2, 'medium' => 3, 'large' => 3])
+	radios($f, $group_by, [], ['small' => 2, 'medium' => 3, 'large' => 3])
 
 	/*Form::label($f = 'format', _('Format')),
 	Form::radios($f, $formats, [], ['small' => 2, 'medium' => 3, 'large' => 3])*/

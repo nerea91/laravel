@@ -4,7 +4,7 @@ use App\User;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
-use Stolz\Menu\Renders\FoundationTopBar;
+use App\Renders\FoundationTopBar;
 
 class ReportsMenuComposer
 {
@@ -14,12 +14,15 @@ class ReportsMenuComposer
 
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
-			self::buildTree()->addChild(AdminPanelMenuComposer::buildTree()),
-			AdminPanelMenuComposer::buildSecondaryTree(),
+			self::buildTree()->addChild(AdminPanelMenuComposer::buildTree())
+		]);
+		
+		$rightmenu = new Node('rightmenu', [
+			AdminPanelMenuComposer::buildSecondaryTree()
 		]);
 
 		// Pass menu to the view
-		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge());
+		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge())->with('rightmenu', $rightmenu->setRender(new FoundationTopBar())->purge());
 	}
 
 	/**

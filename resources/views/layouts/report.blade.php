@@ -6,29 +6,30 @@
 	<div class="fixed contain-to-grid-DISABLED">@include('reports.top-bar')</div>
 
 	{{-- OFFCANVAS --}}
-	<div id="report" class="off-canvas-wrap {{ $offCanvasClass }}" data-offcanvas>
-		<div class="inner-wrap">
+	<div id="report" class="off-canvas-wrapper  custom-width-off-canvas {{ $offCanvasClass }}">
+		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
 			{{-- REPORT HEADER --}}
-			<nav class="tab-bar">
-				<section class="left-small">
-					<a id="off-canvas-toggle" class="left-off-canvas-toggle menu-icon" ><span>&nbsp;</span></a>
-				</section>
-				<section class="middle tab-bar-section">
-					<h1 class="title">{{ _('Report') }} <small style="font-size:.9em">{{ $title }}</small></h1>
-				</section>
-			</nav>
+
+			
+			<div class="title-bar">
+				<div class="title-bar-left">
+					<button class="menu-icon" type="button" data-open="offCanvasLeft">&nbsp;</button>
+					<span class="title-bar-title">{{ _('Report') }} <small style="font-size:.9em">{{ $title }}</small></span>
+				</div>
+			</div>
+			
 
 			{{-- FORM --}}
-			<aside class="left-off-canvas-menu">
+			<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
 				{!! Form::open(['route' => $action, 'class' => 'dontDisable']) !!}
 					@yield('form')
 					{!! Form::submit(_('Submit'), ['class' => 'button expand']) !!}
 				{!! Form::close() !!}
-			</aside>
+			</div>
 
 			{{-- REPORT RESULTS --}}
-			<section id="main">
+			<div class="off-canvas-content" style="height: 896px;" data-off-canvas-content>
 
 				<br/>
 
@@ -48,7 +49,7 @@
 
 				@yield('results')
 
-			</section>
+			</div>
 
 			{{-- Close offcanvas after click the main content --}}
 			<a class="exit-off-canvas"></a>

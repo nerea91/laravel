@@ -87,6 +87,9 @@ function doBackend(mix)
 		'../fastclick/lib/fastclick.js',
 		'../what-input/what-input.js',
 		
+		// admin.js
+		'../../js/admin.js',
+		
 		// Components
 		"js/foundation.core.js",
 		"js/foundation.util.keyboard.js",

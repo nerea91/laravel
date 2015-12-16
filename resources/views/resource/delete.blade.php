@@ -5,14 +5,16 @@
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">
 		<div class="small-6 columns">
-			<a class="close-confirm-modal secondary button expand"><?= _('Cancel') ?></a>
+			<a class="secondary button expanded" data-close><?= _('Cancel') ?></a>
 		</div>
 
 		<div class="small-6 columns">
-		{!! Form::submit(_('Confirm'), array('class' => 'alert button expand')) !!}
+		{!! Form::submit(_('Confirm'), array('class' => 'alert button expanded')) !!}
 		</div>
 	</div>
-	<a class="close-reveal-modal">&#215;</a>
+	<button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
 {!! Form::close() !!}
 
 
@@ -23,12 +25,14 @@
 	<p class="lead text-center"><?= _('Are you sure?') ?></p>
 	<div class="row">
 		<div class="small-6 columns">
-			<a class="close-confirm-modal secondary button expand"><?= _('Cancel') ?></a>
+			<a class="secondary button expanded" data-close><?= _('Cancel') ?></a>
 		</div>
 
 		<div class="small-6 columns">
-		{!! Form::submit(_('Confirm'), array('class' => 'success button expand')) !!}
+		{!! Form::submit(_('Confirm'), array('class' => 'success button expanded')) !!}
 		</div>
 	</div>
-	<a class="close-reveal-modal">&#215;</a>
+	<button class="close-button" data-close aria-label="Close reveal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
 {!! Form::close() !!}

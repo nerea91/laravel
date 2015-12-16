@@ -8,8 +8,8 @@
 			_('Restore'),
 			[$resource->getKey()],
 			[
-				'class' => 'small success radius button expand toggle-confirm-modal',
-				'data-open' => 'restore-modal',
+				'class' => 'small success radius button expand',
+				'data-toggle' => 'restore-modal',
 				'title' => e(sprintf(_('Restore %s'), $resource))
 			]
 		)
@@ -33,8 +33,9 @@
 				[$resource->getKey()],
 				[
 					'class' => 'small alert radius button toggle-confirm-modal',
-					'data-open' => 'delete-modal',
-					'title' => e(sprintf(($trashable) ? _('Disable %s') : _('Delete %s'), $resource))
+					'data-toggle' => 'delete-modal',
+					'title' => e(sprintf(($trashable) ? _('Disable %s') : _('Delete %s'), $resource)),
+					'onclick' => 'event.preventDefault()'
 				]
 			)
 		!!}

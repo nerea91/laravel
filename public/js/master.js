@@ -11632,7 +11632,7 @@ return jQuery;
     body.addEventListener('mouseenter', immediateInput);
 
     // touch
-    if ('ontouchstart' in document.documentElement) {
+    if ('ontouchstart' in window) {
       body.addEventListener('touchstart', bufferInput);
     }
 
@@ -11680,10 +11680,9 @@ return jQuery;
 }));
 
 !function($) {
-
 "use strict";
 
-var FOUNDATION_VERSION = '6.0.5';
+var FOUNDATION_VERSION = '6.0.6';
 
 // Global Foundation object
 // This is attached to the window, or used as a module for AMD/Browserify
@@ -11737,12 +11736,15 @@ var Foundation = {
     var pluginName = functionName(plugin.constructor).toLowerCase();
 
     plugin.uuid = this.GetYoDigits(6, pluginName);
-    plugin.$element.attr('data-' + pluginName, plugin.uuid)
+
+    if(!plugin.$element.attr('data-' + pluginName)){
+      plugin.$element.attr('data-' + pluginName, plugin.uuid);
+    }
           /**
            * Fires when the plugin has initialized.
            * @event Plugin#init
            */
-          .trigger('init.zf.' + pluginName);
+    plugin.$element.trigger('init.zf.' + pluginName);
 
     this._activePlugins[plugin.uuid] = plugin;
 
@@ -11822,6 +11824,7 @@ var Foundation = {
    * @param {String|Array} plugins - A list of plugins to initialize. Leave this out to initialize everything.
    */
   reflow: function(elem, plugins) {
+
     // If plugins is undefined, just grab everything
     if (typeof plugins === 'undefined') {
       plugins = Object.keys(this._plugins);
@@ -11839,14 +11842,14 @@ var Foundation = {
       var plugin = _this._plugins[name];
 
       // Localize the search to all elements inside elem, as well as elem itself, unless elem === document
-      var $elem = $(elem).find('[data-'+name+']').addBack('*');
+      var $elem = $(elem).find('[data-'+name+']').addBack('[data-'+name+']');
 
       // For each plugin found, initialize it
       $elem.each(function() {
         var $el = $(this),
             opts = {};
         // Don't double-dip on plugins
-        if ($el.attr('zf-plugin')) {
+        if ($el.data('zf-plugin')) {
           console.warn("Tried to initialize "+name+" on an element that already has a Foundation plugin.");
           return;
         }
@@ -11857,7 +11860,13 @@ var Foundation = {
             if(opt[0]) opts[opt[0]] = parseValue(opt[1]);
           });
         }
-        $el.data('zf-plugin', new plugin($(this), opts));
+        try{
+          $el.data('zf-plugin', new plugin($(this), opts));
+        }catch(er){
+          console.error(er);
+        }finally{
+          return;
+        }
       });
     });
   },
@@ -12202,6 +12211,12 @@ function hyphenate(str) {
      */
     hover: false,
     /**
+     * Don't close dropdown when hovering over dropdown pane
+     * @option
+     * @example true
+     */
+    hoverPane: false,
+    /**
      * Number of pixels between the dropdown pane and the triggering element on open.
      * @option
      * @example 1
@@ -12360,21 +12375,34 @@ function hyphenate(str) {
       this.$anchor.off('mouseenter.zf.dropdown mouseleave.zf.dropdown')
           .on('mouseenter.zf.dropdown', function(){
             clearTimeout(_this.timeout);
-            _this.timeOut = setTimeout(function(){
+            _this.timeout = setTimeout(function(){
               _this.open();
               _this.$anchor.data('hover', true);
             }, _this.options.hoverDelay);
           }).on('mouseleave.zf.dropdown', function(){
             clearTimeout(_this.timeout);
-            _this.timeOut = setTimeout(function(){
+            _this.timeout = setTimeout(function(){
               _this.close();
               _this.$anchor.data('hover', false);
             }, _this.options.hoverDelay);
           });
+      if(this.options.hoverPane){
+        this.$element.off('mouseenter.zf.dropdown mouseleave.zf.dropdown')
+            .on('mouseenter.zf.dropdown', function(){
+              clearTimeout(_this.timeout);
+            }).on('mouseleave.zf.dropdown', function(){
+              clearTimeout(_this.timeout);
+              _this.timeout = setTimeout(function(){
+                _this.close();
+                _this.$anchor.data('hover', false);
+              }, _this.options.hoverDelay);
+            });
+      }
     }
     this.$anchor.add(this.$element).on('keydown.zf.dropdown', function(e) {
 
-      var visibleFocusableElements = Foundation.Keyboard.findFocusable(_this.$element);
+      var $target = $(this),
+        visibleFocusableElements = Foundation.Keyboard.findFocusable(_this.$element);
 
       Foundation.Keyboard.handleKey(e, _this, {
         tab_forward: function() {
@@ -12398,8 +12426,11 @@ function hyphenate(str) {
           }
         },
         open: function() {
-          _this.open();
-          _this.$element.attr('tabindex', -1).focus();
+          if ($target.is(_this.$anchor)) {
+            _this.open();
+            _this.$element.attr('tabindex', -1).focus();
+            e.preventDefault();
+          }
         },
         close: function() {
           _this.close();
@@ -12427,7 +12458,7 @@ function hyphenate(str) {
     this._setPosition();
     this.$element.addClass('is-open')
         .attr({'aria-hidden': false});
-        
+
     if(this.options.autoFocus){
       var $focusable = Foundation.Keyboard.findFocusable(this.$element);
       if($focusable.length){
@@ -13193,7 +13224,7 @@ function parseStyleToObject(str) {
   return styleObject;
 }
 
-}(jQuery, Foundation)
+}(jQuery, Foundation);
 
 !function($, Foundation){
   'use strict';

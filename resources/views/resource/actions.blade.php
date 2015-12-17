@@ -8,7 +8,7 @@
 			_('Restore'),
 			[$resource->getKey()],
 			[
-				'class' => 'small success radius button expand',
+				'class' => 'small success radius button expand toggle-confirm-modal',
 				'data-toggle' => 'restore-modal',
 				'title' => e(sprintf(_('Restore %s'), $resource))
 			]

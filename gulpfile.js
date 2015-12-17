@@ -113,6 +113,7 @@ function doBackend(mix)
 		"js/foundation.slider.js",
 		"js/foundation.responsiveMenu.js",
 		"js/foundation.responsiveToggle.js",
+		"js/foundation.sticky.js",
 		
 		'js/app.js'
 	];

@@ -25,9 +25,10 @@
 
 			{{-- If more than 1 kind of result show nav bar --}}
 			@if (count($searchResults) > 1)
+			<?php $keys = $searchResults->keys()->all(); ?>
 			<div data-sticky-container>
-				<div class="sticky" id="example" data-sticky data-margin-top="0" style="width:70%;" data-margin-bottom="0" data-top-anchor="topAnchorExample" data-btm-anchor="bottomOfContentId:bottom">
-					<nav data-magellan>
+				<div class="sticky" id="sticky-magellan" data-sticky data-resize="sticky-magellan" data-events="resize" data-margin-top="0" style="width:100%;" data-margin-bottom="0" data-top-anchor="{{ $keys[0] }}" data-btm-anchor="{{ $keys[sizeof($keys)-1] . ':bottom' }}">
+					<nav data-magellan class="sticky-mag stuck-mag">
 					<ul class="horizontal menu expanded">
 						@foreach ($searchResults as $model => $results)
 						<li><a href="/admin#{{ $model }}">{{ $results->label }} ({{ $results->collection->count() }})</a></li>
@@ -35,7 +36,7 @@
 					</ul>
 					</nav>
 				</div>
-			</div><br><br><br><br><br>
+			</div><br>
 			@endif
 
 			<div class="sections">

@@ -38,7 +38,7 @@
 					<div class="small-12 medium-10 large-8 columns">
 
 						@if ($errors->any())
-							<div data-alert class="alert-box alert">{{ ('Please fix form errors') }}{{--<a class="close">&times;</a>--}}</div>
+							<div data-alert class="alert-box alert callout" data-closable>{{ ('Please fix form errors') }}{{--<a class="close">&times;</a>--}}</div>
 						@else
 							<div data-alert class="alert-box secondary">{{ _('No results found') }}. {{ _('Try with different form values') }}.{{--<a class="close">&times;</a>--}}</div>
 						@endif

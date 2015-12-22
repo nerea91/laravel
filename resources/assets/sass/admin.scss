@@ -394,3 +394,46 @@ dl {
 	font-weight: 400;
 	padding: 0.1875rem 1rem;
 }
+
+/*Pagination*/
+.pagination::after {
+	clear: both;
+}
+.pagination::before, .pagination::after {
+	content: " ";
+	display: table;
+}
+
+.pagination-centered {
+	text-align: center;
+}
+
+ul.pagination {
+	display: block;
+	margin-left: -0.3125rem;
+	min-height: 1.5rem;
+}
+.pagination-centered ul.pagination li {
+	display: inline-block;
+	float: none;
+}
+ul.pagination li {
+	display: block;
+	float: left;
+}
+ul.pagination li {
+	color: #222;
+	font-size: 0.875rem;
+	height: 1.5rem;
+	margin-left: 0.3125rem;
+}
+ul.pagination li.current a, ul.pagination li.current button {
+	background: #008cba none repeat scroll 0 0;
+	color: #fff;
+	cursor: default;
+	font-weight: 700;
+}
+
+.pagination .current{
+	background:white;
+}

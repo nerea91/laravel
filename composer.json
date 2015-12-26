@@ -6,14 +6,16 @@
 	"type": "project",
 	"require": {
 		"php": ">=5.5.9",
-		"laravel/framework": "5.1.*",
+		"laravel/framework": "5.2.*",
 		"laravel/socialite": "~2.0",
 		"league/commonmark": "dev-master",
 		"rap2hpoutre/laravel-log-viewer": "0.3.0",
 		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
-		"stolz/menu": "dev-master"
+		"stolz/menu": "dev-master",
+		"symfony/dom-crawler": "~3.0",
+		"symfony/css-selector": "~3.0"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",

@@ -191,6 +191,7 @@ abstract class ReportController extends Controller
 		// Set variables for the view
 		if($results)
 		{
+			
 			$this->setSubtitle($input);
 			$this->data['results'] = $results;
 		}

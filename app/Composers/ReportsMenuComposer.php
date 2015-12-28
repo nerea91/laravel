@@ -10,7 +10,7 @@ class ReportsMenuComposer
 {
 	public function compose($view)
 	{
-		\Assets::add(['admin', 'offcanvas', 'datepicker']);
+		\Assets::add(['admin', 'offcanvas', 'datepicker', 'responsive-tables']);
 
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [

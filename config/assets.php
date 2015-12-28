@@ -22,8 +22,8 @@ return [
 
 		// Responsive tables http://zurb.com/playground/responsive-tables
 		'responsive-tables' => [
-			'zurb/responsive-tables:responsive-tables.js',
-			'zurb/responsive-tables:responsive-tables.css',
+			'responsive-tables.js',
+			'responsive-tables.css',
 		],
 
 		// Data Tables https://github.com/DataTables/DataTables

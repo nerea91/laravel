@@ -28,6 +28,10 @@ function doCommon(mix)
 	// Foundation datepicker
 	mix.copy(bowerDir + 'foundation-datepicker/css/foundation-datepicker.min.css', publicCssDir + 'datepicker.css');
 	mix.copy(bowerDir + 'foundation-datepicker/js/foundation-datepicker.min.js', publicJsDir + 'datepicker.js');
+	
+	// Responsive tables
+	mix.copy(bowerDir + 'responsive-tables/responsive-tables.css', publicCssDir + 'responsive-tables.css');
+	mix.copy(bowerDir + 'responsive-tables/responsive-tables.js', publicJsDir + 'responsive-tables.js');
 
 	// Offcanvas extras
 	mix.styles('css/offcanvas.css', publicCssDir + 'offcanvas.css', assetsDir);

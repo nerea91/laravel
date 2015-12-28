@@ -11682,7 +11682,7 @@ return jQuery;
 !function($) {
 "use strict";
 
-var FOUNDATION_VERSION = '6.0.6';
+var FOUNDATION_VERSION = '6.1.1';
 
 // Global Foundation object
 // This is attached to the window, or used as a module for AMD/Browserify
@@ -11732,21 +11732,19 @@ var Foundation = {
    * @param {Object} plugin - an instance of a plugin, usually `this` in context.
    * @fires Plugin#init
    */
-  registerPlugin: function(plugin){
-    var pluginName = functionName(plugin.constructor).toLowerCase();
-
+  registerPlugin: function(plugin, name){
+    var pluginName = name ? hyphenate(name) : functionName(plugin.constructor).toLowerCase();
     plugin.uuid = this.GetYoDigits(6, pluginName);
 
-    if(!plugin.$element.attr('data-' + pluginName)){
-      plugin.$element.attr('data-' + pluginName, plugin.uuid);
-    }
+    if(!plugin.$element.attr('data-' + pluginName)){ plugin.$element.attr('data-' + pluginName, plugin.uuid); }
+    if(!plugin.$element.data('zfPlugin')){ plugin.$element.data('zfPlugin', plugin); }
           /**
            * Fires when the plugin has initialized.
            * @event Plugin#init
            */
     plugin.$element.trigger('init.zf.' + pluginName);
 
-    this._activePlugins[plugin.uuid] = plugin;
+    this._uuids.push(plugin.uuid);
 
     return;
   },
@@ -11758,16 +11756,18 @@ var Foundation = {
    * @fires Plugin#destroyed
    */
   unregisterPlugin: function(plugin){
-    var pluginName = functionName(plugin.constructor).toLowerCase();
+    var pluginName = hyphenate(functionName(plugin.$element.data('zfPlugin').constructor));
 
-    delete this._activePlugins[plugin.uuid];
-    plugin.$element.removeAttr('data-' + pluginName)
+    this._uuids.splice(this._uuids.indexOf(plugin.uuid), 1);
+    plugin.$element.removeAttr('data-' + pluginName).removeData('zfPlugin')
           /**
            * Fires when the plugin has been destroyed.
            * @event Plugin#destroyed
            */
           .trigger('destroyed.zf.' + pluginName);
-
+    for(var prop in plugin){
+      plugin[prop] = null;//clean up script to prep for garbage collection.
+    }
     return;
   },
 
@@ -11777,34 +11777,37 @@ var Foundation = {
    * @param {String} plugins - optional string of an individual plugin key, attained by calling `$(element).data('pluginName')`, or string of a plugin class i.e. `'dropdown'`
    * @default If no argument is passed, reflow all currently active plugins.
    */
-  _reflow: function(plugins){
-    var actvPlugins = Object.keys(this._activePlugins);
-    var _this = this;
-
-    if(!plugins){
-      actvPlugins.forEach(function(p){
-        _this._activePlugins[p]._init();
-      });
-
-    }else if(typeof plugins === 'string'){
-      var namespace = plugins.split('-')[1];
-
-      if(namespace){
-
-        this._activePlugins[plugins]._init();
-
-      }else{
-        namespace = new RegExp(plugins, 'i');
-
-        actvPlugins.filter(function(p){
-          return namespace.test(p);
-        }).forEach(function(p){
-          _this._activePlugins[p]._init();
-        });
-      }
-    }
-
-  },
+   reInit: function(plugins){
+     var isJQ = plugins instanceof $;
+     try{
+       if(isJQ){
+         plugins.each(function(){
+           $(this).data('zfPlugin')._init();
+         });
+       }else{
+         var type = typeof plugins,
+         _this = this,
+         fns = {
+           'object': function(plgs){
+             plgs.forEach(function(p){
+               $('[data-'+ p +']').foundation('_init');
+             });
+           },
+           'string': function(){
+             $('[data-'+ plugins +']').foundation('_init');
+           },
+           'undefined': function(){
+             this['object'](Object.keys(_this._plugins));
+           }
+         };
+         fns[type](plugins);
+       }
+     }catch(err){
+       console.error(err);
+     }finally{
+       return plugins;
+     }
+   },
 
   /**
    * returns a random base-36 uid with namespacing
@@ -11849,7 +11852,7 @@ var Foundation = {
         var $el = $(this),
             opts = {};
         // Don't double-dip on plugins
-        if ($el.data('zf-plugin')) {
+        if ($el.data('zfPlugin')) {
           console.warn("Tried to initialize "+name+" on an element that already has a Foundation plugin.");
           return;
         }
@@ -11861,7 +11864,7 @@ var Foundation = {
           });
         }
         try{
-          $el.data('zf-plugin', new plugin($(this), opts));
+          $el.data('zfPlugin', new plugin($(this), opts));
         }catch(er){
           console.error(er);
         }finally{
@@ -12044,7 +12047,7 @@ function functionName(fn) {
 function parseValue(str){
   if(/true/.test(str)) return true;
   else if(/false/.test(str)) return false;
-  else if(!isNaN(str * 1)/* && typeof (str * 1) === "number"*/) return parseFloat(str);
+  else if(!isNaN(str * 1)) return parseFloat(str);
   return str;
 }
 // Convert PascalCase to kebab-case
@@ -12077,7 +12080,10 @@ function hyphenate(str) {
     40: 'ARROW_DOWN'
   };
 
-  // constants for easier comparing Can be used like Foundation.parseKey(event) === Foundation.keys.SPACE
+  /*
+   * Constants for easier comparing.
+   * Can be used like Foundation.parseKey(event) === Foundation.keys.SPACE
+   */
   var keys = (function(kcs) {
     var k = {};
     for (var kc in kcs) k[kcs[kc]] = kcs[kc];
@@ -12108,11 +12114,11 @@ function hyphenate(str) {
   /**
    * Handles the given (keyboard) event
    * @param {Event} event - the event generated by the event handler
-   * @param {Object} component - Foundation component, e.g. Slider or Reveal
+   * @param {String} component - Foundation component's name, e.g. Slider or Reveal
    * @param {Objects} functions - collection of functions that are to be executed
    */
   var handleKey = function(event, component, functions) {
-    var commandList = commands[Foundation.getFnName(component)],
+    var commandList = commands[component],
       keyCode = parseKey(event),
       cmds,
       command,
@@ -12130,14 +12136,14 @@ function hyphenate(str) {
 
 
     fn = functions[command];
-    if (fn && typeof fn === 'function') { // execute function with context of the component if exists
-        fn.apply(component);
+    if (fn && typeof fn === 'function') { // execute function  if exists
+        fn.apply();
         if (functions.handled || typeof functions.handled === 'function') { // execute function when event was handled
-            functions.handled.apply(component);
+            functions.handled.apply();
         }
     } else {
         if (functions.unhandled || typeof functions.unhandled === 'function') { // execute function when event was not handled
-            functions.unhandled.apply(component);
+            functions.unhandled.apply();
         }
     }
   };
@@ -12187,7 +12193,7 @@ function hyphenate(str) {
     this.options = $.extend({}, Dropdown.defaults, this.$element.data(), options);
     this._init();
 
-    Foundation.registerPlugin(this);
+    Foundation.registerPlugin(this, 'Dropdown');
     Foundation.Keyboard.register('Dropdown', {
       'ENTER': 'open',
       'SPACE': 'open',
@@ -12245,7 +12251,13 @@ function hyphenate(str) {
      * @option
      * @example true
      */
-    autoFocus: false
+    autoFocus: false,
+    /**
+     * Allows a click on the body to close the dropdown.
+     * @option
+     * @example true
+     */
+    closeOnClick: false
   };
   /**
    * Initializes the plugin by setting/checking options and attributes, adding helper variables, and saving the anchor.
@@ -12404,24 +12416,24 @@ function hyphenate(str) {
       var $target = $(this),
         visibleFocusableElements = Foundation.Keyboard.findFocusable(_this.$element);
 
-      Foundation.Keyboard.handleKey(e, _this, {
+      Foundation.Keyboard.handleKey(e, 'Dropdown', {
         tab_forward: function() {
-          if (this.$element.find(':focus').is(visibleFocusableElements.eq(-1))) { // left modal downwards, setting focus to first element
-            if (this.options.trapFocus) { // if focus shall be trapped
+          if (_this.$element.find(':focus').is(visibleFocusableElements.eq(-1))) { // left modal downwards, setting focus to first element
+            if (_this.options.trapFocus) { // if focus shall be trapped
               visibleFocusableElements.eq(0).focus();
               e.preventDefault();
             } else { // if focus is not trapped, close dropdown on focus out
-              this.close();
+              _this.close();
             }
           }
         },
         tab_backward: function() {
-          if (this.$element.find(':focus').is(visibleFocusableElements.eq(0)) || this.$element.is(':focus')) { // left modal upwards, setting focus to last element
-            if (this.options.trapFocus) { // if focus shall be trapped
+          if (_this.$element.find(':focus').is(visibleFocusableElements.eq(0)) || _this.$element.is(':focus')) { // left modal upwards, setting focus to last element
+            if (_this.options.trapFocus) { // if focus shall be trapped
               visibleFocusableElements.eq(-1).focus();
               e.preventDefault();
             } else { // if focus is not trapped, close dropdown on focus out
-              this.close();
+              _this.close();
             }
           }
         },
@@ -12438,6 +12450,26 @@ function hyphenate(str) {
         }
       });
     });
+  };
+  /**
+   * Adds an event handler to the body to close any dropdowns on a click.
+   * @function
+   * @private
+   */
+  Dropdown.prototype._addBodyHandler = function(){
+     var $body = $(document.body).not(this.$element),
+         _this = this;
+     $body.off('click.zf.dropdown')
+          .on('click.zf.dropdown', function(e){
+            if(_this.$anchor.is(e.target) || _this.$anchor.find(e.target).length) {
+              return;
+            }
+            if(_this.$element.find(e.target).length) {
+              return;
+            }
+            _this.close();
+            $body.off('click.zf.dropdown');
+          });
   };
   /**
    * Opens the dropdown pane, and fires a bubbling event to close other dropdowns.
@@ -12466,6 +12498,7 @@ function hyphenate(str) {
       }
     }
 
+    if(this.options.closeOnClick){ this._addBodyHandler(); }
 
     /**
      * Fires once the dropdown is visible.
@@ -13316,7 +13349,7 @@ function OffCanvas(element, options) {
   this._init();
   this._events();
 
-  Foundation.registerPlugin(this);
+  Foundation.registerPlugin(this, 'OffCanvas');
 }
 
 OffCanvas.defaults = {
@@ -13371,7 +13404,13 @@ OffCanvas.defaults = {
    * TODO improve the regex testing for this.
    * @example reveal-for-large
    */
-  revealClass: 'reveal-for-'
+  revealClass: 'reveal-for-',
+  /**
+   * Triggers optional focus trapping when opening an offcanvas. Sets tabindex of [data-off-canvas-content] to -1 for accessibility purposes.
+   * @option
+   * @example true
+   */
+  trapFocus: false
 };
 
 /**
@@ -13420,7 +13459,7 @@ OffCanvas.prototype._init = function() {
  * @private
  */
 OffCanvas.prototype._events = function() {
-  this.$element.on({
+  this.$element.off('.zf.trigger .zf.offcanvas').on({
     'open.zf.trigger': this.open.bind(this),
     'close.zf.trigger': this.close.bind(this),
     'toggle.zf.trigger': this.toggle.bind(this),
@@ -13459,17 +13498,25 @@ OffCanvas.prototype._setMQChecker = function(){
 OffCanvas.prototype.reveal = function(isRevealed){
   var $closer = this.$element.find('[data-close]');
   if(isRevealed){
+    this.close();
+    this.isRevealed = true;
     // if(!this.options.forceTop){
     //   var scrollPos = parseInt(window.pageYOffset);
     //   this.$element[0].style.transform = 'translate(0,' + scrollPos + 'px)';
     // }
     // if(this.options.isSticky){ this._stick(); }
+    this.$element.off('open.zf.trigger toggle.zf.trigger');
     if($closer.length){ $closer.hide(); }
   }else{
+    this.isRevealed = false;
     // if(this.options.isSticky || !this.options.forceTop){
     //   this.$element[0].style.transform = '';
     //   $(window).off('scroll.zf.offcanvas');
     // }
+    this.$element.on({
+      'open.zf.trigger': this.open.bind(this),
+      'toggle.zf.trigger': this.toggle.bind(this)
+    });
     if($closer.length){
       $closer.show();
     }
@@ -13484,7 +13531,7 @@ OffCanvas.prototype.reveal = function(isRevealed){
  * @fires OffCanvas#opened
  */
 OffCanvas.prototype.open = function(event, trigger) {
-  if (this.$element.hasClass('is-open')){ return; }
+  if (this.$element.hasClass('is-open') || this.isRevealed){ return; }
   var _this = this,
       $body = $(document.body);
   $('body').scrollTop(0);
@@ -13506,13 +13553,15 @@ OffCanvas.prototype.open = function(event, trigger) {
 
     _this.$element
       .addClass('is-open')
-      .attr('aria-hidden', 'false')
-      .trigger('opened.zf.offcanvas');
 
     // if(_this.options.isSticky){
     //   _this._stick();
     // }
   });
+  this.$element.attr('aria-hidden', 'false')
+      .trigger('opened.zf.offcanvas');
+
+
   if(trigger){
     this.$lastTrigger = trigger.attr('aria-expanded', 'true');
   }
@@ -13521,6 +13570,32 @@ OffCanvas.prototype.open = function(event, trigger) {
       _this.$element.find('a, button').eq(0).focus();
     });
   }
+  if(this.options.trapFocus){
+    $('[data-off-canvas-content]').attr('tabindex', '-1');
+    this._trapFocus();
+  }
+};
+/**
+ * Traps focus within the offcanvas on open.
+ * @private
+ */
+OffCanvas.prototype._trapFocus = function(){
+  var focusable = Foundation.Keyboard.findFocusable(this.$element),
+      first = focusable.eq(0),
+      last = focusable.eq(-1);
+
+  focusable.off('.zf.offcanvas').on('keydown.zf.offcanvas', function(e){
+    if(e.which === 9 || e.keycode === 9){
+      if(e.target === last[0] && !e.shiftKey){
+        e.preventDefault();
+        first.focus();
+      }
+      if(e.target === first[0] && e.shiftKey){
+        e.preventDefault();
+        last.focus();
+      }
+    }
+  });
 };
 /**
  * Allows the offcanvas to appear sticky utilizing translate properties.
@@ -13544,19 +13619,19 @@ OffCanvas.prototype.open = function(event, trigger) {
 /**
  * Closes the off-canvas menu.
  * @function
+ * @param {Function} cb - optional cb to fire after closure.
  * @fires OffCanvas#closed
  */
-OffCanvas.prototype.close = function() {
-  if(!this.$element.hasClass('is-open')){ return; }
+OffCanvas.prototype.close = function(cb) {
+  if(!this.$element.hasClass('is-open') || this.isRevealed){ return; }
 
   var _this = this;
 
-   Foundation.Move(this.options.transitionTime, this.$element, function(){
-    $('[data-off-canvas-wrapper]').removeClass('is-off-canvas-open is-open-'+_this.options.position);
-
-    _this.$element.removeClass('is-open');
+  //  Foundation.Move(this.options.transitionTime, this.$element, function(){
+  $('[data-off-canvas-wrapper]').removeClass('is-off-canvas-open is-open-' + _this.options.position);
+  _this.$element.removeClass('is-open');
     // Foundation._reflow();
-  });
+  // });
   this.$element.attr('aria-hidden', 'true')
     /**
      * Fires when the off-canvas menu opens.
@@ -13571,6 +13646,10 @@ OffCanvas.prototype.close = function() {
   // }
 
   this.$lastTrigger.attr('aria-expanded', 'false');
+  if(this.options.trapFocus){
+    $('[data-off-canvas-content]').removeAttr('tabindex');
+  }
+
 };
 
 /**
@@ -13606,7 +13685,11 @@ OffCanvas.prototype._handleKeyboard = function(event) {
  * @function
  */
 OffCanvas.prototype.destroy = function(){
-  //TODO make this...
+  this.close();
+  this.$element.off('.zf.trigger .zf.offcanvas');
+  this.$exiter.off('.zf.offcanvas');
+
+  Foundation.unregisterPlugin(this);
 };
 
 Foundation.plugin(OffCanvas, 'OffCanvas');
@@ -13637,7 +13720,7 @@ Foundation.plugin(OffCanvas, 'OffCanvas');
     Foundation.Nest.Feather(this.$element, 'dropdown');
     this._init();
 
-    Foundation.registerPlugin(this);
+    Foundation.registerPlugin(this, 'DropdownMenu');
     Foundation.Keyboard.register('DropdownMenu', {
       'ENTER': 'open',
       'SPACE': 'open',
@@ -13889,7 +13972,7 @@ Foundation.plugin(OffCanvas, 'OffCanvas');
           });
         }
       }
-      Foundation.Keyboard.handleKey(e, _this, functions);
+      Foundation.Keyboard.handleKey(e, 'DropdownMenu', functions);
 
     });
   };

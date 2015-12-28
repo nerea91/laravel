@@ -11,36 +11,36 @@
 @import 'typography/typography';
 @import 'forms/forms';
 @import 'components/visibility';
-@import 'components/float';
+/* @import 'components/float'; */
 @import 'components/button';
-@import 'components/button-group';
-@import 'components/accordion-menu';
-@import 'components/accordion';
-@import 'components/badge';
-@import 'components/breadcrumbs';
-@import 'components/callout';
-@import 'components/close-button';
-@import 'components/drilldown';
+/* @import 'components/button-group'; */
+/* @import 'components/accordion-menu'; */
+/* @import 'components/accordion'; */
+/* @import 'components/badge'; */
+/* @import 'components/breadcrumbs'; */
+/* @import 'components/callout'; */
+/* @import 'components/close-button'; */
+/* @import 'components/drilldown'; */
 @import 'components/dropdown-menu';
 @import 'components/dropdown';
-@import 'components/flex-video';
+/* @import 'components/flex-video'; */
 @import 'components/label';
-@import 'components/media-object';
+/* @import 'components/media-object'; */
 @import 'components/menu';
 @import 'components/off-canvas';
-@import 'components/orbit';
-@import 'components/pagination';
-@import 'components/progress-bar';
+/* @import 'components/orbit'; */
+/* @import 'components/pagination'; */
+/* @import 'components/progress-bar'; */
 @import 'components/reveal';
-@import 'components/slider';
-@import 'components/sticky';
-@import 'components/switch';
-@import 'components/table';
-@import 'components/tabs';
+/* @import 'components/slider'; */
+/* @import 'components/sticky'; */
+/* @import 'components/switch'; */
+/* @import 'components/table'; */
+/* @import 'components/tabs'; */
 @import 'components/title-bar';
 @import 'components/top-bar';
-@import 'components/thumbnail';
-@import 'components/tooltip';
+/* @import 'components/thumbnail'; */
+/* @import 'components/tooltip'; */
 
 
   @include foundation-global-styles;
@@ -49,34 +49,34 @@
   @include foundation-button;
   @include foundation-forms;
   @include foundation-visibility-classes;
-  @include foundation-float-classes;
-  @include foundation-accordion;
-  @include foundation-accordion-menu;
-  @include foundation-badge;
-  @include foundation-breadcrumbs;
-  @include foundation-button-group;
-  @include foundation-callout;
-  @include foundation-close-button;
-  @include foundation-drilldown-menu;
+/*   @include foundation-float-classes; */
+/*   @include foundation-accordion; */
+/*   @include foundation-accordion-menu; */
+/*   @include foundation-badge; */
+/*   @include foundation-breadcrumbs; */
+/*   @include foundation-button-group; */
+/*   @include foundation-callout; */
+/*   @include foundation-close-button; */
+/*   @include foundation-drilldown-menu; */
   @include foundation-dropdown;
   @include foundation-dropdown-menu;
-  @include foundation-flex-video;
-  @include foundation-label;
-  @include foundation-media-object;
+/*   @include foundation-flex-video; */
+/*   @include foundation-label; */
+/*   @include foundation-media-object; */
   @include foundation-menu;
   @include foundation-off-canvas;
-  @include foundation-orbit;
-  @include foundation-pagination;
-  @include foundation-progress-bar;
-  @include foundation-slider;
-  @include foundation-sticky;
+/*   @include foundation-orbit; */
+/*   @include foundation-pagination; */
+/*   @include foundation-progress-bar; */
+/*   @include foundation-slider; */
+/*   @include foundation-sticky; */
   @include foundation-reveal;
-  @include foundation-switch;
-  @include foundation-table;
-  @include foundation-tabs;
-  @include foundation-thumbnail;
+/*   @include foundation-switch; */
+/*   @include foundation-table; */
+/*   @include foundation-tabs; */
+/*   @include foundation-thumbnail; */
   @include foundation-title-bar;
-  @include foundation-tooltip;
+/*   @include foundation-tooltip; */
   @include foundation-top-bar;
 
 
@@ -175,4 +175,26 @@ header .sub-nav {
 	color: #999;
 	padding: 0.1875rem 1rem;
 	text-decoration: none;
+}
+
+/*Errors forms*/
+small.error, span.error {
+	background: #f04124 none repeat scroll 0 0;
+	color: #fff;
+	display: block;
+	font-size: 0.75rem;
+	font-style: italic;
+	font-weight: 400;
+	margin-bottom: 1rem;
+	margin-top: -1px;
+	padding: 0.375rem 0.5625rem 0.5625rem;
+}
+
+small {
+	font-size: 60%;
+	line-height: inherit;
+}
+
+input.error, select.error, textarea.error {
+	margin-bottom: 0;
 }

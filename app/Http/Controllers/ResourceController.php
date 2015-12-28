@@ -81,6 +81,9 @@ class ResourceController extends Controller
 		// Paginate resource resutls
 		$results = $this->paginate();
 
+		// If results found add asset to make tables responsive
+		$results->total() and Assets::add('responsive-tables');
+
 		// Create header links for sorting by column
 		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());
 
@@ -341,10 +344,7 @@ class ResourceController extends Controller
 		Session::put("{$this->prefix}.mode", $mode); // Prefix = admin.resource.trash.mode
 		Session::flash('secondary', $message);
 
-		// Same as redirect()->back() but removing the 'page=X' attribute from URL
-		$back = redirect()->getUrlGenerator()->previous();
-
-		return redirect()->to(preg_replace('/[\?&]page=\d+/', null, $back));
+		return redirect()->back();
 	}
 
 	/**

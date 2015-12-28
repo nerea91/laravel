@@ -1,10 +1,10 @@
 <?php
 
 // Home page
-get('/', ['as' => 'home', 'uses' => 'HomeController@showMainPage']);
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showMainPage']);
 
 // Change application language
-get('language/{code}', ['as' => 'language.set', function ($code) {
+Route::get('language/{code}', ['as' => 'language.set', function ($code) {
 	if($language = App\Language::whereCode($code)->first())
 		$language->remember();
 
@@ -12,45 +12,45 @@ get('language/{code}', ['as' => 'language.set', function ($code) {
 }])->where('code', '^[a-z][a-z]$');
 
 // Contact us area
-get('contact', ['as' => 'contact', 'uses' => 'HomeController@showContactForm']);
-post('contact', ['as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail']);
+Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@showContactForm']);
+Route::post('contact', ['as' => 'contact.send', 'uses' => 'HomeController@sendContactEmail']);
 
 // Log viewer. Permissions are handled by the controller
-get('logs', 'LogViewerController@showLogs');
+Route::get('logs', 'LogViewerController@showLogs');
 
 // Guest user area
 Route::group(['https', 'middleware' => 'guest', 'prefix' => 'login'], function () {
 
 	// Login with native authentication
-	get('/', ['as' => 'login', 'uses' => 'AuthController@showLoginForm']);
-	post('/', ['as' => 'login.send', 'uses' => 'AuthController@login']);
+	Route::get('/', ['as' => 'login', 'uses' => 'AuthController@showLoginForm']);
+	Route::post('/', ['as' => 'login.send', 'uses' => 'AuthController@login']);
 
 	// Login with an Oauth provider
-	get('with/{provider}', ['as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin']);
+	Route::get('with/{provider}', ['as' => 'login.oauth', 'uses' => 'AuthController@oauthLogin']);
 
 });
 
 // Authenticated user area
 Route::group(['https', 'middleware' => 'auth'], function () {
 
-	get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
 	// Current user control panel
 	Route::group(['prefix' => 'user'], function () {
-		get('options', ['as' => 'user.options', 'uses' => 'UserPanelController@showOptionsForm']);
-		put('options', ['as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions']);
-		get('password', ['as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm']);
-		put('password', ['as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword']);
-		get('regional', ['as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm']);
-		put('regional', ['as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional']);
-		get('accounts', ['as' => 'user.accounts', 'uses' => 'UserPanelController@showAccountsForm']);
-		put('accounts', ['as' => 'user.accounts.update', 'uses' => 'UserPanelController@updateAccounts']);
+		Route::get('options', ['as' => 'user.options', 'uses' => 'UserPanelController@showOptionsForm']);
+		Route::put('options', ['as' => 'user.options.update', 'uses' => 'UserPanelController@updateOptions']);
+		Route::get('password', ['as' => 'user.password', 'uses' => 'UserPanelController@showChangePasswordForm']);
+		Route::put('password', ['as' => 'user.password.update', 'uses' => 'UserPanelController@updatePassword']);
+		Route::get('regional', ['as' => 'user.regional', 'uses' => 'UserPanelController@showRegionalForm']);
+		Route::put('regional', ['as' => 'user.regional.update', 'uses' => 'UserPanelController@updateRegional']);
+		Route::get('accounts', ['as' => 'user.accounts', 'uses' => 'UserPanelController@showAccountsForm']);
+		Route::put('accounts', ['as' => 'user.accounts.update', 'uses' => 'UserPanelController@updateAccounts']);
 	});
 
 	// Admin area
 	Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-		get('/', ['as' => 'admin', 'uses' => 'AdminController@showAdminPage']);
-		post('/', ['as' => 'admin.search', 'uses' => 'AdminController@search']);
+		Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@showAdminPage']);
+		Route::post('/', ['as' => 'admin.search', 'uses' => 'AdminController@search']);
 
 		// Resource controllers require ACL
 		Route::group(['middleware' => 'acl'], function () {
@@ -70,8 +70,8 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 			foreach($resources as $name => $controller)
 			{
 				Route::resource($name, $controller);
-				put("$name/{id}/restore", ['as' => "admin.$name.restore", 'uses' => "$controller@restore"]);
-				get("$name/trash/{mode}", ['as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"]);
+				Route::put("$name/{id}/restore", ['as' => "admin.$name.restore", 'uses' => "$controller@restore"]);
+				Route::get("$name/trash/{mode}", ['as' => "admin.$name.trash.mode", 'uses' => "$controller@setTrashMode"]);
 			}
 		});
 
@@ -88,14 +88,14 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 		foreach($reports as $name => $controller)
 		{
 			$url = str_replace('.', '/', $name);
-			get($url, ['as' => "report.$name", 'uses' => "$controller@show"]);
-			post($url, ['as' => "report.$name.validate", 'uses' => "$controller@validate"]);
+			Route::get($url, ['as' => "report.$name", 'uses' => "$controller@show"]);
+			Route::post($url, ['as' => "report.$name.validate", 'uses' => "$controller@validate"]);
 		}
 
 	});
 
 	// Documents area
-	get('document/{id}/{title?}', ['as' => 'document', 'uses' => 'DocumentController@show']);
+	Route::get('document/{id}/{title?}', ['as' => 'document', 'uses' => 'DocumentController@show']);
 
 });
 
@@ -103,12 +103,12 @@ Route::group(['https', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'test', 'middleware' => 'env:local'], function () {
 
 	// General purpose
-	get('/', function () {
+	Route::get('/', function () {
 		return ['time' => time()];
 	});
 
 	// Zurb Foundation
-	get('foundation', function () {
+	Route::get('foundation', function () {
 		$title = 'Foundation';
 		$colors = ['white', 'ghost', 'snow', 'vapor', 'white-smoke', 'silver', 'smoke', 'gainsboro', 'iron', 'base', 'aluminum', 'jumbo', 'monsoon', 'steel', 'charcoal', 'tuatara', 'oil', 'jet', 'black', 'primary-color', 'secondary-color', 'alert-color', 'success-color', 'warning-color', 'info-color'];
 

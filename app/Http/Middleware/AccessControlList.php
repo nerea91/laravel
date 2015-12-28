@@ -2,9 +2,8 @@
 
 use App\Exceptions\AccessControlListException;
 use Closure;
-use Illuminate\Contracts\Routing\Middleware;
 
-class AccessControlList implements Middleware
+class AccessControlList
 {
 	/**
 	 * Check if current user has granted access to current route.

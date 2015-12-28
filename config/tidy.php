@@ -14,7 +14,7 @@
 return [
 
 	// Enable if develop environment
-	'enabled' => app()->environment(['local', 'testing']),
+	'enabled' => (env('APP_ENV') == 'production') ? false : true,
 
 	// Errors that match these regexs wont be displayed
 	'ignored_errors' => [

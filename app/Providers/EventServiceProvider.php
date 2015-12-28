@@ -18,6 +18,13 @@ class EventServiceProvider extends ServiceProvider
 		'event.name' => [
 			'EventListener',
 		],
+		'Illuminate\Auth\Events\Login' => [
+			'App\Listeners\LogSuccessfulLogin',
+		],
+
+		'Illuminate\Auth\Events\Logout' => [
+			'App\Listeners\LogSuccessfulLogout',
+		],
 	];
 
 	/**
@@ -42,19 +49,5 @@ class EventServiceProvider extends ServiceProvider
 			// ... and for its auth provider
 			$account->provider()->increment('login_count');
 		});
-
-		Event::listen('auth.login', function ($user) {
-			// Change application language to current user's language
-			$user->applyLanguage();
-		});
-
-		Event::listen('auth.logout', function ($user) {
-			// Reset default application language
-			Language::forget();
-
-			// Purge admin panel search results cache
-			Cache::forget('adminSearchResults' . $user->getKey());
-		});
-
 	}
 }

@@ -13,7 +13,9 @@
 		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
 		"stolz/laravel-form-builder": "dev-master",
-		"stolz/menu": "dev-master"
+		"stolz/menu": "dev-master",
+		"symfony/dom-crawler": "~3.0",
+		"symfony/css-selector": "~3.0"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",

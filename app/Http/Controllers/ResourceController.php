@@ -3,7 +3,6 @@
 use App\Exceptions\ModelDeletionException;
 use App\Exceptions\ModelValidationException;
 use App\Model;
-use Assets;
 use DB;
 use Input;
 use Route;
@@ -82,7 +81,7 @@ class ResourceController extends Controller
 		$results = $this->paginate();
 
 		// If results found add asset to make tables responsive
-		$results->total() and Assets::add('responsive-tables');
+		$results->total();
 
 		// Create header links for sorting by column
 		$links = (object) link_to_sort_by($this->resource->getVisibleLabels());

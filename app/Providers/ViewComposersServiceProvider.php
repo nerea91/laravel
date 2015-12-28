@@ -19,6 +19,7 @@ class ViewComposersServiceProvider extends ServiceProvider
 			'App\Composers\ApplicationLanguageComposer' => ['layouts.base', 'layouts.master', 'reports.datepicker'],
 			'App\Composers\MasterMenuComposer'          => 'layouts.master',
 			'App\Composers\ReportsMenuComposer'         => 'reports.top-bar',
+			'App\Composers\IndexResultsComposer'         => 'admin.*.index',
 		]);
 	}
 

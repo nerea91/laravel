@@ -2,10 +2,10 @@ var elixir = require('laravel-elixir');
 elixir.config.sourcemaps = false;
 
 // Shortcut name for common paths
-var assetsDir = elixir.config.assetsDir;       // resources/assets/
+var assetsDir = elixir.config.assetsPath+'/';       // resources/assets/
 var bowerDir = assetsDir + 'bower/';           // resources/assets/bower/
 var foundationDir = bowerDir + 'foundation/';  // resources/assets/bower/foundation/
-var publicDir = elixir.config.publicDir + '/'; // plublic/
+var publicDir = elixir.config.publicPath + '/'; // plublic/
 var publicCssDir = publicDir + 'css/';         // plublic/css/
 var publicJsDir = publicDir + 'js/';           // plublic/js/
 
@@ -27,6 +27,10 @@ function doCommon(mix)
 	// Foundation datepicker
 	mix.copy(bowerDir + 'foundation-datepicker/css/foundation-datepicker.min.css', publicCssDir + 'datepicker.css');
 	mix.copy(bowerDir + 'foundation-datepicker/js/foundation-datepicker.min.js', publicJsDir + 'datepicker.js');
+	
+	// Responsive tables
+	mix.copy(bowerDir + 'responsive-tables/responsive-tables.css', publicCssDir + 'responsive-tables.css');
+	mix.copy(bowerDir + 'responsive-tables/responsive-tables.js', publicJsDir + 'responsive-tables.js');
 
 	// Offcanvas extras
 	mix.styles('css/offcanvas.css', publicCssDir + 'offcanvas.css', assetsDir);
@@ -108,7 +112,10 @@ function doBackend(mix)
 		//'foundation/foundation.tab.js',
 		'foundation/foundation.tooltip.js',
 		'foundation/foundation.topbar.js',
-		'app.js'
+		'app.js',
+		
+		// admin.js for toggle confirmation modals
+		'../../../js/admin.js',
 	];
 
 	// Build CSS

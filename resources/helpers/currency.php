@@ -19,6 +19,9 @@ if( ! function_exists('format_number'))
 	 */
 	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $symbolToTheRight = true, $trimMeaninglessZeros = true)
 	{
+		if($number == 0)
+			return '-';
+			
 		// Format number
 		$number = floatval(sprintf('%F', $number));
 		$precision = intval($precision);

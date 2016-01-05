@@ -311,7 +311,7 @@ class Profile extends Model
 		->get();
 
 		// Invert condition
-		return ($excludedProfiles) ? self::whereNotIn('id', array_fetch($excludedProfiles, 'profile_id'))->get() : self::all();
+		return ($excludedProfiles) ? self::whereNotIn('id', array_pluck($excludedProfiles, 'profile_id'))->get() : self::all();
 	}
 
 	/**

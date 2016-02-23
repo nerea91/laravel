@@ -27,6 +27,7 @@ function doCommon(mix)
 	// Foundation datepicker
 	mix.copy(bowerDir + 'foundation-datepicker/css/foundation-datepicker.min.css', publicCssDir + 'datepicker.css');
 	mix.copy(bowerDir + 'foundation-datepicker/js/foundation-datepicker.min.js', publicJsDir + 'datepicker.js');
+	mix.copy(bowerDir + 'foundation-datepicker/js/locales/foundation-datepicker.es.js', publicJsDir + '/locales/foundation-datepicker.es.js');
 	
 	// Responsive tables
 	mix.copy(bowerDir + 'responsive-tables/responsive-tables.css', publicCssDir + 'responsive-tables.css');

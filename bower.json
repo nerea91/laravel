@@ -11,5 +11,8 @@
     "foundation-sites": "6.1.*",
     "motion-ui": "^1.1.0",
     "responsive-tables": "*"
+  },
+  "resolutions": {
+    "jquery": ">= 2.1.0"
   }
 }

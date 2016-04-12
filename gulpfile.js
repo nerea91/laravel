@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
 
+
 elixir.config.sourcemaps = false;
 
 // Shortcut name for common paths
@@ -76,7 +77,7 @@ function doFrontEnd(mix)
 	mix.sass('master.scss', publicCssDir + 'master.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
 
 	// Build JavaScript
-	mix.scripts(components, publicJsDir + 'master.js', foundationDir);
+	mix.babel(components, 'plublic/js/' + 'master.js', foundationDir);
 }
 
 // ===== BACKEND ===============================================================
@@ -126,6 +127,6 @@ function doBackend(mix)
 	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
-	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
+	mix.babel(components, 'plublic/js/' + 'admin.js', foundationDir);
 }
 

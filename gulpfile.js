@@ -7,9 +7,9 @@ elixir.config.sourcemaps = false;
 var assetsDir = elixir.config.assetsPath;       // resources/assets
 var bowerDir = assetsDir + '/bower/';           // resources/assets/bower/
 var foundationDir = bowerDir + 'foundation-sites/';  // resources/assets/bower/foundation-sites/
-var publicDir = elixir.config.publicPath + '/'; // plublic/
-var publicCssDir = publicDir + '/css/';         // plublic/css/
-var publicJsDir = publicDir + '/js/';           // plublic/js/
+var publicDir = elixir.config.publicPath + '/'; // public/
+var publicCssDir = publicDir + '/css/';         // public/css/
+var publicJsDir = publicDir + '/js/';           // public/js/
 
 // ===== MAIN ==================================================================
 
@@ -52,11 +52,6 @@ function doFrontEnd(mix)
 {
 	// Foundation components to include
 	var components = [
-		// Vendor dependencies
-		'../modernizr/modernizr.js',
-		'../jquery/dist/jquery.js',
-		'../fastclick/lib/fastclick.js',
-		'../what-input/what-input.js',
 
 		// Components
 		"js/foundation.core.js",
@@ -69,15 +64,28 @@ function doFrontEnd(mix)
 		"js/foundation.util.nest.js",
 		"js/foundation.offcanvas.js",
 		"js/foundation.dropdownMenu.js",
-// 		"dist/foundation.js",
-		'js/app.js'
 	];
 
 	// Build CSS
 	mix.sass('master.scss', publicCssDir + 'master.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
 
 	// Build JavaScript
-	mix.babel(components, 'plublic/js/' + 'master.js', foundationDir);
+	mix.babel(components, publicJsDir + 'master.js', foundationDir);
+	
+	components = [
+	// Vendor dependencies
+	'../modernizr/modernizr.js',
+	'../jquery/dist/jquery.js',
+	'../fastclick/lib/fastclick.js',
+	'../what-input/what-input.js',
+	
+	//master.js
+	'../../../../public/js/master.js',
+	
+	'js/app.js'
+	];
+	
+	mix.scripts(components, publicJsDir + 'master.js', foundationDir);
 }
 
 // ===== BACKEND ===============================================================
@@ -86,15 +94,7 @@ function doBackend(mix)
 {
 	// Foundation components to include
 	var components = [
-		// Vendor dependencies
-		'../modernizr/modernizr.js',
-		'../jquery/dist/jquery.js',
-		'../fastclick/lib/fastclick.js',
-		'../what-input/what-input.js',
-		
-		// admin.js
-		'../../js/admin.js',
-		
+
 		// Components
 		"js/foundation.core.js",
 		"js/foundation.util.motion.js",
@@ -119,14 +119,28 @@ function doBackend(mix)
 		"js/foundation.responsiveMenu.js",
 		"js/foundation.responsiveToggle.js",
 		"js/foundation.sticky.js",
-		
-		'js/app.js'
 	];
 	
 	// Build CSS
 	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
-	mix.babel(components, 'plublic/js/' + 'admin.js', foundationDir);
+	mix.babel(components, publicJsDir + 'admin.js', foundationDir);
+	
+	components = [
+	// Vendor dependencies
+	'../modernizr/modernizr.js',
+	'../jquery/dist/jquery.js',
+	'../fastclick/lib/fastclick.js',
+	'../what-input/what-input.js',
+	
+	//admin.js
+	'../../../../public/js/admin.js',
+	
+	'js/app.js'
+	];
+	
+	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
+	
 }
 

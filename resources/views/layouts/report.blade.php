@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 	{{-- Toggle canvas if no results or errors --}}
 	@if($errors->any() or ! $results)
-	$('#report').toggleClass('move-right');
+	$('#offCanvasLeft').foundation('open');
 	@endif
 
 });

@@ -228,7 +228,7 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 .top-bar .submenu li a:not(.button) {
 	background: #333 none repeat scroll 0 0;
 	color: #fff;
-	line-height: 2.8125rem;
+	line-height: 1.8125rem;
 	padding: 12px 0.9375rem;
 	white-space: nowrap;
 }
@@ -262,7 +262,7 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 	color: #fff;
 	min-height:2rem;
 	text-align: center;
-	vertical-align:middle;
+	padding-top: 12px;
 }
 .top-bar .submenu li .button, .top-bar .dropdown li button {
 	top: auto;

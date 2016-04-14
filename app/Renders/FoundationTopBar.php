@@ -34,9 +34,9 @@ class FoundationTopBar implements RenderInterface
 	protected function renderNode(NodeInterface $node)
 	{
 		return '
-		<li class="has-submenu">
+		<li>
 			<a>' . $node->getValue(). '</a>
-			<ul class="submenu menu vertical" data-submenu>
+			<ul class="vertical menu">
 			' . $this->renderChildren($node) .
 			'</ul>
 		</li>';
@@ -57,9 +57,9 @@ class FoundationTopBar implements RenderInterface
 			return '<li>' . $node->build() . '</li>';
 
 		return '
-		<li class="has-submenu">
+		<li>
 			' . $node->build(). '
-			<ul class="submenu menu vertical" data-submenu>
+			<ul class="vertical menu">
 			' . $this->renderChildren($node) .
 			'</ul>
 		</li>';

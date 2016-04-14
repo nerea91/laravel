@@ -137,7 +137,11 @@ function doBackend(mix)
 	//admin.js
 	'../../../../public/js/admin.js',
 	
-	'js/app.js'
+	'js/app.js',
+	
+	//modal.js
+	'../../../../public/js/modal.js'
+	
 	];
 	
 	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);

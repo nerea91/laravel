@@ -35,7 +35,6 @@
 					'class' => 'small alert radius button toggle-confirm-modal',
 					'data-toggle' => 'delete-modal',
 					'title' => e(sprintf(($trashable) ? _('Disable %s') : _('Delete %s'), $resource)),
-					'onclick' => 'event.preventDefault()'
 				]
 			)
 		!!}

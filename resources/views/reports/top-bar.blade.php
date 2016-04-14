@@ -5,13 +5,13 @@
 
 <div class="top-bar" id="topbar">
   <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
+    <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
       <li class="menu-text"><h1>{!! link_to_route('admin', config('site.name')) !!}</h1></li>
       {!! $menu->render() !!}
     </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="dropdown menu" data-dropdown-menu>
+     <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
      {!! $rightmenu->render() !!}
     </ul>
   </div>

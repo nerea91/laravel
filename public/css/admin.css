@@ -3210,7 +3210,7 @@ table.hover tr:nth-of-type(even):hover {
     box-shadow: 0 0 6px 1px rgba(33, 153, 232, 0.5); }
 
 .title-bar {
-  background: #0a0a0a;
+  background: #424242;
   color: #fefefe;
   padding: 0.5rem; }
   .title-bar::before, .title-bar::after {
@@ -3868,3 +3868,13 @@ ul.pagination li.current a, ul.pagination li.current button {
 /*Fix drilldown height*/
 .is-drilldown {
   overflow: visible !important; }
+
+span.title-bar-title small {
+  color: #6f6f6f; }
+
+.title-bar-left {
+  text-align: center;
+  width: 100%; }
+
+.title-bar-left .menu-icon {
+  float: left; }

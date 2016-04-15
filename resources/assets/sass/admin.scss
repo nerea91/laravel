@@ -449,3 +449,16 @@ ul.pagination li.current a, ul.pagination li.current button {
 
 /*Fix drilldown height*/
 .is-drilldown{overflow:visible !important}
+
+span.title-bar-title small{
+	color: #6f6f6f;
+}
+
+.title-bar-left{
+	text-align: center;
+	width: 100%;
+}
+
+.title-bar-left .menu-icon{
+	float: left;
+}

@@ -1,6 +1,6 @@
-<div class="title-bar" data-responsive-toggle="topbar" data-hide-for="medium">
-  <button class="menu-icon" type="button" data-toggle>&nbsp;</button>
-  <div class="title-bar-title">Menu</div>
+<div class="title-bar" style="background:#333" data-responsive-toggle="topbar" data-hide-for="medium">
+  <button class="menu-icon"  style="float:right" type="button" data-toggle>&nbsp;</button>
+  <div class="title-bar-title">{!! link_to_route('admin', config('site.name')) !!}</div>
 </div>
 
 <div class="top-bar" id="topbar">

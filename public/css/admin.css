@@ -1,4 +1,10 @@
 @charset "UTF-8";
+/*$body-background: #6E6E6E !important;
+$body-font-color: white;
+$table-background: #1C1C1C;
+$th-zebra-even: #2ba6cb;
+$th-zebra-odd: darken($th-zebra-even, 25%);
+$reveal-color: black;*/
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
    * 1. Set default font family to sans-serif.
@@ -1988,21 +1994,21 @@ select {
   border-radius: 0;
   position: relative;
   color: #0a0a0a;
-  background-color: white; }
+  background-color: #fefefe; }
   .callout > :first-child {
     margin-top: 0; }
   .callout > :last-child {
     margin-bottom: 0; }
   .callout.primary {
-    background-color: #def0fc; }
+    background-color: #2199e8; }
   .callout.secondary {
-    background-color: #ebebeb; }
+    background-color: #777777; }
   .callout.success {
-    background-color: #e1faea; }
+    background-color: #3adb76; }
   .callout.warning {
-    background-color: #fff3d9; }
+    background-color: #ffae00; }
   .callout.alert {
-    background-color: #fce6e2; }
+    background-color: #ec5840; }
   .callout.small {
     padding-top: 0.5rem;
     padding-right: 0.5rem;
@@ -3858,12 +3864,6 @@ ul.pagination li.current a, ul.pagination li.current button {
 
 .pagination .current {
   background: white; }
-
-/*callout alert*/
-.callout.alert {
-  background-color: #f04124;
-  border-color: #de2d0f;
-  color: #fff; }
 
 /*Fix drilldown height*/
 .is-drilldown {

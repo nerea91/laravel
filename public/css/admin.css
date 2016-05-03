@@ -3878,3 +3878,9 @@ span.title-bar-title small {
 
 .title-bar-left .menu-icon {
   float: left; }
+
+.datepicker .next::after {
+  content: "»"; }
+
+.datepicker .prev::after {
+  content: "«"; }

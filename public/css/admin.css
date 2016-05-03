@@ -1,10 +1,4 @@
 @charset "UTF-8";
-/*$body-background: #6E6E6E !important;
-$body-font-color: white;
-$table-background: #1C1C1C;
-$th-zebra-even: #2ba6cb;
-$th-zebra-odd: darken($th-zebra-even, 25%);
-$reveal-color: black;*/
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
    * 1. Set default font family to sans-serif.
@@ -380,7 +374,7 @@ body {
   font-weight: normal;
   line-height: 1.5;
   color: #0a0a0a;
-  background: #fefefe;
+  background: #fefefe !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -1613,7 +1607,7 @@ legend {
   padding: 1.25rem;
   margin: 1.125rem 0; }
   .fieldset legend {
-    background: #fefefe;
+    background: #fefefe !important;
     padding: 0 0.1875rem;
     margin: 0;
     margin-left: -0.1875rem; }
@@ -1969,7 +1963,7 @@ select {
     width: 100%;
     border-right: 1px solid transparent; }
     .button-group.stacked .button:not(:last-child), .button-group.stacked-for-small .button:not(:last-child), .button-group.stacked-for-medium .button:not(:last-child) {
-      border-bottom: 1px solid #fefefe; }
+      border-bottom: 1px solid #fefefe !important; }
   @media screen and (min-width: 40em) {
     .button-group.stacked-for-small .button {
       width: auto; }
@@ -2218,7 +2212,7 @@ select {
   margin-right: 0.75rem; }
 
 .dropdown-pane {
-  background-color: #fefefe;
+  background-color: #fefefe !important;
   border: 1px solid #cacaca;
   border-radius: 0;
   display: block;
@@ -2567,7 +2561,7 @@ body {
 .off-canvas-content,
 .off-canvas-content {
   min-height: 100%;
-  background: #fefefe;
+  background: #fefefe !important;
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
   -webkit-backface-visibility: hidden;
@@ -3588,7 +3582,7 @@ table.hover {
     background-color: #BBB !important; }
 
 tr.zebra th:nth-child(odd) {
-  background-color: #074E68;
+  background-color: #155062;
   color: #FFF;
   text-shadow: 0px 0px 1px #000; }
   tr.zebra th:nth-child(odd) a {
@@ -3878,6 +3872,9 @@ span.title-bar-title small {
 
 .title-bar-left .menu-icon {
   float: left; }
+
+.reveal {
+  color: black; }
 
 .datepicker .next::after {
   content: "»"; }

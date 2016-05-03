@@ -134,7 +134,7 @@ table.hover {
 tr.zebra {
 
 	th:nth-child(odd) {
-		background-color: #074E68;
+		background-color: $th-zebra-odd;
 		color: #FFF;
 		text-shadow: 0px 0px 1px #000;
 
@@ -145,7 +145,7 @@ tr.zebra {
 	}
 
 	th:nth-child(even) {
-		background-color: #2ba6cb;
+		background-color: $th-zebra-even;
 		color: #222;
 		text-shadow: 0px 0px 2px #FFF;
 
@@ -202,7 +202,7 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 }
 
 .contain-to-grid{
-	background: #333 none repeat scroll 0 0;
+	background: $topbar-background none repeat scroll 0 0;
 }
 .top-bar .menu-text h1, .top-bar .menu-text h2, .top-bar .menu-text h3, .top-bar .menu-text h4, .top-bar .menu-text p, .top-bar .menu-text span {
 	font-size: 1.0625rem;
@@ -215,7 +215,7 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 }
 
 .top-bar .submenu li label{
-	background: #333 none repeat scroll 0 0;
+	background: $topbar-background none repeat scroll 0 0;
 	white-space: nowrap;
 	color: #777;
 	font-size: 0.625rem;
@@ -226,7 +226,7 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 }
 
 .top-bar .submenu li a:not(.button) {
-	background: #333 none repeat scroll 0 0;
+	background: $topbar-background none repeat scroll 0 0;
 	color: #fff;
 	line-height: 1.8125rem;
 	padding: 12px 0.9375rem;
@@ -455,6 +455,10 @@ span.title-bar-title small{
 
 .title-bar-left .menu-icon{
 	float: left;
+}
+
+.reveal {
+	color : $reveal-color;
 }
 
 .datepicker .next::after {

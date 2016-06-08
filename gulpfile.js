@@ -1,4 +1,8 @@
-var elixir = require('laravel-elixir');
+const gulp = require('gulp'),
+	elixir = require('laravel-elixir'),
+	babel = require('gulp-babel'),
+	rename = require("gulp-rename"), //use to save file with dest
+	argv = require('yargs').argv; // use to get arguments
 
 
 elixir.config.sourcemaps = false;
@@ -19,6 +23,26 @@ elixir(function(mix) {
 	doBackend(mix);   // Assets required only in the admin page
 });
 
+/*
+	Transform ES2016
+
+	Ej: yo have a index_es.js write in ES2016 at resources/views/admin/users
+		you must run ./node_modules/.bin/gulp compile -d admin/users -f index
+		and it genarate resources/views/admin/users/index.js write in standar javascript
+*/
+gulp.task('compile', function() {
+	var directory =  'resources/views/'+argv.d;
+	var filename = argv.f;
+
+	gulp.src(directory+'/'+filename+'_es.js')
+	   .pipe(babel({
+		   presets: ['es2016']
+	   }))
+	   .pipe(rename(filename+'.js'))
+	   .pipe(gulp.dest(directory))
+
+  });
+
 // ===== COMMON ================================================================
 
 function doCommon(mix)
@@ -29,7 +53,7 @@ function doCommon(mix)
 	// Foundation datepicker
 	mix.copy(bowerDir + 'foundation-datepicker/css/foundation-datepicker.min.css', publicCssDir + 'datepicker.css');
 	mix.copy(bowerDir + 'foundation-datepicker/js/foundation-datepicker.min.js', publicJsDir + 'datepicker.js');
-	
+
 	// Responsive tables
 	mix.copy(bowerDir + 'responsive-tables/responsive-tables.css', publicCssDir + 'responsive-tables.css');
 	mix.copy(bowerDir + 'responsive-tables/responsive-tables.js', publicJsDir + 'responsive-tables.js');
@@ -71,20 +95,20 @@ function doFrontEnd(mix)
 
 	// Build JavaScript
 	mix.babel(components, publicJsDir + 'master.js', foundationDir);
-	
+
 	components = [
 	// Vendor dependencies
 	'../modernizr/modernizr.js',
 	'../jquery/dist/jquery.js',
 	'../fastclick/lib/fastclick.js',
 	'../what-input/what-input.js',
-	
+
 	//master.js
 	'../../../../public/js/master.js',
-	
+
 	'js/app.js'
 	];
-	
+
 	mix.scripts(components, publicJsDir + 'master.js', foundationDir);
 }
 
@@ -120,31 +144,30 @@ function doBackend(mix)
 		"js/foundation.responsiveToggle.js",
 		"js/foundation.sticky.js",
 	];
-	
+
 	// Build CSS
 	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
 	mix.babel(components, publicJsDir + 'admin.js', foundationDir);
-	
+
 	components = [
 	// Vendor dependencies
 	'../modernizr/modernizr.js',
 	'../jquery/dist/jquery.js',
 	'../fastclick/lib/fastclick.js',
 	'../what-input/what-input.js',
-	
+
 	//admin.js
 	'../../../../public/js/admin.js',
-	
+
 	'js/app.js',
-	
+
 	//modal.js
 	'../../../../public/js/modal.js'
-	
-	];
-	
-	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
-	
-}
 
+	];
+
+	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
+
+}

@@ -164,6 +164,8 @@ return [
 		Spatie\Tail\TailServiceProvider::class,
 		Stolz\Assets\Laravel\ServiceProvider::class,
 		Stolz\LaravelFormBuilder\ServiceProvider::class,
+		Maatwebsite\Excel\ExcelServiceProvider::class,
+		Barryvdh\Snappy\ServiceProvider::class,
 	],
 
 	/*
@@ -212,6 +214,9 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View'      => Illuminate\Support\Facades\View::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+		'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+		'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
 	],
 

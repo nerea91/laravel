@@ -15,7 +15,9 @@
 		"stolz/laravel-form-builder": "dev-master",
 		"stolz/menu": "dev-master",
 		"symfony/dom-crawler": "~3.0",
-		"symfony/css-selector": "~3.0"
+		"symfony/css-selector": "~3.0",
+		"barryvdh/laravel-snappy": "^0.3.0",
+		"maatwebsite/excel": "~2.0.0"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",
@@ -25,7 +27,7 @@
 		"stolz/laravel-html-tidy": "dev-master",
 		"stolz/laravel-schema-spy": "dev-master",
 		"symfony/dom-crawler": "~3.0",
-		"symfony/css-selector": "~3.0" 
+		"symfony/css-selector": "~3.0"
 	},
 	"autoload": {
 		"files": [

@@ -57,7 +57,9 @@ class GettextCommand extends Command
 
 			// Rename to human friendly
 			$human = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($f->getRelativePathname(), DIRECTORY_SEPARATOR));
-			File::move($outputPath . DIRECTORY_SEPARATOR . md5($file), $outputPath . DIRECTORY_SEPARATOR . $human);
+
+			File::move($outputPath . DIRECTORY_SEPARATOR . sha1($file). '.php', $outputPath . DIRECTORY_SEPARATOR . $human);
+			
 		}
 
 		if($compiled)

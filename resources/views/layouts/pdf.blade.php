@@ -39,6 +39,7 @@
 			    page-break-inside: avoid !important;
 			}
 		</style>
+		<meta charset="UTF-8" />
 		@yield('css')
 	</head>
 	<body>

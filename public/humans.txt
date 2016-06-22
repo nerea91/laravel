@@ -3,8 +3,8 @@
 /* TODO set your own details */
 
 /* TEAM */
-Developer: Javi (Twitter: @Stolz).
-Sysadmin: Javi (Twitter: @Stolz).
+Developer: Nerea.
+Sysadmin: Nerea.
 Company: Your Company.
 Location: Valencia, Spain.
 

@@ -7,7 +7,7 @@
 		<meta name="description" content="@yield('description')" />
 
 		{{-- Authors info --}}
-		<meta name="author" content="Javi (twitter: @Stolz)" />{{-- TODO set your name --}}
+		<meta name="author" content="Nerea" />{{-- TODO set your name --}}
 		<link type="text/plain" rel="author" href="humans.txt" />
 
 		{{-- Misc --}}

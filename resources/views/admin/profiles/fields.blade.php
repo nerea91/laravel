@@ -19,8 +19,8 @@
 
 	<?php $all = App\Permission::getGroupedByType(); ?>
 
-	@foreach (App\PermissionType::inUse()->lists('name', 'id')->all() as $type_id => $type)
-		{!! checkboxes($f, array_map('gettext', $all[$type_id]), $resource->permissions->lists('id')->all(), ['legend' => _($type)]) !!}
+	@foreach (App\PermissionType::inUse()->pluck('name', 'id')->all() as $type_id => $type)
+		{!! checkboxes($f, array_map('gettext', $all[$type_id]), $resource->permissions->pluck('id')->all(), ['legend' => _($type)]) !!}
 	@endforeach
 
 </div>

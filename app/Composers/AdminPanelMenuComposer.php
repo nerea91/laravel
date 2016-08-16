@@ -17,7 +17,7 @@ class AdminPanelMenuComposer
 		$menu = new Node('menu', [
 			self::buildTree()->addChild(ReportsMenuComposer::buildTree())
 		]);
-		
+
 		$rightmenu = new Node('rightmenu', [
 			self::buildSecondaryTree()
 		]);
@@ -170,7 +170,7 @@ class AdminPanelMenuComposer
 		}
 
 		// Section: User panel
-		$userPanel = new Node($user->name());
+		$userPanel = new Node($user->getName());
 		$userPanel->addChild(new Link(route('user.options'), _('Options')));
 		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert expanded', 'style' => 'height:auto;']));
 

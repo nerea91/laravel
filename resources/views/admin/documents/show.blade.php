@@ -1,4 +1,4 @@
-<h3>{{ _('Profiles') }} <small>{{enum($resource->profiles->lists('name')->all())}}</small></h3>
+<h3>{{ _('Profiles') }} <small>{{enum($resource->profiles->pluck('name')->all())}}</small></h3>
 
 <div id ="document" class="panel">
 	<h1>{!! $resource->title !!}</h1>

@@ -374,7 +374,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @return string
 	 */
-	public function name()
+	public function getName()
 	{
 		if(is_null($this->name))
 			return $this->username;

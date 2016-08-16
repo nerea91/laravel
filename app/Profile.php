@@ -195,7 +195,7 @@ class Profile extends Model
 		}
 
 		// Prevent deleting profiles assigned to users
-		$usernames = $this->users->lists('username');
+		$usernames = $this->users->pluck('username');
 		if($usernames->count())
 		{
 			if($throwExceptions)
@@ -220,7 +220,7 @@ class Profile extends Model
 
 		// Store profile permissions in cache to save some queries
 		$permissions = Cache::remember("profile{$this->id}permissions", 60, function () {
-			return $this->permissions->lists('id')->all();
+			return $this->permissions->pluck('id')->all();
 		});
 
 		return $permissions;

@@ -8,7 +8,7 @@ class MasterMenuComposer
 
 		// Build sections that will be available in all views that use master layout.
 		if(auth()->check())
-			$sections[auth()->user()->name()] = [
+			$sections[auth()->user()->getName()] = [
 				link_to_route('admin', _('Dashboard')),
 				link_to_route('logout', _('Logout')),
 				link_to_route('contact', _('Contact')),

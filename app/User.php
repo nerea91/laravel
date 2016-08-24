@@ -60,8 +60,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			'name'        => [_('Real name'), 'alpha_dash_space|max:64'],
 			'description' => [_('Description'), 'max:128'],
 			'password'    => [_('Password'), 'required|min:5|max:60|different:username|confirmed'],
-			'country_id'  => [_('Country'), 'exists:countries,id'],
-			'language_id' => [_('Language'), 'exists:languages,id'],
+			'country_id'  => [_('Country'), 'sometimes|exists:countries,id'],
+			'language_id' => [_('Language'), 'sometimes|exists:languages,id'],
 			'profile_id'  => [_('Profile'), 'required|exists:profiles,id'],
 		]);
 	}
@@ -270,6 +270,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 
 		throw new \Exception(_('No e-mail address found'));
+	}
+
+	/**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+	{
+		//TODO
 	}
 
 	// Logic =======================================================================

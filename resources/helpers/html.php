@@ -26,9 +26,9 @@ if( ! function_exists('pagination_links'))
 	 *
 	 * @return string
 	 */
-	function pagination_links(\Illuminate\Contracts\Pagination\Paginator $paginator)
+	function pagination_links(\Illuminate\Pagination\LengthAwarePaginator $paginator)
 	{
-		return with(new \Stolz\LaravelFormBuilder\Pagination($paginator))->render();
+		return with(new \App\Builders\Pagination($paginator))->render();
 	}
 }
 

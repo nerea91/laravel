@@ -147,6 +147,7 @@ return [
 		Illuminate\Translation\TranslationServiceProvider::class,
 		Illuminate\Validation\ValidationServiceProvider::class,
 		Illuminate\View\ViewServiceProvider::class,
+		Illuminate\Notifications\NotificationServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
@@ -155,6 +156,7 @@ return [
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\ViewComposersServiceProvider::class,
+		App\Providers\FormServiceProvider::class,
 
 		/*
 		 * Package Service Providers...
@@ -163,7 +165,8 @@ return [
 		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		Spatie\Tail\TailServiceProvider::class,
 		Stolz\Assets\Laravel\ServiceProvider::class,
-		Stolz\LaravelFormBuilder\ServiceProvider::class,
+		//Stolz\LaravelFormBuilder\ServiceProvider::class,
+		//Collective\Html\HtmlServiceProvider::class,
 		Maatwebsite\Excel\ExcelServiceProvider::class,
 		Barryvdh\Snappy\ServiceProvider::class,
 	],
@@ -200,6 +203,7 @@ return [
 		//'Lang'      => Illuminate\Support\Facades\Lang::class,
 		'Log'       => Illuminate\Support\Facades\Log::class,
 		'Mail'      => Illuminate\Support\Facades\Mail::class,
+		'Notification' => Illuminate\Support\Facades\Notification::class,
 		//'Password'  => Illuminate\Support\Facades\Password::class,
 		//'Queue'     => Illuminate\Support\Facades\Queue::class,
 		'Redirect'  => Illuminate\Support\Facades\Redirect::class,
@@ -217,6 +221,9 @@ return [
 
 		'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
 		'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
+		'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
 	],
 

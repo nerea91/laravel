@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-16 17:34+0200\n"
+"POT-Creation-Date: 2016-08-24 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#, php-format
+msgid "%d login"
+msgid_plural "%d logins"
+msgstr[0] "%d acceso"
+msgstr[1] "%d accesos"
 
 #, php-format
 msgid "%d results found"
@@ -66,11 +72,17 @@ msgstr "El acceso de la cuenta ha sido revocado"
 msgid "Accounts"
 msgstr "Cuentas"
 
+msgid "Actions"
+msgstr "Acciones"
+
 msgid "Add"
 msgstr "Añadir"
 
 msgid "Admin panel"
 msgstr "Panel de administración"
+
+msgid "All"
+msgstr "Todos"
 
 msgid "Alt. name"
 msgstr "Nombre alt."
@@ -123,6 +135,9 @@ msgstr "Código"
 msgid "Company"
 msgstr "Empresa"
 
+msgid "Confirm"
+msgstr "Confirmar"
+
 msgid "Contact"
 msgstr "Contactar"
 
@@ -137,6 +152,9 @@ msgstr "Paises"
 
 msgid "Country"
 msgstr "País"
+
+msgid "Create"
+msgstr "Crear"
 
 msgid "Created at"
 msgstr "Creado el"
@@ -165,6 +183,10 @@ msgstr "Predeterminado"
 msgid "Delete"
 msgstr "Borrar"
 
+#, php-format
+msgid "Delete %s"
+msgstr "Borrar %s"
+
 msgid "Deleted at"
 msgstr "Borrado el"
 
@@ -181,6 +203,13 @@ msgstr "Descripción"
 msgid "Details"
 msgstr "Detalles"
 
+msgid "Disable"
+msgstr "Desactivar"
+
+#, php-format
+msgid "Disable %s"
+msgstr "Desactivar %s"
+
 msgid "Document"
 msgstr "Documento"
 
@@ -196,17 +225,29 @@ msgstr "Editar"
 msgid "English name"
 msgstr "Nombre en Inglés"
 
+msgid "Enter your credentials"
+msgstr "Introduce tus datos de acceso"
+
+msgid "Error"
+msgstr "Error"
+
 msgid "European Economic Area"
 msgstr "Espacio Económico Europeo"
 
 msgid "Excel"
 msgstr ""
 
+msgid "Filter"
+msgstr "Filtrar"
+
 msgid "First name"
 msgstr "Nombre"
 
+msgid "Format"
+msgstr "Formato"
+
 msgid "Formats"
-msgstr ""
+msgstr "Formatos"
 
 msgid "Friday"
 msgstr "Viernes"
@@ -217,11 +258,26 @@ msgstr "Desde fecha"
 msgid "Full name"
 msgstr "Nombre completo"
 
+msgid "Go back"
+msgstr "Volver atrás"
+
 msgid "Group by"
 msgstr "Agrupar por"
 
 msgid "Home"
 msgstr "Inicio"
+
+msgid "I don't know my password"
+msgstr "No se mi contraseña"
+
+msgid "I don't know my username"
+msgstr "No se mi nombre de usuario"
+
+msgid "I'm having other problems"
+msgstr "Tengo otro tipo de problema"
+
+msgid "If you think this may be an error please contact the site admin"
+msgstr "Si crees que se trata de un error por favor contacta con el administrador de la web"
 
 msgid "Image"
 msgstr "Imagen"
@@ -231,6 +287,9 @@ msgstr "Listado"
 
 msgid "Internal name"
 msgstr "Nombre interno"
+
+msgid "It looks like this was the result of either"
+msgstr "Esto suele ser resultado de"
 
 msgid "Label"
 msgstr "Etiqueta"
@@ -246,6 +305,12 @@ msgstr "Última dirección IP"
 
 msgid "Last name"
 msgstr "Apellidos"
+
+msgid "Last update"
+msgstr "Última actualización"
+
+msgid "Left"
+msgstr "Izquierda"
 
 msgid "Locale"
 msgstr "Regional"
@@ -271,6 +336,9 @@ msgstr "Desconectar"
 msgid "Manage"
 msgstr "Administrar"
 
+msgid "Menu"
+msgstr "Menú"
+
 msgid "Message"
 msgstr "Mensaje"
 
@@ -292,6 +360,9 @@ msgstr "Siguiente"
 msgid "Nickname"
 msgstr "Apodo"
 
+msgid "No"
+msgstr "No"
+
 msgid "No e-mail address found"
 msgstr "No se han encontrado dirección de e-mail"
 
@@ -301,8 +372,20 @@ msgstr "No se han encontrado resultados"
 msgid "Numeric code"
 msgstr "Código numérico"
 
+msgid "One click login"
+msgstr "Acceso con un click"
+
+msgid "Only deleted"
+msgstr "Solo borrados"
+
+msgid "Only enabled"
+msgstr "Solo activados"
+
 msgid "Option"
 msgstr "Opción"
+
+msgid "Optional"
+msgstr "Opcional"
 
 msgid "Options"
 msgstr "Opciones"
@@ -326,11 +409,24 @@ msgstr "Contraseña cambiada"
 msgid "Passwords must be at least six characters and match the confirmation."
 msgstr "La contraseña de tener al menos seis caracteres y concidir con la confirmación."
 
+#, php-format
+msgid "Perhaps you would like to go to our %shome page%s?"
+msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
+
 msgid "Permissions"
 msgstr "Permisos"
 
 msgid "Phone"
 msgstr "Teléfono"
+
+msgid "Please enter your contact details and we will try to contact you back as soon as possible"
+msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos responderte lo antes posible"
+
+msgid "Please visit us again in a few minutes"
+msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
+
+msgid "Preview"
+msgstr "Vista previa"
 
 msgid "Previous"
 msgstr "Anterior"
@@ -365,14 +461,33 @@ msgstr "Nombre real"
 msgid "Region code"
 msgstr "Código de región"
 
+msgid "Remember me"
+msgstr "Recordar"
+
 msgid "Remote id"
 msgstr "Identificado remoto"
+
+msgid "Repeat new password"
+msgstr "Repite nueva contraseña"
 
 msgid "Repeat password"
 msgstr "Repite contraseña"
 
+msgid "Report"
+msgstr "Informe"
+
 msgid "Reports"
 msgstr "Informes"
+
+msgid "Required"
+msgstr "Requerido"
+
+msgid "Restore"
+msgstr "Restaurar"
+
+#, php-format
+msgid "Restore %s"
+msgstr "Restaurar %s"
 
 #, php-format
 msgid "Results between %s and %s grouped by %s"
@@ -381,20 +496,44 @@ msgstr "Resultados entre el %s y %s agrupados por %s"
 msgid "Results per page"
 msgstr "Resultados por página"
 
+msgid "Return"
+msgstr "Volver"
+
+msgid "Revoke access"
+msgstr "Revocar acceso"
+
+msgid "Right"
+msgstr "Derecha"
+
+msgid "Sample"
+msgstr "Ejemplo"
+
 msgid "Sample report"
 msgstr "Informe de ejemplo"
 
 msgid "Saturday"
 msgstr "Sábado"
 
+msgid "Save"
+msgstr "Guardar"
+
 msgid "Search"
 msgstr "Buscar"
+
+msgid "Search in"
+msgstr "Buscar en"
 
 msgid "Sections"
 msgstr "Secciones"
 
+msgid "Select"
+msgstr "Seleccionar"
+
+msgid "Send query"
+msgstr "Enviar consulta"
+
 msgid "Sheet"
-msgstr ""
+msgstr "Hoja"
 
 msgid "Showing all resources"
 msgstr "Mostrando todos"
@@ -405,8 +544,20 @@ msgstr "Mostrando solo los disponibles"
 msgid "Showing only deleted resources"
 msgstr "Mostrando solo los borrados"
 
+msgid "Site down for maintenance"
+msgstr "Web parada por mantenimiento"
+
 msgid "Something went wrong"
 msgstr "Algo fue mal"
+
+msgid "Something went wrong while we were processing your request"
+msgstr "Algo ha ido mal al procesar tu petición"
+
+msgid "Sorry, our site is currently undergoing scheduled maintenance"
+msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
+
+msgid "Submit"
+msgstr "Enviar"
 
 msgid "Subregion code"
 msgstr "Código de subregión"
@@ -422,6 +573,9 @@ msgstr "Símbolo"
 
 msgid "Symbol position"
 msgstr "Posición del símbolo"
+
+msgid "System has no configurable options"
+msgstr "El sistema no tiene opciones configurables"
 
 msgid "The :attribute and :other must be different."
 msgstr "Los campos :attribute y :other deben ser diferentes."
@@ -624,12 +778,18 @@ msgstr "Título"
 msgid "To date"
 msgstr "Hasta fecha"
 
+msgid "Toggle full screen"
+msgstr "Alternar modo de pantalla completa"
+
 #, php-format
 msgid "Too many login attempts. Please try again in %d seconds."
 msgstr "Demasiados intentos de acceso. Por favor inténtalo de nuevo en %d segundos."
 
 msgid "Too many login attempts. Please try again in :seconds seconds."
 msgstr "Demasiados intentos de acceso. Por favor inténtalo de nuevo en :seconds segundos."
+
+msgid "Try with different form values"
+msgstr "Prueba con otros valores del formulario"
 
 msgid "Tuesday"
 msgstr "Martes"
@@ -652,6 +812,9 @@ msgstr "Unicode decimal"
 msgid "Unicode hexadecimal"
 msgstr "Unicode hexadecimal"
 
+msgid "Unknown"
+msgstr "Desconocido"
+
 #, php-format
 msgid "Unknown provider: %s"
 msgstr "Proveedor desconocido: %s"
@@ -661,6 +824,9 @@ msgstr "Ruta desconocida"
 
 msgid "Unsaved profiles cannot be compared"
 msgstr "Los perfiles sin guardar no pueden ser comparados"
+
+msgid "Update"
+msgstr "Actualizar"
 
 msgid "Updated at"
 msgstr "Actualizado el"
@@ -692,6 +858,12 @@ msgstr "No hemos podido encontrar ningún usuario con esa dirección de e-mail."
 msgid "We have e-mailed your password reset link!"
 msgstr "Te hemos enviado por e-mail el enlace para restablecer contraseña"
 
+msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
+msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo antes posible"
+
+msgid "We're really sorry but we couldn't find the page you requested on our servers"
+msgstr "Lo sentimos mucho pero no hemos podido encontrar la página que has solicitado"
+
 msgid "Web"
 msgstr ""
 
@@ -713,11 +885,23 @@ msgstr "Contraseña incorrecta"
 msgid "Wrong relationships data"
 msgstr "Datos de las relaciones incorrectos"
 
+msgid "YYYY-MM-DD"
+msgstr "AAAA-MM-DD"
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid "You have not signed in with any external provider yet"
+msgstr "Todavía no te has indentificado usando un proveedor externo"
+
 msgid "Your password has been reset!"
 msgstr "Tu contraseña ha sido restablecida"
 
 msgid "Your query has been sent!"
 msgstr "Tu consulta ha sido enviada"
+
+msgid "Your user is not authorized to access this section"
+msgstr "Tu usuario no está autorizado a acceder a esta sección"
 
 #, php-format
 msgid "_since_%s_from_%s_to_%s_of_%s"
@@ -727,193 +911,17 @@ msgstr "_desde_%s_del_%s_hasta_%s_del_%s"
 msgid "_since_%s_to_%s"
 msgstr "_desde_%s_hasta_%s"
 
+msgid "a mistyped address"
+msgstr "una dirección mal escrita"
+
 msgid "all"
 msgstr "todos"
+
+msgid "an out-of-date link"
+msgstr "un enlace antiguo"
 
 msgid "invert"
 msgstr "invertir"
 
 msgid "none"
 msgstr "ninguno"
-
-#~ msgid "%d login"
-#~ msgid_plural "%d logins"
-#~ msgstr[0] "%d acceso"
-#~ msgstr[1] "%d accesos"
-
-#~ msgid "Actions"
-#~ msgstr "Acciones"
-
-#~ msgid "All"
-#~ msgstr "Todos"
-
-#~ msgid "Confirm"
-#~ msgstr "Confirmar"
-
-#~ msgid "Create"
-#~ msgstr "Crear"
-
-#~ msgid "Delete %s"
-#~ msgstr "Borrar %s"
-
-#~ msgid "Disable"
-#~ msgstr "Desactivar"
-
-#~ msgid "Disable %s"
-#~ msgstr "Desactivar %s"
-
-#~ msgid "Enter your credentials"
-#~ msgstr "Introduce tus datos de acceso"
-
-#~ msgid "Error"
-#~ msgstr "Error"
-
-#~ msgid "Filter"
-#~ msgstr "Filtrar"
-
-#~ msgid "Go back"
-#~ msgstr "Volver atrás"
-
-#~ msgid "I don't know my password"
-#~ msgstr "No se mi contraseña"
-
-#~ msgid "I don't know my username"
-#~ msgstr "No se mi nombre de usuario"
-
-#~ msgid "I'm having other problems"
-#~ msgstr "Tengo otro tipo de problema"
-
-#~ msgid "If you think this may be an error please contact the site admin"
-#~ msgstr "Si crees que se trata de un error por favor contacta con el administrador de la web"
-
-#~ msgid "It looks like this was the result of either"
-#~ msgstr "Esto suele ser resultado de"
-
-#~ msgid "Last update"
-#~ msgstr "Última actualización"
-
-#~ msgid "Left"
-#~ msgstr "Izquierda"
-
-#~ msgid "Menu"
-#~ msgstr "Menú"
-
-#~ msgid "No"
-#~ msgstr "No"
-
-#~ msgid "One click login"
-#~ msgstr "Acceso con un click"
-
-#~ msgid "Only deleted"
-#~ msgstr "Solo borrados"
-
-#~ msgid "Only enabled"
-#~ msgstr "Solo activados"
-
-#~ msgid "Optional"
-#~ msgstr "Opcional"
-
-#~ msgid "Perhaps you would like to go to our %shome page%s?"
-#~ msgstr "Tal vez quieras visitar nuestra %spágina incial%s"
-
-#~ msgid "Please enter your contact details and we will try to contact you back as soon as possible"
-#~ msgstr "Por favor, introduce tus dantos de contacto y tu consulta e intentaremos responderte lo antes posible"
-
-#~ msgid "Please visit us again in a few minutes"
-#~ msgstr "Por favor vuelve a intentar de nuevo un poco más tarde"
-
-#~ msgid "Preview"
-#~ msgstr "Vista previa"
-
-#~ msgid "Remember me"
-#~ msgstr "Recordar"
-
-#~ msgid "Repeat new password"
-#~ msgstr "Repite nueva contraseña"
-
-#~ msgid "Report"
-#~ msgstr "Informe"
-
-#~ msgid "Required"
-#~ msgstr "Requerido"
-
-#~ msgid "Restore"
-#~ msgstr "Restaurar"
-
-#~ msgid "Restore %s"
-#~ msgstr "Restaurar %s"
-
-#~ msgid "Return"
-#~ msgstr "Volver"
-
-#~ msgid "Revoke access"
-#~ msgstr "Revocar acceso"
-
-#~ msgid "Right"
-#~ msgstr "Derecha"
-
-#~ msgid "Sample"
-#~ msgstr "Ejemplo"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgid "Search in"
-#~ msgstr "Buscar en"
-
-#~ msgid "Select"
-#~ msgstr "Seleccionar"
-
-#~ msgid "Send query"
-#~ msgstr "Enviar consulta"
-
-#~ msgid "Site down for maintenance"
-#~ msgstr "Web parada por mantenimiento"
-
-#~ msgid "Something went wrong while we were processing your request"
-#~ msgstr "Algo ha ido mal al procesar tu petición"
-
-#~ msgid "Sorry, our site is currently undergoing scheduled maintenance"
-#~ msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"
-
-#~ msgid "Submit"
-#~ msgstr "Enviar"
-
-#~ msgid "System has no configurable options"
-#~ msgstr "El sistema no tiene opciones configurables"
-
-#~ msgid "Toggle full screen"
-#~ msgstr "Alternar modo de pantalla completa"
-
-#~ msgid "Try with different form values"
-#~ msgstr "Prueba con otros valores del formulario"
-
-#~ msgid "Unknown"
-#~ msgstr "Desconocido"
-
-#~ msgid "Update"
-#~ msgstr "Actualizar"
-
-#~ msgid "We're really sorry about this, and will work hard to get this resolved as soon as possible"
-#~ msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo antes posible"
-
-#~ msgid "We're really sorry but we couldn't find the page you requested on our servers"
-#~ msgstr "Lo sentimos mucho pero no hemos podido encontrar la página que has solicitado"
-
-#~ msgid "YYYY-MM-DD"
-#~ msgstr "AAAA-MM-DD"
-
-#~ msgid "Yes"
-#~ msgstr "Sí"
-
-#~ msgid "You have not signed in with any external provider yet"
-#~ msgstr "Todavía no te has indentificado usando un proveedor externo"
-
-#~ msgid "Your user is not authorized to access this section"
-#~ msgstr "Tu usuario no está autorizado a acceder a esta sección"
-
-#~ msgid "a mistyped address"
-#~ msgstr "una dirección mal escrita"
-
-#~ msgid "an out-of-date link"
-#~ msgstr "un enlace antiguo"

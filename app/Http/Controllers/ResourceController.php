@@ -249,7 +249,7 @@ class ResourceController extends Controller
 			}
 
 			// Validate and save resource
-			if($this->resource->save() === false)
+			if($this->resource->save() === false and $this->resource->getErrors()->count())
 				throw new ModelValidationException(_('Wrong data'));
 
 			// Save resource relationships

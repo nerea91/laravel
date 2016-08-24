@@ -22,7 +22,7 @@
 		@endif
 
 		@if ($trashable)
-		
+
 		<a  data-toggle="trash-mode" class="button dropdown">{{ _('Filter') }}</a>
 			<div id="trash-mode" data-dropdown data-auto-focus="true" class="dropdown-pane">
 				<div>{!! link_to_route("$prefix.trash.mode", _('Only enabled'), ['normal']) !!}</div>

@@ -1,2 +1,13 @@
 // Custom settings for Zurb Foundation. Default settings can be found at
 // resources/assets/bower/foundation/scss/foundation/_settings.scss
+$topbar-background: #333;
+$topbar-padding : 0;
+$offcanvas-background: #333;
+$titlebar-background: #424242;
+$callout-background-fade: 0% !default;
+//$body-background: #fefefe !important;
+//$body-font-color: #0a0a0a;
+//$table-background: #fefefe;
+$th-zebra-even: #2ba6cb;
+$th-zebra-odd: darken($th-zebra-even, 25%);
+$reveal-color: black;

@@ -25,9 +25,9 @@ class LogSuccessfulLogin
     public function handle(Login $event)
     {
         // Access the user using $event->user...
- 
+        
         // Change application language to current user's language
-	$event->user->applyLanguage();
+		$event->user->applyLanguage();
        
     }
 }

@@ -191,6 +191,7 @@ abstract class ReportController extends Controller
 		// Set variables for the view
 		if($results)
 		{
+
 			$this->setSubtitle($input);
 			$this->data['results'] = $results;
 		}
@@ -199,5 +200,79 @@ abstract class ReportController extends Controller
 
 		// Return layout + view
 		return $this->layout(view($this->view, $this->data));
+	}
+
+	/**
+	 *  Format report results for PDF
+	 *
+	 * @param  array
+	 * @param  mixed
+	 * @param  array
+	 * @return Response
+	 */
+	public function formatPdf(array $input, $results)
+	{
+		$this->setSubtitle($input);
+
+		$pdf = \App::make('snappy.pdf.wrapper');
+
+		$aux =  ['results' => $results, 'subtitle' => $this->subtitle,  'title' => $this->title ];
+
+		// extra data for the view
+		$data = (isset($this->extra)) ? array_merge($this->extra, $aux) : $aux;
+
+		$view = view('reports.pdfs.'.substr($this->view,strrpos($this->view, '.')+1), $data);
+
+		// render the view to get html
+		$contents = $view->render();
+
+		// set orientation
+		if(isset($this->orientation))
+			$pdf->setOrientation($this->orientation);
+
+		//set paper
+		if(isset($this->paper))
+			$pdf->setPaper($this->paper);
+
+		$pdf->setOption('user-style-sheet', 'css/admin.css')->loadHTML($contents);
+
+		$title = $this->makeExportTitle($input, $this->title);
+
+		$title.='.pdf';
+
+		return $pdf->download($title);
+	}
+
+	/**
+	 *  Make title to export data (xls,pdf...)
+	 *
+	 * @param  array
+	 * @param  string
+	 * @return string
+	 */
+	public function makeExportTitle(array $input, $title)
+	{
+		$title =  str_replace(' ', '_' ,$title);
+
+		// make title of file
+		if(isset($input['time1']) and !empty($input['time1']))
+		{
+			if(strlen($input['time1']) > 5)
+				$input['time1'] = substr($input['time1'], 0, 5);
+
+			$input['time1'] = str_replace(':', 'h', $input['time1']);
+
+			if(strlen($input['time2']) > 5)
+				$input['time2'] = substr($input['time1'], 0, 5);
+
+			$input['time2'] = str_replace(':', 'h', $input['time2']);
+
+			$title.=sprintf(_('_since_%s_from_%s_to_%s_of_%s'), $input['time1'], $input['date1'], $input['time2'], $input['date2']);
+		}
+		else {
+				$title.=sprintf(_('_since_%s_to_%s'),  $input['date1'], $input['date2']);
+		}
+
+		return $title;
 	}
 }

@@ -5,13 +5,14 @@
 	<div class="fixed contain-to-grid">@include('admin/top-bar')</div>
 
 	<div class="row">
-
 		{{-- Flash errors --}}
 		@foreach (['error' => 'alert', 'success' => 'success', 'info' => '', 'secondary' => 'secondary'] as $flashMessage => $boxClass)
 			@if (Session::has($flashMessage))
-			<div class="flash-alert alert-box {{ $boxClass }} radius" data-alert>
+			<div class="flash-alert radius {{ $boxClass }} callout" data-closable >
 				{{ Session::get($flashMessage) }}
-				<a class="close">&times;</a>
+				<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			@endif
 		@endforeach

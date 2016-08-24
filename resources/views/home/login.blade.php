@@ -6,9 +6,11 @@
 		<hr/>
 
 		@if(Session::has('error'))
-		<div class="alert-box alert" data-alert>
+		<div class="alert-box alert callout" data-closable>
 			{{ Session::get('error') }}
-			<a class="close">&times;</a>
+			<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
 		@endif
 
@@ -16,7 +18,7 @@
 			Form::open(['route' => 'login.send']),
 			Form::text('username', null, ['placeholder' => _('Username'), 'autofocus']),
 			Form::password('password', ['placeholder' => _('Password')]),
-			Form::submit(_('Login'), ['class' => 'button expand'])
+			Form::submit(_('Login'), ['class' => 'button expanded'])
 		!!}
 
 		<label class="left">

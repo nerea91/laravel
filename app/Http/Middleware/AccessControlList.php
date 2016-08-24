@@ -45,4 +45,6 @@ class AccessControlList
 			return abort(401, $e->getMessage());
 		}
 	}
+	
+	public function terminate(){}
 }

@@ -1,43 +1,86 @@
-@import 'normalize';
 @import 'master-settings';
-@import // Selective import Foundation components
-//'foundation/components/accordion',
-'foundation/components/alert-boxes',
-//'foundation/components/block-grid',
-//'foundation/components/breadcrumbs',
-//'foundation/components/button-groups',
-'foundation/components/buttons',
-//'foundation/components/clearing',
-'foundation/components/dropdown',
-'foundation/components/dropdown-buttons',
-//'foundation/components/flex-video',
-'foundation/components/forms',
-'foundation/components/grid',
-//'foundation/components/icon-bar',
-'foundation/components/inline-lists',
-//'foundation/components/joyride',
-//'foundation/components/keystrokes',
-//'foundation/components/labels',
-//'foundation/components/magellan',
-'foundation/components/offcanvas',
-//'foundation/components/orbit',
-//'foundation/components/pagination',
-'foundation/components/panels',
-//'foundation/components/pricing-tables',
-//'foundation/components/progress-bars',
-//'foundation/components/range-slider',
-//'foundation/components/reveal',
-//'foundation/components/side-nav',
-//'foundation/components/split-buttons',
-'foundation/components/sub-nav',
-//'foundation/components/switches',
-//'foundation/components/tables',
-//'foundation/components/tabs',
-//'foundation/components/thumbs',
-//'foundation/components/tooltips',
-//'foundation/components/top-bar',
-'foundation/components/type',
-'foundation/components/visibility';
+
+// Sass utilities
+@import 'util/util';
+
+// Global variables and styles
+@import 'global';
+
+// Components
+@import 'grid/grid';
+@import 'typography/typography';
+@import 'forms/forms';
+@import 'components/visibility';
+/* @import 'components/float'; */
+@import 'components/button';
+/* @import 'components/button-group'; */
+/* @import 'components/accordion-menu'; */
+/* @import 'components/accordion'; */
+/* @import 'components/badge'; */
+/* @import 'components/breadcrumbs'; */
+@import 'components/callout';
+@import 'components/close-button'; 
+/* @import 'components/drilldown'; */
+@import 'components/dropdown-menu';
+@import 'components/dropdown';
+/* @import 'components/flex-video'; */
+@import 'components/label';
+/* @import 'components/media-object'; */
+@import 'components/menu';
+@import 'components/menu-icon';
+@import 'components/off-canvas';
+/* @import 'components/orbit'; */
+/* @import 'components/pagination'; */
+/* @import 'components/progress-bar'; */
+@import 'components/reveal';
+/* @import 'components/slider'; */
+/* @import 'components/sticky'; */
+/* @import 'components/switch'; */
+/* @import 'components/table'; */
+/* @import 'components/tabs'; */
+@import 'components/title-bar';
+@import 'components/top-bar';
+/* @import 'components/thumbnail'; */
+/* @import 'components/tooltip'; */
+
+
+  @include foundation-global-styles;
+  @include foundation-grid;
+  @include foundation-typography;
+  @include foundation-button;
+  @include foundation-forms;
+  @include foundation-visibility-classes;
+/*   @include foundation-float-classes; */
+/*   @include foundation-accordion; */
+/*   @include foundation-accordion-menu; */
+/*   @include foundation-badge; */
+/*   @include foundation-breadcrumbs; */
+/*   @include foundation-button-group; */
+  @include foundation-callout;
+  @include foundation-close-button; 
+/*   @include foundation-drilldown-menu; */
+  @include foundation-dropdown;
+  @include foundation-dropdown-menu;
+/*   @include foundation-flex-video; */
+/*   @include foundation-label; */
+/*   @include foundation-media-object; */
+  @include foundation-menu;
+  @include foundation-menu-icon;
+  @include foundation-off-canvas;
+/*   @include foundation-orbit; */
+/*   @include foundation-pagination; */
+/*   @include foundation-progress-bar; */
+/*   @include foundation-slider; */
+/*   @include foundation-sticky; */
+  @include foundation-reveal;
+/*   @include foundation-switch; */
+/*   @include foundation-table; */
+/*   @include foundation-tabs; */
+/*   @include foundation-thumbnail; */
+  @include foundation-title-bar;
+/*   @include foundation-tooltip; */
+  @include foundation-top-bar;
+
 
 @import 'spinner';
 @import 'printer';
@@ -67,3 +110,127 @@ header {
 	}
 }
 
+/* Menu style */
+ul.menu li.title {
+    background: #444444 none repeat scroll 0 0;
+    border-bottom: medium none;
+    border-top: 1px solid #5e5e5e;
+    color: #999999;
+    display: block;
+    font-size: 0.66667rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.3rem 0.83333rem;
+    text-transform: uppercase;
+}
+
+ul.menu li a{
+  color: #fff;
+}
+
+ul.menu li a:hover{
+  background: #242424 none repeat scroll 0 0;
+}
+
+/*Offcanvas left*/
+.off-canvas-wrapper-inner .position-left{
+  background: #333 none repeat scroll 0 0;
+  bottom: 0;
+  box-sizing: content-box;
+}
+
+/*Sub-nav*/
+header .sub-nav {
+	clear: right;
+}
+
+.sub-nav {
+	display: block;
+	margin: -0.25rem 0 1.125rem;
+	overflow: hidden;
+	padding-top: 0.25rem;
+	width: auto;
+}
+.right {
+	float: right !important;
+}
+
+.sub-nav dd, .sub-nav dt, .sub-nav li {
+	color: #999;
+	float: left;
+	font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+	font-size: 0.875rem;
+	font-weight: 400;
+	margin-bottom: 0;
+	margin-left: 1rem;
+}
+
+.sub-nav dd.active a, .sub-nav dt.active a, .sub-nav li.active a {
+	background: #008cba none repeat scroll 0 0;
+	border-radius: 3px;
+	color: #fff;
+	cursor: default;
+	font-weight: 400;
+	padding: 0.1875rem 1rem;
+}
+.sub-nav dd a, .sub-nav dt a, .sub-nav li a {
+	color: #999;
+	padding: 0.1875rem 1rem;
+	text-decoration: none;
+}
+
+/*Errors forms*/
+small.error, span.error {
+	background: #f04124 none repeat scroll 0 0;
+	color: #fff;
+	display: block;
+	font-size: 0.75rem;
+	font-style: italic;
+	font-weight: 400;
+	margin-bottom: 1rem;
+	margin-top: -1px;
+	padding: 0.375rem 0.5625rem 0.5625rem;
+}
+
+small {
+	font-size: 60%;
+	line-height: inherit;
+}
+
+input.error, select.error, textarea.error {
+	margin-bottom: 0;
+}
+
+.alert-box.radius {
+	border-radius: 3px;
+}
+.flash-alert {
+	margin: 1em 20% 0;
+}
+.alert-box {
+	background-color: #008cba;
+	border-color: #0078a0;
+	border-style: solid;
+	border-width: 1px;
+	color: #fff;
+	display: block;
+	font-size: 0.8125rem;
+	font-weight: 400;
+	margin-bottom: 1.25rem;
+	padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+	position: relative;
+	transition: opacity 300ms ease-out 0s;
+}
+
+.alert-box .close {
+	background: inherit;
+	color: #333;
+	font-size: 1.375rem;
+	line-height: 0.9;
+	margin-top: -0.6875rem;
+	opacity: 0.3;
+	padding: 0 6px 4px;
+	position: absolute;
+	right: 0.25rem;
+	top: 50%;
+}

@@ -2,6 +2,7 @@
 
 use App\Currency;
 use Carbon\Carbon;
+use App\Formatters\ExcelFormatter;
 
 class SampleReport extends ReportController implements ReportInterface
 {
@@ -15,11 +16,12 @@ class SampleReport extends ReportController implements ReportInterface
 	public function __construct()
 	{
 		// Add extra variables to the view
-		/*$this->data['formats'] = [
+		$this->data['formats'] = [
 			'web' => _('Web'),
-			'json' => _('Json'),
+			'pdf' => _('PDF'),
 			'xls' => _('Excel')
-		];*/
+		];
+
 		$this->data['group_by'] = [
 			'day'   => _('Day'),
 			'week'  => _('Week'),
@@ -38,6 +40,7 @@ class SampleReport extends ReportController implements ReportInterface
 				'date1'    => [_('From date'), 'required|date'],
 				'date2'    => [_('To date'), 'required|date'],
 				'group_by' => [_('Group by'), 'required|in:' . implode(array_keys($this->data['group_by']), ',')],
+				'format' => [_('Formats'), 'required|in:' . implode(array_keys($this->data['formats']), ',')],
 			],
 			// Form default values
 			[
@@ -45,6 +48,7 @@ class SampleReport extends ReportController implements ReportInterface
 				'date1'    => Carbon::yesterday()->toDateString(),
 				'date2'    => Carbon::now()->toDateString(),
 				'group_by' => 'week',
+				'format'   => 'web'
 			]
 			// Off-canvas class
 			//,'custom-width-off-canvas'
@@ -100,4 +104,37 @@ class SampleReport extends ReportController implements ReportInterface
 
 		return $data;
 	}
+
+	/**
+     *  Format report results for Excel
+     *
+     * @param  array
+     * @param  mixed
+     * @return Response
+     */
+    public function formatXls(array $input, $results)
+    {
+        // Add descriptive tail to ambiguous labels
+        $labels = [
+			'number' => 'Number',
+			'currency'	=>	'Currency',
+			'percentage'	=>	'Percentage',
+		];
+
+        // ExcelFormatter expects data to be an array of arrays, but right now results are an array of objetcs.
+        $data = [];
+        foreach($results->rows as $value)
+            $data[] = get_object_vars($value);
+
+        // Create an Excel formatter
+        $formatter = new ExcelFormatter([_('Sheet') => $data], $labels);
+
+        $title = $this->makeExportTitle($input, $this->title());
+
+       // Set filename
+        $formatter->setFileName($title);
+
+        // Convert to file
+        return $formatter->format();
+    }
 }

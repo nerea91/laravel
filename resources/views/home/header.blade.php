@@ -1,4 +1,4 @@
-<header class="hide-for-small">
+<header class="hide-for-small-only">
 	<div class="row">
 
 		<div class="medium-5 columns">
@@ -11,12 +11,12 @@
 			{{-- Button to change language --}}
 
 			@if ($allLanguagesButCurrent->count())
-			<a href="#" data-dropdown="language-list" class="tiny secondary button dropdown right">{{ $appLanguage->name }}</a>
-			<ul id="language-list" data-dropdown-content class="f-dropdown content-disabled text-left">
+			<a  data-toggle="language-list" class="tiny secondary button dropdown right">{{ $appLanguage->name }}</a>
+			<div id="language-list" data-dropdown data-auto-focus="true" class="dropdown-pane">
 				@foreach ($allLanguagesButCurrent as $l)
-				<li>{!! link_to_route('language.set', $l->name, ['code' => $l->code]) !!}</li>
+				<div>{!! link_to_route('language.set', $l->name, ['code' => $l->code]) !!}</div>
 				@endforeach
-			</ul>
+			</div>
 			@endif
 
 			{{-- Render menu sections --}}

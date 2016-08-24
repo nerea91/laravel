@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-02 16:45+0800\n"
+"POT-Creation-Date: 2016-08-24 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,10 +235,19 @@ msgstr ""
 msgid "European Economic Area"
 msgstr ""
 
+msgid "Excel"
+msgstr ""
+
 msgid "Filter"
 msgstr ""
 
 msgid "First name"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Formats"
 msgstr ""
 
 msgid "Friday"
@@ -385,6 +394,9 @@ msgstr ""
 msgid "Options have been saved"
 msgstr ""
 
+msgid "PDF"
+msgstr ""
+
 #, php-format
 msgid "Page %d/%d"
 msgstr ""
@@ -519,6 +531,9 @@ msgid "Select"
 msgstr ""
 
 msgid "Send query"
+msgstr ""
+
+msgid "Sheet"
 msgstr ""
 
 msgid "Showing all resources"
@@ -850,6 +865,9 @@ msgstr ""
 msgid "We're really sorry but we couldn't find the page you requested on our servers"
 msgstr ""
 
+msgid "Web"
+msgstr ""
+
 msgid "Wednesday"
 msgstr ""
 
@@ -884,6 +902,14 @@ msgid "Your query has been sent!"
 msgstr ""
 
 msgid "Your user is not authorized to access this section"
+msgstr ""
+
+#, php-format
+msgid "_since_%s_from_%s_to_%s_of_%s"
+msgstr ""
+
+#, php-format
+msgid "_since_%s_to_%s"
 msgstr ""
 
 msgid "a mistyped address"

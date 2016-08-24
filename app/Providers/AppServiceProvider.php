@@ -3,6 +3,7 @@
 use App\Validation\Validator as CustomValidator;
 use Illuminate\Support\ServiceProvider;
 use Validator;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
 		// Apply global language
 		//app('language')->apply(); NOTE: Moved to a middleware since Laravel 5 is broken and calling this here has no effect anymore
 
+		// keep url in plural
+		Route::singularResourceParameters(false);
+		
 		// Register our custom validator
 		Validator::resolver(function ($translator, $data, $rules, $messages) {
 			return new CustomValidator($translator, $data, $rules, $messages);

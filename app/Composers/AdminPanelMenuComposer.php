@@ -5,7 +5,7 @@ use App\User;
 use Stolz\Menu\Nodes\Flat;
 use Stolz\Menu\Nodes\Link;
 use Stolz\Menu\Nodes\Node;
-use Stolz\Menu\Renders\FoundationTopBar;
+use App\Renders\FoundationTopBar;
 
 class AdminPanelMenuComposer
 {
@@ -15,12 +15,15 @@ class AdminPanelMenuComposer
 
 		// Build menu tree for the top bar
 		$menu = new Node('menu', [
-			self::buildTree()->addChild(ReportsMenuComposer::buildTree()),
-			self::buildSecondaryTree(),
+			self::buildTree()->addChild(ReportsMenuComposer::buildTree())
+		]);
+
+		$rightmenu = new Node('rightmenu', [
+			self::buildSecondaryTree()
 		]);
 
 		// Pass menu to the view
-		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge());
+		$view->with('menu', $menu->setRender(new FoundationTopBar())->purge())->with('rightmenu', $rightmenu->setRender(new FoundationTopBar())->purge());
 	}
 
 	/**
@@ -167,9 +170,9 @@ class AdminPanelMenuComposer
 		}
 
 		// Section: User panel
-		$userPanel = new Node($user->name());
+		$userPanel = new Node($user->getName());
 		$userPanel->addChild(new Link(route('user.options'), _('Options')));
-		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert', 'style' => 'height:auto;padding:0']));
+		$userPanel->addChild(new Link(route('logout'), _('Logout'), ['class' => 'button alert expanded', 'style' => 'height:auto;']));
 
 		return compact('changeLanguage', 'userPanel');
 	}

@@ -59,7 +59,7 @@ class SyncDatabaseMetaTablesCommand extends Command
 			$verbose and $this->comment("Comparing table '$table'");
 
 			// Get existing records on local database
-			$exisiting = (DB::table($table)->lists($primaryKey)) ?: [ - 1];
+			$exisiting = (DB::table($table)->pluck($primaryKey)) ?: [ - 1];
 
 			// Get new records on remote database
 			$new = $connection->table($table)->whereNotIn($primaryKey, $exisiting)->get();

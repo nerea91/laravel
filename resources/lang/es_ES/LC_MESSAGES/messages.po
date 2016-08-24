@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-02 16:45+0800\n"
+"POT-Creation-Date: 2016-08-24 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,11 +234,20 @@ msgstr "Error"
 msgid "European Economic Area"
 msgstr "Espacio Económico Europeo"
 
+msgid "Excel"
+msgstr ""
+
 msgid "Filter"
 msgstr "Filtrar"
 
 msgid "First name"
 msgstr "Nombre"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Formats"
+msgstr "Formatos"
 
 msgid "Friday"
 msgstr "Viernes"
@@ -384,6 +393,9 @@ msgstr "Opciones"
 msgid "Options have been saved"
 msgstr "Se han guardado las opciones"
 
+msgid "PDF"
+msgstr ""
+
 #, php-format
 msgid "Page %d/%d"
 msgstr "Página %d/%d"
@@ -520,6 +532,9 @@ msgstr "Seleccionar"
 msgid "Send query"
 msgstr "Enviar consulta"
 
+msgid "Sheet"
+msgstr "Hoja"
+
 msgid "Showing all resources"
 msgstr "Mostrando todos"
 
@@ -573,7 +588,6 @@ msgstr ":attribute no conincide con el valor de confirmación."
 
 msgid "The :attribute does not match the format :format."
 msgstr ":attribute no cumple el formato :format."
-
 
 msgid "The :attribute field is required unless :other is in :values."
 msgstr ":attribute es obligatorio a menos que :other sea :values."
@@ -850,6 +864,9 @@ msgstr "Lamentamos mucho las molestias, estamos trabajando para resolverlo lo an
 msgid "We're really sorry but we couldn't find the page you requested on our servers"
 msgstr "Lo sentimos mucho pero no hemos podido encontrar la página que has solicitado"
 
+msgid "Web"
+msgstr ""
+
 msgid "Wednesday"
 msgstr "Miércoles"
 
@@ -885,6 +902,14 @@ msgstr "Tu consulta ha sido enviada"
 
 msgid "Your user is not authorized to access this section"
 msgstr "Tu usuario no está autorizado a acceder a esta sección"
+
+#, php-format
+msgid "_since_%s_from_%s_to_%s_of_%s"
+msgstr "_desde_%s_del_%s_hasta_%s_del_%s"
+
+#, php-format
+msgid "_since_%s_to_%s"
+msgstr "_desde_%s_hasta_%s"
 
 msgid "a mistyped address"
 msgstr "una dirección mal escrita"

@@ -135,10 +135,6 @@ abstract class Model extends UpstreamModel
 		$rules = $this->getRules();
 		foreach($rules as $field => &$fieldRules)
 		{
-			/* BUG on laravel 5.3 the field is validate even its not required and its not present */
-			if( ! isset($this->attributes[$field]) and !in_array('required', $fieldRules))
-				unset($rules[$field]);
-
 			foreach($fieldRules as $ruleName => &$ruleData)
 			{
 				if($ruleData === 'unique')

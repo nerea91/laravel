@@ -52,7 +52,7 @@ class AuthProvider extends Model
 		$this->setRules([
 			'name'        => [_('Name'), 'required|alpha_num|max:32|unique'],
 			'title'       => [_('Title'), 'required|max:32|unique'],
-			'login_count' => [_('Login count'), 'integer|min:0'],
+			'login_count' => [_('Login count'), 'nullable|integer|min:0'],
 		]);
 	}
 

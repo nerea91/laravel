@@ -48,7 +48,7 @@ class Option extends Model
 		$this->setRules([
 			'name'        => [_('Internal name'), 'required|min:3|max:32|alpha_dash|unique'],
 			'label'       => [_('Label'), 'required|max:64|unique'],
-			'description' => [_('Description'), 'max:128'],
+			'description' => [_('Description'), 'nullable|max:128'],
 			'value'       => [_('Value'), 'required|max:64'],
 			'assignable'  => [_('Assignable'), 'required|max:1|min:0'],
 			'rules'       => [_('Validation rules'), 'required|max:255'],

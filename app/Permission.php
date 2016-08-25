@@ -16,7 +16,7 @@ class Permission extends Model
 		parent::__construct($attributes);
 		$this->setRules([
 			'name'        => [_('Name'), 'required|max:64'],
-			'description' => [_('Description'), 'max:255'],
+			'description' => [_('Description'), 'nullable|max:255'],
 			'type_id'     => [_('Type'), 'required|exists:permissiontypes,id'],
 		]);
 	}

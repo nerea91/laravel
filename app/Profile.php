@@ -50,7 +50,7 @@ class Profile extends Model
 		parent::__construct($attributes);
 		$this->setRules([
 			'name'        => [_('Name'), 'required|max:64|unique'],
-			'description' => [_('Description'), 'max:255'],
+			'description' => [_('Description'), 'nullable|max:255'],
 		]);
 	}
 

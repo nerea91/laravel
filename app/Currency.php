@@ -49,16 +49,16 @@ class Currency extends Model
 		$this->setRules([
 			'code'                => [_('Code'), 'required|size:3|regex:/^[A-Z]+$/|unique'], // ISO 4217
 			'name'                => [_('Name'), 'required|max:64'],
-			'name2'               => [_('Alt. name'), 'max:64'],
-			'symbol'              => [_('Symbol'), 'max:8'],
-			'symbol2'             => [_('Alt. symbol'), 'max:8'],
+			'name2'               => [_('Alt. name'), 'nullable|max:64'],
+			'symbol'              => [_('Symbol'), 'nullable|max:8'],
+			'symbol2'             => [_('Alt. symbol'), 'nullable|max:8'],
 			'symbol_position'     => [_('Symbol position'), 'required|integer'],
 			'decimal_separator'   => [_('Decimal separator'), 'required|size:1'],
-			'thousands_separator' => [_('Thousands separator'), 'size:1'],
-			'subunit'             => [_('Subunit'), 'max:16'],
-			'subunit2'            => [_('Alt. subunit'), 'max:16'],
-			'unicode_decimal'     => [_('Unicode decimal'), 'max:32'],
-			'unicode_hexadecimal' => [_('Unicode hexadecimal'), 'max:16'],
+			'thousands_separator' => [_('Thousands separator'), 'nullable|size:1'],
+			'subunit'             => [_('Subunit'), 'nullable|max:16'],
+			'subunit2'            => [_('Alt. subunit'), 'nullable|max:16'],
+			'unicode_decimal'     => [_('Unicode decimal'), 'nullable|max:32'],
+			'unicode_hexadecimal' => [_('Unicode hexadecimal'), 'nullable|max:16'],
 		]);
 	}
 

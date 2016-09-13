@@ -17,15 +17,18 @@ if( ! function_exists('format_number'))
 	 *
 	 * @return void
 	 */
-	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $symbolToTheRight = true)
+	function format_number($number, $precision = 2, $decimalSep = '.', $thousandsSep = null, $symbol = null, $symbolToTheRight = true, $trimMeaninglessZeros = true)
 	{
+		if($number == 0)
+			return '-';
+			
 		// Format number
 		$number = floatval(sprintf('%F', $number));
 		$precision = intval($precision);
 		$formatted = number_format($number, $precision, $decimalSep, $thousandsSep);
 
 		// Trim meaningless ending zeros
-		if($precision and strlen($decimalSep))
+		if($trimMeaninglessZeros and $precision and strlen($decimalSep))
 		{
 			$safeDecimalSep = preg_quote($decimalSep, '/');
 			$meaningless = str_repeat(0, $precision);
@@ -85,8 +88,8 @@ if( ! function_exists('currency'))
 	 *
 	 * @return void
 	 */
-	function currency($number, App\Currency $currency, $precision = 2)
+	function currency($number, App\Currency $currency, $precision = 2, $trimMeaninglessZeros = false)
 	{
-		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator, $currency->symbol, $currency->symbol_position);
+		return format_number($number, $precision, $currency->decimal_separator, $currency->thousands_separator, $currency->symbol, $currency->symbol_position, $trimMeaninglessZeros);
 	}
 }

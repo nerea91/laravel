@@ -92,7 +92,7 @@ abstract class MakeSectionCommand extends Command
 		parent::__construct();
 
 		// Set files path
-		$this->routesFile = app_path('Http/routes.php');
+		$this->routesFile = base_path('routes/web.php');
 		$this->permissionSeederFile = base_path('database/seeds/PermissionsTableSeeder.php');
 		$this->aclFile = config_path('acl.php');
 	}

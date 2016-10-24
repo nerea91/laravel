@@ -15,11 +15,11 @@ class AppServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		// Apply global language
-		//app('language')->apply(); NOTE: Moved to a middleware since Laravel 5 is broken and calling this here has no effect anymore
+		app('language')->apply();
 
 		// keep url in plural
 		Route::singularResourceParameters(false);
-		
+
 		// Register our custom validator
 		Validator::resolver(function ($translator, $data, $rules, $messages) {
 			return new CustomValidator($translator, $data, $rules, $messages);

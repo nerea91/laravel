@@ -91,10 +91,10 @@ function doFrontEnd(mix)
 	];
 
 	// Build CSS
-	mix.sass('master.scss', publicCssDir + 'master.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
+	mix.sass('master.scss', publicCssDir + 'master.css', null, { includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets']});
 
 	// Build JavaScript
-	mix.babel(components, publicJsDir + 'master.js', foundationDir);
+	mix.webpack(components, publicJsDir + 'master.js', foundationDir);
 
 	components = [
 	// Vendor dependencies
@@ -146,10 +146,10 @@ function doBackend(mix)
 	];
 
 	// Build CSS
-	mix.sass('admin.scss', publicCssDir + 'admin.css', {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
+	mix.sass('admin.scss', publicCssDir + 'admin.css', null, {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
-	mix.babel(components, publicJsDir + 'admin.js', foundationDir);
+	mix.webpack(components, publicJsDir + 'admin.js', foundationDir);
 
 	components = [
 	// Vendor dependencies

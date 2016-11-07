@@ -149,7 +149,7 @@ function doBackend(mix)
 	mix.sass('admin.scss', publicCssDir + 'admin.css', null, {includePaths: [foundationDir + 'scss/', bowerDir + 'spinners/stylesheets', bowerDir + 'motion-ui']});
 
 	// Build JavaScript
-	mix.babel(components, publicJsDir + 'admin.js', foundationDir);
+	mix.webpack(components, publicJsDir + 'admin.js', foundationDir);
 
 	components = [
 	// Vendor dependencies

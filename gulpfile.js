@@ -4,6 +4,8 @@ const gulp = require('gulp'),
 	rename = require("gulp-rename"), //use to save file with dest
 	argv = require('yargs').argv; // use to get arguments
 
+require('laravel-elixir-vue-2');
+
 
 elixir.config.sourcemaps = false;
 
@@ -18,9 +20,10 @@ var publicJsDir = publicDir + '/js/';           // public/js/
 // ===== MAIN ==================================================================
 
 elixir(function(mix) {
-	doCommon(mix);    // Assets required in both master and admin pages
-	doFrontEnd(mix);  // Assets required only in the master page
-	doBackend(mix);   // Assets required only in the admin page
+	doCommon(mix);    		// Assets required in both master and admin pages
+	doFrontEnd(mix);  		// Assets required only in the master page
+	doBackend(mix);   		// Assets required only in the admin page
+	//doVueComponents(mix); 	// Vue components
 });
 
 /*
@@ -169,5 +172,23 @@ function doBackend(mix)
 	];
 
 	mix.scripts(components, publicJsDir + 'admin.js', foundationDir);
+
+}
+
+// ===== VUE ===============================================================
+
+function doVueComponents(mix)
+{
+
+    var config =  elixir.webpack.mergeConfig({
+          entry: {
+            welcome: './resources/assets/js/pages/welcom.js',
+            //blog: './resources/assets/js/pages/blog.js'
+          },
+          output: {
+            filename: '[name].js' // Template based on keys in entry above
+          }
+       });
+	   mix.webpack('components.js', null, null, null, config);
 
 }

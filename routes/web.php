@@ -14,6 +14,10 @@
 // Home page
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showMainPage']);
 
+Route::get('welcome', ['as' => 'welcome', function(){
+	return view('welcome');
+}]);
+
 // Change application language
 Route::get('language/{code}', ['as' => 'language.set', function ($code) {
 	if($language = App\Language::whereCode($code)->first())

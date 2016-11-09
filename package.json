@@ -10,7 +10,10 @@
     "gulp-babel": "^6.1.2",
     "gulp-rename": "^1.2.2",
     "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.9",
+    "vue": "^2.0.5",
+    "vue-resource": "^1.0.3",
     "yargs": "^4.7.1"
   }
 }

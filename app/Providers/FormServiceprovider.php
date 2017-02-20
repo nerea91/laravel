@@ -24,7 +24,7 @@ class FormServiceProvider extends ServiceProvider
 			$form = new FormBuilder(
 				$app['html'],
 				$app['url'],
-				$app['session.store']->getToken(),
+				$app['session.store']->token(),
 				$app['translator'],
 				$app['session.store']->get('errors')
 			);
@@ -33,7 +33,7 @@ class FormServiceProvider extends ServiceProvider
 		});
 
         $this->app->singleton('form', function ($app) {
-            $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken(), $app['translator'], $app['session.store']->get('errors'));
+            $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->token(), $app['translator'], $app['session.store']->get('errors'));
 
             return $form->setSessionStore($app['session.store']);
         });

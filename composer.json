@@ -6,16 +6,16 @@
 	"type": "project",
 	"require": {
 		"php": ">=5.6.4",
-		"laravel/framework": "5.3.*",
+		"laravel/framework": "5.4.*",
 		"laravel/socialite": "~2.0",
 		"league/commonmark": "dev-master",
 		"rap2hpoutre/laravel-log-viewer": "0.3.0",
 		"spatie/laravel-tail": "~1.0",
 		"stolz/assets": "dev-master",
-		"laravelcollective/html": "5.3.*",
+		"laravelcollective/html": "^5.4",
 		"stolz/menu": "dev-master",
 		"barryvdh/laravel-snappy": "^0.3.0",
-		"maatwebsite/excel": "~2.0.0"
+		"maatwebsite/excel": "~2.1.0"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",

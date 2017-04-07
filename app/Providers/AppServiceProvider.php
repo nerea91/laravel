@@ -14,6 +14,13 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+
+		// Detect global language
+		$this->app->singleton('language', function () {
+
+			return \App\Language::detect();
+		});
+
 		// Apply global language
 		app('language')->apply();
 
@@ -37,12 +44,6 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		// Detect global language
-		$this->app->singleton('language', function () {
-
-			return \App\Language::detect();
-		});
-
 		// Load environment Specific Service Providers...
 		switch($this->app->environment())
 		{

@@ -71,7 +71,8 @@ class ExcelFormatter extends Formatter implements FormatterInterface
 		$labels = $this->getLabels();
 
 		// Create file
-		$file = app('excel')->create($this->filename);
+		$file = \Excel::create($this->filename);
+
 
 		// Add sheets to file
 		foreach($data as $sheetName => $sheetData)

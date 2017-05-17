@@ -34,7 +34,7 @@ Route::post('contact', ['as' => 'contact.send', 'uses' => 'HomeController@sendCo
 Route::get('logs', 'LogViewerController@showLogs');
 
 // Guest user area
-Route::group(['https', 'middleware' => 'guest', 'prefix' => 'login'], function () {
+Route::group(['middleware' => ['guest', 'force_https_url_scheme'], 'prefix' => 'login'], function () {
 
 	// Login with native authentication
 	Route::get('/', ['as' => 'login', 'uses' => 'AuthController@showLoginForm']);
@@ -46,7 +46,7 @@ Route::group(['https', 'middleware' => 'guest', 'prefix' => 'login'], function (
 });
 
 // Authenticated user area
-Route::group(['https', 'middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'force_https_url_scheme']], function () {
 
 	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 

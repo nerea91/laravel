@@ -15,7 +15,8 @@
 		"laravelcollective/html": "^5.4",
 		"stolz/menu": "dev-master",
 		"barryvdh/laravel-snappy": "^0.3.0",
-		"maatwebsite/excel": "~2.1.0"
+		"maatwebsite/excel": "~2.1.0",
+		"shin1x1/laravel-force-https-url-scheme": "^1.1"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "dev-master",

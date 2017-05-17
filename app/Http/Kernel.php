@@ -48,5 +48,6 @@ class Kernel extends HttpKernel
 		'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
 	    'can' => \Illuminate\Auth\Middleware\Authorize::class,
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+		'force_https_url_scheme' => \Shin1x1\ForceHttpsUrlScheme\ForceHttpsUrlScheme::class,
 	];
 }

@@ -12,6 +12,7 @@
 use Collective\Html\HtmlBuilder;
 use Collective\Html\FormBuilder;
 use Illuminate\Support\MessageBag as MessageBag;
+use Illuminate\Http\Request;
 
 class Foundation extends FormBuilder
 {
@@ -29,16 +30,16 @@ class Foundation extends FormBuilder
      * @param  \Illuminate\Contracts\Routing\UrlGenerator $url
      * @param  \Illuminate\Contracts\View\Factory         $view
      * @param  string                                     $token
-
+	 * @param     Illuminate\Http\Request                 $request
 	 * @param  Illuminate\Translation\Translator $translator
 	 * @param  mixed                             $errors
 	 *
 	 * @return void
 	 */
-	public function __construct($html, $url, $view, $token, $translator, $errors = null)
+	public function __construct($html, $url, $view, $token, Request $request = null, $translator, $errors = null)
 	{
 		$this->local_errors = ($errors != null ? $errors : new MessageBag);
-		parent::__construct($html, $url, $view, $token, $translator);
+		parent::__construct($html, $url, $view, $token, $request, $translator);
 	}
 
 	/**
@@ -96,10 +97,11 @@ class Foundation extends FormBuilder
 	 * @param  array   $list
 	 * @param  string  $selected
 	 * @param  array   $options
+	 * @param  array   $selectAttributes
 	 *
 	 * @return string
 	 */
-	public function select($name, $list = array(), $selected = null, $options = [])
+	public function select($name, $list = [], $selected = NULL, array $options = [], array $selectAttributes = [])
 	{
 		$this->addErrorClass($name, $options);
 		$tags['input'] = parent::select($name, $list, $selected, $options);

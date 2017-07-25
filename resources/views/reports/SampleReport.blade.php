@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 	{{-- JS datepicker --}}
 	@include('reports.datepicker', ['selector' => '#date1,#date2'])
-	@include('reports.submit')
+	@include('reports.partials.submit')
 
 });
 </script>

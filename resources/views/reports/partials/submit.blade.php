@@ -5,8 +5,7 @@ $( "form" ).submit(function( event ) {
         $('input[type="submit"]').prop('disabled', false);
         $(window).on('blur', function() {
     		$('span.spinner').remove();
+            $('#formatweb').prop('checked', true);
     	});
-
     }
-
 });

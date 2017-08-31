@@ -26,7 +26,7 @@ class DatabaseBackupCommand extends Command
 	 *
 	 * @return void
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Create destination dir if it does not exist
 		$this->destination = base_path('database/backups');

@@ -19,19 +19,19 @@ class FormServiceProvider extends ServiceProvider
         });
 
 		// Bind 'form' shared component to the IoC container
-		$this->app->singleton('form', function ($app) {
-
-			$form = new FormBuilder(
-				$app['html'],
-				$app['url'],
-				$app['session.store']->token(),
-				$app['request'],
-				$app['translator'],
-				$app['session.store']->get('errors')
-			);
-
-			return $form->setSessionStore($app['session.store']);
-		});
+		// $this->app->singleton('form', function ($app) {
+		//
+		// 	$form = new FormBuilder(
+		// 		$app['html'],
+		// 		$app['url'],
+		// 		$app['session.store']->token(),
+		// 		$app['request'],
+		// 		$app['translator'],
+		// 		$app['session.store']->get('errors')
+		// 	);
+		//
+		// 	return $form->setSessionStore($app['session.store']);
+		// });
 
         $this->app->singleton('form', function ($app) {
             $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->token(), $app['request'], $app['translator'], $app['session.store']->get('errors'));

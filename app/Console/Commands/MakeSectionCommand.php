@@ -102,7 +102,7 @@ abstract class MakeSectionCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Read command parameters and options.
 		$this->route = $this->argument('route');

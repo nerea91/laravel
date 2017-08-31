@@ -1,5 +1,6 @@
+require('./foundation');
 if(typeof $ != 'undefined') {
-	
+
 	var $doc = $(document), $window = $(window);
 	$doc.ready(function() {
 		//Toggle confirmation modals

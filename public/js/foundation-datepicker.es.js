@@ -60,86 +60,37 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 72);
+/******/ 	return __webpack_require__(__webpack_require__.s = 76);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 72:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(73);
+module.exports = __webpack_require__(77);
 
 
 /***/ }),
 
-/***/ 73:
+/***/ 77:
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  var switched = false;
-  var updateTables = function updateTables() {
-    if ($(window).width() < 767 && !switched) {
-      switched = true;
-      $("table.responsive").each(function (i, element) {
-        splitTable($(element));
-      });
-      return true;
-    } else if (switched && $(window).width() > 767) {
-      switched = false;
-      $("table.responsive").each(function (i, element) {
-        unsplitTable($(element));
-      });
-    }
-  };
+/**
+ * Spanish translation for foundation-datepicker
+ * Bruno Bonamin <bruno.bonamin@gmail.com>
+ */
+;(function($){
+	$.fn.fdatepicker.dates['es'] = {
+		days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+		daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+		daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+		months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+		monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+		today: "Hoy"
+	};
+}(jQuery));
 
-  $(window).on('load', updateTables);
-  $(window).on("redraw", function () {
-    switched = false;updateTables();
-  }); // An event to listen for
-  $(window).on("resize", updateTables);
-
-  function splitTable(original) {
-    original.wrap("<div class='table-wrapper' />");
-
-    var copy = original.clone();
-    copy.find("td:not(:first-child), th:not(:first-child)").css("display", "none");
-    copy.removeClass("responsive");
-
-    original.closest(".table-wrapper").append(copy);
-    copy.wrap("<div class='pinned' />");
-    original.wrap("<div class='scrollable' />");
-
-    setCellHeights(original, copy);
-  }
-
-  function unsplitTable(original) {
-    original.closest(".table-wrapper").find(".pinned").remove();
-    original.unwrap();
-    original.unwrap();
-  }
-
-  function setCellHeights(original, copy) {
-    var tr = original.find('tr'),
-        tr_copy = copy.find('tr'),
-        heights = [];
-
-    tr.each(function (index) {
-      var self = $(this),
-          tx = self.find('th, td');
-
-      tx.each(function () {
-        var height = $(this).outerHeight(true);
-        heights[index] = heights[index] || 0;
-        if (height > heights[index]) heights[index] = height;
-      });
-    });
-
-    tr_copy.each(function (index) {
-      $(this).height(heights[index]);
-    });
-  }
-});
 
 /***/ })
 

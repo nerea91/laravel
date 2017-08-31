@@ -17,8 +17,8 @@ return [
 		// Datepicker https://github.com/najlepsiwebdesigner/foundation-datepicker
 		'datepicker' => [
 			'datepicker.css',
-			'datepicker.js',
-			'locales/foundation-datepicker.es.js'
+			'foundation-datepicker.js',
+			'foundation-datepicker.es.js'
 		],
 
 		// Responsive tables http://zurb.com/playground/responsive-tables

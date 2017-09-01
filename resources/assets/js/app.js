@@ -2,13 +2,13 @@ if(typeof $ != 'undefined') {
 
 	var $doc = $(document), $window = $(window);
 
-	$doc.ready(function() {
+	/*$doc.ready(function() {
 
 		// Zurb Foundation
 		if($.fn.foundation)
 			$doc.foundation();
 
-	});
+	});*/
 
 	//Checkboxes togglers
 	$('.checkbox_togglers a').click(function(e) {

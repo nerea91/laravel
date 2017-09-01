@@ -185,6 +185,14 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed]{margin
 	top: auto;
 }
 
+.drilldown a, .drilldown .is-drilldown-submenu{
+    background: $topbar-background;
+}
+
+.menu{
+    background: $topbar-background;
+}
+
 /*Panel*/
 .panel {
 	background: #f2f2f2 none repeat scroll 0 0;

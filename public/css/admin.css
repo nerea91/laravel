@@ -7000,6 +7000,15 @@ div[data-magellan-expedition-clone] + div[data-magellan-expedition=fixed] {
   top: auto;
 }
 
+.drilldown a,
+.drilldown .is-drilldown-submenu {
+  background: #2e2e2e;
+}
+
+.menu {
+  background: #2e2e2e;
+}
+
 /*Panel*/
 
 .panel {

@@ -26,7 +26,7 @@ class GettextCommand extends Command
 	 *
 	 * @return void
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Set directories
 		$inputPath = base_path('resources/views');
@@ -59,7 +59,7 @@ class GettextCommand extends Command
 			$human = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($f->getRelativePathname(), DIRECTORY_SEPARATOR));
 
 			File::move($outputPath . DIRECTORY_SEPARATOR . sha1($file). '.php', $outputPath . DIRECTORY_SEPARATOR . $human);
-			
+
 		}
 
 		if($compiled)

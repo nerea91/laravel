@@ -21,7 +21,7 @@ class MakeReportCommand extends MakeSectionCommand
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Initialize class properties
 		$this

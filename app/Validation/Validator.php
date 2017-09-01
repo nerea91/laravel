@@ -30,7 +30,7 @@ class Validator extends UpstreamValidator
 	 *
 	 * @return bool
 	 */
-	protected function validateIn($attribute, $value, $parameters)
+	public function validateIn($attribute, $value, $parameters)
 	{
 		return (is_array($value)) ? count(array_diff($value, $parameters)) === 0 : in_array($value, $parameters);
 	}

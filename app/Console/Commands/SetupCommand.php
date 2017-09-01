@@ -24,7 +24,7 @@ class SetupCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Superuser
 		if( ! $this->option('no-superuser'))

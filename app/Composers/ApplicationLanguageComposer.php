@@ -8,7 +8,7 @@ class ApplicationLanguageComposer
 	public function compose($view)
 	{
 		// Application language
-		$view->with('appLanguage', $appLanguage = app('language'));
+		$view->with('appLanguage', $appLanguage = session('language'));
 
 		// All languages (for implementing https://support.google.com/webmasters/answer/189077)
 		$url = parse_url(Request::url());

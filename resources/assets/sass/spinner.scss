@@ -1,5 +1,5 @@
 // Spinner
-@import 'spinners';
+@import "node_modules/spinners/stylesheets/spinners";
 .spinner {
 	@include spinner(/*border-color $base*/);
 	position: absolute;

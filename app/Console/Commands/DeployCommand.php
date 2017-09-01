@@ -46,7 +46,7 @@ class DeployCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Connection (Server) that will be used
 		$connection = $this->argument('connection') ?: $this->defaultConnection;

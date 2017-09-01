@@ -38,7 +38,7 @@ class SyncDatabaseMetaTablesCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Get tables from command line
 		$tables = ($tmp = $this->option('tables')) ? array_only($this->tables, explode(',', $tmp)) : $this->tables;

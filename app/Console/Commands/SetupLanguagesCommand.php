@@ -40,7 +40,7 @@ class SetupLanguagesCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Check if there are any languages available
 		$this->allLanguages = $this->getLanguages(true);

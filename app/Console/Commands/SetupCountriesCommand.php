@@ -40,7 +40,7 @@ class SetupCountriesCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Check if there are any countries available
 		$this->allCountries = $this->getCountries(true);

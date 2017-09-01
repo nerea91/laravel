@@ -156,7 +156,8 @@ class AdminPanelMenuComposer
 	public static function makeSecondarySections(User $user)
 	{
 		// Section: Change application language
-		$currentLanguage = app('language');
+		$currentLanguage = session('language');
+
 		$allLanguages = Language::getAllByPriority();
 		$changeLanguage = new Node($currentLanguage);
 		if($allLanguages->count() > 1)

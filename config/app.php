@@ -2,6 +2,18 @@
 
 return [
 	/*
+   |--------------------------------------------------------------------------
+   | Application Name
+   |--------------------------------------------------------------------------
+   |
+   | This value is the name of your application. This value is used when the
+   | framework needs to place the application's name in a notification or
+   | any other location as required by the application or its packages.
+   */
+
+   'name' => env('APP_NAME', 'Laravel'),
+
+	/*
 	|--------------------------------------------------------------------------
 	| Application Environment
 	|--------------------------------------------------------------------------
@@ -67,6 +79,18 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
+	| Application available Languages
+	|--------------------------------------------------------------------------
+	|
+	| A list of available languages defined from their ISO Language Codes codes, see more: http://www.w3schools.com/tags/ref_language_codes.asp.
+	| If the code isn't in the list, HomeController@language is set from fallback_locale value.
+	! To set new language, pelase create a folder in /resources/lang/{ISO-CODE}, create a flag image in public/img/{ISO-CODE}-flang.png
+	! and at least, add the ISO code in languages array.
+	*/
+	'languages' => ['en', 'es'],
+
+	/*
+	|--------------------------------------------------------------------------
 	| Application Fallback Locale
 	|--------------------------------------------------------------------------
 	|
@@ -107,6 +131,8 @@ return [
 	*/
 
 	'log' => env('APP_LOG', 'single'),
+
+	'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
 	/*
 	|--------------------------------------------------------------------------

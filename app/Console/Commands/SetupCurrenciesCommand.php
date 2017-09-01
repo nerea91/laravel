@@ -40,7 +40,7 @@ class SetupCurrenciesCommand extends Command
 	 *
 	 * @return mixed
 	 */
-	public function fire()
+	public function handle()
 	{
 		// Check if there are any currencies available
 		$this->allCurrencies = $this->getCurrencies(true);

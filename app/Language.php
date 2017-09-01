@@ -328,7 +328,10 @@ class Language extends Model
 	public function remember()
 	{
 		if($this->getKey())
+		{
 			Session::put('language', (object) $this->toArray());
+			session()->put('locale', $this->code);
+		}
 
 		return $this;
 	}

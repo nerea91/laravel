@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 <?php
-	app('language')->apply();
+	session('language')->apply();
 	Assets::add('master');
 ?>
 
@@ -34,4 +34,3 @@ h1{margin:.8em 0;}
 }
 </style>
 @stop
-

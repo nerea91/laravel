@@ -49,7 +49,7 @@ class AuthController extends Controller
 		// Validate form
 		$credentials = $request->only('username', 'password');
 		$rules = [
-			'username' => 'required|min:4|max:32|alpha_num',
+			'username' => 'required|min:4|max:32|alpha_dash',
 			'password' => 'required|min:5|max:80',
 		];
 		$validator = Validator::make($credentials, $rules)->setAttributeNames(['username' => _('Username'), 'password' => _('Password')]);

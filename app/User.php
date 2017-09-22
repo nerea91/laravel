@@ -431,7 +431,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function getOption($option)
 	{
-		if($userOption = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->first())
+		if($userOption = $this->options()->where('options.id', $option)->orWhere('options.name', $option)->where('user_id', auth()->user()->getKey())->first())
 			return $userOption->pivot->value;
 
 		return Option::where('id', $option)->orWhere('name', $option)->firstOrFail()->value;

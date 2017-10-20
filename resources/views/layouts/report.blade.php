@@ -11,14 +11,14 @@
 
 			{{-- REPORT HEADER --}}
 
-			
+
 			<div class="title-bar">
 				<div class="title-bar-left">
 					<button class="menu-icon" type="button" data-open="offCanvasLeft">&nbsp;</button>
 					<span class="title-bar-title">{{ _('Report') }} <small style="font-size:.9em">{{ $title }}</small></span>
 				</div>
 			</div>
-			
+
 
 			{{-- FORM --}}
 			<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
@@ -33,12 +33,14 @@
 
 				<br/>
 
-				@if ($errors->any() or ! $results)
+				@if ($errors->any() or ! $results or \Session::has('error'))
 				<div class="row">
 					<div class="small-12 medium-10 large-8 columns">
 
 						@if ($errors->any())
 							<div data-alert class="alert-box alert callout" data-closable>{{ ('Please fix form errors') }}{{--<a class="close">&times;</a>--}}</div>
+						@elseif (\Session::has('error'))
+							<div data-alert class="alert-box alert callout" data-closable>{{ \Session::get('error') }}</div>
 						@else
 							<div data-alert class="alert-box secondary">{{ _('No results found') }}. {{ _('Try with different form values') }}.{{--<a class="close">&times;</a>--}}</div>
 						@endif

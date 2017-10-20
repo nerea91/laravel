@@ -240,7 +240,19 @@ abstract class ReportController extends Controller
 
 		$title.='.pdf';
 
-		return $pdf->download($title);
+		try {
+			return $pdf->download($title);
+		} catch (\Exception $e) {
+			Session::flash('error', _('Error 126. Please contact the admin of the page.'));
+			$this->layout->title = $this->title;
+			$this->layout->offCanvasClass = $this->offCanvasClass;
+			$this->layout->action = Route::current()->getName() . '.validate';
+			$this->data['labels'] = (object) $this->labels;
+			$this->data['subtitle'] = $this->subtitle();$this->data['labels'] = (object) $this->labels;
+			$this->data['subtitle'] = $this->subtitle();
+			$this->layout->results = null;
+			return $this->layout(view($this->view, $this->data));
+		}
 	}
 
 	/**

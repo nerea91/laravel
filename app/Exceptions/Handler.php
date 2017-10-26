@@ -128,6 +128,14 @@ class Handler extends ExceptionHandler
 			'code'  => $code
 		];
 
+		/*
+		  Error for reports
+		*/
+		if($request->route()->getPrefix() == '/report')
+		{
+			return view('layouts.error_report', ['title' => _('Error'), 'message' => _('Something went wrong. Please contact the admin of the page.') ]);
+		}
+
 		return Response::view($view, $data, $code);
 	}
 

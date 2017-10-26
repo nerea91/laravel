@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 15:43+0200\n"
+"POT-Creation-Date: 2017-10-26 16:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,6 +230,9 @@ msgstr "Introduce tus datos de acceso"
 
 msgid "Error"
 msgstr "Error"
+
+msgid "Error 126. Please contact the admin of the page."
+msgstr "Error 126. Por favor contacte con el administrador de la página"
 
 msgid "European Economic Area"
 msgstr "Espacio Económico Europeo"
@@ -552,6 +555,9 @@ msgstr "Algo fue mal"
 
 msgid "Something went wrong while we were processing your request"
 msgstr "Algo ha ido mal al procesar tu petición"
+
+msgid "Something went wrong. Please contact the admin of the page."
+msgstr "Algo ha ido mal. Por favor contacte con el administrador de la página."
 
 msgid "Sorry, our site is currently undergoing scheduled maintenance"
 msgstr "Lo sentimos, estamos realizando un mantenimiento programado de la web"

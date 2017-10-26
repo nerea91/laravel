@@ -7,6 +7,7 @@ use Route;
 use Session;
 use Validator;
 use View;
+use \Symfony\Component\Debug\Exception\FatalThrowableError;
 
 abstract class ReportController extends Controller
 {
@@ -140,11 +141,23 @@ abstract class ReportController extends Controller
 		if(array_diff_key($this->defaultInput, Input::old()))
 			Session::flashInput($this->defaultInput);
 
-		// Get report results
-		$results = $this->get($input = array_only(Input::old(), array_keys($this->rules)));
+		try {
+			// Get report results
+			$results = $this->get($input = array_only(Input::old(), array_keys($this->rules)));
 
-		// Return formated results
-		return $this->format($input, $results);
+			// Return formated results
+			return $this->format($input, $results);
+		} catch (\Throwable $e) {
+			Session::flash('error', _('Something went wrong. Please contact the admin of the page.'));
+			return $this->format([], false);
+		}
+		catch (FatalThrowableError $e) {
+			Session::flash('error', _('Something went wrong. Please contact the admin of the page.'));
+			return $this->format([], false);
+		}catch (\Exception $e) {
+			Session::flash('error', _('Something went wrong. Please contact the admin of the page.'));
+			return $this->format([], false);
+		}
 	}
 
 	/**

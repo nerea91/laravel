@@ -31,7 +31,7 @@ class MakeReportCommand extends MakeSectionCommand
 		->setTestFile('ReportsTest.php');
 
 		// Fire command
-		parent::fire();
+		parent::handle();
 	}
 
 	/**

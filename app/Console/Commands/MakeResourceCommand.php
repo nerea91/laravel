@@ -31,7 +31,7 @@ class MakeResourceCommand extends MakeSectionCommand
 		->setTestFile('ResourceControllerTest.php');
 
 		// Fire command
-		parent::fire();
+		parent::handle();
 	}
 
 	/**

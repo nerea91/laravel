@@ -37,8 +37,7 @@
 			"resources/helpers/loader.php"
 		],
 		"classmap": [
-			"database/seeds",
-			"database/factories"
+			"database/seeds"
 		],
 		"psr-4": {
 			"App\\": "app/"

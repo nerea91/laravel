@@ -148,7 +148,7 @@ class MakeResourceCommand extends MakeSectionCommand
 		$content = str_replace(81, $this->permission + 1, $content);
 		$content = str_replace(82, $this->permission + 2, $content);
 		$content = str_replace(83, $this->permission + 3, $content);
-		$content = str_replace(100, 'TO' + 'DO', $content);
+		$content = str_replace(100, 'TODO', $content);
 
 		// Write new file
 		return (bool) file_put_contents($newFile, $content);

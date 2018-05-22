@@ -49,7 +49,7 @@ class MakeReportCommand extends MakeSectionCommand
 			$this->permissionType,
 			$this->class,
 			$this->sufix,
-			'TO' + 'DO'
+			'TODO'
 		);
 
 		return parent::addToSeeder($content);

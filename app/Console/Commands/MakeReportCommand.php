@@ -86,7 +86,7 @@ class MakeReportCommand extends MakeSectionCommand
 			$this->route,
 			$this->class,
 			$this->sufix,
-			'TO' + 'DO'
+			'TODO'
 		);
 
 		return parent::addToMenu($content);

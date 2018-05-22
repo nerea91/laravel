@@ -101,10 +101,10 @@ class Foundation extends FormBuilder
 	 *
 	 * @return string
 	 */
-	public function select($name, $list = [], $selected = NULL, array $options = [], array $selectAttributes = [])
+	public function select($name, $list = [], $selected = NULL, array $selectAttributes = [], array $options = [], array $optgroupsAttributes = [])
 	{
 		$this->addErrorClass($name, $options);
-		$tags['input'] = parent::select($name, $list, $selected, $options);
+		$tags['input'] = parent::select($name, $list, $selected, $selectAttributes, $options, $optgroupsAttributes);
 		$tags['error'] = $this->getErrorTag($name);
 		return $this->buildTags($tags);
 	}

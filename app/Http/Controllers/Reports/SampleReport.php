@@ -89,7 +89,7 @@ class SampleReport extends ReportController implements ReportInterface
 	 *  ->totals
 	 *  ->currency
 	 */
-	public function get(array $data)
+	public function get(array $input)
 	{
 		$data = new \StdClass();
 

@@ -31,7 +31,7 @@ class MakeReportCommand extends MakeSectionCommand
 		->setTestFile('ReportsTest.php');
 
 		// Fire command
-		parent::fire();
+		parent::handle();
 	}
 
 	/**
@@ -49,7 +49,7 @@ class MakeReportCommand extends MakeSectionCommand
 			$this->permissionType,
 			$this->class,
 			$this->sufix,
-			'TO' + 'DO'
+			'TODO'
 		);
 
 		return parent::addToSeeder($content);
@@ -86,7 +86,7 @@ class MakeReportCommand extends MakeSectionCommand
 			$this->route,
 			$this->class,
 			$this->sufix,
-			'TO' + 'DO'
+			'TODO'
 		);
 
 		return parent::addToMenu($content);
